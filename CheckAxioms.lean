@@ -79,3 +79,10 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.finiteView_backEdges
 #print axioms BigHrushovski.GraphOn.backEdges_card_le_two
 #print axioms BigHrushovski.GraphOn.closure_insert_of_two_backEdges
+
+#print axioms BigHrushovski.Predimension.StrongChain.strong_stages
+#print axioms BigHrushovski.Predimension.StrongChain.stage_monotone
+#print axioms BigHrushovski.Predimension.StrongChain.contains_finite
+#print axioms BigHrushovski.Predimension.StrongChain.stage_global
+#print axioms BigHrushovski.Predimension.StrongChain.toFiniteStrongCover
+#print axioms BigHrushovski.Predimension.exists_strong_chain_iff_exhaustion

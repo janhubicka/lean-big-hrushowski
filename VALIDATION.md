@@ -217,3 +217,16 @@ old neighbours remains an explicit graph-interface obligation.
 The [67-declaration Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37987197242) passed at source commit [99a62a2](https://github.com/janhubicka/lean-big-hrushowski/commit/99a62a2cb5205b2d03070eac5df9b71730b8afe0). No nonstandard theorem axioms were found, and ten Lean source files passed the placeholder check. The existing finite graph, decomposition, and triangle-component regressions passed as well.
 
 The new graph interface covers arbitrarily infinite edge sets, with induced edges enumerated only inside finite vertex sets. It proves the finite-view equivalence of strong embeddings and the incident-edge singleton-closure conclusion. Exact equality between incident-edge count and the number of distinct old neighbours is not yet a separate Lean declaration; the concrete M0 strong cover/genericity and subsequent Ramsey statements also remain open.
+
+
+## From finite strong successor steps to global strongness (pending CI)
+
+StrongChain assumes only a countable family of finite stages covering the
+ambient vertex type and strongness of each inclusion U_n <= U_(n+1).
+The new induction proves U_n <= U_m for all n <= m, then shows every
+U_n is strong in the entire ambient structure by placing each finite
+test set inside a later stage. This supplies a StrongExhaustion and
+FiniteStrongCover without assuming global strongness of the stages.
+Thus the usual direct-limit step in the strong Fraisse construction is
+formally isolated. The actual construction of the countable generic graph
+and proof of its extension property remain to be formalized.
