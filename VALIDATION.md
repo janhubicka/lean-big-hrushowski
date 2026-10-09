@@ -292,3 +292,15 @@ directions. The general theorem remains dependent on the Lean kernel
 build and a standard-axiom audit.
 
 **Certification:** the [89-declaration integrated CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37991564215) passed at commit [4a730c8](https://github.com/janhubicka/lean-big-hrushowski/commit/4a730c814d6ebd1c8e368d99237f23066c7941f6). Only the standard logical axioms occurred and 14 Lean files were checked for placeholders. The 1,100-graph regression checked 635,495 no-crossing pairs, 624,416 2-sparsity-preserving pairs in each direction, and 244,695 strong extensions. No claim is made yet that the generic Hrushovski limit has been constructed in Lean.
+
+
+## Concrete graph free join of two induced pieces (pending CI)
+
+New module FreeJoinConstruction.lean constructs a graph on a common
+vertex carrier by retaining only edges internal to either finite piece.
+When the two graph predicates agree on the common base, the resulting
+induced graph on each factor and all predimensions in that factor agree
+literally with the original graph. The join has no crossing edges.
+This is an actual free graph construction on previously identified
+vertex sets. A disjoint-copy/quotient construction for arbitrary abstract
+embeddings, and then the Fraisse extension property, remain unverified.

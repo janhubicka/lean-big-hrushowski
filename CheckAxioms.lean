@@ -105,3 +105,11 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.noCross_inter
 #print axioms BigHrushovski.GraphOn.twoSparse_union_of_noCross
 #print axioms BigHrushovski.GraphOn.twoSparse_union_of_noCross_right
+
+#print axioms BigHrushovski.GraphOn.freeJoin_adj_left
+#print axioms BigHrushovski.GraphOn.freeJoin_adj_right
+#print axioms BigHrushovski.GraphOn.freeJoin_edgesWithin_left
+#print axioms BigHrushovski.GraphOn.freeJoin_edgesWithin_right
+#print axioms BigHrushovski.GraphOn.freeJoin_noCross
+#print axioms BigHrushovski.GraphOn.freeJoin_predim_left
+#print axioms BigHrushovski.GraphOn.freeJoin_predim_right
