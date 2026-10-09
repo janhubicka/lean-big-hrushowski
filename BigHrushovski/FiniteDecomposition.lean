@@ -33,11 +33,11 @@ inductive MinimalStrongChain (d : Predimension V) :
 
 namespace StrongExhaustion
 
-variable {d : Predimension V} (e : StrongExhaustion d)
+variable {d : Predimension V}
 
 /-- Every finite extension between globally strong sets admits a
 decomposition into minimal strong extensions. -/
-theorem finite_minimal_decomposition {a D : Finset V}
+theorem finite_minimal_decomposition (e : StrongExhaustion d) {a D : Finset V}
     (ha : d.IsGloballyStrong a)
     (hD : d.IsGloballyStrong D) (haD : a ⊆ D) :
     MinimalStrongChain d a D := by
