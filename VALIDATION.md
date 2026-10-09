@@ -304,3 +304,12 @@ literally with the original graph. The join has no crossing edges.
 This is an actual free graph construction on previously identified
 vertex sets. A disjoint-copy/quotient construction for arbitrary abstract
 embeddings, and then the Fraisse extension property, remain unverified.
+
+
+The independent regression
+`scripts/check_actual_free_join.py` constructs the join for every pair
+of labelled graphs up to four vertices and every pair of vertex subsets,
+checking overlap compatibility, preservation of induced factor edges,
+no crossing edges, 2-sparsity and strongness in applicable cases.
+The initial 1,052,741 configurations had no counterexamples. The kernel
+build and axiom audit, not these computations, determine Lean verification.

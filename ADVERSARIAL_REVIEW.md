@@ -280,3 +280,35 @@ direction, and 244,695 strong extensions of sparse bases.
 
 These are hostile review questions checked by the same assistant,
 not independent external human or model referees.
+
+
+## Concrete free graph join: independent adversarial checks
+
+**Referee 1 — common-base compatibility.** The construction is defined for
+two graph predicates on one carrier. The resulting induced graph agrees
+with each factor only when their adjacency relations agree on every pair
+of vertices in the intersection. This hypothesis must not be omitted.
+
+**Referee 2 — absence of accidental edges.** Every edge of the join is
+inherited from one factor and both endpoints belong to that factor. No
+new crossing edge occurs. Edges outside the union are discarded.
+
+**Referee 3 — duplicate identification.** The shared vertices are already
+the intersection a∩b. This stage does not rename disjoint tails or prove
+that arbitrary abstract embeddings can be represented on this carrier.
+That transport is a separate, explicitly unverified part of full
+amalgamation.
+
+**Referee 4 — finite subset test.** 1,052,741 graph/vertex-subset pairs
+were examined exhaustively for labelled graphs up to four vertices.
+894,763 compatible inputs preserve the factor induced edge sets, and
+893,483 instances satisfying both 2-sparsity and strong-base conditions
+give 2-sparse unions in which both factors are strong.
+
+**Referee 5 — logic and scope.** The resulting graph is symmetric and
+irreflexive by construction, and the argument counts unordered edges.
+The Fraisse extension property and the functional closure expansion
+are not consequences of this graph construction alone.
+
+These are separate adversarial questions and an independent calculation,
+not a panel of independently spawned external referees.
