@@ -219,7 +219,24 @@ The [67-declaration Lean audit](https://github.com/janhubicka/lean-big-hrushowsk
 The new graph interface covers arbitrarily infinite edge sets, with induced edges enumerated only inside finite vertex sets. It proves the finite-view equivalence of strong embeddings and the incident-edge singleton-closure conclusion. Exact equality between incident-edge count and the number of distinct old neighbours is not yet a separate Lean declaration; the concrete M0 strong cover/genericity and subsequent Ramsey statements also remain open.
 
 
-## From finite strong successor steps to global strongness (pending CI)
+## Old-neighbour bijection (verified)
+
+This module makes explicit that, for a vertex x outside a finite old set A,
+its incident unordered back edges correspond bijectively to the distinct
+old vertices y adjacent to x. In particular the cardinality used by the
+formal back-edge theorem equals the manuscript's d_i(x). No finiteness
+assumption is imposed on the whole graph. The two-neighbour bound and
+singleton-closure conclusion follow immediately from the earlier
+finite-view transfer and strong-exhaustion results.
+
+The companion independent regression `scripts/check_old_neighbours.py`
+examines 84,073 configurations in the 1,100 labelled graphs on at most
+five vertices, checking the correspondence and cardinality in each.
+
+**Verified Lean commit:** [ae88e1c](https://github.com/janhubicka/lean-big-hrushowski/commit/ae88e1c25af73b0132170cf812e113ec5442ccc8), [successful GitHub Actions run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37989366352). The run compiled all modules and audited 74 declarations, accepting only Lean's standard logical axioms; 11 Lean source files passed the placeholder check. The independent regression checked 1,100 labelled simple graphs and 84,073 old-set/new-vertex configurations. The closure consequences are still conditional on the strong exhaustion; genericity of the specific M0 is not yet formalized.
+
+
+## From finite strong successor steps to global strongness (verified)
 
 StrongChain assumes only a countable family of finite stages covering the
 ambient vertex type and strongness of each inclusion U_n <= U_(n+1).
@@ -235,3 +252,5 @@ The independent finite-model regression for three-stage covering
 strong chains checks every labelled graph with up to four vertices,
 including 5,074 valid strong-chain configurations. The general proof
 still rests on the kernel-checked arbitrary-predimension argument.
+
+**Certified checkpoint:** [626275e](https://github.com/janhubicka/lean-big-hrushowski/commit/626275e464f20a5883b7d6fcab71553f85711ced), [passing Lean CI](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37989676436). The run compiled the full development and audited 73 declarations with only standard logical axioms, no proof placeholders, and 5,074 finite three-stage covering-chain regressions. An actual strong Fraisse construction is still required to instantiate the chain for M0.

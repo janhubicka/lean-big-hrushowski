@@ -80,6 +80,14 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.backEdges_card_le_two
 #print axioms BigHrushovski.GraphOn.closure_insert_of_two_backEdges
 
+#print axioms BigHrushovski.GraphOn.pair_mem_backEdges
+#print axioms BigHrushovski.GraphOn.backEdge_exists_oldNeighbour
+#print axioms BigHrushovski.GraphOn.backEdges_eq_neighbour_image
+#print axioms BigHrushovski.GraphOn.neighbour_pair_injOn
+#print axioms BigHrushovski.GraphOn.backEdges_card_eq_oldNeighbours_card
+#print axioms BigHrushovski.GraphOn.oldNeighbours_card_le_two
+#print axioms BigHrushovski.GraphOn.closure_insert_of_two_oldNeighbours
+
 #print axioms BigHrushovski.Predimension.StrongChain.strong_stages
 #print axioms BigHrushovski.Predimension.StrongChain.stage_monotone
 #print axioms BigHrushovski.Predimension.StrongChain.contains_finite

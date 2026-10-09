@@ -149,6 +149,39 @@ These are distinct hostile reviews by one assistant, not independent external re
 These are separate hostile review perspectives by one assistant, not separately spawned model/human referees. No new mathematical defect was identified within the stated proof boundaries.
 
 
+## Adversarial review: old neighbours and unordered back edges
+
+**Referee A — representation.** A graph is a symmetric irreflexive
+adjacency predicate; unordered edges are two-element sets. Parallel
+edges and loops are impossible. The lemma would need revision for
+multigraphs, and deliberately assumes a simple graph.
+
+**Referee B — domain.** The new vertex is required not to belong to
+the old set. This prevents a back edge from being counted among the
+already existing edges and establishes the two-element-pair cardinality.
+
+**Referee C — surjectivity.** Every incident edge contains the new vertex
+and precisely one other endpoint. The endpoint is old, and the adjacency
+orientation can be reversed using graph symmetry.
+
+**Referee D — injectivity.** Different old neighbours yield different
+unordered pairs with the new vertex because neither equals that vertex.
+The cardinality equality therefore counts each old neighbour exactly once.
+
+**Referee E — finite regression.** The independent bitset implementation
+tests all 1,100 labelled simple graphs of orders 0 through 5 and all
+84,073 old-set/new-vertex configurations. It compares the literal sets
+of incident edges as well as their cardinalities.
+
+**Referee F — manuscript transfer.** The counting identity needs no
+Fraisse genericity. The closure statement still assumes an actual
+strong exhaustion and must not be marked as a concrete model theorem
+until its existence is connected to the Hrushovski construction.
+
+These are independent adversarial *questions* examined by one assistant,
+not separately spawned external or human referee agents.
+
+
 ## Adversarial review: local strong chains versus global strongness
 
 **Referee A — predimension.** The chain relation is self-sufficiency
