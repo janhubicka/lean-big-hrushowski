@@ -346,3 +346,10 @@ and the join has no crossing edges between the fresh L and R parts.
 This is a fresh carrier for the underlying graph, not just two
 subsets of an existing common carrier. The strong-embedding transfer
 for finite source graphs and the Fraisse extension property remain open.
+
+The independent regression check_tagged_amalgams.py enumerates all
+5,613 small input graph pairs in canonical tagged normal form,
+including 2,875 compatible bases, and checks that the two inclusions
+preserve induced graphs without crossing edges. The test also checks
+2,729 examples satisfying strong-amalgamation hypotheses, but the
+general strongness-transfer proof on tagged carriers is still open.

@@ -331,3 +331,36 @@ not a panel of independently spawned external referees.
 **G. Kernel and finite-model checks.** The 102-declaration build passed, and the independent bit-mask implementation checked 894,763 compatible inputs. Neither result alone verifies the Fraisse generic extension property.
 
 These are distinct adversarial proof perspectives carried out by the same assistant and computational cross-checks; not human referee reports.
+
+
+## Tagged carrier: adversarial review
+
+**Reviewer A — identification.** The output carrier is P+(L+R);
+the canonical inclusions are injective and their only overlap is P.
+No two vertices from the fresh tails can be identified.
+
+**Reviewer B — common-base compatibility.** The two input adjacency
+relations must agree on P. Without this, an edge in one input could
+appear as an unwanted induced edge of the other.
+
+**Reviewer C — induced nonedges.** Preserving only input edges is
+insufficient. The proofs of both graph embeddings use the agreement
+hypothesis to reflect every adjacency and hence every nonadjacency.
+
+**Reviewer D — no crossing.** The left edge witnesses come exclusively
+from P+L and the right ones exclusively from P+R. A left-tail to
+right-tail edge is impossible by the disjoint tagged constructors.
+
+**Reviewer E — scope.** This is a normal-form graph amalgam for an
+abstract shared base. Strongness of the two canonical embeddings for
+finite 2-sparse input graphs must still be transferred through these
+tags, and no Fraisse genericity has been proved here.
+
+**Reviewer F — exhaustive regression.** Every labelled graph pair in
+normal form with |P|,|L|,|R| at most 2 is checked. There are 5,613
+inputs and 2,875 compatible diagrams. Factor preservation and no
+crossing hold in every compatible diagram; 2,729 strong 2-sparse
+cases satisfy the intended later strong-amalgamation property.
+
+These are separated adversarial reviews by the same assistant,
+not independent external referee reports.
