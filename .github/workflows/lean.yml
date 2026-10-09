@@ -64,3 +64,5 @@ jobs:
         run: python3 scripts/check_minimal_decomposition.py
       - name: Check six-vertex closure component
         run: python3 scripts/check_c0_triangle_component.py
+      - name: Check old-neighbour and unordered back-edge correspondence
+        run: python3 scripts/check_old_neighbours.py

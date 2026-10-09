@@ -228,3 +228,7 @@ formal back-edge theorem equals the manuscript's d_i(x). No finiteness
 assumption is imposed on the whole graph. The two-neighbour bound and
 singleton-closure conclusion follow immediately from the earlier
 finite-view transfer and strong-exhaustion results.
+
+The companion independent regression `scripts/check_old_neighbours.py`
+examines 84,073 configurations in the 1,100 labelled graphs on at most
+five vertices, checking the correspondence and cardinality in each.
