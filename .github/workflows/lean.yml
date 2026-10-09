@@ -58,3 +58,5 @@ jobs:
           done
           python3 scripts/check_axioms.py axioms.log "${sources[@]}"
           python3 scripts/check_no_placeholders.py
+      - name: Check all graphs on up to five vertices
+        run: python3 scripts/check_finite_models.py

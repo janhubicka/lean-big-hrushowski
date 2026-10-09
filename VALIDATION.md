@@ -30,3 +30,14 @@ Adversarial review perspectives:
 4. Lean: inspect elaborated theorem types, axioms, and forbidden placeholders.
 
 These are separate hostile checking perspectives, not human referee certification.
+
+## Second finite theorem layer (in progress)
+
+The strict relation used in C_F is now treated separately from self-sufficiency.
+The new targets are Predimension.dclosed_inter and Predimension.dclosed_trans.
+Both need the **strict** inequality on every proper extension: converting
+the goal to the non-strict IsStrong predicate would be an invalid repair.
+
+The independent bit-set checker enumerates all 1,100 labelled simple graphs
+on at most five vertices, including tests where graph edges cross a union.
+These checks are diagnostic only; CI must build the Lean proofs and audit axioms.

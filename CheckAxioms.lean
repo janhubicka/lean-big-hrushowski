@@ -7,3 +7,7 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.strong_of_dClosed
 #print axioms BigHrushovski.Predimension.strong_trans
 #print axioms BigHrushovski.Predimension.strong_inter
+
+#print axioms BigHrushovski.Predimension.delta_inter_le_of_strong
+#print axioms BigHrushovski.Predimension.dclosed_trans
+#print axioms BigHrushovski.Predimension.dclosed_inter

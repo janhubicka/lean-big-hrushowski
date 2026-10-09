@@ -147,5 +147,121 @@ theorem strong_inter {p q c : Finset V}
   have hsub2 := d.submodular p x
   omega
 
+
+/-- A strong ambient substructure controls the predimension of intersections. -/
+theorem delta_inter_le_of_strong {p c x : Finset V}
+    (hpc : d.IsStrong p c) (hxc : x ⊆ c) :
+    d.delta (p ∩ x) ≤ d.delta x := by
+  have hu : d.delta p ≤ d.delta (p ∪ x) :=
+    hpc.2 (p ∪ x) Finset.subset_union_left (Finset.union_subset hpc.1 hxc)
+  have hs := d.submodular p x
+  omega
+
+/-- Transitivity of the strict predimension closure relation. -/
+theorem dclosed_trans {a b c : Finset V}
+    (hab : d.IsDClosed a b) (hbc : d.IsDClosed b c) :
+    d.IsDClosed a c := by
+  refine ⟨hab.1.trans hbc.1, ?_⟩
+  intro x hax hxa hxc
+  have haMeet : a ⊆ b ∩ x := by
+    intro v hv
+    exact Finset.mem_inter.mpr ⟨hab.1 hv, hax hv⟩
+  have hle : d.delta (b ∩ x) ≤ d.delta x :=
+    d.delta_inter_le_of_strong (d.strong_of_dClosed hbc) hxc
+  by_cases hEq : b ∩ x = a
+  · have hNotSub : ¬ x ⊆ b := by
+      intro hxSub
+      have hMeetX : b ∩ x = x := by
+        ext v
+        constructor
+        · intro hv
+          exact (Finset.mem_inter.mp hv).2
+        · intro hv
+          exact Finset.mem_inter.mpr ⟨hxSub hv, hv⟩
+      have hxEqA : x = a := by rw [hMeetX] at hEq; exact hEq
+      exact hxa hxEqA
+    have hUnionNe : b ∪ x ≠ b := by
+      intro h
+      apply hNotSub
+      intro v hv
+      have hvU : v ∈ b ∪ x := Finset.mem_union.mpr (Or.inr hv)
+      rw [h] at hvU
+      exact hvU
+    have hStrict : d.delta b < d.delta (b ∪ x) :=
+      hbc.2 (b ∪ x) Finset.subset_union_left hUnionNe
+        (Finset.union_subset hbc.1 hxc)
+    have hSub := d.submodular b x
+    rw [hEq] at hSub
+    omega
+  · have hStrict : d.delta a < d.delta (b ∩ x) :=
+      hab.2 (b ∩ x) haMeet hEq Finset.inter_subset_left
+    omega
+
+/-- Intersection of d-closed vertex sets in a common finite ambient graph. -/
+theorem dclosed_inter {p q c : Finset V}
+    (hp : d.IsDClosed p c) (hq : d.IsDClosed q c) :
+    d.IsDClosed (p ∩ q) c := by
+  refine ⟨Finset.inter_subset_left.trans hp.1, ?_⟩
+  intro x hIx hxNe hxc
+  have hIleZ : p ∩ q ⊆ p ∩ x := by
+    intro v hv
+    exact Finset.mem_inter.mpr ⟨(Finset.mem_inter.mp hv).1, hIx hv⟩
+  have hZleX : d.delta (p ∩ x) ≤ d.delta x :=
+    d.delta_inter_le_of_strong (d.strong_of_dClosed hp) hxc
+  by_cases hEq : p ∩ x = p ∩ q
+  · have hNotSub : ¬ x ⊆ p := by
+      intro hxSub
+      have hMeetX : p ∩ x = x := by
+        ext v
+        constructor
+        · intro hv
+          exact (Finset.mem_inter.mp hv).2
+        · intro hv
+          exact Finset.mem_inter.mpr ⟨hxSub hv, hv⟩
+      have hxEqI : x = p ∩ q := by rw [hMeetX] at hEq; exact hEq
+      exact hxNe hxEqI
+    have hUnionNe : p ∪ x ≠ p := by
+      intro h
+      apply hNotSub
+      intro v hv
+      have hvU : v ∈ p ∪ x := Finset.mem_union.mpr (Or.inr hv)
+      rw [h] at hvU
+      exact hvU
+    have hStrict : d.delta p < d.delta (p ∪ x) :=
+      hp.2 (p ∪ x) Finset.subset_union_left hUnionNe
+        (Finset.union_subset hp.1 hxc)
+    have hSub := d.submodular p x
+    rw [hEq] at hSub
+    omega
+  · have hNotSub : ¬ p ∩ x ⊆ q := by
+      intro hzSub
+      have hZleI : p ∩ x ⊆ p ∩ q := by
+        intro v hv
+        exact Finset.mem_inter.mpr ⟨(Finset.mem_inter.mp hv).1, hzSub hv⟩
+      exact hEq (le_antisymm hZleI hIleZ)
+    have hUnionNe : q ∪ (p ∩ x) ≠ q := by
+      intro h
+      apply hNotSub
+      intro v hv
+      have hvU : v ∈ q ∪ (p ∩ x) := Finset.mem_union.mpr (Or.inr hv)
+      rw [h] at hvU
+      exact hvU
+    have hStrict : d.delta q < d.delta (q ∪ (p ∩ x)) :=
+      hq.2 (q ∪ (p ∩ x)) Finset.subset_union_left hUnionNe
+        (Finset.union_subset hq.1 (Finset.inter_subset_right.trans hxc))
+    have hMeet : q ∩ (p ∩ x) = p ∩ q := by
+      ext v
+      constructor
+      · intro hv
+        rcases Finset.mem_inter.mp hv with ⟨hqv, hpX⟩
+        exact Finset.mem_inter.mpr ⟨(Finset.mem_inter.mp hpX).1, hqv⟩
+      · intro hv
+        rcases Finset.mem_inter.mp hv with ⟨hpv, hqv⟩
+        exact Finset.mem_inter.mpr
+          ⟨hqv, Finset.mem_inter.mpr ⟨hpv, hIx hv⟩⟩
+    have hSub := d.submodular q (p ∩ x)
+    rw [hMeet] at hSub
+    omega
+
 end Predimension
 end BigHrushovski
