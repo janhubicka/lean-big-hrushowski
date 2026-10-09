@@ -93,7 +93,7 @@ variable (h : CountableStrongCover d)
 and the next vertex in the enumeration. -/
 noncomputable def stage : ℕ → Finset V
   | 0 => h.cover.chosenContainer ∅
-  | n + 1 => h.cover.chosenContainer (insert (h.enumerate n) (stage h n))
+  | n + 1 => h.cover.chosenContainer (insert (h.enumerate n) (stage n))
 
 theorem stage_global (n : ℕ) :
     d.IsGloballyStrong (h.stage n) := by
@@ -124,7 +124,7 @@ theorem stage_monotone {n m : ℕ} (hnm : n ≤ m) :
       · have heq : n = m + 1 := by omega
         subst n
         intro v hv
-      exact hv
+        exact hv
 
 theorem stage_covers (v : V) :
     ∃ n : ℕ, v ∈ h.stage n := by
