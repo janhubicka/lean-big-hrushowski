@@ -22,6 +22,7 @@ def strong(a, c):
     return all(delta(a) <= delta(x)
                for x in powerset(c) if a <= x)
 
+assert all(delta(s) >= 0 for s in powerset(full)), "example is not 2-sparse"
 assert delta(old) == 6
 assert delta(full) == 6
 assert strong(old, full)
