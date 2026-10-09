@@ -1,2 +1,3 @@
 import BigHrushovski.Predimension
 import BigHrushovski.Closure
+import BigHrushovski.GlobalClosure

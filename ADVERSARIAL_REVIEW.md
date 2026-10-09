@@ -18,8 +18,8 @@ same development; they are NOT claims of independent external human refereeing.
 
 - IsStrong requires non-strict inequalities δ(A) <= δ(X) on extensions.
   IsDClosed requires strict inequalities for *every proper* extension.
-- A two-edge path on vertices 0,1,2 has A={1,2} and C={0,1,2}.
-  Here δ(A)=4=δ(C); A is strong in C but not d-closed. The reverse
+- A two-edge path on vertices 0,1,2 has A={0,2}, the two endpoints,
+  and C={0,1,2}. Here δ(A)=4=δ(C); A is strong in C but not d-closed. The reverse
   implication is therefore invalid.
 - Finite intersection and transitivity are proved separately for the two
   predicates. The strict proof branches on the intersection with the

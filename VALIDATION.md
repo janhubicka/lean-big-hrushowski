@@ -62,3 +62,21 @@ The remaining countable statement requires showing every finite source
 in M_0 lies in a finite strong container and comparing the resulting
 hulls between containers. The current Lean development does not formalize
 the generic strong Fraisse limit.
+
+
+## Fourth layer: global closure from a supplied strong exhaustion
+
+Module GlobalClosure.lean defines finite globally strong substructures in an
+ambient (possibly infinite) vertex type. It formalizes:
+- their closure under intersections;
+- independence of finite strong hulls from globally strong containers;
+- an increasing strong exhaustion as explicit hypothesis data;
+- finite generated closure, monotonicity, idempotence, and exactness on
+  finite globally strong substructures.
+
+Pending CI and statement audit. This formalization is **conditional on the
+strong exhaustion**. Its existence for the actual countable Fraisse limit,
+and the graph/partial-function representations, remain to be formalized.
+
+A corrected two-edge path example in ADVERSARIAL_REVIEW.md uses the endpoints
+A={0,2}; A={1,2} would not have the asserted predimension.
