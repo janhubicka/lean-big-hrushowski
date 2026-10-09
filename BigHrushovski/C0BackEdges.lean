@@ -71,7 +71,7 @@ theorem edge_count_insert (a : Finset V) (x : V) (hx : x ∉ a) :
 theorem predim_insert (a : Finset V) (x : V) (hx : x ∉ a) :
     G.predim (insert x a) + ((G.backEdges a x).card : ℤ)
       = G.predim a + 2 := by
-  have hverts := Finset.card_insert_of_not_mem hx
+  have hverts : (insert x a).card = a.card + 1 := by simp [hx]
   have hedges := G.edge_count_insert a x hx
   unfold predim
   omega
