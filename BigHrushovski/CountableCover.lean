@@ -138,7 +138,7 @@ theorem stage_covers (v : V) :
   exact hin
 
 /-- The finite-cover property produces a strong exhaustion. -/
-noncomputable def toStrongExhaustion : StrongExhaustion d where
+noncomputable def toStrongExhaustion (h : CountableStrongCover d) : StrongExhaustion d where
   stage := h.stage
   monotone := fun n m hnm => h.stage_monotone hnm
   strong := h.stage_global
@@ -146,7 +146,7 @@ noncomputable def toStrongExhaustion : StrongExhaustion d where
 
 /-- A countable finite-strong-cover structure admits an actual
 increasing strong exhaustion, without assuming one as input. -/
-theorem exists_strong_exhaustion :
+theorem exists_strong_exhaustion (h : CountableStrongCover d) :
     Nonempty (StrongExhaustion d) :=
   ⟨h.toStrongExhaustion⟩
 
