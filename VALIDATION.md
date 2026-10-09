@@ -1,0 +1,64 @@
+# Validation ledger — 9 October 2026
+
+Manuscript: The-big-Hrushovski (v52). First milestone: finite predimensions.
+
+| Manuscript statement | Lean declaration | Status |
+| --- | --- | --- |
+| Definition of graph predimension and submodularity (Sections 1–2) | BigHrushovski.FiniteGraph.predim_submodular | Verified — [7-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37976439415) |
+| Intersection of finite strong substructures (Lemma intersection, first assertion) | BigHrushovski.Predimension.strong_inter | Verified — [7-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37976439415) |
+| Transitivity of finite strong substructures | BigHrushovski.Predimension.strong_trans | Verified — [7-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37976439415) |
+| Strict d-closure implies self-sufficiency | BigHrushovski.Predimension.strong_of_dClosed | Verified — [7-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37976439415) |
+| Intersection of finite d-closed substructures | BigHrushovski.Predimension.dclosed_inter | Verified — [10-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37977234148) |
+| Transitivity of finite d-closed substructures | BigHrushovski.Predimension.dclosed_trans | Verified — [10-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37977234148) |
+| Least strong hull within a fixed finite ambient graph | BigHrushovski.Predimension.exists_least_strong_hull | Verified — [15-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37977945496) |
+| Existence of a finite strong container in the countable M_0, and global hull | None | Open (requires strong Fraisse chain and finite-character transfer) |
+| Equality with model-theoretic algebraic closure | None | Open |
+| Enumeration, lifting, Ramsey and Ellentuck theorems | None | Open |
+
+Only the finite-set statements listed here are formalized. The first assertion
+of the intersection lemma is stronger than needed, because the general abstract
+predimension theorem is instantiated by the *proved* submodularity of graph δ.
+
+Audited Lean commit: [1a4dfafc](https://github.com/janhubicka/lean-big-hrushowski/commit/1a4dfafc983305b28f0489ee727d62dd8f2315fa).
+The [successful GitHub Actions run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37976439415) built all modules and checked seven declarations, with only Lean's standard logical axioms and no placeholders.
+
+Green marks require a successful build, exact theorem match, and axiom audit
+of a pinned commit. Orange indicates partial coverage; blue is an interface
+marker. A build still pending cannot be called machine verified.
+
+Adversarial review perspectives:
+1. Predimension: check each unordered edge counted once and direction of inequality.
+2. Closure: distinguish strong-in-finite-C from strong-in-M, and finite hull existence.
+3. Ramsey: never promote the finite predicate lemmas to recurrence or exact big degrees.
+4. Lean: inspect elaborated theorem types, axioms, and forbidden placeholders.
+
+These are separate hostile checking perspectives, not human referee certification.
+
+## Second finite theorem layer (certified)
+
+The strict relation used in C_F is now treated separately from self-sufficiency.
+The new targets `Predimension.dclosed_inter` and `Predimension.dclosed_trans` are proved and audited.
+Both need the **strict** inequality on every proper extension: converting
+the goal to the non-strict IsStrong predicate would be an invalid repair.
+
+The independent bit-set checker enumerates all 1,100 labelled simple graphs
+on at most five vertices, including tests where graph edges cross a union.
+These checks are diagnostic only; the [successful CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37977234148) builds the formal proofs and audits all 10 Lean declarations. The corresponding [audited commit](https://github.com/janhubicka/lean-big-hrushowski/commit/9bd2d4238ac92dbf18533f05a8479e447ebeacb5) contains no proof placeholders and passes all finite-model checks (1,065,509 submodularity instances, 1,753,601 d-closed intersections, 686,097 transitivity cases).
+
+
+## Third finite theorem layer (certified)
+
+The finite-hull construction takes the intersection of all strong subsets of
+the *same fixed finite ambient set* that contain a prescribed source. The
+intersection-family induction and the leastness property are audited in Lean
+as Predimension.strong_intersectFamily and
+Predimension.exists_least_strong_hull. The [successful 15-declaration
+audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37977945496)
+at [0b880c93](https://github.com/janhubicka/lean-big-hrushowski/commit/0b880c93bc7125cd80f0d340f041137d4be3a52b)
+also passed the 1,100-graph model checker.
+
+This finishes the **finite-ambient** portion of Lemma intersection.
+The remaining countable statement requires showing every finite source
+in M_0 lies in a finite strong container and comparing the resulting
+hulls between containers. The current Lean development does not formalize
+the generic strong Fraisse limit.

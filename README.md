@@ -1,7 +1,16 @@
 # Lean Big Hrushovski
 
-Formal verification of the working manuscript [The Big Hrushovski](https://github.com/janhubicka/The-big-Hrushovski).
+Formal validation of the working manuscript [The Big Hrushovski](https://github.com/janhubicka/The-big-Hrushovski).
 
-The initial development checks the finite predimension and strong-substructure interfaces before attempting enumeration, Ramsey or Ellentuck theorems. A compiled Lean lemma is **not** automatically a verification of its broader manuscript statement: see `VALIDATION.md` for the exact correspondence and outstanding obligations.
+First target: the finite graph predimension, submodularity, and self-sufficiency
+lemmas. This is NOT yet a verification of the whole manuscript. The exact
+statement correspondence and remaining gaps are recorded in VALIDATION.md.
 
-Setup and proof/axiom audit conventions are adapted from [`partite-construction`](https://github.com/janhubicka/partite-construction).
+Setup follows partite-construction with its pinned Lean and Mathlib versions.
+
+Build and audit:
+    lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+    lake build BigHrushovski
+    lake env lean CheckAxioms.lean > axioms.log
+    python3 scripts/check_axioms.py axioms.log CheckAxioms.lean
+    python3 scripts/check_no_placeholders.py
