@@ -71,3 +71,29 @@ assert stats == {
     "strong_amalgams": 893483,
 }, stats
 print(stats)
+
+
+# Negative control: strongness of the common base is indispensable.
+# Two K5's meeting in a K3 have seven vertices and seventeen edges.
+# Each K5 is 2-sparse, but the free join has predimension -3.
+p = {0, 1, 2}
+a = p | {3, 4}
+b = p | {5, 6}
+e1 = {frozenset(x) for x in combinations(sorted(a), 2)}
+e2 = {frozenset(x) for x in combinations(sorted(b), 2)}
+joined_edges = e1 | e2
+
+def delta_of_graph(vertices, edge_set):
+    return 2 * len(vertices) - sum(e <= vertices for e in edge_set)
+
+for vertices, edges_of_piece in [(a, e1), (b, e2)]:
+    assert all(
+        delta_of_graph(set(t), edges_of_piece) >= 0
+        for k in range(len(vertices) + 1)
+        for t in combinations(sorted(vertices), k)
+    )
+assert delta_of_graph(p, joined_edges) == 3
+assert delta_of_graph(a, e1) == 0
+assert delta_of_graph(b, e2) == 0
+assert delta_of_graph(a | b, joined_edges) == -3
+print("Negative control passed: two K5's glued over K3 are not 2-sparse.")
