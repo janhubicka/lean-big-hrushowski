@@ -101,3 +101,16 @@ smaller cardinality, so the vertex satisfies IsMinimalChoice. The resulting
 finite extension has no intermediate strong substructure. This proves
 the one-step minimalisation claim, conditional on the globally strong
 exhaustion and the given finite strong requirement.
+
+
+## Sixth layer: finite minimal decomposition (pending CI)
+
+A finite globally strong extension is refined by strong induction on
+the number of vertices still outside the prefix. Each step selects a
+minimum-cardinality one-generated strong closure. This closure is a
+minimal strong extension and strictly increases the prefix, so the
+finite construction terminates at the prescribed strong container.
+
+The chain is encoded by an inductive relation rather than by imposing an
+arbitrary numerical length. A complete exhausting enumeration of the
+countable Hrushovski limit remains a distinct scheduling argument.
