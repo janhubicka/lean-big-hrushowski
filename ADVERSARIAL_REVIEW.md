@@ -70,3 +70,35 @@ The finite predecessor core is now ready. The next honest proof boundary
 is a formal definition of an increasing strong exhaustion of M_0, with
 the induced finite closure and its invariance under inclusion of strong
 containers, before encoding enumeration increments.
+
+
+## New adversarial passes: closure increments and finite decompositions
+
+**F. Minimal-choice reviewer.** A chosen vertex minimises the cardinality
+of its generated finite closure, not the cardinality of the entire ambient
+strong requirement. Any generated closure properly contained in that
+of the chosen vertex would have smaller cardinality. This proves
+inclusion-minimality, without asserting that the resulting closures
+are linearly ordered.
+
+**G. Intermediate-strongness reviewer.** An intermediate Z strong inside
+the new finite globally strong block is itself globally strong, by
+transitivity. If Z properly extends the old prefix, it contains a new
+vertex; the whole block lies in the closure of the prefix and that vertex.
+Therefore Z is the full block.
+
+**H. Finite-decomposition reviewer.** Each step adds the chosen vertex,
+so D minus the new prefix is a proper subset of D minus the old prefix.
+The induction decreases a natural cardinality, not the predimension.
+The theorem does not schedule the countably many generic extension
+requirements of M_0.
+
+**I. Diagnostic reviewer.** A separate bit-set implementation checks
+every labelled graph on at most five vertices. In the initial exhaustive
+run there were 189,941 globally strong source/container pairs and
+310,904 minimal increments, with no counterexample. The CI checker is
+retained as a regression test. These are computational checks, not
+additional Lean theorems.
+
+The above are independent *review questions* applied by the same
+assistant, not external or human referees.

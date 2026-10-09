@@ -114,3 +114,17 @@ finite construction terminates at the prescribed strong container.
 The chain is encoded by an inductive relation rather than by imposing an
 arbitrary numerical length. A complete exhausting enumeration of the
 countable Hrushovski limit remains a distinct scheduling argument.
+
+
+## Exact manuscript interface for the finite decomposition
+
+The theorem finite_minimal_decomposition_of_strong takes a finite strong
+extension A <= D with D globally strong and returns a finite chain of
+minimal strong extensions from A to D. This directly matches the finite
+refinement used in the closure-component construction, conditional on the
+strong exhaustion and on the existence of the ambient strong embedding.
+
+The independent finite-model regression tests all labelled simple graphs
+with at most five vertices, checking minimiser selection, equality of
+relative closures, absence of intermediate strong substructures, and
+strict progress. These checks do not replace the Lean proof.

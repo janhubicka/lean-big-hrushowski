@@ -103,6 +103,16 @@ theorem finite_minimal_decomposition (e : StrongExhaustion d) {a D : Finset V}
           exact MinimalStrongChain.refl D
   exact core (D \ a).card a ha haD rfl
 
+
+/-- A finite strong extension in a globally strong ambient container can
+be refined into minimal strong extensions. -/
+theorem finite_minimal_decomposition_of_strong
+    (e : StrongExhaustion d) {a D : Finset V}
+    (hAD : d.IsStrong a D) (hD : d.IsGloballyStrong D) :
+    MinimalStrongChain d a D :=
+  e.finite_minimal_decomposition
+    (d.globallyStrong_of_strong_in_global hAD hD) hD hAD.1
+
 end StrongExhaustion
 end Predimension
 end BigHrushovski

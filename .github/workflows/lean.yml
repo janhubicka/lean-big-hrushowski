@@ -60,3 +60,5 @@ jobs:
           python3 scripts/check_no_placeholders.py
       - name: Check all graphs on up to five vertices
         run: python3 scripts/check_finite_models.py
+      - name: Check finite minimal decompositions
+        run: python3 scripts/check_minimal_decomposition.py

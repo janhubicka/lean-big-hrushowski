@@ -40,3 +40,5 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.StrongExhaustion.exists_minimal_strong_extension
 
 #print axioms BigHrushovski.Predimension.StrongExhaustion.finite_minimal_decomposition
+
+#print axioms BigHrushovski.Predimension.StrongExhaustion.finite_minimal_decomposition_of_strong
