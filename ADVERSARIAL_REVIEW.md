@@ -130,3 +130,20 @@ These are deliberately separated checks by the same assistant, not independent e
 These are distinct hostile reviews by one assistant, not independent external referees.
 
 **Infinite-graph interface attack:** The current `FiniteGraph V` stores a finite *global* edge set; the countable generic Hrushovski graph has infinitely many edges. Therefore the C0 proof is fully checked for its finite combinatorial statement, but does not constitute a direct formal proof about the entire countable graph. Finite strong-container transfer is not yet formalized. The manuscript marker is orange for this reason as well as the neighbour/edge correspondence.
+
+
+## Infinite graph versus finite view — adversarial audit
+
+**Representation reviewer:** GraphOn uses a symmetric, irreflexive adjacency predicate without requiring the global edge set to be finite. Its induced edges are finite pairs enumerated inside each finite vertex set.
+
+**Predimension reviewer:** for P and Q, induced crossing edges occur only in their union; the edge count is supermodular and delta is submodular. No global graph finiteness is used in this argument.
+
+**Restriction reviewer:** the finiteView graph on S has exactly the same edge instances on every T subset S. Its predimension and finite strongness therefore agree literally with those computed in GraphOn.
+
+**Closure reviewer:** the two-edge singleton-closure theorem assumes a genuine StrongExhaustion of the infinite graph's predimension. That exhaustion is not constructed for M0 in this PR.
+
+**Terminology reviewer:** the numerical theorem counts incident unordered edges; the equivalence with the number of earlier neighbours in a simple graph is mathematically canonical but has not been formalized as a standalone Lean bijection.
+
+**Kernel reviewer:** all seven infinite-graph core declarations and four transfer declarations are included in the passing standard-axiom and placeholder audit at the 67-declaration checkpoint.
+
+These are separate hostile review perspectives by one assistant, not separately spawned model/human referees. No new mathematical defect was identified within the stated proof boundaries.
