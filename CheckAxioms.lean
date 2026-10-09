@@ -58,3 +58,11 @@ import BigHrushovski
 
 #print axioms BigHrushovski.Predimension.StrongExhaustion.toFiniteStrongCover
 #print axioms BigHrushovski.Predimension.finite_cover_iff_strong_exhaustion_of_surjective
+
+#print axioms BigHrushovski.FiniteGraph.edgesWithin_insert_split
+#print axioms BigHrushovski.FiniteGraph.backEdges_disjoint
+#print axioms BigHrushovski.FiniteGraph.edge_count_insert
+#print axioms BigHrushovski.FiniteGraph.predim_insert
+#print axioms BigHrushovski.FiniteGraph.backEdges_card_le_two
+#print axioms BigHrushovski.FiniteGraph.strong_insert_of_two_backEdges
+#print axioms BigHrushovski.FiniteGraph.closure_insert_of_two_backEdges

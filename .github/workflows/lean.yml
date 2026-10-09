@@ -62,3 +62,5 @@ jobs:
         run: python3 scripts/check_finite_models.py
       - name: Check finite minimal decompositions
         run: python3 scripts/check_minimal_decomposition.py
+      - name: Check six-vertex closure component
+        run: python3 scripts/check_c0_triangle_component.py

@@ -169,3 +169,19 @@ property for the actual Fraisse limit M0, not just give it a name.
 The [47-declaration passing CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37985370062) validates the countable exhaustion construction and container-independence. The reciprocal implication is now certified as well: an existing strong exhaustion witnesses the finite strong-cover property. Hence the two conditions are equivalent when the ambient vertex type has a surjective enumeration by natural numbers.
 
 The [49-declaration CI audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37985617994) passed at [cc4c968](https://github.com/janhubicka/lean-big-hrushowski/commit/cc4c968ff89ac13882d147aab20d05e2bf23f4e6), with only standard logical axioms and no placeholders. The concrete Hrushovski limit remains unformalized.
+
+
+## Graph back-edge bound (verified)
+
+Formalization of Proposition twoedges. The induced graph's unordered-edge
+count is split into edges inside the old set and those incident to the
+fresh vertex, giving delta(A+x)=delta(A)+2-d_A(x).
+Self-sufficiency implies d_A(x)<=2; equality forces A+x to be strong,
+so its generated strong closure is already A+x. In a minimal closure
+increment this makes the increment a singleton. The last step uses
+the closure/exhaustion interface already formalized.
+
+The [successful 42-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37985274482) at commit [956701b](https://github.com/janhubicka/lean-big-hrushowski/commit/956701be5ac9ff4c9294608706049b68acd3b92c) proves the displayed induced-edge counting lemma, the numerical bound, and closure singleton conclusion. It audits all declarations for nonstandard axioms and checks eight Lean source files for placeholders.
+**Remaining interface detail:** the formal back-edge count is an unordered-edge count, while the manuscript uses the number of old neighbours. For a simple graph these coincide by the two-element-edge representation; a standalone Lean bijection lemma is not yet in this PR. Until then mark the manuscript proposition as partial rather than claiming that the formal statement contains this identification.
+
+**Further scope limitation (adversarial check):** `FiniteGraph` stores a *finite* set of ambient edges. Thus the C0 back-edge theorem is formally a finite-edge counting statement, with a separate abstract exhaustion parameter for its closure consequence. It is not yet a literal graph-theoretic model of the infinite M0. Transport to the countable M0 requires proving compatibility of finite strong containers (or introducing a graph interface with infinitely many edges but finite induced subgraphs). The corresponding manuscript marker must remain orange until this interface is formalized.
