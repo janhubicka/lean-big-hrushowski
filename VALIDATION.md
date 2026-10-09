@@ -11,7 +11,11 @@ Manuscript: The-big-Hrushovski (v52). First milestone: finite predimensions.
 | Intersection of finite d-closed substructures | BigHrushovski.Predimension.dclosed_inter | Verified — [10-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37977234148) |
 | Transitivity of finite d-closed substructures | BigHrushovski.Predimension.dclosed_trans | Verified — [10-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37977234148) |
 | Least strong hull within a fixed finite ambient graph | BigHrushovski.Predimension.exists_least_strong_hull | Verified — [15-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37977945496) |
-| Existence of a finite strong container in the countable M_0, and global hull | None | Open (requires strong Fraisse chain and finite-character transfer) |
+| Strong hull independent of finite globally strong container | BigHrushovski.Predimension.strongHull_eq_of_global | Verified — [35-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37984098886) |
+| Finite closure under a supplied strong exhaustion | BigHrushovski.Predimension.StrongExhaustion.closure_eq_strongHull | Verified — [35-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37984098886) |
+| Existence of an inclusion-minimal one-generated closure | BigHrushovski.Predimension.StrongExhaustion.exists_minimal_choice | Verified — [35-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37984098886) |
+| Finite minimal strong extension decomposition | BigHrushovski.Predimension.StrongExhaustion.finite_minimal_decomposition_of_strong | Verified — [35-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37984098886) |
+| Existence of a finite strong exhaustion for the actual countable M_0 | None | Open (requires explicit Fraisse limit construction) |
 | Equality with model-theoretic algebraic closure | None | Open |
 | Enumeration, lifting, Ramsey and Ellentuck theorems | None | Open |
 
@@ -64,7 +68,7 @@ hulls between containers. The current Lean development does not formalize
 the generic strong Fraisse limit.
 
 
-## Fourth layer: global closure from a supplied strong exhaustion
+## Fourth layer: global closure from a supplied strong exhaustion (certified)
 
 Module GlobalClosure.lean defines finite globally strong substructures in an
 ambient (possibly infinite) vertex type. It formalizes:
@@ -74,7 +78,7 @@ ambient (possibly infinite) vertex type. It formalizes:
 - finite generated closure, monotonicity, idempotence, and exactness on
   finite globally strong substructures.
 
-Pending CI and statement audit. This formalization is **conditional on the
+The [35-declaration CI audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37984098886) verifies these statements. This formalization is **conditional on the
 strong exhaustion**. Its existence for the actual countable Fraisse limit,
 and the graph/partial-function representations, remain to be formalized.
 
@@ -82,17 +86,18 @@ A corrected two-edge path example in ADVERSARIAL_REVIEW.md uses the endpoints
 A={0,2}; A={1,2} would not have the asserted predimension.
 
 
-## Fifth layer: minimal closure increments (pending CI)
+## Fifth layer: minimal closure increments (certified)
 
 The manuscript's lemma equalclosure reduces to the precise
 IsMinimalChoice hypothesis over a finite globally strong requirement.
 The new module MinimalExtensions.lean formalizes the equality of
 relative closures and the absence of an intermediate strong substructure.
-Existence of a minimising choice in each nonempty finite requirement
-is a separate obligation, as is scheduling all requirements to exhaust M_0.
+Existence of a minimising choice in each nonempty finite requirement is
+proved by the following finite-minimiser lemma. Scheduling all requirements
+to exhaust M_0 remains a separate obligation.
 
 
-## Finite minimizer selection (pending CI)
+## Finite minimizer selection (certified)
 
 The next increment can be selected rather than merely assumed. Among the
 finite nonempty candidate set D minus A, select a vertex whose generated
@@ -103,7 +108,7 @@ the one-step minimalisation claim, conditional on the globally strong
 exhaustion and the given finite strong requirement.
 
 
-## Sixth layer: finite minimal decomposition (pending CI)
+## Sixth layer: finite minimal decomposition (certified)
 
 A finite globally strong extension is refined by strong induction on
 the number of vertices still outside the prefix. Each step selects a
@@ -128,3 +133,20 @@ The independent finite-model regression tests all labelled simple graphs
 with at most five vertices, checking minimiser selection, equality of
 relative closures, absence of intermediate strong substructures, and
 strict progress. These checks do not replace the Lean proof.
+
+
+## Latest validation checkpoint
+
+Commit [64cf4a8](https://github.com/janhubicka/lean-big-hrushowski/commit/64cf4a802bb4b224a63d0150efec1b476e6f2c69)
+passed [GitHub Actions](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37984098886).
+The build and the standard-axiom/placeholder checks passed for 35 audited
+declarations. The finite graph regression examined all 1,100 labelled
+graphs on at most five vertices. The separate decomposition checker tested
+189,941 globally strong source/container pairs, 310,904 minimal
+extension steps, 312,998 relative-closure identities and 621,808
+intermediate-strongness cases, with no counterexample.
+
+The **formal status** is still conditional on the supplied strong
+exhaustion. The actual strong Fraisse limit, the countable scheduling
+argument, the equality with algebraic closure, the later functional
+presentations, and Ramsey/Ellentuck theorems are not yet verified in Lean.
