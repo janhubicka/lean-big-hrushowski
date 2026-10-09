@@ -66,3 +66,11 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteGraph.backEdges_card_le_two
 #print axioms BigHrushovski.FiniteGraph.strong_insert_of_two_backEdges
 #print axioms BigHrushovski.FiniteGraph.closure_insert_of_two_backEdges
+
+#print axioms BigHrushovski.GraphOn.mem_edgesWithin_iff
+#print axioms BigHrushovski.GraphOn.edgesWithin_union_subset
+#print axioms BigHrushovski.GraphOn.edgesWithin_inter
+#print axioms BigHrushovski.GraphOn.edgeCount_supermodular
+#print axioms BigHrushovski.GraphOn.predim_submodular
+#print axioms BigHrushovski.GraphOn.finiteView_edgesWithin
+#print axioms BigHrushovski.GraphOn.predim_finiteView

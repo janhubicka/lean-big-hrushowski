@@ -185,3 +185,17 @@ The [successful 42-declaration audit](https://github.com/janhubicka/lean-big-hru
 **Remaining interface detail:** the formal back-edge count is an unordered-edge count, while the manuscript uses the number of old neighbours. For a simple graph these coincide by the two-element-edge representation; a standalone Lean bijection lemma is not yet in this PR. Until then mark the manuscript proposition as partial rather than claiming that the formal statement contains this identification.
 
 **Further scope limitation (adversarial check):** `FiniteGraph` stores a *finite* set of ambient edges. Thus the C0 back-edge theorem is formally a finite-edge counting statement, with a separate abstract exhaustion parameter for its closure consequence. It is not yet a literal graph-theoretic model of the infinite M0. Transport to the countable M0 requires proving compatibility of finite strong containers (or introducing a graph interface with infinitely many edges but finite induced subgraphs). The corresponding manuscript marker must remain orange until this interface is formalized.
+
+
+## Arbitrary graph predimension and finite-view transfer (pending CI)
+
+A GraphOn structure has a symmetric irreflexive adjacency predicate and no
+finiteness assumption on its full set of edges. For each finite vertex set,
+the induced edge set is finite. We define predimension using this induced
+edge count and prove submodularity directly. The finiteView construction
+produces a FiniteGraph whose edge count and predimension agree on every
+subset of the finite container.
+
+This repairs the representation gap between the earlier FiniteGraph module
+and a potentially infinite Hrushovski graph, while leaving the specific
+finite strong-cover property and genericity of M0 unformalized.
