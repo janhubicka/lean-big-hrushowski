@@ -269,3 +269,18 @@ verify C0 sparsity for the union, or prove Fraisse genericity.
 **Validated Lean code:** [e04d117](https://github.com/janhubicka/lean-big-hrushowski/commit/e04d117f8e62f31c4d4ab6cafa318c9884b56c1e), [passing 72-declaration axiom audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37990251957), with standard logical axioms and no proof placeholders. The additional
 independent finite-graph regression is included in this PR and awaits the
 combined final CI run before merge.
+
+
+## Two-sparsity preservation in no-crossing free unions (pending CI)
+
+IsTwoSparse represents the finite C0 condition: every induced subset
+has nonnegative predimension. The new theorem proves that a free union
+A union B is 2-sparse if A is 2-sparse and the common overlap A intersect B
+is self-sufficient in B, assuming there are no edges crossing the
+disjoint tails. The symmetric version is included. In addition, a
+strong extension of a 2-sparse base is 2-sparse.
+
+This checks the closure property of the class C0 in the finite
+no-crossing configuration. The universal strong free-amalgam
+construction, the Fraisse limit and its generic extension property
+are separate obligations.

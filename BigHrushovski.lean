@@ -9,3 +9,4 @@ import BigHrushovski.InfiniteGraph
 import BigHrushovski.C0Neighbours
 import BigHrushovski.StrongChain
 import BigHrushovski.FreeAmalgam
+import BigHrushovski.C0Sparsity
