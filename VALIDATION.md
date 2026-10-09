@@ -292,3 +292,45 @@ directions. The general theorem remains dependent on the Lean kernel
 build and a standard-axiom audit.
 
 **Certification:** the [89-declaration integrated CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37991564215) passed at commit [4a730c8](https://github.com/janhubicka/lean-big-hrushowski/commit/4a730c814d6ebd1c8e368d99237f23066c7941f6). Only the standard logical axioms occurred and 14 Lean files were checked for placeholders. The 1,100-graph regression checked 635,495 no-crossing pairs, 624,416 2-sparsity-preserving pairs in each direction, and 244,695 strong extensions. No claim is made yet that the generic Hrushovski limit has been constructed in Lean.
+
+
+## Concrete graph free join of two induced pieces (certified)
+
+New module FreeJoinConstruction.lean constructs a graph on a common
+vertex carrier by retaining only edges internal to either finite piece.
+When the two graph predicates agree on the common base, the resulting
+induced graph on each factor and all predimensions in that factor agree
+literally with the original graph. The join has no crossing edges.
+This is an actual free graph construction on previously identified
+vertex sets. A disjoint-copy/quotient construction for arbitrary abstract
+embeddings, and then the Fraisse extension property, remain unverified.
+
+
+The independent regression
+`scripts/check_actual_free_join.py` constructs the join for every pair
+of labelled graphs up to four vertices and every pair of vertex subsets,
+checking overlap compatibility, preservation of induced factor edges,
+no crossing edges, 2-sparsity and strongness in applicable cases.
+The initial 1,052,741 configurations had no counterexamples. The kernel
+build and axiom audit, not these computations, determine Lean verification.
+
+
+## Strong finite graph free amalgamation on a common carrier (certified)
+
+The freeJoin construction now incorporates the previously audited
+no-crossing predimension lemmas: when the common base is strong in
+both compatible factors, the free join is 2-sparse and the two
+inclusions into the join are strong. The theorem freeJoin_strong_amalgam
+states these three conclusions simultaneously. The construction is
+still on an already common vertex carrier; arbitrary embeddings must
+be transported onto a common carrier before applying it.
+
+
+## Concrete free join: audited theorem boundary
+
+At [commit 24e050c](https://github.com/janhubicka/lean-big-hrushowski/commit/24e050c510e4ccc47f6034899e7b8a5e2acd6054), the [passing 102-declaration CI audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37995191720) certified the actual free-join construction.
+The declarations GraphOn.freeJoin_adj_left/right preserve both induced factor graphs, GraphOn.freeJoin_noCross excludes crossing edges, GraphOn.freeJoin_predim_left/right preserve induced predimension, and GraphOn.freeJoin_strong_amalgam proves that the join is 2-sparse and both pieces are strong, under compatibility and strong-base hypotheses.
+
+An independent regression covered 1,052,741 graph/subset combinations, 894,763 compatible pairs and 893,483 strong 2-sparse joins. The graph pieces are already represented as subsets of a common carrier. To amalgamate arbitrary abstract finite structures over embeddings, a disjoint tagging and base-identification construction is still required.
+
+The regression also has a negative control: two K5's glued along a common K3 without a strong-base hypothesis have predimension -3. This refutes any weakening of the hypothesis to plain embeddings.

@@ -280,3 +280,54 @@ direction, and 244,695 strong extensions of sparse bases.
 
 These are hostile review questions checked by the same assistant,
 not independent external human or model referees.
+
+
+## Concrete free graph join: independent adversarial checks
+
+**Referee 1 — common-base compatibility.** The construction is defined for
+two graph predicates on one carrier. The resulting induced graph agrees
+with each factor only when their adjacency relations agree on every pair
+of vertices in the intersection. This hypothesis must not be omitted.
+
+**Referee 2 — absence of accidental edges.** Every edge of the join is
+inherited from one factor and both endpoints belong to that factor. No
+new crossing edge occurs. Edges outside the union are discarded.
+
+**Referee 3 — duplicate identification.** The shared vertices are already
+the intersection a∩b. This stage does not rename disjoint tails or prove
+that arbitrary abstract embeddings can be represented on this carrier.
+That transport is a separate, explicitly unverified part of full
+amalgamation.
+
+**Referee 4 — finite subset test.** 1,052,741 graph/vertex-subset pairs
+were examined exhaustively for labelled graphs up to four vertices.
+894,763 compatible inputs preserve the factor induced edge sets, and
+893,483 instances satisfying both 2-sparsity and strong-base conditions
+give 2-sparse unions in which both factors are strong.
+
+**Referee 5 — logic and scope.** The resulting graph is symmetric and
+irreflexive by construction, and the argument counts unordered edges.
+The Fraisse extension property and the functional closure expansion
+are not consequences of this graph construction alone.
+
+These are separate adversarial questions and an independent calculation,
+not a panel of independently spawned external referees.
+
+
+## Strong free join: second adversarial audit
+
+**A. Factor embeddings.** Join edges occur only inside either factor. Exact agreement on the overlap is indispensable: without it, an edge present in one factor might appear in the other induced factor.
+
+**B. Edge cardinality.** The no-cross proof uses that every edge has two distinct endpoints. Its witnesses span the edge, so it lies wholly in one of the two factors.
+
+**C. Strongness direction.** To keep A strong in A union B, the overlap must be strong in B, not merely in A. Both directions are checked separately and each predimension is transported from its original factor.
+
+**D. Subset-wise 2-sparsity.** The theorem proves nonnegative predimension for every induced subset of the join, not only for the full union.
+
+**E. Negative counterexample.** A common K3 has predimension 3, while each K5 extending it has predimension 0. Gluing two K5's over K3 without strongness yields seven vertices and seventeen edges, giving -3. Both input K5 graphs are 2-sparse. The strong-base assumption matters.
+
+**F. Abstract carrier warning.** The joined pieces have already been identified along their overlap. No fresh disjoint carrier for arbitrary abstract base embeddings has been constructed in Lean yet.
+
+**G. Kernel and finite-model checks.** The 102-declaration build passed, and the independent bit-mask implementation checked 894,763 compatible inputs. Neither result alone verifies the Fraisse generic extension property.
+
+These are distinct adversarial proof perspectives carried out by the same assistant and computational cross-checks; not human referee reports.

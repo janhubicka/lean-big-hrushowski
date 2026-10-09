@@ -72,3 +72,6 @@ jobs:
         run: python3 scripts/check_free_amalgam.py
       - name: Check 2-sparsity under strong no-crossing unions
         run: python3 scripts/check_c0_free_union_sparsity.py
+
+      - name: Check actual free joins of finite induced graphs
+        run: python3 scripts/check_actual_free_join.py
