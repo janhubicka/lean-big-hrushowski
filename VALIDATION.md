@@ -150,3 +150,22 @@ The **formal status** is still conditional on the supplied strong
 exhaustion. The actual strong Fraisse limit, the countable scheduling
 argument, the equality with algebraic closure, the later functional
 presentations, and Ramsey/Ellentuck theorems are not yet verified in Lean.
+
+
+## New milestone: finite strong cover gives an exhaustion (verified)
+
+FiniteStrongCover specifies that every finite set lies in some finite
+globally strong substructure. With an explicit surjective enumeration
+of the ambient vertex type, CountableStrongCover constructs an increasing
+finite strong exhaustion by successively closing the next enumerated vertex.
+It also proves equality between closure defined from an arbitrary chosen
+finite strong container and closure computed from the resulting exhaustion.
+Unlike the previous module, a strong exhaustion is no longer an assumption.
+
+The remaining instance-specific theorem must verify the finite strong cover
+property for the actual Fraisse limit M0, not just give it a name.
+
+
+The [47-declaration passing CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37985370062) validates the countable exhaustion construction and container-independence. The reciprocal implication is now certified as well: an existing strong exhaustion witnesses the finite strong-cover property. Hence the two conditions are equivalent when the ambient vertex type has a surjective enumeration by natural numbers.
+
+The [49-declaration CI audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37985617994) passed at [cc4c968](https://github.com/janhubicka/lean-big-hrushowski/commit/cc4c968ff89ac13882d147aab20d05e2bf23f4e6), with only standard logical axioms and no placeholders. The concrete Hrushovski limit remains unformalized.
