@@ -74,3 +74,8 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.predim_submodular
 #print axioms BigHrushovski.GraphOn.finiteView_edgesWithin
 #print axioms BigHrushovski.GraphOn.predim_finiteView
+
+#print axioms BigHrushovski.GraphOn.isStrong_finiteView_iff
+#print axioms BigHrushovski.GraphOn.finiteView_backEdges
+#print axioms BigHrushovski.GraphOn.backEdges_card_le_two
+#print axioms BigHrushovski.GraphOn.closure_insert_of_two_backEdges

@@ -132,5 +132,91 @@ theorem predim_finiteView (s t : Finset V) (ht : t ⊆ s) :
   unfold FiniteGraph.predim predim
   rw [G.finiteView_edgesWithin s t ht]
 
+
+/-- Finite strong embeddings are unchanged by taking a finite induced
+view of the larger graph. -/
+theorem isStrong_finiteView_iff (a b : Finset V) (hab : a ⊆ b) :
+    (G.finiteView b).toPredimension.IsStrong a b ↔
+      G.toPredimension.IsStrong a b := by
+  constructor
+  · intro h
+    refine ⟨hab, ?_⟩
+    intro c hac hcb
+    have hh := h.2 c hac hcb
+    change (G.finiteView b).predim a ≤ (G.finiteView b).predim c at hh
+    rw [G.predim_finiteView b a hab, G.predim_finiteView b c hcb] at hh
+    exact hh
+  · intro h
+    refine ⟨hab, ?_⟩
+    intro c hac hcb
+    have hh := h.2 c hac hcb
+    change (G.finiteView b).predim a ≤ (G.finiteView b).predim c
+    rw [G.predim_finiteView b a hab, G.predim_finiteView b c hcb]
+    exact hh
+
+/-- Edges incident to x inside the old set plus x, in a possibly infinite
+ambient graph. -/
+noncomputable def backEdges (a : Finset V) (x : V) :
+    Finset (Finset V) :=
+  (G.edgesWithin (insert x a)).filter (fun edge => x ∈ edge)
+
+theorem finiteView_backEdges (s a : Finset V) (x : V)
+    (hsub : insert x a ⊆ s) :
+    (G.finiteView s).backEdges a x = G.backEdges a x := by
+  unfold backEdges FiniteGraph.backEdges
+  rw [G.finiteView_edgesWithin s (insert x a) hsub]
+
+/-- At most two old incident edges in an arbitrary graph, not only in
+a graph whose entire edge set is finite. -/
+theorem backEdges_card_le_two {a b : Finset V} {x : V}
+    (hab : G.toPredimension.IsStrong a b)
+    (hxB : x ∈ b) (hxA : x ∉ a) :
+    (G.backEdges a x).card ≤ 2 := by
+  have hFinite : (G.finiteView b).toPredimension.IsStrong a b :=
+    (G.isStrong_finiteView_iff a b hab.1).mpr hab
+  have hInsertB : insert x a ⊆ b := by
+    intro v hv
+    rcases Finset.mem_insert.mp hv with hEq | hA
+    · subst v
+      exact hxB
+    · exact hab.1 hA
+  have hBound :=
+    (G.finiteView b).backEdges_card_le_two hFinite hxB hxA
+  rw [G.finiteView_backEdges b a x hInsertB] at hBound
+  exact hBound
+
+/-- Two old incident edges make the added vertex already strongly closed,
+even if the entire ambient graph has infinitely many edges. -/
+theorem closure_insert_of_two_backEdges
+    (e : Predimension.StrongExhaustion G.toPredimension)
+    {a : Finset V} {x : V}
+    (ha : G.toPredimension.IsGloballyStrong a)
+    (hxA : x ∉ a)
+    (hTwo : (G.backEdges a x).card = 2) :
+    e.closure (insert x a) = insert x a := by
+  let b := e.closure (insert x a)
+  have hInsB : insert x a ⊆ b := e.subset_closure (insert x a)
+  have hab : a ⊆ b := by
+    intro v hv
+    exact hInsB (Finset.mem_insert_of_mem hv)
+  have hxB : x ∈ b :=
+    hInsB (Finset.mem_insert_self x a)
+  have hStrongA : G.toPredimension.IsStrong a b := ha b hab
+  have hFiniteA : (G.finiteView b).toPredimension.IsStrong a b :=
+    (G.isStrong_finiteView_iff a b hab).mpr hStrongA
+  have hFiniteTwo : ((G.finiteView b).backEdges a x).card = 2 := by
+    rw [G.finiteView_backEdges b a x hInsB]
+    exact hTwo
+  have hFiniteInsert : (G.finiteView b).toPredimension.IsStrong
+      (insert x a) b :=
+    (G.finiteView b).strong_insert_of_two_backEdges
+      hFiniteA hxB hxA hFiniteTwo
+  have hStrongInsert : G.toPredimension.IsStrong (insert x a) b :=
+    (G.isStrong_finiteView_iff (insert x a) b hInsB).mp hFiniteInsert
+  have hGlob : G.toPredimension.IsGloballyStrong (insert x a) :=
+    G.toPredimension.globallyStrong_of_strong_in_global
+      hStrongInsert (e.closure_global (insert x a))
+  exact e.closure_eq_self_of_global hGlob
+
 end GraphOn
 end BigHrushovski

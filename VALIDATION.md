@@ -199,3 +199,14 @@ subset of the finite container.
 This repairs the representation gap between the earlier FiniteGraph module
 and a potentially infinite Hrushovski graph, while leaving the specific
 finite strong-cover property and genericity of M0 unformalized.
+
+
+## Infinite-graph transfer of the two-edge lemma (pending CI)
+
+The same induced finite-view argument now transfers the finite
+self-sufficiency relation and the two-old-incident-edge bound to a graph
+with an arbitrary infinite edge relation. Given a strong exhaustion,
+exactly two old incident edges make the one-point strong closure a
+singleton extension. The full graph is no longer assumed to have finitely
+many edges. The numerical identification with the manuscript's count of
+old neighbours remains an explicit graph-interface obligation.
