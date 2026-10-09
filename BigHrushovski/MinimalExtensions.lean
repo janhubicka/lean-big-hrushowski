@@ -135,8 +135,6 @@ theorem exists_minimal_choice {a D : Finset V}
   have hEq : e.closure (insert x a) = e.closure (insert v a) :=
     Finset.eq_of_subset_of_card_le hsubset hCard
   rw [hEq]
-  intro y hy
-  exact hy
 
 /-- Every finite strong requirement properly extending an old closed prefix
 contains a minimal strong increment. -/
