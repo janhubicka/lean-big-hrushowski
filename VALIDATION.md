@@ -234,3 +234,23 @@ examines 84,073 configurations in the 1,100 labelled graphs on at most
 five vertices, checking the correspondence and cardinality in each.
 
 **Verified Lean commit:** [ae88e1c](https://github.com/janhubicka/lean-big-hrushowski/commit/ae88e1c25af73b0132170cf812e113ec5442ccc8), [successful GitHub Actions run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37989366352). The run compiled all modules and audited 74 declarations, accepting only Lean's standard logical axioms; 11 Lean source files passed the placeholder check. The independent regression checked 1,100 labelled simple graphs and 84,073 old-set/new-vertex configurations. The closure consequences are still conditional on the strong exhaustion; genericity of the specific M0 is not yet formalized.
+
+
+## From finite strong successor steps to global strongness (verified)
+
+StrongChain assumes only a countable family of finite stages covering the
+ambient vertex type and strongness of each inclusion U_n <= U_(n+1).
+The new induction proves U_n <= U_m for all n <= m, then shows every
+U_n is strong in the entire ambient structure by placing each finite
+test set inside a later stage. This supplies a StrongExhaustion and
+FiniteStrongCover without assuming global strongness of the stages.
+Thus the usual direct-limit step in the strong Fraisse construction is
+formally isolated. The actual construction of the countable generic graph
+and proof of its extension property remain to be formalized.
+
+The independent finite-model regression for three-stage covering
+strong chains checks every labelled graph with up to four vertices,
+including 5,074 valid strong-chain configurations. The general proof
+still rests on the kernel-checked arbitrary-predimension argument.
+
+**Certified checkpoint:** [626275e](https://github.com/janhubicka/lean-big-hrushowski/commit/626275e464f20a5883b7d6fcab71553f85711ced), [passing Lean CI](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37989676436). The run compiled the full development and audited 73 declarations with only standard logical axioms, no proof placeholders, and 5,074 finite three-stage covering-chain regressions. An actual strong Fraisse construction is still required to instantiate the chain for M0.

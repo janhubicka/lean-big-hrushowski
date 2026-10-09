@@ -87,3 +87,10 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.backEdges_card_eq_oldNeighbours_card
 #print axioms BigHrushovski.GraphOn.oldNeighbours_card_le_two
 #print axioms BigHrushovski.GraphOn.closure_insert_of_two_oldNeighbours
+
+#print axioms BigHrushovski.Predimension.StrongChain.strong_stages
+#print axioms BigHrushovski.Predimension.StrongChain.stage_monotone
+#print axioms BigHrushovski.Predimension.StrongChain.contains_finite
+#print axioms BigHrushovski.Predimension.StrongChain.stage_global
+#print axioms BigHrushovski.Predimension.StrongChain.toFiniteStrongCover
+#print axioms BigHrushovski.Predimension.exists_strong_chain_iff_exhaustion
