@@ -284,3 +284,9 @@ This checks the closure property of the class C0 in the finite
 no-crossing configuration. The universal strong free-amalgam
 construction, the Fraisse limit and its generic extension property
 are separate obligations.
+
+The independent exhaustive checker `scripts/check_c0_free_union_sparsity.py`
+examines all labelled simple graphs on at most five vertices and tests
+the entire subset-wise 2-sparsity property and both strong free-union
+directions. The general theorem remains dependent on the Lean kernel
+build and a standard-axiom audit.
