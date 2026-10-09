@@ -80,3 +80,13 @@ and the graph/partial-function representations, remain to be formalized.
 
 A corrected two-edge path example in ADVERSARIAL_REVIEW.md uses the endpoints
 A={0,2}; A={1,2} would not have the asserted predimension.
+
+
+## Fifth layer: minimal closure increments (pending CI)
+
+The manuscript's lemma equalclosure reduces to the precise
+IsMinimalChoice hypothesis over a finite globally strong requirement.
+The new module MinimalExtensions.lean formalizes the equality of
+relative closures and the absence of an intermediate strong substructure.
+Existence of a minimising choice in each nonempty finite requirement
+is a separate obligation, as is scheduling all requirements to exhaust M_0.

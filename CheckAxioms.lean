@@ -31,3 +31,7 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.StrongExhaustion.closure_idempotent
 #print axioms BigHrushovski.Predimension.StrongExhaustion.closure_eq_self_of_global
 #print axioms BigHrushovski.Predimension.StrongExhaustion.global_of_closure_eq_self
+
+#print axioms BigHrushovski.Predimension.globallyStrong_of_strong_in_global
+#print axioms BigHrushovski.Predimension.StrongExhaustion.equal_closure_of_minimal_choice
+#print axioms BigHrushovski.Predimension.StrongExhaustion.minimal_extension_of_choice

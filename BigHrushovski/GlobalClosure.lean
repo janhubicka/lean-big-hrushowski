@@ -69,6 +69,17 @@ theorem strongHull_eq_of_global {a c c' : Finset V}
   · exact d.strongHull_least_global hc' hac'
       (d.strongHull_global hc) (d.subset_strongHull hac)
 
+
+/-- A set strong inside a finite globally strong container is globally strong. -/
+theorem globallyStrong_of_strong_in_global {a b : Finset V}
+    (hab : d.IsStrong a b) (hb : d.IsGloballyStrong b) :
+    d.IsGloballyStrong a := by
+  intro c hac
+  have hbu : d.IsStrong b (b ∪ c) :=
+    hb _ Finset.subset_union_left
+  have hau : d.IsStrong a (b ∪ c) := d.strong_trans hab hbu
+  exact d.strong_restrict hau hac Finset.subset_union_right
+
 /-- An increasing exhaustion by finite globally strong substructures. -/
 structure StrongExhaustion (d : Predimension V) where
   stage : ℕ → Finset V
