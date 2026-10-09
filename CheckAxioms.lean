@@ -113,3 +113,10 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.freeJoin_noCross
 #print axioms BigHrushovski.GraphOn.freeJoin_predim_left
 #print axioms BigHrushovski.GraphOn.freeJoin_predim_right
+
+#print axioms BigHrushovski.GraphOn.freeJoin_strong_base_right
+#print axioms BigHrushovski.GraphOn.freeJoin_strong_base_left
+#print axioms BigHrushovski.GraphOn.freeJoin_strong_left
+#print axioms BigHrushovski.GraphOn.freeJoin_strong_right
+#print axioms BigHrushovski.GraphOn.freeJoin_twoSparse
+#print axioms BigHrushovski.GraphOn.freeJoin_strong_amalgam

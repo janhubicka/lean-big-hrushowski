@@ -313,3 +313,14 @@ checking overlap compatibility, preservation of induced factor edges,
 no crossing edges, 2-sparsity and strongness in applicable cases.
 The initial 1,052,741 configurations had no counterexamples. The kernel
 build and axiom audit, not these computations, determine Lean verification.
+
+
+## Strong finite graph free amalgamation on a common carrier (pending CI)
+
+The freeJoin construction now incorporates the previously audited
+no-crossing predimension lemmas: when the common base is strong in
+both compatible factors, the free join is 2-sparse and the two
+inclusions into the join are strong. The theorem freeJoin_strong_amalgam
+states these three conclusions simultaneously. The construction is
+still on an already common vertex carrier; arbitrary embeddings must
+be transported onto a common carrier before applying it.

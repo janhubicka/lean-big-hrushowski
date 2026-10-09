@@ -171,5 +171,93 @@ theorem freeJoin_predim_right (H : GraphOn V) (a b s : Finset V)
   unfold predim
   rw [G.freeJoin_edgesWithin_right H a b s hAgree hs]
 
+
+/-- The common base stays strong in the right factor after the join. -/
+theorem freeJoin_strong_base_right (H : GraphOn V) (a b : Finset V)
+    (hAgree : G.AgreeOn H (a ∩ b))
+    (hP : H.toPredimension.IsStrong (a ∩ b) b) :
+    (G.freeJoin H a b).toPredimension.IsStrong (a ∩ b) b := by
+  refine ⟨hP.1, ?_⟩
+  intro c hpc hcb
+  change (G.freeJoin H a b).predim (a ∩ b) ≤
+    (G.freeJoin H a b).predim c
+  rw [G.freeJoin_predim_right H a b (a ∩ b) hAgree Finset.inter_subset_right,
+      G.freeJoin_predim_right H a b c hAgree hcb]
+  exact hP.2 c hpc hcb
+
+/-- The common base stays strong in the left factor after the join. -/
+theorem freeJoin_strong_base_left (H : GraphOn V) (a b : Finset V)
+    (hAgree : G.AgreeOn H (a ∩ b))
+    (hP : G.toPredimension.IsStrong (a ∩ b) a) :
+    (G.freeJoin H a b).toPredimension.IsStrong (a ∩ b) a := by
+  refine ⟨hP.1, ?_⟩
+  intro c hpc hca
+  change (G.freeJoin H a b).predim (a ∩ b) ≤
+    (G.freeJoin H a b).predim c
+  rw [G.freeJoin_predim_left H a b (a ∩ b) hAgree Finset.inter_subset_left,
+      G.freeJoin_predim_left H a b c hAgree hca]
+  exact hP.2 c hpc hca
+
+/-- The left factor is strong in the actual free join. -/
+theorem freeJoin_strong_left (H : GraphOn V) (a b : Finset V)
+    (hAgree : G.AgreeOn H (a ∩ b))
+    (hP : H.toPredimension.IsStrong (a ∩ b) b) :
+    (G.freeJoin H a b).toPredimension.IsStrong a (a ∪ b) :=
+  (G.freeJoin H a b).strong_left_of_noCross a b
+    (G.freeJoin_noCross H a b)
+    (G.freeJoin_strong_base_right H a b hAgree hP)
+
+/-- The right factor is strong in the actual free join. -/
+theorem freeJoin_strong_right (H : GraphOn V) (a b : Finset V)
+    (hAgree : G.AgreeOn H (a ∩ b))
+    (hP : G.toPredimension.IsStrong (a ∩ b) a) :
+    (G.freeJoin H a b).toPredimension.IsStrong b (a ∪ b) :=
+  (G.freeJoin H a b).strong_right_of_noCross a b
+    (G.freeJoin_noCross H a b)
+    (G.freeJoin_strong_base_left H a b hAgree hP)
+
+/-- A 2-sparse left factor and a strong overlap on the right give
+a 2-sparse free join. The right factor is automatically 2-sparse as well. -/
+theorem freeJoin_twoSparse (H : GraphOn V) (a b : Finset V)
+    (hAgree : G.AgreeOn H (a ∩ b))
+    (hA : G.IsTwoSparse a)
+    (hP : H.toPredimension.IsStrong (a ∩ b) b) :
+    (G.freeJoin H a b).IsTwoSparse (a ∪ b) := by
+  have hAJoin : (G.freeJoin H a b).IsTwoSparse a := by
+    intro c hca
+    change 0 ≤ (G.freeJoin H a b).predim c
+    rw [G.freeJoin_predim_left H a b c hAgree hca]
+    exact hA c hca
+  exact (G.freeJoin H a b).twoSparse_of_strong_extension hAJoin
+    (G.freeJoin_strong_left H a b hAgree hP)
+
+/-- Actual strong free amalgamation for compatible 2-sparse pieces
+already represented on a common vertex carrier.
+
+The input strong-base hypotheses ensure both pieces embed strongly in
+the resulting 2-sparse graph. This is a genuine graph construction,
+not merely the modular predimension identity. -/
+theorem freeJoin_strong_amalgam (H : GraphOn V) (a b : Finset V)
+    (hAgree : G.AgreeOn H (a ∩ b))
+    (hSparseA : G.IsTwoSparse a) (hSparseB : H.IsTwoSparse b)
+    (hPA : G.toPredimension.IsStrong (a ∩ b) a)
+    (hPB : H.toPredimension.IsStrong (a ∩ b) b) :
+    (G.freeJoin H a b).IsTwoSparse (a ∪ b) ∧
+    (G.freeJoin H a b).toPredimension.IsStrong a (a ∪ b) ∧
+    (G.freeJoin H a b).toPredimension.IsStrong b (a ∪ b) := by
+  have hSparseFromLeft : (G.freeJoin H a b).IsTwoSparse (a ∪ b) :=
+    G.freeJoin_twoSparse H a b hAgree hSparseA hPB
+  have hSparseFromRight : (G.freeJoin H a b).IsTwoSparse (a ∪ b) := by
+    have hBJoin : (G.freeJoin H a b).IsTwoSparse b := by
+      intro c hcb
+      change 0 ≤ (G.freeJoin H a b).predim c
+      rw [G.freeJoin_predim_right H a b c hAgree hcb]
+      exact hSparseB c hcb
+    exact (G.freeJoin H a b).twoSparse_of_strong_extension hBJoin
+      (G.freeJoin_strong_right H a b hAgree hPA)
+  exact ⟨hSparseFromLeft,
+    G.freeJoin_strong_left H a b hAgree hPB,
+    G.freeJoin_strong_right H a b hAgree hPA⟩
+
 end GraphOn
 end BigHrushovski
