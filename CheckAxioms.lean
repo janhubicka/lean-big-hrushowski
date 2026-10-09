@@ -79,3 +79,9 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.finiteView_backEdges
 #print axioms BigHrushovski.GraphOn.backEdges_card_le_two
 #print axioms BigHrushovski.GraphOn.closure_insert_of_two_backEdges
+
+#print axioms BigHrushovski.GraphOn.edgesWithin_union_eq
+#print axioms BigHrushovski.GraphOn.predim_modular_of_noCross
+#print axioms BigHrushovski.GraphOn.noCross_restrict_right
+#print axioms BigHrushovski.GraphOn.strong_left_of_noCross
+#print axioms BigHrushovski.GraphOn.strong_right_of_noCross

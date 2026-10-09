@@ -217,3 +217,14 @@ old neighbours remains an explicit graph-interface obligation.
 The [67-declaration Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37987197242) passed at source commit [99a62a2](https://github.com/janhubicka/lean-big-hrushowski/commit/99a62a2cb5205b2d03070eac5df9b71730b8afe0). No nonstandard theorem axioms were found, and ten Lean source files passed the placeholder check. The existing finite graph, decomposition, and triangle-component regressions passed as well.
 
 The new graph interface covers arbitrarily infinite edge sets, with induced edges enumerated only inside finite vertex sets. It proves the finite-view equivalence of strong embeddings and the incident-edge singleton-closure conclusion. Exact equality between incident-edge count and the number of distinct old neighbours is not yet a separate Lean declaration; the concrete M0 strong cover/genericity and subsequent Ramsey statements also remain open.
+
+
+## Free amalgamation predimension interface (pending CI)
+
+In a finite no-crossing union, every induced edge belongs to one of
+the factors. The predimension is consequently modular, with the
+predimension of their intersection subtracted. If the common base is
+strong in the other factor, each factor is strong in the union.
+This records the key predimension calculation used when freely adjoining
+finite extensions. It does not construct a universal free amalgam,
+verify C0 sparsity for the union, or prove Fraisse genericity.
