@@ -172,8 +172,8 @@ theorem freeGraph_amalgam (G : GraphOn (Sum P L))
       ¬ (freeGraph G H).adj
         (Sum.inr (Sum.inl l) : Carrier P L R)
         (Sum.inr (Sum.inr r))) := by
-  exact ⟨G.freeGraph_left H hAgree, G.freeGraph_right H hAgree,
-    G.freeGraph_no_cross H⟩
+  exact ⟨freeGraph_left G H hAgree, freeGraph_right G H hAgree,
+    freeGraph_no_cross G H⟩
 
 end TaggedAmalgam
 end BigHrushovski
