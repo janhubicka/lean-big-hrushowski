@@ -367,3 +367,15 @@ edges, and hence that both the induced edge count and the predimension
 are invariant. The ambient graphs may be infinite.
 This is the numerical ingredient needed to transport strong finite
 embeddings into the tagged free graph carrier.
+
+
+## Strongness and 2-sparsity under induced embeddings (pending CI)
+
+Once the finite edge and predimension identities have been proved,
+every finite intermediate substructure of the image is a filtered
+image of a finite intermediate source substructure. This gives
+equivalence of self-sufficiency on finite intervals, and equivalence
+of 2-sparsity of a finite induced graph and its image. The hypotheses
+still require the map to be injective and to preserve and reflect
+adjacency. These general lemmas are intended for the tagged free
+amalgam inclusions.

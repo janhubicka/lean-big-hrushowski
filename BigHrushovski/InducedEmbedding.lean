@@ -108,5 +108,90 @@ theorem predim_image (G : GraphOn U) (H : GraphOn V)
   unfold predim
   omega
 
+
+/-- If t lies in the image of a finite vertex set, it is the image of the
+filtered preimage. No injectivity is needed for this existence statement. -/
+theorem finite_image_preimage_within (f : U → V)
+    (s : Finset U) (t : Finset V) (ht : t ⊆ s.image f) :
+    (s.filter (fun u => f u ∈ t)).image f = t := by
+  classical
+  ext z
+  constructor
+  · intro hz
+    obtain ⟨u, hu, huz⟩ := Finset.mem_image.mp hz
+    have huT : f u ∈ t := (Finset.mem_filter.mp hu).2
+    rw [huz] at huT
+    exact huT
+  · intro hz
+    obtain ⟨u, hu, huz⟩ := Finset.mem_image.mp (ht hz)
+    exact Finset.mem_image.mpr
+      ⟨u, Finset.mem_filter.mpr
+        ⟨hu, by rw [huz]; exact hz⟩, huz⟩
+
+/-- Strongness on finite induced substructures is invariant under an
+injective map preserving both edges and nonedges. -/
+theorem strong_image_iff (G : GraphOn U) (H : GraphOn V)
+    (f : U → V) (hf : Function.Injective f)
+    (hAdj : ∀ x y : U, G.adj x y ↔ H.adj (f x) (f y))
+    (a b : Finset U) (hab : a ⊆ b) :
+    H.toPredimension.IsStrong (a.image f) (b.image f) ↔
+      G.toPredimension.IsStrong a b := by
+  constructor
+  · intro himg
+    refine ⟨hab, ?_⟩
+    intro c hac hcb
+    have hAc : a.image f ⊆ c.image f := Finset.image_mono f hac
+    have hCb : c.image f ⊆ b.image f := Finset.image_mono f hcb
+    have hh := himg.2 (c.image f) hAc hCb
+    change H.predim (a.image f) ≤ H.predim (c.image f) at hh
+    rw [G.predim_image H f hf hAdj a,
+        G.predim_image H f hf hAdj c] at hh
+    exact hh
+  · intro hsrc
+    refine ⟨Finset.image_mono f hsrc.1, ?_⟩
+    intro c hAc hCb
+    let t : Finset U := b.filter (fun u => f u ∈ c)
+    have htSub : t ⊆ b := by
+      intro u hu
+      exact (Finset.mem_filter.mp hu).1
+    have hAT : a ⊆ t := by
+      intro u hu
+      have hfu : f u ∈ a.image f :=
+        Finset.mem_image.mpr ⟨u, hu, rfl⟩
+      exact Finset.mem_filter.mpr ⟨hab hu, hAc hfu⟩
+    have htImage : t.image f = c :=
+      finite_image_preimage_within f b c hCb
+    have hIneq := hsrc.2 t hAT htSub
+    change G.predim a ≤ G.predim t at hIneq
+    change H.predim (a.image f) ≤ H.predim c
+    rw [← htImage, G.predim_image H f hf hAdj a,
+        G.predim_image H f hf hAdj t]
+    exact hIneq
+
+/-- The 2-sparsity condition on a finite induced subgraph is invariant
+under an injective graph embedding. -/
+theorem twoSparse_image_iff (G : GraphOn U) (H : GraphOn V)
+    (f : U → V) (hf : Function.Injective f)
+    (hAdj : ∀ x y : U, G.adj x y ↔ H.adj (f x) (f y))
+    (s : Finset U) :
+    H.IsTwoSparse (s.image f) ↔ G.IsTwoSparse s := by
+  constructor
+  · intro hTarget
+    intro t hts
+    have ht := hTarget (t.image f) (Finset.image_mono f hts)
+    rw [G.predim_image H f hf hAdj t] at ht
+    exact ht
+  · intro hSource
+    intro t hts
+    let u : Finset U := s.filter (fun x => f x ∈ t)
+    have huSub : u ⊆ s := by
+      intro x hx
+      exact (Finset.mem_filter.mp hx).1
+    have huImage : u.image f = t :=
+      finite_image_preimage_within f s t hts
+    change 0 ≤ H.predim t
+    rw [← huImage, G.predim_image H f hf hAdj u]
+    exact hSource u huSub
+
 end GraphOn
 end BigHrushovski
