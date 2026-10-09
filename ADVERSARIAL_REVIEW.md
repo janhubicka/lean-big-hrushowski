@@ -312,3 +312,22 @@ are not consequences of this graph construction alone.
 
 These are separate adversarial questions and an independent calculation,
 not a panel of independently spawned external referees.
+
+
+## Strong free join: second adversarial audit
+
+**A. Factor embeddings.** Join edges occur only inside either factor. Exact agreement on the overlap is indispensable: without it, an edge present in one factor might appear in the other induced factor.
+
+**B. Edge cardinality.** The no-cross proof uses that every edge has two distinct endpoints. Its witnesses span the edge, so it lies wholly in one of the two factors.
+
+**C. Strongness direction.** To keep A strong in A union B, the overlap must be strong in B, not merely in A. Both directions are checked separately and each predimension is transported from its original factor.
+
+**D. Subset-wise 2-sparsity.** The theorem proves nonnegative predimension for every induced subset of the join, not only for the full union.
+
+**E. Negative counterexample.** A common K3 has predimension 3, while each K5 extending it has predimension 0. Gluing two K5's over K3 without strongness yields seven vertices and seventeen edges, giving -3. Both input K5 graphs are 2-sparse. The strong-base assumption matters.
+
+**F. Abstract carrier warning.** The joined pieces have already been identified along their overlap. No fresh disjoint carrier for arbitrary abstract base embeddings has been constructed in Lean yet.
+
+**G. Kernel and finite-model checks.** The 102-declaration build passed, and the independent bit-mask implementation checked 894,763 compatible inputs. Neither result alone verifies the Fraisse generic extension property.
+
+These are distinct adversarial proof perspectives carried out by the same assistant and computational cross-checks; not human referee reports.
