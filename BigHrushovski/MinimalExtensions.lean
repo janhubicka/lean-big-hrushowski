@@ -1,4 +1,5 @@
 import BigHrushovski.GlobalClosure
+import Mathlib.Data.Finset.Max
 
 /-!
 # Minimal closure increments
@@ -106,6 +107,53 @@ theorem minimal_extension_of_choice
         rw [← hEqCl]
         exact hClZ
       exact le_antisymm hzB hBZ
+
+
+/-- In every nonempty finite requirement there is an inclusion-minimal
+one-generated closure. Choose one with the smallest finite cardinality. -/
+theorem exists_minimal_choice {a D : Finset V}
+    (hNonempty : (D \ a).Nonempty) :
+    ∃ v : V, e.IsMinimalChoice a D v := by
+  classical
+  let f : V → ℕ := fun v => (e.closure (insert v a)).card
+  let sizes : Finset ℕ := (D \ a).image f
+  have hSizes : sizes.Nonempty := by
+    obtain ⟨w, hw⟩ := hNonempty
+    exact ⟨f w, Finset.mem_image.mpr ⟨w, hw, rfl⟩⟩
+  have hMinMem : sizes.min' hSizes ∈ sizes := Finset.min'_mem sizes hSizes
+  obtain ⟨v, hv, hvEq⟩ := Finset.mem_image.mp hMinMem
+  have hvD : v ∈ D := (Finset.mem_sdiff.mp hv).1
+  have hvA : v ∉ a := (Finset.mem_sdiff.mp hv).2
+  refine ⟨v, hvD, hvA, ?_⟩
+  intro x hxD hxna hsubset
+  have hxCand : x ∈ D \ a := Finset.mem_sdiff.mpr ⟨hxD, hxna⟩
+  have hxInSizes : f x ∈ sizes :=
+    Finset.mem_image.mpr ⟨x, hxCand, rfl⟩
+  have hCard : f v ≤ f x := by
+    rw [hvEq]
+    exact Finset.min'_le sizes (f x) hxInSizes
+  have hEq : e.closure (insert x a) = e.closure (insert v a) :=
+    Finset.eq_of_subset_of_card_le hsubset hCard
+  rw [hEq]
+  intro y hy
+  exact hy
+
+/-- Every finite strong requirement properly extending an old closed prefix
+contains a minimal strong increment. -/
+theorem exists_minimal_strong_extension {a D : Finset V}
+    (ha : d.IsGloballyStrong a)
+    (hD : d.IsGloballyStrong D) (haD : a ⊆ D)
+    (hNonempty : (D \ a).Nonempty) :
+    ∃ v : V, v ∈ D ∧ v ∉ a ∧
+      d.IsStrong a (e.closure (insert v a)) ∧
+      a ≠ e.closure (insert v a) ∧
+      (∀ z : Finset V, a ⊆ z →
+        z ⊆ e.closure (insert v a) →
+        d.IsStrong z (e.closure (insert v a)) →
+        z = a ∨ z = e.closure (insert v a)) := by
+  obtain ⟨v, hchoice⟩ := e.exists_minimal_choice hNonempty
+  refine ⟨v, hchoice.1, hchoice.2.1, ?_⟩
+  exact e.minimal_extension_of_choice ha hD haD hchoice
 
 end StrongExhaustion
 end Predimension

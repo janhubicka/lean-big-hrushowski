@@ -90,3 +90,14 @@ The new module MinimalExtensions.lean formalizes the equality of
 relative closures and the absence of an intermediate strong substructure.
 Existence of a minimising choice in each nonempty finite requirement
 is a separate obligation, as is scheduling all requirements to exhaust M_0.
+
+
+## Finite minimizer selection (pending CI)
+
+The next increment can be selected rather than merely assumed. Among the
+finite nonempty candidate set D minus A, select a vertex whose generated
+closure has minimum cardinality. Any proper subset closure would have
+smaller cardinality, so the vertex satisfies IsMinimalChoice. The resulting
+finite extension has no intermediate strong substructure. This proves
+the one-step minimalisation claim, conditional on the globally strong
+exhaustion and the given finite strong requirement.
