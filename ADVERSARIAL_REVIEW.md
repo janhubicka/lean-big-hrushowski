@@ -247,3 +247,36 @@ each orientation, with no counterexample.
 
 These are separately designed hostile review tests performed by the
 same assistant, not externally independent human or model referees.
+
+
+## Adversarial review: 2-sparsity under strong free unions
+
+**Referee A — quantification.** A 2-sparse graph means every finite
+induced subset has nonnegative predimension, not merely the whole
+finite structure. The Lean definition quantifies over all subsets.
+
+**Referee B — predimension scope.** The ambient graph can be infinite,
+but every induced edge count and all union factors in this argument
+are finite. There is no hidden global-edge-finiteness assumption.
+
+**Referee C — overlap.** The no-crossing hypothesis is inherited by
+the restrictions of both factors to the same test vertex set. Their
+intersection is counted once in the modular identity, and its
+predimension is compared with the right part by self-sufficiency.
+
+**Referee D — strongness direction.** The hypothesis for preserving
+2-sparsity of A union B is that A is 2-sparse and A intersect B is
+strong in B. The symmetric statement is separately proved. One
+must not replace this by an arbitrary common induced subgraph.
+
+**Referee E — boundary.** These are no-crossing configurations inside
+a given graph. Universal availability of a free amalgam with no new
+identifications and existence of the Fraisse limit are not proved here.
+
+**Referee F — independent finite computation.** All 1,100 labelled
+graphs of size at most five were checked. The test covers 635,495
+no-crossing pairs, 624,416 2-sparsity-preserving pairs in each
+direction, and 244,695 strong extensions of sparse bases.
+
+These are hostile review questions checked by the same assistant,
+not independent external human or model referees.

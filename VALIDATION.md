@@ -269,3 +269,26 @@ verify C0 sparsity for the union, or prove Fraisse genericity.
 **Validated Lean code:** [e04d117](https://github.com/janhubicka/lean-big-hrushowski/commit/e04d117f8e62f31c4d4ab6cafa318c9884b56c1e), [passing 72-declaration axiom audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37990251957), with standard logical axioms and no proof placeholders. The additional
 independent finite-graph regression is included in this PR and awaits the
 combined final CI run before merge.
+
+
+## Two-sparsity preservation in no-crossing free unions (verified)
+
+IsTwoSparse represents the finite C0 condition: every induced subset
+has nonnegative predimension. The new theorem proves that a free union
+A union B is 2-sparse if A is 2-sparse and the common overlap A intersect B
+is self-sufficient in B, assuming there are no edges crossing the
+disjoint tails. The symmetric version is included. In addition, a
+strong extension of a 2-sparse base is 2-sparse.
+
+This checks the closure property of the class C0 in the finite
+no-crossing configuration. The universal strong free-amalgam
+construction, the Fraisse limit and its generic extension property
+are separate obligations.
+
+The independent exhaustive checker `scripts/check_c0_free_union_sparsity.py`
+examines all labelled simple graphs on at most five vertices and tests
+the entire subset-wise 2-sparsity property and both strong free-union
+directions. The general theorem remains dependent on the Lean kernel
+build and a standard-axiom audit.
+
+**Certification:** the [89-declaration integrated CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37991564215) passed at commit [4a730c8](https://github.com/janhubicka/lean-big-hrushowski/commit/4a730c814d6ebd1c8e368d99237f23066c7941f6). Only the standard logical axioms occurred and 14 Lean files were checked for placeholders. The 1,100-graph regression checked 635,495 no-crossing pairs, 624,416 2-sparsity-preserving pairs in each direction, and 244,695 strong extensions. No claim is made yet that the generic Hrushovski limit has been constructed in Lean.

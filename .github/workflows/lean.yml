@@ -70,3 +70,5 @@ jobs:
         run: python3 scripts/check_strong_chains.py
       - name: Check predimension modularity and strongness in free unions
         run: python3 scripts/check_free_amalgam.py
+      - name: Check 2-sparsity under strong no-crossing unions
+        run: python3 scripts/check_c0_free_union_sparsity.py

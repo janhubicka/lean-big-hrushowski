@@ -100,3 +100,8 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.noCross_restrict_right
 #print axioms BigHrushovski.GraphOn.strong_left_of_noCross
 #print axioms BigHrushovski.GraphOn.strong_right_of_noCross
+
+#print axioms BigHrushovski.GraphOn.twoSparse_of_strong_extension
+#print axioms BigHrushovski.GraphOn.noCross_inter
+#print axioms BigHrushovski.GraphOn.twoSparse_union_of_noCross
+#print axioms BigHrushovski.GraphOn.twoSparse_union_of_noCross_right
