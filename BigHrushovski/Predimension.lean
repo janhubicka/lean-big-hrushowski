@@ -85,7 +85,7 @@ def IsDClosed (a b : Finset V) : Prop :=
     ∀ c : Finset V, a ⊆ c → c ≠ a → c ⊆ b → d.delta a < d.delta c
 
 theorem strong_refl (a : Finset V) : d.IsStrong a a := by
-  refine ⟨Subset.rfl, ?_⟩
+  refine ⟨by intro v hv; exact hv, ?_⟩
   intro c hac hca
   have heq : c = a := le_antisymm hca hac
   subst c
