@@ -271,7 +271,7 @@ independent finite-graph regression is included in this PR and awaits the
 combined final CI run before merge.
 
 
-## Two-sparsity preservation in no-crossing free unions (pending CI)
+## Two-sparsity preservation in no-crossing free unions (verified)
 
 IsTwoSparse represents the finite C0 condition: every induced subset
 has nonnegative predimension. The new theorem proves that a free union
@@ -290,3 +290,5 @@ examines all labelled simple graphs on at most five vertices and tests
 the entire subset-wise 2-sparsity property and both strong free-union
 directions. The general theorem remains dependent on the Lean kernel
 build and a standard-axiom audit.
+
+**Certification:** the [89-declaration integrated CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37991564215) passed at commit [4a730c8](https://github.com/janhubicka/lean-big-hrushowski/commit/4a730c814d6ebd1c8e368d99237f23066c7941f6). Only the standard logical axioms occurred and 14 Lean files were checked for placeholders. The 1,100-graph regression checked 635,495 no-crossing pairs, 624,416 2-sparsity-preserving pairs in each direction, and 244,695 strong extensions. No claim is made yet that the generic Hrushovski limit has been constructed in Lean.
