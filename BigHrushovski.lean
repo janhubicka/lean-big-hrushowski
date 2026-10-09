@@ -1,2 +1,5 @@
 import BigHrushovski.Predimension
 import BigHrushovski.Closure
+import BigHrushovski.GlobalClosure
+import BigHrushovski.MinimalExtensions
+import BigHrushovski.FiniteDecomposition

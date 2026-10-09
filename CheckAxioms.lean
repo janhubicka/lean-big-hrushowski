@@ -17,3 +17,28 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.subset_strongHull
 #print axioms BigHrushovski.Predimension.strongHull_least
 #print axioms BigHrushovski.Predimension.exists_least_strong_hull
+
+#print axioms BigHrushovski.Predimension.globallyStrong_inter
+#print axioms BigHrushovski.Predimension.strongHull_global
+#print axioms BigHrushovski.Predimension.strongHull_least_global
+#print axioms BigHrushovski.Predimension.strongHull_eq_of_global
+#print axioms BigHrushovski.Predimension.StrongExhaustion.contains_finite
+#print axioms BigHrushovski.Predimension.StrongExhaustion.subset_closure
+#print axioms BigHrushovski.Predimension.StrongExhaustion.closure_global
+#print axioms BigHrushovski.Predimension.StrongExhaustion.closure_least_global
+#print axioms BigHrushovski.Predimension.StrongExhaustion.closure_eq_strongHull
+#print axioms BigHrushovski.Predimension.StrongExhaustion.closure_mono
+#print axioms BigHrushovski.Predimension.StrongExhaustion.closure_idempotent
+#print axioms BigHrushovski.Predimension.StrongExhaustion.closure_eq_self_of_global
+#print axioms BigHrushovski.Predimension.StrongExhaustion.global_of_closure_eq_self
+
+#print axioms BigHrushovski.Predimension.globallyStrong_of_strong_in_global
+#print axioms BigHrushovski.Predimension.StrongExhaustion.equal_closure_of_minimal_choice
+#print axioms BigHrushovski.Predimension.StrongExhaustion.minimal_extension_of_choice
+
+#print axioms BigHrushovski.Predimension.StrongExhaustion.exists_minimal_choice
+#print axioms BigHrushovski.Predimension.StrongExhaustion.exists_minimal_strong_extension
+
+#print axioms BigHrushovski.Predimension.StrongExhaustion.finite_minimal_decomposition
+
+#print axioms BigHrushovski.Predimension.StrongExhaustion.finite_minimal_decomposition_of_strong
