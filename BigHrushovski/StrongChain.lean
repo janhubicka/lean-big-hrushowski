@@ -89,7 +89,7 @@ def toStrongExhaustion : StrongExhaustion d where
 
 /-- A local strong chain already witnesses the finite strong-cover
 property: every finite set lies in a finite globally strong stage. -/
-theorem toFiniteStrongCover : FiniteStrongCover d :=
+theorem toFiniteStrongCover (e : StrongChain d) : FiniteStrongCover d :=
   StrongExhaustion.toFiniteStrongCover (e.toStrongExhaustion)
 
 end StrongChain
