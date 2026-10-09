@@ -78,7 +78,7 @@ theorem edgesWithin_image (G : GraphOn U) (H : GraphOn V)
     obtain ⟨t, ht, hte⟩ := Finset.mem_image.mp h
     obtain ⟨htSub, htEdge⟩ := (G.mem_edgesWithin_iff s t).mp ht
     have htImageSub : t.image f ⊆ s.image f :=
-      Finset.image_mono htSub
+      Finset.image_mono f htSub
     have htImageEdge : H.IsEdge (t.image f) :=
       (G.isEdge_image_iff H f hf hAdj t).mp htEdge
     rw [← hte]
