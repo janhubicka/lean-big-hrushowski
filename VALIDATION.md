@@ -254,3 +254,18 @@ including 5,074 valid strong-chain configurations. The general proof
 still rests on the kernel-checked arbitrary-predimension argument.
 
 **Certified checkpoint:** [626275e](https://github.com/janhubicka/lean-big-hrushowski/commit/626275e464f20a5883b7d6fcab71553f85711ced), [passing Lean CI](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37989676436). The run compiled the full development and audited 73 declarations with only standard logical axioms, no proof placeholders, and 5,074 finite three-stage covering-chain regressions. An actual strong Fraisse construction is still required to instantiate the chain for M0.
+
+
+## Free amalgamation predimension interface (verified)
+
+In a finite no-crossing union, every induced edge belongs to one of
+the factors. The predimension is consequently modular, with the
+predimension of their intersection subtracted. If the common base is
+strong in the other factor, each factor is strong in the union.
+This records the key predimension calculation used when freely adjoining
+finite extensions. It does not construct a universal free amalgam,
+verify C0 sparsity for the union, or prove Fraisse genericity.
+
+**Validated Lean code:** [e04d117](https://github.com/janhubicka/lean-big-hrushowski/commit/e04d117f8e62f31c4d4ab6cafa318c9884b56c1e), [passing 72-declaration axiom audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37990251957), with standard logical axioms and no proof placeholders. The additional
+independent finite-graph regression is included in this PR and awaits the
+combined final CI run before merge.

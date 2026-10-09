@@ -94,3 +94,9 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.StrongChain.stage_global
 #print axioms BigHrushovski.Predimension.StrongChain.toFiniteStrongCover
 #print axioms BigHrushovski.Predimension.exists_strong_chain_iff_exhaustion
+
+#print axioms BigHrushovski.GraphOn.edgesWithin_union_eq
+#print axioms BigHrushovski.GraphOn.predim_modular_of_noCross
+#print axioms BigHrushovski.GraphOn.noCross_restrict_right
+#print axioms BigHrushovski.GraphOn.strong_left_of_noCross
+#print axioms BigHrushovski.GraphOn.strong_right_of_noCross

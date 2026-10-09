@@ -8,3 +8,4 @@ import BigHrushovski.C0BackEdges
 import BigHrushovski.InfiniteGraph
 import BigHrushovski.C0Neighbours
 import BigHrushovski.StrongChain
+import BigHrushovski.FreeAmalgam
