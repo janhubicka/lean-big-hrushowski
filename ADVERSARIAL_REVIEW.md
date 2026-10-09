@@ -147,3 +147,36 @@ These are distinct hostile reviews by one assistant, not independent external re
 **Kernel reviewer:** all seven infinite-graph core declarations and four transfer declarations are included in the passing standard-axiom and placeholder audit at the 67-declaration checkpoint.
 
 These are separate hostile review perspectives by one assistant, not separately spawned model/human referees. No new mathematical defect was identified within the stated proof boundaries.
+
+
+## Adversarial review: free-amalgamation predimension
+
+**Referee A — edge accounting.** The no-crossing hypothesis is a finite
+edge-set inclusion, not an assumption that the two vertex sets are
+disjoint. It allows overlap, and that overlap is subtracted exactly once.
+
+**Referee B — hereditary restriction.** When the right factor is shrunk,
+it must continue to contain the full original overlap. Otherwise a
+previously internal edge of the right factor could become a crossing
+edge and the modular identity may fail. The Lean restriction lemma
+retains this indispensable assumption explicitly.
+
+**Referee C — strongness direction.** To prove A strong in A union B, the
+required hypothesis is P strong in B, where P=A intersect B. The
+corresponding implication is symmetric when A and B are exchanged.
+
+**Referee D — predimension scope.** Only finite vertex sets are counted,
+even when the ambient graph has infinitely many vertices or edges. The
+lemma does not assume the whole graph has finite edge support.
+
+**Referee E — genericity.** This proves an amalgamation *calculation*,
+not existence of a free amalgam of arbitrary structures, preservation
+of 2-sparsity for the full amalgam, or the Fraisse extension property.
+
+**Referee F — independent finite regression.** Every labelled simple
+graph on at most five vertices was tested. There were 635,495
+no-crossing pairs and 624,416 successful strongness-transfer cases for
+each orientation, with no counterexample.
+
+These are separately designed hostile review tests performed by the
+same assistant, not externally independent human or model referees.

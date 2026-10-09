@@ -219,7 +219,7 @@ The [67-declaration Lean audit](https://github.com/janhubicka/lean-big-hrushowsk
 The new graph interface covers arbitrarily infinite edge sets, with induced edges enumerated only inside finite vertex sets. It proves the finite-view equivalence of strong embeddings and the incident-edge singleton-closure conclusion. Exact equality between incident-edge count and the number of distinct old neighbours is not yet a separate Lean declaration; the concrete M0 strong cover/genericity and subsequent Ramsey statements also remain open.
 
 
-## Free amalgamation predimension interface (pending CI)
+## Free amalgamation predimension interface (verified)
 
 In a finite no-crossing union, every induced edge belongs to one of
 the factors. The predimension is consequently modular, with the
@@ -228,3 +228,7 @@ strong in the other factor, each factor is strong in the union.
 This records the key predimension calculation used when freely adjoining
 finite extensions. It does not construct a universal free amalgam,
 verify C0 sparsity for the union, or prove Fraisse genericity.
+
+**Validated Lean code:** [e04d117](https://github.com/janhubicka/lean-big-hrushowski/commit/e04d117f8e62f31c4d4ab6cafa318c9884b56c1e), [passing 72-declaration axiom audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37990251957), with standard logical axioms and no proof placeholders. The additional
+independent finite-graph regression is included in this PR and awaits the
+combined final CI run before merge.
