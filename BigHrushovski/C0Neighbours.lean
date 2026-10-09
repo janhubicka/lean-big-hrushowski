@@ -143,9 +143,11 @@ theorem neighbour_pair_injOn
     intro h
     subst u
     exact hx huA
-  have huIn : u ∈ insert x ({v} : Finset V) := by
-    rw [← heq]
-    exact Finset.mem_insert_of_mem (Finset.mem_singleton_self u)
+  have heq' : insert x ({u} : Finset V) =
+      insert x ({v} : Finset V) := heq
+  have huSelf : u ∈ insert x ({u} : Finset V) :=
+    Finset.mem_insert_of_mem (Finset.mem_singleton_self u)
+  have huIn : u ∈ insert x ({v} : Finset V) := heq' ▸ huSelf
   rcases Finset.mem_insert.mp huIn with hux' | huv
   · exact (hux hux').elim
   · exact Finset.mem_singleton.mp huv
