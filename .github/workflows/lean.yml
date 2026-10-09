@@ -75,3 +75,5 @@ jobs:
 
       - name: Check actual free joins of finite induced graphs
         run: python3 scripts/check_actual_free_join.py
+      - name: Verify canonical tagged free graph amalgams
+        run: python3 scripts/check_tagged_amalgams.py

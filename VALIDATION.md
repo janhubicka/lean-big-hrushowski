@@ -334,3 +334,25 @@ The declarations GraphOn.freeJoin_adj_left/right preserve both induced factor gr
 An independent regression covered 1,052,741 graph/subset combinations, 894,763 compatible pairs and 893,483 strong 2-sparse joins. The graph pieces are already represented as subsets of a common carrier. To amalgamate arbitrary abstract finite structures over embeddings, a disjoint tagging and base-identification construction is still required.
 
 The regression also has a negative control: two K5's glued along a common K3 without a strong-base hypothesis have predimension -3. This refutes any weakening of the hypothesis to plain embeddings.
+
+
+## Tagged carrier for compatible finite graph extensions (certified)
+
+TaggedAmalgam takes arbitrary graph predicates on P+L and P+R,
+identifies their P-parts and embeds them into P+(L+R).
+The canonical maps are injective and overlap only on P. If the
+source graphs agree on P, both inclusions are induced graph embeddings
+and the join has no crossing edges between the fresh L and R parts.
+This is a fresh carrier for the underlying graph, not just two
+subsets of an existing common carrier. The strong-embedding transfer
+for finite source graphs and the Fraisse extension property remain open.
+
+The independent regression check_tagged_amalgams.py enumerates all
+5,613 small input graph pairs in canonical tagged normal form,
+including 2,875 compatible bases, and checks that the two inclusions
+preserve induced graphs without crossing edges. The test also checks
+2,729 examples satisfying strong-amalgamation hypotheses, but the
+general strongness-transfer proof on tagged carriers is still open.
+
+
+**Certified:** source commit [9c4ec90](https://github.com/janhubicka/lean-big-hrushowski/commit/9c4ec90481b8125c75fd3ccb27160bd52dbf4e93) passed the [109-declaration axiom audit and tagged regression](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37996084683). Sixteen Lean files were checked for placeholders. The exhaustive tagged-normal-form checker tested 5,613 small input pairs, including 2,875 compatible graphs and 2,729 strong-base configurations. The Lean theorem proves graph-embedding and no-crossing properties; strongness of the tagged embeddings still needs a predimension-transport lemma, so the 2,729 finite computations are diagnostic only.
