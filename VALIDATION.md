@@ -334,3 +334,15 @@ The declarations GraphOn.freeJoin_adj_left/right preserve both induced factor gr
 An independent regression covered 1,052,741 graph/subset combinations, 894,763 compatible pairs and 893,483 strong 2-sparse joins. The graph pieces are already represented as subsets of a common carrier. To amalgamate arbitrary abstract finite structures over embeddings, a disjoint tagging and base-identification construction is still required.
 
 The regression also has a negative control: two K5's glued along a common K3 without a strong-base hypothesis have predimension -3. This refutes any weakening of the hypothesis to plain embeddings.
+
+
+## Tagged carrier for compatible finite graph extensions (pending CI)
+
+TaggedAmalgam takes arbitrary graph predicates on P+L and P+R,
+identifies their P-parts and embeds them into P+(L+R).
+The canonical maps are injective and overlap only on P. If the
+source graphs agree on P, both inclusions are induced graph embeddings
+and the join has no crossing edges between the fresh L and R parts.
+This is a fresh carrier for the underlying graph, not just two
+subsets of an existing common carrier. The strong-embedding transfer
+for finite source graphs and the Fraisse extension property remain open.

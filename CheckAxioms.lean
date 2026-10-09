@@ -120,3 +120,11 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.freeJoin_strong_right
 #print axioms BigHrushovski.GraphOn.freeJoin_twoSparse
 #print axioms BigHrushovski.GraphOn.freeJoin_strong_amalgam
+
+#print axioms BigHrushovski.TaggedAmalgam.leftTag_injective
+#print axioms BigHrushovski.TaggedAmalgam.rightTag_injective
+#print axioms BigHrushovski.TaggedAmalgam.leftTag_eq_rightTag
+#print axioms BigHrushovski.TaggedAmalgam.freeGraph_left
+#print axioms BigHrushovski.TaggedAmalgam.freeGraph_right
+#print axioms BigHrushovski.TaggedAmalgam.freeGraph_no_cross
+#print axioms BigHrushovski.TaggedAmalgam.freeGraph_amalgam
