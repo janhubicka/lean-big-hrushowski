@@ -356,3 +356,14 @@ general strongness-transfer proof on tagged carriers is still open.
 
 
 **Certified:** source commit [9c4ec90](https://github.com/janhubicka/lean-big-hrushowski/commit/9c4ec90481b8125c75fd3ccb27160bd52dbf4e93) passed the [109-declaration axiom audit and tagged regression](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37996084683). Sixteen Lean files were checked for placeholders. The exhaustive tagged-normal-form checker tested 5,613 small input pairs, including 2,875 compatible graphs and 2,729 strong-base configurations. The Lean theorem proves graph-embedding and no-crossing properties; strongness of the tagged embeddings still needs a predimension-transport lemma, so the 2,729 finite computations are diagnostic only.
+
+
+## Invariance of predimension under induced embeddings (pending CI)
+
+The new module InducedEmbedding.lean handles injective maps that preserve
+and reflect graph adjacency. It proves that unordered edges on the image
+of any finite vertex set are precisely images of original unordered
+edges, and hence that both the induced edge count and the predimension
+are invariant. The ambient graphs may be infinite.
+This is the numerical ingredient needed to transport strong finite
+embeddings into the tagged free graph carrier.
