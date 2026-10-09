@@ -150,3 +150,14 @@ The **formal status** is still conditional on the supplied strong
 exhaustion. The actual strong Fraisse limit, the countable scheduling
 argument, the equality with algebraic closure, the later functional
 presentations, and Ramsey/Ellentuck theorems are not yet verified in Lean.
+
+
+## Graph back-edge bound (pending CI)
+
+Formalization of Proposition twoedges. The induced graph's unordered-edge
+count is split into edges inside the old set and those incident to the
+fresh vertex, giving delta(A+x)=delta(A)+2-d_A(x).
+Self-sufficiency implies d_A(x)<=2; equality forces A+x to be strong,
+so its generated strong closure is already A+x. In a minimal closure
+increment this makes the increment a singleton. The last step uses
+the closure/exhaustion interface already formalized.

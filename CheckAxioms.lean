@@ -42,3 +42,11 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.StrongExhaustion.finite_minimal_decomposition
 
 #print axioms BigHrushovski.Predimension.StrongExhaustion.finite_minimal_decomposition_of_strong
+
+#print axioms BigHrushovski.FiniteGraph.edgesWithin_insert_split
+#print axioms BigHrushovski.FiniteGraph.backEdges_disjoint
+#print axioms BigHrushovski.FiniteGraph.edge_count_insert
+#print axioms BigHrushovski.FiniteGraph.predim_insert
+#print axioms BigHrushovski.FiniteGraph.backEdges_card_le_two
+#print axioms BigHrushovski.FiniteGraph.strong_insert_of_two_backEdges
+#print axioms BigHrushovski.FiniteGraph.closure_insert_of_two_backEdges
