@@ -8,6 +8,8 @@ Manuscript: The-big-Hrushovski (v52). First milestone: finite predimensions.
 | Intersection of finite strong substructures (Lemma intersection, first assertion) | BigHrushovski.Predimension.strong_inter | Verified — [7-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37976439415) |
 | Transitivity of finite strong substructures | BigHrushovski.Predimension.strong_trans | Verified — [7-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37976439415) |
 | Strict d-closure implies self-sufficiency | BigHrushovski.Predimension.strong_of_dClosed | Verified — [7-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37976439415) |
+| Intersection of finite d-closed substructures | BigHrushovski.Predimension.dclosed_inter | Verified — [10-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37977234148) |
+| Transitivity of finite d-closed substructures | BigHrushovski.Predimension.dclosed_trans | Verified — [10-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37977234148) |
 | Finite strong hull of X in M_0 (Lemma intersection, second assertion) | None | Open |
 | Equality with model-theoretic algebraic closure | None | Open |
 | Enumeration, lifting, Ramsey and Ellentuck theorems | None | Open |
@@ -31,13 +33,13 @@ Adversarial review perspectives:
 
 These are separate hostile checking perspectives, not human referee certification.
 
-## Second finite theorem layer (in progress)
+## Second finite theorem layer (certified)
 
 The strict relation used in C_F is now treated separately from self-sufficiency.
-The new targets are Predimension.dclosed_inter and Predimension.dclosed_trans.
+The new targets `Predimension.dclosed_inter` and `Predimension.dclosed_trans` are proved and audited.
 Both need the **strict** inequality on every proper extension: converting
 the goal to the non-strict IsStrong predicate would be an invalid repair.
 
 The independent bit-set checker enumerates all 1,100 labelled simple graphs
 on at most five vertices, including tests where graph edges cross a union.
-These checks are diagnostic only; CI must build the Lean proofs and audit axioms.
+These checks are diagnostic only; the [successful CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37977234148) builds the formal proofs and audits all 10 Lean declarations. The corresponding [audited commit](https://github.com/janhubicka/lean-big-hrushowski/commit/9bd2d4238ac92dbf18533f05a8479e447ebeacb5) contains no proof placeholders and passes all finite-model checks (1,065,509 submodularity instances, 1,753,601 d-closed intersections, 686,097 transitivity cases).
