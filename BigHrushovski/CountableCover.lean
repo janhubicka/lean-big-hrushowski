@@ -65,7 +65,7 @@ theorem closure_mono {s t : Finset V} (hst : s ⊆ t) :
 theorem closure_idempotent (s : Finset V) :
     h.closure (h.closure s) = h.closure s := by
   apply le_antisymm
-  · exact h.closure_least_global _ _ (h.closure_global s) (Subset.rfl)
+  · exact h.closure_least_global _ _ (h.closure_global s) (by intro v hv; exact hv)
   · exact h.subset_closure (h.closure s)
 
 /-- The cover-based closure equals any exhaustion-based strong closure. -/
@@ -86,13 +86,14 @@ structure CountableStrongCover (d : Predimension V) where
 
 namespace CountableStrongCover
 
+variable {d : Predimension V}
 variable (h : CountableStrongCover d)
 
 /-- Finite stages constructed by repeatedly closing the previous stage
 and the next vertex in the enumeration. -/
 noncomputable def stage : ℕ → Finset V
   | 0 => h.cover.chosenContainer ∅
-  | n + 1 => h.cover.chosenContainer (insert (h.enumerate n) (h.stage n))
+  | n + 1 => h.cover.chosenContainer (insert (h.enumerate n) (stage h n))
 
 theorem stage_global (n : ℕ) :
     d.IsGloballyStrong (h.stage n) := by
@@ -115,13 +116,15 @@ theorem stage_monotone {n m : ℕ} (hnm : n ≤ m) :
   | zero =>
       have hn : n = 0 := by omega
       subst n
-      exact Subset.rfl
+      intro v hv
+      exact hv
   | succ m ih =>
       by_cases hle : n ≤ m
       · exact (ih hle).trans (h.stage_step m)
       · have heq : n = m + 1 := by omega
         subst n
-        exact Subset.rfl
+        intro v hv
+      exact hv
 
 theorem stage_covers (v : V) :
     ∃ n : ℕ, v ∈ h.stage n := by
