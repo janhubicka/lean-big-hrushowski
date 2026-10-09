@@ -77,3 +77,5 @@ jobs:
         run: python3 scripts/check_actual_free_join.py
       - name: Verify canonical tagged free graph amalgams
         run: python3 scripts/check_tagged_amalgams.py
+      - name: Check induced embedding predimension and strongness
+        run: python3 scripts/check_induced_embedding.py

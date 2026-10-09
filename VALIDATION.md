@@ -379,3 +379,9 @@ of 2-sparsity of a finite induced graph and its image. The hypotheses
 still require the map to be injective and to preserve and reflect
 adjacency. These general lemmas are intended for the tagged free
 amalgam inclusions.
+
+An independent regression script checks all 76 labelled simple graphs
+up to four vertices, 31,548 induced injections and exterior-edge
+patterns, 497,876 predimension equalities, and 2,509,516 relative
+strongness equivalences. Both injectivity and reflection of
+adjacency are explicitly tested by negative controls.

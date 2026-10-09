@@ -364,3 +364,41 @@ cases satisfy the intended later strong-amalgamation property.
 
 These are separated adversarial reviews by the same assistant,
 not independent external referee reports.
+
+
+## Induced embeddings: adversarial review
+
+**Referee A — nonedges.** An injective map preserving only graph edges
+is insufficient. The adjacency hypothesis is an equivalence, ensuring
+that no new induced edge appears between image vertices.
+
+**Referee B — injectivity.** Without injectivity, two distinct vertices
+can collapse and the vertex cardinality changes. Injectivity is also
+needed to make the image operation injective on unordered edge sets.
+
+**Referee C — edge extraction.** An edge contained in the image of a
+finite set has a finite filtered preimage whose image is precisely
+that edge. This is why the edge sets, not merely their counts, agree.
+
+**Referee D — finite intervals.** Every intermediate substructure of
+the image is a filtered image of an intermediate substructure of
+the source. Hence the strongness relation is preserved and reflected;
+checking only the two endpoints would not suffice.
+
+**Referee E — 2-sparsity.** The theorem is for *every* induced finite
+subset; its invariance follows from the same filtered preimage, not
+only from invariance of the full finite graph.
+
+**Referee F — independent regression.** Every simple labelled graph
+of order at most four, every indicated injection into a one-point
+larger target and four exterior edge patterns are tested. The checker
+covers 497,876 predimension equalities and 2,509,516 finite interval
+strongness equivalences, including negative controls for noninjective
+and noninduced maps.
+
+**Referee G — scope.** This supplies the predimension transport needed
+for the tagged amalgam, but strong amalgamation of arbitrary diagram
+embeddings still requires matching the canonical images and common base.
+
+These are hostile questions independently selected by one assistant,
+not reviews by independent human referees.
