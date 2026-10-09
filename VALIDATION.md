@@ -152,7 +152,7 @@ argument, the equality with algebraic closure, the later functional
 presentations, and Ramsey/Ellentuck theorems are not yet verified in Lean.
 
 
-## Graph back-edge bound (pending CI)
+## Graph back-edge bound (verified)
 
 Formalization of Proposition twoedges. The induced graph's unordered-edge
 count is split into edges inside the old set and those incident to the
@@ -161,3 +161,6 @@ Self-sufficiency implies d_A(x)<=2; equality forces A+x to be strong,
 so its generated strong closure is already A+x. In a minimal closure
 increment this makes the increment a singleton. The last step uses
 the closure/exhaustion interface already formalized.
+
+The [successful 42-declaration audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37985274482) at commit [956701b](https://github.com/janhubicka/lean-big-hrushowski/commit/956701be5ac9ff4c9294608706049b68acd3b92c) proves the displayed induced-edge counting lemma, the numerical bound, and closure singleton conclusion. It audits all declarations for nonstandard axioms and checks eight Lean source files for placeholders.
+**Remaining interface detail:** the formal back-edge count is an unordered-edge count, while the manuscript uses the number of old neighbours. For a simple graph these coincide by the two-element-edge representation; a standalone Lean bijection lemma is not yet in this PR. Until then mark the manuscript proposition as partial rather than claiming that the formal statement contains this identification.
