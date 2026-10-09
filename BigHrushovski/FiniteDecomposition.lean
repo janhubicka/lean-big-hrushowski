@@ -51,7 +51,7 @@ theorem finite_minimal_decomposition {a D : Finset V}
         intro a ha haD hn
         by_cases hnonempty : (D \ a).Nonempty
         · obtain ⟨v, hvD, hvna, hStep⟩ :=
-            e.exists_minimal_strong_extension ha hD haD hnonempty
+            BigHrushovski.Predimension.StrongExhaustion.exists_minimal_strong_extension e ha hD haD hnonempty
           let B : Finset V := e.closure (insert v a)
           have hStep' : d.IsMinimalStrongStep a B := hStep
           have haB : a ⊆ B := hStep'.1.1
