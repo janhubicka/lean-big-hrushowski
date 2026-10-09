@@ -150,3 +150,17 @@ The **formal status** is still conditional on the supplied strong
 exhaustion. The actual strong Fraisse limit, the countable scheduling
 argument, the equality with algebraic closure, the later functional
 presentations, and Ramsey/Ellentuck theorems are not yet verified in Lean.
+
+
+## New milestone: finite strong cover gives an exhaustion (pending CI)
+
+FiniteStrongCover specifies that every finite set lies in some finite
+globally strong substructure. With an explicit surjective enumeration
+of the ambient vertex type, CountableStrongCover constructs an increasing
+finite strong exhaustion by successively closing the next enumerated vertex.
+It also proves equality between closure defined from an arbitrary chosen
+finite strong container and closure computed from the resulting exhaustion.
+Unlike the previous module, a strong exhaustion is no longer an assumption.
+
+The remaining instance-specific theorem must verify the finite strong cover
+property for the actual Fraisse limit M0, not just give it a name.

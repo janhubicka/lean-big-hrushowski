@@ -3,3 +3,4 @@ import BigHrushovski.Closure
 import BigHrushovski.GlobalClosure
 import BigHrushovski.MinimalExtensions
 import BigHrushovski.FiniteDecomposition
+import BigHrushovski.CountableCover

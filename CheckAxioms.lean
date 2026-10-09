@@ -42,3 +42,16 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.StrongExhaustion.finite_minimal_decomposition
 
 #print axioms BigHrushovski.Predimension.StrongExhaustion.finite_minimal_decomposition_of_strong
+
+#print axioms BigHrushovski.Predimension.FiniteStrongCover.chosenContainer_contains
+#print axioms BigHrushovski.Predimension.FiniteStrongCover.chosenContainer_global
+#print axioms BigHrushovski.Predimension.FiniteStrongCover.closure_global
+#print axioms BigHrushovski.Predimension.FiniteStrongCover.closure_least_global
+#print axioms BigHrushovski.Predimension.FiniteStrongCover.closure_idempotent
+#print axioms BigHrushovski.Predimension.FiniteStrongCover.closure_eq_exhaustion
+#print axioms BigHrushovski.Predimension.CountableStrongCover.stage_global
+#print axioms BigHrushovski.Predimension.CountableStrongCover.stage_step
+#print axioms BigHrushovski.Predimension.CountableStrongCover.stage_monotone
+#print axioms BigHrushovski.Predimension.CountableStrongCover.stage_covers
+#print axioms BigHrushovski.Predimension.CountableStrongCover.exists_strong_exhaustion
+#print axioms BigHrushovski.Predimension.CountableStrongCover.exhaustion_closure_eq_cover
