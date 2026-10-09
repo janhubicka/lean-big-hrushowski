@@ -187,7 +187,7 @@ The [successful 42-declaration audit](https://github.com/janhubicka/lean-big-hru
 **Further scope limitation (adversarial check):** `FiniteGraph` stores a *finite* set of ambient edges. Thus the C0 back-edge theorem is formally a finite-edge counting statement, with a separate abstract exhaustion parameter for its closure consequence. It is not yet a literal graph-theoretic model of the infinite M0. Transport to the countable M0 requires proving compatibility of finite strong containers (or introducing a graph interface with infinitely many edges but finite induced subgraphs). The corresponding manuscript marker must remain orange until this interface is formalized.
 
 
-## Arbitrary graph predimension and finite-view transfer (pending CI)
+## Arbitrary graph predimension and finite-view transfer (certified)
 
 A GraphOn structure has a symmetric irreflexive adjacency predicate and no
 finiteness assumption on its full set of edges. For each finite vertex set,
@@ -201,7 +201,7 @@ and a potentially infinite Hrushovski graph, while leaving the specific
 finite strong-cover property and genericity of M0 unformalized.
 
 
-## Infinite-graph transfer of the two-edge lemma (pending CI)
+## Infinite-graph transfer of the two-edge lemma (certified)
 
 The same induced finite-view argument now transfers the finite
 self-sufficiency relation and the two-old-incident-edge bound to a graph
@@ -210,3 +210,10 @@ exactly two old incident edges make the one-point strong closure a
 singleton extension. The full graph is no longer assumed to have finitely
 many edges. The numerical identification with the manuscript's count of
 old neighbours remains an explicit graph-interface obligation.
+
+
+## Infinite-graph bridge: validation checkpoint
+
+The [67-declaration Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37987197242) passed at source commit [99a62a2](https://github.com/janhubicka/lean-big-hrushowski/commit/99a62a2cb5205b2d03070eac5df9b71730b8afe0). No nonstandard theorem axioms were found, and ten Lean source files passed the placeholder check. The existing finite graph, decomposition, and triangle-component regressions passed as well.
+
+The new graph interface covers arbitrarily infinite edge sets, with induced edges enumerated only inside finite vertex sets. It proves the finite-view equivalence of strong embeddings and the incident-edge singleton-closure conclusion. Exact equality between incident-edge count and the number of distinct old neighbours is not yet a separate Lean declaration; the concrete M0 strong cover/genericity and subsequent Ramsey statements also remain open.
