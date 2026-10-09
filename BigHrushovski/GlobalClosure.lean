@@ -78,6 +78,7 @@ structure StrongExhaustion (d : Predimension V) where
 
 namespace StrongExhaustion
 
+variable {d : Predimension V}
 variable (e : StrongExhaustion d)
 
 /-- Every finite source lies in some stage of the exhaustion. -/
