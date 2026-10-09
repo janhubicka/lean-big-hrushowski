@@ -55,3 +55,6 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.CountableStrongCover.stage_covers
 #print axioms BigHrushovski.Predimension.CountableStrongCover.exists_strong_exhaustion
 #print axioms BigHrushovski.Predimension.CountableStrongCover.exhaustion_closure_eq_cover
+
+#print axioms BigHrushovski.Predimension.StrongExhaustion.toFiniteStrongCover
+#print axioms BigHrushovski.Predimension.finite_cover_iff_strong_exhaustion_of_surjective

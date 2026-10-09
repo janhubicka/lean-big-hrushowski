@@ -152,7 +152,7 @@ argument, the equality with algebraic closure, the later functional
 presentations, and Ramsey/Ellentuck theorems are not yet verified in Lean.
 
 
-## New milestone: finite strong cover gives an exhaustion (pending CI)
+## New milestone: finite strong cover gives an exhaustion (verified)
 
 FiniteStrongCover specifies that every finite set lies in some finite
 globally strong substructure. With an explicit surjective enumeration
@@ -164,3 +164,6 @@ Unlike the previous module, a strong exhaustion is no longer an assumption.
 
 The remaining instance-specific theorem must verify the finite strong cover
 property for the actual Fraisse limit M0, not just give it a name.
+
+
+The [47-declaration passing CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37985370062) validates the countable exhaustion construction and container-independence. The reciprocal finite-strong-cover implication and equivalence are being added and will require a fresh CI run.

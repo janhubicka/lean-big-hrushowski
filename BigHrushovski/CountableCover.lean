@@ -156,5 +156,32 @@ theorem exhaustion_closure_eq_cover (s : Finset V) :
   (h.cover.closure_eq_exhaustion h.toStrongExhaustion s).symm
 
 end CountableStrongCover
+
+namespace StrongExhaustion
+
+variable {d : Predimension V}
+
+/-- An existing strong exhaustion immediately gives finite strong covers. -/
+theorem toFiniteStrongCover (e : StrongExhaustion d) :
+    FiniteStrongCover d where
+  exists_container := by
+    intro s
+    exact ⟨e.stage (e.chosenStage s),
+      e.chosenStage_contains s, e.strong (e.chosenStage s)⟩
+
+end StrongExhaustion
+
+/-- For a countably enumerated ambient set, a finite strong-cover
+property is equivalent to the existence of a strong exhaustion. -/
+theorem finite_cover_iff_strong_exhaustion_of_surjective
+    (enumerate : ℕ → V) (hen : Function.Surjective enumerate) :
+    FiniteStrongCover d ↔ Nonempty (StrongExhaustion d) := by
+  constructor
+  · intro hc
+    let h : CountableStrongCover d := ⟨enumerate, hen, hc⟩
+    exact h.exists_strong_exhaustion
+  · rintro ⟨e⟩
+    exact e.toFiniteStrongCover
+
 end Predimension
 end BigHrushovski
