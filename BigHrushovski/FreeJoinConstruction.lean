@@ -142,8 +142,8 @@ theorem freeJoin_noCross (H : GraphOn V) (a b : Finset V) :
         subst v
         exact hLeft.2.1
     exact Finset.mem_union.mpr (Or.inl
-      ((G.freeJoin H a b).mem_edgesWithin_iff a e).mpr
-        ⟨heA, hCard, x, hx, y, hy, hAdjSave⟩)
+      (((G.freeJoin H a b).mem_edgesWithin_iff a e).mpr
+        ⟨heA, hCard, x, hx, y, hy, hAdjSave⟩))
   · have heB : e ⊆ b := by
       rw [hPairEq]
       intro v hv
@@ -154,8 +154,8 @@ theorem freeJoin_noCross (H : GraphOn V) (a b : Finset V) :
         subst v
         exact hRight.2.1
     exact Finset.mem_union.mpr (Or.inr
-      ((G.freeJoin H a b).mem_edgesWithin_iff b e).mpr
-        ⟨heB, hCard, x, hx, y, hy, hAdjSave⟩)
+      (((G.freeJoin H a b).mem_edgesWithin_iff b e).mpr
+        ⟨heB, hCard, x, hx, y, hy, hAdjSave⟩))
 
 /-- Predimension of an induced left part is preserved by the free join. -/
 theorem freeJoin_predim_left (H : GraphOn V) (a b s : Finset V)
