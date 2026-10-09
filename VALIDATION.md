@@ -217,3 +217,14 @@ old neighbours remains an explicit graph-interface obligation.
 The [67-declaration Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37987197242) passed at source commit [99a62a2](https://github.com/janhubicka/lean-big-hrushowski/commit/99a62a2cb5205b2d03070eac5df9b71730b8afe0). No nonstandard theorem axioms were found, and ten Lean source files passed the placeholder check. The existing finite graph, decomposition, and triangle-component regressions passed as well.
 
 The new graph interface covers arbitrarily infinite edge sets, with induced edges enumerated only inside finite vertex sets. It proves the finite-view equivalence of strong embeddings and the incident-edge singleton-closure conclusion. Exact equality between incident-edge count and the number of distinct old neighbours is not yet a separate Lean declaration; the concrete M0 strong cover/genericity and subsequent Ramsey statements also remain open.
+
+
+## Old-neighbour bijection (pending CI)
+
+This module makes explicit that, for a vertex x outside a finite old set A,
+its incident unordered back edges correspond bijectively to the distinct
+old vertices y adjacent to x. In particular the cardinality used by the
+formal back-edge theorem equals the manuscript's d_i(x). No finiteness
+assumption is imposed on the whole graph. The two-neighbour bound and
+singleton-closure conclusion follow immediately from the earlier
+finite-view transfer and strong-exhaustion results.
