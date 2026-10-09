@@ -147,3 +147,37 @@ These are distinct hostile reviews by one assistant, not independent external re
 **Kernel reviewer:** all seven infinite-graph core declarations and four transfer declarations are included in the passing standard-axiom and placeholder audit at the 67-declaration checkpoint.
 
 These are separate hostile review perspectives by one assistant, not separately spawned model/human referees. No new mathematical defect was identified within the stated proof boundaries.
+
+
+## Adversarial review: local strong chains versus global strongness
+
+**Referee A — predimension.** The chain relation is self-sufficiency
+in the same fixed predimension on finite subsets of the union. No
+unjustified change of edge set is permitted when passing to a later stage.
+
+**Referee B — transitivity.** The induction uses only the previously
+audited transitivity of IsStrong and reflexivity in the equal-index case.
+The successive steps do not need to be strictly increasing.
+
+**Referee C — coverage.** Every finite test set is contained in a later
+stage because each of its finitely many vertices belongs to some stage
+and the stage domains are increasing.
+
+**Referee D — global strongness.** For a test extension X of stage n,
+choose a stage covering stage n union X and then a stage no earlier
+than n. Strongness in that later stage gives the required inequality.
+
+**Referee E — counterexample discipline.** If the successive inclusions
+are not strong, coverage alone proves nothing: the strong-step hypothesis
+is essential and remains explicit in the Lean structure.
+
+**Referee F — computation.** The independent checker exhausts every
+labelled simple graph of size at most four and every three-stage covering
+chain of strong inclusions, and tests the global conclusion (5,074 cases).
+
+**Referee G — limit boundary.** No model of the generic Hrushovski limit
+or its extension property is constructed. The verified implication is
+the direct-limit lemma that will be applied to such a construction.
+
+These are separated hostile proof checks by the same assistant, not
+external or human referees.

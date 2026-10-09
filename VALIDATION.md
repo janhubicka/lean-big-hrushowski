@@ -230,3 +230,8 @@ FiniteStrongCover without assuming global strongness of the stages.
 Thus the usual direct-limit step in the strong Fraisse construction is
 formally isolated. The actual construction of the countable generic graph
 and proof of its extension property remain to be formalized.
+
+The independent finite-model regression for three-stage covering
+strong chains checks every labelled graph with up to four vertices,
+including 5,074 valid strong-chain configurations. The general proof
+still rests on the kernel-checked arbitrary-predimension argument.
