@@ -34,6 +34,26 @@ abbrev GrowingResponseCarrier {n m : ℕ} {V : Type*}
     (i : Fin n → V) (diagram : StrongDiagram n m) :=
   FiniteSpan.JointCarrier (ResponseCarrier i diagram) Unit
 
+/-- A fixed structural equality decision on the tagged response carrier.
+It must be reused when evaluating finite predimensions: replacing it
+partway through a proof by a different classical decider does not give
+definitionally identical `GraphOn.toPredimension` expressions. -/
+noncomputable instance responseCarrierDecidableEq
+    {V : Type*} [DecidableEq V] {n m : ℕ}
+    (i : Fin n → V) (diagram : StrongDiagram n m) :
+    DecidableEq (ResponseCarrier i diagram) := by
+  dsimp [ResponseCarrier, TaggedAmalgam.Carrier]
+  infer_instance
+
+/-- Structural decidable equality on the carrier after forced growth. -/
+noncomputable instance growingResponseCarrierDecidableEq
+    {V : Type*} [DecidableEq V] {n m : ℕ}
+    (i : Fin n → V) (diagram : StrongDiagram n m) :
+    DecidableEq (GrowingResponseCarrier i diagram) := by
+  dsimp [GrowingResponseCarrier, FiniteSpan.JointCarrier,
+    TaggedAmalgam.Carrier]
+  infer_instance
+
 /-- Every applicable finite strong request can be realized while
 strictly increasing the finite domain. The old stage and the target
 of the request are both induced strong subgraphs of the output. -/
@@ -69,6 +89,10 @@ theorem exists_growing_finite_strong_response
         ((Finset.univ : Finset (Fin m)).image answer) Finset.univ ∧
       fresh ∉ (Finset.univ : Finset V).image old := by
   classical
+  letI : DecidableEq (ResponseCarrier i diagram) :=
+    responseCarrierDecidableEq i diagram
+  letI : DecidableEq (GrowingResponseCarrier i diagram) :=
+    growingResponseCarrierDecidableEq i diagram
   obtain ⟨H, f, g, hf, hg, hIndF, hIndG, hBase, hOnlyBase,
       hSparseH, hStrongF, hStrongG⟩ :=
     exists_finite_strong_response G hSparse diagram i
