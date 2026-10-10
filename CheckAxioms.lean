@@ -160,3 +160,5 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.splitEquiv_base_image
 #print axioms BigHrushovski.FiniteSpan.normalGraph_twoSparse_iff
 #print axioms BigHrushovski.FiniteSpan.normalGraph_strong_base_iff
+
+#print axioms BigHrushovski.FiniteSpan.strong_amalgam_of_embeddings

@@ -199,5 +199,63 @@ theorem normalGraph_strong_base_iff (G : GraphOn A)
 
 end finite
 
+
+/-- Strong free amalgamation for two arbitrary finite graph structures
+equipped with injective embeddings of a common base.
+
+The output graph is explicitly the tagged free graph of the two
+normalized input graphs. The conclusions are 2-sparsity of this graph
+and strongness of both canonical induced factor domains. The carrier
+normalizations extend the supplied base embeddings exactly.
+
+This is a finite strong-amalgamation theorem for abstract embedded
+base diagrams. Construction of the countable strong Fraisse limit
+and the functional closure presentation remain separate obligations. -/
+theorem strong_amalgam_of_embeddings
+    {B : Type*} [Fintype B] [DecidableEq B]
+    (G : GraphOn A) (H : GraphOn B)
+    (i : P → A) (j : P → B)
+    (hi : Function.Injective i) (hj : Function.Injective j)
+    (hAgree : ∀ p q : P,
+      G.adj (i p) (i q) ↔ H.adj (j p) (j q))
+    (hSparseG : G.IsTwoSparse (Finset.univ : Finset A))
+    (hSparseH : H.IsTwoSparse (Finset.univ : Finset B))
+    (hStrongG : G.toPredimension.IsStrong
+      ((Finset.univ : Finset P).image i) (Finset.univ : Finset A))
+    (hStrongH : H.toPredimension.IsStrong
+      ((Finset.univ : Finset P).image j) (Finset.univ : Finset B)) :
+    let F := TaggedAmalgam.freeGraph
+      (normalGraph G i hi) (normalGraph H j hj)
+    F.IsTwoSparse
+      (Finset.univ : Finset (TaggedAmalgam.Carrier P (Tail i) (Tail j))) ∧
+    F.toPredimension.IsStrong
+      (TaggedAmalgam.leftDomain (P := P) (L := Tail i) (R := Tail j))
+      (Finset.univ : Finset (TaggedAmalgam.Carrier P (Tail i) (Tail j))) ∧
+    F.toPredimension.IsStrong
+      (TaggedAmalgam.rightDomain (P := P) (L := Tail i) (R := Tail j))
+      (Finset.univ : Finset (TaggedAmalgam.Carrier P (Tail i) (Tail j))) := by
+  classical
+  have hAgreeN : TaggedAmalgam.AgreeBase
+      (normalGraph G i hi) (normalGraph H j hj) :=
+    normalGraphs_agree_base G H i j hi hj hAgree
+  have hSparseGN : (normalGraph G i hi).IsTwoSparse
+      (Finset.univ : Finset (P ⊕ Tail i)) :=
+    (normalGraph_twoSparse_iff G i hi).mpr hSparseG
+  have hSparseHN : (normalGraph H j hj).IsTwoSparse
+      (Finset.univ : Finset (P ⊕ Tail j)) :=
+    (normalGraph_twoSparse_iff H j hj).mpr hSparseH
+  have hStrongGN : (normalGraph G i hi).toPredimension.IsStrong
+      (TaggedAmalgam.leftBase (P := P) (L := Tail i))
+      (Finset.univ : Finset (P ⊕ Tail i)) :=
+    (normalGraph_strong_base_iff G i hi).mpr hStrongG
+  have hStrongHN : (normalGraph H j hj).toPredimension.IsStrong
+      (TaggedAmalgam.rightBase (P := P) (R := Tail j))
+      (Finset.univ : Finset (P ⊕ Tail j)) :=
+    (normalGraph_strong_base_iff H j hj).mpr hStrongH
+  have h := TaggedAmalgam.tagged_strong_free_amalgam
+    (normalGraph G i hi) (normalGraph H j hj)
+    hAgreeN hSparseGN hSparseHN hStrongGN hStrongHN
+  exact ⟨h.1, h.2.1, h.2.2.1⟩
+
 end FiniteSpan
 end BigHrushovski

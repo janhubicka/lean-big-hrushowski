@@ -445,3 +445,16 @@ The proof depends on the previously audited induced-embedding invariance
 and explicitly matches the image of the common base as well as the whole
 finite vertex set. This allows the verified tagged strong-amalgamation
 theorem to be applied to arbitrary finite strong embedding spans.
+
+
+## Strong free amalgamation for arbitrary finite base embeddings (pending CI)
+
+FiniteSpan.strong_amalgam_of_embeddings takes two finite 2-sparse
+graph structures with a common abstract base P embedded injectively
+and inducedly into both, and assumes the images of P are strong.
+Using the verified normal-form equivalences, it constructs a tagged
+free graph that is 2-sparse and whose canonical induced factor images
+are strong. The original maps of P are respected by construction.
+Once audited, this completes the finite strong-amalgamation calculation
+for arbitrary spans. A countable strong Fraisse construction and the
+functional-closure language are still not formalized.
