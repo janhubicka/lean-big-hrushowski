@@ -24,3 +24,4 @@ import BigHrushovski.FreshNatLabels
 import BigHrushovski.NatGraphStage
 
 import BigHrushovski.InitialSegmentLabels
+import BigHrushovski.ForcedGrowth
