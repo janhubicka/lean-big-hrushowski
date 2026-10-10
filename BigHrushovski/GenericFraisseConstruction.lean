@@ -65,8 +65,12 @@ private theorem pack_fair_successor
       AppliesAt s.graph (Finset.range s.size) req →
       RespondsAt N (Finset.range m) req) :
     ∃ t : FiniteNatStage, IsFairStrongSuccessor k s t := by
-  refine ⟨{ size := m, graph := N, sparse := hSparse,
-    supported := hSupport }, ?_⟩
+  let t : FiniteNatStage :=
+    { size := m
+      graph := N
+      sparse := hSparse
+      supported := hSupport }
+  refine ⟨t, ?_⟩
   exact ⟨hGrow, hAgree, hStrong, hRespond⟩
 
 /-- Every finite stage has a successor satisfying strict growth,
