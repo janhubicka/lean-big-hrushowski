@@ -769,3 +769,19 @@ remaining gap before instantiating
 `strongExtensionProperty_of_fairResponses` for a concrete countable
 Hrushovski graph. Nothing in the new conditional transfer proves
 Ramsey, big Ramsey degree, or Ellentuck statements.
+
+
+## Gap-free finite graph stage transport (pending Lean CI)
+
+`FiniteSpan.exists_initial_segment_strong_nat_stage` composes the
+audited finite strong-embedding graph transport with the audited
+`extendInitialEquiv` carrier equivalence. For any finite strong
+extension A≤B whose old vertices are numbered by Fin(card A), the
+new graph on ℕ has support exactly range(card B), fixes every old
+numeric label, preserves and reflects all adjacency, remains
+two-sparse and keeps range(card A) strong in range(card B).
+
+This is the canonical finite successor-stage interface intended for
+the recursive fair Fraïssé construction. It does not choose a
+compatible infinite sequence of these stages. The new theorem and
+its axiom dependencies still require the integrated Lean CI audit.
