@@ -849,3 +849,29 @@ not independently spawned referee agents.
 ## Integrated hostile checks
 
 These proofs represent three logically distinct safeguards. Pointwise fixed old labels prevent accidental renumbering; exact induced adjacency prevents a later stage from adding old-old edges; transitivity of strong embeddings ensures the answered target remains strong after the forced-growth extension. The finite carrier pullback covers all intermediate subsets, not only whole stages. None establishes that a fair responding coherent chain exists. The checks were independent mathematical failure-mode perspectives within the same assistant review, not separate human referee certifications.
+
+
+
+## Adversarial review: applicable Nat request to finite carrier
+
+**Bounded range.** Applicability includes that the source-image
+substructure is contained in the old stage. On `range n` this
+is equivalent to each numerical source value being below `n`.
+Without it the source cannot be interpreted as `Fin n`.
+
+**Exact map.** The finite source map has the *same numerical values*
+as the scheduled Nat map, not merely an isomorphic image. This is
+needed to answer the original request pointwise.
+
+**Inducedness.** The finite stage pullback reflects nonedges as well
+as preserving edges. A weak graph homomorphism is not sufficient.
+
+**Strongness.** The source is strong only relative to the current
+stage, not yet globally. The pullback uses strongness on every
+intermediate finite subgraph, preserving the exact hypothesis needed
+for tagged strong free amalgamation.
+
+**Boundary and provenance.** This supplies finite input data for
+one scheduled request, not a coherent recursive chain. The review
+separates distinct proof obligations but is not a separately spawned
+external panel.
