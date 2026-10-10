@@ -913,3 +913,17 @@ scheduled request in that case. The new Lean statements await CI.
 ## Integrated finite successor prerequisites (integration CI pending)
 
 These four modules close different finite obligations: (i) a strong finite response followed by forced growth, preserving both old and target strong images; (ii) literal factoring of an applicable Nat-labelled source through Fin n; (iii) canonical old-stage numerical numbering; and (iv) a universally applicable empty-to-empty request for stages with no applicable scheduled request. The canonical numbering passed a [193-declaration Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38082471318). The other individual and combined Lean workflows must be checked before marking theorems green. They do not construct the recursive countable chain or discharge the fair-response criterion by themselves.
+
+
+### Composite strongness: structural equality-decider issue
+
+The standalone growing-response PR #37 failed its first Lean build because
+`GrowingResponseCarrier` lacked an inferred `DecidableEq` at three
+predimension-bearing fields, and a local classical equality decider
+was not definitionally the same as the structural decider used by
+the already-verified forced-growth theorem. The integration branch
+now declares structural equality decisions for the two tagged
+carriers and reuses these exact instances in the composite proof.
+This is a Lean representation issue, not a graph counterexample.
+The corrected branch remains **pending an integrated Lean build and
+axiom audit**; do not promote its theorem to green until CI passes.
