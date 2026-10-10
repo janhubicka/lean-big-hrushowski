@@ -658,3 +658,19 @@ This discharges the **local finite response existence** obligation.
 It does not yet give a coherent sequence of Nat-labelled finite stages,
 a graph on their union, or the fair-response property in that union.
 The Lean build and axiom audit of this integration are pending.
+
+
+## Finite induced adjacency transfer (pending Lean CI)
+
+`GraphOn.edgesWithin_eq_of_agreeOn`,
+`GraphOn.predim_eq_of_agreeOn`, and
+`GraphOn.isStrong_iff_of_agreeOn` compare two arbitrary ambient
+graphs on one vertex type that have the same **induced** graph
+on a prescribed finite set. They prove equality of unordered finite
+edge sets, predimensions, and relative strongness of an included
+finite subset. No assumption is made about graph edges outside the
+larger finite set.
+
+This is needed to transfer local strong successor steps from a
+coherent stage graph to the direct-limit graph. It does not construct
+the coherent stages. CI verification of this module remains pending.
