@@ -210,3 +210,5 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.extendInitialLabels_old
 #print axioms BigHrushovski.FiniteSpan.extendInitialLabels_injective
 #print axioms BigHrushovski.FiniteSpan.extendInitialLabels_image
+
+#print axioms BigHrushovski.FiniteCatalogue.exists_finite_strong_response

@@ -642,3 +642,19 @@ The independent finite-model regression checks old sizes at most five,
 new sizes at most six, all injections and all old initial-segment
 bijections (114,324 diagrams), including empty sources and targets.
 It is a diagnostic and cannot certify the unrestricted Lean theorem.
+
+
+## Finite local response for fair strong diagrams (pending integrated CI)
+
+`FiniteCatalogue.exists_finite_strong_response` instantiates the
+already-certified arbitrary finite strong free-amalgamation theorem with
+a labelled `StrongDiagram n m` and an induced strong embedding of its
+source into an arbitrary finite two-sparse stage. It produces a two-sparse
+finite amalgam with induced strong embeddings of both the stage and the
+target, commuting exactly on the prescribed source. The two images
+intersect only over that source.
+
+This discharges the **local finite response existence** obligation.
+It does not yet give a coherent sequence of Nat-labelled finite stages,
+a graph on their union, or the fair-response property in that union.
+The Lean build and axiom audit of this integration are pending.
