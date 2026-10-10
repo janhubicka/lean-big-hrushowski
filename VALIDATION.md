@@ -785,3 +785,22 @@ This is the canonical finite successor-stage interface intended for
 the recursive fair Fraïssé construction. It does not choose a
 compatible infinite sequence of these stages. The new theorem and
 its axiom dependencies still require the integrated Lean CI audit.
+
+
+## Finite-stage fair responses give genericity of their union (pending Lean CI)
+
+`CoherentNatGraphStages.appliesAt_stage_of_limit` shows that a labelled
+extension request applicable in the limit graph relative to the current
+finite support is also applicable in that stage's graph. The converse
+response transport `respondsAt_limit_of_stage` proves that a strong
+response inside the finite stage graph remains a response inside the
+union. Both depend on exact induced adjacency and the verified
+local finite predimension/strongness transfer.
+
+Consequently
+`CoherentNatGraphStages.strongExtensionProperty_of_stageResponses`
+derives the full labelled strong-extension property from an *assumed*
+coherent covering strong stage system answering each applicable
+fair-scheduled request. It does **not** construct that system. This is
+the graph-level link between the finite free-amalgam construction and
+the already verified abstract fair-response criterion.
