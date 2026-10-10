@@ -642,3 +642,19 @@ The independent finite-model regression checks old sizes at most five,
 new sizes at most six, all injections and all old initial-segment
 bijections (114,324 diagrams), including empty sources and targets.
 It is a diagnostic and cannot certify the unrestricted Lean theorem.
+
+
+## Growth by a fresh strong vertex (pending Lean CI)
+
+`GraphOn.onePointGraph_sparse` shows that the graph on one isolated
+vertex is 2-sparse. The theorem
+`FiniteSpan.exists_fresh_strong_extension` freely amalgamates this
+singleton with any finite two-sparse graph over the empty strong base.
+It yields a finite two-sparse extension in which the old graph is an
+induced **strong** subgraph and there exists a vertex outside its image.
+This provides an explicit strict-growth input for the countable
+construction, even if an applicable scheduled request adds no vertices.
+
+The theorem relies on the verified tagged amalgamation's
+no-unintended-identifications conclusion. It does not itself
+realize scheduled requests, construct a chain or a direct limit.
