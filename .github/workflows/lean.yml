@@ -83,3 +83,5 @@ jobs:
         run: python3 scripts/check_abstract_amalgam.py
       - name: Check hereditary and strong joint embedding properties
         run: python3 scripts/check_c0_strong_age.py
+      - name: Check fresh natural-number stage labels
+        run: python3 scripts/check_fresh_nat_labels.py

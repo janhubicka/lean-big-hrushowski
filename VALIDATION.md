@@ -585,3 +585,42 @@ and a chain satisfying local fair responses, remain unconstructed.
 
 
 **Certification:** [successful 156-declaration CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38062233519) at [code commit b3d5265](https://github.com/janhubicka/lean-big-hrushowski/commit/b3d5265a83cae05dfab96d7b8d71caadcdb18d28), standard logical axioms only, with 24 Lean files free of proof placeholders. `FiniteCatalogue.arbitrary_finite_strong_extension` takes arbitrary finite 2-sparse graphs, a strong induced finite extension, and a globally strong induced source embedding into a graph M on ℕ. Under the explicit labelled extension property hypothesis on M, it constructs an induced globally strong embedding of the target extending the source embedding. No countable generic M is constructed, and the labelled extension-property hypothesis is not discharged here.
+
+
+## Fresh natural-number labels for finite successor stages (verified)
+
+For any injective map f:A→B of finite carriers and any injective
+labelling e:A→ℕ, `extendNatLabels` constructs an injective labelling
+of B extending e along f. Each vertex outside f(A) receives a label
+larger than every old label. This supplies a fixed natural-number
+carrier interface for a future chain of finite strong embeddings.
+Graph adjacency and the construction of a fair responding chain are
+not yet included in this theorem.
+
+The [160-declaration Lean CI audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38062409525) compiled the finite injection extension lemmas with only standard logical axioms and no proof placeholders. The independent `check_fresh_nat_labels.py` regression checks old-label preservation, freshness above the old maximum and injectivity across many finite maps. CI on the combined branch head will certify this additional regression.
+
+
+## Finite strong graph stages on the Nat carrier (verified at PR head)
+
+`GraphOn.transportedToNat` transports a finite graph along any
+injective map into ℕ and has no edges outside the image. It preserves
+induced adjacency, predimension, 2-sparsity, and finite strongness.
+Combined with the fresh-label theorem, it yields
+`FiniteSpan.exists_fresh_strong_nat_stage`: every finite strong
+extension A≤B can be represented as a finite graph stage on ℕ
+with all existing A labels fixed, distinct fresh labels for B\A,
+and a strong inclusion of the old finite stage domain.
+The construction of a compatible countable sequence and realization
+of fair requests are not yet formalized.
+
+The additional `transportedToNat_agree_on_old` theorem states that
+transporting a finite strong induced extension to fresh Nat labels
+does not change any edge or nonedge between previously labelled
+vertices. This is the graph-coherence invariant needed for a
+direct limit of successive finite stages. CI verification pending.
+
+
+The [combined Lean CI and axiom audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38063216441) passed for PR #21 at commit `c0b9c4e`. Integration with the post-PR-19 main branch is subject to a fresh run.
+
+
+**Adversarial carrier-coverage warning (10 October 2026).** `extendNatLabels` is injective and fresh, but its successive images need not cover ℕ. For the empty source and a singleton target it assigns label 1; every later genuinely new label exceeds the current maximum, so 0 remains uncovered. The existing `Predimension.StrongChain` requires `∀ x : ℕ, ∃ n, x ∈ stage n`, which cannot be deduced from these finite-stage theorems. To complete genericity one must use consecutive initial segments with unbounded stage sizes, or build the direct limit on a separately defined countable carrier and then reindex it. This is a gap in the countable construction, *not* in the finite strong-amalgamation proof.

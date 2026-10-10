@@ -20,3 +20,5 @@ import BigHrushovski.FiniteCatalogue
 import BigHrushovski.GenericityCriterion
 import BigHrushovski.LabelledDiagrams
 import BigHrushovski.UnlabelledExtension
+import BigHrushovski.FreshNatLabels
+import BigHrushovski.NatGraphStage
