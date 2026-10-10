@@ -769,3 +769,17 @@ remaining gap before instantiating
 `strongExtensionProperty_of_fairResponses` for a concrete countable
 Hrushovski graph. Nothing in the new conditional transfer proves
 Ramsey, big Ramsey degree, or Ellentuck statements.
+
+
+## Finite Nat stage as a Fin-carrier induced graph (pending Lean CI)
+
+The `FiniteNatStage` module identifies the image of `Fin m → ℕ`
+with `Finset.range m` and applies the already-verified induced-image
+invariance to compare a Nat graph supported on that initial segment
+with its pullback to `GraphOn (Fin m)`. Both two-sparsity and
+relative strongness of any finite subset transfer exactly.
+
+This is the input conversion needed to apply
+`FiniteCatalogue.exists_finite_strong_response` to a request whose
+source vertices are presented by natural-number labels. Constructing
+the actual fair responding chain is still a separate obligation.
