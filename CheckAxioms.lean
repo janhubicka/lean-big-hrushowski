@@ -230,3 +230,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.stage_index_le_size
 #print axioms BigHrushovski.FiniteSpan.initialSegment_stage_step
 #print axioms BigHrushovski.FiniteSpan.initialSegment_stages_cover
+
+#print axioms BigHrushovski.GraphOn.image_fin_val_univ
+#print axioms BigHrushovski.GraphOn.twoSparse_pullback_fin_iff
+#print axioms BigHrushovski.GraphOn.strong_pullback_fin_iff
