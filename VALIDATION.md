@@ -852,3 +852,27 @@ the actual fair responding chain is still a separate obligation.
 ## Combined finite-successor interfaces (integration audit pending)
 
 The standalone versions passed GitHub Actions run [38080646111](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080646111) (general old-label graph coherence), [38080758571](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080758571) (composition of strong images), and [38080899840](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080899840) (finite Nat stage pullback), each with only standard logical axioms and no placeholders. These are finite interface theorems. Their integration with the newer fair-response-to-limit theorem needs its own build before certification; this does not produce a recursive chain.
+
+
+
+## Recursive fair stage sequence from a finite one-step theorem (pending Lean CI)
+
+`FiniteCatalogue.FiniteNatStage` packages a supported two-sparse graph on a
+consecutive finite Nat interval. `IsFairStrongSuccessor k s t` requires
+strict growth, agreement on **all** old-old edges and nonedges, relative
+strongness of the old interval in the new graph, and a response to the
+scheduled request when it applies.
+
+`finiteStageSequence` uses ordinary recursion and classical choice from
+the explicit finite existential hypothesis
+`∀ k s, ∃ t, IsFairStrongSuccessor k s t`. The derived system
+`coherentStagesOfSuccessors` covers **all ℕ** by the verified
+strict-initial-segment-growth lemma. Its limit is two-sparse and has the
+labelled strong extension property by the previously audited
+finite-stage-to-countable transfer and fair request criterion.
+
+This is a conditional *construction*, not an assertion that the
+finite one-step hypothesis is already verified. Its only missing
+existence input is a uniform finite successor satisfying
+`IsFairStrongSuccessor`, including the no-request/inapplicable case.
+The Lean code and axiom dependencies await CI certification.
