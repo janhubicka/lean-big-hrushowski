@@ -458,3 +458,13 @@ are strong. The original maps of P are respected by construction.
 Once audited, this completes the finite strong-amalgamation calculation
 for arbitrary spans. A countable strong Fraisse construction and the
 functional-closure language are still not formalized.
+
+
+## Explicit embeddings of the original graph structures (pending CI)
+
+The canonical maps from A and B into the tagged carrier are the
+inverses of the normalization equivalences followed by the two tag
+inclusions. Both are injective, agree on the prescribed base maps,
+and preserve and reflect the original adjacency relations.
+Combining these maps with the verified abstract strong-amalgamation
+theorem will give an explicit existential strong-amalgamation witness.

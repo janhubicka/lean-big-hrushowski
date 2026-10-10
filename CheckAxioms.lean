@@ -162,3 +162,9 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.normalGraph_strong_base_iff
 
 #print axioms BigHrushovski.FiniteSpan.strong_amalgam_of_embeddings
+
+#print axioms BigHrushovski.FiniteSpan.leftAmalgamEmbedding_injective
+#print axioms BigHrushovski.FiniteSpan.rightAmalgamEmbedding_injective
+#print axioms BigHrushovski.FiniteSpan.amalgamEmbeddings_agree_base
+#print axioms BigHrushovski.FiniteSpan.leftAmalgamEmbedding_induced
+#print axioms BigHrushovski.FiniteSpan.rightAmalgamEmbedding_induced

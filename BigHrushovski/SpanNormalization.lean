@@ -258,5 +258,104 @@ theorem strong_amalgam_of_embeddings
     hAgreeN hSparseGN hSparseHN hStrongGN hStrongHN
   exact ⟨h.1, h.2.1, h.2.2.1⟩
 
+
+/-- Canonical map of the original left graph into the fresh tagged carrier. -/
+noncomputable def leftAmalgamEmbedding
+    (i : P → A) (hi : Function.Injective i)
+    {B : Type*} (j : P → B) :
+    A → TaggedAmalgam.Carrier P (Tail i) (Tail j) :=
+  TaggedAmalgam.leftTag ∘ (splitEquiv i hi).symm
+
+/-- Canonical map of the original right graph into the fresh tagged carrier. -/
+noncomputable def rightAmalgamEmbedding
+    {B : Type*} (i : P → A)
+    (j : P → B) (hj : Function.Injective j) :
+    B → TaggedAmalgam.Carrier P (Tail i) (Tail j) :=
+  TaggedAmalgam.rightTag ∘ (splitEquiv j hj).symm
+
+theorem leftAmalgamEmbedding_injective
+    (i : P → A) (hi : Function.Injective i)
+    {B : Type*} (j : P → B) :
+    Function.Injective (leftAmalgamEmbedding i hi j) := by
+  intro x y h
+  apply (splitEquiv i hi).symm.injective
+  exact TaggedAmalgam.leftTag_injective h
+
+theorem rightAmalgamEmbedding_injective
+    {B : Type*} (i : P → A)
+    (j : P → B) (hj : Function.Injective j) :
+    Function.Injective (rightAmalgamEmbedding i j hj) := by
+  intro x y h
+  apply (splitEquiv j hj).symm.injective
+  exact TaggedAmalgam.rightTag_injective h
+
+/-- The two embeddings identify exactly the prescribed image of the
+abstract common base. -/
+theorem amalgamEmbeddings_agree_base
+    {B : Type*} (i : P → A) (j : P → B)
+    (hi : Function.Injective i) (hj : Function.Injective j)
+    (p : P) :
+    leftAmalgamEmbedding i hi j (i p) =
+      rightAmalgamEmbedding i j hj (j p) := by
+  have hl : (splitEquiv i hi).symm (i p) = Sum.inl p := by
+    apply (splitEquiv i hi).injective
+    simp
+  have hr : (splitEquiv j hj).symm (j p) = Sum.inl p := by
+    apply (splitEquiv j hj).injective
+    simp
+  change TaggedAmalgam.leftTag ((splitEquiv i hi).symm (i p)) =
+    TaggedAmalgam.rightTag ((splitEquiv j hj).symm (j p))
+  rw [hl, hr]
+  rfl
+
+/-- The left map preserves and reflects the entire induced adjacency
+relation, not merely edges. -/
+theorem leftAmalgamEmbedding_induced
+    {B : Type*} (G : GraphOn A) (H : GraphOn B)
+    (i : P → A) (j : P → B)
+    (hi : Function.Injective i) (hj : Function.Injective j)
+    (hAgree : ∀ p q : P,
+      G.adj (i p) (i q) ↔ H.adj (j p) (j q))
+    (a b : A) :
+    (TaggedAmalgam.freeGraph
+      (normalGraph G i hi) (normalGraph H j hj)).adj
+      (leftAmalgamEmbedding i hi j a)
+      (leftAmalgamEmbedding i hi j b) ↔ G.adj a b := by
+  have hAgreeN :=
+    normalGraphs_agree_base G H i j hi hj hAgree
+  change (TaggedAmalgam.freeGraph
+      (normalGraph G i hi) (normalGraph H j hj)).adj
+      (TaggedAmalgam.leftTag ((splitEquiv i hi).symm a))
+      (TaggedAmalgam.leftTag ((splitEquiv i hi).symm b)) ↔ G.adj a b
+  rw [TaggedAmalgam.freeGraph_left
+    (normalGraph G i hi) (normalGraph H j hj) hAgreeN]
+  change G.adj (splitEquiv i hi ((splitEquiv i hi).symm a))
+    (splitEquiv i hi ((splitEquiv i hi).symm b)) ↔ G.adj a b
+  simp
+
+/-- The right map is likewise an induced graph embedding. -/
+theorem rightAmalgamEmbedding_induced
+    {B : Type*} (G : GraphOn A) (H : GraphOn B)
+    (i : P → A) (j : P → B)
+    (hi : Function.Injective i) (hj : Function.Injective j)
+    (hAgree : ∀ p q : P,
+      G.adj (i p) (i q) ↔ H.adj (j p) (j q))
+    (a b : B) :
+    (TaggedAmalgam.freeGraph
+      (normalGraph G i hi) (normalGraph H j hj)).adj
+      (rightAmalgamEmbedding i j hj a)
+      (rightAmalgamEmbedding i j hj b) ↔ H.adj a b := by
+  have hAgreeN :=
+    normalGraphs_agree_base G H i j hi hj hAgree
+  change (TaggedAmalgam.freeGraph
+      (normalGraph G i hi) (normalGraph H j hj)).adj
+      (TaggedAmalgam.rightTag ((splitEquiv j hj).symm a))
+      (TaggedAmalgam.rightTag ((splitEquiv j hj).symm b)) ↔ H.adj a b
+  rw [TaggedAmalgam.freeGraph_right
+    (normalGraph G i hi) (normalGraph H j hj) hAgreeN]
+  change H.adj (splitEquiv j hj ((splitEquiv j hj).symm a))
+    (splitEquiv j hj ((splitEquiv j hj).symm b)) ↔ H.adj a b
+  simp
+
 end FiniteSpan
 end BigHrushovski
