@@ -957,3 +957,124 @@ verified by an exact theorem-type/axiom audit, not by an
 independent finite-model regression alone. This review is one
 assistant's separate adversarial perspective, not an external
 human referee result.
+
+
+## Adversarial review: concrete Nat growing response
+
+**Two-sparsity and strongness.** The source restriction is strong
+relative to the old finite stage, the response and forced-growth
+amalgams are strong, and graph transport to the new consecutive range
+preserves every intermediate predimension. Without all three, the
+new stage could fail to be in the class.
+
+**Numerical freshness.** The growth step produces a vertex outside
+the old image. Under the new bijection to a finite initial segment,
+if its number were below n it would coincide with a numbered old
+vertex. Thus the successor's stage size is strictly larger than n.
+
+**Induced coherence.** Each pair of old vertices retains its numeric
+labels. The graph transport preserves and reflects adjacency, so
+a previously absent old-old edge cannot appear at a successor.
+
+**Pointwise response.** The answer map into the Nat carrier is the
+composite of the finite answer embedding and the new numbering.
+The amalgam agreement on the labelled source together with the
+old numbering proves equality with the original request map, not
+merely equality of ranges or graph types.
+
+**Target strength.** The target is strong in the finite grown graph.
+Transport under the new numerical embedding gives a strong
+substructure inside the full next Nat range; this is stronger than
+merely obtaining an induced copy of the target.
+
+**Remaining gap.** This is a *finite* existential successor lemma
+in the applicable case. A recursive stage selection, handling of
+nonapplicable requests, and countable limit assembly are still
+outstanding. These are independent adversarial mathematical
+perspectives by the same assistant, not a spawned panel of
+external referees.
+
+## Adversarial review: recursive fair Fraisse stage choice
+
+**Existence is not hidden.** The proof takes exactly
+`∀ k s, ∃ t, IsFairStrongSuccessor k s t` as a hypothesis.
+Each `Classical.choose` is applied to that finite existential witness.
+No generic countable graph or prior fair chain is postulated.
+
+**Coverage.** The stage domain is `range(size k)` and every
+`size k < size(k+1)`; these two properties together prove the union
+is all Nat. Merely increasing the number of vertices in arbitrary
+subsets would not suffice.
+
+**Induced graphs.** Exact agreement, not only forward edge
+preservation, is part of `IsFairStrongSuccessor`. Thus the limit
+does not add edges among already present vertices and all finite
+stage strongness calculations transfer.
+
+**Fairness.** The successor responds to every request decoded at
+stage k *if it applies then*. No response obligation is imposed
+on a request with an invalid, noninduced, nonstrong or unavailable
+source map. Repeated scheduling subsequently realizes a request
+once its globally strong source lies in a finite stage.
+
+**Strength.** Each finite stage is two-sparse on its own support,
+while each successor is a strong extension in the new stage graph.
+The verified strong-chain theorem, not an extra implicit genericity
+assumption, supplies global strongness in the union.
+
+**Remaining exact task.** Construct the finite one-step witness
+for every input stage and schedule index using the growing-response
+lemma for applicable requests and the trivial empty request otherwise,
+then label the new carrier by an initial segment and preserve the
+old numerical labels. This review checks distinct mathematical
+failure modes within one assistant; it is not an independent external
+referee panel.
+
+## Adversarial review: proposed full finite-to-generic construction
+
+**Scheduling.** At every stage k, an applicable scheduled request
+is acted on, not replaced by the empty fallback. Inapplicable
+and undecodable requests impose no response obligation at that
+stage. Repetition of every request beyond every index is essential
+for realizing bases which only appear later.
+
+**Forced growth.** Both branches call a strictly growing finite
+response. Thus the sequence of gap-free stage sizes tends to infinity
+and covers all natural numbers, even when every scheduled request
+is empty, invalid or already realized.
+
+**Strongness and inducedness.** Both branches yield a two-sparse
+successor with the previous interval self-sufficient. Pointwise
+old-label preservation plus reflection of nonedges gives a
+coherent induced limit; the strong-chain theorem then gives
+global strongness of each stage.
+
+**Choice.** Classical case distinction concerns only applicability,
+and each successor is selected from a separately proved finite
+existential theorem. No previously existing M0 or genericity is
+assumed. The repeated fair schedule then supplies the extension
+property by a previously verified implication.
+
+**Scope and verification.** The finished source would establish
+the existence of one countable two-sparse graph with the full
+labelled strong extension property. It would not by itself prove
+all manuscript Ramsey or Ellentuck theorems, nor equality with
+algebraic closure. The new Lean endpoint has not yet passed CI;
+this is a mathematical failure-mode review by the same assistant,
+not a spawned external referee panel.
+
+
+### Computational adversarial reviewer: growing responses
+
+An independently implemented edge-set and subset-enumeration checker
+tried every compatible labelled strong pair of finite graphs on
+at most three vertices, with all source injections of size at most
+two. It tested the literal numerical labels and all intermediate
+predimension inequalities after performing request amalgamation and
+forced growth. No counterexample occurred in 2,337 applicable
+diagrams. As a negative control, dropping self-sufficiency of the
+common K3 causes the free join of two K5s to violate 2-sparsity.
+This is independent *code* in the same review, not an independent
+human or Lean referee and not a substitute for the pending axiom audit.
+
+**Consolidated integration status:** all three theorem layers are pending the combined Lean CI and standard-axiom/placeholder audit. The finite tests are diagnostic only. The strong genericity endpoint is not yet certified, and no manuscript marker should be upgraded until the exact source revision has passed.
