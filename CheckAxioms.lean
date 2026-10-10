@@ -251,3 +251,9 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.exists_finite_applicable_source
 #print axioms BigHrushovski.FiniteSpan.canonicalFinNumbering_val
 #print axioms BigHrushovski.FiniteCatalogue.exists_growing_nat_response
+
+
+#print axioms BigHrushovski.FiniteCatalogue.emptyNatStage
+#print axioms BigHrushovski.FiniteCatalogue.exists_fair_strong_successor
+#print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_sparse
+#print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_strongExtension
