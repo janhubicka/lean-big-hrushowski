@@ -75,13 +75,25 @@ theorem leftBase_image_eq_base :
     (leftBase : Finset (Sum P L)).image
       (leftTag : Sum P L → Carrier P L R) = baseDomain := by
   classical
-  simp [leftBase, baseDomain, Finset.image_image, leftTag]
+  unfold leftBase baseDomain
+  rw [Finset.image_image]
+  have hFun : (leftTag : Sum P L → Carrier P L R) ∘ Sum.inl =
+      (Sum.inl : P → Carrier P L R) := by
+    funext p
+    rfl
+  rw [hFun]
 
 theorem rightBase_image_eq_base :
     (rightBase : Finset (Sum P R)).image
       (rightTag : Sum P R → Carrier P L R) = baseDomain := by
   classical
-  simp [rightBase, baseDomain, Finset.image_image, rightTag]
+  unfold rightBase baseDomain
+  rw [Finset.image_image]
+  have hFun : (rightTag : Sum P R → Carrier P L R) ∘ Sum.inl =
+      (Sum.inl : P → Carrier P L R) := by
+    funext p
+    rfl
+  rw [hFun]
 
 theorem domains_union_univ :
     (leftDomain : Finset (Carrier P L R)) ∪ rightDomain =
