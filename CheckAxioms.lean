@@ -243,3 +243,6 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.image_fin_val_univ
 #print axioms BigHrushovski.GraphOn.twoSparse_pullback_fin_iff
 #print axioms BigHrushovski.GraphOn.strong_pullback_fin_iff
+
+
+#print axioms BigHrushovski.FiniteCatalogue.exists_finite_applicable_source
