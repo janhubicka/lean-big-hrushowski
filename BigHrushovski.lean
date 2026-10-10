@@ -25,3 +25,4 @@ import BigHrushovski.NatGraphStage
 
 import BigHrushovski.InitialSegmentLabels
 import BigHrushovski.FiniteResponse
+import BigHrushovski.FiniteInducedAgreement
