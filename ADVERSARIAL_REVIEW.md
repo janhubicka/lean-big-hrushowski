@@ -950,3 +950,17 @@ all manuscript Ramsey or Ellentuck theorems, nor equality with
 algebraic closure. The new Lean endpoint has not yet passed CI;
 this is a mathematical failure-mode review by the same assistant,
 not a spawned external referee panel.
+
+
+### Computational adversarial reviewer: growing responses
+
+An independently implemented edge-set and subset-enumeration checker
+tried every compatible labelled strong pair of finite graphs on
+at most three vertices, with all source injections of size at most
+two. It tested the literal numerical labels and all intermediate
+predimension inequalities after performing request amalgamation and
+forced growth. No counterexample occurred in 2,337 applicable
+diagrams. As a negative control, dropping self-sufficiency of the
+common K3 causes the free join of two K5s to violate 2-sparsity.
+This is independent *code* in the same review, not an independent
+human or Lean referee and not a substitute for the pending axiom audit.
