@@ -246,3 +246,8 @@ import BigHrushovski
 
 
 #print axioms BigHrushovski.FiniteCatalogue.exists_growing_finite_strong_response
+
+
+#print axioms BigHrushovski.FiniteCatalogue.exists_finite_applicable_source
+#print axioms BigHrushovski.FiniteSpan.canonicalFinNumbering_val
+#print axioms BigHrushovski.FiniteCatalogue.exists_growing_nat_response
