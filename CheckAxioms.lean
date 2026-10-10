@@ -250,3 +250,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.canonicalFinNumbering_val
 #print axioms BigHrushovski.FiniteCatalogue.emptyFinGraph_sparse
 #print axioms BigHrushovski.FiniteCatalogue.trivialRequest_applies
+
+
+#print axioms BigHrushovski.FiniteCatalogue.empty_globallyStrong_of_sparse
+#print axioms BigHrushovski.FiniteCatalogue.exists_globallyStrong_copy
