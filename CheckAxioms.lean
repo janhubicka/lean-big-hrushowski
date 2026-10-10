@@ -168,3 +168,8 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.amalgamEmbeddings_agree_base
 #print axioms BigHrushovski.FiniteSpan.leftAmalgamEmbedding_induced
 #print axioms BigHrushovski.FiniteSpan.rightAmalgamEmbedding_induced
+
+#print axioms BigHrushovski.FiniteSpan.leftAmalgamEmbedding_image_univ
+#print axioms BigHrushovski.FiniteSpan.rightAmalgamEmbedding_image_univ
+#print axioms BigHrushovski.FiniteSpan.amalgamEmbeddings_identify_only_base
+#print axioms BigHrushovski.FiniteSpan.exists_finite_strong_free_amalgam

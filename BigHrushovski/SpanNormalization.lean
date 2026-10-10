@@ -357,5 +357,126 @@ theorem rightAmalgamEmbedding_induced
     (splitEquiv j hj ((splitEquiv j hj).symm b)) ↔ H.adj a b
   simp
 
+
+/-- The image of the original left carrier is exactly the tagged left
+domain, since the normalization equivalence is surjective. -/
+theorem leftAmalgamEmbedding_image_univ
+    [Fintype P] [Fintype A] [DecidableEq P] [DecidableEq A]
+    {B : Type*} [Fintype B] [DecidableEq B]
+    (i : P → A) (hi : Function.Injective i) (j : P → B) :
+    (Finset.univ : Finset A).image (leftAmalgamEmbedding i hi j) =
+      TaggedAmalgam.leftDomain (P := P) (L := Tail i) (R := Tail j) := by
+  classical
+  change (Finset.univ : Finset A).image
+    ((TaggedAmalgam.leftTag :
+      P ⊕ Tail i → TaggedAmalgam.Carrier P (Tail i) (Tail j)) ∘
+      (splitEquiv i hi).symm) =
+    (Finset.univ : Finset (P ⊕ Tail i)).image
+      (TaggedAmalgam.leftTag :
+        P ⊕ Tail i → TaggedAmalgam.Carrier P (Tail i) (Tail j))
+  rw [← Finset.image_image]
+  rw [Finset.image_univ_of_surjective (splitEquiv i hi).symm.surjective]
+
+/-- The image of the original right carrier is precisely the tagged
+right domain. -/
+theorem rightAmalgamEmbedding_image_univ
+    [Fintype P] [Fintype A] [DecidableEq P] [DecidableEq A]
+    {B : Type*} [Fintype B] [DecidableEq B]
+    (i : P → A) (j : P → B) (hj : Function.Injective j) :
+    (Finset.univ : Finset B).image (rightAmalgamEmbedding i j hj) =
+      TaggedAmalgam.rightDomain (P := P) (L := Tail i) (R := Tail j) := by
+  classical
+  change (Finset.univ : Finset B).image
+    ((TaggedAmalgam.rightTag :
+      P ⊕ Tail j → TaggedAmalgam.Carrier P (Tail i) (Tail j)) ∘
+      (splitEquiv j hj).symm) =
+    (Finset.univ : Finset (P ⊕ Tail j)).image
+      (TaggedAmalgam.rightTag :
+        P ⊕ Tail j → TaggedAmalgam.Carrier P (Tail i) (Tail j))
+  rw [← Finset.image_image]
+  rw [Finset.image_univ_of_surjective (splitEquiv j hj).symm.surjective]
+
+/-- The original input structures have no accidental identifications:
+equality between their two tagged images comes only from one base point. -/
+theorem amalgamEmbeddings_identify_only_base
+    {B : Type*} (i : P → A) (j : P → B)
+    (hi : Function.Injective i) (hj : Function.Injective j)
+    {a : A} {b : B}
+    (hab : leftAmalgamEmbedding i hi j a =
+      rightAmalgamEmbedding i j hj b) :
+    ∃ p : P, a = i p ∧ b = j p := by
+  have hTag : TaggedAmalgam.leftTag ((splitEquiv i hi).symm a) =
+      TaggedAmalgam.rightTag ((splitEquiv j hj).symm b) := hab
+  obtain ⟨p, hpA, hpB⟩ := TaggedAmalgam.leftTag_eq_rightTag hTag
+  refine ⟨p, ?_, ?_⟩
+  · have hh := congrArg (splitEquiv i hi) hpA
+    simpa using hh
+  · have hh := congrArg (splitEquiv j hj) hpB
+    simpa using hh
+
+/-- An explicit strong free-amalgamation witness for any finite pair of
+2-sparse graphs over a common strong abstract base.
+
+K is a graph on the finite tagged carrier, and f,g are embeddings of
+the *original* graph types. They agree exactly on the prescribed base,
+preserve and reflect adjacency, and their images are strong in K.
+The free-amalgamation property is thus established for arbitrary finite
+induced strong embedding spans, not only for pre-normalized presentations.
+-/
+theorem exists_finite_strong_free_amalgam
+    [Fintype P] [Fintype A] [DecidableEq P] [DecidableEq A]
+    {B : Type*} [Fintype B] [DecidableEq B]
+    (G : GraphOn A) (H : GraphOn B)
+    (i : P → A) (j : P → B)
+    (hi : Function.Injective i) (hj : Function.Injective j)
+    (hAgree : ∀ p q : P,
+      G.adj (i p) (i q) ↔ H.adj (j p) (j q))
+    (hSparseG : G.IsTwoSparse (Finset.univ : Finset A))
+    (hSparseH : H.IsTwoSparse (Finset.univ : Finset B))
+    (hStrongG : G.toPredimension.IsStrong
+      ((Finset.univ : Finset P).image i) (Finset.univ : Finset A))
+    (hStrongH : H.toPredimension.IsStrong
+      ((Finset.univ : Finset P).image j) (Finset.univ : Finset B)) :
+    ∃ (K : GraphOn (TaggedAmalgam.Carrier P (Tail i) (Tail j)))
+      (f : A → TaggedAmalgam.Carrier P (Tail i) (Tail j))
+      (g : B → TaggedAmalgam.Carrier P (Tail i) (Tail j)),
+      Function.Injective f ∧ Function.Injective g ∧
+      (∀ x y : A, K.adj (f x) (f y) ↔ G.adj x y) ∧
+      (∀ x y : B, K.adj (g x) (g y) ↔ H.adj x y) ∧
+      (∀ p : P, f (i p) = g (j p)) ∧
+      (∀ x : A, ∀ y : B, f x = g y →
+        ∃ p : P, x = i p ∧ y = j p) ∧
+      K.IsTwoSparse (Finset.univ :
+        Finset (TaggedAmalgam.Carrier P (Tail i) (Tail j))) ∧
+      K.toPredimension.IsStrong
+        ((Finset.univ : Finset A).image f) Finset.univ ∧
+      K.toPredimension.IsStrong
+        ((Finset.univ : Finset B).image g) Finset.univ := by
+  classical
+  let K := TaggedAmalgam.freeGraph
+    (normalGraph G i hi) (normalGraph H j hj)
+  let f := leftAmalgamEmbedding i hi j
+  let g := rightAmalgamEmbedding i j hj
+  have h := strong_amalgam_of_embeddings
+    G H i j hi hj hAgree hSparseG hSparseH hStrongG hStrongH
+  refine ⟨K, f, g,
+    leftAmalgamEmbedding_injective i hi j,
+    rightAmalgamEmbedding_injective i j hj,
+    ?_, ?_, ?_, ?_, h.1, ?_, ?_⟩
+  · intro x y
+    exact leftAmalgamEmbedding_induced G H i j hi hj hAgree x y
+  · intro x y
+    exact rightAmalgamEmbedding_induced G H i j hi hj hAgree x y
+  · intro p
+    exact amalgamEmbeddings_agree_base i j hi hj p
+  · intro x y hxy
+    exact amalgamEmbeddings_identify_only_base i j hi hj hxy
+  · have hImage := leftAmalgamEmbedding_image_univ i hi j
+    rw [hImage]
+    exact h.2.1
+  · have hImage := rightAmalgamEmbedding_image_univ i j hj
+    rw [hImage]
+    exact h.2.2.1
+
 end FiniteSpan
 end BigHrushovski

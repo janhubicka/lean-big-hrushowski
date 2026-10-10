@@ -468,3 +468,15 @@ inclusions. Both are injective, agree on the prescribed base maps,
 and preserve and reflect the original adjacency relations.
 Combining these maps with the verified abstract strong-amalgamation
 theorem will give an explicit existential strong-amalgamation witness.
+
+
+## Explicit finite strong free amalgamation (pending CI)
+
+FiniteSpan.exists_finite_strong_free_amalgam constructs a graph K and
+injective induced maps f:A→K and g:B→K for arbitrary finite 2-sparse
+graph structures with compatible strong embeddings of an abstract
+common base P. The maps commute over P; moreover, f(a)=g(b) occurs
+only for one common base point. The two images are strong and K is
+2-sparse. The proof factors through the normal-form equivalences
+and the tagged strong free-amalgamation theorem. This is a direct
+finite strong-amalgamation witness, not a claim about the generic limit.
