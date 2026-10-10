@@ -188,3 +188,5 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.strongExtensionProperty_of_fairResponses
 
 #print axioms BigHrushovski.FiniteCatalogue.exists_labelled_strong_diagram
+
+#print axioms BigHrushovski.FiniteCatalogue.arbitrary_finite_strong_extension

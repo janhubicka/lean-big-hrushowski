@@ -504,3 +504,18 @@ The hostile checks are separate questions assessed by one assistant, not indepen
 **Enumeration boundary:** The theorem asserts existence of a labelled representative for a given finite strong embedding. It neither chooses labels uniformly in the source graph nor constructs a countable chain answering requests.
 
 **CI boundary:** The theorem and all dependencies compiled in [run 38061458133](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38061458133); the axiom audit reported only standard logical axioms and no placeholders. These are separate hostile review perspectives applied by one assistant, not external independent human referees.
+
+
+## Removing finite labels from the conditional extension property — adversarial audit
+
+**Catalogue completeness.** A finite strong extension is represented by a genuine labelled diagram with equivalences for both vertex carriers, preserving all induced edges and nonedges and the strongness of the source image in the target.
+
+**Source re-labelling.** The given map from the original source into ℕ composes with its labelling equivalence. Injectivity and induced adjacency are preserved. Because the labelling is surjective, the image of the relabelled map is exactly the original source image, so global strongness is not weakened or silently assumed.
+
+**Response transport.** A labelled response is precomposed with the inverse target equivalence, giving an embedding of the original target type. Inducedness is reflected; the map extends the prescribed source embedding pointwise, not merely up to isomorphism.
+
+**Global strongness.** The image of the transported target map equals that of the labelled target response. The strong predicate is therefore carried to the identical finite subset of the ambient graph.
+
+**Boundary.** The theorem assumes `HasStrongExtensionProperty M`. This property is derivable from a fair responding strong chain by PR #17, but existence of such a chain has not been proved. Accordingly this is an implication, not a completed construction of the countable strong Fraïssé limit.
+
+**Proof integrity.** The exact statement was compiled in [run 38062233519](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38062233519), with the standard axiom audit and placeholder check. These reviews are separate adversarial checks performed by one assistant, not independently spawned referees.
