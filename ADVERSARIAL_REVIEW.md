@@ -941,3 +941,19 @@ assistant and are not external human referees.
 ## Integrated adversarial cross-check of successor prerequisites
 
 The four proof obligations are not interchangeable. A fair request that is applicable needs its original source Nat map preserved pointwise. The intermediate finite amalgam must retain both induced nonedges and strong embeddings; strict growth must occur regardless of whether the response adds vertices. Initial-segment casts must preserve old numerical labels, and growth-only fallbacks may only replace requests that do not apply. The individual adversarial perspectives identify these failure modes, but are not independent external referee certification. The consolidated Lean build and standard-axiom audit are required before certification.
+
+
+### Equality-decider adversarial finding (composite finite response)
+
+A Lean theorem's type may depend on the selected `DecidableEq`
+through a noncomputably defined finite induced-edge set. A
+`GraphOn.toPredimension` built with the structural Sum decider is
+not definitionally identical to one built with a new local
+`Classical.propDecidable`. The earlier growing-response attempt
+silently changed this instance during composition of strong
+embeddings. The repair fixes explicit structural instances on
+both tagged carriers, and the proof reuses them. This must be
+verified by an exact theorem-type/axiom audit, not by an
+independent finite-model regression alone. This review is one
+assistant's separate adversarial perspective, not an external
+human referee result.
