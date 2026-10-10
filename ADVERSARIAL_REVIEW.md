@@ -574,3 +574,34 @@ fair request schedule. Those remain independent theorem obligations.
 
 **Provenance.** These are adversarial checks of separate possible failure
 modes within the same review, not independently spawned referee agents.
+
+
+## Adversarial review: finite fair strong response
+
+**Base inducedness.** The source adjacency comparison is reversed and
+then composed with the labelled diagram's inducedness proof. This
+checks both edges and nonedges. Merely assuming an injective source
+map would be insufficient for free graph amalgamation.
+
+**Self-sufficiency.** The source is strong in the current stage and in
+the target diagram; these are different hypotheses and both are used
+to preserve two-sparsity of the amalgam.
+
+**Identifications.** The normalized tagged amalgam has disjoint tails.
+Equality of an old-stage image and a target image implies that they
+arise from the same source vertex; no accidental tail identifications
+are allowed.
+
+**Strong images.** Both the current stage and the requested target
+remain strong in the finite amalgam. This is needed to iterate the
+construction and pass strongness to the eventual limit.
+
+**Scope / negative control.** If source self-sufficiency is removed,
+two K5 graphs joined over a K3 can have predimension -3, so even
+two-sparsity may fail. This theorem neither guarantees growth of the
+finite carrier nor constructs the countable chain.
+
+**Provenance.** These adversarial checks were performed as separate
+mathematical perspectives in the current review, not by externally
+spawned human referees. The Lean CI and axiom audit are the machine
+verification of the exact statement.
