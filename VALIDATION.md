@@ -870,3 +870,24 @@ growth**, provided the new composite theorem passes integrated Lean
 CI. The recursive fair stage selection, initial-segment relabelling
 of successive stages, and countable direct-limit coherence remain
 separate formal proof obligations.
+
+
+
+## Strictly growing response on consecutive Nat stages (pending Lean CI)
+
+`FiniteCatalogue.exists_growing_nat_response` is the intended
+one-step existence lemma for the countable Hrushovski generic
+construction. Given a two-sparse finite stage on `range n` and a
+labelled strong diagram applicable there, it yields a new graph on
+`range m` for some `m>n`, supported on precisely this finite range.
+All old-old edges and nonedges are preserved, `range n` is strong
+in the successor, and the original Nat-labelled request receives an
+induced strong response **over the exact existing source map**.
+
+The proof combines finite source restriction to `Fin n`,
+request amalgamation followed by forced growth, canonical
+old-vertex numbering, and the gap-free strong graph transport.
+The existence of a full coherent fair chain still needs a separate
+recursive choice of these finite successors (and a growth-only case
+for inapplicable/empty scheduled requests). The new one-step theorem
+remains uncertified until its Lean build and axiom audit pass.
