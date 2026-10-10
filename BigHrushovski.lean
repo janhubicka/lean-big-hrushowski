@@ -37,3 +37,5 @@ import BigHrushovski.StageResponseLimit
 import BigHrushovski.GeneralStageCoherence
 import BigHrushovski.StrongEmbeddingComposition
 import BigHrushovski.FiniteNatStage
+
+import BigHrushovski.FairStageRecursion
