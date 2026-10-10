@@ -400,3 +400,16 @@ common base, their union is the whole carrier, and that the tagged
 graph has no cross edges. These structural interface lemmas are the
 remaining prerequisites for applying the verified strong free-union
 theorem to the tagged construction. Lean CI and axiom audit pending.
+
+
+## Strong free amalgamation in tagged normal form (pending CI)
+
+The new theorem TaggedAmalgam.tagged_strong_free_amalgam combines
+the independently checked induced-map invariance of predimension,
+tagged carrier identities, and the no-crossing free-join theorem.
+For finite compatible graphs on P+L and P+R, when P is strong in both
+and both factors are 2-sparse, the tagged graph P+(L+R) is 2-sparse,
+the two induced inclusions are strong, and both induced factors remain
+2-sparse. This is the expected finite strong-amalgamation property in
+the canonical shared-base presentation. A source-specific Fraisse
+extension property is not inferred. Lean build and axiom audit pending.
