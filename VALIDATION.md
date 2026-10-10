@@ -542,7 +542,7 @@ The relevant theorems are `FiniteCatalogue.strongDiagram_occurs` and `FiniteCata
 **Not yet formalized:** every finite abstract strong span can be relabelled as a Fin n→Fin m diagram, and construction of a countable strong chain satisfying every applicable scheduled request. The countable catalogue alone does not establish genericity.
 
 
-## Completeness of labelled strong diagrams (pending CI)
+## Completeness of labelled strong diagrams (verified)
 
 Every induced strong embedding between finite 2-sparse graphs carried
 by arbitrary finite types has a presentation in the countable catalogue
@@ -551,3 +551,5 @@ and Fin(card B)≃B transport adjacency, 2-sparsity, and the strong
 embedding relation, and identify the labelled embedding with the
 original map. This closes the finite relabelling obligation, but
 does not construct a countable chain or realize fair requests.
+
+The [Lean audit run 38061458133](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38061458133) compiled the labelled-diagram completeness theorem and audited 154 declarations, with only standard logical axioms and no proof placeholders in 22 files. The theorem has explicit Fin(card A)≃A and Fin(card B)≃B witnesses preserving the source and target adjacency relations and identifying the original induced strong map with the labelled one. No claim is made that the fair response schedule is realized by a countable graph.
