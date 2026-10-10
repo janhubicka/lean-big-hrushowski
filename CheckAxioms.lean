@@ -230,3 +230,5 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.stage_index_le_size
 #print axioms BigHrushovski.FiniteSpan.initialSegment_stage_step
 #print axioms BigHrushovski.FiniteSpan.initialSegment_stages_cover
+
+#print axioms BigHrushovski.GraphOn.transportedToNat_agree_of_label_comp
