@@ -878,3 +878,40 @@ the old-label coherence theorem are still required.
 sequence is claimed; the theorem is an existential finite successor
 statement. These are adversarial mathematical perspectives in the
 same assistant review, not independently spawned external referees.
+
+
+
+## Adversarial review: concrete Nat growing response
+
+**Two-sparsity and strongness.** The source restriction is strong
+relative to the old finite stage, the response and forced-growth
+amalgams are strong, and graph transport to the new consecutive range
+preserves every intermediate predimension. Without all three, the
+new stage could fail to be in the class.
+
+**Numerical freshness.** The growth step produces a vertex outside
+the old image. Under the new bijection to a finite initial segment,
+if its number were below n it would coincide with a numbered old
+vertex. Thus the successor's stage size is strictly larger than n.
+
+**Induced coherence.** Each pair of old vertices retains its numeric
+labels. The graph transport preserves and reflects adjacency, so
+a previously absent old-old edge cannot appear at a successor.
+
+**Pointwise response.** The answer map into the Nat carrier is the
+composite of the finite answer embedding and the new numbering.
+The amalgam agreement on the labelled source together with the
+old numbering proves equality with the original request map, not
+merely equality of ranges or graph types.
+
+**Target strength.** The target is strong in the finite grown graph.
+Transport under the new numerical embedding gives a strong
+substructure inside the full next Nat range; this is stronger than
+merely obtaining an induced copy of the target.
+
+**Remaining gap.** This is a *finite* existential successor lemma
+in the applicable case. A recursive stage selection, handling of
+nonapplicable requests, and countable limit assembly are still
+outstanding. These are independent adversarial mathematical
+perspectives by the same assistant, not a spawned panel of
+external referees.
