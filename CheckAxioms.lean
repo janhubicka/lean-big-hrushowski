@@ -212,3 +212,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.extendInitialLabels_image
 
 #print axioms BigHrushovski.FiniteCatalogue.exists_finite_strong_response
+
+#print axioms BigHrushovski.GraphOn.edgesWithin_eq_of_agreeOn
+#print axioms BigHrushovski.GraphOn.predim_eq_of_agreeOn
+#print axioms BigHrushovski.GraphOn.isStrong_iff_of_agreeOn
