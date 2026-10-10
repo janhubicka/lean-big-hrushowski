@@ -852,3 +852,64 @@ the actual fair responding chain is still a separate obligation.
 ## Combined finite-successor interfaces (integration audit pending)
 
 The standalone versions passed GitHub Actions run [38080646111](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080646111) (general old-label graph coherence), [38080758571](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080758571) (composition of strong images), and [38080899840](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080899840) (finite Nat stage pullback), each with only standard logical axioms and no placeholders. These are finite interface theorems. Their integration with the newer fair-response-to-limit theorem needs its own build before certification; this does not produce a recursive chain.
+
+
+## Request response followed by forced growth (pending Lean CI)
+
+`FiniteCatalogue.exists_growing_finite_strong_response` first uses the
+verified strong amalgamation response to an applicable labelled diagram.
+The result is then freely strongly amalgamated with a one-vertex edgeless
+graph over the empty base. Strong-image composition transfers both the
+old-stage image and the answered target through the growth embedding;
+the new vertex is outside the old-stage image. Exact induced adjacency
+and pointwise base agreement are preserved throughout.
+
+This discharges the finite existence obligation **including strict
+growth**, provided the new composite theorem passes integrated Lean
+CI. The recursive fair stage selection, initial-segment relabelling
+of successive stages, and countable direct-limit coherence remain
+separate formal proof obligations.
+
+## Applicable request on a finite initial segment (pending integrated CI)
+
+`FiniteCatalogue.exists_finite_applicable_source` turns an applicable
+labelled extension request with source map into `range n ⊆ ℕ` into
+an injective induced strong embedding into the pulled-back finite
+graph on `Fin n`. The source labels are preserved literally, and
+two-sparsity and the self-sufficiency predicate are transported on
+every intermediate finite subset. This is the finite input needed
+before applying `exists_growing_finite_strong_response`.
+
+The theorem is an implication for a *given* stage and applicable
+request. It does not realize or schedule the next stage, and no
+countable genericity conclusion is inferred. Lean compilation and
+standard-axiom audit remain pending.
+
+## Canonical numbering of a finite ordinal stage (pending Lean CI)
+
+`FiniteSpan.canonicalFinNumbering` specializes the carrier equivalence
+to `Fin n ≃ Fin(card (Fin n))` using the cardinality identity
+`card(Fin n)=n`. Unlike a freely chosen finite equivalence, it
+fixes the numerical value of *every* old vertex. This is needed when
+a gap-free stage extension is taken over an already numbered
+consecutive initial segment of ℕ. The proof is subject to the usual
+CI and axiom audit and does not itself choose any finite extension.
+
+## A universally applicable trivial finite request (pending Lean CI)
+
+`FiniteCatalogue.trivialStrongDiagram` is the empty-to-empty
+strong graph embedding, and `trivialRequest` is its unique source
+map into ℕ. The theorem `trivialRequest_applies` shows that this
+request applies to every finite two-sparse stage. Once a one-step
+growing Nat response theorem is certified, this request supplies
+a growth-only fallback when the actual fair-scheduled request is
+inapplicable or absent. No nonempty-base hypothesis is introduced.
+
+The trivial request is **not** substituted for the scheduled request
+when the latter applies: a correct construction must answer the
+scheduled request in that case. The new Lean statements await CI.
+
+
+## Integrated finite successor prerequisites (integration CI pending)
+
+These four modules close different finite obligations: (i) a strong finite response followed by forced growth, preserving both old and target strong images; (ii) literal factoring of an applicable Nat-labelled source through Fin n; (iii) canonical old-stage numerical numbering; and (iv) a universally applicable empty-to-empty request for stages with no applicable scheduled request. The canonical numbering passed a [193-declaration Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38082471318). The other individual and combined Lean workflows must be checked before marking theorems green. They do not construct the recursive countable chain or discharge the fair-response criterion by themselves.
