@@ -504,3 +504,18 @@ The hostile checks are separate questions assessed by one assistant, not indepen
 **Enumeration boundary:** The theorem asserts existence of a labelled representative for a given finite strong embedding. It neither chooses labels uniformly in the source graph nor constructs a countable chain answering requests.
 
 **CI boundary:** The theorem and all dependencies compiled in [run 38061458133](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38061458133); the axiom audit reported only standard logical axioms and no placeholders. These are separate hostile review perspectives applied by one assistant, not external independent human referees.
+
+
+## Fresh labels for finite successor stages — adversarial audit
+
+**Old-map preservation.** Every vertex in the image of f receives exactly the old label of its unique preimage. The preimage is unique because f is injective.
+
+**Freshness.** Every vertex outside the image of f receives a label strictly greater than the finite supremum of all old labels, avoiding accidental old/new identifications even if the old labels have gaps.
+
+**Distinct new vertices.** Different new vertices have different Fin-card encodings; adding the same offset preserves distinctness. Thus the new labelling is injective provided the old labelling is injective.
+
+**Empty base.** If A is empty, the supremum is zero and all B vertices receive distinct positive labels. No nonemptiness assumption is silently needed.
+
+**Scope.** This is a carrier embedding theorem, not a construction of the adjacency relation on the new stage, nor a guarantee of realizing any scheduled graph extension.
+
+**Kernel and diagnostic checks.** The [160-declaration run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38062409525) passed with standard axioms. The independent finite Python regression tests preservation and freshness; it does not replace the Lean proof. These are separate adversarial review perspectives by the same assistant, not independent external referees.

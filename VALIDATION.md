@@ -572,7 +572,7 @@ does not construct a countable chain or realize fair requests.
 The [Lean audit run 38061458133](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38061458133) compiled the labelled-diagram completeness theorem and audited 154 declarations, with only standard logical axioms and no proof placeholders in 22 files. The theorem has explicit Fin(card A)≃A and Fin(card B)≃B witnesses preserving the source and target adjacency relations and identifying the original induced strong map with the labelled one. No claim is made that the fair response schedule is realized by a countable graph.
 
 
-## Fresh natural-number labels for finite successor stages (pending CI)
+## Fresh natural-number labels for finite successor stages (verified)
 
 For any injective map f:A→B of finite carriers and any injective
 labelling e:A→ℕ, `extendNatLabels` constructs an injective labelling
@@ -581,3 +581,5 @@ larger than every old label. This supplies a fixed natural-number
 carrier interface for a future chain of finite strong embeddings.
 Graph adjacency and the construction of a fair responding chain are
 not yet included in this theorem.
+
+The [160-declaration Lean CI audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38062409525) compiled the finite injection extension lemmas with only standard logical axioms and no proof placeholders. The independent `check_fresh_nat_labels.py` regression checks old-label preservation, freshness above the old maximum and injectivity across many finite maps. CI on the combined branch head will certify this additional regression.
