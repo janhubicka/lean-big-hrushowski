@@ -712,3 +712,22 @@ HasStrongSteps nor HasTwoSparseStages follows from coherence alone.
 **Referee provenance.** These checks isolate different failure modes
 but were carried out within one assistant review; no external
 independent referee panel was spawned.
+
+
+## Adversarial review: initial-segment exhaustion
+
+**Progress.** Strict inequalities `size n < size (n+1)` imply by
+induction `n ≤ size n`, regardless of the first size. No unstated
+strict inequality at stage zero is used.
+
+**Coverage.** For vertex x choose stage x+1; then
+`x < x+1 ≤ size (x+1)`. This proves actual coverage of all ℕ,
+not merely unboundedly many stage indices.
+
+**Gaps.** The conclusion uses domains *exactly* equal to
+`range (size n)`. It would fail for arbitrary finite subsets of ℕ
+with growing cardinality but persistent holes.
+
+**Boundary.** Constructing the stages, proving each finite strong
+extension exists, and verifying fair responses remain separate.
+These are adversarial mathematical perspectives, not external reviewers.
