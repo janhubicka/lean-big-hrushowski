@@ -1,5 +1,6 @@
 import BigHrushovski.C0StrongAge
 import Mathlib.Logic.Encodable.Basic
+import Mathlib.Data.Nat.Pairing
 
 /-!
 # Countable catalogues of finite strong extension diagrams
@@ -94,6 +95,38 @@ theorem decodeStrongDiagram_encode (d : StrongDiagramCatalogue) :
 theorem strongDiagram_occurs (d : StrongDiagramCatalogue) :
     ∃ k : ℕ, decodeStrongDiagram k = some d :=
   ⟨Encodable.encode d, decodeStrongDiagram_encode d⟩
+
+
+/-- A potential extension request consists of a finite strong diagram
+together with an arbitrary map of its source vertices into ℕ.
+The map is checked for applicability only when a future construction
+examines this request. -/
+abbrev ExtensionRequestCatalogue :=
+  Σ n : ℕ, Σ m : ℕ, StrongDiagram n m × (Fin n → ℕ)
+
+noncomputable instance : Countable ExtensionRequestCatalogue := by
+  infer_instance
+
+noncomputable instance : Encodable ExtensionRequestCatalogue :=
+  Encodable.ofCountable ExtensionRequestCatalogue
+
+/-- Visit every finite extension request repeatedly: the first coordinate
+of Nat.unpair selects an encoded request, and its second coordinate
+is an unused repetition counter. Failed decodes give none. -/
+noncomputable def fairRequest (stage : ℕ) :
+    Option ExtensionRequestCatalogue :=
+  (Encodable.decode : ℕ → Option ExtensionRequestCatalogue)
+    (Nat.unpair stage).1
+
+/-- Each request reappears beyond every prescribed finite stage. This is
+the fairness lemma needed to schedule requirements after the embedded
+base has appeared in a growing strong Fraïssé construction. -/
+theorem fairRequest_after (req : ExtensionRequestCatalogue)
+    (threshold : ℕ) :
+    ∃ stage : ℕ, threshold ≤ stage ∧ fairRequest stage = some req := by
+  refine ⟨Nat.pair (Encodable.encode req) threshold,
+    Nat.right_le_pair _ _, ?_⟩
+  simp [fairRequest, Nat.unpair_pair, Encodable.encodek]
 
 end FiniteCatalogue
 end BigHrushovski

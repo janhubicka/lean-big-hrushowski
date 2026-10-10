@@ -519,3 +519,15 @@ union over n,m is countable. A canonical encoding/partial decoder is
 chosen and every finite strong diagram appears at some numerical code.
 This supplies a countable catalogue, but it does not yet schedule
 requests against a growing chain or construct the generic limit.
+
+
+## Repeated enumeration of potential strong extension requests (pending CI)
+
+An extension request now consists of a labelled finite strong diagram
+and a map of its source vertices into the natural-number carrier.
+These requests form a countable set. Cantor pairing supplies a repeated
+enumeration: for each request R and each threshold N, there is a stage
+k≥N at which R is decoded. This is the fairness condition required
+for requirements that only become applicable after a finite base is
+present in the construction. Applicability and realization at a stage
+remain separate tasks.

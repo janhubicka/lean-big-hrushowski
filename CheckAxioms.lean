@@ -182,3 +182,5 @@ import BigHrushovski
 
 #print axioms BigHrushovski.FiniteCatalogue.decodeStrongDiagram_encode
 #print axioms BigHrushovski.FiniteCatalogue.strongDiagram_occurs
+
+#print axioms BigHrushovski.FiniteCatalogue.fairRequest_after
