@@ -22,3 +22,5 @@ import BigHrushovski.LabelledDiagrams
 import BigHrushovski.UnlabelledExtension
 import BigHrushovski.FreshNatLabels
 import BigHrushovski.NatGraphStage
+
+import BigHrushovski.InitialSegmentLabels
