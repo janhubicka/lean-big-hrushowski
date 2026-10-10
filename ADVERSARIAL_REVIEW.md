@@ -549,3 +549,28 @@ The hostile checks are separate questions assessed by one assistant, not indepen
 **Genericity negative control.** Leaving unused natural numbers isolated does not repair the extension property. An unused isolated vertex is a globally strong singleton base but has no edge to any vertex, so a legitimate one-edge strong extension of that singleton cannot be realized. Fix by constructing stages as consecutive initial segments of unbounded size, or by transporting the direct limit of genuinely used vertices to ℕ after its construction.
 
 **Referee provenance.** These are distinct adversarial verification perspectives assessed by one assistant; no independently spawned external referee panel was available. Lean audits certify the finite statements, not the limit construction.
+
+
+## Adversarial review: initial-segment carrier extension
+
+**Old vertex labels.** The inverse of the tagged split sends `f(a)`
+back to the old component `Sum.inl a`. The finite-sum equivalence embeds
+that component without changing its natural value, and the cardinality
+cast likewise preserves its natural value.
+
+**No duplicates or gaps.** The carrier map is a composition of genuine
+bijections, ending in `Fin (card B)`. Thus no two vertices share a label
+and every natural number strictly below `card B` occurs exactly once.
+
+**Empty source / smallest counterexample.** For an empty source and a
+singleton target, the new map must have image `{0}`, unlike the old
+maximum-plus-one construction whose image is `{1}`.
+
+**Strongness and genericity boundary.** This is purely a relabelling
+lemma. Once transported along induced graph embeddings, it preserves
+finite predimension and strongness, but it does not produce a strong
+amalgam, an unbounded chain, coherent limit graph, or responses to the
+fair request schedule. Those remain independent theorem obligations.
+
+**Provenance.** These are adversarial checks of separate possible failure
+modes within the same review, not independently spawned referee agents.
