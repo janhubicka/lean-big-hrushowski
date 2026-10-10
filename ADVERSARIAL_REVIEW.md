@@ -994,3 +994,28 @@ then label the new carrier by an initial segment and preserve the
 old numerical labels. This review checks distinct mathematical
 failure modes within one assistant; it is not an independent external
 referee panel.
+
+
+## Adversarial review: universality of the finite strong age
+
+**Empty-source strongness.** The argument uses nonnegative
+predimension on *every* finite ambient graph subset to make the
+empty set globally strong. This is stronger than merely requiring
+the empty set to be strong in one chosen finite stage.
+
+**Target strength.** The empty base embeds strongly into every
+finite two-sparse target. The arbitrary-diagram extension property
+therefore returns a copy of the target that is globally strong,
+not just induced.
+
+**All types.** The target is an arbitrary finite vertex type, not
+necessarily Fin n. Its validity follows from the previously audited
+finite diagram relabelling theorem, avoiding a hidden enumeration
+assumption.
+
+**Limits.** Universality is not homogeneity or uniqueness of the
+Fraisse limit. The finite closure and back-and-forth arguments
+remain separate. These independent hostile mathematical checks
+were performed in one assistant review, not by external referees.
+
+This theorem passed the independent source [run 38086975944](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38086975944), auditing 204 declarations with only standard logical axioms and no placeholders in 43 Lean files. A new integration CI check is needed after porting to current main.
