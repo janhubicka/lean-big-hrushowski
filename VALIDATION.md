@@ -434,3 +434,14 @@ the same P into two graphs therefore yield the AgreeBase condition of
 TaggedAmalgam. The compatibility/transport of finite strongness and
 2-sparsity is the next proof obligation. Generic Fraisse construction
 and functional closure expansion remain open.
+
+
+## Transfer of sparse finite structures to their normal forms (pending CI)
+
+Using a finite induced-equivalence of carriers, normalGraph_twoSparse_iff
+and normalGraph_strong_base_iff identify 2-sparsity of the entire finite
+graph and self-sufficiency of the base with their normal-form versions.
+The proof depends on the previously audited induced-embedding invariance
+and explicitly matches the image of the common base as well as the whole
+finite vertex set. This allows the verified tagged strong-amalgamation
+theorem to be applied to arbitrary finite strong embedding spans.

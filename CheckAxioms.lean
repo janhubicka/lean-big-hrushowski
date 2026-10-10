@@ -155,3 +155,8 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.splitEquiv_inr
 #print axioms BigHrushovski.FiniteSpan.normalGraph_base
 #print axioms BigHrushovski.FiniteSpan.normalGraphs_agree_base
+
+#print axioms BigHrushovski.FiniteSpan.splitEquiv_image_univ
+#print axioms BigHrushovski.FiniteSpan.splitEquiv_base_image
+#print axioms BigHrushovski.FiniteSpan.normalGraph_twoSparse_iff
+#print axioms BigHrushovski.FiniteSpan.normalGraph_strong_base_iff

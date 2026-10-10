@@ -113,5 +113,91 @@ theorem normalGraphs_agree_base
   exact (normalGraph_base G i hi p q).trans
     ((hAgree p q).trans (normalGraph_base H j hj p q).symm)
 
+
+section finite
+
+variable [Fintype P] [Fintype A]
+variable [DecidableEq P] [DecidableEq A]
+
+/-- The complement of an injected base in a finite carrier is finite. -/
+noncomputable instance tailFintype (i : P → A) : Fintype (Tail i) := by
+  classical
+  infer_instance
+
+/-- The equivalence covers every vertex of the original finite carrier. -/
+theorem splitEquiv_image_univ (i : P → A) (hi : Function.Injective i) :
+    (Finset.univ : Finset (P ⊕ Tail i)).image (splitEquiv i hi) =
+      (Finset.univ : Finset A) := by
+  classical
+  exact Finset.image_univ_of_surjective (splitEquiv i hi).surjective
+
+/-- Under the carrier equivalence, the canonical shared base maps
+exactly to the original image i(P). -/
+theorem splitEquiv_base_image (i : P → A)
+    (hi : Function.Injective i) :
+    ((Finset.univ : Finset P).image
+      (Sum.inl : P → P ⊕ Tail i)).image (splitEquiv i hi) =
+      (Finset.univ : Finset P).image i := by
+  classical
+  rw [Finset.image_image]
+  have hComp : (splitEquiv i hi) ∘
+      (Sum.inl : P → P ⊕ Tail i) = i := by
+    funext p
+    exact splitEquiv_inl i hi p
+  rw [hComp]
+
+/-- A finite graph is 2-sparse exactly when its re-labelled normal form
+is 2-sparse. The proof compares all induced finite subsets. -/
+theorem normalGraph_twoSparse_iff (G : GraphOn A)
+    (i : P → A) (hi : Function.Injective i) :
+    (normalGraph G i hi).IsTwoSparse
+      (Finset.univ : Finset (P ⊕ Tail i)) ↔
+    G.IsTwoSparse (Finset.univ : Finset A) := by
+  classical
+  let e : (P ⊕ Tail i) ≃ A := splitEquiv i hi
+  have hAdj : ∀ x y : P ⊕ Tail i,
+      (normalGraph G i hi).adj x y ↔ G.adj (e x) (e y) :=
+    fun _ _ => Iff.rfl
+  have h := (normalGraph G i hi).twoSparse_image_iff G
+    e e.injective hAdj (Finset.univ : Finset (P ⊕ Tail i))
+  have hUniv : (Finset.univ : Finset (P ⊕ Tail i)).image e =
+      (Finset.univ : Finset A) :=
+    splitEquiv_image_univ i hi
+  rw [hUniv] at h
+  exact h.symm
+
+/-- Self-sufficiency of the embedded base is invariant when a finite
+graph is put into normal form P ⊕ Tail(i). -/
+theorem normalGraph_strong_base_iff (G : GraphOn A)
+    (i : P → A) (hi : Function.Injective i) :
+    (normalGraph G i hi).toPredimension.IsStrong
+      ((Finset.univ : Finset P).image (Sum.inl : P → P ⊕ Tail i))
+      (Finset.univ : Finset (P ⊕ Tail i)) ↔
+    G.toPredimension.IsStrong
+      ((Finset.univ : Finset P).image i)
+      (Finset.univ : Finset A) := by
+  classical
+  let e : (P ⊕ Tail i) ≃ A := splitEquiv i hi
+  have hAdj : ∀ x y : P ⊕ Tail i,
+      (normalGraph G i hi).adj x y ↔ G.adj (e x) (e y) :=
+    fun _ _ => Iff.rfl
+  have h := (normalGraph G i hi).strong_image_iff G
+    e e.injective hAdj
+    ((Finset.univ : Finset P).image (Sum.inl : P → P ⊕ Tail i))
+    (Finset.univ : Finset (P ⊕ Tail i))
+    (Finset.subset_univ _)
+  have hBase :
+      (((Finset.univ : Finset P).image
+        (Sum.inl : P → P ⊕ Tail i)).image e) =
+      (Finset.univ : Finset P).image i :=
+    splitEquiv_base_image i hi
+  have hUniv : (Finset.univ : Finset (P ⊕ Tail i)).image e =
+      (Finset.univ : Finset A) :=
+    splitEquiv_image_univ i hi
+  rw [hBase, hUniv] at h
+  exact h.symm
+
+end finite
+
 end FiniteSpan
 end BigHrushovski
