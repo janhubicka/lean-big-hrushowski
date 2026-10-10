@@ -188,3 +188,9 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.strongExtensionProperty_of_fairResponses
 
 #print axioms BigHrushovski.FiniteCatalogue.exists_labelled_strong_diagram
+
+#print axioms BigHrushovski.FiniteSpan.extendNatLabels_comp
+#print axioms BigHrushovski.FiniteSpan.extendNatLabels_of_not_mem
+#print axioms BigHrushovski.FiniteSpan.extendNatLabels_above_old
+#print axioms BigHrushovski.FiniteSpan.extendNatLabels_fresh
+#print axioms BigHrushovski.FiniteSpan.extendNatLabels_injective
