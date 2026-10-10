@@ -194,3 +194,10 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.extendNatLabels_above_old
 #print axioms BigHrushovski.FiniteSpan.extendNatLabels_fresh
 #print axioms BigHrushovski.FiniteSpan.extendNatLabels_injective
+
+#print axioms BigHrushovski.GraphOn.transportedToNat_induced
+#print axioms BigHrushovski.GraphOn.transportedToNat_support
+#print axioms BigHrushovski.GraphOn.transportedToNat_predim
+#print axioms BigHrushovski.GraphOn.transportedToNat_sparse
+#print axioms BigHrushovski.GraphOn.transportedToNat_strong
+#print axioms BigHrushovski.FiniteSpan.exists_fresh_strong_nat_stage

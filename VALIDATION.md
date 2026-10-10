@@ -583,3 +583,17 @@ Graph adjacency and the construction of a fair responding chain are
 not yet included in this theorem.
 
 The [160-declaration Lean CI audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38062409525) compiled the finite injection extension lemmas with only standard logical axioms and no proof placeholders. The independent `check_fresh_nat_labels.py` regression checks old-label preservation, freshness above the old maximum and injectivity across many finite maps. CI on the combined branch head will certify this additional regression.
+
+
+## Finite strong graph stages on the Nat carrier (pending CI)
+
+`GraphOn.transportedToNat` transports a finite graph along any
+injective map into ℕ and has no edges outside the image. It preserves
+induced adjacency, predimension, 2-sparsity, and finite strongness.
+Combined with the fresh-label theorem, it yields
+`FiniteSpan.exists_fresh_strong_nat_stage`: every finite strong
+extension A≤B can be represented as a finite graph stage on ℕ
+with all existing A labels fixed, distinct fresh labels for B\A,
+and a strong inclusion of the old finite stage domain.
+The construction of a compatible countable sequence and realization
+of fair requests are not yet formalized.

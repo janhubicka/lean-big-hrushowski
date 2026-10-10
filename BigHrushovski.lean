@@ -20,3 +20,4 @@ import BigHrushovski.FiniteCatalogue
 import BigHrushovski.GenericityCriterion
 import BigHrushovski.LabelledDiagrams
 import BigHrushovski.FreshNatLabels
+import BigHrushovski.NatGraphStage
