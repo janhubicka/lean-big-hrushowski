@@ -19,3 +19,4 @@ import BigHrushovski.C0StrongAge
 import BigHrushovski.FiniteCatalogue
 import BigHrushovski.GenericityCriterion
 import BigHrushovski.LabelledDiagrams
+import BigHrushovski.UnlabelledExtension

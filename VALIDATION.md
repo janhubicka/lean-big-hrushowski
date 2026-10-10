@@ -570,3 +570,15 @@ original map. This closes the finite relabelling obligation, but
 does not construct a countable chain or realize fair requests.
 
 The [Lean audit run 38061458133](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38061458133) compiled the labelled-diagram completeness theorem and audited 154 declarations, with only standard logical axioms and no proof placeholders in 22 files. The theorem has explicit Fin(card A)≃A and Fin(card B)≃B witnesses preserving the source and target adjacency relations and identifying the original induced strong map with the labelled one. No claim is made that the fair response schedule is realized by a countable graph.
+
+
+## Arbitrary finite extension from the labelled criterion (pending CI)
+
+The new theorem derives the extension property for every finite
+2-sparse induced strong embedding A→B with arbitrary finite vertex
+types from the labelled strong extension property in the countable
+ambient graph. It uses the proved completeness of labelled diagrams,
+transports the given globally strong base map into a concrete fair
+request, applies the labelled extension hypothesis, and transfers the
+resulting embedding back to B. The countable ambient graph itself,
+and a chain satisfying local fair responses, remain unconstructed.
