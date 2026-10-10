@@ -852,3 +852,20 @@ the actual fair responding chain is still a separate obligation.
 ## Combined finite-successor interfaces (integration audit pending)
 
 The standalone versions passed GitHub Actions run [38080646111](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080646111) (general old-label graph coherence), [38080758571](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080758571) (composition of strong images), and [38080899840](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080899840) (finite Nat stage pullback), each with only standard logical axioms and no placeholders. These are finite interface theorems. Their integration with the newer fair-response-to-limit theorem needs its own build before certification; this does not produce a recursive chain.
+
+
+
+## Applicable request on a finite initial segment (pending integrated CI)
+
+`FiniteCatalogue.exists_finite_applicable_source` turns an applicable
+labelled extension request with source map into `range n ⊆ ℕ` into
+an injective induced strong embedding into the pulled-back finite
+graph on `Fin n`. The source labels are preserved literally, and
+two-sparsity and the self-sufficiency predicate are transported on
+every intermediate finite subset. This is the finite input needed
+before applying `exists_growing_finite_strong_response`.
+
+The theorem is an implication for a *given* stage and applicable
+request. It does not realize or schedule the next stage, and no
+countable genericity conclusion is inferred. Lean compilation and
+standard-axiom audit remain pending.
