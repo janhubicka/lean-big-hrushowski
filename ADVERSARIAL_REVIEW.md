@@ -605,3 +605,82 @@ finite carrier nor constructs the countable chain.
 mathematical perspectives in the current review, not by externally
 spawned human referees. The Lean CI and axiom audit are the machine
 verification of the exact statement.
+
+
+## Adversarial review: forced finite-stage growth
+
+**Singleton sparsity.** No two-element set can be an edge in the graph
+whose adjacency predicate is always false. Its predimension is therefore
+`2 * card`, nonnegative on every subset, including the empty set.
+
+**Empty-base strongness.** Both factors of the proposed joint embedding
+are two-sparse. The empty induced graph is strong in each factor; this
+would be false without subset-wise two-sparsity.
+
+**Freshness.** The full tagged amalgam reports that any identification
+of its factor images comes from the common base. Since the base is
+`Empty`, the new singleton is provably outside the old-stage image.
+
+**Inducedness and strength.** The old factor maps preserve and reflect
+adjacency and have self-sufficient image in the new two-sparse graph.
+A weak embedding or mere preservation of old edges would not be enough
+to iterate the strong-age construction.
+
+**Boundary.** Strict finite growth does not imply that stages cover
+all ℕ until they are re-labelled coherently as consecutive initial
+segments. Nor does it imply realization of any pending request.
+These are separate adversarial checks in this review, not independently
+spawned external referees.
+
+## Adversarial review: coherent graph union
+
+**Nonedges.** The one-step invariant is a bi-implication, not just
+preservation of edges. Otherwise a new edge could appear between two
+previously old nonadjacent vertices and invalidate induced copies.
+
+**Support.** Every stage edge is required to have both endpoints in
+its finite support; this makes edge relations monotone when combined
+with old-old coherence. Omitting support would invalidate `edge_mono`.
+
+**Comparison stages.** If an edge is witnessed at stage m but its
+endpoints belong to earlier stage n, pass to max(n,m). Edge monotonicity
+moves the witness forward and exact old-old agreement moves its
+adjacency back to n. This proves *reflection* from the union.
+
+**Carrier coverage.** The structure separately requires that every
+natural number enter some stage, preventing the permanent gap exhibited
+by the old `extendNatLabels` function.
+
+**Scope.** The graph union theorem does not assert strongness of
+successor stages, fair responses, or the existence of coherent stages.
+These are the next construction obligations. The checks are separate
+adversarial perspectives by one reviewer, not external agents.
+
+## Adversarial review: finite induced adjacency transfer
+
+**Edge enumeration.** A two-element edge is characterized by an unordered
+finite set together with witnessed adjacent endpoints. Exact agreement
+of adjacency on the finite domain transfers both inclusion and the
+witness, in both directions.
+
+**Predimension.** The vertex cardinality is unchanged, and the two
+finite induced edge sets coincide. Thus
+`2 * card(vertices) - card(edges)` is identical in both graphs.
+
+**Intermediate sets.** Relative strongness requires comparing
+predimension on every intermediate finite `C` with `A ⊆ C ⊆ B`.
+The adjacency agreement is restricted separately to each such `C`,
+not only to the two endpoints `A` and `B`.
+
+**Negative control.** If graph predicates agree only on edges of A but
+differ on edges involving B minus A, strongness need not transfer.
+The theorem explicitly assumes induced agreement throughout B.
+
+**Boundary.** The result is a graph-interface lemma. It does not prove
+existence of an increasing finite chain, compatibility of its labels,
+or the Fraïssé extension property. These are hostile proof checks by
+the same assistant, not external referees.
+
+## Integrated adversarial cross-check
+
+The strict-growth theorem prevents a fair response with no new vertices from stalling the carrier. The exact old-old nonedge invariant prevents the union graph from changing an induced finite stage. The localized predimension/strongness transport bridges finite stages to the union. These are three logically different obligations. They do not, even together, imply the existence of a coherent fair response schedule. The present review uses independent mathematical failure modes and Lean kernel checks, not externally spawned referee agents.
