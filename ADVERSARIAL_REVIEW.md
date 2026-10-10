@@ -442,3 +442,18 @@ not reviews by independent human referees.
 **Referee H — boundaries.** This is finite strong free amalgamation for the predimension class C0. It does not construct its countable strong Fraïssé limit, its generic extension property, the functional closure expansion, or any big Ramsey theorem.
 
 These are eight independent lines of hostile checking performed by one assistant, not an independently spawned external panel.
+
+
+## Adversarial audit: finite strong age axioms
+
+**Heredity.** IsTwoSparse requires nonnegative predimension for every induced subset; restriction to a smaller vertex set therefore preserves the condition. A claim about only the whole-graph predimension would not suffice.
+
+**Empty strong base.** Graph predimension of the empty set is zero. For every induced extension X in a 2-sparse graph δ(X)≥0, hence the empty set is self-sufficient. This is exactly the condition needed to specialize finite strong free amalgamation to joint embedding.
+
+**Freshness.** The inherited tagged free-amalgamation theorem introduces disjoint tails; the embeddings of two unrelated input graphs need not intersect even if their original vertex labels coincide.
+
+**Computational cross-check.** All 76 labelled simple graphs on at most four vertices were checked for subset-wise 2-sparsity and empty-base strongness. Each of the 5,776 pairs was freely joined with tagged disjoint carriers and both inclusions checked to be strong. K6, of predimension -3, serves as a negative sparsity control.
+
+**Boundary.** These results do not construct a countable generic graph or prove realization of every finite strong extension. Countability of finite isomorphism types and fair scheduling of extension requirements remain explicit tasks.
+
+The hostile checks are separate questions assessed by one assistant, not independent external referees.

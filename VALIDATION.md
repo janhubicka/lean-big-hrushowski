@@ -491,3 +491,20 @@ The [145-declaration Lean build and standard-axiom audit](https://github.com/jan
 The independent `check_abstract_amalgam.py` regression will test all 5,993 input spans with graph orders at most three and includes the K5-over-K3 obstruction when the strong-base hypothesis is dropped. Its status is pending the integrated CI run.
 
 **Still open:** construction and genericity of the countable strong Fraïssé limit, the functional closure presentation, and the later Ramsey/Ellentuck results.
+
+
+## The hereditary and joint-embedding properties of C0 (verified)
+
+The finite graph class C0 is hereditary by its subset-wise definition.
+The empty vertex set has predimension zero and is strong in any
+2-sparse graph. Therefore the verified strong free-amalgamation
+construction over an empty base produces a joint strong embedding
+of any two finite 2-sparse graphs. This verifies the elementary
+finite age properties, not the existence of the countable strong
+Fraisse limit or its extension property.
+
+
+The independent finite-age regression tests 76 labelled simple graphs of orders up to four and all 5,776 tagged disjoint joint embeddings. It also checks that K6 fails the 2-sparsity condition. Kernel compilation and the axiom audit remain the certification criteria.
+
+
+**Certified checkpoint:** [PR CI run 38055132030](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38055132030) passed at [code commit cb99b36](https://github.com/janhubicka/lean-big-hrushowski/commit/cb99b366b2a073abd8ef3a130f668fbbd1e3f347). All 150 printed Lean declarations used only standard logical axioms; 20 Lean files were checked for proof placeholders. The new independent regression passed on 76 labelled graphs of order at most four and 5,776 tagged strong joint embeddings. The age's essential countability and its countable generic limit remain to be proved in Lean.

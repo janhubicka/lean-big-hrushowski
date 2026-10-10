@@ -81,3 +81,5 @@ jobs:
         run: python3 scripts/check_induced_embedding.py
       - name: Check arbitrary finite strong amalgamation spans
         run: python3 scripts/check_abstract_amalgam.py
+      - name: Check hereditary and strong joint embedding properties
+        run: python3 scripts/check_c0_strong_age.py
