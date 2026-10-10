@@ -17,3 +17,4 @@ import BigHrushovski.TaggedStrongAmalgam
 import BigHrushovski.SpanNormalization
 import BigHrushovski.C0StrongAge
 import BigHrushovski.FiniteCatalogue
+import BigHrushovski.GenericityCriterion
