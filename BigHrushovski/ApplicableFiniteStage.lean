@@ -54,8 +54,6 @@ theorem exists_finite_applicable_source
       (Finset.univ : Finset (Fin req.1)).image req.2.2.2 := by
     rw [Finset.image_image]
     congr 1
-    funext x
-    rfl
   have hSparseFin :
       (G.pullback (fun z : Fin n => z.val)).IsTwoSparse
         (Finset.univ : Finset (Fin n)) :=
