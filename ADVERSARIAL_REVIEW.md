@@ -756,3 +756,29 @@ it does not ensure a fair response, strictly positive growth or
 compatibility of an entire infinite sequence. Those properties must
 be supplied by the subsequent recursive stage selection. This is
 a same-assistant adversarial check, not an external referee panel.
+
+
+## Adversarial review: stage response transfer to countable limit
+
+**Applicability.** The source image is included in the current finite
+support by the strongness hypothesis in AppliesAt. Thus both its
+adjacency and self-sufficiency can be transferred to the stage graph
+without assuming global graph equality.
+
+**Answer.** A finite response has target image strong in the next
+finite support. This includes all target vertices, so the same exact
+induced comparison transfers target nonedges and the strong image
+to the limit graph.
+
+**Direction of strongness transport.** Applicability goes from limit
+to stage; response goes from stage to limit. Reversing either
+direction would leave a gap in the finite-to-countable argument.
+
+**Fairness.** Only the already-verified schedule lemma and
+`strongExtensionProperty_of_fairResponses` provide the extension
+property. The new theorem supplies their local stage hypotheses,
+not a construction of any of the stages.
+
+**Scope and provenance.** No countable generic graph is constructed;
+we check independent failure modes within the same review rather
+than claiming independently spawned external referees.
