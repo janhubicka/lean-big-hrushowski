@@ -104,6 +104,44 @@ theorem transportedToNat_strong
     (fun x y => K.transportedToNat_induced label hLabel x y)
     a b hab.1).mpr hab
 
+
+/-- When a finite induced graph extension is re-labelled over the old
+natural-number labels, the previous graph and the new graph agree on
+every pair of old vertices. This is the coherence invariant needed to
+form the countable union of finite graph stages. -/
+theorem transportedToNat_agree_on_old
+    {A B : Type*}
+    [Fintype A] [Fintype B]
+    [DecidableEq A] [DecidableEq B]
+    (G : GraphOn A) (K : GraphOn B)
+    (i : A → B) (hi : Function.Injective i)
+    (hInduced : ∀ a b : A,
+      G.adj a b ↔ K.adj (i a) (i b))
+    (old : A → ℕ) (hOld : Function.Injective old)
+    {x y : ℕ}
+    (hx : x ∈ (Finset.univ : Finset A).image old)
+    (hy : y ∈ (Finset.univ : Finset A).image old) :
+    (G.transportedToNat old hOld).adj x y ↔
+      (K.transportedToNat (FiniteSpan.extendNatLabels i old)
+        (FiniteSpan.extendNatLabels_injective i hi old hOld)).adj x y := by
+  obtain ⟨a, _, ha⟩ := Finset.mem_image.mp hx
+  obtain ⟨b, _, hb⟩ := Finset.mem_image.mp hy
+  subst x
+  subst y
+  have hOldAdj := G.transportedToNat_induced old hOld a b
+  have hNewAdj :=
+    K.transportedToNat_induced
+      (FiniteSpan.extendNatLabels i old)
+      (FiniteSpan.extendNatLabels_injective i hi old hOld)
+      (i a) (i b)
+  have hNewAdj' : K.adj (i a) (i b) ↔
+      (K.transportedToNat (FiniteSpan.extendNatLabels i old)
+        (FiniteSpan.extendNatLabels_injective i hi old hOld)).adj
+          (old a) (old b) := by
+    simpa only [FiniteSpan.extendNatLabels_comp i hi old a,
+      FiniteSpan.extendNatLabels_comp i hi old b] using hNewAdj
+  exact hOldAdj.symm.trans ((hInduced a b).trans hNewAdj')
+
 end GraphOn
 
 namespace FiniteSpan

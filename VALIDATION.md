@@ -597,3 +597,9 @@ with all existing A labels fixed, distinct fresh labels for B\A,
 and a strong inclusion of the old finite stage domain.
 The construction of a compatible countable sequence and realization
 of fair requests are not yet formalized.
+
+The additional `transportedToNat_agree_on_old` theorem states that
+transporting a finite strong induced extension to fresh Nat labels
+does not change any edge or nonedge between previously labelled
+vertices. This is the graph-coherence invariant needed for a
+direct limit of successive finite stages. CI verification pending.

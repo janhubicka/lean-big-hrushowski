@@ -201,3 +201,5 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.transportedToNat_sparse
 #print axioms BigHrushovski.GraphOn.transportedToNat_strong
 #print axioms BigHrushovski.FiniteSpan.exists_fresh_strong_nat_stage
+
+#print axioms BigHrushovski.GraphOn.transportedToNat_agree_on_old
