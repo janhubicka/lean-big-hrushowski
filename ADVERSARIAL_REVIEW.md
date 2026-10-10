@@ -421,3 +421,24 @@ not reviews by independent human referees.
 **7. Fraïssé interface.** The theorem is a complete strong-amalgamation statement for finite *tagged normal-form diagrams*. It is not yet a formal proof that every abstract finite embedding span reduces to this normal form, nor a construction of a countable generic limit or its extension property.
 
 **8. Lean certificate.** The exact theorem statement and all its dependencies compiled in [CI run 38019222909](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38019222909). The audit found only standard logical axioms and no proof placeholders. These are adversarial perspectives carried out by one assistant, not separately spawned external human or model referees.
+
+
+## Arbitrary finite embedded spans: adversarial review
+
+**Referee A — exact image normalization.** Each injective base map extends to a literal equivalence P⊕Tail(i)≃A. The inverse puts the original vertices into the tagged carrier without collapsing tails.
+
+**Referee B — induced embeddings.** Both output maps preserve *and reflect* adjacency, including nonedges. Agreement on the abstract base is a prerequisite, and the output maps identify no vertices except corresponding points of P.
+
+**Referee C — strongness orientation.** The base is strong in each source, separately. Transport along the induced equivalences gives strong common bases in the normalized inputs; the tagged theorem uses the opposite input for each strong inclusion.
+
+**Referee D — all finite subgraphs.** K.IsTwoSparse means nonnegative predimension for every finite induced subset, not just K itself.
+
+**Referee E — original-domain images.** The proof establishes exact equalities between the images of the original A and B and the tagged left and right domains before concluding their strongness. The conclusion is not merely about anonymous normalized copies.
+
+**Referee F — necessity.** Without a strong common base, gluing two K5 graphs over a K3 gives δ=-3. The theorem does not weaken this assumption. Without graph agreement on P, inducedness fails.
+
+**Referee G — Lean kernel.** The complete explicit existential amalgamation theorem is included in the 145-declaration [passing audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38020714173). Only standard logical axioms occur; no proof placeholders were accepted.
+
+**Referee H — boundaries.** This is finite strong free amalgamation for the predimension class C0. It does not construct its countable strong Fraïssé limit, its generic extension property, the functional closure expansion, or any big Ramsey theorem.
+
+These are eight independent lines of hostile checking performed by one assistant, not an independently spawned external panel.
