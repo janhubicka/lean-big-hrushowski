@@ -53,9 +53,9 @@ namespace FiniteSpan
 /-- The canonical disjoint-union carrier obtained by amalgamating over
 the empty base. -/
 abbrev JointCarrier (A B : Type*) :=
-  TaggedAmalgam.Carrier PEmpty
-    (Tail (fun e : PEmpty => (PEmpty.elim e : A)))
-    (Tail (fun e : PEmpty => (PEmpty.elim e : B)))
+  TaggedAmalgam.Carrier Empty
+    (Tail (fun e : Empty => (Empty.elim e : A)))
+    (Tail (fun e : Empty => (Empty.elim e : B)))
 
 /-- The finite strong class C0 has joint embedding, with two induced
 strong embeddings into a finite 2-sparse graph. The result follows
@@ -77,38 +77,38 @@ theorem exists_strong_joint_embedding
       K.toPredimension.IsStrong
         ((Finset.univ : Finset B).image g) Finset.univ := by
   classical
-  let i : PEmpty → A := PEmpty.elim
-  let j : PEmpty → B := PEmpty.elim
-  have hi : Function.Injective i := fun p _ _ => PEmpty.elim p
-  have hj : Function.Injective j := fun p _ _ => PEmpty.elim p
-  have hagree : ∀ p q : PEmpty,
+  let i : Empty → A := Empty.elim
+  let j : Empty → B := Empty.elim
+  have hi : Function.Injective i := fun p _ _ => Empty.elim p
+  have hj : Function.Injective j := fun p _ _ => Empty.elim p
+  have hagree : ∀ p q : Empty,
       G.adj (i p) (i q) ↔ H.adj (j p) (j q) := by
     intro p
-    exact PEmpty.elim p
+    exact Empty.elim p
   have hgi : G.toPredimension.IsStrong
-      ((Finset.univ : Finset PEmpty).image i)
+      ((Finset.univ : Finset Empty).image i)
       (Finset.univ : Finset A) := by
-    have heq : ((Finset.univ : Finset PEmpty).image i) = ∅ := by
+    have heq : ((Finset.univ : Finset Empty).image i) = ∅ := by
       ext x
       constructor
       · intro hx
         obtain ⟨p, _, _⟩ := Finset.mem_image.mp hx
-        exact PEmpty.elim p
+        exact Empty.elim p
       · intro hx
-        simpa using hx
+        simp at hx
     rw [heq]
     exact G.empty_strong_of_twoSparse hSparseG
   have hgj : H.toPredimension.IsStrong
-      ((Finset.univ : Finset PEmpty).image j)
+      ((Finset.univ : Finset Empty).image j)
       (Finset.univ : Finset B) := by
-    have heq : ((Finset.univ : Finset PEmpty).image j) = ∅ := by
+    have heq : ((Finset.univ : Finset Empty).image j) = ∅ := by
       ext x
       constructor
       · intro hx
         obtain ⟨p, _, _⟩ := Finset.mem_image.mp hx
-        exact PEmpty.elim p
+        exact Empty.elim p
       · intro hx
-        simpa using hx
+        simp at hx
     rw [heq]
     exact H.empty_strong_of_twoSparse hSparseH
   obtain ⟨K, f, g, hf, hg, hAdjF, hAdjG, _, _, hSparseK,
