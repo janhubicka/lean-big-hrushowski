@@ -212,3 +212,13 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.extendInitialLabels_image
 
 #print axioms BigHrushovski.FiniteCatalogue.exists_finite_strong_response
+
+#print axioms BigHrushovski.GraphOn.onePointGraph_sparse
+#print axioms BigHrushovski.FiniteSpan.exists_fresh_strong_extension
+#print axioms BigHrushovski.CoherentNatGraphStages.stage_mono
+#print axioms BigHrushovski.CoherentNatGraphStages.agrees_of_le
+#print axioms BigHrushovski.CoherentNatGraphStages.edge_mono
+#print axioms BigHrushovski.CoherentNatGraphStages.limitGraph_induced
+#print axioms BigHrushovski.GraphOn.edgesWithin_eq_of_agreeOn
+#print axioms BigHrushovski.GraphOn.predim_eq_of_agreeOn
+#print axioms BigHrushovski.GraphOn.isStrong_iff_of_agreeOn
