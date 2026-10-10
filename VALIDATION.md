@@ -392,7 +392,7 @@ adjacency are explicitly tested by negative controls.
 At source commit [660abf6](https://github.com/janhubicka/lean-big-hrushowski/commit/660abf6d7dab255ee1e70bb92e7ea32192f91721), the [116-declaration passing Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37997208601) proved exact edge-set and predimension transport, finite strongness equivalence, and 2-sparsity equivalence. Seventeen Lean sources contained no proof placeholders; all audited theorems depended only on standard logical axioms. The independent exhaustive regression covered 31,548 injected graph diagrams, 497,876 predimension comparisons and 2,509,516 relative-strongness tests. The actual tagged free-amalgam strongness theorem is not yet an explicitly audited corollary; that will be a separate next step.
 
 
-## Tagged strong free amalgamation (in progress)
+## Tagged strong free amalgamation (verified)
 
 TaggedStrongAmalgam.lean first identifies the left and right finite
 domains of the fresh carrier P+(L+R), proves their intersection is the
@@ -412,4 +412,13 @@ and both factors are 2-sparse, the tagged graph P+(L+R) is 2-sparse,
 the two induced inclusions are strong, and both induced factors remain
 2-sparse. This is the expected finite strong-amalgamation property in
 the canonical shared-base presentation. A source-specific Fraisse
-extension property is not inferred. Lean build and axiom audit pending.
+extension property is not inferred. The tagged theorem has passed a Lean build and standard-axiom audit.
+
+
+## Certified normal-form strong amalgamation — 10 October 2026
+
+The [passing integrated CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38019222909) at [Lean commit 1a09943](https://github.com/janhubicka/lean-big-hrushowski/commit/1a09943e0ba5204c5b3b17881dc794d2dfe6a69a) audited 126 declarations with only standard logical axioms. The placeholder checker examined 18 Lean files. All previous finite-graph regressions passed.
+
+The core theorem `TaggedAmalgam.tagged_strong_free_amalgam` says that for finite types P,L,R and graph predicates G on P⊕L and H on P⊕R agreeing on P, if both inputs are 2-sparse and the common base is strong in both, then the tagged amalgam P⊕(L⊕R) is 2-sparse and both canonical induced embeddings are strong. The theorem also asserts that both canonical images remain 2-sparse.
+
+The earlier independent finite test `check_tagged_amalgams.py` checked 5,613 tagged input diagrams, including 2,875 compatible diagrams and 2,729 configurations satisfying the strong-amalgamation hypotheses. **Outstanding:** normalization of arbitrary abstract base embeddings to this shared-base form, and the countable strong Fraïssé extension construction. These statements have not yet been promoted to green.
