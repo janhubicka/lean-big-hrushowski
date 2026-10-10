@@ -852,3 +852,19 @@ the actual fair responding chain is still a separate obligation.
 ## Combined finite-successor interfaces (integration audit pending)
 
 The standalone versions passed GitHub Actions run [38080646111](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080646111) (general old-label graph coherence), [38080758571](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080758571) (composition of strong images), and [38080899840](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080899840) (finite Nat stage pullback), each with only standard logical axioms and no placeholders. These are finite interface theorems. Their integration with the newer fair-response-to-limit theorem needs its own build before certification; this does not produce a recursive chain.
+
+
+
+## A universally applicable trivial finite request (pending Lean CI)
+
+`FiniteCatalogue.trivialStrongDiagram` is the empty-to-empty
+strong graph embedding, and `trivialRequest` is its unique source
+map into ℕ. The theorem `trivialRequest_applies` shows that this
+request applies to every finite two-sparse stage. Once a one-step
+growing Nat response theorem is certified, this request supplies
+a growth-only fallback when the actual fair-scheduled request is
+inapplicable or absent. No nonempty-base hypothesis is introduced.
+
+The trivial request is **not** substituted for the scheduled request
+when the latter applies: a correct construction must answer the
+scheduled request in that case. The new Lean statements await CI.
