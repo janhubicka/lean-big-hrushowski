@@ -660,7 +660,7 @@ a graph on their union, or the fair-response property in that union.
 The 173-declaration [successful Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38078587574) verifies this theorem; the full coherent countable construction remains open.
 
 
-## Growth by a fresh strong vertex (pending Lean CI)
+## Growth by a fresh strong vertex (certified)
 
 `GraphOn.onePointGraph_sparse` shows that the graph on one isolated
 vertex is 2-sparse. The theorem
@@ -675,7 +675,7 @@ The theorem relies on the verified tagged amalgamation's
 no-unintended-identifications conclusion. It does not itself
 realize scheduled requests, construct a chain or a direct limit.
 
-## Direct-limit graph of coherent finite stages (pending Lean CI)
+## Direct-limit graph of coherent finite stages (certified)
 
 `CoherentNatGraphStages` packages finite supports on ℕ, a finite-edge
 stage graph, one-step support inclusion, exact old-old adjacency and
@@ -690,7 +690,7 @@ The construction is **conditional on coherent stage data**. A coherent
 strong, growing, fair-response chain is still to be built; this
 module does not infer it from finite amortization or genericity.
 
-## Finite induced adjacency transfer (pending Lean CI)
+## Finite induced adjacency transfer (certified)
 
 `GraphOn.edgesWithin_eq_of_agreeOn`,
 `GraphOn.predim_eq_of_agreeOn`, and
@@ -708,7 +708,7 @@ the coherent stages. CI verification of this module remains pending.
 **Combined integration:** The growth and graph-union source heads passed independently in GitHub Actions runs [38078931390](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38078931390) and [38079104902](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38079104902), auditing 174 and 176 declarations respectively. The finite induced-transfer module and full consolidated build require a fresh integrated CI result. No countable stage system has yet been constructed.
 
 
-## Conditional strong countable limit (pending Lean CI)
+## Conditional strong countable limit (certified)
 
 `CoherentNatGraphStages.asStrongChain` assumes the finite support of
 each stage is strong in the next stage graph. The induced-subgraph
@@ -725,7 +725,7 @@ constructed. This is *not* a proof of the existence of the generic
 countable Hrushovski graph without that hypothesis.
 
 
-## Gap-free increasing stages cover ℕ (pending Lean CI)
+## Gap-free increasing stages cover ℕ (certified)
 
 The `NatStageCoverage` module proves that every strictly increasing
 sequence of finite stage sizes satisfies `n ≤ size n`. Consequently
@@ -734,3 +734,38 @@ their union is all of ℕ. This gives the carrier-coverage implication
 needed to instantiate `CoherentNatGraphStages.covers` from the
 strict-growth theorem and initial-segment relabelling. No continuous
 or global stage existence is asserted by these arithmetic lemmas.
+
+
+## Certified integrated coherent-limit checkpoint — 10 October 2026
+
+The [passing CI and standard-axiom audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38079857370)
+at source [commit a0f5fd3](https://github.com/janhubicka/lean-big-hrushowski/commit/a0f5fd36f50c595bab0d2b06af2209968b05545d)
+compiled the complete finite-age, carrier, response, and conditional
+strong-limit development. The audit checked **188 declarations**, all
+depending only on standard Lean logical axioms, and scanned **33 Lean
+files** for proof placeholders. All existing finite regression tests,
+including the 114,324 gap-free initial-segment diagrams, passed.
+
+The exact endpoints now include:
+- `FiniteCatalogue.exists_finite_strong_response`: a finite strong
+  amalgam answering an applicable labelled extension diagram;
+- `FiniteSpan.exists_fresh_strong_extension` and
+  `FiniteSpan.initialSegment_stages_cover`: strict growth and
+  coverage of Nat by consecutive initial segments;
+- `CoherentNatGraphStages.limitGraph_induced`: finite stages remain
+  induced in the graph union;
+- `GraphOn.isStrong_iff_of_agreeOn`: finite strongness transfers
+  between ambient graph predicates agreeing on the induced container;
+- `CoherentNatGraphStages.stage_global_of_strong_steps`,
+  `finiteStrongCover_of_strong_steps`, and
+  `limit_predim_nonneg_of_sparse_stages`: a **given** coherent covering
+  chain of finite strong, two-sparse stages has the required strong
+  and two-sparse countable limit.
+
+**Still not proved:** the existence of one coherent *fair responding*
+sequence of finite stages, formed recursively from the finite responses,
+with initial-segment relabellings and strict growth. This is the
+remaining gap before instantiating
+`strongExtensionProperty_of_fairResponses` for a concrete countable
+Hrushovski graph. Nothing in the new conditional transfer proves
+Ramsey, big Ramsey degree, or Ellentuck statements.
