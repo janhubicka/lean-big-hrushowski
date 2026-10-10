@@ -78,7 +78,6 @@ theorem exists_growing_nat_response
       apply Fin.ext
       change (new (old x)).val = (new fresh).val
       rw [hOldNumeric x]
-      rfl
     have hOldEq : old x = fresh := new.injective hEq
     exact hFresh (Finset.mem_image.mpr
       ⟨x, Finset.mem_univ _, hOldEq⟩)
@@ -100,7 +99,7 @@ theorem exists_growing_nat_response
   have hStrongNat :
       N.toPredimension.IsStrong
         (Finset.range n) (Finset.range m) := by
-    simpa [m] using hStrongN
+    simpa only [Fintype.card_fin] using hStrongN
 
   let label : B → ℕ := fun b => (new b).val
   let reply : Fin req.2.1 → ℕ := label ∘ answer
@@ -141,7 +140,7 @@ theorem exists_growing_nat_response
   have hReplyImage :
       (((Finset.univ : Finset (Fin req.2.1)).image answer).image label) =
       (Finset.univ : Finset (Fin req.2.1)).image reply := by
-    simp only [Finset.image_image]
+    simp only [Finset.image_image, reply]
   have hStrongReplyNat :
       N.toPredimension.IsStrong
         ((Finset.univ : Finset (Fin req.2.1)).image reply)
