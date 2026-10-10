@@ -491,3 +491,16 @@ The hostile checks are separate questions assessed by one assistant, not indepen
 **Genericity boundary.** The theorem does not construct the stages, realize the scheduled requests, prove that all finite diagrams are labelled by `Fin n`, or derive full Fraïssé homogeneity. Those are explicit, separate proof obligations.
 
 **Machine check.** The exact theorem was included in the [154-declaration audited run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38056485693), with standard axioms and no admitted proofs. These hostile reviews are separate mathematical checks carried out by one assistant, not independent external human referees.
+
+
+## Finite strong-diagram completeness — adversarial review
+
+**Labelling:** The chosen Fin(card A) and Fin(card B) presentations are equivalences, so the vertex counts and all induced adjacency and nonadjacency statements are preserved. No canonical labelling is claimed.
+
+**Strongness:** The target-side predicate is checked on every intermediate finite substructure. Under the target equivalence, the labelled image of the base is exactly the original image of the source map. Thus the strongness predicate is not inferred merely from nonnegative full-graph predimension.
+
+**Source and target sparsity:** Each is transferred through the separately audited 2-sparsity invariant for induced embeddings; every induced subset is covered.
+
+**Enumeration boundary:** The theorem asserts existence of a labelled representative for a given finite strong embedding. It neither chooses labels uniformly in the source graph nor constructs a countable chain answering requests.
+
+**CI boundary:** The theorem and all dependencies compiled in [run 38061458133](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38061458133); the axiom audit reported only standard logical axioms and no placeholders. These are separate hostile review perspectives applied by one assistant, not external independent human referees.

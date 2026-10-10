@@ -557,3 +557,16 @@ Existence of a chain satisfying the local response rule is not yet proved.
 
 
 **Certification:** [successful CI run 38056485693](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38056485693) at [commit 59e6701](https://github.com/janhubicka/lean-big-hrushowski/commit/59e6701f9d0f5cd53b94bc9cb498a3891a02e54f) compiled and audited 154 declarations, using only standard logical axioms, with 22 Lean files passing the proof-placeholder scan. The theorem `FiniteCatalogue.strongExtensionProperty_of_fairResponses` explicitly assumes a covering finite strong-step chain and the local response obligation at each scheduled applicable request. Those hypotheses are not derived from the finite free-amalgamation theorem here. In particular no countable Fraïssé limit is constructed by this theorem alone.
+
+
+## Completeness of labelled strong diagrams (verified)
+
+Every induced strong embedding between finite 2-sparse graphs carried
+by arbitrary finite types has a presentation in the countable catalogue
+StrongDiagram (card A) (card B). The chosen equivalences Fin(card A)≃A
+and Fin(card B)≃B transport adjacency, 2-sparsity, and the strong
+embedding relation, and identify the labelled embedding with the
+original map. This closes the finite relabelling obligation, but
+does not construct a countable chain or realize fair requests.
+
+The [Lean audit run 38061458133](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38061458133) compiled the labelled-diagram completeness theorem and audited 154 declarations, with only standard logical axioms and no proof placeholders in 22 files. The theorem has explicit Fin(card A)≃A and Fin(card B)≃B witnesses preserving the source and target adjacency relations and identifying the original induced strong map with the labelled one. No claim is made that the fair response schedule is realized by a countable graph.
