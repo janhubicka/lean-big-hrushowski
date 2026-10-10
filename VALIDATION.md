@@ -927,3 +927,26 @@ carriers and reuses these exact instances in the composite proof.
 This is a Lean representation issue, not a graph counterexample.
 The corrected branch remains **pending an integrated Lean build and
 axiom audit**; do not promote its theorem to green until CI passes.
+
+
+## Recursive fair stage sequence from a finite one-step theorem (pending Lean CI)
+
+`FiniteCatalogue.FiniteNatStage` packages a supported two-sparse graph on a
+consecutive finite Nat interval. `IsFairStrongSuccessor k s t` requires
+strict growth, agreement on **all** old-old edges and nonedges, relative
+strongness of the old interval in the new graph, and a response to the
+scheduled request when it applies.
+
+`finiteStageSequence` uses ordinary recursion and classical choice from
+the explicit finite existential hypothesis
+`∀ k s, ∃ t, IsFairStrongSuccessor k s t`. The derived system
+`coherentStagesOfSuccessors` covers **all ℕ** by the verified
+strict-initial-segment-growth lemma. Its limit is two-sparse and has the
+labelled strong extension property by the previously audited
+finite-stage-to-countable transfer and fair request criterion.
+
+This is a conditional *construction*, not an assertion that the
+finite one-step hypothesis is already verified. Its only missing
+existence input is a uniform finite successor satisfying
+`IsFairStrongSuccessor`, including the no-request/inapplicable case.
+The Lean code and axiom dependencies await CI certification.
