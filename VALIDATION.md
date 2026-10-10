@@ -637,3 +637,8 @@ all old numeric labels are preserved, the new map is injective and its image
 is **exactly** `Finset.range (card B)`. No gap can survive in the finite
 carrier. These results are not yet certified, and they do not construct the
 countable fair responding chain or prove that stage sizes go to infinity.
+
+The independent finite-model regression checks old sizes at most five,
+new sizes at most six, all injections and all old initial-segment
+bijections (114,324 diagrams), including empty sources and targets.
+It is a diagnostic and cannot certify the unrestricted Lean theorem.
