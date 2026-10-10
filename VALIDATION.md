@@ -508,3 +508,35 @@ The independent finite-age regression tests 76 labelled simple graphs of orders 
 
 
 **Certified checkpoint:** [PR CI run 38055132030](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38055132030) passed at [code commit cb99b36](https://github.com/janhubicka/lean-big-hrushowski/commit/cb99b366b2a073abd8ef3a130f668fbbd1e3f347). All 150 printed Lean declarations used only standard logical axioms; 20 Lean files were checked for proof placeholders. The new independent regression passed on 76 labelled graphs of order at most four and 5,776 tagged strong joint embeddings. The age's essential countability and its countable generic limit remain to be proved in Lean.
+
+
+## Countability of labelled strong diagrams (verified)
+
+FiniteCatalogue proves that, for each n, there are finitely many graph
+relations on Fin n and that for fixed n,m the class of 2-sparse
+strong embedding diagrams from Fin n to Fin m is finite. Their disjoint
+union over n,m is countable. A canonical encoding/partial decoder is
+chosen and every finite strong diagram appears at some numerical code.
+This supplies a countable catalogue, but it does not yet schedule
+requests against a growing chain or construct the generic limit.
+
+
+## Repeated enumeration of potential strong extension requests (verified)
+
+An extension request now consists of a labelled finite strong diagram
+and a map of its source vertices into the natural-number carrier.
+These requests form a countable set. Cantor pairing supplies a repeated
+enumeration: for each request R and each threshold N, there is a stage
+k≥N at which R is decoded. This is the fairness condition required
+for requirements that only become applicable after a finite base is
+present in the construction. Applicability and realization at a stage
+remain separate tasks.
+
+
+## Certified catalogue and fair-request encoding
+
+The [passing 153-declaration Lean and axiom audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38055955615) at [source commit f113a49](https://github.com/janhubicka/lean-big-hrushowski/commit/f113a4930ad930163ae56de5a94404c673dc8d52) used only standard logical axioms. Twenty-one Lean source files passed the placeholder check, and all existing finite graph regressions passed.
+
+The relevant theorems are `FiniteCatalogue.strongDiagram_occurs` and `FiniteCatalogue.fairRequest_after`. The latter shows that for every labelled strong diagram together with a proposed map to ℕ, and every threshold N, a schedule position k≥N decodes that request. A proposed map need not be an induced strong embedding at the time of its scheduled occurrence; applicability and successful response must be checked against the eventual construction.
+
+**Not yet formalized:** every finite abstract strong span can be relabelled as a Fin n→Fin m diagram, and construction of a countable strong chain satisfying every applicable scheduled request. The countable catalogue alone does not establish genericity.

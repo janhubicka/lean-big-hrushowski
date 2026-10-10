@@ -179,3 +179,8 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.empty_strong_of_twoSparse
 #print axioms BigHrushovski.GraphOn.twoSparse_empty
 #print axioms BigHrushovski.FiniteSpan.exists_strong_joint_embedding
+
+#print axioms BigHrushovski.FiniteCatalogue.decodeStrongDiagram_encode
+#print axioms BigHrushovski.FiniteCatalogue.strongDiagram_occurs
+
+#print axioms BigHrushovski.FiniteCatalogue.fairRequest_after
