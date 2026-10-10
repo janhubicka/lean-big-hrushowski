@@ -574,3 +574,28 @@ fair request schedule. Those remain independent theorem obligations.
 
 **Provenance.** These are adversarial checks of separate possible failure
 modes within the same review, not independently spawned referee agents.
+
+
+## Adversarial review: coherent graph union
+
+**Nonedges.** The one-step invariant is a bi-implication, not just
+preservation of edges. Otherwise a new edge could appear between two
+previously old nonadjacent vertices and invalidate induced copies.
+
+**Support.** Every stage edge is required to have both endpoints in
+its finite support; this makes edge relations monotone when combined
+with old-old coherence. Omitting support would invalidate `edge_mono`.
+
+**Comparison stages.** If an edge is witnessed at stage m but its
+endpoints belong to earlier stage n, pass to max(n,m). Edge monotonicity
+moves the witness forward and exact old-old agreement moves its
+adjacency back to n. This proves *reflection* from the union.
+
+**Carrier coverage.** The structure separately requires that every
+natural number enter some stage, preventing the permanent gap exhibited
+by the old `extendNatLabels` function.
+
+**Scope.** The graph union theorem does not assert strongness of
+successor stages, fair responses, or the existence of coherent stages.
+These are the next construction obligations. The checks are separate
+adversarial perspectives by one reviewer, not external agents.
