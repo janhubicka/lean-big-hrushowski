@@ -540,3 +540,14 @@ The [passing 153-declaration Lean and axiom audit](https://github.com/janhubicka
 The relevant theorems are `FiniteCatalogue.strongDiagram_occurs` and `FiniteCatalogue.fairRequest_after`. The latter shows that for every labelled strong diagram together with a proposed map to ℕ, and every threshold N, a schedule position k≥N decodes that request. A proposed map need not be an induced strong embedding at the time of its scheduled occurrence; applicability and successful response must be checked against the eventual construction.
 
 **Not yet formalized:** every finite abstract strong span can be relabelled as a Fin n→Fin m diagram, and construction of a countable strong chain satisfying every applicable scheduled request. The countable catalogue alone does not establish genericity.
+
+
+## Completeness of labelled strong diagrams (pending CI)
+
+Every induced strong embedding between finite 2-sparse graphs carried
+by arbitrary finite types has a presentation in the countable catalogue
+StrongDiagram (card A) (card B). The chosen equivalences Fin(card A)≃A
+and Fin(card B)≃B transport adjacency, 2-sparsity, and the strong
+embedding relation, and identify the labelled embedding with the
+original map. This closes the finite relabelling obligation, but
+does not construct a countable chain or realize fair requests.
