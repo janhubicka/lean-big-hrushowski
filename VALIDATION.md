@@ -508,3 +508,14 @@ The independent finite-age regression tests 76 labelled simple graphs of orders 
 
 
 **Certified checkpoint:** [PR CI run 38055132030](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38055132030) passed at [code commit cb99b36](https://github.com/janhubicka/lean-big-hrushowski/commit/cb99b366b2a073abd8ef3a130f668fbbd1e3f347). All 150 printed Lean declarations used only standard logical axioms; 20 Lean files were checked for proof placeholders. The new independent regression passed on 76 labelled graphs of order at most four and 5,776 tagged strong joint embeddings. The age's essential countability and its countable generic limit remain to be proved in Lean.
+
+
+## Countability of labelled strong diagrams (pending CI)
+
+FiniteCatalogue proves that, for each n, there are finitely many graph
+relations on Fin n and that for fixed n,m the class of 2-sparse
+strong embedding diagrams from Fin n to Fin m is finite. Their disjoint
+union over n,m is countable. A canonical encoding/partial decoder is
+chosen and every finite strong diagram appears at some numerical code.
+This supplies a countable catalogue, but it does not yet schedule
+requests against a growing chain or construct the generic limit.
