@@ -626,7 +626,7 @@ The [combined Lean CI and axiom audit](https://github.com/janhubicka/lean-big-hr
 **Adversarial carrier-coverage warning (10 October 2026).** `extendNatLabels` is injective and fresh, but its successive images need not cover ℕ. For the empty source and a singleton target it assigns label 1; every later genuinely new label exceeds the current maximum, so 0 remains uncovered. The existing `Predimension.StrongChain` requires `∀ x : ℕ, ∃ n, x ∈ stage n`, which cannot be deduced from these finite-stage theorems. To complete genericity one must use consecutive initial segments with unbounded stage sizes, or build the direct limit on a separately defined countable carrier and then reindex it. This is a gap in the countable construction, *not* in the finite strong-amalgamation proof.
 
 
-## Initial-segment carrier repair (awaiting Lean CI)
+## Initial-segment carrier repair (certified)
 
 `InitialSegmentLabels.lean` replaces the old maximum-plus-one labelling by
 an equivalence `B ≃ Fin (card B)` extending a prescribed equivalence
@@ -644,7 +644,7 @@ bijections (114,324 diagrams), including empty sources and targets.
 It is a diagnostic and cannot certify the unrestricted Lean theorem.
 
 
-## Finite local response for fair strong diagrams (pending integrated CI)
+## Finite local response for fair strong diagrams (certified)
 
 `FiniteCatalogue.exists_finite_strong_response` instantiates the
 already-certified arbitrary finite strong free-amalgamation theorem with
@@ -657,4 +657,52 @@ intersect only over that source.
 This discharges the **local finite response existence** obligation.
 It does not yet give a coherent sequence of Nat-labelled finite stages,
 a graph on their union, or the fair-response property in that union.
-The Lean build and axiom audit of this integration are pending.
+The 173-declaration [successful Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38078587574) verifies this theorem; the full coherent countable construction remains open.
+
+
+## Growth by a fresh strong vertex (pending Lean CI)
+
+`GraphOn.onePointGraph_sparse` shows that the graph on one isolated
+vertex is 2-sparse. The theorem
+`FiniteSpan.exists_fresh_strong_extension` freely amalgamates this
+singleton with any finite two-sparse graph over the empty strong base.
+It yields a finite two-sparse extension in which the old graph is an
+induced **strong** subgraph and there exists a vertex outside its image.
+This provides an explicit strict-growth input for the countable
+construction, even if an applicable scheduled request adds no vertices.
+
+The theorem relies on the verified tagged amalgamation's
+no-unintended-identifications conclusion. It does not itself
+realize scheduled requests, construct a chain or a direct limit.
+
+## Direct-limit graph of coherent finite stages (pending Lean CI)
+
+`CoherentNatGraphStages` packages finite supports on ℕ, a finite-edge
+stage graph, one-step support inclusion, exact old-old adjacency and
+nonadjacency agreement, and **explicit coverage of all Nat vertices**.
+The theorem `CoherentNatGraphStages.limitGraph_induced` constructs
+the graph with adjacency `∃ n, (graph n).adj x y` and proves that its
+restriction to any finite stage is exactly that stage's graph.
+`agrees_of_le` and `edge_mono` extend the successor invariants to
+arbitrary later stages.
+
+The construction is **conditional on coherent stage data**. A coherent
+strong, growing, fair-response chain is still to be built; this
+module does not infer it from finite amortization or genericity.
+
+## Finite induced adjacency transfer (pending Lean CI)
+
+`GraphOn.edgesWithin_eq_of_agreeOn`,
+`GraphOn.predim_eq_of_agreeOn`, and
+`GraphOn.isStrong_iff_of_agreeOn` compare two arbitrary ambient
+graphs on one vertex type that have the same **induced** graph
+on a prescribed finite set. They prove equality of unordered finite
+edge sets, predimensions, and relative strongness of an included
+finite subset. No assumption is made about graph edges outside the
+larger finite set.
+
+This is needed to transfer local strong successor steps from a
+coherent stage graph to the direct-limit graph. It does not construct
+the coherent stages. CI verification of this module remains pending.
+
+**Combined integration:** The growth and graph-union source heads passed independently in GitHub Actions runs [38078931390](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38078931390) and [38079104902](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38079104902), auditing 174 and 176 declarations respectively. The finite induced-transfer module and full consolidated build require a fresh integrated CI result. No countable stage system has yet been constructed.
