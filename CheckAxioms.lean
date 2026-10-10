@@ -210,3 +210,8 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.extendInitialLabels_old
 #print axioms BigHrushovski.FiniteSpan.extendInitialLabels_injective
 #print axioms BigHrushovski.FiniteSpan.extendInitialLabels_image
+
+#print axioms BigHrushovski.CoherentNatGraphStages.stage_mono
+#print axioms BigHrushovski.CoherentNatGraphStages.agrees_of_le
+#print axioms BigHrushovski.CoherentNatGraphStages.edge_mono
+#print axioms BigHrushovski.CoherentNatGraphStages.limitGraph_induced
