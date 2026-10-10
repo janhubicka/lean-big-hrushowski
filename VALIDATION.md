@@ -927,3 +927,21 @@ carriers and reuses these exact instances in the composite proof.
 This is a Lean representation issue, not a graph counterexample.
 The corrected branch remains **pending an integrated Lean build and
 axiom audit**; do not promote its theorem to green until CI passes.
+
+
+
+## Strong universality from sparse genericity (pending Lean CI)
+
+`FiniteCatalogue.empty_globallyStrong_of_sparse` proves that the
+empty subgraph is globally self-sufficient when every finite
+induced subgraph has nonnegative predimension. Consequently
+`exists_globallyStrong_copy` instantiates the already-verified
+arbitrary finite strong extension theorem over the empty graph:
+every finite two-sparse graph then has a globally strong induced
+copy in the ambient structure.
+
+This is a *conditional universality implication* requiring both
+ambient two-sparsity and the labelled strong extension property.
+It is a step towards identifying the recursively constructed graph
+with the strong Fraisse limit, but does not yet prove homogeneity
+or uniqueness. The source awaits CI and axiom verification.
