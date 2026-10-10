@@ -731,3 +731,26 @@ with growing cardinality but persistent holes.
 **Boundary.** Constructing the stages, proving each finite strong
 extension exists, and verifying fair responses remain separate.
 These are adversarial mathematical perspectives, not external reviewers.
+
+
+## Adversarial review: general old-label graph coherence
+
+**Injectivity.** Both old and new numerical labellings are assumed
+injective. Otherwise reflection of adjacency under transport can
+fail because two original vertices acquire one image.
+
+**Exact old-label agreement.** The equality `new(i(a)) = old(a)`
+is pointwise, not merely equality of the cardinalities or the
+labelled images. This prevents swapping old vertex labels.
+
+**Induced graph embedding.** The source/target graph assumption
+preserves and reflects edges, hence ensures that the transported
+graphs agree on old-old nonedges too.
+
+**No carrier growth assumption.** The result works for arbitrary
+injective Nat labellings. The separate initial-segment theorem
+provides gap-free carrier coverage in the intended construction.
+
+**Boundary.** This is an interface lemma; existence of a coherent
+fair responding countable sequence is not inferred. These are
+distinct hostile mathematical checks by the same assistant.
