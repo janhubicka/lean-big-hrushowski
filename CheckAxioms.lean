@@ -173,3 +173,9 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.rightAmalgamEmbedding_image_univ
 #print axioms BigHrushovski.FiniteSpan.amalgamEmbeddings_identify_only_base
 #print axioms BigHrushovski.FiniteSpan.exists_finite_strong_free_amalgam
+
+#print axioms BigHrushovski.GraphOn.predim_empty
+#print axioms BigHrushovski.GraphOn.twoSparse_substructure
+#print axioms BigHrushovski.GraphOn.empty_strong_of_twoSparse
+#print axioms BigHrushovski.GraphOn.twoSparse_empty
+#print axioms BigHrushovski.FiniteSpan.exists_strong_joint_embedding

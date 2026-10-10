@@ -491,3 +491,14 @@ The [145-declaration Lean build and standard-axiom audit](https://github.com/jan
 The independent `check_abstract_amalgam.py` regression will test all 5,993 input spans with graph orders at most three and includes the K5-over-K3 obstruction when the strong-base hypothesis is dropped. Its status is pending the integrated CI run.
 
 **Still open:** construction and genericity of the countable strong Fraïssé limit, the functional closure presentation, and the later Ramsey/Ellentuck results.
+
+
+## The hereditary and joint-embedding properties of C0 (pending CI)
+
+The finite graph class C0 is hereditary by its subset-wise definition.
+The empty vertex set has predimension zero and is strong in any
+2-sparse graph. Therefore the verified strong free-amalgamation
+construction over an empty base produces a joint strong embedding
+of any two finite 2-sparse graphs. This verifies the elementary
+finite age properties, not the existence of the countable strong
+Fraisse limit or its extension property.
