@@ -476,3 +476,18 @@ The hostile checks are separate questions assessed by one assistant, not indepen
 **Genericity reviewer.** A fair request schedule by itself does not produce any graph, prove that every valid request is realizable at its scheduled stage, or construct the Fraïssé limit.
 
 **Lean reviewer.** The [153-declaration CI audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38055955615) passed with only standard axioms, no placeholders, and all previous regressions. These are distinct hostile review perspectives carried out by the same assistant; no external independent referee agents were available or represented as having participated.
+
+
+## Conditional genericity criterion — adversarial scope audit
+
+**Fairness.** For every concrete encoded request and every threshold, the pairing-based enumeration yields a later stage carrying that same request. This is more than a one-time occurrence and is necessary because a source embedding may become available only after the requested base has appeared.
+
+**Applicability.** A scheduled request is acted on only when its source map is injective, induced and strong inside the current stage. Arbitrary potential maps are intentionally allowed in the schedule; invalid requests impose no obligation.
+
+**Global-to-local transfer.** For a globally strong finite source, cover its image by a finite stage; choose a later scheduled occurrence; global strongness restricts to that later stage. No implicit global extension assumption is invoked.
+
+**Local-to-global transfer.** A response embeds the target strongly into the next finite stage. `StrongChain.stage_global` makes that stage globally strong, so transitivity yields the required globally strong image of the target.
+
+**Genericity boundary.** The theorem does not construct the stages, realize the scheduled requests, prove that all finite diagrams are labelled by `Fin n`, or derive full Fraïssé homogeneity. Those are explicit, separate proof obligations.
+
+**Machine check.** The exact theorem was included in the [154-declaration audited run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38056485693), with standard axioms and no admitted proofs. These hostile reviews are separate mathematical checks carried out by one assistant, not independent external human referees.
