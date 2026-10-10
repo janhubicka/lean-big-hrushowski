@@ -706,3 +706,31 @@ coherent stage graph to the direct-limit graph. It does not construct
 the coherent stages. CI verification of this module remains pending.
 
 **Combined integration:** The growth and graph-union source heads passed independently in GitHub Actions runs [38078931390](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38078931390) and [38079104902](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38079104902), auditing 174 and 176 declarations respectively. The finite induced-transfer module and full consolidated build require a fresh integrated CI result. No countable stage system has yet been constructed.
+
+
+## Conditional strong countable limit (pending Lean CI)
+
+`CoherentNatGraphStages.asStrongChain` assumes the finite support of
+each stage is strong in the next stage graph. The induced-subgraph
+agreement of the graph union, plus the finite strongness-transfer
+lemma, yield a `Predimension.StrongChain` in the countable limit.
+Consequently `stage_global_of_strong_steps` proves all finite
+stages globally strong and `finiteStrongCover_of_strong_steps`
+supplies a finite strong cover. If every stage is two-sparse,
+`limit_predim_nonneg_of_sparse_stages` proves the union's
+predimension is nonnegative on every finite set.
+
+The coherent growing fair-response stage system still has to be
+constructed. This is *not* a proof of the existence of the generic
+countable Hrushovski graph without that hypothesis.
+
+
+## Gap-free increasing stages cover ℕ (pending Lean CI)
+
+The `NatStageCoverage` module proves that every strictly increasing
+sequence of finite stage sizes satisfies `n ≤ size n`. Consequently
+the consecutive domains `Finset.range (size n)` are increasing and
+their union is all of ℕ. This gives the carrier-coverage implication
+needed to instantiate `CoherentNatGraphStages.covers` from the
+strict-growth theorem and initial-segment relabelling. No continuous
+or global stage existence is asserted by these arithmetic lemmas.
