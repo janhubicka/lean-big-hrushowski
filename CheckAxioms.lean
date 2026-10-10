@@ -149,3 +149,9 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.tagged_left_base_strong
 #print axioms BigHrushovski.TaggedAmalgam.tagged_right_base_strong
 #print axioms BigHrushovski.TaggedAmalgam.tagged_strong_free_amalgam
+
+#print axioms BigHrushovski.FiniteSpan.imageEquiv
+#print axioms BigHrushovski.FiniteSpan.splitEquiv_inl
+#print axioms BigHrushovski.FiniteSpan.splitEquiv_inr
+#print axioms BigHrushovski.FiniteSpan.normalGraph_base
+#print axioms BigHrushovski.FiniteSpan.normalGraphs_agree_base

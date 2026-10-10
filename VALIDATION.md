@@ -422,3 +422,15 @@ The [passing integrated CI run](https://github.com/janhubicka/lean-big-hrushowsk
 The core theorem `TaggedAmalgam.tagged_strong_free_amalgam` says that for finite types P,L,R and graph predicates G on P⊕L and H on P⊕R agreeing on P, if both inputs are 2-sparse and the common base is strong in both, then the tagged amalgam P⊕(L⊕R) is 2-sparse and both canonical induced embeddings are strong. The theorem also asserts that both canonical images remain 2-sparse.
 
 The earlier independent finite test `check_tagged_amalgams.py` checked 5,613 tagged input diagrams, including 2,875 compatible diagrams and 2,729 configurations satisfying the strong-amalgamation hypotheses. **Outstanding:** normalization of arbitrary abstract base embeddings to this shared-base form, and the countable strong Fraïssé extension construction. These statements have not yet been promoted to green.
+
+
+## Arbitrary base embedding normalization (pending CI)
+
+SpanNormalization constructs an equivalence P+Tail(i) ≃ A from an
+injective embedding i : P → A, without identifying vertices outside
+the image of i. Pulling back a graph along this equivalence reproduces
+the original adjacency relation on P. Two compatible injections from
+the same P into two graphs therefore yield the AgreeBase condition of
+TaggedAmalgam. The compatibility/transport of finite strongness and
+2-sparsity is the next proof obligation. Generic Fraisse construction
+and functional closure expansion remain open.
