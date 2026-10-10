@@ -36,13 +36,19 @@ theorem onePointGraph_sparse :
   classical
   intro s _
   have hEdges : onePointGraph.edgesWithin s = ∅ := by
-    apply Finset.eq_empty_iff_forall_not_mem.mpr
-    intro e he
-    have heEdge : onePointGraph.IsEdge e :=
-      (onePointGraph.mem_edgesWithin_iff s e).mp he |>.2
-    obtain ⟨x, _, y, _, hxy⟩ := heEdge.2
-    exact hxy
-  simp [predim, hEdges]
+    ext e
+    constructor
+    · intro he
+      have heEdge : onePointGraph.IsEdge e :=
+        ((onePointGraph.mem_edgesWithin_iff s e).mp he).2
+      obtain ⟨x, _, y, _, hxy⟩ := heEdge.2
+      exact False.elim hxy
+    · simp
+  change 0 ≤ 2 * (s.card : ℤ) -
+    ((onePointGraph.edgesWithin s).card : ℤ)
+  rw [hEdges]
+  simp only [Finset.card_empty, Nat.cast_zero, sub_zero]
+  omega
 
 end GraphOn
 
