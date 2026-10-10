@@ -99,7 +99,7 @@ theorem arbitrary_finite_strong_extension
       simpa using hMap (eA.symm a)
     change k (eB.symm (i a)) = f a
     rw [← hMapEq]
-    simpa using hkBase (eA.symm a)
+    simpa [req] using hkBase (eA.symm a)
   have hImageTarget :
       (Finset.univ : Finset B).image g =
         (Finset.univ : Finset (Fin (Fintype.card B))).image k := by
