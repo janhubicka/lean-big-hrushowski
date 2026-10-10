@@ -519,3 +519,33 @@ The hostile checks are separate questions assessed by one assistant, not indepen
 **Boundary.** The theorem assumes `HasStrongExtensionProperty M`. This property is derivable from a fair responding strong chain by PR #17, but existence of such a chain has not been proved. Accordingly this is an implication, not a completed construction of the countable strong Fraïssé limit.
 
 **Proof integrity.** The exact statement was compiled in [run 38062233519](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38062233519), with the standard axiom audit and placeholder check. These reviews are separate adversarial checks performed by one assistant, not independently spawned referees.
+
+
+## Fresh labels for finite successor stages — adversarial audit
+
+**Old-map preservation.** Every vertex in the image of f receives exactly the old label of its unique preimage. The preimage is unique because f is injective.
+
+**Freshness.** Every vertex outside the image of f receives a label strictly greater than the finite supremum of all old labels, avoiding accidental old/new identifications even if the old labels have gaps.
+
+**Distinct new vertices.** Different new vertices have different Fin-card encodings; adding the same offset preserves distinctness. Thus the new labelling is injective provided the old labelling is injective.
+
+**Empty base.** If A is empty, the supremum is zero and all B vertices receive distinct positive labels. No nonemptiness assumption is silently needed.
+
+**Scope.** This is a carrier embedding theorem, not a construction of the adjacency relation on the new stage, nor a guarantee of realizing any scheduled graph extension.
+
+**Kernel and diagnostic checks.** The [160-declaration run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38062409525) passed with standard axioms. The independent finite Python regression tests preservation and freshness; it does not replace the Lean proof. These are separate adversarial review perspectives by the same assistant, not independent external referees.
+
+
+## Adversarial checks: finite Nat graph transport and coverage
+
+**Adjacency and nonedges.** `transportedToNat` reflects adjacency on the labelled image because labels are injective. Thus induced nonedges are preserved, not merely edges. Dropping injectivity would invalidate the claim.
+
+**Predimension.** Both finite vertex cardinalities and unordered induced-edge counts transfer along the injective induced map, and hence finite strongness and 2-sparsity are preserved.
+
+**Old-vertex coherence.** `transportedToNat_agree_on_old` establishes old-old adjacency agreement under one finite stage extension. It does not construct a coherent infinite union or establish fair local responses.
+
+**Coverage obstruction.** When A is empty and B is a singleton, `extendNatLabels` assigns the B vertex label 1 (empty old supremum 0, fresh offset 1, ordinal value 0). Every later fresh vertex lies above all existing labels. Thus label 0 can never enter an iterated chain of these extensions, whereas `Predimension.StrongChain` on ℕ requires every natural number to enter some stage. Any gaps created later are similarly permanent.
+
+**Genericity negative control.** Leaving unused natural numbers isolated does not repair the extension property. An unused isolated vertex is a globally strong singleton base but has no edge to any vertex, so a legitimate one-edge strong extension of that singleton cannot be realized. Fix by constructing stages as consecutive initial segments of unbounded size, or by transporting the direct limit of genuinely used vertices to ℕ after its construction.
+
+**Referee provenance.** These are distinct adversarial verification perspectives assessed by one assistant; no independently spawned external referee panel was available. Lean audits certify the finite statements, not the limit construction.
