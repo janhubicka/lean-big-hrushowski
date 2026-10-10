@@ -243,3 +243,10 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.image_fin_val_univ
 #print axioms BigHrushovski.GraphOn.twoSparse_pullback_fin_iff
 #print axioms BigHrushovski.GraphOn.strong_pullback_fin_iff
+
+
+#print axioms BigHrushovski.FiniteCatalogue.finiteStageSequence_step
+#print axioms BigHrushovski.FiniteCatalogue.coherentStagesOfSuccessors_strong
+#print axioms BigHrushovski.FiniteCatalogue.coherentStagesOfSuccessors_sparse
+#print axioms BigHrushovski.FiniteCatalogue.strongExtensionProperty_of_finiteSuccessors
+#print axioms BigHrushovski.FiniteCatalogue.twoSparse_of_finiteSuccessors
