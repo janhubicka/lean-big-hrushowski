@@ -226,3 +226,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CoherentNatGraphStages.stage_global_of_strong_steps
 #print axioms BigHrushovski.CoherentNatGraphStages.finiteStrongCover_of_strong_steps
 #print axioms BigHrushovski.CoherentNatGraphStages.limit_predim_nonneg_of_sparse_stages
+
+#print axioms BigHrushovski.FiniteSpan.stage_index_le_size
+#print axioms BigHrushovski.FiniteSpan.initialSegment_stage_step
+#print axioms BigHrushovski.FiniteSpan.initialSegment_stages_cover
