@@ -20,8 +20,7 @@ variable {V : Type*} [DecidableEq V] (G : GraphOn V)
 /-- The empty graph has predimension zero in any ambient graph. -/
 theorem predim_empty : G.predim (∅ : Finset V) = 0 := by
   classical
-  unfold predim edgesWithin
-  simp
+  simp [predim, edgesWithin, IsEdge]
 
 /-- Every induced subgraph of a 2-sparse graph is 2-sparse. -/
 theorem twoSparse_substructure {a b : Finset V}
@@ -43,7 +42,7 @@ theorem empty_strong_of_twoSparse {b : Finset V}
 /-- Every induced graph on the empty vertex set is 2-sparse. -/
 theorem twoSparse_empty : G.IsTwoSparse ∅ := by
   intro s hs
-  have h : s = ∅ := Finset.eq_empty_of_subset_empty hs
+  have h : s = ∅ := Finset.subset_empty.mp hs
   subst s
   rw [G.predim_empty]
 
@@ -55,8 +54,8 @@ namespace FiniteSpan
 the empty base. -/
 abbrev JointCarrier (A B : Type*) :=
   TaggedAmalgam.Carrier PEmpty
-    (Tail (PEmpty.elim : PEmpty → A))
-    (Tail (PEmpty.elim : PEmpty → B))
+    (Tail (fun e : PEmpty => (PEmpty.elim e : A)))
+    (Tail (fun e : PEmpty => (PEmpty.elim e : B)))
 
 /-- The finite strong class C0 has joint embedding, with two induced
 strong embeddings into a finite 2-sparse graph. The result follows
@@ -90,20 +89,26 @@ theorem exists_strong_joint_embedding
       ((Finset.univ : Finset PEmpty).image i)
       (Finset.univ : Finset A) := by
     have heq : ((Finset.univ : Finset PEmpty).image i) = ∅ := by
-      apply Finset.eq_empty_iff_forall_not_mem.mpr
-      intro x hx
-      obtain ⟨p, _, _⟩ := Finset.mem_image.mp hx
-      exact PEmpty.elim p
+      ext x
+      constructor
+      · intro hx
+        obtain ⟨p, _, _⟩ := Finset.mem_image.mp hx
+        exact PEmpty.elim p
+      · intro hx
+        simpa using hx
     rw [heq]
     exact G.empty_strong_of_twoSparse hSparseG
   have hgj : H.toPredimension.IsStrong
       ((Finset.univ : Finset PEmpty).image j)
       (Finset.univ : Finset B) := by
     have heq : ((Finset.univ : Finset PEmpty).image j) = ∅ := by
-      apply Finset.eq_empty_iff_forall_not_mem.mpr
-      intro x hx
-      obtain ⟨p, _, _⟩ := Finset.mem_image.mp hx
-      exact PEmpty.elim p
+      ext x
+      constructor
+      · intro hx
+        obtain ⟨p, _, _⟩ := Finset.mem_image.mp hx
+        exact PEmpty.elim p
+      · intro hx
+        simpa using hx
     rw [heq]
     exact H.empty_strong_of_twoSparse hSparseH
   obtain ⟨K, f, g, hf, hg, hAdjF, hAdjG, _, _, hSparseK,
