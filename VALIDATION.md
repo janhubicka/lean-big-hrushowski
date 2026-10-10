@@ -918,3 +918,18 @@ not presently certified. Further formal obligations would include
 the usual homogeneity/uniqueness identification with M0, equality
 with algebraic closure, the functional presentations and Ramsey
 and Ellentuck arguments.
+
+
+### Independent exhaustive growing-response regression
+
+The new `scripts/check_growing_nat_response.py` independently
+enumerates **2,337** compatible finite strong diagrams whose old
+and target graphs each have at most three vertices and whose common
+source has at most two vertices. It constructs the free amalgam and
+adjoins an isolated vertex, then directly checks induced adjacency
+*and nonadjacency*, exact base labels, strict growth with consecutive
+Nat labels, two-sparsity, and strongness of both factor images.
+The negative control freely joins two K5 graphs over a nonstrong K3,
+yielding seven vertices, seventeen edges, and predimension -3.
+The computation passed locally; integrated GitHub CI is still pending.
+It does not replace a kernel-checked general theorem.
