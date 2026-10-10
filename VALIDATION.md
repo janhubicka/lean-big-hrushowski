@@ -891,3 +891,30 @@ The existence of a full coherent fair chain still needs a separate
 recursive choice of these finite successors (and a growth-only case
 for inapplicable/empty scheduled requests). The new one-step theorem
 remains uncertified until its Lean build and axiom audit pass.
+
+
+
+## Construction of the concrete countable strong generic graph (pending Lean CI)
+
+`GenericFraisseConstruction.lean` combines the proposed finite growing
+Nat response theorem, the universally applicable trivial request and
+the abstract recursive stage-choice theorem.
+
+At stage k it answers the actual fair-scheduled extension if that
+request is applicable. If there is no request or it is inapplicable,
+it answers the trivial empty diagram to force growth. Every successor
+retains the full induced old-old graph, is a finite strong extension
+and enlarges its consecutive Nat domain. Ordinary recursion therefore
+produces a covering coherent strong chain. The union is two-sparse,
+and the repeated fair requests imply the labelled strong extension
+property.
+
+The proposed endpoints are
+`genericTwoSparseGraph_sparse` and
+`genericTwoSparseGraph_strongExtension`. They would close the
+countable genericity existence gap **if and only if** their full
+Lean build and standard-axiom/placeholder audit succeed. They are
+not presently certified. Further formal obligations would include
+the usual homogeneity/uniqueness identification with M0, equality
+with algebraic closure, the functional presentations and Ramsey
+and Ellentuck arguments.
