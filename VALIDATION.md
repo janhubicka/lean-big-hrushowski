@@ -642,3 +642,19 @@ The independent finite-model regression checks old sizes at most five,
 new sizes at most six, all injections and all old initial-segment
 bijections (114,324 diagrams), including empty sources and targets.
 It is a diagnostic and cannot certify the unrestricted Lean theorem.
+
+
+## Direct-limit graph of coherent finite stages (pending Lean CI)
+
+`CoherentNatGraphStages` packages finite supports on ℕ, a finite-edge
+stage graph, one-step support inclusion, exact old-old adjacency and
+nonadjacency agreement, and **explicit coverage of all Nat vertices**.
+The theorem `CoherentNatGraphStages.limitGraph_induced` constructs
+the graph with adjacency `∃ n, (graph n).adj x y` and proves that its
+restriction to any finite stage is exactly that stage's graph.
+`agrees_of_le` and `edge_mono` extend the successor invariants to
+arbitrary later stages.
+
+The construction is **conditional on coherent stage data**. A coherent
+strong, growing, fair-response chain is still to be built; this
+module does not infer it from finite amortization or genericity.
