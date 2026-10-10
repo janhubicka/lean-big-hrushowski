@@ -605,3 +605,29 @@ finite carrier nor constructs the countable chain.
 mathematical perspectives in the current review, not by externally
 spawned human referees. The Lean CI and axiom audit are the machine
 verification of the exact statement.
+
+
+## Adversarial review: finite induced adjacency transfer
+
+**Edge enumeration.** A two-element edge is characterized by an unordered
+finite set together with witnessed adjacent endpoints. Exact agreement
+of adjacency on the finite domain transfers both inclusion and the
+witness, in both directions.
+
+**Predimension.** The vertex cardinality is unchanged, and the two
+finite induced edge sets coincide. Thus
+`2 * card(vertices) - card(edges)` is identical in both graphs.
+
+**Intermediate sets.** Relative strongness requires comparing
+predimension on every intermediate finite `C` with `A ⊆ C ⊆ B`.
+The adjacency agreement is restricted separately to each such `C`,
+not only to the two endpoints `A` and `B`.
+
+**Negative control.** If graph predicates agree only on edges of A but
+differ on edges involving B minus A, strongness need not transfer.
+The theorem explicitly assumes induced agreement throughout B.
+
+**Boundary.** The result is a graph-interface lemma. It does not prove
+existence of an increasing finite chain, compatibility of its labels,
+or the Fraïssé extension property. These are hostile proof checks by
+the same assistant, not external referees.
