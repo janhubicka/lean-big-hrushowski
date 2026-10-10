@@ -723,3 +723,14 @@ predimension is nonnegative on every finite set.
 The coherent growing fair-response stage system still has to be
 constructed. This is *not* a proof of the existence of the generic
 countable Hrushovski graph without that hypothesis.
+
+
+## Gap-free increasing stages cover ℕ (pending Lean CI)
+
+The `NatStageCoverage` module proves that every strictly increasing
+sequence of finite stage sizes satisfies `n ≤ size n`. Consequently
+the consecutive domains `Finset.range (size n)` are increasing and
+their union is all of ℕ. This gives the carrier-coverage implication
+needed to instantiate `CoherentNatGraphStages.covers` from the
+strict-growth theorem and initial-segment relabelling. No continuous
+or global stage existence is asserted by these arithmetic lemmas.
