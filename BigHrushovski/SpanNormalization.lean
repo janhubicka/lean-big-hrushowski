@@ -476,7 +476,7 @@ theorem exists_finite_strong_free_amalgam
     exact h.2.1
   · have hImage := rightAmalgamEmbedding_image_univ i j hj
     rw [hImage]
-    exact h.2.2.1
+    exact h.2.2
 
 end FiniteSpan
 end BigHrushovski
