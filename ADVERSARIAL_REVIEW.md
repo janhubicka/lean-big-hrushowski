@@ -402,3 +402,22 @@ embeddings still requires matching the canonical images and common base.
 
 These are hostile questions independently selected by one assistant,
 not reviews by independent human referees.
+
+
+## Tagged strong free amalgamation — adversarial audit
+
+**1. Shared-base identity.** The left and right images have intersection equal to the image of P, not merely a superset thereof. The proof uses the exact overlap lemma from TaggedAmalgam and does not identify tail vertices across factors.
+
+**2. Strongness direction.** To establish leftDomain strong in the join, the base must be strong in the right input; conversely the right factor needs strongness in the left input. Both source assumptions are transported by the proved finite induced-embedding equivalence, and both are used in the final theorem.
+
+**3. Predimension comparison.** Edge sets and predimension on each tagged factor agree with those in its source graph, including induced nonedges. No claim that an arbitrary edge-preserving but non-induced map preserves strongness is made.
+
+**4. Every induced subset.** The conclusion uses GraphOn.IsTwoSparse, which quantifies over all finite subsets of the tagged carrier, not just its entire vertex set. Modular predimension and strong embedding provide that conclusion.
+
+**5. Necessity controls.** Without source agreement on P, the induced graph embeddings can fail. Without a strong common base, gluing two K5 graphs over K3 gives a graph of predimension -3. Both obstructions are retained as independent computational regressions.
+
+**6. Finiteness and universes.** The theorem assumes finite P,L,R to form the canonical finite domains; the graph adjacency itself is not required to be a finite global edge set. Its output is an actual graph on P⊕(L⊕R).
+
+**7. Fraïssé interface.** The theorem is a complete strong-amalgamation statement for finite *tagged normal-form diagrams*. It is not yet a formal proof that every abstract finite embedding span reduces to this normal form, nor a construction of a countable generic limit or its extension property.
+
+**8. Lean certificate.** The exact theorem statement and all its dependencies compiled in [CI run 38019222909](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38019222909). The audit found only standard logical axioms and no proof placeholders. These are adversarial perspectives carried out by one assistant, not separately spawned external human or model referees.

@@ -137,3 +137,15 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.finite_image_preimage_within
 #print axioms BigHrushovski.GraphOn.strong_image_iff
 #print axioms BigHrushovski.GraphOn.twoSparse_image_iff
+
+#print axioms BigHrushovski.TaggedAmalgam.domains_inter_eq_base
+#print axioms BigHrushovski.TaggedAmalgam.leftBase_image_eq_base
+#print axioms BigHrushovski.TaggedAmalgam.rightBase_image_eq_base
+#print axioms BigHrushovski.TaggedAmalgam.domains_union_univ
+#print axioms BigHrushovski.TaggedAmalgam.tagged_freeGraph_noCross
+
+#print axioms BigHrushovski.TaggedAmalgam.tagged_left_sparse
+#print axioms BigHrushovski.TaggedAmalgam.tagged_right_sparse
+#print axioms BigHrushovski.TaggedAmalgam.tagged_left_base_strong
+#print axioms BigHrushovski.TaggedAmalgam.tagged_right_base_strong
+#print axioms BigHrushovski.TaggedAmalgam.tagged_strong_free_amalgam
