@@ -14,3 +14,4 @@ import BigHrushovski.FreeJoinConstruction
 import BigHrushovski.TaggedAmalgam
 import BigHrushovski.InducedEmbedding
 import BigHrushovski.TaggedStrongAmalgam
+import BigHrushovski.SpanNormalization

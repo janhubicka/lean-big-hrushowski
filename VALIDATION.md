@@ -422,3 +422,72 @@ The [passing integrated CI run](https://github.com/janhubicka/lean-big-hrushowsk
 The core theorem `TaggedAmalgam.tagged_strong_free_amalgam` says that for finite types P,L,R and graph predicates G on P⊕L and H on P⊕R agreeing on P, if both inputs are 2-sparse and the common base is strong in both, then the tagged amalgam P⊕(L⊕R) is 2-sparse and both canonical induced embeddings are strong. The theorem also asserts that both canonical images remain 2-sparse.
 
 The earlier independent finite test `check_tagged_amalgams.py` checked 5,613 tagged input diagrams, including 2,875 compatible diagrams and 2,729 configurations satisfying the strong-amalgamation hypotheses. **Outstanding:** normalization of arbitrary abstract base embeddings to this shared-base form, and the countable strong Fraïssé extension construction. These statements have not yet been promoted to green.
+
+
+## Arbitrary base embedding normalization (verified)
+
+SpanNormalization constructs an equivalence P+Tail(i) ≃ A from an
+injective embedding i : P → A, without identifying vertices outside
+the image of i. Pulling back a graph along this equivalence reproduces
+the original adjacency relation on P. Two compatible injections from
+the same P into two graphs therefore yield the AgreeBase condition of
+TaggedAmalgam. The compatibility/transport of finite strongness and
+2-sparsity is the next proof obligation. Generic Fraisse construction
+and functional closure expansion remain open.
+
+
+## Transfer of sparse finite structures to their normal forms (verified)
+
+Using a finite induced-equivalence of carriers, normalGraph_twoSparse_iff
+and normalGraph_strong_base_iff identify 2-sparsity of the entire finite
+graph and self-sufficiency of the base with their normal-form versions.
+The proof depends on the previously audited induced-embedding invariance
+and explicitly matches the image of the common base as well as the whole
+finite vertex set. This allows the verified tagged strong-amalgamation
+theorem to be applied to arbitrary finite strong embedding spans.
+
+
+## Strong free amalgamation for arbitrary finite base embeddings (verified)
+
+FiniteSpan.strong_amalgam_of_embeddings takes two finite 2-sparse
+graph structures with a common abstract base P embedded injectively
+and inducedly into both, and assumes the images of P are strong.
+Using the verified normal-form equivalences, it constructs a tagged
+free graph that is 2-sparse and whose canonical induced factor images
+are strong. The original maps of P are respected by construction.
+Once audited, this completes the finite strong-amalgamation calculation
+for arbitrary spans. A countable strong Fraisse construction and the
+functional-closure language are still not formalized.
+
+
+## Explicit embeddings of the original graph structures (verified)
+
+The canonical maps from A and B into the tagged carrier are the
+inverses of the normalization equivalences followed by the two tag
+inclusions. Both are injective, agree on the prescribed base maps,
+and preserve and reflect the original adjacency relations.
+Combining these maps with the verified abstract strong-amalgamation
+theorem will give an explicit existential strong-amalgamation witness.
+
+
+## Explicit finite strong free amalgamation (verified)
+
+FiniteSpan.exists_finite_strong_free_amalgam constructs a graph K and
+injective induced maps f:A→K and g:B→K for arbitrary finite 2-sparse
+graph structures with compatible strong embeddings of an abstract
+common base P. The maps commute over P; moreover, f(a)=g(b) occurs
+only for one common base point. The two images are strong and K is
+2-sparse. The proof factors through the normal-form equivalences
+and the tagged strong free-amalgamation theorem. This is a direct
+finite strong-amalgamation witness, not a claim about the generic limit.
+
+
+## Certification of arbitrary finite strong free amalgamation
+
+The [145-declaration Lean build and standard-axiom audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38020714173) passed at [source commit 2f6e5f1](https://github.com/janhubicka/lean-big-hrushowski/commit/2f6e5f1aed115c96f41cbf1f6f7d58654e8d24ba). Nineteen Lean files were checked for proof placeholders and none were found.
+
+`FiniteSpan.exists_finite_strong_free_amalgam` gives, for arbitrary finite 2-sparse graph structures G and H and compatible strong induced embeddings of an abstract base P, an explicit tagged finite graph K and injective induced maps f:A→K and g:B→K. They agree over P; equality of an f-image and a g-image occurs only over the same point of P. The entire K is 2-sparse, and both image substructures are strong. This is the finite strong free-amalgamation theorem for C0 in the binary graph language.
+
+The independent `check_abstract_amalgam.py` regression will test all 5,993 input spans with graph orders at most three and includes the K5-over-K3 obstruction when the strong-base hypothesis is dropped. Its status is pending the integrated CI run.
+
+**Still open:** construction and genericity of the countable strong Fraïssé limit, the functional closure presentation, and the later Ramsey/Ellentuck results.

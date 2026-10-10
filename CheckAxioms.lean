@@ -149,3 +149,27 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.tagged_left_base_strong
 #print axioms BigHrushovski.TaggedAmalgam.tagged_right_base_strong
 #print axioms BigHrushovski.TaggedAmalgam.tagged_strong_free_amalgam
+
+#print axioms BigHrushovski.FiniteSpan.imageEquiv
+#print axioms BigHrushovski.FiniteSpan.splitEquiv_inl
+#print axioms BigHrushovski.FiniteSpan.splitEquiv_inr
+#print axioms BigHrushovski.FiniteSpan.normalGraph_base
+#print axioms BigHrushovski.FiniteSpan.normalGraphs_agree_base
+
+#print axioms BigHrushovski.FiniteSpan.splitEquiv_image_univ
+#print axioms BigHrushovski.FiniteSpan.splitEquiv_base_image
+#print axioms BigHrushovski.FiniteSpan.normalGraph_twoSparse_iff
+#print axioms BigHrushovski.FiniteSpan.normalGraph_strong_base_iff
+
+#print axioms BigHrushovski.FiniteSpan.strong_amalgam_of_embeddings
+
+#print axioms BigHrushovski.FiniteSpan.leftAmalgamEmbedding_injective
+#print axioms BigHrushovski.FiniteSpan.rightAmalgamEmbedding_injective
+#print axioms BigHrushovski.FiniteSpan.amalgamEmbeddings_agree_base
+#print axioms BigHrushovski.FiniteSpan.leftAmalgamEmbedding_induced
+#print axioms BigHrushovski.FiniteSpan.rightAmalgamEmbedding_induced
+
+#print axioms BigHrushovski.FiniteSpan.leftAmalgamEmbedding_image_univ
+#print axioms BigHrushovski.FiniteSpan.rightAmalgamEmbedding_image_univ
+#print axioms BigHrushovski.FiniteSpan.amalgamEmbeddings_identify_only_base
+#print axioms BigHrushovski.FiniteSpan.exists_finite_strong_free_amalgam

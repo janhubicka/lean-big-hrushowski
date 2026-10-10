@@ -79,3 +79,5 @@ jobs:
         run: python3 scripts/check_tagged_amalgams.py
       - name: Check induced embedding predimension and strongness
         run: python3 scripts/check_induced_embedding.py
+      - name: Check arbitrary finite strong amalgamation spans
+        run: python3 scripts/check_abstract_amalgam.py
