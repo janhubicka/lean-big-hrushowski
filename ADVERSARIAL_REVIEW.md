@@ -684,3 +684,31 @@ the same assistant, not external referees.
 ## Integrated adversarial cross-check
 
 The strict-growth theorem prevents a fair response with no new vertices from stalling the carrier. The exact old-old nonedge invariant prevents the union graph from changing an induced finite stage. The localized predimension/strongness transport bridges finite stages to the union. These are three logically different obligations. They do not, even together, imply the existence of a coherent fair response schedule. The present review uses independent mathematical failure modes and Lean kernel checks, not externally spawned referee agents.
+
+
+## Adversarial review: strongness in the countable graph union
+
+**Change of graph.** A finite strong inclusion A≤B is initially
+computed in the successor *stage graph*. By exact induced agreement
+on B, the localized predimension-transfer theorem moves that same
+inequality to the limit graph. Strongness may not be transported
+without reflection of nonedges.
+
+**Global strongness.** The StrongChain theorem proves that each finite
+stage is strong against arbitrary finite subsets of the union, by
+embedding each test set in a later finite stage. No global limit
+strongness is assumed before invoking the theorem.
+
+**Two-sparsity.** Every finite vertex set is contained in a finite
+stage. Its induced edge set in the limit equals that in the stage;
+nonnegative predimension follows there. This conclusion quantifies
+over finite subsets of ℕ; it does not invoke nonexistent Finset.univ
+for an infinite vertex type.
+
+**Missing existence.** The coherent system, stage growth, and the
+local responses must still be recursively assembled. Neither
+HasStrongSteps nor HasTwoSparseStages follows from coherence alone.
+
+**Referee provenance.** These checks isolate different failure modes
+but were carried out within one assistant review; no external
+independent referee panel was spawned.
