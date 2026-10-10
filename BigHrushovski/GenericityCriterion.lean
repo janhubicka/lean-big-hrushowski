@@ -72,7 +72,7 @@ def RespondsGlobally (req : ExtensionRequestCatalogue) : Prop :=
 over its existing strong image in the ambient graph. -/
 def HasStrongExtensionProperty : Prop :=
   ∀ req : ExtensionRequestCatalogue,
-    G.AppliesGlobally req → G.RespondsGlobally req
+    AppliesGlobally G req → RespondsGlobally G req
 
 /-- A fair construction that locally responds to scheduled strong
 requests has the full strong extension property in its union.
@@ -82,9 +82,9 @@ theorem strongExtensionProperty_of_fairResponses
     (chain : Predimension.StrongChain G.toPredimension)
     (hRespond : ∀ stage : ℕ, ∀ req : ExtensionRequestCatalogue,
       fairRequest stage = some req →
-      G.AppliesAt (chain.stage stage) req →
-      G.RespondsAt (chain.stage (stage + 1)) req) :
-    G.HasStrongExtensionProperty := by
+      AppliesAt G (chain.stage stage) req →
+      RespondsAt G (chain.stage (stage + 1)) req) :
+    HasStrongExtensionProperty G := by
   intro req hGlob
   let S : Finset ℕ :=
     (Finset.univ : Finset (Fin req.1)).image req.2.2.2
@@ -92,7 +92,7 @@ theorem strongExtensionProperty_of_fairResponses
   obtain ⟨k, hnk, hk⟩ := fairRequest_after req n
   have hSstage : S ⊆ chain.stage k :=
     hn.trans (chain.stage_monotone hnk)
-  have hApplicable : G.AppliesAt (chain.stage k) req := by
+  have hApplicable : AppliesAt G (chain.stage k) req := by
     obtain ⟨hfInj, hfInd, hfGlobal⟩ := hGlob
     exact ⟨hfInj, hfInd, hfGlobal (chain.stage k) hSstage⟩
   obtain ⟨g, hgInj, hgInd, hgBase, hgStrong⟩ :=
