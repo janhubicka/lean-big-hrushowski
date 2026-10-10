@@ -11,19 +11,22 @@ amalgamation of arbitrary finite 2-sparse graphs, finite strong
 extension response diagrams, fresh and gap-free initial-segment labels,
 and strictly growing finite strong extensions.
 
-It also constructs the union graph of a **given coherent covering
-sequence of finite stages** and proves that, if every successor stage
-is a strong two-sparse extension, the union is two-sparse, the finite
-stages are globally strong, and every finite set has a finite strong
-container. The current integrated
-[188-declaration Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38079857370)
-has only standard logical axioms and no placeholders.
+The formalization now also proves that **a uniform finite fair
+successor-existence theorem suffices to construct** a coherent,
+strictly growing sequence of finite stages whose union is two-sparse,
+has a finite strong cover and satisfies the labelled strong extension
+property. This implication is certified in the
+[207-declaration Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38086764663),
+using only standard logical axioms and no proof placeholders.
 
-**The countable generic Fraïssé graph is not yet constructed.**
-The next theorem must recursively combine each fair-scheduled finite
-amalgamation response with strict growth, relabel the resulting stage
-as an initial segment, and prove coherence. Only then can the existing
-fair-response criterion establish the extension property.
+**The unconditional countable generic Fraïssé graph is not yet
+machine-certified.** The missing premise is the existence of a
+strictly growing, gap-free Nat-labelled strong successor that answers
+every applicable scheduled request, with an empty strong-request
+fallback otherwise. The proposed concrete proof is being checked
+in [PR #48](https://github.com/janhubicka/lean-big-hrushowski/pull/48).
+It must pass the complete build and axiom audit before this README
+can claim the generic has been formally constructed.
 
 The unary functional closure expansion, the big Ramsey degree
 theorems and the Ellentuck results also remain to be formalized.
