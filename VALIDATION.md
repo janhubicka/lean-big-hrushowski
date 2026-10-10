@@ -769,3 +769,18 @@ remaining gap before instantiating
 `strongExtensionProperty_of_fairResponses` for a concrete countable
 Hrushovski graph. Nothing in the new conditional transfer proves
 Ramsey, big Ramsey degree, or Ellentuck statements.
+
+
+## Composition of strong finite images (pending Lean CI)
+
+`GraphOn.strong_image_trans_of_induced` combines the already-certified
+transport of predimension along an injective induced graph embedding
+with transitivity of finite relative strongness. If the image of A is
+strong in a finite graph B and B embeds inducedly and strongly into C,
+the composed image of A is strong in C. This is needed when an applicable
+request is answered first and a separate free extension adds a fresh
+vertex to force growth. Both the old stage and answered target must
+survive that second extension as strong images.
+
+This lemma does not construct the finite response or the recursive
+countable sequence; it proves their compositional invariant.
