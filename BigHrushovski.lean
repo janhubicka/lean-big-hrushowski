@@ -43,3 +43,7 @@ import BigHrushovski.GrowingFiniteResponse
 import BigHrushovski.ApplicableFiniteStage
 import BigHrushovski.CanonicalFinNumbering
 import BigHrushovski.ConcreteGrowingNatResponse
+
+import BigHrushovski.TrivialStrongRequest
+import BigHrushovski.FairStageRecursion
+import BigHrushovski.GenericFraisseConstruction
