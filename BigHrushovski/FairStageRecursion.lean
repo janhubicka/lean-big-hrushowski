@@ -146,10 +146,10 @@ theorem twoSparse_of_finiteSuccessors
       ∃ t : FiniteNatStage, IsFairStrongSuccessor k s t) :
     ∀ a : Finset ℕ,
       0 ≤ (coherentStagesOfSuccessors initial hNext).limitGraph.predim a :=
-  (coherentStagesOfSuccessors initial hNext)
-    .limit_predim_nonneg_of_sparse_stages
-      (coherentStagesOfSuccessors_strong initial hNext)
-      (coherentStagesOfSuccessors_sparse initial hNext)
+  CoherentNatGraphStages.limit_predim_nonneg_of_sparse_stages
+    (coherentStagesOfSuccessors initial hNext)
+    (coherentStagesOfSuccessors_strong initial hNext)
+    (coherentStagesOfSuccessors_sparse initial hNext)
 
 end FiniteCatalogue
 end BigHrushovski
