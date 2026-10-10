@@ -542,6 +542,23 @@ The relevant theorems are `FiniteCatalogue.strongDiagram_occurs` and `FiniteCata
 **Not yet formalized:** every finite abstract strong span can be relabelled as a Fin n→Fin m diagram, and construction of a countable strong chain satisfying every applicable scheduled request. The countable catalogue alone does not establish genericity.
 
 
+## Fair chain implies strong extension property (verified)
+
+Given a graph on the natural-number carrier and a covering increasing
+chain of finite strong induced subgraphs, an applicable request at stage
+k is one whose source already embeds inducedly and strongly in stage k.
+A local response strongly embeds the target in stage k+1, respecting
+the given base map. If every applicable fair-scheduled request receives
+such a response, the new theorem derives the strong extension property
+of the whole graph: every globally strong induced finite source embedding
+extends along each labelled strong finite extension diagram. The proof
+uses the unbounded fairness lemma and global strongness of chain stages.
+Existence of a chain satisfying the local response rule is not yet proved.
+
+
+**Certification:** [successful CI run 38056485693](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38056485693) at [commit 59e6701](https://github.com/janhubicka/lean-big-hrushowski/commit/59e6701f9d0f5cd53b94bc9cb498a3891a02e54f) compiled and audited 154 declarations, using only standard logical axioms, with 22 Lean files passing the proof-placeholder scan. The theorem `FiniteCatalogue.strongExtensionProperty_of_fairResponses` explicitly assumes a covering finite strong-step chain and the local response obligation at each scheduled applicable request. Those hypotheses are not derived from the finite free-amalgamation theorem here. In particular no countable Fraïssé limit is constructed by this theorem alone.
+
+
 ## Completeness of labelled strong diagrams (verified)
 
 Every induced strong embedding between finite 2-sparse graphs carried
