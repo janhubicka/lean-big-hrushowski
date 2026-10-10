@@ -957,3 +957,40 @@ verified by an exact theorem-type/axiom audit, not by an
 independent finite-model regression alone. This review is one
 assistant's separate adversarial perspective, not an external
 human referee result.
+
+
+## Adversarial review: recursive fair Fraisse stage choice
+
+**Existence is not hidden.** The proof takes exactly
+`∀ k s, ∃ t, IsFairStrongSuccessor k s t` as a hypothesis.
+Each `Classical.choose` is applied to that finite existential witness.
+No generic countable graph or prior fair chain is postulated.
+
+**Coverage.** The stage domain is `range(size k)` and every
+`size k < size(k+1)`; these two properties together prove the union
+is all Nat. Merely increasing the number of vertices in arbitrary
+subsets would not suffice.
+
+**Induced graphs.** Exact agreement, not only forward edge
+preservation, is part of `IsFairStrongSuccessor`. Thus the limit
+does not add edges among already present vertices and all finite
+stage strongness calculations transfer.
+
+**Fairness.** The successor responds to every request decoded at
+stage k *if it applies then*. No response obligation is imposed
+on a request with an invalid, noninduced, nonstrong or unavailable
+source map. Repeated scheduling subsequently realizes a request
+once its globally strong source lies in a finite stage.
+
+**Strength.** Each finite stage is two-sparse on its own support,
+while each successor is a strong extension in the new stage graph.
+The verified strong-chain theorem, not an extra implicit genericity
+assumption, supplies global strongness in the union.
+
+**Remaining exact task.** Construct the finite one-step witness
+for every input stage and schedule index using the growing-response
+lemma for applicable requests and the trivial empty request otherwise,
+then label the new carrier by an initial segment and preserve the
+old numerical labels. This review checks distinct mathematical
+failure modes within one assistant; it is not an independent external
+referee panel.
