@@ -210,3 +210,6 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.extendInitialLabels_old
 #print axioms BigHrushovski.FiniteSpan.extendInitialLabels_injective
 #print axioms BigHrushovski.FiniteSpan.extendInitialLabels_image
+
+#print axioms BigHrushovski.GraphOn.onePointGraph_sparse
+#print axioms BigHrushovski.FiniteSpan.exists_fresh_strong_extension
