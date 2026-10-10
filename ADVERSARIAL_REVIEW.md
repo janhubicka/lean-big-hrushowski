@@ -457,3 +457,22 @@ These are eight independent lines of hostile checking performed by one assistant
 **Boundary.** These results do not construct a countable generic graph or prove realization of every finite strong extension. Countability of finite isomorphism types and fair scheduling of extension requirements remain explicit tasks.
 
 The hostile checks are separate questions assessed by one assistant, not independent external referees.
+
+
+## Countable strong-diagram catalogue: adversarial review
+
+**Finite relation reviewer.** On Fin n there are only finitely many binary adjacency predicates. A symmetric, irreflexive graph is determined by such a predicate; its proof fields carry no further data. The finite instance is obtained by an injective forgetful map, not by assuming graph finiteness axiomatically.
+
+**Finite diagram reviewer.** For fixed n,m, source graph, target graph and embedding function belong to finite types. Injectivity, induced adjacency, 2-sparsity and strongness are proposition-valued fields. Thus the diagram type is finite even though not every map qualifies.
+
+**Countability reviewer.** The union over n,m is countable. The choice of encoding is noncomputable, which is sufficient for countable existence but not a verified executable enumeration.
+
+**Fairness reviewer.** Cantor pairing has a proved inverse and `Nat.right_le_pair`, so pairing the request code with an arbitrary threshold N gives a slot k≥N decoding that request. This is strictly stronger than mere occurrence at one unspecified time.
+
+**Applicability reviewer.** Potential maps of source vertices into ℕ are deliberately unrestricted. The schedule includes maps that may fail to be injective or induced; the future construction must test applicability and satisfy only valid requirements.
+
+**Completeness reviewer.** The code handles all labelled diagrams on finite ordinal carriers. A separate representative theorem is needed to identify every finite abstract strong-extension span with a labelled diagram; no such completeness is silently assumed.
+
+**Genericity reviewer.** A fair request schedule by itself does not produce any graph, prove that every valid request is realizable at its scheduled stage, or construct the Fraïssé limit.
+
+**Lean reviewer.** The [153-declaration CI audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38055955615) passed with only standard axioms, no placeholders, and all previous regressions. These are distinct hostile review perspectives carried out by the same assistant; no external independent referee agents were available or represented as having participated.
