@@ -804,3 +804,15 @@ coherent covering strong stage system answering each applicable
 fair-scheduled request. It does **not** construct that system. This is
 the graph-level link between the finite free-amalgam construction and
 the already verified abstract fair-response criterion.
+
+
+
+## Canonical numbering of a finite ordinal stage (pending Lean CI)
+
+`FiniteSpan.canonicalFinNumbering` specializes the carrier equivalence
+to `Fin n ≃ Fin(card (Fin n))` using the cardinality identity
+`card(Fin n)=n`. Unlike a freely chosen finite equivalence, it
+fixes the numerical value of *every* old vertex. This is needed when
+a gap-free stage extension is taken over an already numbered
+consecutive initial segment of ℕ. The proof is subject to the usual
+CI and axiom audit and does not itself choose any finite extension.
