@@ -574,3 +574,29 @@ fair request schedule. Those remain independent theorem obligations.
 
 **Provenance.** These are adversarial checks of separate possible failure
 modes within the same review, not independently spawned referee agents.
+
+
+## Adversarial review: forced finite-stage growth
+
+**Singleton sparsity.** No two-element set can be an edge in the graph
+whose adjacency predicate is always false. Its predimension is therefore
+`2 * card`, nonnegative on every subset, including the empty set.
+
+**Empty-base strongness.** Both factors of the proposed joint embedding
+are two-sparse. The empty induced graph is strong in each factor; this
+would be false without subset-wise two-sparsity.
+
+**Freshness.** The full tagged amalgam reports that any identification
+of its factor images comes from the common base. Since the base is
+`Empty`, the new singleton is provably outside the old-stage image.
+
+**Inducedness and strength.** The old factor maps preserve and reflect
+adjacency and have self-sufficient image in the new two-sparse graph.
+A weak embedding or mere preservation of old edges would not be enough
+to iterate the strong-age construction.
+
+**Boundary.** Strict finite growth does not imply that stages cover
+all ℕ until they are re-labelled coherently as consecutive initial
+segments. Nor does it imply realization of any pending request.
+These are separate adversarial checks in this review, not independently
+spawned external referees.
