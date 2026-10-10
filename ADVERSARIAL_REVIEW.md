@@ -915,3 +915,38 @@ nonapplicable requests, and countable limit assembly are still
 outstanding. These are independent adversarial mathematical
 perspectives by the same assistant, not a spawned panel of
 external referees.
+
+
+
+## Adversarial review: proposed full finite-to-generic construction
+
+**Scheduling.** At every stage k, an applicable scheduled request
+is acted on, not replaced by the empty fallback. Inapplicable
+and undecodable requests impose no response obligation at that
+stage. Repetition of every request beyond every index is essential
+for realizing bases which only appear later.
+
+**Forced growth.** Both branches call a strictly growing finite
+response. Thus the sequence of gap-free stage sizes tends to infinity
+and covers all natural numbers, even when every scheduled request
+is empty, invalid or already realized.
+
+**Strongness and inducedness.** Both branches yield a two-sparse
+successor with the previous interval self-sufficient. Pointwise
+old-label preservation plus reflection of nonedges gives a
+coherent induced limit; the strong-chain theorem then gives
+global strongness of each stage.
+
+**Choice.** Classical case distinction concerns only applicability,
+and each successor is selected from a separately proved finite
+existential theorem. No previously existing M0 or genericity is
+assumed. The repeated fair schedule then supplies the extension
+property by a previously verified implication.
+
+**Scope and verification.** The finished source would establish
+the existence of one countable two-sparse graph with the full
+labelled strong extension property. It would not by itself prove
+all manuscript Ramsey or Ellentuck theorems, nor equality with
+algebraic closure. The new Lean endpoint has not yet passed CI;
+this is a mathematical failure-mode review by the same assistant,
+not a spawned external referee panel.
