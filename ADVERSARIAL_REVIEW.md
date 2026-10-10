@@ -849,3 +849,95 @@ not independently spawned referee agents.
 ## Integrated hostile checks
 
 These proofs represent three logically distinct safeguards. Pointwise fixed old labels prevent accidental renumbering; exact induced adjacency prevents a later stage from adding old-old edges; transitivity of strong embeddings ensures the answered target remains strong after the forced-growth extension. The finite carrier pullback covers all intermediate subsets, not only whole stages. None establishes that a fair responding coherent chain exists. The checks were independent mathematical failure-mode perspectives within the same assistant review, not separate human referee certifications.
+
+
+## Adversarial checks: finite response plus strict growth
+
+**Two successive extensions.** It is insufficient to prove that the
+first amalgam realizes the target and that a second graph grows: both
+old and target embeddings must remain strong after the second step.
+The lemma explicitly composes two induced strong embeddings.
+
+**Identification.** The first tagged amalgam identifies the factors
+only over their prescribed common base. Injectivity of the growth
+embedding transports this exact identification condition to the
+final carrier.
+
+**Freshness.** The new vertex is outside the image of the entire
+first amalgam. The image of the old stage lies within that amalgam
+image; hence the new vertex cannot have been previously numbered.
+No assumption that the request adds a vertex is required.
+
+**Coherence.** The output embeds the old graph inducedly and fixes
+the prescribed request base pointwise. However, this alone does not
+give a Nat-labelled stage: separate initial-segment transport and
+the old-label coherence theorem are still required.
+
+**Scope and provenance.** No recursively constructed coherent fair
+sequence is claimed; the theorem is an existential finite successor
+statement. These are adversarial mathematical perspectives in the
+same assistant review, not independently spawned external referees.
+
+## Adversarial review: applicable Nat request to finite carrier
+
+**Bounded range.** Applicability includes that the source-image
+substructure is contained in the old stage. On `range n` this
+is equivalent to each numerical source value being below `n`.
+Without it the source cannot be interpreted as `Fin n`.
+
+**Exact map.** The finite source map has the *same numerical values*
+as the scheduled Nat map, not merely an isomorphic image. This is
+needed to answer the original request pointwise.
+
+**Inducedness.** The finite stage pullback reflects nonedges as well
+as preserving edges. A weak graph homomorphism is not sufficient.
+
+**Strongness.** The source is strong only relative to the current
+stage, not yet globally. The pullback uses strongness on every
+intermediate finite subgraph, preserving the exact hypothesis needed
+for tagged strong free amalgamation.
+
+**Boundary and provenance.** This supplies finite input data for
+one scheduled request, not a coherent recursive chain. The review
+separates distinct proof obligations but is not a separately spawned
+external panel.
+
+## Adversarial review: canonical Fin labels
+
+**Identity, not arbitrary permutation.** An abstract bijection from
+`Fin n` to its cardinal representative could reorder old vertices.
+The canonical cast identifies the equal cardinalities without
+changing their numeric values.
+
+**Stage zero.** The cast on `Fin 0` is valid vacuously; no extra
+nonempty-carrier assumption enters the recursive initialization.
+
+**Scope.** Numeric labelling is independent of graph adjacency and
+strongness. This only supplies the old labelling parameter required
+by the finite graph transport theorem, not an actual countable chain.
+The checks are separate adversarial proof perspectives within one
+assistant review, not an external referee panel.
+
+## Adversarial review: trivial strong request
+
+**Empty structure.** There are no vertices or edges on `Fin 0`;
+its two-sparsity is vacuous. The empty inclusion is strong in itself,
+and the unique map into Nat is injective and induced.
+
+**Base self-sufficiency.** In any two-sparse finite stage, the empty
+subset has predimension zero and is strong. Without two-sparsity
+this application could fail.
+
+**Scheduling.** A growth-only fallback is permitted only if no
+applicable request is scheduled. Otherwise responding to the empty
+diagram would not establish the fair response property.
+
+**Scope.** This lemma provides one elementary witness, not a
+recursion, coherent stage construction, or genericity theorem.
+These independent failure-mode checks were performed by one
+assistant and are not external human referees.
+
+
+## Integrated adversarial cross-check of successor prerequisites
+
+The four proof obligations are not interchangeable. A fair request that is applicable needs its original source Nat map preserved pointwise. The intermediate finite amalgam must retain both induced nonedges and strong embeddings; strict growth must occur regardless of whether the response adds vertices. Initial-segment casts must preserve old numerical labels, and growth-only fallbacks may only replace requests that do not apply. The individual adversarial perspectives identify these failure modes, but are not independent external referee certification. The consolidated Lean build and standard-axiom audit are required before certification.
