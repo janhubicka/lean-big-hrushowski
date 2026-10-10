@@ -849,3 +849,32 @@ not independently spawned referee agents.
 ## Integrated hostile checks
 
 These proofs represent three logically distinct safeguards. Pointwise fixed old labels prevent accidental renumbering; exact induced adjacency prevents a later stage from adding old-old edges; transitivity of strong embeddings ensures the answered target remains strong after the forced-growth extension. The finite carrier pullback covers all intermediate subsets, not only whole stages. None establishes that a fair responding coherent chain exists. The checks were independent mathematical failure-mode perspectives within the same assistant review, not separate human referee certifications.
+
+
+
+## Adversarial checks: finite response plus strict growth
+
+**Two successive extensions.** It is insufficient to prove that the
+first amalgam realizes the target and that a second graph grows: both
+old and target embeddings must remain strong after the second step.
+The lemma explicitly composes two induced strong embeddings.
+
+**Identification.** The first tagged amalgam identifies the factors
+only over their prescribed common base. Injectivity of the growth
+embedding transports this exact identification condition to the
+final carrier.
+
+**Freshness.** The new vertex is outside the image of the entire
+first amalgam. The image of the old stage lies within that amalgam
+image; hence the new vertex cannot have been previously numbered.
+No assumption that the request adds a vertex is required.
+
+**Coherence.** The output embeds the old graph inducedly and fixes
+the prescribed request base pointwise. However, this alone does not
+give a Nat-labelled stage: separate initial-segment transport and
+the old-label coherence theorem are still required.
+
+**Scope and provenance.** No recursively constructed coherent fair
+sequence is claimed; the theorem is an existential finite successor
+statement. These are adversarial mathematical perspectives in the
+same assistant review, not independently spawned external referees.
