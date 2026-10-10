@@ -243,3 +243,10 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.image_fin_val_univ
 #print axioms BigHrushovski.GraphOn.twoSparse_pullback_fin_iff
 #print axioms BigHrushovski.GraphOn.strong_pullback_fin_iff
+
+
+#print axioms BigHrushovski.FiniteCatalogue.exists_growing_finite_strong_response
+#print axioms BigHrushovski.FiniteCatalogue.exists_finite_applicable_source
+#print axioms BigHrushovski.FiniteSpan.canonicalFinNumbering_val
+#print axioms BigHrushovski.FiniteCatalogue.emptyFinGraph_sparse
+#print axioms BigHrushovski.FiniteCatalogue.trivialRequest_applies
