@@ -39,3 +39,7 @@ import BigHrushovski.StrongEmbeddingComposition
 import BigHrushovski.FiniteNatStage
 
 import BigHrushovski.GrowingFiniteResponse
+
+import BigHrushovski.ApplicableFiniteStage
+import BigHrushovski.CanonicalFinNumbering
+import BigHrushovski.ConcreteGrowingNatResponse
