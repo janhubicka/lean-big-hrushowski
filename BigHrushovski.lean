@@ -37,3 +37,8 @@ import BigHrushovski.StageResponseLimit
 import BigHrushovski.GeneralStageCoherence
 import BigHrushovski.StrongEmbeddingComposition
 import BigHrushovski.FiniteNatStage
+
+import BigHrushovski.GrowingFiniteResponse
+import BigHrushovski.ApplicableFiniteStage
+import BigHrushovski.CanonicalFinNumbering
+import BigHrushovski.TrivialStrongRequest
