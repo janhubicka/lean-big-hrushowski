@@ -849,3 +849,24 @@ not independently spawned referee agents.
 ## Integrated hostile checks
 
 These proofs represent three logically distinct safeguards. Pointwise fixed old labels prevent accidental renumbering; exact induced adjacency prevents a later stage from adding old-old edges; transitivity of strong embeddings ensures the answered target remains strong after the forced-growth extension. The finite carrier pullback covers all intermediate subsets, not only whole stages. None establishes that a fair responding coherent chain exists. The checks were independent mathematical failure-mode perspectives within the same assistant review, not separate human referee certifications.
+
+
+
+## Adversarial review: trivial strong request
+
+**Empty structure.** There are no vertices or edges on `Fin 0`;
+its two-sparsity is vacuous. The empty inclusion is strong in itself,
+and the unique map into Nat is injective and induced.
+
+**Base self-sufficiency.** In any two-sparse finite stage, the empty
+subset has predimension zero and is strong. Without two-sparsity
+this application could fail.
+
+**Scheduling.** A growth-only fallback is permitted only if no
+applicable request is scheduled. Otherwise responding to the empty
+diagram would not establish the fair response property.
+
+**Scope.** This lemma provides one elementary witness, not a
+recursion, coherent stage construction, or genericity theorem.
+These independent failure-mode checks were performed by one
+assistant and are not external human referees.
