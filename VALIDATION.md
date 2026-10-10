@@ -502,3 +502,6 @@ construction over an empty base produces a joint strong embedding
 of any two finite 2-sparse graphs. This verifies the elementary
 finite age properties, not the existence of the countable strong
 Fraisse limit or its extension property.
+
+
+The independent finite-age regression tests 76 labelled simple graphs of orders up to four and all 5,776 tagged disjoint joint embeddings. It also checks that K6 fails the 2-sparsity condition. Kernel compilation and the axiom audit remain the certification criteria.
