@@ -141,8 +141,7 @@ theorem exists_growing_nat_response
   have hReplyImage :
       (((Finset.univ : Finset (Fin req.2.1)).image answer).image label) =
       (Finset.univ : Finset (Fin req.2.1)).image reply := by
-    rw [Finset.image_image]
-    rfl
+    simp only [Finset.image_image]
   have hStrongReplyNat :
       N.toPredimension.IsStrong
         ((Finset.univ : Finset (Fin req.2.1)).image reply)
