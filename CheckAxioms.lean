@@ -128,3 +128,12 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.freeGraph_right
 #print axioms BigHrushovski.TaggedAmalgam.freeGraph_no_cross
 #print axioms BigHrushovski.TaggedAmalgam.freeGraph_amalgam
+
+#print axioms BigHrushovski.GraphOn.isEdge_image_iff
+#print axioms BigHrushovski.GraphOn.edgesWithin_image
+#print axioms BigHrushovski.GraphOn.card_edgesWithin_image
+#print axioms BigHrushovski.GraphOn.predim_image
+
+#print axioms BigHrushovski.GraphOn.finite_image_preimage_within
+#print axioms BigHrushovski.GraphOn.strong_image_iff
+#print axioms BigHrushovski.GraphOn.twoSparse_image_iff

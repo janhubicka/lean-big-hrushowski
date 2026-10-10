@@ -356,3 +356,37 @@ general strongness-transfer proof on tagged carriers is still open.
 
 
 **Certified:** source commit [9c4ec90](https://github.com/janhubicka/lean-big-hrushowski/commit/9c4ec90481b8125c75fd3ccb27160bd52dbf4e93) passed the [109-declaration axiom audit and tagged regression](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37996084683). Sixteen Lean files were checked for placeholders. The exhaustive tagged-normal-form checker tested 5,613 small input pairs, including 2,875 compatible graphs and 2,729 strong-base configurations. The Lean theorem proves graph-embedding and no-crossing properties; strongness of the tagged embeddings still needs a predimension-transport lemma, so the 2,729 finite computations are diagnostic only.
+
+
+## Invariance of predimension under induced embeddings (certified)
+
+The new module InducedEmbedding.lean handles injective maps that preserve
+and reflect graph adjacency. It proves that unordered edges on the image
+of any finite vertex set are precisely images of original unordered
+edges, and hence that both the induced edge count and the predimension
+are invariant. The ambient graphs may be infinite.
+This is the numerical ingredient needed to transport strong finite
+embeddings into the tagged free graph carrier.
+
+
+## Strongness and 2-sparsity under induced embeddings (certified)
+
+Once the finite edge and predimension identities have been proved,
+every finite intermediate substructure of the image is a filtered
+image of a finite intermediate source substructure. This gives
+equivalence of self-sufficiency on finite intervals, and equivalence
+of 2-sparsity of a finite induced graph and its image. The hypotheses
+still require the map to be injective and to preserve and reflect
+adjacency. These general lemmas are intended for the tagged free
+amalgam inclusions.
+
+An independent regression script checks all 76 labelled simple graphs
+up to four vertices, 31,548 induced injections and exterior-edge
+patterns, 497,876 predimension equalities, and 2,509,516 relative
+strongness equivalences. Both injectivity and reflection of
+adjacency are explicitly tested by negative controls.
+
+
+## Induced embedding certification checkpoint
+
+At source commit [660abf6](https://github.com/janhubicka/lean-big-hrushowski/commit/660abf6d7dab255ee1e70bb92e7ea32192f91721), the [116-declaration passing Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37997208601) proved exact edge-set and predimension transport, finite strongness equivalence, and 2-sparsity equivalence. Seventeen Lean sources contained no proof placeholders; all audited theorems depended only on standard logical axioms. The independent exhaustive regression covered 31,548 injected graph diagrams, 497,876 predimension comparisons and 2,509,516 relative-strongness tests. The actual tagged free-amalgam strongness theorem is not yet an explicitly audited corollary; that will be a separate next step.

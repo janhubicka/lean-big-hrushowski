@@ -12,3 +12,4 @@ import BigHrushovski.FreeAmalgam
 import BigHrushovski.C0Sparsity
 import BigHrushovski.FreeJoinConstruction
 import BigHrushovski.TaggedAmalgam
+import BigHrushovski.InducedEmbedding
