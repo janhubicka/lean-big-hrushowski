@@ -731,3 +731,24 @@ with growing cardinality but persistent holes.
 **Boundary.** Constructing the stages, proving each finite strong
 extension exists, and verifying fair responses remain separate.
 These are adversarial mathematical perspectives, not external reviewers.
+
+
+## Adversarial review: composition of strong images
+
+**Intermediate strongness.** The original image f(A) is self-sufficient
+in B, not necessarily in the final graph C. The second embedding must
+have induced strong image in C; without its self-sufficiency the
+conclusion can fail.
+
+**Transport.** Strongness of f(A) in B transfers to g[f(A)] inside
+g[B] using induced edge **and nonedge** preservation and injectivity
+of g. Transitivity then gives self-sufficiency in C.
+
+**Image identity.** The nested image (f[A]).image g equals the image
+of the literal composite g ∘ f, so the theorem preserves the exact
+source map, not only an isomorphic substructure.
+
+**Scope.** No finite two-sparsity hypothesis is required for this
+abstract relative-strongness calculation; the concrete C0 construction
+has separate sparsity obligations. This is a same-assistant adversarial
+check, with Lean certification still pending.
