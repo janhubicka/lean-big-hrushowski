@@ -731,3 +731,23 @@ with growing cardinality but persistent holes.
 **Boundary.** Constructing the stages, proving each finite strong
 extension exists, and verifying fair responses remain separate.
 These are adversarial mathematical perspectives, not external reviewers.
+
+
+## Adversarial review: finite Nat stage pullback
+
+**Carrier.** Every element of `Fin m` has numeric value below m,
+and every number below m determines a unique element of `Fin m`.
+The full finite-carrier image is precisely `range m`, with no holes.
+
+**Inducedness.** The pullback graph's adjacency predicate is
+definitionally the Nat graph evaluated on the two numeric images.
+It preserves and reflects edges and nonedges.
+
+**Predimension.** The existing induced-image theorem compares every
+finite subset, not only the full stage, which is essential for
+two-sparsity and self-sufficiency.
+
+**Scope.** Strongness is relative to `range m`, not the whole Nat
+graph; global strongness requires the separate countable-strong-chain
+argument. These are distinct adversarial checks by one assistant,
+not independently spawned referee agents.
