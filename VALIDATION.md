@@ -624,3 +624,16 @@ The [combined Lean CI and axiom audit](https://github.com/janhubicka/lean-big-hr
 
 
 **Adversarial carrier-coverage warning (10 October 2026).** `extendNatLabels` is injective and fresh, but its successive images need not cover ℕ. For the empty source and a singleton target it assigns label 1; every later genuinely new label exceeds the current maximum, so 0 remains uncovered. The existing `Predimension.StrongChain` requires `∀ x : ℕ, ∃ n, x ∈ stage n`, which cannot be deduced from these finite-stage theorems. To complete genericity one must use consecutive initial segments with unbounded stage sizes, or build the direct limit on a separately defined countable carrier and then reindex it. This is a gap in the countable construction, *not* in the finite strong-amalgamation proof.
+
+
+## Initial-segment carrier repair (awaiting Lean CI)
+
+`InitialSegmentLabels.lean` replaces the old maximum-plus-one labelling by
+an equivalence `B ≃ Fin (card B)` extending a prescribed equivalence
+`A ≃ Fin (card A)` along an injection `A → B`. The finite carrier splits
+into the old vertices and a tagged fresh tail by `FiniteSpan.splitEquiv`,
+which has already been Lean-certified. The intended results assert that
+all old numeric labels are preserved, the new map is injective and its image
+is **exactly** `Finset.range (card B)`. No gap can survive in the finite
+carrier. These results are not yet certified, and they do not construct the
+countable fair responding chain or prove that stage sizes go to infinity.
