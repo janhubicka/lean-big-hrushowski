@@ -804,3 +804,51 @@ coherent covering strong stage system answering each applicable
 fair-scheduled request. It does **not** construct that system. This is
 the graph-level link between the finite free-amalgam construction and
 the already verified abstract fair-response criterion.
+
+
+## Arbitrary Nat-labelled finite graph stage coherence (pending Lean CI)
+
+`GraphOn.transportedToNat_agree_of_label_comp` states that two finite
+induced graph structures transported to the Nat carrier agree on the
+whole old labelled image whenever the new labelling fixes old
+numeric labels along the induced graph embedding. This extends the
+already-verified `transportedToNat_agree_on_old` result from the
+original maximum-plus-one choice to any injective extension, including
+gap-free initial-segment labels.
+
+The theorem is the exact old-old graph coherence lemma used by a
+recursive sequence of finite stages. It proves a bi-implication for
+adjacency and nonadjacency, but does not construct an infinite
+sequence of compatible choices.
+
+## Composition of strong finite images (pending Lean CI)
+
+`GraphOn.strong_image_trans_of_induced` combines the already-certified
+transport of predimension along an injective induced graph embedding
+with transitivity of finite relative strongness. If the image of A is
+strong in a finite graph B and B embeds inducedly and strongly into C,
+the composed image of A is strong in C. This is needed when an applicable
+request is answered first and a separate free extension adds a fresh
+vertex to force growth. Both the old stage and answered target must
+survive that second extension as strong images.
+
+This lemma does not construct the finite response or the recursive
+countable sequence; it proves their compositional invariant.
+
+## Finite Nat stage as a Fin-carrier induced graph (pending Lean CI)
+
+The `FiniteNatStage` module identifies the image of `Fin m → ℕ`
+with `Finset.range m` and applies the already-verified induced-image
+invariance to compare a Nat graph supported on that initial segment
+with its pullback to `GraphOn (Fin m)`. Both two-sparsity and
+relative strongness of any finite subset transfer exactly.
+
+This is the input conversion needed to apply
+`FiniteCatalogue.exists_finite_strong_response` to a request whose
+source vertices are presented by natural-number labels. Constructing
+the actual fair responding chain is still a separate obligation.
+
+
+## Combined finite-successor interfaces (integration audit pending)
+
+The standalone versions passed GitHub Actions run [38080646111](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080646111) (general old-label graph coherence), [38080758571](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080758571) (composition of strong images), and [38080899840](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080899840) (finite Nat stage pullback), each with only standard logical axioms and no placeholders. These are finite interface theorems. Their integration with the newer fair-response-to-limit theorem needs its own build before certification; this does not produce a recursive chain.

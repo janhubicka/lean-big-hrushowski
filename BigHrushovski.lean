@@ -33,3 +33,7 @@ import BigHrushovski.CountableStrongLimit
 import BigHrushovski.NatStageCoverage
 import BigHrushovski.InitialSegmentGraphStage
 import BigHrushovski.StageResponseLimit
+
+import BigHrushovski.GeneralStageCoherence
+import BigHrushovski.StrongEmbeddingComposition
+import BigHrushovski.FiniteNatStage

@@ -236,3 +236,10 @@ import BigHrushovski
 #print axioms BigHrushovski.CoherentNatGraphStages.appliesAt_stage_of_limit
 #print axioms BigHrushovski.CoherentNatGraphStages.respondsAt_limit_of_stage
 #print axioms BigHrushovski.CoherentNatGraphStages.strongExtensionProperty_of_stageResponses
+
+
+#print axioms BigHrushovski.GraphOn.transportedToNat_agree_of_label_comp
+#print axioms BigHrushovski.GraphOn.strong_image_trans_of_induced
+#print axioms BigHrushovski.GraphOn.image_fin_val_univ
+#print axioms BigHrushovski.GraphOn.twoSparse_pullback_fin_iff
+#print axioms BigHrushovski.GraphOn.strong_pullback_fin_iff
