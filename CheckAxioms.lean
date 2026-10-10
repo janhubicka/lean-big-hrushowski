@@ -232,3 +232,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.initialSegment_stages_cover
 
 #print axioms BigHrushovski.FiniteSpan.exists_initial_segment_strong_nat_stage
+
+#print axioms BigHrushovski.CoherentNatGraphStages.appliesAt_stage_of_limit
+#print axioms BigHrushovski.CoherentNatGraphStages.respondsAt_limit_of_stage
+#print axioms BigHrushovski.CoherentNatGraphStages.strongExtensionProperty_of_stageResponses
