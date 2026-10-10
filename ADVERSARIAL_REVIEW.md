@@ -782,3 +782,70 @@ not a construction of any of the stages.
 **Scope and provenance.** No countable generic graph is constructed;
 we check independent failure modes within the same review rather
 than claiming independently spawned external referees.
+
+
+## Adversarial review: general old-label graph coherence
+
+**Injectivity.** Both old and new numerical labellings are assumed
+injective. Otherwise reflection of adjacency under transport can
+fail because two original vertices acquire one image.
+
+**Exact old-label agreement.** The equality `new(i(a)) = old(a)`
+is pointwise, not merely equality of the cardinalities or the
+labelled images. This prevents swapping old vertex labels.
+
+**Induced graph embedding.** The source/target graph assumption
+preserves and reflects edges, hence ensures that the transported
+graphs agree on old-old nonedges too.
+
+**No carrier growth assumption.** The result works for arbitrary
+injective Nat labellings. The separate initial-segment theorem
+provides gap-free carrier coverage in the intended construction.
+
+**Boundary.** This is an interface lemma; existence of a coherent
+fair responding countable sequence is not inferred. These are
+distinct hostile mathematical checks by the same assistant.
+
+## Adversarial review: composition of strong images
+
+**Intermediate strongness.** The original image f(A) is self-sufficient
+in B, not necessarily in the final graph C. The second embedding must
+have induced strong image in C; without its self-sufficiency the
+conclusion can fail.
+
+**Transport.** Strongness of f(A) in B transfers to g[f(A)] inside
+g[B] using induced edge **and nonedge** preservation and injectivity
+of g. Transitivity then gives self-sufficiency in C.
+
+**Image identity.** The nested image (f[A]).image g equals the image
+of the literal composite g ∘ f, so the theorem preserves the exact
+source map, not only an isomorphic substructure.
+
+**Scope.** No finite two-sparsity hypothesis is required for this
+abstract relative-strongness calculation; the concrete C0 construction
+has separate sparsity obligations. This is a same-assistant adversarial
+check, with Lean certification still pending.
+
+## Adversarial review: finite Nat stage pullback
+
+**Carrier.** Every element of `Fin m` has numeric value below m,
+and every number below m determines a unique element of `Fin m`.
+The full finite-carrier image is precisely `range m`, with no holes.
+
+**Inducedness.** The pullback graph's adjacency predicate is
+definitionally the Nat graph evaluated on the two numeric images.
+It preserves and reflects edges and nonedges.
+
+**Predimension.** The existing induced-image theorem compares every
+finite subset, not only the full stage, which is essential for
+two-sparsity and self-sufficiency.
+
+**Scope.** Strongness is relative to `range m`, not the whole Nat
+graph; global strongness requires the separate countable-strong-chain
+argument. These are distinct adversarial checks by one assistant,
+not independently spawned referee agents.
+
+
+## Integrated hostile checks
+
+These proofs represent three logically distinct safeguards. Pointwise fixed old labels prevent accidental renumbering; exact induced adjacency prevents a later stage from adding old-old edges; transitivity of strong embeddings ensures the answered target remains strong after the forced-growth extension. The finite carrier pullback covers all intermediate subsets, not only whole stages. None establishes that a fair responding coherent chain exists. The checks were independent mathematical failure-mode perspectives within the same assistant review, not separate human referee certifications.
