@@ -731,3 +731,28 @@ with growing cardinality but persistent holes.
 **Boundary.** Constructing the stages, proving each finite strong
 extension exists, and verifying fair responses remain separate.
 These are adversarial mathematical perspectives, not external reviewers.
+
+
+## Adversarial review: gap-free graph stage transport
+
+**Old labels.** The carrier equivalence extends the prescribed
+old equivalence pointwise. Its values, and hence numeric labels,
+are unchanged on the image of the old finite embedding.
+
+**No holes.** Since the new labelling is a bijection with Fin(card B),
+the exact support image is range(card B). The empty-source case
+assigns the first added vertex label zero, not one.
+
+**Inducedness.** Graph transport uses an injective label and proves a
+bi-implication on adjacency, including preservation of nonedges.
+
+**Predimension and strongness.** Both finite vertex and unordered
+edge counts are unchanged under transport. Strongness is transported
+from A≤B to the corresponding consecutive old and new Nat domains,
+not inferred merely from sparsity.
+
+**Scope.** The theorem describes one chosen finite strong extension;
+it does not ensure a fair response, strictly positive growth or
+compatibility of an entire infinite sequence. Those properties must
+be supplied by the subsequent recursive stage selection. This is
+a same-assistant adversarial check, not an external referee panel.
