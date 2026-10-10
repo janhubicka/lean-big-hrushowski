@@ -390,3 +390,13 @@ adjacency are explicitly tested by negative controls.
 ## Induced embedding certification checkpoint
 
 At source commit [660abf6](https://github.com/janhubicka/lean-big-hrushowski/commit/660abf6d7dab255ee1e70bb92e7ea32192f91721), the [116-declaration passing Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/37997208601) proved exact edge-set and predimension transport, finite strongness equivalence, and 2-sparsity equivalence. Seventeen Lean sources contained no proof placeholders; all audited theorems depended only on standard logical axioms. The independent exhaustive regression covered 31,548 injected graph diagrams, 497,876 predimension comparisons and 2,509,516 relative-strongness tests. The actual tagged free-amalgam strongness theorem is not yet an explicitly audited corollary; that will be a separate next step.
+
+
+## Tagged strong free amalgamation (in progress)
+
+TaggedStrongAmalgam.lean first identifies the left and right finite
+domains of the fresh carrier P+(L+R), proves their intersection is the
+common base, their union is the whole carrier, and that the tagged
+graph has no cross edges. These structural interface lemmas are the
+remaining prerequisites for applying the verified strong free-union
+theorem to the tagged construction. Lean CI and axiom audit pending.
