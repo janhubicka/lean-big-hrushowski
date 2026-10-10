@@ -8,7 +8,7 @@ Every finite graph has a labelled presentation on some Fin n. For
 fixed n there are only finitely many graph relations on Fin n. The
 same holds for strong induced-embedding diagrams with source Fin n
 and target Fin m. Thus both finite graph presentations and finite
-strong-extension requirements admit countable encodings.
+strong-extension requirements have countable encodings.
 
 This is the enumeration input for the strong Fraïssé construction.
 It does not yet schedule requirements against a growing generic graph.
