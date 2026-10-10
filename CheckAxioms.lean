@@ -256,3 +256,6 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.coherentStagesOfSuccessors_sparse
 #print axioms BigHrushovski.FiniteCatalogue.strongExtensionProperty_of_finiteSuccessors
 #print axioms BigHrushovski.FiniteCatalogue.twoSparse_of_finiteSuccessors
+
+#print axioms BigHrushovski.FiniteCatalogue.empty_globallyStrong_of_sparse
+#print axioms BigHrushovski.FiniteCatalogue.exists_globallyStrong_copy

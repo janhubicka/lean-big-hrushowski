@@ -950,3 +950,22 @@ finite one-step hypothesis is already verified. Its only missing
 existence input is a uniform finite successor satisfying
 `IsFairStrongSuccessor`, including the no-request/inapplicable case.
 The Lean code and axiom dependencies await CI certification.
+
+
+## Strong universality from sparse genericity (pending Lean CI)
+
+`FiniteCatalogue.empty_globallyStrong_of_sparse` proves that the
+empty subgraph is globally self-sufficient when every finite
+induced subgraph has nonnegative predimension. Consequently
+`exists_globallyStrong_copy` instantiates the already-verified
+arbitrary finite strong extension theorem over the empty graph:
+every finite two-sparse graph then has a globally strong induced
+copy in the ambient structure.
+
+This is a *conditional universality implication* requiring both
+ambient two-sparsity and the labelled strong extension property.
+It is a step towards identifying the recursively constructed graph
+with the strong Fraisse limit, but does not yet prove homogeneity
+or uniqueness. The source awaits CI and axiom verification.
+
+This theorem passed the independent source [run 38086975944](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38086975944), auditing 204 declarations with only standard logical axioms and no placeholders in 43 Lean files. A new integration CI check is needed after porting to current main.
