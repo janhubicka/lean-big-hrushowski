@@ -852,3 +852,21 @@ the actual fair responding chain is still a separate obligation.
 ## Combined finite-successor interfaces (integration audit pending)
 
 The standalone versions passed GitHub Actions run [38080646111](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080646111) (general old-label graph coherence), [38080758571](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080758571) (composition of strong images), and [38080899840](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38080899840) (finite Nat stage pullback), each with only standard logical axioms and no placeholders. These are finite interface theorems. Their integration with the newer fair-response-to-limit theorem needs its own build before certification; this does not produce a recursive chain.
+
+
+
+## Request response followed by forced growth (pending Lean CI)
+
+`FiniteCatalogue.exists_growing_finite_strong_response` first uses the
+verified strong amalgamation response to an applicable labelled diagram.
+The result is then freely strongly amalgamated with a one-vertex edgeless
+graph over the empty base. Strong-image composition transfers both the
+old-stage image and the answered target through the growth embedding;
+the new vertex is outside the old-stage image. Exact induced adjacency
+and pointwise base agreement are preserved throughout.
+
+This discharges the finite existence obligation **including strict
+growth**, provided the new composite theorem passes integrated Lean
+CI. The recursive fair stage selection, initial-segment relabelling
+of successive stages, and countable direct-limit coherence remain
+separate formal proof obligations.
