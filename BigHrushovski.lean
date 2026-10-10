@@ -42,3 +42,5 @@ import BigHrushovski.GrowingFiniteResponse
 import BigHrushovski.ApplicableFiniteStage
 import BigHrushovski.CanonicalFinNumbering
 import BigHrushovski.TrivialStrongRequest
+
+import BigHrushovski.StrongAgeUniversality
