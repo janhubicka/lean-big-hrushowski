@@ -85,3 +85,5 @@ jobs:
         run: python3 scripts/check_c0_strong_age.py
       - name: Check fresh natural-number stage labels
         run: python3 scripts/check_fresh_nat_labels.py
+      - name: Check gap-free Nat initial-segment labels
+        run: python3 scripts/check_initial_segment_labels.py

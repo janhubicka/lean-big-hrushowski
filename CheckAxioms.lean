@@ -205,3 +205,8 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteSpan.exists_fresh_strong_nat_stage
 
 #print axioms BigHrushovski.GraphOn.transportedToNat_agree_on_old
+
+#print axioms BigHrushovski.FiniteSpan.extendInitialEquiv_old
+#print axioms BigHrushovski.FiniteSpan.extendInitialLabels_old
+#print axioms BigHrushovski.FiniteSpan.extendInitialLabels_injective
+#print axioms BigHrushovski.FiniteSpan.extendInitialLabels_image
