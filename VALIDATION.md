@@ -769,3 +769,19 @@ remaining gap before instantiating
 `strongExtensionProperty_of_fairResponses` for a concrete countable
 Hrushovski graph. Nothing in the new conditional transfer proves
 Ramsey, big Ramsey degree, or Ellentuck statements.
+
+
+## Arbitrary Nat-labelled finite graph stage coherence (pending Lean CI)
+
+`GraphOn.transportedToNat_agree_of_label_comp` states that two finite
+induced graph structures transported to the Nat carrier agree on the
+whole old labelled image whenever the new labelling fixes old
+numeric labels along the induced graph embedding. This extends the
+already-verified `transportedToNat_agree_on_old` result from the
+original maximum-plus-one choice to any injective extension, including
+gap-free initial-segment labels.
+
+The theorem is the exact old-old graph coherence lemma used by a
+recursive sequence of finite stages. It proves a bi-implication for
+adjacency and nonadjacency, but does not construct an infinite
+sequence of compatible choices.
