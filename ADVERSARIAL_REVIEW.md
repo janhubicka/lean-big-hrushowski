@@ -782,3 +782,21 @@ not a construction of any of the stages.
 **Scope and provenance.** No countable generic graph is constructed;
 we check independent failure modes within the same review rather
 than claiming independently spawned external referees.
+
+
+
+## Adversarial review: canonical Fin labels
+
+**Identity, not arbitrary permutation.** An abstract bijection from
+`Fin n` to its cardinal representative could reorder old vertices.
+The canonical cast identifies the equal cardinalities without
+changing their numeric values.
+
+**Stage zero.** The cast on `Fin 0` is valid vacuously; no extra
+nonempty-carrier assumption enters the recursive initialization.
+
+**Scope.** Numeric labelling is independent of graph adjacency and
+strongness. This only supplies the old labelling parameter required
+by the finite graph transport theorem, not an actual countable chain.
+The checks are separate adversarial proof perspectives within one
+assistant review, not an external referee panel.
