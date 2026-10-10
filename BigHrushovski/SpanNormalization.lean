@@ -212,6 +212,7 @@ This is a finite strong-amalgamation theorem for abstract embedded
 base diagrams. Construction of the countable strong Fraisse limit
 and the functional closure presentation remain separate obligations. -/
 theorem strong_amalgam_of_embeddings
+    [Fintype P] [Fintype A] [DecidableEq P] [DecidableEq A]
     {B : Type*} [Fintype B] [DecidableEq B]
     (G : GraphOn A) (H : GraphOn B)
     (i : P → A) (j : P → B)
