@@ -1117,3 +1117,31 @@ human or Lean referee and not a substitute for the pending axiom audit.
 **Consolidated integration status:** all three theorem layers are pending the combined Lean CI and standard-axiom/placeholder audit. The finite tests are diagnostic only. The strong genericity endpoint is not yet certified, and no manuscript marker should be upgraded until the exact source revision has passed.
 
 **Reconciled integration status:** this branch starts from main after the certified 207-declaration fair-recursion theorem (PR #45); it does not duplicate that module. The concrete strong genericity claims remain **pending a complete integrated Lean build and axiom audit**. The external combinatorial results and the manuscript's big Ramsey/Ellentuck conclusions are not derived here.
+
+
+## Adversarial review: finite strong forth extension
+
+**Source container.** Arbitrarily adjoining a vertex to a strong
+finite domain need not give a strong set. The proof uses the explicit
+finite-strong-cover property to select c strong in the full source
+graph and containing the requested vertex.
+
+**Base strength.** Global self-sufficiency of a implies a≤c. This
+is verified in the induced graph on the finite subtype of c using
+the previously proved exact predimension transport; it is not
+inferred from graph inclusion alone.
+
+**Target strength.** The arbitrary finite strong extension theorem
+returns a globally strong image of c in N, rather than a copy that
+is strong only within some selected finite target stage.
+
+**Exact original map.** The old partial isomorphism is an equivalence
+of induced finite subtype carriers. The resulting map g on c agrees
+pointwise with p after the canonical inclusion a→c. Adjacency is
+preserved and reflected, including nonedges.
+
+**Finiteness and proof scope.** The carrier c is finite, no uniform
+closure size is assumed, and neither the back step nor the
+alternating bijection has been claimed. These mathematical adversarial
+perspectives are all carried out by one assistant and are not
+independently spawned human referees.
