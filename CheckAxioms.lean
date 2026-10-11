@@ -265,3 +265,5 @@ import BigHrushovski
 
 #print axioms BigHrushovski.FiniteCatalogue.strong_forth_on_container
 #print axioms BigHrushovski.FiniteCatalogue.exists_strong_forth
+
+#print axioms BigHrushovski.FiniteCatalogue.exists_strong_back
