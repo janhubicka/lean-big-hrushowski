@@ -52,3 +52,6 @@ import BigHrushovski.StrongAgeUniversality
 import BigHrushovski.GenericStrongUniversality
 
 import BigHrushovski.FiniteStrongPartialIso
+
+import BigHrushovski.FiniteImageEquiv
+import BigHrushovski.FiniteStrongPartialExtension
