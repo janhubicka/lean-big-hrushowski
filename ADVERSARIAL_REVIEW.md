@@ -1145,3 +1145,26 @@ closure size is assumed, and neither the back step nor the
 alternating bijection has been claimed. These mathematical adversarial
 perspectives are all carried out by one assistant and are not
 independently spawned human referees.
+
+
+## Adversarial review: strong back extension
+
+**Symmetry.** The proof uses the inverse equivalence and exchanges
+the two ambient graphs, rather than assuming that a forward
+extension automatically covers the opposite range.
+
+**Exact values.** The inverse partial map sends each original
+target vertex to its original source vertex. It is preserved
+pointwise after inclusion in the larger target domain.
+
+**Induced nonedges.** The equivalence reverses the biconditional
+for adjacency and reflects nonedges as well as edges.
+
+**Strongness on both sides.** The enlarged target range is
+globally strong by the finite strong-cover premise; its new image
+in the source graph is globally strong by the extension property.
+
+**Scope.** Back-and-forth still needs coherent alternating finite
+partial maps and a proof that their union is a bijective induced
+graph isomorphism. This review tests five logically independent
+failure modes within one assistant, not an external referee panel.
