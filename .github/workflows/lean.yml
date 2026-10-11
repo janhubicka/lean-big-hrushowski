@@ -90,3 +90,6 @@ jobs:
 
       - name: Check growing strong response and forbidden weak amalgam
         run: python3 scripts/check_growing_nat_response.py
+
+      - name: Check strict strong-closure predimension and uniqueness
+        run: python3 scripts/check_strict_closure.py
