@@ -317,3 +317,11 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.generic_strong_automorphism_avoids
 #print axioms BigHrushovski.FiniteCatalogue.generic_outside_closure_infinite_orbit
 #print axioms BigHrushovski.FiniteCatalogue.generic_invariant_finite_subset_strongClosure
+
+#print axioms BigHrushovski.Predimension.exists_min_delta_strong
+#print axioms BigHrushovski.Predimension.strict_delta_of_least_global
+#print axioms BigHrushovski.Predimension.closed_subset_of_equal_delta
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_strict_delta
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_subset_of_equal_delta
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_unique_equal_pattern
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_induced_copy_image
