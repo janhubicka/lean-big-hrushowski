@@ -1059,3 +1059,26 @@ This is a further theorem and new combined source; it requires its
 own integrated Lean CI and axiom audit before certification. The
 homogeneity and uniqueness of the strong Fraïssé limit are distinct
 obligations to be formalized via finite-strong back-and-forth.
+
+
+## Finite globally strong closure in the concrete generic (pending integrated CI)
+
+`GenericStrongClosure.lean` specializes the already verified
+`StrongChain.stage_global`, `StrongExhaustion.toFiniteStrongCover`
+and least-strong-hull results to the actual countable graph
+`genericTwoSparseGraph` from the successful 212-declaration
+[PR #48 audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38087807401).
+
+The new definitions construct `genericStrongExhaustion` and a
+finite `genericStrongClosure s` for every finite set of vertices.
+The proposed theorems prove that the closure contains its
+generators, is globally self-sufficient, is least among finite
+globally strong containers, and is monotone and idempotent. A
+finite set is globally strong exactly when it equals its closure.
+
+These are instances of abstract finite-hull lemmas, not a claim
+that the full **functional** closure expansion in the manuscript
+has been formalized. The concrete theorem endpoints remain
+pending this branch's Lean build and axiom audit.
+
+**Audit update:** the source proof passed [Lean run 38112434522](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112434522), checking 219 declarations using only standard logical axioms and 46 files for placeholders. This reconciled branch must pass its own CI before the merged result is certified.
