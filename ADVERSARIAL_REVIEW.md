@@ -1278,3 +1278,36 @@ It must be discharged by composing actual finite strong
 forth/back steps. These separate failure-mode audits are
 performed by the same assistant, not independently spawned
 human referees.
+
+
+## Adversarial review: finite joint strong extension
+
+**Non-circularity.** The only inputs are two-sparsity on every
+finite set, finite globally strong covers and the finite strong
+extension property in both graphs. Neither a countable
+isomorphism nor the joint-step premise is assumed.
+
+**Exact carried values.** A finite strong response is normalized
+to its literal image before being treated as a partial
+isomorphism. The old map is preserved pointwise; arbitrary
+finite enumeration would not suffice.
+
+**Reverse direction.** The second step applies the forth
+extension lemma to the inverse partial isomorphism, and
+`Extends.inverse` transports the extension order back.
+Keeping only the source domain would not ensure target coverage.
+
+**Global strength.** Both finite domains remain globally
+self-sufficient, and the passage from a chosen finite container
+to its image is justified by exact induced strong embeddings.
+
+**No old-old nonedges added.** Each finite partial equivalence
+preserves and reflects adjacency; the union theorem compares
+each pair at a common later stage. Thus the limiting bijection
+is an induced graph isomorphism.
+
+**Scope.** The stronger homogeneity theorem requires additionally
+showing that the alternating back-and-forth union extends a
+specified *initial* finite strong map, not just the empty map.
+These are adversarial mathematical checks by one assistant, not
+independently spawned external referees.
