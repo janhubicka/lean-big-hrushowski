@@ -1170,3 +1170,29 @@ graph is known yet to be homogeneous.
 sequence of these partial maps. This is an interface, not a proof
 of strong homogeneity or uniqueness. The independent failure-mode
 checks were made by one assistant, not by external human referees.
+
+
+## Adversarial review: packaging strong response embeddings
+
+**Literal target image.** The new partial isomorphism has target
+equal to the actual Finset image of g, avoiding an arbitrary
+renumbering or an unjustified identification of finite carriers.
+
+**Old source agreement.** The induced response g is required to
+preserve the old partial isomorphism pointwise on the canonical
+subtype inclusion of the old finite domain into c.
+
+**Old target inclusion.** Surjectivity of the old finite partial
+equivalence, together with pointwise base agreement, shows that
+every previous target vertex belongs to the new finite image.
+Without this, an extension could silently discard old values.
+
+**Strongness on both sides.** Both the new finite source
+container and the exact finite target image are assumed globally
+strong, and these facts become the structure's invariants.
+
+**Scope and provenance.** The lemma packages a supplied finite
+response. Constructing the response, composing forth/back, and
+forming the countable bijection remain separate verified theorem
+obligations. The adversarial perspectives are from one assistant,
+not an external panel of referees.
