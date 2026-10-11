@@ -1198,3 +1198,31 @@ finite forth/back results do not automatically supply it without
 an alternating recursion. These adversarial failure-mode checks
 were carried out by one assistant, not by a separately spawned
 external referee panel.
+
+
+## Adversarial review: strong back-and-forth recursion
+
+**Genuine two-sided coverage.** The finite step hypothesis explicitly
+incorporates index k in both the source and target, so the chosen
+sequence exhausts both Nat carriers. One-sided coverage alone does
+not yield a surjective map.
+
+**Pointwise coherence.** Every selected successor extends the
+previous finite partial isomorphism with literal preservation of
+old numerical values. The union map does not need an arbitrary
+choice of representative values.
+
+**No pre-existing limit.** Ordinary recursion selects each finite
+step from an explicit finite existence hypothesis. The constructed
+sequence and limit equivalence are consequences, not fields of
+assumed data.
+
+**Induced nonedges.** The partial maps are induced finite graph
+equivalences; the union preserves and reflects adjacency on all
+pairs of vertices.
+
+**Remaining mathematical obligation.** The joint-step hypothesis
+still must be discharged using successive finite forth and back
+extensions of one partial map, keeping the result finite and globally
+strong. This is a same-assistant adversarial review, not external
+referee verification.
