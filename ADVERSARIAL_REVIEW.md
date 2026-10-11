@@ -1343,3 +1343,99 @@ The functionally expanded closure presentations, the big
 Ramsey-degree results, and Ellentuck-space axioms still require
 independent proofs. This is one assistant's adversarial review,
 not independently spawned external referees.
+
+
+## Adversarial review: free copies avoiding a finite container
+
+**Referee A — actual overlap.** The two tagged factors are embedded
+strongly over the literal common base (C). The no-unintended-
+identifications theorem guarantees that a point of (D\setminus C)
+cannot be identified with a point of the old (B).
+
+**Referee B — old labels.** The ambient strong extension property
+is applied with the induced finite subtype of the *actual* (B)
+as its base, using the inclusion into (M_0). The resulting
+embedding fixes every vertex in (B) pointwise rather than
+merely mapping it to an isomorphic copy.
+
+**Referee C — relative to global strength.** The new (D)-factor
+is strong in the finite tagged amalgam, and the amalgam's image
+is globally strong in (M_0). Transitivity is needed to make
+the image of (D) globally strong.
+
+**Referee D — induced nonedges.** Both factor embeddings are
+induced. The new image must reflect nonedges, since a mere
+graph homomorphism is insufficient for later extension of
+the isomorphism to an automorphism.
+
+**Referee E — iteration/acl boundary.** A single avoiding copy
+does not itself prove an infinite orbit. The iteration must
+enlarge the finite strong container to include the previously
+constructed images, and homogeneity must transport a distinguished
+vertex of (D) to the new images. First-order algebraic closure
+requires a final semantic argument.
+
+These checks isolate five mathematical failure modes within
+one assistant review and are not independent external referees.
+
+
+## Adversarial review: arbitrary finite avoidance for strong copies
+
+**Container existence.** The actual generic has a finite globally
+strong cover property for every finite set. The chosen container
+contains the base and the entire forbidden set, not merely the base.
+
+**Forbidden set need not be strong.** The input (F) is arbitrary
+finite; only the enlarged (B) needs to be globally strong.
+This distinction is essential for arbitrary lists of previously
+constructed conjugates.
+
+**Old base fixed literally.** The strong copy agrees pointwise with
+the original embedding of the base (C), not with a chosen
+isomorphic copy.
+
+**New vertices avoid all of F.** If a new image vertex belonged to
+(F\subseteq B), the tagged-amalgam identification criterion
+would force its source vertex to lie in the base, a contradiction.
+
+**Scope.** Unbounded finite copy existence is sufficient to
+iterate, but iteration and automorphism extension have not been
+included in this theorem. These are same-assistant adversarial
+failure-mode checks and not a panel of external human referees.
+
+
+## Adversarial review: infinitely many strong conjugates
+
+**Referee A — finite forbidden set.** For each finite (F),
+the construction obtains a strong induced copy of the finite
+closure of (C\cup\{a\}) whose nonbase vertices avoid all of
+(F). It does not mistake a single avoiding copy for infinitely
+many distinct copies.
+
+**Referee B — actual automorphism.** The two finite induced
+copies of (D) are both globally strong. The verified strong
+homogeneity theorem extends the induced finite equivalence
+to a total automorphism of the *actual* countable generic.
+
+**Referee C — pointwise base agreement.** Both free amalgamation
+and strong homogeneity preserve each vertex of (C), not merely
+its image set. Hence the final automorphism belongs to the
+pointwise stabilizer of (C) and of all generators (X\subseteq C).
+
+**Referee D — distinguished vertex.** Since (a\notin C), its
+representative in the finite closure (D) cannot belong to the
+image of the base embedding. The avoidance theorem therefore
+forces (e(a)\notin F).
+
+**Referee E — finite invariant sets versus FOL.** Every solution
+set of a finite algebraic formula over (X) is finite and
+stabilizer-invariant, so the combinatorial theorem would
+exclude any (a\notin\operatorname{cl}_s(X)). The converse
+inclusion uses the separately developed induced-diagram
+uniqueness lemma. The missing component for a *fully formal*
+identification with acl is now the first-order interpretation
+of finite diagram formulas and algebraic formulas.
+
+These five independent mathematical failure-mode perspectives
+were carried out in one assistant review rather than by
+externally spawned referee agents.

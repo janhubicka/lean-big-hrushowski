@@ -65,3 +65,9 @@ import BigHrushovski.StrongBackAndForthRecursion
 import BigHrushovski.StrongJointExtension
 
 import BigHrushovski.StrongHomogeneity
+
+import BigHrushovski.DisjointStrongCopies
+
+import BigHrushovski.UnboundedStrongCopies
+
+import BigHrushovski.StrongConjugates

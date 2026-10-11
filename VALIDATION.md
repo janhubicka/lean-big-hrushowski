@@ -1254,3 +1254,89 @@ is used as a theorem premise in the concrete construction. The
 remaining manuscript problems concern **algebraic closure and
 the functional and Ramsey presentations**, not existence or
 strong homogeneity of the pure C₀ Fraïssé limit.
+
+
+## Disjoint globally strong copies over a finite strong base (pending Lean CI)
+
+`DisjointStrongCopies.lean` is the finite *avoidance* theorem needed
+for the converse algebraic-closure inclusion. Given finite globally
+strong (C\subseteq B\subseteq M_0), a finite two-sparse graph (D)
+containing a prescribed induced strong copy of (C), and the
+strong extension property of the ambient countable graph, the
+theorem constructs a globally strong induced embedding of (D)
+into the ambient graph over the **literal** (C). Every vertex of
+its image meeting (B) must come from the prescribed copy of (C).
+
+The proof strongly freely amalgamates the induced finite graph
+on (B) with (D) over (C), then uses the previously certified
+finite strong-extension criterion to realize that tagged amalgam
+over the existing (B). Injectivity of the resulting map and
+the tagged amalgam's no-extra-identifications property establish
+the avoidance condition. The induced image remains globally
+strong by transferring finite relative strength into the
+global strong image of the whole amalgam.
+
+This theorem constructs **one** new independent copy avoiding any
+given finite strong container. Iteration can produce arbitrarily
+many disjoint strong copies over (C), and strong homogeneity
+would then give distinct automorphism conjugates. These later
+steps, and the first-order semantics of model-theoretic acl,
+remain unformalized. The combined Lean build and standard-axiom
+audit of the new theorem are pending.
+
+
+## Globally strong copies avoiding any finite forbidden set (pending Lean CI)
+
+`UnboundedStrongCopies.lean` specializes the general strong
+free-copy avoidance theorem to the actual countable generic.
+For a finite globally strong base (C), any finite strong
+graph extension of (C), and **any** finite forbidden vertex
+set (F), it constructs a globally strong induced copy of the
+extension fixing (C) pointwise, with all nonbase image vertices
+outside (F).
+
+The proof encloses (C\cup F) in a finite globally strong
+container (B) using `genericTwoSparseGraph_finiteStrongCover`,
+then invokes the independent avoidance theorem from
+`DisjointStrongCopies.lean`. The result needs no strongness
+hypothesis on (F) and can be applied successively with (F)
+the union of the previously constructed images.
+
+This is a finite *unboundedness* result, not a definition of an
+infinite sequence or automorphism orbit. To conclude that a vertex
+outside the strong closure has an infinite orbit over the
+generators, we must still use strong homogeneity to extend
+finite strong isomorphisms to global automorphisms. Model-theoretic
+algebraic closure requires a final semantic step. Full Lean
+build and axiom audit of this source remain pending.
+
+
+## Unbounded automorphism orbits outside finite strong closures (pending Lean CI)
+
+`StrongConjugates.lean` combines the proposed finite copy-avoidance
+lemma with the **certified** strong homogeneity of the countable
+Hrushovski generic. If (C) is finite and globally strong and
+(a\notin C), then for every finite forbidden (F) there is an
+induced graph automorphism fixing (C) pointwise whose image of
+(a) lies outside (F). The proof encloses (C\cup\{a\})
+in its finite globally strong closure (D), realizes a strong
+induced copy of (D) over (C) whose new vertices avoid (F),
+then packages the two strong finite images as a
+`FiniteStrongPartialIso` and invokes
+`genericTwoSparseGraph_strongHomogeneous`.
+
+The corollary `generic_outside_closure_infinite_orbit` applies to
+(C=\operatorname{cl}_s(X)), obtaining infinitely many orbit
+positions over the original generators (X). Finally
+`generic_invariant_finite_subset_strongClosure` proves that any
+finite set invariant under every automorphism fixing (X)
+is contained in (\operatorname{cl}_s(X)).
+
+This is precisely the combinatorial/automorphism argument
+needed for the inclusion (\operatorname{acl}(X)\subseteq
+\operatorname{cl}_s(X)): the finite set of realizations of any
+algebraic formula over (X) is invariant under the pointwise
+stabilizer. The Lean proof deliberately does not claim the
+first-order formula semantics have yet been formalized. Three
+new theorem endpoints require an integrated Lean build,
+standard-axiom and no-placeholder audit.
