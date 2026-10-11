@@ -3,33 +3,42 @@
 Lean 4 validation of the working manuscript
 [The Big Hrushovski](https://github.com/janhubicka/The-big-Hrushovski).
 
-## Certified scope (10 October 2026)
+## Certified scope (11 October 2026)
 
-The Lean development now verifies finite graph predimension,
+The Lean development verifies finite graph predimension,
 self-sufficiency and closure calculations, tagged strong free
 amalgamation of arbitrary finite 2-sparse graphs, finite strong
-extension response diagrams, fresh and gap-free initial-segment labels,
-and strictly growing finite strong extensions.
+extension responses, gap-free initial-segment labels, and strictly
+growing finite strong extensions.
 
-The formalization now also proves that **a uniform finite fair
-successor-existence theorem suffices to construct** a coherent,
-strictly growing sequence of finite stages whose union is two-sparse,
-has a finite strong cover and satisfies the labelled strong extension
-property. This implication is certified in the
-[207-declaration Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38086764663),
-using only standard logical axioms and no proof placeholders.
+**The unconditional countable strong generic graph is now
+machine-certified.** The proof constructs a coherent, strictly
+growing sequence of finite two-sparse graph stages on consecutive
+initial segments of ℕ, answering each applicable fair-scheduled
+finite strong extension and using an empty strong request to force
+growth otherwise. The union has nonnegative predimension on every
+finite set, finite globally strong covers, and the full labelled
+strong extension property. This was checked in
+[PR #48](https://github.com/janhubicka/lean-big-hrushowski/pull/48),
+whose [passing Lean audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38087807401)
+checked 212 declarations with only standard logical axioms, scanned
+45 Lean source files for placeholders and passed the finite
+regressions, including 2,337 growing strong response diagrams.
 
-**The unconditional countable generic Fraïssé graph is not yet
-machine-certified.** The missing premise is the existence of a
-strictly growing, gap-free Nat-labelled strong successor that answers
-every applicable scheduled request, with an empty strong-request
-fallback otherwise. The proposed concrete proof is being checked
-in [PR #48](https://github.com/janhubicka/lean-big-hrushowski/pull/48).
-It must pass the complete build and axiom audit before this README
-can claim the generic has been formally constructed.
+The constructed graph is also **strongly universal** for the finite
+two-sparse class: every finite two-sparse graph on an arbitrary
+finite vertex type has an induced globally strong copy. This
+corollary was certified in
+[PR #52](https://github.com/janhubicka/lean-big-hrushowski/pull/52),
+which audited 215 declarations and checked 47 Lean files for
+placeholders.
 
-The unary functional closure expansion, the big Ramsey degree
-theorems and the Ellentuck results also remain to be formalized.
+**Still open:** formalizing strong homogeneity and uniqueness by
+finite strong back-and-forth, thereby identifying the constructed
+graph with the specific strong Fraïssé limit M₀ of the manuscript.
+The complete functional closure presentations, big Ramsey-degree
+arguments and the concrete Ramsey-space axioms for the Ellentuck
+results also remain to be formalized.
 
 ## Reusable libraries
 
