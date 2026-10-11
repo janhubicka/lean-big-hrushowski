@@ -309,3 +309,10 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.strongHomogeneous_of_strongExtension
 #print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_unique
 #print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_strongHomogeneous
+
+#print axioms BigHrushovski.Predimension.exists_min_delta_strong
+#print axioms BigHrushovski.Predimension.strict_delta_of_least_global
+#print axioms BigHrushovski.Predimension.closed_subset_of_equal_delta
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_strict_delta
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_subset_of_equal_delta
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_unique_equal_pattern
