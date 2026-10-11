@@ -39,7 +39,8 @@ theorem Extends.inverse {p q : FiniteStrongPartialIso M N}
   obtain ⟨hs, ht, hValues⟩ := hpq
   refine ⟨ht, hs, ?_⟩
   intro y
-  let x : {x : ℕ // x ∈ p.source} := p.equiv.symm y
+  let y' : {v : ℕ // v ∈ p.target} := ⟨y.val, y.property⟩
+  let x : {x : ℕ // x ∈ p.source} := p.equiv.symm y'
   have hImage :
       q.equiv ⟨x.val, hs x.property⟩ =
         ⟨y.val, ht y.property⟩ := by
@@ -48,8 +49,7 @@ theorem Extends.inverse {p q : FiniteStrongPartialIso M N}
       (q.equiv ⟨x.val, hs x.property⟩).val =
           (p.equiv x).val := hValues x
       _ = y.val := by
-        change (p.equiv (p.equiv.symm y)).val = y.val
-        rw [Equiv.apply_symm_apply]
+        exact congrArg Subtype.val (p.equiv.apply_symm_apply y')
   have hPreimage :
       q.equiv.symm ⟨y.val, ht y.property⟩ =
         ⟨x.val, hs x.property⟩ := by
