@@ -73,7 +73,8 @@ noncomputable def empty (M N : GraphOn ℕ)
   target_global := empty_globallyStrong_of_sparse N hSparseN
   induced := by
     intro x
-    exact False.elim (Finset.not_mem_empty x.val x.property)
+    have hx : False := by simpa using x.property
+    exact False.elim hx
 
 end FiniteStrongPartialIso
 end FiniteCatalogue
