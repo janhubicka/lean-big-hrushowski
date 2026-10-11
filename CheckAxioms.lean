@@ -270,3 +270,12 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.symm
 #print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.image_equiv_eq_target
 #print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.empty
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.Extends.refl
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.Extends.trans
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.extends_of_le
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.union_at_stage
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.union_injective
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.union_surjective
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.union_induced
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.unionEquiv_induced
