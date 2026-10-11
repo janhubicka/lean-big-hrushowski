@@ -71,3 +71,6 @@ import BigHrushovski.DisjointStrongCopies
 import BigHrushovski.UnboundedStrongCopies
 
 import BigHrushovski.StrongConjugates
+
+import BigHrushovski.StrictStrongClosure
+import BigHrushovski.InducedClosureDiagrams

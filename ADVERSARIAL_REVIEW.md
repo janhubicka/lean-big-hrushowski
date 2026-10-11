@@ -1439,3 +1439,66 @@ of finite diagram formulas and algebraic formulas.
 These five independent mathematical failure-mode perspectives
 were carried out in one assistant review rather than by
 externally spawned referee agents.
+
+
+## Adversarial review: strict closure and finite induced diagrams
+
+**Referee A — predimension minimizer.** The finite family of
+supersets of (X) inside (C) is nonempty. A minimum-(\delta)
+member is strong *inside (C)*, since every intermediate superset
+still belongs to the minimizing family. As (C) is globally
+strong, transitivity makes the minimizer globally strong.
+
+**Referee B — leastness is essential.** The minimum must equal
+the least globally strong (C). Equality of (\delta(D))
+and (\delta(C)) for a proper intermediate (D) would make
+(D) strong and contradict leastness. A nonminimal strong
+container invalidates this assertion; the edgeless two-vertex
+negative control checks that failure mode.
+
+**Referee C — competing finite image.** For any (B\supseteq X)
+of equal predimension, submodularity on (C,B), together with
+global strength of (C), forces (C\cap B=C). A copy of the
+induced diagram has equal predimension and cardinality, and
+hence precisely the same vertex set. Distinguish this conclusion
+from the existence of a first-order formula expressing the diagram.
+
+**Referee D — all finite subsets.** The Python regression
+enumerates every labelled graph on up to five vertices and all
+generating and competitor sets, not just strong induced subgraphs.
+It verifies the strict inequality and both image-inclusion and
+equal-cardinality conclusions.
+
+**Referee E — model-theoretic boundary.** This finite argument
+would show that the induced diagram of (C) over (X) admits
+only finitely many realizations, once that diagram is expressed
+as a first-order formula. The opposite inclusion requires
+arbitrarily many disjoint strong realizations and extension to
+automorphisms. Neither model-theoretic assertion is hidden in
+the combinatorial theorem.
+
+These are independent mathematical failure-mode perspectives
+and an independent finite computation within the same assistant
+review, not separately spawned external referee agents.
+
+## Adversarial review: finite induced-copy image uniqueness
+
+**Referee F — no hidden global strength of the competing copy.**
+The alternative induced copy (f[C]) need not be globally strong.
+The proof does not assume this: it uses induced adjacency,
+the equal cardinality and predimension, the globally strong
+original (C), and submodularity.
+
+**Referee G — internal automorphisms.** The conclusion is equality
+of image *sets*, not pointwise equality of the two embeddings.
+A finite closure may admit permutations preserving the graph
+and its generating tuple.
+
+**Referee H — finiteness and formula semantics.** An induced map
+between finite graph structures preserves all unordered edge
+counts and reflects nonedges. Thus any first-order existential
+formula listing the finite induced diagram has candidate vertices
+only in (C). The Lean statement establishes the combinatorial
+fact, not yet the first-order interpretation of that formula.
+
+**Audit update (11 October 2026):** Original PR #69 passed CI [run 38153898725](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38153898725), auditing 260 declarations using standard logical axioms only and 59 placeholder-free Lean files, including the strict strong closure and finite induced-copy image theorems. The independent 1,100-graph regression also passed. This reconciled branch must pass a new integrated CI check before merging. The later merged PR #72 independently proves infinite automorphism orbits outside strong closure, but the first-order semantics of model-theoretic algebraic closure are still not formalized; do not upgrade `acl=cl_s`.
