@@ -63,7 +63,8 @@ theorem strong_forth_on_container
   let f : A → ℕ := fun x => (p x).val
   have hi : Function.Injective i := by
     intro x y h
-    exact Subtype.ext (congrArg Subtype.val h)
+    apply Subtype.ext
+    exact congrArg (Subtype.val : C → ℕ) h
   have hf : Function.Injective f := by
     intro x y h
     exact p.injective (Subtype.ext h)
@@ -86,7 +87,7 @@ theorem strong_forth_on_container
       (fun _ _ => Iff.rfl)
       (Finset.univ : Finset C)
     rw [subtype_val_image_univ c] at h
-    exact h.mpr (by intro s _; exact hSparseM s)
+    exact h.mp (by intro s _; exact hSparseM s)
   have hImageI :
       (((Finset.univ : Finset A).image i).image
         (Subtype.val : C → ℕ)) = a := by
