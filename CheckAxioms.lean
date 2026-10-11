@@ -280,3 +280,21 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_eq_self_iff
 #print axioms BigHrushovski.FiniteSpan.finiteImageEquiv_apply_val
 #print axioms BigHrushovski.FiniteSpan.finiteImageEquiv_symm_val
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.symm
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.image_equiv_eq_target
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.empty
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.exists_extension_from_image
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.Extends.refl
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.Extends.trans
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.extends_of_le
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.union_at_stage
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.union_injective
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.union_surjective
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.union_induced
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.unionEquiv_induced
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.chainOfJointSteps_step
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.chainOfJointSteps_source_covers
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.chainOfJointSteps_target_covers
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.equivOfJointSteps_induced
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.exists_induced_equiv_of_joint_steps
