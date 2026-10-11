@@ -1076,3 +1076,27 @@ strong back-and-forth argument. The local forth/back existence
 lemmas and the coherent infinite union are separate obligations.
 The three new endpoints remain pending Lean CI and standard-axiom
 certification.
+
+
+## Coherent union of a strong back-and-forth chain (pending Lean CI)
+
+`StrongBackAndForthLimit.lean` introduces an explicit extension
+order for finite strong partial isomorphisms and proves reflexivity
+and transitivity. The extension condition includes inclusion of
+both finite domains and equality of all old numerical map values.
+
+For any such increasing sequence covering *both* countable vertex
+sets, the file defines its union map, proves that choosing a
+different witnessing stage does not change any vertex value,
+and establishes injectivity, surjectivity, and preservation and
+reflection of adjacency. The endpoint
+`FiniteStrongPartialIso.unionEquiv_induced` constructs a genuine
+bijection of the Nat carriers respecting their entire induced
+graph structure.
+
+This theorem is conditional on having a coherent two-sided
+exhaustive chain; it does not construct the chain. Alternating
+the separately developed finite forth and back extension steps
+is the remaining proof obligation before strong homogeneity and
+uniqueness. The new source awaits full Lean CI, standard-axiom
+and placeholder audits.
