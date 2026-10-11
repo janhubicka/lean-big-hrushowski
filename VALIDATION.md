@@ -950,3 +950,89 @@ finite one-step hypothesis is already verified. Its only missing
 existence input is a uniform finite successor satisfying
 `IsFairStrongSuccessor`, including the no-request/inapplicable case.
 The Lean code and axiom dependencies await CI certification.
+
+
+## Strictly growing response on consecutive Nat stages (pending Lean CI)
+
+`FiniteCatalogue.exists_growing_nat_response` is the intended
+one-step existence lemma for the countable Hrushovski generic
+construction. Given a two-sparse finite stage on `range n` and a
+labelled strong diagram applicable there, it yields a new graph on
+`range m` for some `m>n`, supported on precisely this finite range.
+All old-old edges and nonedges are preserved, `range n` is strong
+in the successor, and the original Nat-labelled request receives an
+induced strong response **over the exact existing source map**.
+
+The proof combines finite source restriction to `Fin n`,
+request amalgamation followed by forced growth, canonical
+old-vertex numbering, and the gap-free strong graph transport.
+The existence of a full coherent fair chain still needs a separate
+recursive choice of these finite successors (and a growth-only case
+for inapplicable/empty scheduled requests). The new one-step theorem
+remains uncertified until its Lean build and axiom audit pass.
+
+## Recursive fair stage sequence from a finite one-step theorem (pending Lean CI)
+
+`FiniteCatalogue.FiniteNatStage` packages a supported two-sparse graph on a
+consecutive finite Nat interval. `IsFairStrongSuccessor k s t` requires
+strict growth, agreement on **all** old-old edges and nonedges, relative
+strongness of the old interval in the new graph, and a response to the
+scheduled request when it applies.
+
+`finiteStageSequence` uses ordinary recursion and classical choice from
+the explicit finite existential hypothesis
+`∀ k s, ∃ t, IsFairStrongSuccessor k s t`. The derived system
+`coherentStagesOfSuccessors` covers **all ℕ** by the verified
+strict-initial-segment-growth lemma. Its limit is two-sparse and has the
+labelled strong extension property by the previously audited
+finite-stage-to-countable transfer and fair request criterion.
+
+This is a conditional *construction*, not an assertion that the
+finite one-step hypothesis is already verified. Its only missing
+existence input is a uniform finite successor satisfying
+`IsFairStrongSuccessor`, including the no-request/inapplicable case.
+The Lean code and axiom dependencies await CI certification.
+
+## Construction of the concrete countable strong generic graph (pending Lean CI)
+
+`GenericFraisseConstruction.lean` combines the proposed finite growing
+Nat response theorem, the universally applicable trivial request and
+the abstract recursive stage-choice theorem.
+
+At stage k it answers the actual fair-scheduled extension if that
+request is applicable. If there is no request or it is inapplicable,
+it answers the trivial empty diagram to force growth. Every successor
+retains the full induced old-old graph, is a finite strong extension
+and enlarges its consecutive Nat domain. Ordinary recursion therefore
+produces a covering coherent strong chain. The union is two-sparse,
+and the repeated fair requests imply the labelled strong extension
+property.
+
+The proposed endpoints are
+`genericTwoSparseGraph_sparse` and
+`genericTwoSparseGraph_strongExtension`. They would close the
+countable genericity existence gap **if and only if** their full
+Lean build and standard-axiom/placeholder audit succeed. They are
+not presently certified. Further formal obligations would include
+the usual homogeneity/uniqueness identification with M0, equality
+with algebraic closure, the functional presentations and Ramsey
+and Ellentuck arguments.
+
+
+### Independent exhaustive growing-response regression
+
+The new `scripts/check_growing_nat_response.py` independently
+enumerates **2,337** compatible finite strong diagrams whose old
+and target graphs each have at most three vertices and whose common
+source has at most two vertices. It constructs the free amalgam and
+adjoins an isolated vertex, then directly checks induced adjacency
+*and nonadjacency*, exact base labels, strict growth with consecutive
+Nat labels, two-sparsity, and strongness of both factor images.
+The negative control freely joins two K5 graphs over a nonstrong K3,
+yielding seven vertices, seventeen edges, and predimension -3.
+The computation passed locally; integrated GitHub CI is still pending.
+It does not replace a kernel-checked general theorem.
+
+**Consolidated integration status:** all three theorem layers are pending the combined Lean CI and standard-axiom/placeholder audit. The finite tests are diagnostic only. The strong genericity endpoint is not yet certified, and no manuscript marker should be upgraded until the exact source revision has passed.
+
+**Reconciled integration status:** this branch starts from main after the certified 207-declaration fair-recursion theorem (PR #45); it does not duplicate that module. The concrete strong genericity claims remain **pending a complete integrated Lean build and axiom audit**. The external combinatorial results and the manuscript's big Ramsey/Ellentuck conclusions are not derived here.

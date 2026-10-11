@@ -87,3 +87,6 @@ jobs:
         run: python3 scripts/check_fresh_nat_labels.py
       - name: Check gap-free Nat initial-segment labels
         run: python3 scripts/check_initial_segment_labels.py
+
+      - name: Check growing strong response and forbidden weak amalgam
+        run: python3 scripts/check_growing_nat_response.py
