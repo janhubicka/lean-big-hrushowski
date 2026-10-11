@@ -1254,3 +1254,39 @@ is used as a theorem premise in the concrete construction. The
 remaining manuscript problems concern **algebraic closure and
 the functional and Ramsey presentations**, not existence or
 strong homogeneity of the pure C₀ Fraïssé limit.
+
+
+## Strict predimension minimality of finite strong closures (pending Lean CI)
+
+`StrictStrongClosure.lean` proves an abstract finite minimizer
+lemma for submodular predimensions: among the finite subsets between
+(X) and (C), a minimum-predimension choice is strong in (C).
+If (C) is the **least globally strong** finite set containing (X),
+then every proper (D) with (X\subseteq D\subsetneq C) has
+(\delta(D)>\delta(C)). Merely requiring (C) to be strong would
+not suffice.
+
+A second submodularity argument proves that any finite set (B)
+containing (X) and with (\delta(B)=\delta(C)) must contain
+all of (C); if also (|B|=|C|), then (B=C).
+`genericStrongClosure_strict_delta`,
+`genericStrongClosure_subset_of_equal_delta`, and
+`genericStrongClosure_unique_equal_pattern` instantiate these
+results for the concrete countable strong Fraïssé generic.
+
+This is the finite combinatorial uniqueness step used in the
+manuscript's argument for (\operatorname{cl}_s(X)\subseteq\operatorname{acl}(X)).
+It does **not** by itself formalize a first-order finite-diagram
+formula, its semantics, or the converse via infinitely many
+conjugates, so the full equality with model-theoretic algebraic
+closure remains unverified.
+
+Independent exhaustive Python regression
+`scripts/check_strict_closure.py` passed on all 1,100 labelled
+graphs with up to five vertices, checking 33,867 closures,
+14,233 strict intermediate comparisons, 55,407 equal-predimension
+comparisons, and 33,867 equal-cardinality conclusions.
+The negative control is the nonminimal strong container consisting
+of two edgeless vertices with one generator.
+The Lean proofs and their standard-axiom/no-placeholder audit
+remain pending.
