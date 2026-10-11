@@ -1198,3 +1198,59 @@ graph isomorphism. This review tests five logically independent
 failure modes within one assistant, not an external referee panel.
 
 **Integrated audit:** the complete source for forth and back has passed [GitHub Actions run 38112788714](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112788714), checking 215 Lean declarations with only standard logical axioms, scanning 47 Lean files for placeholders and passing the finite regression suite. The reconciliation on newer main requires its own green CI before merging.
+
+
+## Adversarial review: finite strong closure of the generic
+
+**Global versus relative strength.** Each finite stage is
+globally strong in the constructed graph by the strong-exhaustion
+theorem, not merely strong relative to the next finite stage.
+The closure is taken inside such a globally strong container.
+
+**Least hull independence.** The definition selects one finite
+container using classical choice, but the result is contained
+in every other finite globally strong container. Thus the
+closure is intrinsic and does not depend on the enumeration or
+the chosen stage.
+
+**Finite cardinality.** Every closure is represented as a
+`Finset ℕ`; no uniform numerical bound on its size is claimed.
+
+**Back-and-forth utility.** When extending a finite strong
+partial isomorphism to include one additional vertex, enlarge
+the finite domain to its strong closure first. Otherwise
+global strength can be lost.
+
+**Scope and provenance.** The closure as a predimension hull is
+not yet the manuscript's entire named functional expansion,
+nor does the lemma establish homogeneity. These five
+adversarial failure-mode perspectives come from one assistant
+review, not an independent external panel.
+
+**Audit update:** the source proof passed [Lean run 38112434522](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112434522), checking 219 declarations using only standard logical axioms and 46 files for placeholders. This reconciled branch must pass its own CI before the merged result is certified.
+
+## Adversarial review: finite image normalization
+
+**No lost or invented vertices.** The subtype carrier is defined
+by membership in the literal finite image of f. The two inverse
+laws show that all and only those image vertices occur.
+
+**Injectivity is essential.** Without f being one-to-one, the
+construction cannot be an equivalence and could collapse distinct
+vertices in a strong partial map.
+
+**Exact old values.** The forward equivalence sends a to f(a)
+on the nose, rather than through a freely chosen permutation of
+the image carrier.
+
+**Finite carrier boundary.** The result depends on the finite
+source type, not on any global finiteness of the target carrier,
+so it applies equally to finite strong subsets of ℕ.
+
+**Proof scope.** This is representation infrastructure. Its use
+to extend partial isomorphisms and carry out back-and-forth must
+still be verified separately. These checks are mathematical
+adversarial perspectives of one assistant, not independent
+external referees.
+
+**Verified source runs:** generic closures passed [38112434522](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112434522) (219 standard-axiom declarations; 46 placeholder-free files), and exact image equivalences passed [38113224922](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38113224922) (217 declarations; 48 files). Their combination with newer main and the merged finite forth/back proofs requires a fresh integrated CI.
