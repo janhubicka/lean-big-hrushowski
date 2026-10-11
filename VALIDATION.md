@@ -1059,3 +1059,45 @@ This is a further theorem and new combined source; it requires its
 own integrated Lean CI and axiom audit before certification. The
 homogeneity and uniqueness of the strong Fraïssé limit are distinct
 obligations to be formalized via finite-strong back-and-forth.
+
+
+## Strong forth extension of finite partial isomorphisms (pending Lean CI)
+
+`StrongForth.lean` formalizes the next part of the strong Fraïssé
+identification: given globally strong finite subsets a of a two-sparse
+graph M and b of a graph N satisfying the labelled strong extension
+property, and an induced equivalence between those sets, the map
+extends over any finite strong container c of a. The image of c in N
+is again globally strong and induced, and all old values are fixed
+pointwise.
+
+`exists_strong_forth` uses the finite strong-cover property of M
+to choose c containing the existing domain and any prescribed vertex.
+The theorem returns the actual finite container and the extended
+induced injective map, with its globally strong image. It is the
+one-step input for an alternating strong back-and-forth, not the
+infinite isomorphism theorem itself.
+
+The development carefully transports sparsity and relative strongness
+through induced graphs on finite subtype carriers, instead of
+silently identifying their edge sets. Both statements await full
+Lean CI and standard-axiom/no-placeholder certification.
+
+
+## Symmetric strong back extension (pending integrated CI)
+
+`StrongBack.lean` applies the new `exists_strong_forth` theorem
+to the inverse finite partial isomorphism, interchanging the
+source and target graphs. Under a finite strong-cover hypothesis
+in the target and the strong extension property in the source,
+every prescribed target vertex is contained in a finite globally
+strong range of an extended induced partial isomorphism. The old
+values are preserved exactly under the inverse equivalence.
+
+The back statement is logically the symmetric image of the forth
+statement and does not postulate a new extension property.
+The combined Lean source awaits build and standard-axiom verification.
+The remaining work is the alternating countable back-and-forth
+union and identification with the strong Fraïssé limit.
+
+**Integrated audit:** the complete source for forth and back has passed [GitHub Actions run 38112788714](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112788714), checking 215 Lean declarations with only standard logical axioms, scanning 47 Lean files for placeholders and passing the finite regression suite. The reconciliation on newer main requires its own green CI before merging.
