@@ -316,3 +316,5 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_strict_delta
 #print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_subset_of_equal_delta
 #print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_unique_equal_pattern
+
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_induced_copy_image
