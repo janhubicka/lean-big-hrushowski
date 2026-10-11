@@ -117,7 +117,7 @@ theorem genericStrongClosure_equivariant
     rw [hComp]
     simp
   rw [hImageInverse] at hReverse
-  exact Finset.Subset.antisymm hForward hReverse
+  exact le_antisymm hForward hReverse
 
 end FiniteCatalogue
 end BigHrushovski
