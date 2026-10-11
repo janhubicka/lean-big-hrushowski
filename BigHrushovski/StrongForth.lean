@@ -78,7 +78,7 @@ theorem strong_forth_on_container
       (fun _ _ => Iff.rfl)
       (Finset.univ : Finset A)
     rw [subtype_val_image_univ a] at h
-    exact h.mpr (by intro s _; exact hSparseM s)
+    exact h.mp (by intro s _; exact hSparseM s)
   have hSparseC : GC.IsTwoSparse (Finset.univ : Finset C) := by
     have h := GC.twoSparse_image_iff M
       (Subtype.val : C → ℕ)
@@ -107,7 +107,7 @@ theorem strong_forth_on_container
       (fun _ _ => Iff.rfl)
       ((Finset.univ : Finset A).image i)
       (Finset.univ : Finset C)
-      (Finset.subset_univ _)).mpr (by
+      (Finset.subset_univ _)).mp (by
         rw [hImageI, subtype_val_image_univ c]
         exact ha c hac)
     exact h
