@@ -266,3 +266,11 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.empty_globallyStrong_of_sparse
 #print axioms BigHrushovski.FiniteCatalogue.exists_globallyStrong_copy
 #print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_strongUniversal
+
+#print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_finiteStrongCover
+#print axioms BigHrushovski.FiniteCatalogue.subset_genericStrongClosure
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_global
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_least
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_mono
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_idempotent
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_eq_self_iff
