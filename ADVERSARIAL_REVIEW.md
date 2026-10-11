@@ -1145,3 +1145,28 @@ ultrahomogeneity, uniqueness or any of the paper's Ramsey properties.
 The remaining back-and-forth is recorded separately. These are
 five adversarial failure-mode perspectives by one assistant, not
 independently spawned external referees.
+
+
+## Adversarial review: finite image normalization
+
+**No lost or invented vertices.** The subtype carrier is defined
+by membership in the literal finite image of f. The two inverse
+laws show that all and only those image vertices occur.
+
+**Injectivity is essential.** Without f being one-to-one, the
+construction cannot be an equivalence and could collapse distinct
+vertices in a strong partial map.
+
+**Exact old values.** The forward equivalence sends a to f(a)
+on the nose, rather than through a freely chosen permutation of
+the image carrier.
+
+**Finite carrier boundary.** The result depends on the finite
+source type, not on any global finiteness of the target carrier,
+so it applies equally to finite strong subsets of ℕ.
+
+**Proof scope.** This is representation infrastructure. Its use
+to extend partial isomorphisms and carry out back-and-forth must
+still be verified separately. These checks are mathematical
+adversarial perspectives of one assistant, not independent
+external referees.
