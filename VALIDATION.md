@@ -1059,3 +1059,20 @@ The development carefully transports sparsity and relative strongness
 through induced graphs on finite subtype carriers, instead of
 silently identifying their edge sets. Both statements await full
 Lean CI and standard-axiom/no-placeholder certification.
+
+
+## Symmetric strong back extension (pending integrated CI)
+
+`StrongBack.lean` applies the new `exists_strong_forth` theorem
+to the inverse finite partial isomorphism, interchanging the
+source and target graphs. Under a finite strong-cover hypothesis
+in the target and the strong extension property in the source,
+every prescribed target vertex is contained in a finite globally
+strong range of an extended induced partial isomorphism. The old
+values are preserved exactly under the inverse equivalence.
+
+The back statement is logically the symmetric image of the forth
+statement and does not postulate a new extension property.
+The combined Lean source awaits build and standard-axiom verification.
+The remaining work is the alternating countable back-and-forth
+union and identification with the strong Fraïssé limit.
