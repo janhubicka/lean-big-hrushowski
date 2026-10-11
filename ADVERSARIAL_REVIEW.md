@@ -1117,3 +1117,31 @@ human or Lean referee and not a substitute for the pending axiom audit.
 **Consolidated integration status:** all three theorem layers are pending the combined Lean CI and standard-axiom/placeholder audit. The finite tests are diagnostic only. The strong genericity endpoint is not yet certified, and no manuscript marker should be upgraded until the exact source revision has passed.
 
 **Reconciled integration status:** this branch starts from main after the certified 207-declaration fair-recursion theorem (PR #45); it does not duplicate that module. The concrete strong genericity claims remain **pending a complete integrated Lean build and axiom audit**. The external combinatorial results and the manuscript's big Ramsey/Ellentuck conclusions are not derived here.
+
+
+## Adversarial review: finite strong closure of the generic
+
+**Global versus relative strength.** Each finite stage is
+globally strong in the constructed graph by the strong-exhaustion
+theorem, not merely strong relative to the next finite stage.
+The closure is taken inside such a globally strong container.
+
+**Least hull independence.** The definition selects one finite
+container using classical choice, but the result is contained
+in every other finite globally strong container. Thus the
+closure is intrinsic and does not depend on the enumeration or
+the chosen stage.
+
+**Finite cardinality.** Every closure is represented as a
+`Finset ℕ`; no uniform numerical bound on its size is claimed.
+
+**Back-and-forth utility.** When extending a finite strong
+partial isomorphism to include one additional vertex, enlarge
+the finite domain to its strong closure first. Otherwise
+global strength can be lost.
+
+**Scope and provenance.** The closure as a predimension hull is
+not yet the manuscript's entire named functional expansion,
+nor does the lemma establish homogeneity. These five
+adversarial failure-mode perspectives come from one assistant
+review, not an independent external panel.
