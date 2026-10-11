@@ -1384,3 +1384,24 @@ the combinatorial theorem.
 These are independent mathematical failure-mode perspectives
 and an independent finite computation within the same assistant
 review, not separately spawned external referee agents.
+
+
+## Adversarial review: finite induced-copy image uniqueness
+
+**Referee F — no hidden global strength of the competing copy.**
+The alternative induced copy (f[C]) need not be globally strong.
+The proof does not assume this: it uses induced adjacency,
+the equal cardinality and predimension, the globally strong
+original (C), and submodularity.
+
+**Referee G — internal automorphisms.** The conclusion is equality
+of image *sets*, not pointwise equality of the two embeddings.
+A finite closure may admit permutations preserving the graph
+and its generating tuple.
+
+**Referee H — finiteness and formula semantics.** An induced map
+between finite graph structures preserves all unordered edge
+counts and reflects nonedges. Thus any first-order existential
+formula listing the finite induced diagram has candidate vertices
+only in (C). The Lean statement establishes the combinatorial
+fact, not yet the first-order interpretation of that formula.
