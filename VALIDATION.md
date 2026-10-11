@@ -1036,3 +1036,26 @@ It does not replace a kernel-checked general theorem.
 **Consolidated integration status:** all three theorem layers are pending the combined Lean CI and standard-axiom/placeholder audit. The finite tests are diagnostic only. The strong genericity endpoint is not yet certified, and no manuscript marker should be upgraded until the exact source revision has passed.
 
 **Reconciled integration status:** this branch starts from main after the certified 207-declaration fair-recursion theorem (PR #45); it does not duplicate that module. The concrete strong genericity claims remain **pending a complete integrated Lean build and axiom audit**. The external combinatorial results and the manuscript's big Ramsey/Ellentuck conclusions are not derived here.
+
+
+## Strong universality of the constructed generic (pending integrated CI)
+
+`StrongAgeUniversality.lean` gives the conditional criterion: any
+countable two-sparse graph with the labelled strong extension property
+contains a globally strong induced copy of every finite two-sparse
+graph. The source proof passed an independent GitHub CI run
+[38086975944](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38086975944)
+with 204 audited declarations and no placeholders.
+
+`GenericStrongUniversality.lean` applies that criterion to the
+now-verified concrete `genericTwoSparseGraph` built in
+[PR #48](https://github.com/janhubicka/lean-big-hrushowski/pull/48),
+whose build checked 212 declarations. Its intended endpoint is
+`genericTwoSparseGraph_strongUniversal`, which states that every
+finite two-sparse graph on an arbitrary finite vertex type embeds
+inducedly into the actual constructed graph with globally strong image.
+
+This is a further theorem and new combined source; it requires its
+own integrated Lean CI and axiom audit before certification. The
+homogeneity and uniqueness of the strong Fraïssé limit are distinct
+obligations to be formalized via finite-strong back-and-forth.
