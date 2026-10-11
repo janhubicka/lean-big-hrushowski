@@ -27,7 +27,7 @@ def Extends (p q : FiniteStrongPartialIso M N) : Prop :=
 
 theorem Extends.refl (p : FiniteStrongPartialIso M N) :
     Extends p p := by
-  refine ⟨Subset.rfl, Subset.rfl, ?_⟩
+  refine ⟨(fun _ hx => hx), (fun _ hx => hx), ?_⟩
   intro x
   rfl
 
