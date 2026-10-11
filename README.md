@@ -33,12 +33,26 @@ corollary was certified in
 which audited 215 declarations and checked 47 Lean files for
 placeholders.
 
-**Still open:** formalizing strong homogeneity and uniqueness by
-finite strong back-and-forth, thereby identifying the constructed
-graph with the specific strong Fraïssé limit M₀ of the manuscript.
-The complete functional closure presentations, big Ramsey-degree
-arguments and the concrete Ramsey-space axioms for the Ellentuck
-results also remain to be formalized.
+**Strong homogeneity and uniqueness are now Lean-certified.**
+The finite joint strong extension theorem and an alternating
+back-and-forth construction show that any two countable two-sparse
+structures with finite strong covers and the strong extension
+property are induced-isomorphic. Every finite globally strong
+partial isomorphism of the constructed graph extends to an
+automorphism. Hence this concrete graph realizes the strong
+Fraïssé limit M₀ up to isomorphism. The merged
+[PRs #66 and #67](https://github.com/janhubicka/lean-big-hrushowski/pull/67)
+passed the [253-declaration integrated audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38148285916),
+with only standard logical axioms, no proof placeholders in 57
+Lean files, and the existing finite regression suite.
+
+**Still open:** identifying finite strong closure with
+model-theoretic algebraic closure, formalizing the complete
+functional closure presentations, the big Ramsey-degree
+arguments and the concrete Ramsey-space axioms required for the
+Ellentuck results. The abstract Milliken and Todorčević libraries
+can be reused once the appropriate concrete coding and axioms
+are formalized.
 
 ## Reusable libraries
 
