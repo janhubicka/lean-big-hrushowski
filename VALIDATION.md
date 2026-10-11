@@ -1283,3 +1283,29 @@ would then give distinct automorphism conjugates. These later
 steps, and the first-order semantics of model-theoretic acl,
 remain unformalized. The combined Lean build and standard-axiom
 audit of the new theorem are pending.
+
+
+## Globally strong copies avoiding any finite forbidden set (pending Lean CI)
+
+`UnboundedStrongCopies.lean` specializes the general strong
+free-copy avoidance theorem to the actual countable generic.
+For a finite globally strong base (C), any finite strong
+graph extension of (C), and **any** finite forbidden vertex
+set (F), it constructs a globally strong induced copy of the
+extension fixing (C) pointwise, with all nonbase image vertices
+outside (F).
+
+The proof encloses (C\cup F) in a finite globally strong
+container (B) using `genericTwoSparseGraph_finiteStrongCover`,
+then invokes the independent avoidance theorem from
+`DisjointStrongCopies.lean`. The result needs no strongness
+hypothesis on (F) and can be applied successively with (F)
+the union of the previously constructed images.
+
+This is a finite *unboundedness* result, not a definition of an
+infinite sequence or automorphism orbit. To conclude that a vertex
+outside the strong closure has an infinite orbit over the
+generators, we must still use strong homogeneity to extend
+finite strong isomorphisms to global automorphisms. Model-theoretic
+algebraic closure requires a final semantic step. Full Lean
+build and axiom audit of this source remain pending.
