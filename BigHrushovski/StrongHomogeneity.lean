@@ -85,7 +85,7 @@ theorem genericTwoSparseGraph_unique
 every finite globally strong induced partial isomorphism extends to
 a total induced automorphism of the whole graph. -/
 theorem genericTwoSparseGraph_strongHomogeneous
-    (p : FiniteStrongPartialIso.FiniteStrongPartialIso
+    (p : FiniteStrongPartialIso
       genericTwoSparseGraph genericTwoSparseGraph) :
     ∃ e : ℕ ≃ ℕ,
       (∀ x y : ℕ,
