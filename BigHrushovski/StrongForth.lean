@@ -134,5 +134,45 @@ theorem strong_forth_on_container
   exact ⟨g, hg, hgInd, hgBase, hgStrong⟩
 
 
+
+/-- The strong forth step may include any prescribed source vertex.
+The chosen finite container is globally strong, and the new induced
+map into the second graph is globally strong on its entire image. -/
+theorem exists_strong_forth
+    (M N : GraphOn ℕ)
+    (hSparseM : ∀ s : Finset ℕ, 0 ≤ M.predim s)
+    (hCoverM : Predimension.FiniteStrongCover M.toPredimension)
+    (hExtN : HasStrongExtensionProperty N)
+    (a b : Finset ℕ)
+    (ha : M.toPredimension.IsGloballyStrong a)
+    (hb : N.toPredimension.IsGloballyStrong b)
+    (p : {x : ℕ // x ∈ a} ≃ {x : ℕ // x ∈ b})
+    (hIndP : ∀ x y : {x : ℕ // x ∈ a},
+      M.adj x.val y.val ↔ N.adj (p x).val (p y).val)
+    (v : ℕ) :
+    ∃ (c : Finset ℕ) (hac : a ⊆ c),
+      v ∈ c ∧
+      M.toPredimension.IsGloballyStrong c ∧
+      ∃ g : {x : ℕ // x ∈ c} → ℕ,
+        Function.Injective g ∧
+        (∀ x y : {x : ℕ // x ∈ c},
+          M.adj x.val y.val ↔ N.adj (g x) (g y)) ∧
+        (∀ x : {x : ℕ // x ∈ a},
+          g ⟨x.val, hac x.property⟩ = (p x).val) ∧
+        N.toPredimension.IsGloballyStrong
+          ((Finset.univ : Finset {x : ℕ // x ∈ c}).image g) := by
+  classical
+  obtain ⟨c, hContainer, hcGlobal⟩ :=
+    hCoverM.exists_container (insert v a)
+  have hac : a ⊆ c := by
+    intro x hx
+    exact hContainer (Finset.mem_insert_of_mem hx)
+  have hv : v ∈ c :=
+    hContainer (Finset.mem_insert_self v a)
+  obtain ⟨g, hg, hIndG, hBase, hGlobalG⟩ :=
+    strong_forth_on_container M N hSparseM hExtN
+      a b c hac ha hb p hIndP
+  exact ⟨c, hac, hv, hcGlobal, g, hg, hIndG, hBase, hGlobalG⟩
+
 end FiniteCatalogue
 end BigHrushovski
