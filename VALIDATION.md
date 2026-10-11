@@ -1309,3 +1309,34 @@ generators, we must still use strong homogeneity to extend
 finite strong isomorphisms to global automorphisms. Model-theoretic
 algebraic closure requires a final semantic step. Full Lean
 build and axiom audit of this source remain pending.
+
+
+## Unbounded automorphism orbits outside finite strong closures (pending Lean CI)
+
+`StrongConjugates.lean` combines the proposed finite copy-avoidance
+lemma with the **certified** strong homogeneity of the countable
+Hrushovski generic. If (C) is finite and globally strong and
+(a\notin C), then for every finite forbidden (F) there is an
+induced graph automorphism fixing (C) pointwise whose image of
+(a) lies outside (F). The proof encloses (C\cup\{a\})
+in its finite globally strong closure (D), realizes a strong
+induced copy of (D) over (C) whose new vertices avoid (F),
+then packages the two strong finite images as a
+`FiniteStrongPartialIso` and invokes
+`genericTwoSparseGraph_strongHomogeneous`.
+
+The corollary `generic_outside_closure_infinite_orbit` applies to
+(C=\operatorname{cl}_s(X)), obtaining infinitely many orbit
+positions over the original generators (X). Finally
+`generic_invariant_finite_subset_strongClosure` proves that any
+finite set invariant under every automorphism fixing (X)
+is contained in (\operatorname{cl}_s(X)).
+
+This is precisely the combinatorial/automorphism argument
+needed for the inclusion (\operatorname{acl}(X)\subseteq
+\operatorname{cl}_s(X)): the finite set of realizations of any
+algebraic formula over (X) is invariant under the pointwise
+stabilizer. The Lean proof deliberately does not claim the
+first-order formula semantics have yet been formalized. Three
+new theorem endpoints require an integrated Lean build,
+standard-axiom and no-placeholder audit.
