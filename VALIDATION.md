@@ -1076,3 +1076,22 @@ strong back-and-forth argument. The local forth/back existence
 lemmas and the coherent infinite union are separate obligations.
 The three new endpoints remain pending Lean CI and standard-axiom
 certification.
+
+
+## Packaging a finite strong response as a partial isomorphism (pending Lean CI)
+
+`FiniteStrongPartialExtension.lean` takes an induced injective map
+from an arbitrary finite globally strong source container c into a
+second graph, assuming the image is globally strong and the old
+partial isomorphism's values are preserved exactly. It constructs
+a new `FiniteStrongPartialIso` with source equal to c and target
+equal to the literal finite image of the embedding, together with
+a proof that the old target is included and every previous
+numerical value is unchanged. The exact image equivalence is
+supplied by `FiniteImageEquiv.lean`, also imported here.
+
+This is the finite representation step needed to turn the verified
+`exists_strong_forth` and `exists_strong_back` into a joint
+finite extension of partial isomorphisms. It does not yet prove
+the joint-step property or Fraïssé uniqueness. The source and
+combined theorem endpoints await Lean CI and axiom audit.
