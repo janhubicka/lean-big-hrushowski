@@ -53,3 +53,6 @@ import BigHrushovski.GenericStrongUniversality
 
 import BigHrushovski.StrongForth
 import BigHrushovski.StrongBack
+
+import BigHrushovski.GenericStrongClosure
+import BigHrushovski.FiniteImageEquiv
