@@ -1311,3 +1311,35 @@ showing that the alternating back-and-forth union extends a
 specified *initial* finite strong map, not just the empty map.
 These are adversarial mathematical checks by one assistant, not
 independently spawned external referees.
+
+
+## Adversarial review: strong homogeneity and uniqueness
+
+**Prescribed initial values.** A back-and-forth starting with a
+nonempty finite strong partial isomorphism must retain its
+values at stage zero. This is verified by the stage-independent
+union evaluation theorem, rather than inferred from abstract
+existence of a global bijection.
+
+**Two-sided surjectivity.** The joint-step construction grows both
+source and target domains at every step. A one-sided exhaustion
+would not establish an automorphism.
+
+**Global strongness.** The initial finite partial map and all
+successor partial maps require self-sufficiency against the
+entire ambient graph, not only their containing finite stage.
+
+**Inducedness.** The total equivalence preserves and reflects
+nonedges as well as edges by eventual common-stage agreement.
+
+**No circular assumptions.** The finite joint-step theorem,
+if fully verified, consumes only two-sparsity, finite strong
+covers and strong extension property in each graph. The countable
+Fraïssé limit and its uniqueness are not assumed.
+
+**Separate scope.** Theorem-level strong homogeneity identifies
+the constructed graph with the pure strong Fraïssé limit.
+The functionally expanded closure presentations, the big
+Ramsey-degree results, and Ellentuck-space axioms still require
+independent proofs. This is one assistant's adversarial review,
+not independently spawned external referees.
