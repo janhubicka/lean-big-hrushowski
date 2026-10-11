@@ -270,3 +270,13 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.strong_forth_on_container
 #print axioms BigHrushovski.FiniteCatalogue.exists_strong_forth
 #print axioms BigHrushovski.FiniteCatalogue.exists_strong_back
+
+#print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_finiteStrongCover
+#print axioms BigHrushovski.FiniteCatalogue.subset_genericStrongClosure
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_global
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_least
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_mono
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_idempotent
+#print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_eq_self_iff
+#print axioms BigHrushovski.FiniteSpan.finiteImageEquiv_apply_val
+#print axioms BigHrushovski.FiniteSpan.finiteImageEquiv_symm_val
