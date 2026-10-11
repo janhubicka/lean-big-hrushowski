@@ -1036,3 +1036,24 @@ It does not replace a kernel-checked general theorem.
 **Consolidated integration status:** all three theorem layers are pending the combined Lean CI and standard-axiom/placeholder audit. The finite tests are diagnostic only. The strong genericity endpoint is not yet certified, and no manuscript marker should be upgraded until the exact source revision has passed.
 
 **Reconciled integration status:** this branch starts from main after the certified 207-declaration fair-recursion theorem (PR #45); it does not duplicate that module. The concrete strong genericity claims remain **pending a complete integrated Lean build and axiom audit**. The external combinatorial results and the manuscript's big Ramsey/Ellentuck conclusions are not derived here.
+
+
+## Finite globally strong closure in the concrete generic (pending integrated CI)
+
+`GenericStrongClosure.lean` specializes the already verified
+`StrongChain.stage_global`, `StrongExhaustion.toFiniteStrongCover`
+and least-strong-hull results to the actual countable graph
+`genericTwoSparseGraph` from the successful 212-declaration
+[PR #48 audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38087807401).
+
+The new definitions construct `genericStrongExhaustion` and a
+finite `genericStrongClosure s` for every finite set of vertices.
+The proposed theorems prove that the closure contains its
+generators, is globally self-sufficient, is least among finite
+globally strong containers, and is monotone and idempotent. A
+finite set is globally strong exactly when it equals its closure.
+
+These are instances of abstract finite-hull lemmas, not a claim
+that the full **functional** closure expansion in the manuscript
+has been formalized. The concrete theorem endpoints remain
+pending this branch's Lean build and axiom audit.
