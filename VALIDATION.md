@@ -1290,3 +1290,24 @@ The negative control is the nonminimal strong container consisting
 of two edgeless vertices with one generator.
 The Lean proofs and their standard-axiom/no-placeholder audit
 remain pending.
+
+
+## An induced copy of finite strong closure has the same image (pending Lean CI)
+
+`InducedClosureDiagrams.lean` upgrades the abstract finite
+predimension/cardinality comparison to the exact statement
+needed in the manuscript: if (C=\operatorname{cl}_s(X))
+and (f:C\hookrightarrow M_0) is an induced embedding fixing
+(X) pointwise, then (f[C]=C). It uses `GraphOn.predim_image`
+to compare δ along (f) and along the inclusion of the
+finite subtype of (C) into the generic, and
+`Finset.card_image_of_injective` for cardinality.
+
+This does not claim that (f) fixes **every point** of (C):
+finite internal automorphisms over (X) may remain. It proves
+only that a realization of the finite induced diagram of (C)
+over (X) cannot use a vertex outside (C), the essential
+finite combinatorial argument for algebraicity of members
+of (C). The finite diagram still must be expressed in the
+first-order graph language and the converse algebraic-closure
+inclusion needs the disjoint-copy argument.
