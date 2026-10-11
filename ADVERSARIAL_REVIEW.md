@@ -1145,3 +1145,28 @@ ultrahomogeneity, uniqueness or any of the paper's Ramsey properties.
 The remaining back-and-forth is recorded separately. These are
 five adversarial failure-mode perspectives by one assistant, not
 independently spawned external referees.
+
+
+## Adversarial review: finite strong partial isomorphisms
+
+**Finite but non-initial carriers.** Finite globally strong domains
+can be arbitrary finite vertex subsets. The structure uses actual
+finite subtype carriers, not unjustified consecutive labels.
+
+**Inverse structure.** The symmetric partial map interchanges both
+globally strong domains and reflects adjacency and nonadjacency.
+It does not just reverse a graph homomorphism.
+
+**Target coverage.** The range of the underlying numerical map
+is exactly the declared finite target because the map is an
+equivalence of finite subtype carriers, not an arbitrary injection.
+
+**Empty base.** A two-sparse graph has globally strong empty
+subgraph, permitting a common starting partial isomorphism without
+choosing arbitrary vertices. This remains valid even when neither
+graph is known yet to be homogeneous.
+
+**Scope.** There is not yet an extension order or alternating
+sequence of these partial maps. This is an interface, not a proof
+of strong homogeneity or uniqueness. The independent failure-mode
+checks were made by one assistant, not by external human referees.
