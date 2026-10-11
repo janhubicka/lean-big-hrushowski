@@ -47,3 +47,5 @@ import BigHrushovski.FairStageRecursion
 
 import BigHrushovski.ConcreteGrowingNatResponse
 import BigHrushovski.GenericFraisseConstruction
+
+import BigHrushovski.GenericStrongClosure
