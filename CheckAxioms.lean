@@ -266,3 +266,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.empty_globallyStrong_of_sparse
 #print axioms BigHrushovski.FiniteCatalogue.exists_globallyStrong_copy
 #print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_strongUniversal
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.symm
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.image_equiv_eq_target
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.empty
