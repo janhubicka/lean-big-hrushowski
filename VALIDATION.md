@@ -1059,3 +1059,20 @@ This is a further theorem and new combined source; it requires its
 own integrated Lean CI and axiom audit before certification. The
 homogeneity and uniqueness of the strong Fraïssé limit are distinct
 obligations to be formalized via finite-strong back-and-forth.
+
+
+## Exact finite-image equivalence for induced embeddings (pending Lean CI)
+
+`FiniteSpan.finiteImageEquiv` turns every injection of a finite
+carrier A into an exact equivalence with the subtype of vertices
+belonging to the finite image of that map. The numerical value of
+the forward equivalence is literally the original injected vertex;
+the inverse identifies the unique preimage. This avoids relying on
+an arbitrary Fintype enumeration or treating two finite carrier
+representations as definitionally equal.
+
+The lemma is intended for turning the finite strong extension map
+returned by `exists_strong_forth` into a new
+`FiniteStrongPartialIso` with the correct globally strong target
+set. It establishes only the exact carrier equivalence and requires
+its own Lean build, axiom and no-placeholder audit.
