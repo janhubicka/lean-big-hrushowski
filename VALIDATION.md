@@ -1219,3 +1219,38 @@ and strong extension properties of the construction.
 `StrongJointExtension.lean` is undergoing a new Lean run, as is
 this extension. The source and type/axiom audits must be green
 before the manuscript's M₀ identification marker is upgraded.
+
+
+## Certified authoritative checkpoint — strong Fraïssé identification
+
+The earlier **pending** section headings above record historical review
+states. They are superseded by the exact audited result from
+[PR #67](https://github.com/janhubicka/lean-big-hrushowski/pull/67),
+[workflow 38148285916](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38148285916),
+with **253 declarations checked using only standard logical axioms**,
+**57 Lean files free of proof placeholders**, and the complete finite
+regression suite. The proof is merged into main.
+
+The following formerly conditional interfaces have now been
+instantiated by kernel-checked finite existence theorems:
+
+- `FiniteStrongPartialIso.hasJointSteps_of_strongExtension`: a
+  prescribed source vertex and target vertex can be incorporated
+  successively while preserving exact finite strong partial maps.
+- `FiniteStrongPartialIso.exists_induced_equiv_of_strongExtension`:
+  countable two-sparse structures with finite global strong covers
+  and the full strong extension property admit an induced graph
+  isomorphism.
+- `FiniteStrongPartialIso.strongHomogeneous_of_strongExtension`:
+  a prescribed finite globally strong induced partial isomorphism
+  extends to an automorphism in a countable strong generic.
+- `genericTwoSparseGraph_unique` and
+  `genericTwoSparseGraph_strongHomogeneous`: uniqueness and
+  strong homogeneity for the actual countable graph constructed
+  by fair strong recursion.
+
+No existing generic countable graph or pre-existing isomorphism
+is used as a theorem premise in the concrete construction. The
+remaining manuscript problems concern **algebraic closure and
+the functional and Ramsey presentations**, not existence or
+strong homogeneity of the pure C₀ Fraïssé limit.
