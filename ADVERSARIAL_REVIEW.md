@@ -1343,3 +1343,37 @@ The functionally expanded closure presentations, the big
 Ramsey-degree results, and Ellentuck-space axioms still require
 independent proofs. This is one assistant's adversarial review,
 not independently spawned external referees.
+
+
+## Adversarial review: free copies avoiding a finite container
+
+**Referee A — actual overlap.** The two tagged factors are embedded
+strongly over the literal common base (C). The no-unintended-
+identifications theorem guarantees that a point of (D\setminus C)
+cannot be identified with a point of the old (B).
+
+**Referee B — old labels.** The ambient strong extension property
+is applied with the induced finite subtype of the *actual* (B)
+as its base, using the inclusion into (M_0). The resulting
+embedding fixes every vertex in (B) pointwise rather than
+merely mapping it to an isomorphic copy.
+
+**Referee C — relative to global strength.** The new (D)-factor
+is strong in the finite tagged amalgam, and the amalgam's image
+is globally strong in (M_0). Transitivity is needed to make
+the image of (D) globally strong.
+
+**Referee D — induced nonedges.** Both factor embeddings are
+induced. The new image must reflect nonedges, since a mere
+graph homomorphism is insufficient for later extension of
+the isomorphism to an automorphism.
+
+**Referee E — iteration/acl boundary.** A single avoiding copy
+does not itself prove an infinite orbit. The iteration must
+enlarge the finite strong container to include the previously
+constructed images, and homogeneity must transport a distinguished
+vertex of (D) to the new images. First-order algebraic closure
+requires a final semantic argument.
+
+These checks isolate five mathematical failure modes within
+one assistant review and are not independent external referees.
