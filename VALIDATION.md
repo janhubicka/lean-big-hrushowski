@@ -1100,3 +1100,25 @@ the separately developed finite forth and back extension steps
 is the remaining proof obligation before strong homogeneity and
 uniqueness. The new source awaits full Lean CI, standard-axiom
 and placeholder audits.
+
+
+## Recursion from finite strong joint extensions to countable isomorphism (pending Lean CI)
+
+`StrongBackAndForthRecursion.lean` assumes the finite joint-step
+condition: for every finite globally strong partial isomorphism and
+every index k, there is an extending finite partial isomorphism
+whose source and target both contain k. Ordinary Nat recursion and
+classical choice produce a coherent sequence covering both copies
+of ℕ. The previously established union theorem provides an induced
+bijection between the two graph structures.
+
+The endpoint `exists_induced_equiv_of_joint_steps` starts from the
+empty strong partial isomorphism and asserts a genuine graph
+isomorphism between arbitrary two-sparse countable graphs satisfying
+the joint-step property. This theorem does **not** assume an already
+given infinite chain. Its only missing input is the finite
+joint-step theorem, which should be obtained by composing the
+separate forth and back extensions.
+
+This conditional back-and-forth theorem requires full Lean CI,
+axiom and placeholder verification before certification.
