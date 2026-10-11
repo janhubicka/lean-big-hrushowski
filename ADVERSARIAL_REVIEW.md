@@ -1145,3 +1145,56 @@ ultrahomogeneity, uniqueness or any of the paper's Ramsey properties.
 The remaining back-and-forth is recorded separately. These are
 five adversarial failure-mode perspectives by one assistant, not
 independently spawned external referees.
+
+
+## Adversarial review: finite strong forth extension
+
+**Source container.** Arbitrarily adjoining a vertex to a strong
+finite domain need not give a strong set. The proof uses the explicit
+finite-strong-cover property to select c strong in the full source
+graph and containing the requested vertex.
+
+**Base strength.** Global self-sufficiency of a implies a≤c. This
+is verified in the induced graph on the finite subtype of c using
+the previously proved exact predimension transport; it is not
+inferred from graph inclusion alone.
+
+**Target strength.** The arbitrary finite strong extension theorem
+returns a globally strong image of c in N, rather than a copy that
+is strong only within some selected finite target stage.
+
+**Exact original map.** The old partial isomorphism is an equivalence
+of induced finite subtype carriers. The resulting map g on c agrees
+pointwise with p after the canonical inclusion a→c. Adjacency is
+preserved and reflected, including nonedges.
+
+**Finiteness and proof scope.** The carrier c is finite, no uniform
+closure size is assumed, and neither the back step nor the
+alternating bijection has been claimed. These mathematical adversarial
+perspectives are all carried out by one assistant and are not
+independently spawned human referees.
+
+
+## Adversarial review: strong back extension
+
+**Symmetry.** The proof uses the inverse equivalence and exchanges
+the two ambient graphs, rather than assuming that a forward
+extension automatically covers the opposite range.
+
+**Exact values.** The inverse partial map sends each original
+target vertex to its original source vertex. It is preserved
+pointwise after inclusion in the larger target domain.
+
+**Induced nonedges.** The equivalence reverses the biconditional
+for adjacency and reflects nonedges as well as edges.
+
+**Strongness on both sides.** The enlarged target range is
+globally strong by the finite strong-cover premise; its new image
+in the source graph is globally strong by the extension property.
+
+**Scope.** Back-and-forth still needs coherent alternating finite
+partial maps and a proof that their union is a bijective induced
+graph isomorphism. This review tests five logically independent
+failure modes within one assistant, not an external referee panel.
+
+**Integrated audit:** the complete source for forth and back has passed [GitHub Actions run 38112788714](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112788714), checking 215 Lean declarations with only standard logical axioms, scanning 47 Lean files for placeholders and passing the finite regression suite. The reconciliation on newer main requires its own green CI before merging.
