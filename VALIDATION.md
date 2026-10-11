@@ -1340,3 +1340,61 @@ stabilizer. The Lean proof deliberately does not claim the
 first-order formula semantics have yet been formalized. Three
 new theorem endpoints require an integrated Lean build,
 standard-axiom and no-placeholder audit.
+
+
+## Strict predimension minimality of finite strong closures (pending Lean CI)
+
+`StrictStrongClosure.lean` proves an abstract finite minimizer
+lemma for submodular predimensions: among the finite subsets between
+(X) and (C), a minimum-predimension choice is strong in (C).
+If (C) is the **least globally strong** finite set containing (X),
+then every proper (D) with (X\subseteq D\subsetneq C) has
+(\delta(D)>\delta(C)). Merely requiring (C) to be strong would
+not suffice.
+
+A second submodularity argument proves that any finite set (B)
+containing (X) and with (\delta(B)=\delta(C)) must contain
+all of (C); if also (|B|=|C|), then (B=C).
+`genericStrongClosure_strict_delta`,
+`genericStrongClosure_subset_of_equal_delta`, and
+`genericStrongClosure_unique_equal_pattern` instantiate these
+results for the concrete countable strong Fraïssé generic.
+
+This is the finite combinatorial uniqueness step used in the
+manuscript's argument for (\operatorname{cl}_s(X)\subseteq\operatorname{acl}(X)).
+It does **not** by itself formalize a first-order finite-diagram
+formula, its semantics, or the converse via infinitely many
+conjugates, so the full equality with model-theoretic algebraic
+closure remains unverified.
+
+Independent exhaustive Python regression
+`scripts/check_strict_closure.py` passed on all 1,100 labelled
+graphs with up to five vertices, checking 33,867 closures,
+14,233 strict intermediate comparisons, 55,407 equal-predimension
+comparisons, and 33,867 equal-cardinality conclusions.
+The negative control is the nonminimal strong container consisting
+of two edgeless vertices with one generator.
+The Lean proofs and their standard-axiom/no-placeholder audit
+remain pending.
+
+## An induced copy of finite strong closure has the same image (pending Lean CI)
+
+`InducedClosureDiagrams.lean` upgrades the abstract finite
+predimension/cardinality comparison to the exact statement
+needed in the manuscript: if (C=\operatorname{cl}_s(X))
+and (f:C\hookrightarrow M_0) is an induced embedding fixing
+(X) pointwise, then (f[C]=C). It uses `GraphOn.predim_image`
+to compare δ along (f) and along the inclusion of the
+finite subtype of (C) into the generic, and
+`Finset.card_image_of_injective` for cardinality.
+
+This does not claim that (f) fixes **every point** of (C):
+finite internal automorphisms over (X) may remain. It proves
+only that a realization of the finite induced diagram of (C)
+over (X) cannot use a vertex outside (C), the essential
+finite combinatorial argument for algebraicity of members
+of (C). The finite diagram still must be expressed in the
+first-order graph language and the converse algebraic-closure
+inclusion needs the disjoint-copy argument.
+
+**Audit update (11 October 2026):** Original PR #69 passed CI [run 38153898725](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38153898725), auditing 260 declarations using standard logical axioms only and 59 placeholder-free Lean files, including the strict strong closure and finite induced-copy image theorems. The independent 1,100-graph regression also passed. This reconciled branch must pass a new integrated CI check before merging. The later merged PR #72 independently proves infinite automorphism orbits outside strong closure, but the first-order semantics of model-theoretic algebraic closure are still not formalized; do not upgrade `acl=cl_s`.
