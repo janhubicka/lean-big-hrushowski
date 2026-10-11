@@ -1170,3 +1170,31 @@ graph is known yet to be homogeneous.
 sequence of these partial maps. This is an interface, not a proof
 of strong homogeneity or uniqueness. The independent failure-mode
 checks were made by one assistant, not by external human referees.
+
+
+## Adversarial review: union of finite strong partial isomorphisms
+
+**Coherence of the map.** Every later finite equivalence agrees with
+each earlier one on the *same numerical input vertices*. It is not
+enough merely to embed one finite domain into an isomorphic copy.
+
+**Common comparison stage.** Two values witnessed at unrelated
+stages are compared at max(n,m), using the transitivity of the
+extension relation. This proves injectivity and inducedness
+without arbitrary assumptions about stage overlap.
+
+**Surjectivity.** The separate coverage of target finite domains
+is essential. Coverage only in the source would yield at most an
+induced injection rather than an isomorphism.
+
+**Finite induced nonedges.** Each partial equivalence preserves
+and reflects adjacency. The union passes every pair of vertices
+through one sufficiently late common finite domain, so nonedges
+are preserved too.
+
+**No hidden countable chain.** The union theorem assumes the
+existence of an increasing two-sided exhaustive sequence; the
+finite forth/back results do not automatically supply it without
+an alternating recursion. These adversarial failure-mode checks
+were carried out by one assistant, not by a separately spawned
+external referee panel.
