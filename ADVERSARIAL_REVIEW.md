@@ -1117,3 +1117,31 @@ human or Lean referee and not a substitute for the pending axiom audit.
 **Consolidated integration status:** all three theorem layers are pending the combined Lean CI and standard-axiom/placeholder audit. The finite tests are diagnostic only. The strong genericity endpoint is not yet certified, and no manuscript marker should be upgraded until the exact source revision has passed.
 
 **Reconciled integration status:** this branch starts from main after the certified 207-declaration fair-recursion theorem (PR #45); it does not duplicate that module. The concrete strong genericity claims remain **pending a complete integrated Lean build and axiom audit**. The external combinatorial results and the manuscript's big Ramsey/Ellentuck conclusions are not derived here.
+
+
+## Adversarial review: strong age of the constructed generic
+
+**Vacuous source versus genuine target.** Universality is obtained by
+extending an empty induced embedding into an arbitrary valid finite
+two-sparse target. It does not merely assert that the target can be
+embedded as an ordinary induced graph; the image is globally strong.
+
+**Ambient hypotheses.** Both exact premises of the conditional theorem
+have independent Lean proofs for the concrete `genericTwoSparseGraph`:
+nonnegative predimension on every finite subset, and the strong
+extension property. Neither is postulated as a field of a new object.
+
+**Arbitrary finite labels.** The source theorem already transfers
+from labelled strong diagrams to arbitrary finite carrier types.
+The corollary cannot substitute an arbitrary enumeration without
+preserving the actual induced adjacency and strength.
+
+**Global, not local.** The target image is strong against every
+finite set in the ambient graph, rather than only against the finite
+stage where it first appeared.
+
+**Scope.** Strong universality alone does not imply strong
+ultrahomogeneity, uniqueness or any of the paper's Ramsey properties.
+The remaining back-and-forth is recorded separately. These are
+five adversarial failure-mode perspectives by one assistant, not
+independently spawned external referees.
