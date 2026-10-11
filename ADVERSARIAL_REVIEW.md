@@ -1145,3 +1145,33 @@ ultrahomogeneity, uniqueness or any of the paper's Ramsey properties.
 The remaining back-and-forth is recorded separately. These are
 five adversarial failure-mode perspectives by one assistant, not
 independently spawned external referees.
+
+
+## Adversarial review: finite strong closure of the generic
+
+**Global versus relative strength.** Each finite stage is
+globally strong in the constructed graph by the strong-exhaustion
+theorem, not merely strong relative to the next finite stage.
+The closure is taken inside such a globally strong container.
+
+**Least hull independence.** The definition selects one finite
+container using classical choice, but the result is contained
+in every other finite globally strong container. Thus the
+closure is intrinsic and does not depend on the enumeration or
+the chosen stage.
+
+**Finite cardinality.** Every closure is represented as a
+`Finset ℕ`; no uniform numerical bound on its size is claimed.
+
+**Back-and-forth utility.** When extending a finite strong
+partial isomorphism to include one additional vertex, enlarge
+the finite domain to its strong closure first. Otherwise
+global strength can be lost.
+
+**Scope and provenance.** The closure as a predimension hull is
+not yet the manuscript's entire named functional expansion,
+nor does the lemma establish homogeneity. These five
+adversarial failure-mode perspectives come from one assistant
+review, not an independent external panel.
+
+**Audit update:** the source proof passed [Lean run 38112434522](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112434522), checking 219 declarations using only standard logical axioms and 46 files for placeholders. This reconciled branch must pass its own CI before the merged result is certified.
