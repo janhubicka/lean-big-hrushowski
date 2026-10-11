@@ -1166,3 +1166,31 @@ needed before certifying the integration. The remaining
 mathematical obligation is deriving the finite joint-step
 condition from already-certified strong forth/back extensions
 and finite-image packaging.
+
+
+## Joint strong extension and uniqueness (pending Lean CI)
+
+`StrongJointExtension.lean` takes two countable graphs with
+nonnegative predimension on all finite subsets, finite globally
+strong covers and the strong extension property. The theorem
+`exists_extending_forth` packages an arbitrary prescribed-vertex
+strong forth embedding into a literal finite partial isomorphism
+whose target is the exact strong image and whose old map values
+are fixed. `exists_extending_back` reverses this operation using
+the inverse partial map; `Extends.inverse` proves equivalence of
+forward and reverse extension orders.
+
+`hasJointSteps_of_strongExtension` performs one forth and one back
+step, preserving both old domains and their numeric maps, and
+discharges the finite joint-step premise of the already audited
+`StrongBackAndForthRecursion` theorem. Consequently
+`exists_induced_equiv_of_strongExtension` proves that the two
+countable structures are isomorphic by a bijection preserving and
+reflecting graph edges. This would close strong Fraïssé **uniqueness**
+and is no longer conditional on the existence of a back-and-forth
+sequence or finite joint steps.
+
+The theorem is currently a proof candidate: a full integrated
+Lean kernel, axiom and placeholder audit is pending. The distinct
+strong-homogeneity statement (extension of a prescribed partial
+isomorphism) remains the next theorem after uniqueness.
