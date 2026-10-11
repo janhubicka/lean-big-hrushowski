@@ -1101,3 +1101,44 @@ The remaining work is the alternating countable back-and-forth
 union and identification with the strong Fraïssé limit.
 
 **Integrated audit:** the complete source for forth and back has passed [GitHub Actions run 38112788714](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112788714), checking 215 Lean declarations with only standard logical axioms, scanning 47 Lean files for placeholders and passing the finite regression suite. The reconciliation on newer main requires its own green CI before merging.
+
+
+## Finite globally strong closure in the concrete generic (pending integrated CI)
+
+`GenericStrongClosure.lean` specializes the already verified
+`StrongChain.stage_global`, `StrongExhaustion.toFiniteStrongCover`
+and least-strong-hull results to the actual countable graph
+`genericTwoSparseGraph` from the successful 212-declaration
+[PR #48 audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38087807401).
+
+The new definitions construct `genericStrongExhaustion` and a
+finite `genericStrongClosure s` for every finite set of vertices.
+The proposed theorems prove that the closure contains its
+generators, is globally self-sufficient, is least among finite
+globally strong containers, and is monotone and idempotent. A
+finite set is globally strong exactly when it equals its closure.
+
+These are instances of abstract finite-hull lemmas, not a claim
+that the full **functional** closure expansion in the manuscript
+has been formalized. The concrete theorem endpoints remain
+pending this branch's Lean build and axiom audit.
+
+**Audit update:** the source proof passed [Lean run 38112434522](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112434522), checking 219 declarations using only standard logical axioms and 46 files for placeholders. This reconciled branch must pass its own CI before the merged result is certified.
+
+## Exact finite-image equivalence for induced embeddings (pending Lean CI)
+
+`FiniteSpan.finiteImageEquiv` turns every injection of a finite
+carrier A into an exact equivalence with the subtype of vertices
+belonging to the finite image of that map. The numerical value of
+the forward equivalence is literally the original injected vertex;
+the inverse identifies the unique preimage. This avoids relying on
+an arbitrary Fintype enumeration or treating two finite carrier
+representations as definitionally equal.
+
+The lemma is intended for turning the finite strong extension map
+returned by `exists_strong_forth` into a new
+`FiniteStrongPartialIso` with the correct globally strong target
+set. It establishes only the exact carrier equivalence and requires
+its own Lean build, axiom and no-placeholder audit.
+
+**Verified source runs:** generic closures passed [38112434522](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112434522) (219 standard-axiom declarations; 46 placeholder-free files), and exact image equivalences passed [38113224922](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38113224922) (217 declarations; 48 files). Their combination with newer main and the merged finite forth/back proofs requires a fresh integrated CI.
