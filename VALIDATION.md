@@ -1036,3 +1036,26 @@ It does not replace a kernel-checked general theorem.
 **Consolidated integration status:** all three theorem layers are pending the combined Lean CI and standard-axiom/placeholder audit. The finite tests are diagnostic only. The strong genericity endpoint is not yet certified, and no manuscript marker should be upgraded until the exact source revision has passed.
 
 **Reconciled integration status:** this branch starts from main after the certified 207-declaration fair-recursion theorem (PR #45); it does not duplicate that module. The concrete strong genericity claims remain **pending a complete integrated Lean build and axiom audit**. The external combinatorial results and the manuscript's big Ramsey/Ellentuck conclusions are not derived here.
+
+
+## Strong forth extension of finite partial isomorphisms (pending Lean CI)
+
+`StrongForth.lean` formalizes the next part of the strong Fraïssé
+identification: given globally strong finite subsets a of a two-sparse
+graph M and b of a graph N satisfying the labelled strong extension
+property, and an induced equivalence between those sets, the map
+extends over any finite strong container c of a. The image of c in N
+is again globally strong and induced, and all old values are fixed
+pointwise.
+
+`exists_strong_forth` uses the finite strong-cover property of M
+to choose c containing the existing domain and any prescribed vertex.
+The theorem returns the actual finite container and the extended
+induced injective map, with its globally strong image. It is the
+one-step input for an alternating strong back-and-forth, not the
+infinite isomorphism theorem itself.
+
+The development carefully transports sparsity and relative strongness
+through induced graphs on finite subtype carriers, instead of
+silently identifying their edge sets. Both statements await full
+Lean CI and standard-axiom/no-placeholder certification.
