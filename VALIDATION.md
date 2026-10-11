@@ -1059,3 +1059,20 @@ This is a further theorem and new combined source; it requires its
 own integrated Lean CI and axiom audit before certification. The
 homogeneity and uniqueness of the strong Fraïssé limit are distinct
 obligations to be formalized via finite-strong back-and-forth.
+
+
+## Finite strong partial isomorphism interface (pending Lean CI)
+
+`FiniteStrongPartialIso.lean` introduces a finite induced equivalence
+between globally self-sufficient subgraphs of two graphs on ℕ.
+It does not assume initial-segment domains or bounded closure sizes.
+The verified candidate operations give the inverse map
+`FiniteStrongPartialIso.symm`, prove the actual numeric image of
+the finite equivalence is exactly its declared target, and construct
+the empty partial isomorphism whenever both graphs are two-sparse.
+
+This is the canonical representation for an alternating finite
+strong back-and-forth argument. The local forth/back existence
+lemmas and the coherent infinite union are separate obligations.
+The three new endpoints remain pending Lean CI and standard-axiom
+certification.
