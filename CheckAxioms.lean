@@ -311,3 +311,5 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_strongHomogeneous
 
 #print axioms BigHrushovski.FiniteCatalogue.exists_disjoint_strong_copy
+
+#print axioms BigHrushovski.FiniteCatalogue.generic_exists_strong_copy_avoiding
