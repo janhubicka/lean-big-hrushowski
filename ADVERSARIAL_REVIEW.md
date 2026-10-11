@@ -1402,3 +1402,40 @@ would force its source vertex to lie in the base, a contradiction.
 iterate, but iteration and automorphism extension have not been
 included in this theorem. These are same-assistant adversarial
 failure-mode checks and not a panel of external human referees.
+
+
+## Adversarial review: infinitely many strong conjugates
+
+**Referee A — finite forbidden set.** For each finite (F),
+the construction obtains a strong induced copy of the finite
+closure of (C\cup\{a\}) whose nonbase vertices avoid all of
+(F). It does not mistake a single avoiding copy for infinitely
+many distinct copies.
+
+**Referee B — actual automorphism.** The two finite induced
+copies of (D) are both globally strong. The verified strong
+homogeneity theorem extends the induced finite equivalence
+to a total automorphism of the *actual* countable generic.
+
+**Referee C — pointwise base agreement.** Both free amalgamation
+and strong homogeneity preserve each vertex of (C), not merely
+its image set. Hence the final automorphism belongs to the
+pointwise stabilizer of (C) and of all generators (X\subseteq C).
+
+**Referee D — distinguished vertex.** Since (a\notin C), its
+representative in the finite closure (D) cannot belong to the
+image of the base embedding. The avoidance theorem therefore
+forces (e(a)\notin F).
+
+**Referee E — finite invariant sets versus FOL.** Every solution
+set of a finite algebraic formula over (X) is finite and
+stabilizer-invariant, so the combinatorial theorem would
+exclude any (a\notin\operatorname{cl}_s(X)). The converse
+inclusion uses the separately developed induced-diagram
+uniqueness lemma. The missing component for a *fully formal*
+identification with acl is now the first-order interpretation
+of finite diagram formulas and algebraic formulas.
+
+These five independent mathematical failure-mode perspectives
+were carried out in one assistant review rather than by
+externally spawned referee agents.
