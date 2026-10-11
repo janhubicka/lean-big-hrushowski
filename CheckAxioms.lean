@@ -262,3 +262,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.exists_fair_strong_successor
 #print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_sparse
 #print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_strongExtension
+
+#print axioms BigHrushovski.FiniteCatalogue.empty_globallyStrong_of_sparse
+#print axioms BigHrushovski.FiniteCatalogue.exists_globallyStrong_copy
+#print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_strongUniversal
