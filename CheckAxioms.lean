@@ -313,3 +313,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.exists_disjoint_strong_copy
 
 #print axioms BigHrushovski.FiniteCatalogue.generic_exists_strong_copy_avoiding
+
+#print axioms BigHrushovski.FiniteCatalogue.generic_strong_automorphism_avoids
+#print axioms BigHrushovski.FiniteCatalogue.generic_outside_closure_infinite_orbit
+#print axioms BigHrushovski.FiniteCatalogue.generic_invariant_finite_subset_strongClosure
