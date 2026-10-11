@@ -270,3 +270,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.symm
 #print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.image_equiv_eq_target
 #print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.empty
+
+#print axioms BigHrushovski.FiniteSpan.finiteImageEquiv_apply_val
+#print axioms BigHrushovski.FiniteSpan.finiteImageEquiv_symm_val
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.exists_extension_from_image
