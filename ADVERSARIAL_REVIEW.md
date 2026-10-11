@@ -1254,3 +1254,27 @@ adversarial perspectives of one assistant, not independent
 external referees.
 
 **Verified source runs:** generic closures passed [38112434522](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112434522) (219 standard-axiom declarations; 46 placeholder-free files), and exact image equivalences passed [38113224922](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38113224922) (217 declarations; 48 files). Their combination with newer main and the merged finite forth/back proofs requires a fresh integrated CI.
+
+
+## Adversarial integration review: strong back-and-forth core
+
+**Finite domains:** source and target of each partial map are
+literal finite subsets of ℕ, globally strong in their own graph.
+
+**Preservation:** each extension retains all old numerical
+values and reflects edges and nonedges.
+
+**Two-sided coverage:** source and target domains each exhaust
+ℕ; source coverage alone cannot yield surjectivity.
+
+**Carrier normalization:** finite injective responses are
+identified with their exact finite image; no arbitrary
+finite enumeration can permute old labels.
+
+**Axiom boundary:** the union and recursive construction
+consume an explicit finite joint-step existence hypothesis.
+No genericity or isomorphism is postulated as that hypothesis.
+It must be discharged by composing actual finite strong
+forth/back steps. These separate failure-mode audits are
+performed by the same assistant, not independently spawned
+human referees.

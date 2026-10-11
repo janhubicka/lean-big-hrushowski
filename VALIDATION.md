@@ -1142,3 +1142,27 @@ set. It establishes only the exact carrier equivalence and requires
 its own Lean build, axiom and no-placeholder audit.
 
 **Verified source runs:** generic closures passed [38112434522](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38112434522) (219 standard-axiom declarations; 46 placeholder-free files), and exact image equivalences passed [38113224922](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38113224922) (217 declarations; 48 files). Their combination with newer main and the merged finite forth/back proofs requires a fresh integrated CI.
+
+
+## Reconciled strong back-and-forth core (pending integrated CI)
+
+The finite globally strong partial-isomorphism structure and its
+induced inversion, literal finite-image extension packaging,
+transitive extension order, coherent bijective union and
+Nat-recursive exhaustive chain are combined on the current
+main branch. Under an **explicit** finite joint-step hypothesis,
+`exists_induced_equiv_of_joint_steps` proves the existence of a
+genuine induced isomorphism of countable graphs, using neither a
+postulated infinite chain nor a pre-existing Fraïssé limit.
+
+Separate sources passed standard-axiom and no-placeholder audits:
+[packing PR #63](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38147127791)
+(221 declarations, 50 files),
+[finite induced union PR #57](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38147317611)
+(226 declarations, 49 files), and
+[recursion PR #58](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38147321901)
+(231 declarations, 50 files). A new **combined** CI build is
+needed before certifying the integration. The remaining
+mathematical obligation is deriving the finite joint-step
+condition from already-certified strong forth/back extensions
+and finite-image packaging.

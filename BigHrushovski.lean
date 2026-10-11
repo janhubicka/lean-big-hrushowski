@@ -56,3 +56,8 @@ import BigHrushovski.StrongBack
 
 import BigHrushovski.GenericStrongClosure
 import BigHrushovski.FiniteImageEquiv
+
+import BigHrushovski.FiniteStrongPartialIso
+import BigHrushovski.FiniteStrongPartialExtension
+import BigHrushovski.StrongBackAndForthLimit
+import BigHrushovski.StrongBackAndForthRecursion
