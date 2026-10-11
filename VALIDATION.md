@@ -1194,3 +1194,28 @@ The theorem is currently a proof candidate: a full integrated
 Lean kernel, axiom and placeholder audit is pending. The distinct
 strong-homogeneity statement (extension of a prescribed partial
 isomorphism) remains the next theorem after uniqueness.
+
+
+## Strong homogeneity and uniqueness of the concrete generic (pending Lean CI)
+
+`StrongHomogeneity.lean` builds on the proposed finite joint-step
+theorem and the certified countable strong-recursion generic.
+`equivOfJointSteps_initial` proves that the alternating induced
+union extends its **prescribed starting finite strong partial
+isomorphism**, not merely that an arbitrary isomorphism exists.
+`strongHomogeneous_of_strongExtension` then extends any finite
+globally strong induced partial automorphism of a countable
+2-sparse structure to a total induced automorphism.
+
+The concrete endpoints
+`genericTwoSparseGraph_unique` and
+`genericTwoSparseGraph_strongHomogeneous` are intended to
+identify the graph constructed on ℕ with the strong Fraïssé
+limit and prove homogeneity for all finite strong partial
+isomorphisms. They use the already verified finite strong cover
+and strong extension properties of the construction.
+
+**Not yet certified:** the underlying finite joint-step proof in
+`StrongJointExtension.lean` is undergoing a new Lean run, as is
+this extension. The source and type/axiom audits must be green
+before the manuscript's M₀ identification marker is upgraded.
