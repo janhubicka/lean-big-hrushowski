@@ -1343,3 +1343,44 @@ The functionally expanded closure presentations, the big
 Ramsey-degree results, and Ellentuck-space axioms still require
 independent proofs. This is one assistant's adversarial review,
 not independently spawned external referees.
+
+
+## Adversarial review: strict closure and finite induced diagrams
+
+**Referee A — predimension minimizer.** The finite family of
+supersets of (X) inside (C) is nonempty. A minimum-(\delta)
+member is strong *inside (C)*, since every intermediate superset
+still belongs to the minimizing family. As (C) is globally
+strong, transitivity makes the minimizer globally strong.
+
+**Referee B — leastness is essential.** The minimum must equal
+the least globally strong (C). Equality of (\delta(D))
+and (\delta(C)) for a proper intermediate (D) would make
+(D) strong and contradict leastness. A nonminimal strong
+container invalidates this assertion; the edgeless two-vertex
+negative control checks that failure mode.
+
+**Referee C — competing finite image.** For any (B\supseteq X)
+of equal predimension, submodularity on (C,B), together with
+global strength of (C), forces (C\cap B=C). A copy of the
+induced diagram has equal predimension and cardinality, and
+hence precisely the same vertex set. Distinguish this conclusion
+from the existence of a first-order formula expressing the diagram.
+
+**Referee D — all finite subsets.** The Python regression
+enumerates every labelled graph on up to five vertices and all
+generating and competitor sets, not just strong induced subgraphs.
+It verifies the strict inequality and both image-inclusion and
+equal-cardinality conclusions.
+
+**Referee E — model-theoretic boundary.** This finite argument
+would show that the induced diagram of (C) over (X) admits
+only finitely many realizations, once that diagram is expressed
+as a first-order formula. The opposite inclusion requires
+arbitrarily many disjoint strong realizations and extension to
+automorphisms. Neither model-theoretic assertion is hidden in
+the combinatorial theorem.
+
+These are independent mathematical failure-mode perspectives
+and an independent finite computation within the same assistant
+review, not separately spawned external referee agents.
