@@ -67,3 +67,5 @@ import BigHrushovski.StrongJointExtension
 import BigHrushovski.StrongHomogeneity
 
 import BigHrushovski.DisjointStrongCopies
+
+import BigHrushovski.UnboundedStrongCopies
