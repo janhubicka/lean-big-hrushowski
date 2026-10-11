@@ -1254,3 +1254,32 @@ is used as a theorem premise in the concrete construction. The
 remaining manuscript problems concern **algebraic closure and
 the functional and Ramsey presentations**, not existence or
 strong homogeneity of the pure C₀ Fraïssé limit.
+
+
+## Disjoint globally strong copies over a finite strong base (pending Lean CI)
+
+`DisjointStrongCopies.lean` is the finite *avoidance* theorem needed
+for the converse algebraic-closure inclusion. Given finite globally
+strong (C\subseteq B\subseteq M_0), a finite two-sparse graph (D)
+containing a prescribed induced strong copy of (C), and the
+strong extension property of the ambient countable graph, the
+theorem constructs a globally strong induced embedding of (D)
+into the ambient graph over the **literal** (C). Every vertex of
+its image meeting (B) must come from the prescribed copy of (C).
+
+The proof strongly freely amalgamates the induced finite graph
+on (B) with (D) over (C), then uses the previously certified
+finite strong-extension criterion to realize that tagged amalgam
+over the existing (B). Injectivity of the resulting map and
+the tagged amalgam's no-extra-identifications property establish
+the avoidance condition. The induced image remains globally
+strong by transferring finite relative strength into the
+global strong image of the whole amalgam.
+
+This theorem constructs **one** new independent copy avoiding any
+given finite strong container. Iteration can produce arbitrarily
+many disjoint strong copies over (C), and strong homogeneity
+would then give distinct automorphism conjugates. These later
+steps, and the first-order semantics of model-theoretic acl,
+remain unformalized. The combined Lean build and standard-axiom
+audit of the new theorem are pending.
