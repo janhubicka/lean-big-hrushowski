@@ -25,6 +25,13 @@ namespace FiniteStrongPartialIso
 
 variable {M N : GraphOn ℕ}
 
+/-- Double inversion fixes a finite partial isomorphism, including
+its precise globally strong domains and induced vertex map. -/
+private theorem symm_symm_for_extension
+    (p : FiniteStrongPartialIso M N) : p.symm.symm = p := by
+  cases p
+  simp [FiniteStrongPartialIso.symm]
+
 /-- A strong partial isomorphism extends precisely when its inverse
 does. The target inclusion is essential for the converse direction. -/
 theorem Extends.inverse {p q : FiniteStrongPartialIso M N}
@@ -40,7 +47,9 @@ theorem Extends.inverse {p q : FiniteStrongPartialIso M N}
     calc
       (q.equiv ⟨x.val, hs x.property⟩).val =
           (p.equiv x).val := hValues x
-      _ = y.val := by simp [x]
+      _ = y.val := by
+        change (p.equiv (p.equiv.symm y)).val = y.val
+        rw [Equiv.apply_symm_apply]
   have hPreimage :
       q.equiv.symm ⟨y.val, ht y.property⟩ =
         ⟨x.val, hs x.property⟩ := by
@@ -83,8 +92,9 @@ theorem exists_extending_back
     exists_extending_forth N M hSparseN hCoverN
       hExtM p.symm v
   refine ⟨q.symm, ?_, hv⟩
-  simpa only [FiniteStrongPartialIso.symm] using
-    Extends.inverse hpq
+  have h := Extends.inverse hpq
+  rw [symm_symm_for_extension p] at h
+  exact h
 
 /-- For each finite strong partial isomorphism, a finite induced
 strong extension incorporates any prescribed vertex in both countable
