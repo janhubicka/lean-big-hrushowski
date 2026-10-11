@@ -279,3 +279,9 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.union_surjective
 #print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.union_induced
 #print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.unionEquiv_induced
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.chainOfJointSteps_step
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.chainOfJointSteps_source_covers
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.chainOfJointSteps_target_covers
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.equivOfJointSteps_induced
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.exists_induced_equiv_of_joint_steps
