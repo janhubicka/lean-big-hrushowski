@@ -1377,3 +1377,28 @@ requires a final semantic argument.
 
 These checks isolate five mathematical failure modes within
 one assistant review and are not independent external referees.
+
+
+## Adversarial review: arbitrary finite avoidance for strong copies
+
+**Container existence.** The actual generic has a finite globally
+strong cover property for every finite set. The chosen container
+contains the base and the entire forbidden set, not merely the base.
+
+**Forbidden set need not be strong.** The input (F) is arbitrary
+finite; only the enlarged (B) needs to be globally strong.
+This distinction is essential for arbitrary lists of previously
+constructed conjugates.
+
+**Old base fixed literally.** The strong copy agrees pointwise with
+the original embedding of the base (C), not with a chosen
+isomorphic copy.
+
+**New vertices avoid all of F.** If a new image vertex belonged to
+(F\subseteq B), the tagged-amalgam identification criterion
+would force its source vertex to lie in the base, a contradiction.
+
+**Scope.** Unbounded finite copy existence is sufficient to
+iterate, but iteration and automorphism extension have not been
+included in this theorem. These are same-assistant adversarial
+failure-mode checks and not a panel of external human referees.
