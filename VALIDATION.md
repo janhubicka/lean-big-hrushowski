@@ -1591,3 +1591,18 @@ interfaces for manuscript Lemmas `equalclosure` and
 `exhaust`, once this PR's integrated Lean audit passes.
 No conclusion is made about the unary functional Fraisse
 presentation, its automorphisms, or its big Ramsey degrees.
+
+
+## Partition of the C0 generic into finite closure increments (CI pending)
+
+Module `C0Components.lean` defines `B_n=A_(n+1)\A_n`
+using the certified countable enumeration. Strict growth gives
+each finite component a vertex. Every graph vertex x has
+a unique first appearance index `genericC0ComponentIndex x`,
+defined by a least natural witness. Its range is the unique
+component containing x; two different components are disjoint.
+
+This is the exact set-theoretic component partition needed
+for the unary closure presentation. No internal vertex order
+is chosen and no back-edge reachability closure is yet
+defined. The latter remains a separate formalization task.
