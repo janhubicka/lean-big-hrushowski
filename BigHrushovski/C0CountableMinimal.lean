@@ -28,7 +28,7 @@ private abbrev offsets :=
 /-- The source stage of the genuine minimal strong step indexed by i.
 Every natural number falls in one of the nonempty finite traces. -/
 noncomputable def genericC0MinimalStage (i : ℕ) : Finset ℕ :=
-  (genericC0SegmentTrace (genericC0BlockIndex i)).at
+  (genericC0SegmentTrace (genericC0BlockIndex i)).stageAt
     (i - offsets (genericC0BlockIndex i))
 
 theorem genericC0BlockIndex_at_offset (n : ℕ) :
@@ -49,7 +49,7 @@ theorem genericC0MinimalStage_at_offset (n : ℕ) :
   unfold genericC0MinimalStage
   rw [genericC0BlockIndex_at_offset]
   simp only [Nat.sub_self]
-  exact Predimension.MinimalStrongTrace.at_zero
+  exact Predimension.MinimalStrongTrace.stageAt_zero
     (genericC0SegmentTrace n)
 
 /-- A single omega-indexed sequence of genuinely minimal strong
@@ -67,11 +67,11 @@ theorem genericC0MinimalStage_minimal_step (i : ℕ) :
   have hj : j < genericC0SegmentLength n :=
     genericC0LocalIndex_lt i
   have hStep :=
-    Predimension.MinimalStrongTrace.at_minimal_step
+    Predimension.MinimalStrongTrace.stageAt_minimal_step
       (genericC0SegmentTrace n) j hj
   have hAtI :
       genericC0MinimalStage i =
-        (genericC0SegmentTrace n).at j := rfl
+        (genericC0SegmentTrace n).stageAt j := rfl
   by_cases hInside : j + 1 < genericC0SegmentLength n
   · have hNextUpper : i + 1 < offsets (n + 1) := by
       rw [Predimension.C0Offsets.offset_succ]
@@ -86,7 +86,7 @@ theorem genericC0MinimalStage_minimal_step (i : ℕ) :
       omega
     have hAtNext :
         genericC0MinimalStage (i + 1) =
-          (genericC0SegmentTrace n).at (j + 1) := by
+          (genericC0SegmentTrace n).stageAt (j + 1) := by
       unfold genericC0MinimalStage
       rw [hNextBlock, hjNext]
     rw [hAtI, hAtNext]
@@ -103,10 +103,10 @@ theorem genericC0MinimalStage_minimal_step (i : ℕ) :
       rw [hNextOffset]
       exact genericC0MinimalStage_at_offset (n + 1)
     have hAtEnd :
-        (genericC0SegmentTrace n).at (j + 1) =
+        (genericC0SegmentTrace n).stageAt (j + 1) =
           genericC0StrongSkeleton.stage (n + 1) := by
       rw [hBoundary]
-      exact Predimension.MinimalStrongTrace.at_last
+      exact Predimension.MinimalStrongTrace.stageAt_last
         (genericC0SegmentTrace n)
     rw [hAtI, hAtNext, ← hAtEnd]
     exact hStep
