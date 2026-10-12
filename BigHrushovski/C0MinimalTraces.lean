@@ -27,7 +27,7 @@ variable {V : Type*} [DecidableEq V] {d : Predimension V}
 /-- A data-valued finite chain, retaining a proof of minimality for
 every successive pair. This is not a Prop-valued proof object. -/
 inductive MinimalStrongTrace (d : Predimension V) :
-    Finset V → Finset V → Type where
+    Finset V → Finset V → Type _ where
   | refl (a : Finset V) : MinimalStrongTrace d a a
   | step {a b c : Finset V}
       (hab : d.IsMinimalStrongStep a b)
