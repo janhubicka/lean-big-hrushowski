@@ -1766,3 +1766,23 @@ CI is pending; no theorem is called certified on this note alone.
 
 These are deliberately separate mathematical failure-mode
 reviews by the same assistant, not independent spawned referees.
+
+
+## Adversarial proof audit: dependency-closed block union
+
+1. A union of whole components need not be strong; all back
+   neighbours of the included component must already be selected.
+2. The actual common vertex set is `a ∩ (x ∪ B) = x`;
+   the disjointness hypothesis is indispensable to this equality.
+3. Strongness is required of x in the **old graph a**, not
+   merely strongness of a in the new ambient graph.
+4. The no-cross free-amalgam lemma establishes strongness of
+   `x ∪ B` inside `a ∪ (x ∪ B)`; rewriting the latter to
+   `a ∪ B` uses x ⊆ a.
+5. The global corollary needs the entire new prefix globally
+   strong; it is not obtained from the local statement alone.
+6. This proves one predimension induction step, not the
+   global unary-closed-set characterization or functional age.
+
+These are independent proof-checking perspectives of the
+same assistant, not spawned external referee agents.

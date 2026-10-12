@@ -380,3 +380,6 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_empty_global
 #print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_zero
 #print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_exhaustive
+
+#print axioms BigHrushovski.GraphOn.closedBlock_strong_of_noCross
+#print axioms BigHrushovski.GraphOn.closedBlock_global_of_noCross

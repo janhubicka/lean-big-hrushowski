@@ -1591,3 +1591,25 @@ interfaces for manuscript Lemmas `equalclosure` and
 `exhaust`, once this PR's integrated Lean audit passes.
 No conclusion is made about the unary functional Fraisse
 presentation, its automorphisms, or its big Ramsey degrees.
+
+
+## Finite C0 dependency-closed block union (Lean-certified, 12 October 2026)
+
+Module `C0ClosedUnions.lean` formalizes the predimension induction
+step of Lemma `C0-functional-closure`. Let x ≤ a be finite and strong,
+and let B be a disjoint block. If there are no edges from B to
+`a \ x` (captured by `NoCrossEdges a (x ∪ B)`),
+the enlarged set `x ∪ B` is strong in `a ∪ B`.
+If the latter is globally strong, so is the enlarged set.
+
+The proof uses the already audited no-cross free-join strongness
+theorem. Its overlap is *exactly x*, by disjointness of B from a.
+It does not rely on choosing a generating vertex, ordering the
+block, or assuming that x ∪ B was globally strong beforehand.
+
+The exact unary functional closure predicate, its domain/age,
+the component equivalence and the whole C0 Ramsey theorem
+remain to be formalized. Green manuscript markers are justified
+only for the finite no-cross strongness step after CI.
+
+Integrated PR #83 CI run 38250063433 built the theorem and audited 303 declarations with standard axioms only (70 Lean source files scanned for placeholders).
