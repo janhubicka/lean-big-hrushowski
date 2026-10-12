@@ -104,8 +104,10 @@ theorem exists_finite_minimal_run_insert
     hxb (Finset.mem_singleton_self x)
   have hne : a ≠ b := by
     intro heq
-    have : x ∈ a := heq ▸ hxB
-    exact hx this
+    have hxA : x ∈ a := by
+      rw [heq]
+      exact hxB
+    exact hx hxA
   have hssub : a ⊂ b := Finset.ssubset_iff_subset_ne.mpr ⟨hab, hne⟩
   exact ⟨b, hb, hssub, hxB, hchain⟩
 
