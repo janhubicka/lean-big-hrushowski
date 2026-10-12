@@ -80,10 +80,9 @@ theorem stage_strict_succ (e : StrongExhaustion d) (n : ℕ) :
     stage e n ⊂ stage e (n + 1) := by
   have hne : stage e n ≠ stage e (n + 1) := by
     intro heq
-    have hbad : freshNat (stage e n) ∈ stage e n := by
-      rw [heq]
-      exact fresh_mem_succ e n
-    exact (freshNat_not_mem _) hbad
+    have hNew := fresh_mem_succ e n
+    rw [← heq] at hNew
+    exact (freshNat_not_mem _) hNew
   exact Finset.ssubset_iff_subset_ne.mpr
     ⟨stage_subset_succ e n, hne⟩
 
