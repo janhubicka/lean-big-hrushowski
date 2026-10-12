@@ -333,3 +333,10 @@ import BigHrushovski
 
 #print axioms BigHrushovski.GraphOn.oldNeighbours_card_le_two_of_global
 #print axioms BigHrushovski.GraphOn.minimal_increment_singleton_of_two_oldNeighbours
+
+#print axioms BigHrushovski.Predimension.MinimalStrongChain.isStrong
+#print axioms BigHrushovski.Predimension.StrongExhaustion.minimal_step_generated_by_every_new_vertex
+#print axioms BigHrushovski.Predimension.StrongExhaustion.exists_finite_minimal_run_cover
+#print axioms BigHrushovski.Predimension.StrongExhaustion.exists_finite_minimal_run_insert
+#print axioms BigHrushovski.FiniteCatalogue.generic_exists_finite_minimal_run_cover
+#print axioms BigHrushovski.FiniteCatalogue.generic_exists_finite_minimal_run_insert

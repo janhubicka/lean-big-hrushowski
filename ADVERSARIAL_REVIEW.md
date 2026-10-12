@@ -1564,3 +1564,43 @@ All five are distinct proof-audit perspectives of this assistant,
 not independent external referee agents. Both exact theorem endpoints passed
 [Lean CI run 38237316769](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38237316769)
 with 271 standard-axiom declarations and 64 files scanned for placeholders.
+
+
+## Adversarial checks: finite C0 exhaustion runs (12 October 2026)
+
+**Referee A — scope of strongness.**
+`IsMinimalStrongStep a b` gives strongness in b, but its
+every-generator lemma additionally requires b globally strong.
+Otherwise equality with a closure in the **ambient** generic
+would not follow from local minimality alone.
+
+**Referee B — closure of a competing generator.**
+Given x in b minus a, the closure of a union {x} is globally
+strong, contained in b and strong in b. Local minimality
+then forces that closure to equal either a or b; membership
+of x excludes a. No predicate silently assumes x is the chosen
+generator.
+
+**Referee C — finite termination.**
+The terminal set is the finite globally strong hull of a union
+s. The pre-existing `finite_minimal_decomposition` is a
+genuinely finite inductive chain, not an infinite run packaged
+as a finiteness axiom.
+
+**Referee D — arbitrary finite requests.**
+The argument allows s to contain points outside a and points
+already inside a. Strict growth is asserted only for the
+separate one-vertex case x not in a. The empty-request and
+already-present cases must not produce fictitious nonempty steps.
+
+**Referee E — countable scheduling.**
+It would be circular to infer existence of one exhausting
+omega-sequence from the assertion that each finite request has
+some finite completion run. The compatible concatenation/
+scheduling theorem is therefore left as an explicit next
+formalization obligation. No functional Fraisse property,
+recurrent ordering, or big Ramsey consequence is inferred.
+
+These are adversarial self-review perspectives; no independent
+human or agent referees were spawned. Pending full Lean build,
+standard-axiom audit, placeholder scan and finite regressions.
