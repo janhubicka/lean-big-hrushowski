@@ -1715,3 +1715,34 @@ by this assistant, not external independent referee agents.
 
 These are five distinct adversarial checking perspectives
 within one assistant session, not independently spawned agents.
+
+
+## Adversarial review: one countable C0 minimal enumeration
+
+1. **Unique half-open indices.** Every natural position lies
+   in precisely one block, and its local offset is bounded by
+   the positive length of that block. Zero-length blocks are
+   excluded by certified strict skeleton growth.
+2. **Internal successors.** If the next position remains in
+   the same finite trace, the existing indexed-trace theorem
+   certifies the step, with no arbitrary re-choice of a trace.
+3. **Boundary successors.** If the next position is exactly
+   the block end, the last actual minimal step lands in the
+   terminal skeleton stage, which is the next trace's source.
+   No `S_{n+1} → S_{n+1}` stutter is inserted.
+4. **Coverage.** Every skeleton stage occurs at an explicit
+   cumulative offset. Consequently each vertex of M0 is in
+   at least one flattened stage. Coverage is not inferred
+   from strictness alone.
+5. **Generated closure.** The final equal-closure statement
+   assumes the new vertex is in the target but not the old
+   stage, and uses global strongness of the target. It does
+   not assume that new vertex was the temporary generator.
+6. **Scope.** A countable minimal graph enumeration alone
+   is not the same as the functional free-amalgamation
+   Fraisse limit: the latter still needs its unary closure
+   operations, local-form theorem, and extension schedule.
+
+These are six separate hostile proof checks carried out
+within one assistant review, not spawned independent agents.
+CI is pending; no theorem is called certified on this note alone.
