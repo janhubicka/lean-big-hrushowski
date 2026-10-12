@@ -1573,3 +1573,21 @@ manuscript's exhaustion and equal-closure lemmas to green.
 It does NOT construct the full unary closure functional
 Fraisse presentation, its component-dependency equivalence,
 recurrence, or any Ramsey/Ellentuck theorem.
+
+
+## Exact initial stage and coverage of the C0 omega enumeration (CI pending)
+
+`C0EmptyBase.lean` proves that the empty finite set is
+globally strong in the actual countable two-sparse generic:
+`δ(∅)=0` and every finite induced subgraph has nonnegative
+predimension. By leastness of finite strong closure,
+`cl_s(∅)=∅`. Consequently the countable minimal-step
+sequence certified in merged PR #82 satisfies `A₀=∅`
+literally; its `StrongChain.covers` field gives
+`∀x ∃n, x∈A_n`.
+
+This closes the exact initial-condition and coverage
+interfaces for manuscript Lemmas `equalclosure` and
+`exhaust`, once this PR's integrated Lean audit passes.
+No conclusion is made about the unary functional Fraisse
+presentation, its automorphisms, or its big Ramsey degrees.
