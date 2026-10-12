@@ -1533,3 +1533,18 @@ indexed source from each chosen trace, verifying minimality
 across the boundary between successive blocks and coverage of
 all the skeleton vertices. No functional-Fraisse or Ramsey
 conclusion is claimed.
+
+
+## Data-valued trace stage accessor (12 October 2026; CI pending)
+
+`C0TraceStages.lean` equips each finite data-valued minimal
+strong trace with a total natural-index accessor `at`.
+The certified boundaries are `at 0 = a` and
+`at starts.length = b`. For every genuine step index
+`j < starts.length`, `at j ≤ at (j+1)` is a *minimal
+strong extension*. The out-of-range default is the terminal
+stage, but it is never used as a proof of an additional step.
+
+The result composes with the audited block offsets, allowing
+the next module to define a single indexed C0 enumeration and
+verify the boundary step between distinct finite segments.

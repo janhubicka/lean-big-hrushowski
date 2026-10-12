@@ -1695,3 +1695,23 @@ Full Lean build/axiom scan remains pending.
 
 These are distinct adversarial verification passes performed
 by this assistant, not external independent referee agents.
+
+
+## Adversarial checks: indexed finite minimal traces (12 October 2026)
+
+1. **Endpoint:** the nil/refl trace has length zero and the same
+   source and target; its terminal accessor is its source.
+2. **Succession:** the step case exposes the genuine initial
+   minimal extension; the recursive tail has the correct source.
+3. **No fictitious boundary step:** `at` defaults to the terminal
+   for out-of-range inputs, but minimality is claimed only for
+   `j < starts.length`, never at equality.
+4. **Data/type:** induction is on the data-valued trace, not on
+   a proposition-valued minimal chain; the latter was converted
+   by a separate audited existence theorem.
+5. **Scope:** this checks finite trace indexing, not the still
+   missing global omega flattening, finite-order recurrence,
+   or functional Ramsey theorem.
+
+These are five distinct adversarial checking perspectives
+within one assistant session, not independently spawned agents.
