@@ -24,47 +24,49 @@ namespace MinimalStrongTrace
 
 /-- The stage reached after \`j\` minimal steps.
 The terminal stage is used as the out-of-range default. -/
-def at : {a b : Finset V} →
+def stageAt : {a b : Finset V} →
     MinimalStrongTrace d a b → ℕ → Finset V
   | _, b, .refl _, _ => b
   | a, _, .step _ _, 0 => a
-  | _, _, .step _ rest, j + 1 => at rest j
+  | _, _, .step _ rest, j + 1 => stageAt rest j
 
-theorem at_zero {a b : Finset V}
-    (t : MinimalStrongTrace d a b) : t.at 0 = a := by
+theorem stageAt_zero {a b : Finset V}
+    (t : MinimalStrongTrace d a b) : t.stageAt 0 = a := by
   cases t with
   | refl a => rfl
   | @step a b c hab rest => rfl
 
-theorem at_last {a b : Finset V}
+theorem stageAt_last {a b : Finset V}
     (t : MinimalStrongTrace d a b) :
-    t.at t.starts.length = b := by
+    t.stageAt t.starts.length = b := by
   induction t with
   | refl a => rfl
   | @step a b c hab rest ih =>
-      change rest.at rest.starts.length = c
+      change rest.stageAt rest.starts.length = c
       exact ih
 
 /-- All genuine pairs of successive stages are minimal strong
 extensions, including the last step ending at the terminal stage. -/
-theorem at_minimal_step {a b : Finset V}
+theorem stageAt_minimal_step {a b : Finset V}
     (t : MinimalStrongTrace d a b) (j : ℕ)
     (hj : j < t.starts.length) :
-    d.IsMinimalStrongStep (t.at j) (t.at (j + 1)) := by
+    d.IsMinimalStrongStep (t.stageAt j) (t.stageAt (j + 1)) := by
   induction t generalizing j with
   | refl a =>
       simp [starts] at hj
   | @step a b c hab rest ih =>
       cases j with
       | zero =>
-          change d.IsMinimalStrongStep a (rest.at 0)
-          rw [at_zero]
+          change d.IsMinimalStrongStep a (rest.stageAt 0)
+          rw [stageAt_zero]
           exact hab
       | succ j =>
           have hj' : j < rest.starts.length := by
-            simpa only [starts, List.length_cons] using hj
-          change d.IsMinimalStrongStep (rest.at (j + 1))
-            (rest.at (j + 1 + 1))
+            have hlen : j + 1 < rest.starts.length + 1 := by
+              simpa only [starts, List.length_cons] using hj
+            omega
+          change d.IsMinimalStrongStep (rest.stageAt (j + 1))
+            (rest.stageAt (j + 1 + 1))
           exact ih j hj'
 
 end MinimalStrongTrace
