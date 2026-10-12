@@ -41,7 +41,8 @@ theorem genericC0BlockIndex_at_offset (n : ℕ) :
     genericC0SegmentLength genericC0SegmentLength_pos
     (offsets n) n
   · exact le_rfl
-  · rw [offsets_succ]
+  · change offsets n < offsets (n + 1)
+    rw [offsets_succ]
     have hp := genericC0SegmentLength_pos n
     omega
 
@@ -84,7 +85,7 @@ theorem genericC0MinimalStage_minimal_step (i : ℕ) :
     have hNextBlock : genericC0BlockIndex (i + 1) = n :=
       Predimension.C0Offsets.block_eq_of_interval
         genericC0SegmentLength genericC0SegmentLength_pos
-        (i + 1) n (by omega) hNextUpper
+        (i + 1) n (by change offsets n ≤ i + 1; omega) hNextUpper
     have hjNext : i + 1 - offsets n = j + 1 := by
       dsimp [j]
       omega
@@ -116,8 +117,13 @@ theorem genericC0MinimalStage_minimal_step (i : ℕ) :
         Predimension.IsMinimalStrongStep
           genericTwoSparseGraph.toPredimension
           ((genericC0SegmentTrace n).stageAt j)
-          (genericC0StrongSkeleton.stage (n + 1)) :=
-      hAtEnd ▸ hStep
+          (genericC0StrongSkeleton.stage (n + 1)) := by
+      exact (congrArg
+        (fun z : Finset ℕ =>
+          Predimension.IsMinimalStrongStep
+            genericTwoSparseGraph.toPredimension
+            ((genericC0SegmentTrace n).stageAt j) z)
+        hAtEnd).mp hStep
     rw [hAtI, hAtNext]
     exact hStep'
 
