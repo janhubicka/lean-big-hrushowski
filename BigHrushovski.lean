@@ -76,3 +76,5 @@ import BigHrushovski.StrictStrongClosure
 import BigHrushovski.InducedClosureDiagrams
 
 import BigHrushovski.OrbitFiniteStrongClosure
+
+import BigHrushovski.C0MinimalBackEdges

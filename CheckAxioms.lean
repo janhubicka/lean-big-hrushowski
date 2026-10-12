@@ -330,3 +330,6 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericStrongClosure_hasFiniteOrbit
 #print axioms BigHrushovski.FiniteCatalogue.generic_hasFiniteOrbit_subset_strongClosure
 #print axioms BigHrushovski.FiniteCatalogue.generic_hasFiniteOrbit_iff_strongClosure
+
+#print axioms BigHrushovski.GraphOn.oldNeighbours_card_le_two_of_global
+#print axioms BigHrushovski.GraphOn.minimal_increment_singleton_of_two_oldNeighbours

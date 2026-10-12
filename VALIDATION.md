@@ -1423,3 +1423,25 @@ requires formalizing finite solution sets of first-order formulas
 and the finite induced closure-diagram formula over the parameters.
 The complete integrated Lean/standard-axiom/placeholder audit
 remains pending, and PR #73 is a required dependency.
+
+
+## C0 minimal-component two-back-edge theorem (pending CI, 12 October 2026)
+
+Module `C0MinimalBackEdges.lean` gives the exact finite form of
+Proposition `twoedges` in `The-big-Hrushovski/sections/03a_enumeration_C0.tex`.
+
+* `GraphOn.oldNeighbours_card_le_two_of_global` needs only the old
+  finite prefix to be globally strong; its proof restricts strongness to
+  the one-point extension and applies the already certified incident-edge
+  count.
+* `GraphOn.minimal_increment_singleton_of_two_oldNeighbours` additionally
+  takes an actual finite strong requirement and a *minimal choice* from
+  that requirement. Its conclusion is equality of the entire generated
+  component with the singleton extension, not just strongness of the
+  one-point set.
+
+These statements do not construct or schedule the infinite enumeration,
+do not produce the unary closure presentation, and do not establish its
+Ramsey property. Upgrade manuscript orange marker on Proposition twoedges
+only when the full integrated Lean build and the exact two axiom audits
+pass.

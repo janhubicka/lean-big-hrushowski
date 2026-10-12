@@ -1538,3 +1538,28 @@ finite induced closure-diagram formula.
 All five are distinct mathematical failure-mode checks made
 within one assistant review, not independently spawned referee
 agents.
+
+
+## C0 two-old-neighbour lemma: adversarial self-review (12 October 2026)
+
+1. **Old-neighbour versus unordered-edge referee:** `oldNeighbours`
+   counts distinct old vertices; `backEdges` counts unordered graph
+   edges. The already proved injection/bijection of `C0Neighbours.lean`
+   identifies the counts. Nothing assumes an orientation.
+2. **Strongness referee:** the inequality requires the actual old prefix
+   to be globally strong. No claim is made for an arbitrary induced
+   finite prefix, where three old neighbours could occur.
+3. **Minimal-choice referee:** equality two implies the closure of
+   `a∪{x}` equals that one-point set. It implies the *whole increment*
+   is singleton only after `equal_closure_of_minimal_choice` transports
+   closure from the chosen generator `v` to `x`.
+4. **Ambient referee:** the strong requirement `D` is finite and
+   globally strong, and contains the old prefix; the chosen vertex is
+   constrained by `IsMinimalChoice`. There is no assumption that `x`
+   was the originally chosen generator.
+5. **Scope referee:** the two new declarations do not certify the
+   global block-enumeration schedule or any downstream Ramsey property.
+
+All five are distinct proof-audit perspectives of this assistant,
+not independent external referee agents. Status is pending the integrated
+Lean CI and exact axiom audit.
