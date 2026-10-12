@@ -22,8 +22,12 @@ presentation, or a Ramsey theorem.
 namespace BigHrushovski
 namespace FiniteCatalogue
 
-private abbrev offsets :=
+private noncomputable abbrev offsets :=
   Predimension.C0Offsets.offset genericC0SegmentLength
+
+private theorem offsets_succ (n : ℕ) :
+    offsets (n + 1) = offsets n + genericC0SegmentLength n :=
+  Predimension.C0Offsets.offset_succ genericC0SegmentLength n
 
 /-- The source stage of the genuine minimal strong step indexed by i.
 Every natural number falls in one of the nonempty finite traces. -/
@@ -37,7 +41,7 @@ theorem genericC0BlockIndex_at_offset (n : ℕ) :
     genericC0SegmentLength genericC0SegmentLength_pos
     (offsets n) n
   · exact le_rfl
-  · rw [Predimension.C0Offsets.offset_succ]
+  · rw [offsets_succ]
     have hp := genericC0SegmentLength_pos n
     omega
 
@@ -74,7 +78,7 @@ theorem genericC0MinimalStage_minimal_step (i : ℕ) :
         (genericC0SegmentTrace n).stageAt j := rfl
   by_cases hInside : j + 1 < genericC0SegmentLength n
   · have hNextUpper : i + 1 < offsets (n + 1) := by
-      rw [Predimension.C0Offsets.offset_succ]
+      rw [offsets_succ]
       dsimp [j] at hInside
       omega
     have hNextBlock : genericC0BlockIndex (i + 1) = n :=
@@ -94,7 +98,7 @@ theorem genericC0MinimalStage_minimal_step (i : ℕ) :
   · have hBoundary : j + 1 = genericC0SegmentLength n := by
       omega
     have hNextOffset : i + 1 = offsets (n + 1) := by
-      rw [Predimension.C0Offsets.offset_succ]
+      rw [offsets_succ]
       dsimp [j] at hBoundary
       omega
     have hAtNext :
@@ -108,8 +112,14 @@ theorem genericC0MinimalStage_minimal_step (i : ℕ) :
       rw [hBoundary]
       exact Predimension.MinimalStrongTrace.stageAt_last
         (genericC0SegmentTrace n)
-    rw [hAtI, hAtNext, ← hAtEnd]
-    exact hStep
+    have hStep' :
+        Predimension.IsMinimalStrongStep
+          genericTwoSparseGraph.toPredimension
+          ((genericC0SegmentTrace n).stageAt j)
+          (genericC0StrongSkeleton.stage (n + 1)) :=
+      hAtEnd ▸ hStep
+    rw [hAtI, hAtNext]
+    exact hStep'
 
 /-- The flattened countable enumeration is a genuine strong chain,
 not merely an increasing set family. -/
