@@ -60,7 +60,7 @@ files for placeholders and passed the finite regression suite. The
 **infinite** C0 enumeration and its unary functional presentation are
 still outside the certified scope.
 
-**Still open:** identifying finite strong closure with
+**Still open in Lean:** identifying finite strong closure with
 model-theoretic algebraic closure, formalizing the complete
 functional closure presentations, the big Ramsey-degree
 arguments and the concrete Ramsey-space axioms required for the
