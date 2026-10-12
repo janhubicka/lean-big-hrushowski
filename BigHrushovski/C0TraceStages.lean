@@ -65,8 +65,8 @@ theorem stageAt_minimal_step {a b : Finset V}
             have hlen : j + 1 < rest.starts.length + 1 := by
               simpa only [starts, List.length_cons] using hj
             omega
-          change d.IsMinimalStrongStep (rest.stageAt (j + 1))
-            (rest.stageAt (j + 1 + 1))
+          change d.IsMinimalStrongStep (rest.stageAt j)
+            (rest.stageAt (j + 1))
           exact ih j hj'
 
 end MinimalStrongTrace
