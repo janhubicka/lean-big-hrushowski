@@ -1642,3 +1642,37 @@ functional Fraisse structure.
 These are deliberately separate self-checking perspectives, not
 independently spawned external referees. Status pending the
 integrated Lean and standard-axiom audit.
+
+
+## Adversarial checks: finite C0 trace data (12 October 2026)
+
+**Referee A — Prop/Type elimination.** A proof of
+`MinimalStrongChain` is in Prop and has multiple constructors.
+It is not legal to recursively compute a list directly from it.
+The construction proves `Nonempty (MinimalStrongTrace ...)`
+inside Prop and only then chooses a Type-valued witness.
+
+**Referee B — minimality certificate.** The trace is not a bare
+list of finite vertex sets; each step retains
+`IsMinimalStrongStep`, and the independent `MinimalStepList`
+predicate recovers the exact certificate on the recorded sources.
+
+**Referee C — boundary duplication.** `starts` does not record
+the final stage of a trace. Consequently successive lists for
+`S_n → S_{n+1}` and `S_{n+1} → S_{n+2}` concatenate without
+introducing the illicit zero-length step `S_{n+1} → S_{n+1}`.
+
+**Referee D — nonempty intervals.** If `S_n=S_{n+1}`,
+the trace might be reflexive and its source list empty.
+The extra fresh vertex in the certified skeleton gives
+`S_n ⊊ S_{n+1}`, explicitly excluding that case.
+
+**Referee E — exact gap.** The existence of nonempty finite
+trace lists and their finite append lemma is not itself a proof
+that the infinite concatenation has order type omega, or that
+its graph enumeration is functionally generic. The countable
+prefix-indexing/gluing theorem remains a separate obligation.
+
+These are five independent *questions* applied within one
+assistant self-review, not independent external referees.
+Full Lean build/axiom scan remains pending.
