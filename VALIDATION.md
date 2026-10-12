@@ -1548,3 +1548,23 @@ stage, but it is never used as a proof of an additional step.
 The result composes with the audited block offsets, allowing
 the next module to define a single indexed C0 enumeration and
 verify the boundary step between distinct finite segments.
+
+
+## Finite C0 dependency-closed block union (12 October 2026; CI pending)
+
+Module `C0ClosedUnions.lean` formalizes the predimension induction
+step of Lemma `C0-functional-closure`. Let x ≤ a be finite and strong,
+and let B be a disjoint block. If there are no edges from B to
+`a \ x` (captured by `NoCrossEdges a (x ∪ B)`),
+the enlarged set `x ∪ B` is strong in `a ∪ B`.
+If the latter is globally strong, so is the enlarged set.
+
+The proof uses the already audited no-cross free-join strongness
+theorem. Its overlap is *exactly x*, by disjointness of B from a.
+It does not rely on choosing a generating vertex, ordering the
+block, or assuming that x ∪ B was globally strong beforehand.
+
+The exact unary functional closure predicate, its domain/age,
+the component equivalence and the whole C0 Ramsey theorem
+remain to be formalized. Green manuscript markers are justified
+only for the finite no-cross strongness step after CI.
