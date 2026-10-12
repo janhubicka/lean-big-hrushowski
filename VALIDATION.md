@@ -1548,3 +1548,28 @@ stage, but it is never used as a proof of an additional step.
 The result composes with the audited block offsets, allowing
 the next module to define a single indexed C0 enumeration and
 verify the boundary step between distinct finite segments.
+
+
+## One omega-indexed sequence of minimal C0 increments (12 October 2026; CI pending)
+
+`C0CountableMinimal.lean` flattens the certified nonempty finite
+minimal traces of the strictly growing skeleton, using the
+audited unique half-open block offset map. It proves the exact
+successor theorem for **every** natural index, splitting into:
+(1) a successor inside one finite trace; and
+(2) the last actual step of one trace ending at the first stage
+of the next. The finite trace terminal is never inserted twice.
+
+The module packages the indexed sequence as a concrete
+`StrongChain` of the actual generic graph; it covers every
+vertex because each prior skeleton stage occurs at its offset.
+It also proves strict growth, global strongness of all prefixes,
+and equality of closure over the old prefix for **any**
+vertex of the next increment.
+
+If the full integrated build, exact theorem axiom audit and
+placeholder scan succeed, this will justify upgrading the
+manuscript's exhaustion and equal-closure lemmas to green.
+It does NOT construct the full unary closure functional
+Fraisse presentation, its component-dependency equivalence,
+recurrence, or any Ramsey/Ellentuck theorem.
