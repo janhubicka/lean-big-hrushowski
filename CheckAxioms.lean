@@ -369,3 +369,6 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.MinimalStrongTrace.stageAt_zero
 #print axioms BigHrushovski.Predimension.MinimalStrongTrace.stageAt_last
 #print axioms BigHrushovski.Predimension.MinimalStrongTrace.stageAt_minimal_step
+
+#print axioms BigHrushovski.GraphOn.closedBlock_strong_of_noCross
+#print axioms BigHrushovski.GraphOn.closedBlock_global_of_noCross
