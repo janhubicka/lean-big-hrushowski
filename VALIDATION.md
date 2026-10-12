@@ -1400,7 +1400,7 @@ inclusion needs the disjoint-copy argument.
 **Audit update (11 October 2026):** Original PR #69 passed CI [run 38153898725](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38153898725), auditing 260 declarations using standard logical axioms only and 59 placeholder-free Lean files, including the strict strong closure and finite induced-copy image theorems. The independent 1,100-graph regression also passed. This reconciled branch must pass a new integrated CI check before merging. The later merged PR #72 independently proves infinite automorphism orbits outside strong closure, but the first-order semantics of model-theoretic algebraic closure are still not formalized; do not upgrade `acl=cl_s`.
 
 
-## Finite automorphism orbits characterize finite strong closure (pending Lean CI)
+## Finite automorphism orbits characterize finite strong closure (Lean-certified)
 
 `OrbitFiniteStrongClosure.lean` defines the orbit of a vertex
 over a finite parameter set as the images under all induced graph
@@ -1421,11 +1421,10 @@ This proves the exact **automorphism-orbit characterization**, not
 yet equality with *first-order* algebraic closure: the latter
 requires formalizing finite solution sets of first-order formulas
 and the finite induced closure-diagram formula over the parameters.
-The complete integrated Lean/standard-axiom/placeholder audit
-remains pending, and PR #73 is a required dependency.
+Merged PR #74 passed integrated [run 38236302786](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38236302786): 269 declarations with standard logical axioms only, 63 placeholder-free files, and the finite regression suite. PR #73 is already merged. First-order syntax and semantics remain open.
 
 
-## C0 minimal-component two-back-edge theorem (pending CI, 12 October 2026)
+## C0 minimal-component two-back-edge theorem (Lean-certified, 12 October 2026)
 
 Module `C0MinimalBackEdges.lean` gives the exact finite form of
 Proposition `twoedges` in `The-big-Hrushovski/sections/03a_enumeration_C0.tex`.
@@ -1442,6 +1441,4 @@ Proposition `twoedges` in `The-big-Hrushovski/sections/03a_enumeration_C0.tex`.
 
 These statements do not construct or schedule the infinite enumeration,
 do not produce the unary closure presentation, and do not establish its
-Ramsey property. Upgrade manuscript orange marker on Proposition twoedges
-only when the full integrated Lean build and the exact two axiom audits
-pass.
+Ramsey property. Merged PR #75 passed integrated [run 38237316769](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38237316769): 271 declarations using standard axioms only, 64 placeholder-free files and finite regressions. The manuscript now marks the two finite proof steps green while retaining an orange marker on the whole enumeration-quantified proposition.
