@@ -86,3 +86,5 @@ import BigHrushovski.C0Skeleton
 import BigHrushovski.C0MinimalTraces
 
 import BigHrushovski.C0BlockOffsets
+
+import BigHrushovski.C0TraceStages
