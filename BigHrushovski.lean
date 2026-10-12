@@ -89,4 +89,8 @@ import BigHrushovski.C0BlockOffsets
 
 import BigHrushovski.C0TraceStages
 
+import BigHrushovski.C0CountableMinimal
+
+import BigHrushovski.C0EmptyBase
+
 import BigHrushovski.C0ClosedUnions

@@ -1550,7 +1550,50 @@ the next module to define a single indexed C0 enumeration and
 verify the boundary step between distinct finite segments.
 
 
-## Finite C0 dependency-closed block union (12 October 2026; CI pending)
+## One omega-indexed sequence of minimal C0 increments (12 October 2026; CI pending)
+
+`C0CountableMinimal.lean` flattens the certified nonempty finite
+minimal traces of the strictly growing skeleton, using the
+audited unique half-open block offset map. It proves the exact
+successor theorem for **every** natural index, splitting into:
+(1) a successor inside one finite trace; and
+(2) the last actual step of one trace ending at the first stage
+of the next. The finite trace terminal is never inserted twice.
+
+The module packages the indexed sequence as a concrete
+`StrongChain` of the actual generic graph; it covers every
+vertex because each prior skeleton stage occurs at its offset.
+It also proves strict growth, global strongness of all prefixes,
+and equality of closure over the old prefix for **any**
+vertex of the next increment.
+
+If the full integrated build, exact theorem axiom audit and
+placeholder scan succeed, this will justify upgrading the
+manuscript's exhaustion and equal-closure lemmas to green.
+It does NOT construct the full unary closure functional
+Fraisse presentation, its component-dependency equivalence,
+recurrence, or any Ramsey/Ellentuck theorem.
+
+
+## Exact initial stage and coverage of the C0 omega enumeration (CI pending)
+
+`C0EmptyBase.lean` proves that the empty finite set is
+globally strong in the actual countable two-sparse generic:
+`δ(∅)=0` and every finite induced subgraph has nonnegative
+predimension. By leastness of finite strong closure,
+`cl_s(∅)=∅`. Consequently the countable minimal-step
+sequence certified in merged PR #82 satisfies `A₀=∅`
+literally; its `StrongChain.covers` field gives
+`∀x ∃n, x∈A_n`.
+
+This closes the exact initial-condition and coverage
+interfaces for manuscript Lemmas `equalclosure` and
+`exhaust`, once this PR's integrated Lean audit passes.
+No conclusion is made about the unary functional Fraisse
+presentation, its automorphisms, or its big Ramsey degrees.
+
+
+## Finite C0 dependency-closed block union (Lean-certified, 12 October 2026)
 
 Module `C0ClosedUnions.lean` formalizes the predimension induction
 step of Lemma `C0-functional-closure`. Let x ≤ a be finite and strong,
@@ -1568,3 +1611,5 @@ The exact unary functional closure predicate, its domain/age,
 the component equivalence and the whole C0 Ramsey theorem
 remain to be formalized. Green manuscript markers are justified
 only for the finite no-cross strongness step after CI.
+
+Integrated PR #83 CI run 38250063433 built the theorem and audited 303 declarations with standard axioms only (70 Lean source files scanned for placeholders).

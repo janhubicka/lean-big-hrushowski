@@ -370,5 +370,16 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.MinimalStrongTrace.stageAt_last
 #print axioms BigHrushovski.Predimension.MinimalStrongTrace.stageAt_minimal_step
 
+#print axioms BigHrushovski.FiniteCatalogue.genericC0BlockIndex_at_offset
+#print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_at_offset
+#print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_minimal_step
+#print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_global
+#print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_strict
+#print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_equal_closure
+
+#print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_empty_global
+#print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_zero
+#print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_exhaustive
+
 #print axioms BigHrushovski.GraphOn.closedBlock_strong_of_noCross
 #print axioms BigHrushovski.GraphOn.closedBlock_global_of_noCross
