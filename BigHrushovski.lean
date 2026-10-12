@@ -80,3 +80,5 @@ import BigHrushovski.OrbitFiniteStrongClosure
 import BigHrushovski.C0MinimalBackEdges
 
 import BigHrushovski.C0FiniteRuns
+
+import BigHrushovski.C0Skeleton

@@ -1473,3 +1473,27 @@ union is M0, interleave arbitrary functional extension requirements, or
 construct the unary closure presentation. Thus any marker for the
 full exhaustion statement remains partial until a compatible
 infinite scheduling object is certified.
+
+
+## Strict countable C0 strong skeleton (12 October 2026; CI pending)
+
+`C0Skeleton.lean` defines a *specific* countable sequence
+`stage n` by closing `stage (n-1)` with the requested vertex n-1
+and one additional vertex fresh outside the old finite prefix.
+It proves:
+
+* Each stage is finite and globally strong.
+* Each step is proper and strong, including when n is already present.
+* Vertex n is in stage (n+1); consequently the stages exhaust ℕ.
+* The resulting sequence is a concrete `StrongChain` of the actual
+  generic two-sparse graph.
+* Each successive interval is refinable by the certified finite
+  minimal-step decomposition, so every interval has a finite
+  *nontrivial* sequence of minimal blocks.
+
+This is a genuine infinite strong skeleton with certified finite
+refinements, not yet a single ω-indexed sequence of consecutive
+minimal steps. Concatenating the finite segments compatibly,
+and interleaving arbitrary unary-closure extension requests,
+remain separate endpoints. The latter is needed for the
+functional Fraisse presentation and the Ramsey theorems.
