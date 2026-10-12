@@ -349,3 +349,10 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.C0Skeleton.stage_minimal_segment
 #print axioms BigHrushovski.FiniteCatalogue.genericC0StrongSkeleton_strict
 #print axioms BigHrushovski.FiniteCatalogue.genericC0StrongSkeleton_minimal_segment
+
+
+#print axioms BigHrushovski.Predimension.MinimalStrongChain.existsTrace
+#print axioms BigHrushovski.Predimension.MinimalStrongTrace.starts_valid
+#print axioms BigHrushovski.Predimension.MinimalStrongTrace.starts_length_pos
+#print axioms BigHrushovski.Predimension.MinimalStepList.append
+#print axioms BigHrushovski.FiniteCatalogue.genericC0SegmentTrace_nonempty
