@@ -1497,3 +1497,21 @@ minimal steps. Concatenating the finite segments compatibly,
 and interleaving arbitrary unary-closure extension requests,
 remain separate endpoints. The latter is needed for the
 functional Fraisse presentation and the Ramsey theorems.
+
+
+## C0 finite minimal traces (12 October 2026; CI pending)
+
+Module `C0MinimalTraces.lean` extracts a **data-valued** finite
+minimal-step trace from the certified `MinimalStrongChain` proposition.
+The existence induction stays in Prop (`Nonempty`); `Classical.choice`
+selects an explicit trace. A source-stage list excludes its terminal
+stage, so adjacent traces can be appended without duplicating their
+common endpoint. `MinimalStepList.append` proves this finite
+composition preserves all certificates.
+
+The actual strictly growing countable skeleton has a chosen finite
+trace at each interval, and each list is provably nonempty.
+This is a critical data interface for the planned omega-ordinal sum,
+but does not yet define the flattening map `Nat → Finset Nat`.
+Consequently the manuscript's full minimal-increment enumeration
+and functional Ramsey statements remain at orange validation status.
