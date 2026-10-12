@@ -1442,3 +1442,34 @@ Proposition `twoedges` in `The-big-Hrushovski/sections/03a_enumeration_C0.tex`.
 These statements do not construct or schedule the infinite enumeration,
 do not produce the unary closure presentation, and do not establish its
 Ramsey property. Merged PR #75 passed integrated [run 38237316769](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38237316769): 271 declarations using standard axioms only, 64 placeholder-free files and finite regressions. The manuscript now marks the two finite proof steps green while retaining an orange marker on the whole enumeration-quantified proposition.
+
+
+## C0 finite uninterrupted minimal-increment runs (12 October 2026; CI pending)
+
+Module `C0FiniteRuns.lean` specializes the already proved finite minimal
+decomposition to a finite globally strong prefix `a` and an arbitrary
+finite request `s`. The terminal graph is the **actual**
+`genericStrongClosure (a ∪ s)`, so no abstract Fraisse limit or
+unimplemented scheduler is assumed.
+
+Exact endpoints:
+* `MinimalStrongChain.isStrong`: a chain of minimal steps is strong
+  between endpoints.
+* `StrongExhaustion.minimal_step_generated_by_every_new_vertex`:
+  a minimal strong extension with globally strong terminal set is
+  generated over its base by **each** new vertex, not only a chosen one.
+* `StrongExhaustion.exists_finite_minimal_run_cover`: finite
+  prescribed sets can be inserted from any globally strong prefix in
+  a finite chain of minimal strong steps.
+* `StrongExhaustion.exists_finite_minimal_run_insert`: a missing
+  vertex is inserted and the extension is proper.
+* The two `FiniteCatalogue.generic_exists_...` statements instantiate
+  the above on the concrete constructed graph M0.
+
+These verify the mathematical **finite uninterrupted run** in
+Lemma `exhaust` and strengthen the equal-closure lemma. They do not
+produce a *single* omega-indexed minimal-increment enumeration whose
+union is M0, interleave arbitrary functional extension requirements, or
+construct the unary closure presentation. Thus any marker for the
+full exhaustion statement remains partial until a compatible
+infinite scheduling object is certified.
