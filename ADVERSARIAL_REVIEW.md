@@ -1746,3 +1746,23 @@ within one assistant session, not independently spawned agents.
 These are six separate hostile proof checks carried out
 within one assistant review, not spawned independent agents.
 CI is pending; no theorem is called certified on this note alone.
+
+
+## Adversarial checks: empty initial C0 stage
+
+1. The empty induced graph has predimension zero exactly,
+   not merely nonnegative predimension.
+2. The generic's finite two-sparsity is a proven theorem
+   for **every finite subset** of the ambient countable graph.
+3. Global strength of ∅ quantifies over all finite ambient
+   containers and all intermediate finite subsets; it is
+   not inferred solely from ∅ being strong at stage zero.
+4. The global least-closure theorem identifies
+   `genericStrongClosure ∅` with ∅; no arbitrary
+   chosen finite strong container remains in the conclusion.
+5. Coverage of the flattened enumeration uses the
+   certified strong chain's actual `covers` witness,
+   not a compactness or pointwise stabilization argument.
+
+These are deliberately separate mathematical failure-mode
+reviews by the same assistant, not independent spawned referees.
