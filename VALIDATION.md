@@ -1398,3 +1398,28 @@ first-order graph language and the converse algebraic-closure
 inclusion needs the disjoint-copy argument.
 
 **Audit update (11 October 2026):** Original PR #69 passed CI [run 38153898725](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38153898725), auditing 260 declarations using standard logical axioms only and 59 placeholder-free Lean files, including the strict strong closure and finite induced-copy image theorems. The independent 1,100-graph regression also passed. This reconciled branch must pass a new integrated CI check before merging. The later merged PR #72 independently proves infinite automorphism orbits outside strong closure, but the first-order semantics of model-theoretic algebraic closure are still not formalized; do not upgrade `acl=cl_s`.
+
+
+## Finite automorphism orbits characterize finite strong closure (pending Lean CI)
+
+`OrbitFiniteStrongClosure.lean` defines the orbit of a vertex
+over a finite parameter set as the images under all induced graph
+automorphisms fixing those parameters pointwise. It shows that
+this orbit is contained in a finite set exactly when the vertex
+lies in the finite strong closure.
+
+For the forward implication from strong closure to finite orbit,
+`generic_automorphism_preserves_strongClosure` restricts any
+automorphism fixing the parameters to an induced embedding of the
+finite strong closure, then invokes the kernel-audited candidate
+`genericStrongClosure_induced_copy_image` from parent PR #73.
+For the opposite implication,
+`generic_outside_closure_infinite_orbit` from merged PR #72
+moves every outside vertex away from any finite proposed bound.
+
+This proves the exact **automorphism-orbit characterization**, not
+yet equality with *first-order* algebraic closure: the latter
+requires formalizing finite solution sets of first-order formulas
+and the finite induced closure-diagram formula over the parameters.
+The complete integrated Lean/standard-axiom/placeholder audit
+remains pending, and PR #73 is a required dependency.

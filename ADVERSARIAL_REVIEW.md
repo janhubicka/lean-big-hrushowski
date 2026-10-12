@@ -1502,3 +1502,39 @@ only in (C). The Lean statement establishes the combinatorial
 fact, not yet the first-order interpretation of that formula.
 
 **Audit update (11 October 2026):** Original PR #69 passed CI [run 38153898725](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38153898725), auditing 260 declarations using standard logical axioms only and 59 placeholder-free Lean files, including the strict strong closure and finite induced-copy image theorems. The independent 1,100-graph regression also passed. This reconciled branch must pass a new integrated CI check before merging. The later merged PR #72 independently proves infinite automorphism orbits outside strong closure, but the first-order semantics of model-theoretic algebraic closure are still not formalized; do not upgrade `acl=cl_s`.
+
+
+## Adversarial review: finite orbit vs finite strong closure
+
+**Image versus pointwise fixation.** An automorphism fixing the
+generators need not fix every element of their finite closure;
+it only permutes the closure. The induced-diagram uniqueness
+theorem proves equality of the *image set*, which suffices to
+bound all automorphism images inside the finite closure.
+
+**No global-strong-image assumption.** The restriction of the
+ambient automorphism to the finite closure is induced and
+injective, but the orbit argument does not separately assume
+its image globally strong. It relies on the already audited
+finite diagram uniqueness result.
+
+**Infinite orbit exclusion.** A purported finite bound for the
+orbit of a vertex outside the closure is refuted by the explicit
+strong-conjugate avoidance theorem. This step uses pointwise
+fixation of the *original* generator set, not the larger
+closure alone.
+
+**Parameter-free corner case.** The proof permits an empty
+generator set; the same finite closure and orbit statements
+apply without choosing any special vertex.
+
+**Remaining first-order boundary.** Finiteness of an automorphism
+orbit is not a general definition of model-theoretic algebraic
+closure without extra hypotheses. The result explicitly avoids
+that substitution. To establish acl=cl_s in the manuscript
+one still needs first-order algebraic-formula semantics and the
+finite induced closure-diagram formula.
+
+All five are distinct mathematical failure-mode checks made
+within one assistant review, not independently spawned referee
+agents.

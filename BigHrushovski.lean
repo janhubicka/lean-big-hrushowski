@@ -74,3 +74,5 @@ import BigHrushovski.StrongConjugates
 
 import BigHrushovski.StrictStrongClosure
 import BigHrushovski.InducedClosureDiagrams
+
+import BigHrushovski.OrbitFiniteStrongClosure
