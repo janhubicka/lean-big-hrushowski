@@ -1561,5 +1561,6 @@ agents.
    global block-enumeration schedule or any downstream Ramsey property.
 
 All five are distinct proof-audit perspectives of this assistant,
-not independent external referee agents. Status is pending the integrated
-Lean CI and exact axiom audit.
+not independent external referee agents. Both exact theorem endpoints passed
+[Lean CI run 38237316769](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38237316769)
+with 271 standard-axiom declarations and 64 files scanned for placeholders.

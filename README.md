@@ -3,7 +3,7 @@
 Lean 4 validation of the working manuscript
 [The Big Hrushovski](https://github.com/janhubicka/The-big-Hrushovski).
 
-## Certified scope (11 October 2026)
+## Certified scope (12 October 2026)
 
 The Lean development verifies finite graph predimension,
 self-sufficiency and closure calculations, tagged strong free
@@ -46,7 +46,21 @@ passed the [253-declaration integrated audit](https://github.com/janhubicka/lean
 with only standard logical axioms, no proof placeholders in 57
 Lean files, and the existing finite regression suite.
 
-**Still open:** identifying finite strong closure with
+**Finite closure orbit characterization and the C0 two-edge lemma are
+now Lean-certified.** The precise finite strong closure of a generator
+set is the set of vertices having finite orbit under its pointwise
+automorphism stabilizer; this is **not yet** a Lean proof of first-order
+`acl=cl_s`. See [PR #74](https://github.com/janhubicka/lean-big-hrushowski/pull/74).
+The two-old-neighbour bound and singleton-minimal-increment conclusion
+used in the C0 enumeration have exact finite Lean statements in
+[PR #75](https://github.com/janhubicka/lean-big-hrushowski/pull/75).
+Its [passing audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38237316769)
+checked 271 declarations with standard axioms only, scanned 64 Lean
+files for placeholders and passed the finite regression suite. The
+**infinite** C0 enumeration and its unary functional presentation are
+still outside the certified scope.
+
+**Still open in Lean:** identifying finite strong closure with
 model-theoretic algebraic closure, formalizing the complete
 functional closure presentations, the big Ramsey-degree
 arguments and the concrete Ramsey-space axioms required for the
