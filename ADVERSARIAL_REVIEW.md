@@ -1604,3 +1604,41 @@ recurrent ordering, or big Ramsey consequence is inferred.
 These are adversarial self-review perspectives; no independent
 human or agent referees were spawned. Pending full Lean build,
 standard-axiom audit, placeholder scan and finite regressions.
+
+
+## Adversarial checks: strict C0 skeleton (12 October 2026)
+
+**Referee A — genuine freshness.**
+One cannot choose a fresh vertex from a bounded range. The proof
+uses the pigeonhole inequality for the finite set a and the range
+of length |a|+1. It does not assume an order-preserving enumeration.
+
+**Referee B — avoidance of vacuous growth.**
+A bare demand to insert n would allow an empty step if n already
+belonged to the closure. The extra fresh vertex forces strict
+inclusion and guarantees each finite minimal refinement has at
+least one nontrivial step.
+
+**Referee C — finite strong closure.**
+The new stage is defined as the intrinsic closure in the actual
+constructed countable graph, not as a hull in an arbitrary
+finite carrier. Global strongness follows from the certified
+strong exhaustion underlying M0.
+
+**Referee D — exhaustive coverage.**
+Vertex n is explicitly included at stage n+1, so every vertex
+appears without a combinatorial compactness or diagonal fusion
+assumption. The strong-chain coverage property uses this
+specific bound.
+
+**Referee E — minimal increments vs strong skeleton.**
+The skeleton links are generally not minimal. A separate finite
+minimal-chain proof refines each link; flattening those finite
+chains to an omega-enumeration has not yet been formalized.
+Therefore the construction is not claimed to certify the
+full manuscript's minimal-component enumeration or unary
+functional Fraisse structure.
+
+These are deliberately separate self-checking perspectives, not
+independently spawned external referees. Status pending the
+integrated Lean and standard-axiom audit.
