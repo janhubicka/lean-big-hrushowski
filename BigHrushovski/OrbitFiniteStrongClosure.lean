@@ -77,8 +77,7 @@ theorem generic_automorphism_preserves_strongClosure
     simp only [Finset.mem_image, Finset.mem_univ, true_and]
     constructor
     · rintro ⟨x, hx⟩
-      exact Finset.mem_image.mpr
-        ⟨x.val, x.property, hx⟩
+      exact ⟨x.val, x.property, hx⟩
     · rintro ⟨x, hx, hzx⟩
       exact ⟨⟨x, hx⟩, hzx⟩
   calc
