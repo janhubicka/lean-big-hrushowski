@@ -1676,3 +1676,22 @@ prefix-indexing/gluing theorem remains a separate obligation.
 These are five independent *questions* applied within one
 assistant self-review, not independent external referees.
 Full Lean build/axiom scan remains pending.
+
+
+## Adversarial self-review of C0 block offset arithmetic
+
+* **Coverage:** the prefix sum after n nonempty blocks is at least
+  n; the least covering block exists for every natural position.
+* **Lower boundary:** the chosen least covering block cannot start
+  after the position (or its predecessor would already cover).
+* **Uniqueness:** monotonicity of cumulative lengths excludes both
+  an earlier and a later competing interval.
+* **Freshness:** strictly positive lengths are necessary. The
+  proof invokes the independently certified nonemptiness of
+  every skeleton refinement; no zero-length dummy step is added.
+* **Scope:** uniqueness of an arithmetic block index alone does
+  not verify the structural successor relation between stages
+  in distinct blocks, nor the unary closure presentation.
+
+These are distinct adversarial verification passes performed
+by this assistant, not external independent referee agents.

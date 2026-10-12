@@ -84,3 +84,5 @@ import BigHrushovski.C0FiniteRuns
 import BigHrushovski.C0Skeleton
 
 import BigHrushovski.C0MinimalTraces
+
+import BigHrushovski.C0BlockOffsets

@@ -356,3 +356,12 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.MinimalStrongTrace.starts_length_pos
 #print axioms BigHrushovski.Predimension.MinimalStepList.append
 #print axioms BigHrushovski.FiniteCatalogue.genericC0SegmentTrace_nonempty
+
+#print axioms BigHrushovski.Predimension.C0Offsets.offset_mono
+#print axioms BigHrushovski.Predimension.C0Offsets.index_le_offset
+#print axioms BigHrushovski.Predimension.C0Offsets.block_upper
+#print axioms BigHrushovski.Predimension.C0Offsets.block_lower
+#print axioms BigHrushovski.Predimension.C0Offsets.local_index_lt
+#print axioms BigHrushovski.Predimension.C0Offsets.block_eq_of_interval
+#print axioms BigHrushovski.FiniteCatalogue.genericC0BlockIndex_bounds
+#print axioms BigHrushovski.FiniteCatalogue.genericC0LocalIndex_lt
