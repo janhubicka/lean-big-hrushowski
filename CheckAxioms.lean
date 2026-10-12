@@ -340,3 +340,12 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.StrongExhaustion.exists_finite_minimal_run_insert
 #print axioms BigHrushovski.FiniteCatalogue.generic_exists_finite_minimal_run_cover
 #print axioms BigHrushovski.FiniteCatalogue.generic_exists_finite_minimal_run_insert
+
+#print axioms BigHrushovski.Predimension.C0Skeleton.exists_freshNat
+#print axioms BigHrushovski.Predimension.C0Skeleton.stage_global
+#print axioms BigHrushovski.Predimension.C0Skeleton.stage_subset_succ
+#print axioms BigHrushovski.Predimension.C0Skeleton.stage_strict_succ
+#print axioms BigHrushovski.Predimension.C0Skeleton.stage_strong_succ
+#print axioms BigHrushovski.Predimension.C0Skeleton.stage_minimal_segment
+#print axioms BigHrushovski.FiniteCatalogue.genericC0StrongSkeleton_strict
+#print axioms BigHrushovski.FiniteCatalogue.genericC0StrongSkeleton_minimal_segment
