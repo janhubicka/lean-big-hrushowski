@@ -365,3 +365,7 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.C0Offsets.block_eq_of_interval
 #print axioms BigHrushovski.FiniteCatalogue.genericC0BlockIndex_bounds
 #print axioms BigHrushovski.FiniteCatalogue.genericC0LocalIndex_lt
+
+#print axioms BigHrushovski.Predimension.MinimalStrongTrace.at_zero
+#print axioms BigHrushovski.Predimension.MinimalStrongTrace.at_last
+#print axioms BigHrushovski.Predimension.MinimalStrongTrace.at_minimal_step
