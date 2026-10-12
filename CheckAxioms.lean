@@ -380,3 +380,11 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_empty_global
 #print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_zero
 #print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_exhaustive
+
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Component_nonempty
+#print axioms BigHrushovski.FiniteCatalogue.genericC0_exists_component_index
+#print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_spec
+#print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_not_prior
+#print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_mem
+#print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_eq_iff
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Components_disjoint
