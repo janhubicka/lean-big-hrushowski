@@ -88,3 +88,5 @@ import BigHrushovski.C0MinimalTraces
 import BigHrushovski.C0BlockOffsets
 
 import BigHrushovski.C0TraceStages
+
+import BigHrushovski.C0CountableMinimal
