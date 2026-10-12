@@ -1515,3 +1515,21 @@ This is a critical data interface for the planned omega-ordinal sum,
 but does not yet define the flattening map `Nat → Finset Nat`.
 Consequently the manuscript's full minimal-increment enumeration
 and functional Ramsey statements remain at orange validation status.
+
+
+## Countable C0 finite-block offset arithmetic (12 October 2026; CI pending)
+
+`C0BlockOffsets.lean` introduces explicit partial sums of strictly
+positive block lengths, proves that the index of each natural
+position lies in one and only one half-open block interval, and
+specializes the arithmetic to the certified finite minimal traces
+of the concrete C0 skeleton. The source list of each trace excludes
+its terminal stage; hence each offset interval contains precisely
+the stages contributed by the corresponding nonempty refinement.
+
+This is an indexing **interface**, not yet an omega-sequence of
+globally strong minimal steps. The next step is extracting an
+indexed source from each chosen trace, verifying minimality
+across the boundary between successive blocks and coverage of
+all the skeleton vertices. No functional-Fraisse or Ramsey
+conclusion is claimed.
