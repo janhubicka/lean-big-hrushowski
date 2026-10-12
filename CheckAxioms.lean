@@ -376,3 +376,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_global
 #print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_strict
 #print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_equal_closure
+
+#print axioms BigHrushovski.FiniteCatalogue.genericTwoSparseGraph_empty_global
+#print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_zero
+#print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_exhaustive
