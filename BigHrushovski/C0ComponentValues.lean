@@ -44,7 +44,6 @@ theorem wholeComponentClosure_transport
       (blocks i).image vertexMap) :
     wholeComponentClosure e joinedBlocks (indexMap root) =
       (wholeComponentClosure d blocks root).image vertexMap := by
-  classical
   ext w
   constructor
   · intro hw
