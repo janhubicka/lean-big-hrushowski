@@ -482,3 +482,12 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_cut_step
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_minimalChain_to_stage
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_minimalPresentation
+
+#print axioms BigHrushovski.TaggedAmalgam.freeDependency_left_iff
+#print axioms BigHrushovski.TaggedAmalgam.freeDependency_right_iff
+#print axioms BigHrushovski.TaggedAmalgam.freeDependency_left_target
+#print axioms BigHrushovski.TaggedAmalgam.freeDependency_right_target
+#print axioms BigHrushovski.TaggedAmalgam.freeDependency_left_ancestor_iff
+#print axioms BigHrushovski.TaggedAmalgam.freeDependency_right_ancestor_iff
+#print axioms BigHrushovski.TaggedAmalgam.freeDependency_closure_left
+#print axioms BigHrushovski.TaggedAmalgam.freeDependency_closure_right

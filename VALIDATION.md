@@ -1975,3 +1975,47 @@ Adversarial checks, separate from Lean:
   merely knowing that s itself is globally strong is insufficient.
 * **Scope:** the resulting finite minimal graph chain is not by
   itself a proof of the functional Fraisse extension property.
+
+
+## Tagged free-amalgam dependency closure (14 October 2026; Lean PR pending)
+
+The actual C0 unary function is the union of complete components
+reachable by backward dependencies, not the immediate back-neighbour
+set. Module C0TaggedDependency.lean isolates the previously missing
+**path preservation** argument on the existing tagged carrier
+P ⊕ (L ⊕ R). The finite input relations must agree on the shared
+base, and the base must be closed under dependencies in *both* factors.
+
+The proof constructs the free dependency relation, proves that
+restricting it to either factor recovers the original relation,
+and inducts on complete finite dependency paths to show that a
+path starting in one factor cannot leave it. For finite carriers,
+freeDependency_closure_left and freeDependency_closure_right give
+literal equalities of the full Finset-valued closures with the images
+of the original closures. No acyclicity or special numerical
+predimension property is assumed in this combinatorial lemma.
+
+Adversarial panels (separate hostile mathematical checks rather
+than independent external human referees):
+* **Agreement test:** with P={p,q} and no tails, the left relation
+  has no dependencies and the right has p→q. Both bases are
+  closed, but left closure of p is enlarged by amalgamation.
+* **Closedness test:** with P={p}, one new right vertex r, and
+  right p→r, even matching relations on P do not preserve
+  the left unary value at p.
+* **Path test:** one-step inducedness is insufficient without
+  the closedness of the shared base; the induction has to control
+  *every* step of a path.
+* **Representation test:** this theorem works at the level of
+  tagged *components*. To certify Proposition C0-free-generic
+  itself, the finite functional structures must still be
+  connected with such component relations and their full
+  vertex-valued closures. Fair countable functional
+  extension scheduling remains another separate obligation.
+
+The accompanying finite-model regression enumerates 10,276
+admissible tagged dependency diagrams across seven small
+base/tail sizes and checks 60,552 full-closure equalities.
+These are diagnostic checks, not replacements for the Lean proof.
+All green status markers require a successful pinned CI,
+axiom audit and placeholder scan.
