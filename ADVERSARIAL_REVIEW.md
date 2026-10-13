@@ -1943,3 +1943,41 @@ not independently spawned external referee agents.
 These are eight distinct hostile proof checks by the same
 assistant, not separately spawned independent reviewers.
 Original PR #89 integrated CI run 38382951195 passed the 356-declaration standard-axiom audit and 77-file placeholder check. Reconciled build will be checked separately.
+
+
+## Adversarial audit: functional C0 embedding consequences
+
+1. **Graph-embedded meaning:** the definition explicitly
+   requires injectivity, preservation and reflection of graph
+   adjacency, and equality of entire set-valued unary function
+   outputs. Preservation of function membership alone is weaker.
+2. **Reflection of closure:** from f(w) in C(f(v)), the
+   equality f[C(v)]=C(f(v)) yields a preimage in C(v);
+   injectivity identifies the preimage with w. No inverse
+   image is assumed globally surjective.
+3. **Component onto, not into:** mapping both mutual closure
+   relations proves the forward inclusion; the reverse uses
+   that every point of C(f(v)) has a preimage and mutual
+   closure reflection. An injective map into a proper subset
+   of a target component would not be a unary embedding.
+4. **Finite closure commuting:** both directions of
+   f[\langle S\rangle]=\langle f[S]\rangle use full
+   set-valued equality, rather than an inclusion assumed
+   to be sufficient.
+5. **Finite strong images:** global strongness of f[S]
+   is derived from f[S] being unary-closed and the
+   separately certified `genericC0UnaryClosed_global`;
+   it is not asserted for images of arbitrary finite
+   globally strong subsets of the unexpanded graph.
+6. **No mistaken converse:** an induced graph embedding
+   carrying complete components onto complete components
+   need not preserve the chronological direction of an
+   edge between different components. Back-edge
+   compatibility remains necessary to recover C(v).
+7. **Scope:** this proof does not construct the full
+   functional Fraisse limit, order it canonically or
+   establish a Ramsey or Ellentuck theorem.
+
+These are deliberately separate hostile mathematical checking
+passes by one assistant, not independent external referees.
+Integrated Lean CI, standard-axiom and placeholder checks pending.
