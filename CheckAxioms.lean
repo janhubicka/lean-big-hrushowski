@@ -453,3 +453,10 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.local_strong_of_enlarged_strong
 #print axioms BigHrushovski.GraphOn.local_strong_lift
 #print axioms BigHrushovski.GraphOn.minimalStrongStep_local_of_noCross
+
+#print axioms BigHrushovski.GraphOn.local_enlarged_intermediate_form
+#print axioms BigHrushovski.GraphOn.local_old_union_eq
+#print axioms BigHrushovski.GraphOn.enlarged_strong_of_local_strong
+#print axioms BigHrushovski.GraphOn.local_strong_restrict_of_enlarged
+#print axioms BigHrushovski.GraphOn.minimalStrongStep_enlarged_of_local
+#print axioms BigHrushovski.GraphOn.minimalStrongStep_free_iff
