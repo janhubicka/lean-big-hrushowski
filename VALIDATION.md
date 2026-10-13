@@ -1894,3 +1894,40 @@ This requires the *converse* relative-predimension transfer.
 The full functional Fraisse extension theorem remains separate.
 
 The concrete local-form API also now includes `genericC0Local_free_amalgam_minimal`, which instantiates the merged PR #95 reverse-transfer lemma at the actual lower closure for any larger old finite graph satisfying the disjoint and no-cross hypotheses. This is exactly the finite persistence clause; full functional Fraisse genericity is still separate.
+
+
+## Prepared finite C0 block sequences (13 October 2026; new PR, CI pending)
+
+The local free-persistence lemma has been assembled into
+`GraphOn.preparedBlocks_minimalStrongChain`. A finite list records for
+each component B its complete lower support P, containment P ⊆ A
+in the *current* old prefix, disjointness of A and B, absence of
+cross edges between B and A\\P, and local minimal strongness
+P < P∪B. The endpoint theorem gives a literal
+`Predimension.MinimalStrongChain` of the successive enlarged prefixes;
+`preparedBlocks_strong` gives strongness of the final inclusion.
+
+This is the **finite concatenation** argument needed when interleaving
+component enumerations in the free amalgam. It does not establish
+that an arbitrary diagram supplies the prepared data, that the
+unary function values agree with the original factors after
+interleaving, or that all finite functional requests are realised
+fairly in the countable graph. Those remain open obligations of
+Proposition C0-free-generic. Do not mark that proposition GREEN.
+
+Adversarial perspectives checked before the change:
+* **Predimension:** removing the no-cross hypothesis is false:
+  take P=∅, three isolated old vertices in A, and one new vertex
+  joined to all three. P<P∪B is minimal strong, but A is not
+  strong in A∪B (relative predimension -1).
+* **Enumeration:** disjointness and strict local minimality rule
+  out a repeated or empty block; no-cross must be proved at each
+  *successive* old prefix, not only at the original base.
+* **Functional age:** a finite chain of strong graph steps does
+  not imply that back-edge ancestry/unary function values are
+  preserved, nor countable fair extension genericity.
+* **Lean:** the theorem must be checked by the integrated build,
+  exact axiom audit and placeholder scan before a verified marker
+  can be assigned.
+These are distinct adversarial review passes, not an assertion that
+independent external human referees have certified the work.
