@@ -49,14 +49,14 @@ theorem local_relative_predim (P A B D : Finset V)
   have hPB : P ⊆ P ∪ B := Finset.subset_union_left
   have hRefl : P ∪ B ⊆ P ∪ B := le_refl _
   have hOverlap : A ∩ (P ∪ B) = P :=
-    G.local_inter_eq P A B (P ∪ B) hPA hDisj hPB hRefl
+    local_inter_eq P A B (P ∪ B) hPA hDisj hPB hRefl
   have hBase : A ∩ (P ∪ B) ⊆ D := by
     rw [hOverlap]
     exact hPD
   have hNoD : G.NoCrossEdges A D :=
     G.noCross_restrict_right A (P ∪ B) D hNo hDB hBase
   have hDelta := G.predim_modular_of_noCross A D hNoD
-  rw [G.local_inter_eq P A B D hPA hDisj hPD hDB] at hDelta
+  rw [local_inter_eq P A B D hPA hDisj hPD hDB] at hDelta
   exact hDelta
 
 /-- The global minimal-step strongness inequality implies the
@@ -159,7 +159,7 @@ theorem minimalStrongStep_local_of_noCross
       exact hPA hvPB
     have hAeq : A = A ∪ B :=
       le_antisymm Finset.subset_union_left
-        (Finset.union_subset (Subset.rfl) hBsubA)
+        (Finset.union_subset (le_refl _) hBsubA)
     exact hMin.2.1 hAeq
   · intro D hPD hDB hDstrong
     have hLift : G.toPredimension.IsStrong (A ∪ D) (A ∪ B) :=
