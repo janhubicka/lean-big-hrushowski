@@ -469,3 +469,5 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericC0Local_noCross
 #print axioms BigHrushovski.FiniteCatalogue.genericC0Local_minimal
 #print axioms BigHrushovski.FiniteCatalogue.genericC0Local_every_vertex_generates
+
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Local_free_amalgam_minimal
