@@ -1680,3 +1680,26 @@ and the equivalence of functional embeddings is not yet proved.
 Consequently the full lemma remains orange.
 
 PR #87 original integrated CI run 38380760041 built 345 declarations with only standard logical axioms, scanned 75 Lean files for placeholders, and checked 1,065,508 finite-set pairs. The reconciled branch needs its own final build.
+
+
+## C0 no-cross criterion from closure under back neighbours (13 October 2026; integrated CI pending)
+
+`C0NoCrossCriterion.lean` provides a graph-theoretic bridge
+needed to prove the first assertion of manuscript Lemma
+`C0-functional-closure`. For old a and a selected x⊆a,
+assume every old neighbour of a new block B already lies
+in x. Then the union of a with x∪B contains no edge
+across the two disjoint tails. The proof works directly
+with unordered two-element edges; it first establishes that
+any two distinct members of an edge are adjacent, and then
+rules out the only possible crossing pair.
+
+Combining this result with the previously audited
+`GraphOn.closedBlock_strong_of_noCross` supplies the
+local strongness step for adding a complete block.
+The **global induction over all components** and the exact
+functional closure equivalence still require formalization.
+This is a finite graph lemma; no unary closure or strongness
+predicate is assumed in its own hypotheses.
+
+The first Lean run 38381709735 compiled 321 declarations with only standard logical axioms and 74 placeholder-free files; the final reconciled CI must also run the newly added no-cross regression.

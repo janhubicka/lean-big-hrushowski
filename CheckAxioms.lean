@@ -419,3 +419,6 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_union
 #print axioms BigHrushovski.FiniteCatalogue.genericC0GeneratedClosure_union
 #print axioms BigHrushovski.FiniteCatalogue.genericC0GeneratedClosure_singleton
+
+#print axioms BigHrushovski.GraphOn.adj_of_IsEdge_of_distinct
+#print axioms BigHrushovski.GraphOn.noCross_of_backNeighbours

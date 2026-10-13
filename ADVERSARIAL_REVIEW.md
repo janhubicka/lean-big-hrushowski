@@ -1874,3 +1874,34 @@ or agent referees. PR #86 integrated CI run 38380094815 passed the 334-declarati
 These six are adversarial mathematical checking perspectives
 performed by this assistant, not externally spawned referees.
 PR #87 original integrated CI run 38380760041 passed the standard-axiom and placeholder audits. Reconciliation with parent PR #86 is checked separately.
+
+
+## Adversarial review: old-neighbour no-cross criterion
+
+1. A graph edge is an *unordered two-element* set. The proof
+   verifies any two distinct endpoints are adjacent using
+   the graph's irreflexive symmetric adjacency predicate.
+2. If an edge is neither contained in old a nor contained
+   in selected x∪B, it has a vertex outside a and a vertex
+   outside x∪B. The former belongs to B (using x⊆a),
+   and the latter lies in a.
+3. The two selected vertices are distinct because one
+   is outside a and the other lies in a. This is needed
+   before applying the two-element edge lemma.
+4. The resulting adjacency is a genuine old back edge.
+   The back-neighbour hypothesis puts its old endpoint
+   inside x, a contradiction.
+5. The no-cross statement itself does not require B∩a=∅
+   or any strongness. The downstream closed-block lemma
+   **does** require disjointness to identify the overlap
+   as exactly x, and requires x≤a to preserve strength.
+6. A regression over all labelled simple graphs on up to
+   five vertices and all three-way vertex splits tests
+   the cut criterion. It is diagnostic only; the Lean
+   kernel proof and axiom scan are authoritative.
+7. The full unary-closed-set strongness induction remains
+   a separate theorem; no final manuscript marker is
+   upgraded on this isolated finite criterion.
+
+Seven mathematical adversarial proof checks by this assistant,
+not independently spawned external referee agents.

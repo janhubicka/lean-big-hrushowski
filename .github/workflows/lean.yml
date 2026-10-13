@@ -93,6 +93,8 @@ jobs:
 
       - name: Check strict strong-closure predimension and uniqueness
         run: python3 scripts/check_strict_closure.py
+      - name: Check C0 back-neighbour no-cross criterion
+        run: python3 scripts/check_c0_no_cross.py
       - name: Check nonempty C0 trace offsets and boundary joins
         run: python3 scripts/check_c0_trace_offsets.py
       - name: Check finite C0 back-edge ancestor closure
