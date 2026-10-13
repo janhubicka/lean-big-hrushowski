@@ -96,3 +96,5 @@ import BigHrushovski.C0EmptyBase
 import BigHrushovski.C0ClosedUnions
 
 import BigHrushovski.C0Components
+
+import BigHrushovski.C0NoCrossCriterion
