@@ -95,7 +95,7 @@ theorem local_strong_restrict_of_enlarged
       ⟨hAZ (hPA hvP), Finset.mem_union.mpr (Or.inl hvP)⟩
   have hDPB : D ⊆ P ∪ B := Finset.inter_subset_right
   have hZeq : Z = A ∪ D :=
-    G.local_enlarged_intermediate_form P A B Z
+    local_enlarged_intermediate_form P A B Z
       hPA hAZ hStrong.1
   refine ⟨hDPB, ?_⟩
   intro E hDE hEPB
@@ -157,7 +157,7 @@ theorem minimalStrongStep_enlarged_of_local
       G.local_strong_restrict_of_enlarged P A B Z
         hPA hDisj hNo hAZ hZstrong
     have hZeq : Z = A ∪ D :=
-      G.local_enlarged_intermediate_form P A B Z
+      local_enlarged_intermediate_form P A B Z
         hPA hAZ hZAB
     have hAP : A ∪ P = A := by
       ext v
@@ -182,7 +182,7 @@ theorem minimalStrongStep_enlarged_of_local
       calc
         Z = A ∪ D := hZeq
         _ = A ∪ (P ∪ B) := by rw [hDfull]
-        _ = A ∪ B := G.local_old_union_eq P A B hPA
+        _ = A ∪ B := local_old_union_eq P A B hPA
 
 /-- Local minimality and its freely amalgamated extension are
 equivalent under the exact no-cross and disjointness hypotheses. -/
