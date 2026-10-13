@@ -1977,7 +1977,7 @@ Adversarial checks, separate from Lean:
   itself a proof of the functional Fraisse extension property.
 
 
-## Tagged free-amalgam dependency closure (14 October 2026; Lean PR pending)
+## Tagged free-amalgam dependency closure (14 October 2026; Lean-certified PR #99)
 
 The actual C0 unary function is the union of complete components
 reachable by backward dependencies, not the immediate back-neighbour
@@ -2019,3 +2019,47 @@ base/tail sizes and checks 60,552 full-closure equalities.
 These are diagnostic checks, not replacements for the Lean proof.
 All green status markers require a successful pinned CI,
 axiom audit and placeholder scan.
+
+
+## Whole-component vertex values and closed C0 stages (14 October 2026; CI pending)
+
+Following certified tagged dependency preservation (Lean PR #99,
+successful run 38485892107 with 405 audited declarations), two exact
+interfaces are added:
+
+* C0ComponentValues.lean defines the vertex-valued closure of a
+  component as the union of **whole vertex blocks** indexed by its
+  reachable components. The transport theorem checks that mapping
+  complete blocks and their reachable indices commutes with this
+  union. The tagged left/right specialisations combine this with
+  freeDependency_closure_left/right. They explicitly assume that
+  the vertex block of every image component is the **whole image**
+  of the source block; mere inclusion is insufficient.
+* C0PrefixClosure.lean proves that for every v in the finite initial
+  stage A_n, the *full* unary closure C(v) is contained in A_n.
+  Thus each A_n is an f_Cl-closed finite substructure and its
+  generated closure is exactly itself. The proof uses the certified
+  inequality index(w) ≤ index(v) whenever w belongs to C(v).
+
+Independent adversarial checks:
+1. **Off-by-one:** membership v∈A_n means index(v)<n; the proof
+   must not confuse A_n with A_(n+1).
+2. **Temporal persistence:** future blocks must not enter the
+   unary value of an earlier point. Strongness of A_n alone
+   would not imply this; the descending component dependency
+   inequality is essential.
+3. **Component unfolding:** equality of reachable *index*
+   sets does not imply equality of vertex-valued function values
+   unless each full block maps onto the corresponding target block.
+4. **No accidental disjointness:** the abstract unfolding lemma
+   does not require pairwise disjoint blocks; the regression
+   checks both distinct and overlapping block-valued systems.
+
+The exhaustive finite diagnostic adds 121,104 whole-vertex closure
+equalities to the prior 60,552 path-closure equalities.
+Exact Lean CI, axiom audit and placeholder scan remain required before
+either group of theorem markers may become green.
+
+The concrete construction of a tagged **functional** amalgamation
+diagram, and the fair countable C0 functional extension schedule,
+remain open in Lean even after these bridge theorems.
