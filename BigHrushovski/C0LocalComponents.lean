@@ -194,5 +194,23 @@ theorem genericC0Local_every_vertex_generates
   rw [genericC0LowerClosure_union_component v]
   exact hEq
 
+/-- The local C0 component remains a minimal strong increment when
+freely attached over its lower closure to any larger old finite graph
+that is disjoint from the block and has no crossing edges to it. -/
+theorem genericC0Local_free_amalgam_minimal
+    (v : ℕ) (A : Finset ℕ)
+    (hP : genericC0LowerClosure v ⊆ A)
+    (hDisj : Disjoint A
+      (genericC0Component (genericC0ComponentIndex v)))
+    (hNo : genericTwoSparseGraph.NoCrossEdges A
+      (genericC0LowerClosure v ∪
+        genericC0Component (genericC0ComponentIndex v))) :
+    genericTwoSparseGraph.toPredimension.IsMinimalStrongStep
+      A (A ∪ genericC0Component (genericC0ComponentIndex v)) :=
+  genericTwoSparseGraph.minimalStrongStep_enlarged_of_local
+    (genericC0LowerClosure v) A
+    (genericC0Component (genericC0ComponentIndex v))
+    hP hDisj hNo (genericC0Local_minimal v)
+
 end FiniteCatalogue
 end BigHrushovski
