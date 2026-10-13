@@ -102,3 +102,5 @@ import BigHrushovski.C0AncestorClosure
 import BigHrushovski.C0UnaryClosureAlgebra
 
 import BigHrushovski.C0NoCrossCriterion
+
+import BigHrushovski.C0UnaryClosedStrong
