@@ -1905,3 +1905,41 @@ PR #87 original integrated CI run 38380760041 passed the standard-axiom and plac
 
 Seven mathematical adversarial proof checks by this assistant,
 not independently spawned external referee agents.
+
+
+## Adversarial verification: unary-closed sets are strong
+
+1. **Whole-component dichotomy.** If a unary-closed set s
+   meets B_n, the entire B_n lies in s. Without this step
+   an intermediate extension need not contain all of B_n.
+2. **Back-edge orientation.** Any old neighbour of a
+   vertex of B_n is in C(v), hence in s. Internal block
+   edges and edges toward later blocks are irrelevant.
+3. **No-cross premise.** The finite graph cut
+   `NoCrossEdges A_n ((s∩A_n)∪B_n)` is proved, not
+   inferred from disjointness alone. The omitted old
+   vertices have no edge to the added block.
+4. **Inductive strengths.** The omitted-component case
+   uses transitivity of `IsStrong`. The included case
+   uses `closedBlock_strong_of_noCross` with the exact
+   old intersection and disjoint B_n.
+5. **Intermediate sets.** The local union lemma checks
+   *all* intermediate sets in A_n∪B_n; it does not
+   only compare predimension at the endpoint.
+6. **Finite-to-infinite.** The target strongness is
+   globally quantified over finite extensions in M0.
+   An exhaustive finite strong stage containing the
+   test extension allows the restricted strongness
+   theorem to prove that exact global assertion.
+7. **No false converse.** Globally strong finite graph
+   subsets need not automatically be closed under the
+   chosen enumeration's unary closure operation.
+   No biconditional is claimed.
+8. **Remaining functional theorem.** This does not by
+   itself construct the Fraisse extension schedule of
+   the unary age or prove equivalence of all embeddings,
+   recurrence, big Ramsey degrees or Ellentuck axioms.
+
+These are eight distinct hostile proof checks by the same
+assistant, not separately spawned independent reviewers.
+Full integrated Lean CI and axiom audit are pending.
