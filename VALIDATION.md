@@ -1703,3 +1703,34 @@ This is a finite graph lemma; no unary closure or strongness
 predicate is assumed in its own hypotheses.
 
 The first Lean run 38381709735 compiled 321 declarations with only standard logical axioms and 74 placeholder-free files; the final reconciled CI must also run the newly added no-cross regression.
+
+
+## All finite unary-closed C0 sets are globally strong (13 October 2026; CI pending)
+
+`C0UnaryClosedStrong.lean` formalizes the first structural
+assertion in manuscript Lemma `C0-functional-closure`.
+For the concrete countable minimal strong chain `A_n`, and
+for a finite set s closed under the full unary value C(v),
+it proves by induction that `s ∩ A_n` is strong in `A_n`.
+
+The induction splits according to whether s meets B_n.
+If not, the selected set stays the same and strongness
+is transported by the certified strong step A_n ≤ A_(n+1).
+If it does, unary-closedness forces *all* of B_n inside s
+and also every old graph neighbour of that block. The
+no-cross criterion and the existing finite closed-block
+strongness theorem give the step without assuming the
+selected set was globally strong in advance.
+
+A finite strong stage covers every finite ambient test,
+so the prefix statement implies s is globally strong
+in M0. Consequently every finitely generated unary
+closure and every one-generated C(v) are globally strong.
+
+This is one direction only: the theorem does not identify
+**all** globally strong finite sets with unary-closed
+sets, and does not establish the functional Fraisse
+extension property or equivalence of embedding notions.
+The manuscript marker remains partial until integrated
+Lean CI passes the exact theorem types and standard-axiom
+and placeholder checks.
