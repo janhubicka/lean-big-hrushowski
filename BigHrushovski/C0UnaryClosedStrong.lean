@@ -147,7 +147,7 @@ theorem genericC0_cut_succ_of_omitted
     (hOmit : ¬ (s ∩ genericC0Component n).Nonempty) :
     s ∩ genericC0MinimalStage (n + 1) =
       s ∩ genericC0MinimalStage n := by
-have hStageEq : s ∩ genericC0MinimalStage (n + 1) =
+  have hStageEq : s ∩ genericC0MinimalStage (n + 1) =
       s ∩ genericC0MinimalStage n := by
     ext w
     constructor
