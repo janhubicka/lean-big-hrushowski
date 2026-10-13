@@ -118,3 +118,5 @@ import BigHrushovski.C0LocalFreeConverse
 import BigHrushovski.C0LocalComponents
 
 import BigHrushovski.C0PreparedBlocks
+
+import BigHrushovski.C0ClosedHereditary
