@@ -440,3 +440,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_generated_image
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_closed_image
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_closed_image_global
+
+#print axioms BigHrushovski.FiniteCatalogue.genericC0BackNeighbour_iff
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_backNeighbour_iff
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_oldNeighbours_image

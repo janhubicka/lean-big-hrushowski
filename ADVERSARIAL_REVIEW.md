@@ -1981,3 +1981,36 @@ Original PR #89 integrated CI run 38382951195 passed the 356-declaration standar
 These are deliberately separate hostile mathematical checking
 passes by one assistant, not independent external referees.
 Integrated Lean CI, standard-axiom and placeholder checks pending.
+
+
+## Adversarial checks: C0 directed back edges and embeddings
+
+1. Back edges are defined using the *enumeration* component
+   index; the underlying graph remains undirected. Adjacency
+   alone does not distinguish a back edge.
+2. Closure membership alone allows vertices inside the same
+   component. The strict index difference is necessary to
+   characterize an old neighbour.
+3. For an adjacent vertex w in C(v) in another component,
+   ancestry gives index(w) <= index(v); the inequality is
+   strictly < because the component indices differ.
+4. A unary embedding reflects closure membership using
+   injectivity and equality of the entire finite function
+   value, rather than assuming global surjectivity.
+5. The old-neighbour-set image statement includes the
+   difficult reverse inclusion: each old neighbour of
+   f(v) lies in f[C(v)], hence has a preimage.
+6. That preimage is proved to be an old neighbour by
+   reflecting adjacency, closure and component difference,
+   rather than presuming the image is closed under every
+   graph neighbour.
+7. This does not imply the full converse embedding
+   characterization; a component-preserving induced map
+   can reverse the chronological orientation of an edge
+   unless directed back edges are also respected.
+8. No functional Fraisse property, recurrent ordering or
+   Ramsey/Ellentuck theorem is imported from this lemma.
+
+Eight hostile checks performed within this assistant
+session; no independent external referee agents.
+Full Lean build, axiom and placeholder audits pending.

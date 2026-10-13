@@ -1759,3 +1759,33 @@ The **converse** must still show that the precise designated
 back-edge-closed component embedding conditions imply equality
 of unary closure images; this is a separate proof obligation,
 not licensed by component preservation alone.
+
+
+## Functional C0 embeddings preserve directed back edges (13 October 2026; CI pending)
+
+Module `C0BackEdgeEmbeddings.lean` proves the exact
+characterization of an old back neighbour w of v in the
+fixed minimal-component enumeration:
+
+* v and w are adjacent in the *undirected* graph;
+* w belongs to the one-generated unary closure C(v);
+* v,w are in different closure-components.
+
+These three conditions are equivalent to w lying in the
+old-neighbour set of v. Consequently a genuine unary
+functional embedding preserves and reflects all *directed*
+back-edge incidences, and it maps the complete finite old
+neighbour set of v **onto** the corresponding old neighbour
+set of f(v).
+
+The proof of onto-ness uses the finite function-value
+equality `f[C(v)]=C(f(v))`, so every target old neighbour
+has a preimage; reflection of component indices and graph
+adjacency then shows that preimage was itself an old
+neighbour of v.
+
+This proves an important direction of the manuscript's
+component/back-edge embedding equivalence. The converse
+is still open: preservation of entire components and
+old-neighbour sets must be shown to transport all iterated
+back-edge ancestors, not just one immediate edge.
