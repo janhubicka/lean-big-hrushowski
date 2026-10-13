@@ -1892,3 +1892,5 @@ The remaining part of that lemma is persistence of local
 minimality under free amalgamation with any larger old graph.
 This requires the *converse* relative-predimension transfer.
 The full functional Fraisse extension theorem remains separate.
+
+The concrete local-form API also now includes `genericC0Local_free_amalgam_minimal`, which instantiates the merged PR #95 reverse-transfer lemma at the actual lower closure for any larger old finite graph satisfying the disjoint and no-cross hypotheses. This is exactly the finite persistence clause; full functional Fraisse genericity is still separate.
