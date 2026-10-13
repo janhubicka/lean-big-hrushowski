@@ -1846,3 +1846,31 @@ assistant; no independent external referee agents were spawned.
 These are separate adversarial checking perspectives conducted
 within one assistant session, not separately spawned human
 or agent referees. PR #86 integrated CI run 38380094815 passed the 334-declaration standard-axiom audit and 74-file placeholder scan.
+
+
+## Adversarial audit: C0 generated unary closure algebra
+
+1. **Undefined/empty values:** the named unary closure has a
+   finite *defined* value on every vertex; it is never confused
+   with an undefined partial function value or an empty value.
+2. **Closure contains generators:** `v∈C(v)` is proved from
+   ancestry reflexivity; no unproved extensive-closure axiom
+   is added to the Lean definitions.
+3. **Idempotence:** follows from the nesting property
+   `w∈C(v) ⇒ C(w)⊆C(v)`; the proof checks both inclusions
+   and does not postulate that an iterated function stabilizes.
+4. **Finite unions:** ordinary unary functions preserve
+   finite unions of closed domains. This is intentionally
+   *not* asserted for the unbounded set-input operations
+   of the C_F presentation.
+5. **Strong vs function-closed:** unary-closedness is a new
+   predicate of finite vertex subsets. It is not silently
+   equated with the intrinsic graph strongness predicate.
+6. **Embedding scope:** these closure identities alone do
+   not show the unary functional embeddings are the intended
+   graph embeddings with back-edge-closed images, nor the
+   free-amalgamation Fraisse property.
+
+These six are adversarial mathematical checking perspectives
+performed by this assistant, not externally spawned referees.
+PR #87 original integrated CI run 38380760041 passed the standard-axiom and placeholder audits. Reconciliation with parent PR #86 is checked separately.
