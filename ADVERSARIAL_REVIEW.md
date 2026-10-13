@@ -2168,3 +2168,28 @@ Eight separately framed adversarial checks by this assistant,
 not independent spawned agents. Integrated Lean audit pending.
 
 **Ninth referee check — free persistence:** the concrete API explicitly requires the larger old set to contain the entire lower closure, be disjoint from the new block and have no crossing edges. It applies the independently audited reverse minimality-transfer theorem; it makes no assertion for arbitrary graph extensions with extra old-new edges.
+
+
+## 13 October 2026 — prepared-block concatenation audit
+
+Three independent mathematical attack surfaces were reviewed before
+introducing `C0PreparedBlocks.lean`:
+
+1. **Missing hypothesis counterexample.** Local minimal strongness
+   is not sufficient to attach a block to an arbitrary old graph.
+   With P empty, B a singleton and A three isolated vertices all
+   adjacent to the new vertex, the local step is minimal strong but
+   the enlarged step is not strong. The no-cross certificate for
+   every current prefix is indispensable.
+2. **Boundary audit.** The proof must preserve minimality at each
+   successive attachment, not merely strongness of the final union.
+   A strict local minimal step and disjoint fresh block prevent
+   empty increments. Induction uses the *updated* prefix A∪B.
+3. **Overclaim audit.** This establishes a finite graph chain, not
+   the functional closure values of a tagged amalgam. A separate
+   reachability/closed-base argument is required to identify the
+   interleaved functions with those inherited from both factors;
+   fairness in M₀ is a further independent countable step.
+
+The relevant kernel proof is `GraphOn.preparedBlocks_minimalStrongChain`;
+CI and axiom checking are required before marking it verified.
