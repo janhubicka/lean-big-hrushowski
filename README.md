@@ -56,15 +56,26 @@ used in the C0 enumeration have exact finite Lean statements in
 [PR #75](https://github.com/janhubicka/lean-big-hrushowski/pull/75).
 Its [passing audit](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38237316769)
 checked 271 declarations with standard axioms only, scanned 64 Lean
-files for placeholders and passed the finite regression suite. The
-**infinite** C0 enumeration and its unary functional presentation are
-still outside the certified scope.
+files for placeholders and passed the finite regression suite. That historical checkpoint has since been extended to the
+**countable C0 enumeration and its unary closure presentation**.
 
-**Still open in Lean:** identifying finite strong closure with
-model-theoretic algebraic closure, formalizing the complete
-functional closure presentations, the big Ramsey-degree
-arguments and the concrete Ramsey-space axioms required for the
-Ellentuck results. The abstract Milliken and Todorčević libraries
+**Latest C0 milestone (13 October 2026).** The countable minimal
+strong enumeration, finite ancestry closures, finite unary-closed
+strongness, exact component/back-edge embedding equivalence, local
+minimality, and free persistence are now formalized. [PR #96](https://github.com/janhubicka/lean-big-hrushowski/pull/96)
+certifies finite concatenation of prepared components (390 audited
+declarations); [PR #97](https://github.com/janhubicka/lean-big-hrushowski/pull/97)
+proves that every finite unary-closed set inherits a minimal-increment
+presentation (397 audited declarations, [successful run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38481909334)).
+Both integrated runs audited standard logical axioms only and passed
+the finite regressions.
+
+**Still open in Lean:** identifying strong closure with first-order
+model-theoretic algebraic closure, proving tagged **functional**
+free-amalgamation preservation and the fair extension property of
+the C0 functional Fraïssé presentation, constructing the CF
+functional presentation, and proving the big Ramsey-degree and
+concrete Ramsey-space axioms required for the Ellentuck results. The abstract Milliken and Todorčević libraries
 can be reused once the appropriate concrete coding and axioms
 are formalized.
 

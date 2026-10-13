@@ -2191,8 +2191,9 @@ introducing `C0PreparedBlocks.lean`:
    interleaved functions with those inherited from both factors;
    fairness in M₀ is a further independent countable step.
 
-The relevant kernel proof is `GraphOn.preparedBlocks_minimalStrongChain`;
-CI and axiom checking are required before marking it verified.
+The kernel proof `GraphOn.preparedBlocks_minimalStrongChain` passed
+full CI run 38481016951 (390 standard-axiom declarations and 84
+placeholder-free Lean files). Its finite graph scope is unchanged.
 
 
 ## 13 October 2026 — heredity of the C0 minimal-component presentation
@@ -2221,3 +2222,5 @@ extension property in the ambient countable graph.
 
 All four are independent adversarial proof perspectives applied to
 the definitions and argument, not independent external referee agents.
+The exact hereditary endpoints passed full CI run 38481909334
+(397 standard-axiom declarations, 85 placeholder-free files).
