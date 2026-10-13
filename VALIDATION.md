@@ -1630,7 +1630,7 @@ is chosen and no back-edge reachability closure is yet
 defined. The latter remains a separate formalization task.
 
 
-## C0 unary closure by finite descending back-edge ancestry (13 October 2026; Lean CI pending)
+## C0 unary closure by finite descending back-edge ancestry (Lean-certified, 13 October 2026)
 
 `C0AncestorClosure.lean` defines the **actual** finite ancestor
 closure of the countable minimal-component enumeration. A directed
@@ -1656,5 +1656,4 @@ properties of the concrete enumeration. They do not yet prove that
 every finite f_Cl-closed set is globally strong, or that the
 resulting functional presentation has the claimed free-amalgamation
 Fraisse extension property, ordering, Ramsey or Ellentuck theorems.
-Green manuscript markers require the exact integrated Lean build
-and standard-axiom/placeholder audit.
+PR #86 integrated CI run 38380094815 audited 334 declarations with only standard logical axioms, scanned 74 Lean source files for placeholders and checked 33,867 finite dependency diagrams.
