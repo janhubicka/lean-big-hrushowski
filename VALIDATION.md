@@ -1867,3 +1867,30 @@ minimality under attaching an arbitrary larger old finite
 graph freely over the lower closure. The actual local
 C0 component P(v)=C(v)\B(v) is handled in a separate PR.
 No functional Fraisse extension property is claimed.
+
+
+## The actual lower-closure local form of each C0 component (PR #94 original CI 38428223760 passed, 381 audited declarations; reconciled CI 38429391972 passed (381 standard-axiom declarations, 82 files scanned); final merge reconciliation must rerun)
+
+`C0LocalComponents.lean` instantiates the abstract no-cross
+minimality-descent theorem at the concrete minimal enumeration.
+For v in component B(v), put `P(v)=C(v) \ B(v)`.
+
+The module proves that P(v) lies in the old finite prefix and is
+closed under every named unary function value, hence globally
+strong. It also proves `P(v)∪B(v)=C(v)` and that the intersection
+of C(v) with the old prefix is exactly P(v). Closure under
+back neighbours gives the no-cross condition with the old
+prefix. Applying the abstract minimality transfer proves
+`P(v) < P(v)∪B(v)` is a minimal strong extension.
+
+Finally, for **every** x∈B(v), the intrinsic strong graph closure
+of P(v)∪{x} is the whole C(v). This proves the local minimality
+and generator-independence asserted in manuscript Lemma
+`C0-local-form` without naming a temporary generator.
+
+The remaining part of that lemma is persistence of local
+minimality under free amalgamation with any larger old graph.
+This requires the *converse* relative-predimension transfer.
+The full functional Fraisse extension theorem remains separate.
+
+The concrete local-form API also now includes `genericC0Local_free_amalgam_minimal`, which instantiates the merged PR #95 reverse-transfer lemma at the actual lower closure for any larger old finite graph satisfying the disjoint and no-cross hypotheses. This is exactly the finite persistence clause; full functional Fraisse genericity is still separate.

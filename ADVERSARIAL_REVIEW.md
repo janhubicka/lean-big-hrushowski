@@ -2134,3 +2134,37 @@ of one assistant, not independently spawned external agents.
 
 These are hostile mathematical checking perspectives of
 the same assistant, not independent external referee agents.
+
+
+## Adversarial checks: the concrete local C0 lower closure
+
+1. The local lower part is the **whole** unary closure C(v)
+   minus its original component B(v), not merely its immediate
+   old graph neighbours. Omitting predecessor components
+   would invalidate the local strongness claim.
+2. Every predecessor component in C(v) has strictly smaller
+   index than B(v); hence P(v) lies inside the old prefix.
+3. Unary closedness of P(v) follows from ancestor transitivity
+   and decreasing indices. Removing B(v) cannot leave a
+   dependency pointing *back upward* into B(v).
+4. P(v) and P(v)∪B(v) are globally strong by the full
+   unary-closed-set theorem, not by assuming a strong
+   substructure of M0 is automatically unary-closed.
+5. The no-cross hypothesis is proved from unary-closedness
+   of C(v) and inclusion of the *whole* new block.
+   It is not inferred merely from absence of arbitrary
+   edges to later blocks.
+6. The original global minimal-step theorem applies to
+   the actual finite enumeration stage, and the exact
+   stage union A_i∪B_i=A_(i+1) is used to rewrite its target.
+7. For each x∈B(v), the intrinsic strong closure
+   `cl_s(P(v)∪{x})` is the whole local component extension.
+   No assumption that x is the designated generator enters.
+8. The extension over a freely amalgamated larger old
+   graph is a different assertion requiring reverse
+   local-to-enlarged strongness/minimality; not claimed here.
+
+Eight separately framed adversarial checks by this assistant,
+not independent spawned agents. Integrated Lean audit pending.
+
+**Ninth referee check — free persistence:** the concrete API explicitly requires the larger old set to contain the entire lower closure, be disjoint from the new block and have no crossing edges. It applies the independently audited reverse minimality-transfer theorem; it makes no assertion for arbitrary graph extensions with extra old-new edges.
