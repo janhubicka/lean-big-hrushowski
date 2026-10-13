@@ -383,3 +383,11 @@ import BigHrushovski
 
 #print axioms BigHrushovski.GraphOn.closedBlock_strong_of_noCross
 #print axioms BigHrushovski.GraphOn.closedBlock_global_of_noCross
+
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Component_nonempty
+#print axioms BigHrushovski.FiniteCatalogue.genericC0_exists_component_index
+#print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_spec
+#print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_not_prior
+#print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_mem
+#print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_eq_iff
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Components_disjoint

@@ -1613,3 +1613,18 @@ remain to be formalized. Green manuscript markers are justified
 only for the finite no-cross strongness step after CI.
 
 Integrated PR #83 CI run 38250063433 built the theorem and audited 303 declarations with standard axioms only (70 Lean source files scanned for placeholders).
+
+
+## Partition of the C0 generic into finite closure increments (PR #85 audited: run 38251607356, 317 declarations; 72 files scanned)
+
+Module `C0Components.lean` defines `B_n=A_(n+1)\A_n`
+using the certified countable enumeration. Strict growth gives
+each finite component a vertex. Every graph vertex x has
+a unique first appearance index `genericC0ComponentIndex x`,
+defined by a least natural witness. Its range is the unique
+component containing x; two different components are disjoint.
+
+This is the exact set-theoretic component partition needed
+for the unary closure presentation. No internal vertex order
+is chosen and no back-edge reachability closure is yet
+defined. The latter remains a separate formalization task.

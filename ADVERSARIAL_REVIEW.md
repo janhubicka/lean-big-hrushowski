@@ -1786,3 +1786,26 @@ reviews by the same assistant, not independent spawned referees.
 
 These are independent proof-checking perspectives of the
 same assistant, not spawned external referee agents.
+
+
+## Adversarial checks: C0 component partition
+
+1. A₀=∅ is genuinely Lean-proved; an arbitrary strong
+   exhaustion might have a nonempty initial stage.
+2. Each step is strict, so the finite difference B_n is
+   nonempty, not merely finite.
+3. Coverage gives a stage containing every vertex; monotonicity
+   moves that witness to a successor stage suitable for Nat.find.
+4. The least-index proof excludes appearance in the preceding
+   stage, including the n=0 corner case.
+5. Uniqueness distinguishes the first-appearance index from
+   an arbitrary later stage containing x. Only the first
+   index defines its component.
+6. Pairwise disjointness is derived from uniqueness; the
+   argument does not presume a global linear order of vertices
+   within each component.
+7. Nothing here certifies back-edge reachability or the unary
+   functional Fraisse-limit embedding property.
+
+Seven separated mathematical challenge passes by this
+assistant; no independent external referee agents were spawned.
