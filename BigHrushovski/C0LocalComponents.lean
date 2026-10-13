@@ -189,7 +189,9 @@ theorem genericC0Local_every_vertex_generates
     exact (Finset.mem_sdiff.mp hxP).2 hx
   have hEq := genericStrongExhaustion.minimal_step_generated_by_every_new_vertex
     hMin hGlobal hxPB hxNotP
-  rw [← genericC0LowerClosure_union_component v]
+  change genericStrongExhaustion.closure
+    (insert x (genericC0LowerClosure v)) = genericC0UnaryClosure v
+  rw [genericC0LowerClosure_union_component v]
   exact hEq
 
 end FiniteCatalogue
