@@ -2109,3 +2109,28 @@ is a diagnostic only.
 
 These are separate adversarial mathematical checking passes
 of one assistant, not independently spawned external agents.
+
+
+## Adversarial review: two-way C0 minimality under free amalgamation
+
+1. Every enlarged intermediate has the form
+   Z=A∪(Z∩(P∪B)); skipping one invalidates minimality.
+2. The no-cross predimension identity applies to all
+   intermediates, not only the endpoints.
+3. A locally strong intermediate D lifts to A∪D strongly;
+   conversely an enlarged strong Z restricts to a locally
+   strong D=Z∩(P∪B).
+4. The two endpoint cases D=P or D=P∪B recover exactly
+   Z=A or Z=A∪B; neither can have additional tail vertices.
+5. A∩B=∅ is needed for strictness and to identify the
+   actual common base as P.
+6. No global strongness of P inside A is presumed, nor
+   a special generator or order on B.
+7. The independently implemented five-vertex regression
+   in PR #93 checks minimality equivalence exhaustively
+   for all no-cross three-way partitions.
+8. Free-amalgamation persistence of one finite increment
+   is not a proof of functional Fraisse genericity.
+
+These are hostile mathematical checking perspectives of
+the same assistant, not independent external referee agents.
