@@ -120,3 +120,5 @@ import BigHrushovski.C0LocalComponents
 import BigHrushovski.C0PreparedBlocks
 
 import BigHrushovski.C0ClosedHereditary
+
+import BigHrushovski.C0TaggedDependency
