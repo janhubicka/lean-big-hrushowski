@@ -432,3 +432,11 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_global
 #print axioms BigHrushovski.FiniteCatalogue.genericC0GeneratedClosure_global
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosure_global
+
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_mem_iff
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_component_image
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_component_eq_iff
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_range_closed
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_generated_image
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_closed_image
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_closed_image_global

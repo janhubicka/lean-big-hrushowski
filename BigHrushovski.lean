@@ -104,3 +104,5 @@ import BigHrushovski.C0UnaryClosureAlgebra
 import BigHrushovski.C0NoCrossCriterion
 
 import BigHrushovski.C0UnaryClosedStrong
+
+import BigHrushovski.C0UnaryEmbeddings
