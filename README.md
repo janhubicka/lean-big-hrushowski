@@ -3,7 +3,7 @@
 Lean 4 validation of the working manuscript
 [The Big Hrushovski](https://github.com/janhubicka/The-big-Hrushovski).
 
-## Certified scope (12 October 2026)
+## Certified scope (14 October 2026)
 
 The Lean development verifies finite graph predimension,
 self-sufficiency and closure calculations, tagged strong free
@@ -59,7 +59,7 @@ checked 271 declarations with standard axioms only, scanned 64 Lean
 files for placeholders and passed the finite regression suite. That historical checkpoint has since been extended to the
 **countable C0 enumeration and its unary closure presentation**.
 
-**Latest C0 milestone (13 October 2026).** The countable minimal
+**C0 milestone (13–14 October 2026).** The countable minimal
 strong enumeration, finite ancestry closures, finite unary-closed
 strongness, exact component/back-edge embedding equivalence, local
 minimality, and free persistence are now formalized. [PR #96](https://github.com/janhubicka/lean-big-hrushowski/pull/96)
@@ -70,12 +70,25 @@ presentation (397 audited declarations, [successful run](https://github.com/janh
 Both integrated runs audited standard logical axioms only and passed
 the finite regressions.
 
+**Complete finite dependency and unary-value transfer is now certified.**
+[PR #99](https://github.com/janhubicka/lean-big-hrushowski/pull/99)
+proves preservation of tagged component dependency closures over a
+closed common base (405 audited declarations).
+[PR #100](https://github.com/janhubicka/lean-big-hrushowski/pull/100)
+proves preservation of the **complete vertex-valued** unary function
+under whole-block image hypotheses and unary closedness of every
+existing finite C0 enumeration prefix. The
+[successful 411-declaration CI run](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38486803292)
+audited only standard logical axioms, scanned 88 placeholder-free
+Lean files, and checked 121,104 complete block-value equalities.
+
 **Still open in Lean:** identifying strong closure with first-order
-model-theoretic algebraic closure, proving tagged **functional**
-free-amalgamation preservation and the fair extension property of
-the C0 functional Fraïssé presentation, constructing the CF
-functional presentation, and proving the big Ramsey-degree and
-concrete Ramsey-space axioms required for the Ellentuck results. The abstract Milliken and Todorčević libraries
+model-theoretic algebraic closure, instantiating the tagged closure
+results for every finite functional amalgamation diagram, and
+constructing the **fair countable functional extension schedule**
+on M0; also the CF functional presentation, big Ramsey-degree
+arguments, and concrete Ramsey-space axioms required for the
+Ellentuck results. The abstract Milliken and Todorčević libraries
 can be reused once the appropriate concrete coding and axioms
 are formalized.
 
