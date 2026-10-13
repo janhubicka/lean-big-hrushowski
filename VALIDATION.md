@@ -1628,3 +1628,32 @@ This is the exact set-theoretic component partition needed
 for the unary closure presentation. No internal vertex order
 is chosen and no back-edge reachability closure is yet
 defined. The latter remains a separate formalization task.
+
+
+## C0 unary closure by finite descending back-edge ancestry (Lean-certified, 13 October 2026)
+
+`C0AncestorClosure.lean` defines the **actual** finite ancestor
+closure of the countable minimal-component enumeration. A directed
+dependency from block B_n to B_j is present when some vertex in B_n
+has an old graph neighbour in B_j. Such a j satisfies j<n by the
+certified first-appearance index theorem. The transitive closure is
+represented by an inductive reachability predicate and filtered
+through `Finset.range (n+1)`; it is finite **without an axiom**
+asserting termination of a recursive algorithm.
+
+The unary vertex closure `genericC0UnaryClosure v` is the union
+of all full blocks in the ancestor closure of the block containing v.
+The proof endpoints establish:
+- old neighbours always lie in strictly earlier blocks;
+- ancestry is transitive and bounded by its starting index;
+- v belongs to its unary closure, and whenever w lies in C(v),
+  the inclusion C(w) subset C(v) holds;
+- B(v) is precisely the set of w with w in C(v) and v in C(w);
+- back neighbours of a vertex in C(v) also belong to C(v).
+
+**Boundary:** these are definitions and graph-theoretic closure
+properties of the concrete enumeration. They do not yet prove that
+every finite f_Cl-closed set is globally strong, or that the
+resulting functional presentation has the claimed free-amalgamation
+Fraisse extension property, ordering, Ramsey or Ellentuck theorems.
+PR #86 integrated CI run 38380094815 audited 334 declarations with only standard logical axioms, scanned 74 Lean source files for placeholders and checked 33,867 finite dependency diagrams.

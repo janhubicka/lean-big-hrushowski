@@ -95,3 +95,5 @@ jobs:
         run: python3 scripts/check_strict_closure.py
       - name: Check nonempty C0 trace offsets and boundary joins
         run: python3 scripts/check_c0_trace_offsets.py
+      - name: Check finite C0 back-edge ancestor closure
+        run: python3 scripts/check_c0_ancestor_closure.py
