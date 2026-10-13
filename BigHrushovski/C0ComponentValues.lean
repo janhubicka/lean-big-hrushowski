@@ -23,18 +23,18 @@ namespace TaggedAmalgam
 
 /-- The complete vertex-valued unary closure of a component: union of
 the full vertex sets of all reachable component indices. -/
-noncomputable def wholeComponentClosure {I V : Type*} [Fintype I]
+noncomputable def wholeComponentClosure {I V : Type*}
+    [Fintype I] [DecidableEq V]
     (d : I → I → Prop) (blocks : I → Finset V) (root : I) :
-    Finset V := by
-  classical
-  exact (dependencyClosure d root).biUnion blocks
+    Finset V :=
+  (dependencyClosure d root).biUnion blocks
 
 /-- If reachable component sets and the full vertex blocks commute
 with given injections/maps, so does the complete unary closure. No
 disjointness of vertex blocks is needed for this set identity. -/
 theorem wholeComponentClosure_transport
     {I J V W : Type*} [Fintype I] [Fintype J]
-    [DecidableEq J] [DecidableEq W]
+    [DecidableEq J] [DecidableEq V] [DecidableEq W]
     (d : I → I → Prop) (e : J → J → Prop)
     (blocks : I → Finset V) (joinedBlocks : J → Finset W)
     (indexMap : I → J) (vertexMap : V → W) (root : I)
@@ -77,7 +77,7 @@ theorem freeDependency_wholeClosure_left
     {P L R V W : Type*}
     [Fintype P] [Fintype L] [Fintype R]
     [DecidableEq P] [DecidableEq L] [DecidableEq R]
-    [DecidableEq W]
+    [DecidableEq V] [DecidableEq W]
     (dL : Sum P L → Sum P L → Prop)
     (dR : Sum P R → Sum P R → Prop)
     (blocks : Sum P L → Finset V)
@@ -102,7 +102,7 @@ theorem freeDependency_wholeClosure_right
     {P L R V W : Type*}
     [Fintype P] [Fintype L] [Fintype R]
     [DecidableEq P] [DecidableEq L] [DecidableEq R]
-    [DecidableEq W]
+    [DecidableEq V] [DecidableEq W]
     (dL : Sum P L → Sum P L → Prop)
     (dR : Sum P R → Sum P R → Prop)
     (blocks : Sum P R → Finset V)
