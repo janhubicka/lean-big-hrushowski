@@ -103,5 +103,7 @@ jobs:
         run: python3 scripts/check_c0_ancestor_closure.py
       - name: Check finite C0 generated unary closure algebra
         run: python3 scripts/check_c0_generated_closure.py
+      - name: Check tagged free-amalgam dependency ancestry
+        run: python3 scripts/check_c0_tagged_dependency.py
       - name: Check directed C0 component embedding closure transport
         run: python3 scripts/check_c0_embedding_equivalence.py
