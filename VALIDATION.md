@@ -1732,3 +1732,30 @@ This is one direction only: the theorem does not identify
 sets, and does not establish the functional Fraisse
 extension property or equivalence of embedding notions.
 PR #89 integrated CI run 38382951195 audited 356 declarations with only standard logical axioms, scanned 77 Lean source files for placeholders and passed all finite regressions. Reconciled build evidence will be checked separately.
+
+
+## C0 unary functional embeddings preserve full components (13 October 2026; CI pending)
+
+`C0UnaryEmbeddings.lean` packages an induced injective self-embedding
+of the concrete countable graph which maps **each full unary function
+value exactly** onto the corresponding target function value:
+`f[C(v)]=C(f(v))`.
+
+Its consequences are:
+* unary closure membership is preserved *and reflected*, by injectivity;
+* each entire source component maps **onto** the entire target
+  component of the image of its vertex, and equality of component
+  indices is preserved and reflected;
+* the range of a functional embedding is closed under unary
+  function values (not merely graph-induced);
+* finite generated closure commutes with embedding image;
+* images of finite unary-closed sets are unary-closed and,
+  using the now-certified PR #89 theorem, globally strong.
+
+This formalizes the direction from `f_Cl`-embeddings to
+component-preserving embeddings with closed images in
+manuscript Lemma `C0-functional-closure`.
+The **converse** must still show that the precise designated
+back-edge-closed component embedding conditions imply equality
+of unary closure images; this is a separate proof obligation,
+not licensed by component preservation alone.
