@@ -71,13 +71,19 @@ private theorem genericC0Ancestor_image_forward
   | @step j k hPrev hStep ih =>
       obtain ⟨y, hy, hyIdx⟩ := Finset.mem_image.mp hStep
       obtain ⟨x, hxB, hyBack⟩ := Finset.mem_biUnion.mp hy
+      have hxIdx : genericC0ComponentIndex x = j :=
+        (genericC0ComponentIndex_eq_iff x j).mpr hxB
+      have hyBackAtX : y ∈ genericTwoSparseGraph.oldNeighbours
+          (genericC0MinimalStage (genericC0ComponentIndex x)) x := by
+        rw [hxIdx]
+        exact hyBack
       have hxCl : f x ∈ genericC0UnaryClosure (f v) :=
         ih x hxB
       have hyTarget : f y ∈ genericTwoSparseGraph.oldNeighbours
           (genericC0MinimalStage (genericC0ComponentIndex (f x)))
           (f x) := by
         rw [← hBack x]
-        exact Finset.mem_image.mpr ⟨y, hyBack, rfl⟩
+        exact Finset.mem_image.mpr ⟨y, hyBackAtX, rfl⟩
       have hyCl : f y ∈ genericC0UnaryClosure (f v) :=
         genericC0UnaryClosure_oldNeighbour hxCl hyTarget
       intro w hw
