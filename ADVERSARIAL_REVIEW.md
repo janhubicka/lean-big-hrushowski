@@ -1809,3 +1809,40 @@ same assistant, not spawned external referee agents.
 
 Seven separated mathematical challenge passes by this
 assistant; no independent external referee agents were spawned.
+
+
+## Adversarial audit: C0 descending dependency closure (13 October 2026)
+
+1. **Dependency direction.** A back edge is an *unordered graph edge*
+   with one endpoint in a new B_n and the other in the earlier A_n;
+   it is not an arbitrarily oriented edge. Every target component
+   has index <n; this prevents cycles between distinct components.
+2. **Full component output.** The unary closure contains each whole
+   reached block, not just a chosen old neighbour. Omitting the
+   other vertices of a reached block would invalidate the
+   manuscript's component equivalence.
+3. **Finite character.** Reachability uses arbitrary finite directed
+   paths, but its indices are all <=n. Thus a reachable component
+   set is finite. Filtering `range(n+1)` adds no reachable vertex
+   and discards none; no external well-founded recursion is assumed.
+4. **Mutual reachability.** For vertices v,w in different components,
+   mutual membership C(v),C(w) would imply each index <= the other,
+   hence equality. Back-edge cycles cannot silently merge blocks.
+5. **Closure nesting.** A proof of w in C(v) alone is insufficient
+   to conclude C(w) subset C(v) without composing the reachability
+   witnesses. `GenericC0Ancestor.trans` supplies that composition.
+6. **Actual old neighbours.** The step that absorbs an old neighbour
+   checks both `y∈A_n` and graph adjacency; mere adjacency to v
+   could describe an internal/newer vertex and is not a back edge.
+7. **Strongness and functional age.** The finite no-cross strongness
+   lemma of PR #83 is a separate input; this module alone does not
+   prove every finite unary-closed set strong, the functional
+   Fraisse limit, or any Ramsey expansion.
+8. **Independent regression.** The Python checker exhaustively
+   constructs finite strictly descending component-dependency
+   diagrams, with multiple block vertex multiplicities. This
+   cannot replace the kernel-checked Lean proofs.
+
+These are separate adversarial checking perspectives conducted
+within one assistant session, not separately spawned human
+or agent referees. The complete integrated CI is pending.
