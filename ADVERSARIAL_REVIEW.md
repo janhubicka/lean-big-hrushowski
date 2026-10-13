@@ -2062,3 +2062,50 @@ Full Lean build, axiom and placeholder audits pending.
 These are separate adversarial checking passes by the
 same assistant, not independently spawned referees.
 CI and exact axiom audits are pending.
+
+
+## Adversarial audit: C0 local minimality transfer (13 October 2026)
+
+**Referee 1 — modularity:** The cancellation of relative
+predimensions holds for **all** P⊆D⊆P∪B. Checking only
+D=P∪B would not suffice to transfer strongness, which
+quantifies over all intermediate sets.
+
+**Referee 2 — overlap:** The equality A∩D=P uses both
+P⊆A and A∩B=∅. If the new block contains an old
+vertex, local and enlarged relative predimensions can differ.
+
+**Referee 3 — no crossing:** NoCrossEdges A (P∪B) is
+essential. A new B-vertex adjacent to an omitted old
+vertex of A\P invalidates the cancellation identity.
+
+**Referee 4 — local self-sufficiency:** Strongness of
+A in A∪B gives a predimension lower bound for every
+A∪D. Relative cancellation transfers it to P⊆D⊆P∪B,
+not just the entire B.
+
+**Referee 5 — lifting intermediates:** A local strong
+intermediate D lifts to A∪D strongly inside A∪B.
+The proof explicitly intersects each competing enlarged
+intermediate with P∪B and uses cancellation on both D
+and the intersection.
+
+**Referee 6 — minimality:** Minimality of A⊂A∪B rules
+out any proper strong A∪D. Disjointness of B from A
+is used again to turn the two possible enlarged
+endpoints back into D=P or D=P∪B.
+
+**Referee 7 — scope:** This proves *descent* of minimality
+to the local lower closure. Its converse (free-amalgamation
+stability) is not yet Lean-certified, nor is the actual
+lower-closure P of an enumerated C0 component.
+
+**Referee 8 — independent diagnostic:** A regression checks
+all labelled simple graphs on at most five vertices and
+three-way partitions into P, A\P, B satisfying no crossing.
+It tests strongness and minimality of both extensions,
+independently of the Lean proof. This finite computation
+is a diagnostic only.
+
+These are separate adversarial mathematical checking passes
+of one assistant, not independently spawned external agents.
