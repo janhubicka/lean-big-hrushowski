@@ -1851,7 +1851,7 @@ finite lower closure P=C(v)\B(v) of a C0 component.
 Exact kernel proofs and regression tests remain pending CI.
 
 
-## The actual lower-closure local form of each C0 component (13 October 2026; CI pending)
+## The actual lower-closure local form of each C0 component (PR #94 original CI 38428223760 passed, 381 audited declarations; final reconciled CI pending)
 
 `C0LocalComponents.lean` instantiates the abstract no-cross
 minimality-descent theorem at the concrete minimal enumeration.
