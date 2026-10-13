@@ -491,3 +491,10 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.freeDependency_right_ancestor_iff
 #print axioms BigHrushovski.TaggedAmalgam.freeDependency_closure_left
 #print axioms BigHrushovski.TaggedAmalgam.freeDependency_closure_right
+
+#print axioms BigHrushovski.TaggedAmalgam.wholeComponentClosure_transport
+#print axioms BigHrushovski.TaggedAmalgam.freeDependency_wholeClosure_left
+#print axioms BigHrushovski.TaggedAmalgam.freeDependency_wholeClosure_right
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosure_subset_stage
+#print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_unaryClosed
+#print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_generated_eq

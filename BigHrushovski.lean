@@ -122,3 +122,6 @@ import BigHrushovski.C0PreparedBlocks
 import BigHrushovski.C0ClosedHereditary
 
 import BigHrushovski.C0TaggedDependency
+
+import BigHrushovski.C0ComponentValues
+import BigHrushovski.C0PrefixClosure

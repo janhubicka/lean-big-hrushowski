@@ -2257,3 +2257,34 @@ scripts/check_c0_tagged_dependency.py evaluates 10,276 tagged
 diagrams, 60,552 closure equalities, and explicit failures when
 agreement or closedness is removed. The exact Lean statements
 must pass integrated CI and axiom checking before certification.
+
+
+## 14 October 2026 — complete C0 component values and old-prefix persistence
+
+Referee 1 (off-by-one): The first-appearance index of v is the
+unique i for which v∈B_i=A_(i+1)\A_i. Thus the correct bound for
+v∈A_n is i<n. The closure inequality index(w)≤i then gives w∈A_n.
+
+Referee 2 (named function vs graph): Global strongness of a prefix
+does **not** imply that it is closed under the enumeration-dependent
+unary function. The new theorem proves unary closedness from
+descending component dependencies, not predimension.
+
+Referee 3 (unfolding adversary): A closure equation on component
+indices can hold while the vertex-valued function changes if the
+target component contains a new vertex outside the source image.
+The theorem therefore requires equality of complete block images.
+
+Referee 4 (diagram generality): Component blocks need not be
+pairwise disjoint for the abstract union-transport equality, although
+actual closure-components are disjoint. Regression tests include
+both disjoint and overlapping blocks.
+
+Referee 5 (scope): These proofs certify finite closure-value
+transport and the closedness of the **already constructed** C0
+countable enumeration stages. They do not prove that a separately
+fairly scheduled functional enumeration exists, nor certify that
+every finite permitted functional diagram is realized.
+
+These are separate mathematical adversarial checks by this
+assistant, not independently recruited external human referees.
