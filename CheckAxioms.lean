@@ -391,3 +391,6 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_mem
 #print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_eq_iff
 #print axioms BigHrushovski.FiniteCatalogue.genericC0Components_disjoint
+
+#print axioms BigHrushovski.GraphOn.adj_of_IsEdge_of_distinct
+#print axioms BigHrushovski.GraphOn.noCross_of_backNeighbours
