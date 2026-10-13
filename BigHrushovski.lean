@@ -112,3 +112,5 @@ import BigHrushovski.C0BackEdgeEmbeddings
 import BigHrushovski.C0EmbeddingEquivalence
 
 import BigHrushovski.C0LocalFreeMinimal
+
+import BigHrushovski.C0LocalComponents
