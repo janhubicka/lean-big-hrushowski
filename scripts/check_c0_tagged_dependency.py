@@ -39,7 +39,11 @@ def validate(p, l, r):
     right_cases = [edge_rows(nr, m) for m in range(1 << (nr * nr))]
     left_cases = [x for x in left_cases if base_closed(x, p)]
     right_cases = [x for x in right_cases if base_closed(x, p)]
-    cases = paths = 0
+    cases = paths = value_checks = 0
+    block_patterns = (
+        [{2 * i, 2 * i + 1} for i in range(nt)],
+        [{i % 3, (i + 1) % 3} for i in range(nt)],
+    )
     for dl in left_cases:
         for dr in right_cases:
             if not agree_on_base(dl, dr, p):
@@ -49,15 +53,22 @@ def validate(p, l, r):
                 joint[lmap[u]].update(lmap[v] for v in dl[u])
             for u in range(nr):
                 joint[rmap[u]].update(rmap[v] for v in dr[u])
-            for u in range(nl):
-                assert reach(joint, lmap[u]) == {lmap[v] for v in reach(dl, u)}
-                paths += 1
-            for u in range(nr):
-                assert reach(joint, rmap[u]) == {rmap[v] for v in reach(dr, u)}
-                paths += 1
+            for side_map, side_edges in ((lmap, dl), (rmap, dr)):
+                for u in range(len(side_map)):
+                    old_reach = reach(side_edges, u)
+                    new_reach = reach(joint, side_map[u])
+                    assert new_reach == {side_map[v] for v in old_reach}
+                    paths += 1
+                    for blocks in block_patterns:
+                        original_value = set().union(*(
+                            blocks[side_map[v]] for v in old_reach))
+                        joined_value = set().union(*(
+                            blocks[v] for v in new_reach))
+                        assert joined_value == original_value
+                        value_checks += 1
             cases += 1
     assert cases > 0
-    return cases, paths
+    return cases, paths, value_checks
 
 
 configurations = [(0, 1, 1), (1, 1, 1), (2, 1, 1), (2, 2, 0),
@@ -74,6 +85,8 @@ right = [{1}, set()]
 joined = [{2}, set(), set()]
 assert agree_on_base(left, right, 1)
 assert reach(joined, 0) != reach(left, 0)
-print({'configurations': len(checks), 'admissible_diagrams': sum(c for c, _ in checks),
-       'closure_equalities': sum(q for _, q in checks),
+print({'configurations': len(checks),
+       'admissible_diagrams': sum(c for c, _, _ in checks),
+       'closure_equalities': sum(q for _, q, _ in checks),
+       'whole_component_value_equalities': sum(v for _, _, v in checks),
        'missing_agreement_and_closed_base_counterexamples': 2})
