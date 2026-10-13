@@ -2193,3 +2193,31 @@ introducing `C0PreparedBlocks.lean`:
 
 The relevant kernel proof is `GraphOn.preparedBlocks_minimalStrongChain`;
 CI and axiom checking are required before marking it verified.
+
+
+## 13 October 2026 — heredity of the C0 minimal-component presentation
+
+**Referee A (minimality):** A closed set meeting B_n must contain the
+whole block; otherwise the cut can have genuine intermediate strong
+substructures. In the triangle component example, taking the old A and
+only two of its three new vertices leaves A⊊A∪{x}⊊A∪{x,y}
+with A∪{x} strong in A∪{x,y}. The original full block B is minimal,
+but this cut is not.
+
+**Referee B (predimension):** The restricted minimality proof needs
+the stronger no-cross condition with the full original old prefix,
+not merely a common numerical predimension. This is exactly the
+certified `genericC0UnaryClosed_noCross` lemma.
+
+**Referee C (induction):** Skipped enumeration components must be
+treated as equal successive cuts; an inductive minimal chain
+must append only strict included-block steps. The proof introduces
+`MinimalStrongChain.append` rather than inserting empty steps.
+
+**Referee D (scope):** Finite minimal presentations of induced
+closed subgraphs do not ensure that an arbitrary tagged functional
+amalgam retains inherited unary values, and do not schedule the
+extension property in the ambient countable graph.
+
+All four are independent adversarial proof perspectives applied to
+the definitions and argument, not independent external referee agents.

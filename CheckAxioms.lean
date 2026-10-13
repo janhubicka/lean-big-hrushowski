@@ -474,3 +474,11 @@ import BigHrushovski
 
 #print axioms BigHrushovski.GraphOn.preparedBlocks_minimalStrongChain
 #print axioms BigHrushovski.GraphOn.preparedBlocks_strong
+
+#print axioms BigHrushovski.Predimension.MinimalStrongChain.append
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_cut_succ_of_meeting
+#print axioms BigHrushovski.FiniteCatalogue.genericC0_cut_succ_of_omitted
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_cut_minimal
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_cut_step
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_minimalChain_to_stage
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_minimalPresentation
