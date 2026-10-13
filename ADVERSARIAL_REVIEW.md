@@ -2014,3 +2014,51 @@ Integrated Lean CI, standard-axiom and placeholder checks pending.
 Eight hostile checks performed within this assistant
 session; no independent external referee agents.
 Full Lean build, axiom and placeholder audits pending.
+
+
+## Adversarial verification: full C0 embedding equivalence
+
+1. **Correct embedding language:** the graph is still
+   undirected, but the decomposition records directed
+   back-edge incidences relative to the chosen minimal
+   enumeration. There is no need for the map to preserve
+   chronological order on incomparable components.
+2. **Complete components:** the requirement is equality
+   of f[B(v)] and B(f(v)), not mere inclusion. Surjectivity
+   onto each target component is essential to lift all
+   vertices reached by a target dependency.
+3. **Complete back-edge sets:** the requirement is equality
+   of images of old-neighbour sets at *each vertex*. An
+   inclusion cannot exclude an extra target back neighbour
+   outside the image.
+4. **Forward path induction:** a source step from component
+   j to an earlier component k is witnessed by a *real*
+   vertex-level edge. Its target image is an old back
+   neighbour, so all vertices of the reached component
+   fall inside the target unary closure by nested closure.
+5. **Reverse path induction:** a target step has a
+   vertex-level witness; using the earlier reverse
+   induction, lift its upper endpoint to a source vertex.
+   Old-neighbour-set onto-ness lifts its lower endpoint.
+   Component onto-ness then lifts every vertex of the
+   reached target block.
+6. **No phantom vertices:** each element of the target
+   unary closure is reached in the reverse induction and
+   acquires an explicit source preimage. No global
+   surjectivity of the embedding is assumed.
+7. **Boundary:** the root component is mapped completely
+   and its source/target closure paths are reflexive.
+   There is no omitted zero-length ancestor path.
+8. **No overclaim:** the theorem is an equivalence of
+   embedding *descriptions* for the fixed concrete
+   presentation; it is not a Fraisse genericity proof
+   for the unary functional age.
+9. **Regression:** finite decreasing directed dependency
+   diagrams are checked under all allowed permutations
+   preserving the direction of present dependencies.
+   This tests the important case where incomparable
+   component indices may reorder.
+
+These are separate adversarial checking passes by the
+same assistant, not independently spawned referees.
+CI and exact axiom audits are pending.

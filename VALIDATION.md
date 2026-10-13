@@ -1789,3 +1789,36 @@ component/back-edge embedding equivalence. The converse
 is still open: preservation of entire components and
 old-neighbour sets must be shown to transport all iterated
 back-edge ancestors, not just one immediate edge.
+
+
+## Exact C0 component/back-edge embedding equivalence (13 October 2026; CI pending)
+
+`C0EmbeddingEquivalence.lean` defines the second embedding
+description in manuscript Lemma `C0-functional-closure`:
+a map is an injective induced graph embedding, takes each
+**whole component** onto the whole target component, and
+maps each **complete directed old-neighbour set** onto the
+corresponding old-neighbour set.
+
+The difficult converse is formalized explicitly. From the
+two complete image conditions, induction over paths of
+decreasing back-edge dependencies proves both inclusions
+in `f[C(v)]=C(f(v))`. In the forward induction a reachable
+old neighbour is transported to the target and all vertices
+of its target component are recovered. In the reverse
+induction a target back neighbour is lifted to a source
+old neighbour and all vertices of its source component are
+recovered. The second inclusion depends crucially on
+*onto* component/old-neighbour images; inclusions alone
+would not suffice.
+
+The final endpoint
+`genericC0UnaryEmbedding_iff_componentBack` identifies
+the genuine embedding sets of the concrete unary
+presentation and the directed back-edge/component
+presentation exactly.
+
+This does not assert that all strong graph embeddings
+preserve the chosen enumeration's functional closure,
+nor the Fraisse extension property of the functional
+age. Full Lean CI and axiom checks remain pending.
