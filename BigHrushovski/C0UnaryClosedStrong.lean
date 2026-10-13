@@ -101,6 +101,76 @@ theorem genericC0UnaryClosed_noCross
 
 /-- The intersection of a finite unary-closed set with every
 finite enumeration prefix is strong inside that prefix. -/
+/-- An f_Cl-closed set meeting the next component contains it whole;
+its stage cut grows by precisely that component. -/
+theorem genericC0UnaryClosed_cut_succ_of_meeting
+    (s : Finset ℕ) (hs : IsGenericC0UnaryClosed s) (n : ℕ)
+    (hMeet : (s ∩ genericC0Component n).Nonempty) :
+    s ∩ genericC0MinimalStage (n + 1) =
+      (s ∩ genericC0MinimalStage n) ∪ genericC0Component n := by
+  obtain ⟨v, hv⟩ := hMeet
+  have hvS : v ∈ s := (Finset.mem_inter.mp hv).1
+  have hvB : v ∈ genericC0Component n :=
+    (Finset.mem_inter.mp hv).2
+  have hB : genericC0Component n ⊆ s :=
+    genericC0UnaryClosed_component s hs n v hvB hvS
+  have hStageEq : s ∩ genericC0MinimalStage (n + 1) =
+      (s ∩ genericC0MinimalStage n) ∪ genericC0Component n := by
+    ext w
+    constructor
+    · intro hw
+      have hwS : w ∈ s := (Finset.mem_inter.mp hw).1
+      have hwNew : w ∈ genericC0MinimalStage (n + 1) :=
+        (Finset.mem_inter.mp hw).2
+      have hwUnion : w ∈ genericC0MinimalStage n ∪
+          genericC0Component n := by
+        rw [← genericC0Stage_succ_eq_union n]
+        exact hwNew
+      rcases Finset.mem_union.mp hwUnion with hwOld | hwB
+      · exact Finset.mem_union.mpr (Or.inl
+          (Finset.mem_inter.mpr ⟨hwS, hwOld⟩))
+      · exact Finset.mem_union.mpr (Or.inr hwB)
+    · intro hw
+      rcases Finset.mem_union.mp hw with hwOld | hwB
+      · exact Finset.mem_inter.mpr
+          ⟨(Finset.mem_inter.mp hwOld).1,
+           (genericC0MinimalStage_minimal_step n).1.1
+             (Finset.mem_inter.mp hwOld).2⟩
+      · exact Finset.mem_inter.mpr
+          ⟨hB hwB, (Finset.mem_sdiff.mp hwB).1⟩
+  exact hStageEq
+
+/-- If a set omits the next component, its stage cut is unchanged.
+No closure assumption is necessary in this case. -/
+theorem genericC0_cut_succ_of_omitted
+    (s : Finset ℕ) (n : ℕ)
+    (hOmit : ¬ (s ∩ genericC0Component n).Nonempty) :
+    s ∩ genericC0MinimalStage (n + 1) =
+      s ∩ genericC0MinimalStage n := by
+have hStageEq : s ∩ genericC0MinimalStage (n + 1) =
+      s ∩ genericC0MinimalStage n := by
+    ext w
+    constructor
+    · intro hw
+      have hwS : w ∈ s := (Finset.mem_inter.mp hw).1
+      have hwNext : w ∈ genericC0MinimalStage (n + 1) :=
+        (Finset.mem_inter.mp hw).2
+      have hwUnion : w ∈ genericC0MinimalStage n ∪
+          genericC0Component n := by
+        rw [← genericC0Stage_succ_eq_union n]
+        exact hwNext
+      rcases Finset.mem_union.mp hwUnion with hwOld | hwB
+      · exact Finset.mem_inter.mpr ⟨hwS, hwOld⟩
+      · have hbad : (s ∩ genericC0Component n).Nonempty :=
+          ⟨w, Finset.mem_inter.mpr ⟨hwS, hwB⟩⟩
+        exact (hOmit hbad).elim
+    · intro hw
+      exact Finset.mem_inter.mpr
+        ⟨(Finset.mem_inter.mp hw).1,
+         (genericC0MinimalStage_minimal_step n).1.1
+           (Finset.mem_inter.mp hw).2⟩
+  exact hStageEq
+
 theorem genericC0UnaryClosed_stageStrong
     (s : Finset ℕ) (hs : IsGenericC0UnaryClosed s) (n : ℕ) :
     genericTwoSparseGraph.toPredimension.IsStrong
@@ -118,30 +188,8 @@ theorem genericC0UnaryClosed_stageStrong
           (Finset.mem_inter.mp hv).2
         have hB : genericC0Component n ⊆ s :=
           genericC0UnaryClosed_component s hs n v hvB hvS
-        have hStageEq : s ∩ genericC0MinimalStage (n + 1) =
-            (s ∩ genericC0MinimalStage n) ∪ genericC0Component n := by
-          ext w
-          constructor
-          · intro hw
-            have hwS : w ∈ s := (Finset.mem_inter.mp hw).1
-            have hwNew : w ∈ genericC0MinimalStage (n + 1) :=
-              (Finset.mem_inter.mp hw).2
-            have hwUnion : w ∈ genericC0MinimalStage n ∪
-                genericC0Component n := by
-              rw [← genericC0Stage_succ_eq_union n]
-              exact hwNew
-            rcases Finset.mem_union.mp hwUnion with hwOld | hwB
-            · exact Finset.mem_union.mpr (Or.inl
-                (Finset.mem_inter.mpr ⟨hwS, hwOld⟩))
-            · exact Finset.mem_union.mpr (Or.inr hwB)
-          · intro hw
-            rcases Finset.mem_union.mp hw with hwOld | hwB
-            · exact Finset.mem_inter.mpr
-                ⟨(Finset.mem_inter.mp hwOld).1,
-                 (genericC0MinimalStage_minimal_step n).1.1
-                   (Finset.mem_inter.mp hwOld).2⟩
-            · exact Finset.mem_inter.mpr
-                ⟨hB hwB, (Finset.mem_sdiff.mp hwB).1⟩
+        have hStageEq :=
+          genericC0UnaryClosed_cut_succ_of_meeting s hs n ⟨v, hv⟩
         have hStrong : genericTwoSparseGraph.toPredimension.IsStrong
             ((s ∩ genericC0MinimalStage n) ∪ genericC0Component n)
             (genericC0MinimalStage n ∪ genericC0Component n) :=
@@ -152,28 +200,7 @@ theorem genericC0UnaryClosed_stageStrong
             (genericC0UnaryClosed_noCross s hs n hB)
         rw [hStageEq, genericC0Stage_succ_eq_union n]
         exact hStrong
-      · have hStageEq : s ∩ genericC0MinimalStage (n + 1) =
-            s ∩ genericC0MinimalStage n := by
-          ext w
-          constructor
-          · intro hw
-            have hwS : w ∈ s := (Finset.mem_inter.mp hw).1
-            have hwNext : w ∈ genericC0MinimalStage (n + 1) :=
-              (Finset.mem_inter.mp hw).2
-            have hwUnion : w ∈ genericC0MinimalStage n ∪
-                genericC0Component n := by
-              rw [← genericC0Stage_succ_eq_union n]
-              exact hwNext
-            rcases Finset.mem_union.mp hwUnion with hwOld | hwB
-            · exact Finset.mem_inter.mpr ⟨hwS, hwOld⟩
-            · have hbad : (s ∩ genericC0Component n).Nonempty :=
-                ⟨w, Finset.mem_inter.mpr ⟨hwS, hwB⟩⟩
-              exact (hMeet hbad).elim
-          · intro hw
-            exact Finset.mem_inter.mpr
-              ⟨(Finset.mem_inter.mp hw).1,
-               (genericC0MinimalStage_minimal_step n).1.1
-                 (Finset.mem_inter.mp hw).2⟩
+      · have hStageEq := genericC0_cut_succ_of_omitted s n hMeet
         rw [hStageEq]
         exact genericTwoSparseGraph.toPredimension.strong_trans ih
           (genericC0MinimalStage_minimal_step n).1
