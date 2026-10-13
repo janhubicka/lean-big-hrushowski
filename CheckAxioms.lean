@@ -391,3 +391,19 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_mem
 #print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_eq_iff
 #print axioms BigHrushovski.FiniteCatalogue.genericC0Components_disjoint
+
+#print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentIndex_lt_iff_stage
+#print axioms BigHrushovski.FiniteCatalogue.genericC0BackComponentIndices_lt
+#print axioms BigHrushovski.FiniteCatalogue.genericC0BackComponentIndices_of_adj
+#print axioms BigHrushovski.FiniteCatalogue.GenericC0Ancestor.le
+#print axioms BigHrushovski.FiniteCatalogue.GenericC0Ancestor.trans
+#print axioms BigHrushovski.FiniteCatalogue.mem_genericC0AncestorComponents_iff
+#print axioms BigHrushovski.FiniteCatalogue.genericC0AncestorComponents_downward
+#print axioms BigHrushovski.FiniteCatalogue.mem_genericC0UnaryClosure_iff
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosure_self
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosure_trans
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosure_nested
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosure_contains_component
+#print axioms BigHrushovski.FiniteCatalogue.genericC0SameComponent_iff_mutual
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Component_mem_iff_mutual
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosure_oldNeighbour
