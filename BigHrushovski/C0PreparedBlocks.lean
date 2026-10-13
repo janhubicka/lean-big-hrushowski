@@ -26,7 +26,7 @@ variable {V : Type*} [DecidableEq V] (G : GraphOn V)
 /-- A finite list of local minimal blocks (P,B), prepared for attachment
 to the successive old prefixes. The no-cross condition must hold for
 the *current* prefix, not merely for the original common base. -/
-def IsPreparedBlockSequence (a : Finset V) :
+def IsPreparedBlockSequence (G : GraphOn V) (a : Finset V) :
     List (Finset V × Finset V) → Prop
   | [] => True
   | block :: rest =>
