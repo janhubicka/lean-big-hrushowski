@@ -422,3 +422,13 @@ import BigHrushovski
 
 #print axioms BigHrushovski.GraphOn.adj_of_IsEdge_of_distinct
 #print axioms BigHrushovski.GraphOn.noCross_of_backNeighbours
+
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Component_disjoint_old
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Stage_succ_eq_union
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_component
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_backNeighbour
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_noCross
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_stageStrong
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_global
+#print axioms BigHrushovski.FiniteCatalogue.genericC0GeneratedClosure_global
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosure_global
