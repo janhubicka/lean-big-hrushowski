@@ -1,4 +1,4 @@
-import BigHrushovski.C0LocalFreeMinimal
+import BigHrushovski.C0LocalFreeConverse
 
 /-!
 # The exact local lower closure of a C0 component
