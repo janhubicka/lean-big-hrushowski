@@ -99,8 +99,6 @@ theorem genericC0UnaryClosed_noCross
     ⟨genericC0UnaryClosed_backNeighbour s hs n u v hu
        (hB hu) hv hAdj, hv⟩
 
-/-- The intersection of a finite unary-closed set with every
-finite enumeration prefix is strong inside that prefix. -/
 /-- An f_Cl-closed set meeting the next component contains it whole;
 its stage cut grows by precisely that component. -/
 theorem genericC0UnaryClosed_cut_succ_of_meeting
@@ -171,6 +169,8 @@ theorem genericC0_cut_succ_of_omitted
            (Finset.mem_inter.mp hw).2⟩
   exact hStageEq
 
+/-- The intersection of a finite unary-closed set with every
+finite enumeration prefix is strong inside that prefix. -/
 theorem genericC0UnaryClosed_stageStrong
     (s : Finset ℕ) (hs : IsGenericC0UnaryClosed s) (n : ℕ) :
     genericTwoSparseGraph.toPredimension.IsStrong
