@@ -2166,3 +2166,5 @@ the same assistant, not independent external referee agents.
 
 Eight separately framed adversarial checks by this assistant,
 not independent spawned agents. Integrated Lean audit pending.
+
+**Ninth referee check — free persistence:** the concrete API explicitly requires the larger old set to contain the entire lower closure, be disjoint from the new block and have no crossing edges. It applies the independently audited reverse minimality-transfer theorem; it makes no assertion for arbitrary graph extensions with extra old-new edges.
