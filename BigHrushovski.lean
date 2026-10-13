@@ -106,3 +106,5 @@ import BigHrushovski.C0NoCrossCriterion
 import BigHrushovski.C0UnaryClosedStrong
 
 import BigHrushovski.C0UnaryEmbeddings
+
+import BigHrushovski.C0BackEdgeEmbeddings
