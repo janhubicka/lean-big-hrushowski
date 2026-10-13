@@ -1845,7 +1845,7 @@ assistant; no independent external referee agents were spawned.
 
 These are separate adversarial checking perspectives conducted
 within one assistant session, not separately spawned human
-or agent referees. The complete integrated CI is pending.
+or agent referees. PR #86 integrated CI run 38380094815 passed the 334-declaration standard-axiom audit and 74-file placeholder scan.
 
 
 ## Adversarial audit: C0 generated unary closure algebra
@@ -1873,4 +1873,4 @@ or agent referees. The complete integrated CI is pending.
 
 These six are adversarial mathematical checking perspectives
 performed by this assistant, not externally spawned referees.
-The exact Lean build, axiom and placeholder audits are pending.
+PR #87 original integrated CI run 38380760041 passed the standard-axiom and placeholder audits. Reconciliation with parent PR #86 is checked separately.
