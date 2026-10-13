@@ -1896,7 +1896,7 @@ The full functional Fraisse extension theorem remains separate.
 The concrete local-form API also now includes `genericC0Local_free_amalgam_minimal`, which instantiates the merged PR #95 reverse-transfer lemma at the actual lower closure for any larger old finite graph satisfying the disjoint and no-cross hypotheses. This is exactly the finite persistence clause; full functional Fraisse genericity is still separate.
 
 
-## Prepared finite C0 block sequences (13 October 2026; new PR, CI pending)
+## Prepared finite C0 block sequences (13 October 2026; Lean-certified, PR #96)
 
 The local free-persistence lemma has been assembled into
 `GraphOn.preparedBlocks_minimalStrongChain`. A finite list records for
@@ -1926,14 +1926,14 @@ Adversarial perspectives checked before the change:
 * **Functional age:** a finite chain of strong graph steps does
   not imply that back-edge ancestry/unary function values are
   preserved, nor countable fair extension genericity.
-* **Lean:** the theorem must be checked by the integrated build,
-  exact axiom audit and placeholder scan before a verified marker
-  can be assigned.
+* **Lean:** integrated CI run 38481016951 built the exact theorem,
+  audited 390 standard-axiom declarations, scanned 84 Lean files
+  for placeholders, and passed all finite regressions.
 These are distinct adversarial review passes, not an assertion that
 independent external human referees have certified the work.
 
 
-## Hereditary minimal-component enumeration for finite unary-closed C0 sets (13 October 2026; CI pending)
+## Hereditary minimal-component enumeration for finite unary-closed C0 sets (13 October 2026; Lean-certified, PR #97)
 
 `C0UnaryClosedStrong.lean` factors its two repeated stage-cut
 calculations into `genericC0UnaryClosed_cut_succ_of_meeting` and
@@ -1957,8 +1957,11 @@ It does not certify that tagged free amalgamation preserves all
 unary closure values, nor that the generic graph can be equipped
 with a fair schedule answering all functional extension requests.
 Those are still open in the manuscript's C0-free-generic proposition.
-No green marker should be added until the integrated CI, axiom scan
-and placeholder checks pass.
+Integrated CI run 38481909334 built the exact cut-step and finite-chain
+proofs, audited 397 declarations with only standard logical axioms,
+scanned 85 Lean files for placeholders, and passed the finite regression
+suite. The manuscript's two new exact theorem markers can be GREEN;
+the enclosing functional Fraisse proposition remains PARTIAL.
 
 Adversarial checks, separate from Lean:
 * **Cutting blocks:** for the triangle component on x,y,z with old
