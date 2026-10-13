@@ -204,8 +204,13 @@ theorem genericC0Component_mem_iff_mutual (v w : ℕ) :
       (w ∈ genericC0UnaryClosure v ∧
        v ∈ genericC0UnaryClosure w) := by
   rw [← genericC0SameComponent_iff_mutual]
-  exact (genericC0ComponentIndex_eq_iff w
-    (genericC0ComponentIndex v)).symm
+  constructor
+  · intro hw
+    exact ((genericC0ComponentIndex_eq_iff w
+      (genericC0ComponentIndex v)).mpr hw).symm
+  · intro heq
+    exact (genericC0ComponentIndex_eq_iff w
+      (genericC0ComponentIndex v)).mp heq.symm
 
 /-- The closure includes the back neighbour of any vertex already
 included in a reachable component. -/
