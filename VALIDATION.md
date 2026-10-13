@@ -1931,3 +1931,44 @@ Adversarial perspectives checked before the change:
   can be assigned.
 These are distinct adversarial review passes, not an assertion that
 independent external human referees have certified the work.
+
+
+## Hereditary minimal-component enumeration for finite unary-closed C0 sets (13 October 2026; CI pending)
+
+`C0UnaryClosedStrong.lean` factors its two repeated stage-cut
+calculations into `genericC0UnaryClosed_cut_succ_of_meeting` and
+`genericC0_cut_succ_of_omitted`, shortening the original
+global-strongness proof without changing its statement.
+
+`C0ClosedHereditary.lean` proves the stronger property that,
+for a finite `f_Cl`-closed set `s`, each restricted stage
+`s ∩ A_(n+1)` is either unchanged or is a *minimal strong
+extension* of `s ∩ A_n`. This uses the exact no-cross lemma
+for old neighbours of an included full component and the
+previously proved transfer `minimalStrongStep_local_of_noCross`.
+
+The appendix theorem `genericC0UnaryClosed_minimalPresentation`
+assembles the nonempty cuts into a finite chain from the empty graph
+to `s` by induction, then uses coverage of the countable enumeration.
+This is an explicit hereditary **graph-increment** presentation
+of all finite closed substructures of the current unary expansion.
+
+It does not certify that tagged free amalgamation preserves all
+unary closure values, nor that the generic graph can be equipped
+with a fair schedule answering all functional extension requests.
+Those are still open in the manuscript's C0-free-generic proposition.
+No green marker should be added until the integrated CI, axiom scan
+and placeholder checks pass.
+
+Adversarial checks, separate from Lean:
+* **Cutting blocks:** for the triangle component on x,y,z with old
+  neighbours a,b,c (one each), s=A∪{x,y} cuts B and fails the
+  whole-block dichotomy; A⊊A∪{x}⊊A∪{x,y} is a nontrivial
+  intermediate strong step in the induced graph. Thus unary closedness
+  is essential.
+* **Stage omissions:** a component excluded by s contributes an
+  equality, not a fictitious minimal strong extension.
+* **No-cross:** the new-block old neighbours must lie inside s∩A_n;
+  merely knowing that s itself is globally strong is insufficient.
+* **Scope:** the resulting finite minimal graph chain is not by
+  itself a proof of the functional Fraisse extension property.
