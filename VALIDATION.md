@@ -1851,7 +1851,25 @@ finite lower closure P=C(v)\B(v) of a C0 component.
 Exact kernel proofs and regression tests remain pending CI.
 
 
-## The actual lower-closure local form of each C0 component (PR #94 original CI 38428223760 passed, 381 audited declarations; final reconciled CI pending)
+## Bidirectional local minimality under free amalgamation (13 October 2026; CI pending)
+
+`C0LocalFreeConverse.lean` completes the reverse transfer of
+minimal strong increments. Assume P⊆A, A∩B=∅ and no edges
+from B to A\P. If P⊂P∪B is minimal strong then A⊂A∪B is
+also minimal strong. The key is that every enlarged
+intermediate Z has the form A∪(Z∩(P∪B)), and strongness
+of Z restricts to strongness of its local intersection by
+relative predimension cancellation.
+
+Together with merged PR #93 this gives the exact equivalence
+`minimalStrongStep_free_iff`, showing preservation of
+minimality under attaching an arbitrary larger old finite
+graph freely over the lower closure. The actual local
+C0 component P(v)=C(v)\B(v) is handled in a separate PR.
+No functional Fraisse extension property is claimed.
+
+
+## The actual lower-closure local form of each C0 component (PR #94 original CI 38428223760 passed, 381 audited declarations; reconciled CI 38429391972 passed (381 standard-axiom declarations, 82 files scanned); final merge reconciliation must rerun)
 
 `C0LocalComponents.lean` instantiates the abstract no-cross
 minimality-descent theorem at the concrete minimal enumeration.
