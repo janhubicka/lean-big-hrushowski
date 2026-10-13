@@ -2255,8 +2255,9 @@ bridge between graph free amalgamation and unary closure values.
 Exhaustive diagnostic test:
 scripts/check_c0_tagged_dependency.py evaluates 10,276 tagged
 diagrams, 60,552 closure equalities, and explicit failures when
-agreement or closedness is removed. The exact Lean statements
-must pass integrated CI and axiom checking before certification.
+agreement or closedness is removed. The exact Lean statements passed integrated CI run 38485892107:
+405 declarations with standard logical axioms only, 86 Lean files
+without placeholders, and all finite regressions.
 
 
 ## 14 October 2026 — complete C0 component values and old-prefix persistence
@@ -2288,3 +2289,10 @@ every finite permitted functional diagram is realized.
 
 These are separate mathematical adversarial checks by this
 assistant, not independently recruited external human referees.
+
+The whole-component unfolding and unary-prefix theorems were
+subsequently certified by full Lean CI run 38486803292:
+411 declarations with standard logical axioms only; 88 Lean
+files checked for placeholders; 121,104 whole-block value comparisons.
+The scope limitations stated by the five adversarial perspectives
+remain in force despite these successful audits.

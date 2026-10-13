@@ -2017,11 +2017,12 @@ The accompanying finite-model regression enumerates 10,276
 admissible tagged dependency diagrams across seven small
 base/tail sizes and checks 60,552 full-closure equalities.
 These are diagnostic checks, not replacements for the Lean proof.
-All green status markers require a successful pinned CI,
-axiom audit and placeholder scan.
+Successful full CI run 38485892107 verified these dependency closure
+theorems (405 standard-axiom declarations; 86 Lean source files scanned;
+all finite regressions passed).
 
 
-## Whole-component vertex values and closed C0 stages (14 October 2026; CI pending)
+## Whole-component vertex values and closed C0 stages (14 October 2026; Lean-certified PR #100)
 
 Following certified tagged dependency preservation (Lean PR #99,
 successful run 38485892107 with 405 audited declarations), two exact
@@ -2057,8 +2058,12 @@ Independent adversarial checks:
 
 The exhaustive finite diagnostic adds 121,104 whole-vertex closure
 equalities to the prior 60,552 path-closure equalities.
-Exact Lean CI, axiom audit and placeholder scan remain required before
-either group of theorem markers may become green.
+Successful full CI run 38486803292 built these exact declarations,
+checked 411 theorems for axioms (standard logical axioms only),
+scanned 88 Lean files without proof placeholders, and passed all
+finite regressions, including 121,104 whole-component value equalities.
+The exact theorem markers can be GREEN, but the enclosing functional
+Fraisse genericity proposition remains PARTIAL.
 
 The concrete construction of a tagged **functional** amalgamation
 diagram, and the fair countable C0 functional extension schedule,
