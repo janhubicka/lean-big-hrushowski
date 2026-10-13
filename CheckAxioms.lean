@@ -453,3 +453,12 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.local_strong_of_enlarged_strong
 #print axioms BigHrushovski.GraphOn.local_strong_lift
 #print axioms BigHrushovski.GraphOn.minimalStrongStep_local_of_noCross
+
+#print axioms BigHrushovski.FiniteCatalogue.genericC0LowerClosure_subset_old
+#print axioms BigHrushovski.FiniteCatalogue.genericC0LowerClosure_union_component
+#print axioms BigHrushovski.FiniteCatalogue.genericC0LowerClosure_isClosed
+#print axioms BigHrushovski.FiniteCatalogue.genericC0LowerClosure_global
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosure_inter_old
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Local_noCross
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Local_minimal
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Local_every_vertex_generates
