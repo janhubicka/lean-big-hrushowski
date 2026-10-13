@@ -1628,3 +1628,24 @@ This is the exact set-theoretic component partition needed
 for the unary closure presentation. No internal vertex order
 is chosen and no back-edge reachability closure is yet
 defined. The latter remains a separate formalization task.
+
+
+## C0 no-cross criterion from closure under back neighbours (13 October 2026; pending CI)
+
+`C0NoCrossCriterion.lean` provides a graph-theoretic bridge
+needed to prove the first assertion of manuscript Lemma
+`C0-functional-closure`. For old a and a selected x⊆a,
+assume every old neighbour of a new block B already lies
+in x. Then the union of a with x∪B contains no edge
+across the two disjoint tails. The proof works directly
+with unordered two-element edges; it first establishes that
+any two distinct members of an edge are adjacent, and then
+rules out the only possible crossing pair.
+
+Combining this result with the previously audited
+`GraphOn.closedBlock_strong_of_noCross` supplies the
+local strongness step for adding a complete block.
+The **global induction over all components** and the exact
+functional closure equivalence still require formalization.
+This is a finite graph lemma; no unary closure or strongness
+predicate is assumed in its own hypotheses.
