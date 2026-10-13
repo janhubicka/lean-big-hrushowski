@@ -1811,6 +1811,71 @@ Seven separated mathematical challenge passes by this
 assistant; no independent external referee agents were spawned.
 
 
+## Adversarial audit: C0 descending dependency closure (13 October 2026)
+
+1. **Dependency direction.** A back edge is an *unordered graph edge*
+   with one endpoint in a new B_n and the other in the earlier A_n;
+   it is not an arbitrarily oriented edge. Every target component
+   has index <n; this prevents cycles between distinct components.
+2. **Full component output.** The unary closure contains each whole
+   reached block, not just a chosen old neighbour. Omitting the
+   other vertices of a reached block would invalidate the
+   manuscript's component equivalence.
+3. **Finite character.** Reachability uses arbitrary finite directed
+   paths, but its indices are all <=n. Thus a reachable component
+   set is finite. Filtering `range(n+1)` adds no reachable vertex
+   and discards none; no external well-founded recursion is assumed.
+4. **Mutual reachability.** For vertices v,w in different components,
+   mutual membership C(v),C(w) would imply each index <= the other,
+   hence equality. Back-edge cycles cannot silently merge blocks.
+5. **Closure nesting.** A proof of w in C(v) alone is insufficient
+   to conclude C(w) subset C(v) without composing the reachability
+   witnesses. `GenericC0Ancestor.trans` supplies that composition.
+6. **Actual old neighbours.** The step that absorbs an old neighbour
+   checks both `y∈A_n` and graph adjacency; mere adjacency to v
+   could describe an internal/newer vertex and is not a back edge.
+7. **Strongness and functional age.** The finite no-cross strongness
+   lemma of PR #83 is a separate input; this module alone does not
+   prove every finite unary-closed set strong, the functional
+   Fraisse limit, or any Ramsey expansion.
+8. **Independent regression.** The Python checker exhaustively
+   constructs finite strictly descending component-dependency
+   diagrams, with multiple block vertex multiplicities. This
+   cannot replace the kernel-checked Lean proofs.
+
+These are separate adversarial checking perspectives conducted
+within one assistant session, not separately spawned human
+or agent referees. PR #86 integrated CI run 38380094815 passed the 334-declaration standard-axiom audit and 74-file placeholder scan.
+
+
+## Adversarial audit: C0 generated unary closure algebra
+
+1. **Undefined/empty values:** the named unary closure has a
+   finite *defined* value on every vertex; it is never confused
+   with an undefined partial function value or an empty value.
+2. **Closure contains generators:** `v∈C(v)` is proved from
+   ancestry reflexivity; no unproved extensive-closure axiom
+   is added to the Lean definitions.
+3. **Idempotence:** follows from the nesting property
+   `w∈C(v) ⇒ C(w)⊆C(v)`; the proof checks both inclusions
+   and does not postulate that an iterated function stabilizes.
+4. **Finite unions:** ordinary unary functions preserve
+   finite unions of closed domains. This is intentionally
+   *not* asserted for the unbounded set-input operations
+   of the C_F presentation.
+5. **Strong vs function-closed:** unary-closedness is a new
+   predicate of finite vertex subsets. It is not silently
+   equated with the intrinsic graph strongness predicate.
+6. **Embedding scope:** these closure identities alone do
+   not show the unary functional embeddings are the intended
+   graph embeddings with back-edge-closed images, nor the
+   free-amalgamation Fraisse property.
+
+These six are adversarial mathematical checking perspectives
+performed by this assistant, not externally spawned referees.
+PR #87 original integrated CI run 38380760041 passed the standard-axiom and placeholder audits. Reconciliation with parent PR #86 is checked separately.
+
+
 ## Adversarial review: old-neighbour no-cross criterion
 
 1. A graph edge is an *unordered two-element* set. The proof

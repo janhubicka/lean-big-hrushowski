@@ -97,4 +97,8 @@ import BigHrushovski.C0ClosedUnions
 
 import BigHrushovski.C0Components
 
+import BigHrushovski.C0AncestorClosure
+
+import BigHrushovski.C0UnaryClosureAlgebra
+
 import BigHrushovski.C0NoCrossCriterion
