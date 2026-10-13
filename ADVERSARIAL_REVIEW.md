@@ -2224,3 +2224,36 @@ All four are independent adversarial proof perspectives applied to
 the definitions and argument, not independent external referee agents.
 The exact hereditary endpoints passed full CI run 38481909334
 (397 standard-axiom declarations, 85 placeholder-free files).
+
+
+## 14 October 2026 — tagged functional free-amalgamation audit
+
+Four separately developed hostile arguments challenge the proposed
+bridge between graph free amalgamation and unary closure values.
+
+1. **Base agreement adversary.** If the two dependencies differ on
+   the common base, a path can be added without leaving the base.
+   Two base components p,q and only the right edge p→q are a minimal
+   counterexample to preservation.
+2. **Base closedness adversary.** Even if base dependencies agree,
+   a right back-edge p→r to a fresh right component changes the
+   left closure of p. Thus each input factor must close the
+   *complete* common base under dependency successors.
+3. **Spurious cross-path adversary.** A free join of *graphs*
+   excludes left-tail/right-tail edges, but equality of graph
+   edges on factors alone does not exclude new directed closure
+   paths via a non-closed common base. The tagged dependency
+   relation is checked separately from graph adjacency.
+4. **Transfer/typing adversary.** A path theorem for component
+   indices need not automatically imply literal equality
+   of vertex-valued unary functions until the component
+   partition and component-to-vertex unfolding are fixed.
+   The finite Finset-valued dependency closure theorem is
+   therefore a bridge, not a complete proof of the actual
+   C0 functional age or its countable Fraisse extension.
+
+Exhaustive diagnostic test:
+scripts/check_c0_tagged_dependency.py evaluates 10,276 tagged
+diagrams, 60,552 closure equalities, and explicit failures when
+agreement or closedness is removed. The exact Lean statements
+must pass integrated CI and axiom checking before certification.
