@@ -447,3 +447,9 @@ import BigHrushovski
 
 #print axioms BigHrushovski.FiniteCatalogue.genericC0ComponentBack_closure_image
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryEmbedding_iff_componentBack
+
+#print axioms BigHrushovski.GraphOn.local_inter_eq
+#print axioms BigHrushovski.GraphOn.local_relative_predim
+#print axioms BigHrushovski.GraphOn.local_strong_of_enlarged_strong
+#print axioms BigHrushovski.GraphOn.local_strong_lift
+#print axioms BigHrushovski.GraphOn.minimalStrongStep_local_of_noCross

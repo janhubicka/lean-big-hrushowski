@@ -1822,3 +1822,30 @@ This does not assert that all strong graph embeddings
 preserve the chosen enumeration's functional closure,
 nor the Fraisse extension property of the functional
 age. Full Lean CI and axiom checks remain pending.
+
+
+## C0 local predimension cancellation and minimality descent (13 October 2026; CI pending)
+
+`C0LocalFreeMinimal.lean` isolates the exact finite
+calculation in manuscript Lemma `C0-local-form`.
+For finite vertex sets P ⊆ A and a block B disjoint from A,
+assume there are no graph edges between B and A\P,
+encoded as `NoCrossEdges A (P∪B)`.
+Then for **every** P⊆D⊆P∪B,
+`δ(A∪D)+δ(P)=δ(A)+δ(D)`, not merely at the endpoint.
+
+This cancellation yields: if the enlarged base A is strong in
+A∪B, then the smaller base P is strong in P∪B; and a
+strong intermediate D⊆P∪B lifts to a strong intermediate
+A∪D⊆A∪B. Consequently minimality of A⊂A∪B
+**descends** to minimality of P⊂P∪B.
+
+The theorem is independent of whether P is itself strong in A.
+Its hypotheses explicitly include the no-cross condition
+and disjoint tails. The converse direction (preservation
+of a local minimal step under attaching a larger free old
+graph) is the next separate theorem and is not inferred.
+Further work will instantiate the descent on the actual
+finite lower closure P=C(v)\B(v) of a C0 component.
+
+Exact kernel proofs and regression tests remain pending CI.
