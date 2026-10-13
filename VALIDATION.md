@@ -1705,7 +1705,7 @@ predicate is assumed in its own hypotheses.
 The first Lean run 38381709735 compiled 321 declarations with only standard logical axioms and 74 placeholder-free files; the final reconciled CI must also run the newly added no-cross regression.
 
 
-## All finite unary-closed C0 sets are globally strong (13 October 2026; CI pending)
+## All finite unary-closed C0 sets are globally strong (Lean-certified, 13 October 2026)
 
 `C0UnaryClosedStrong.lean` formalizes the first structural
 assertion in manuscript Lemma `C0-functional-closure`.
@@ -1731,6 +1731,4 @@ This is one direction only: the theorem does not identify
 **all** globally strong finite sets with unary-closed
 sets, and does not establish the functional Fraisse
 extension property or equivalence of embedding notions.
-The manuscript marker remains partial until integrated
-Lean CI passes the exact theorem types and standard-axiom
-and placeholder checks.
+PR #89 integrated CI run 38382951195 audited 356 declarations with only standard logical axioms, scanned 77 Lean source files for placeholders and passed all finite regressions. Reconciled build evidence will be checked separately.
