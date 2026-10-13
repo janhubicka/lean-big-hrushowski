@@ -268,6 +268,7 @@ theorem mem_dependencyClosure_iff {V : Type*} [Fintype V]
 This is the finite functional analogue of the path lemma. -/
 theorem freeDependency_closure_left
     [Fintype P] [Fintype L] [Fintype R]
+    [DecidableEq P] [DecidableEq L] [DecidableEq R]
     (dL : Sum P L → Sum P L → Prop)
     (dR : Sum P R → Sum P R → Prop)
     (hAgree : DependencyAgreeBase dL dR)
@@ -296,6 +297,7 @@ theorem freeDependency_closure_left
 /-- Exact equality of set-valued unary closures in the right factor. -/
 theorem freeDependency_closure_right
     [Fintype P] [Fintype L] [Fintype R]
+    [DecidableEq P] [DecidableEq L] [DecidableEq R]
     (dL : Sum P L → Sum P L → Prop)
     (dR : Sum P R → Sum P R → Prop)
     (hAgree : DependencyAgreeBase dL dR)
