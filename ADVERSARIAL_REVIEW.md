@@ -2460,3 +2460,32 @@ the pending functional Fraïssé reduct-identification theorem.
 This is an internal adversarial audit with executable
 finite-model checking, not a claim of external human
 referee certification.
+
+
+## 14 October 2026 — adversarial panel: finite unary closure certificates
+
+1. **Complete-component referee.** A vertex inside an increment
+   must bring the entire increment into its unary value. Closure
+   under only the old neighbours does not preserve strongness;
+   the K4 selection {a,x,y} is a concrete counterexample.
+2. **Old-neighbour referee.** Whole component membership alone
+   is not enough: in K4, the three new vertices form a complete
+   minimal strong block over a, but omitting a produces a
+   non-strong selected subgraph.
+3. **No-cross referee.** The graph has no crossing edge between
+   the selected new block and unselected old vertices because
+   every such edge would end at a named unary predecessor.
+   This is the exact hypothesis of the finite strongness lemma.
+4. **Closure-language referee.** The function is set-valued;
+   C-closed means C(v)⊆X for every v∈X. It must not be replaced
+   by pointwise adjacency or by closure under only one vertex
+   of a multi-vertex component.
+5. **Formalisation-scope referee.** The new Lean theorem derives
+   the finite selected-block certificates from explicit
+   pointwise properties of C. Proving those properties for the
+   canonical reachability-defined function in every abstract
+   finite age presentation is the next bridge; it does not
+   follow from the theorem's hypotheses automatically.
+
+These are separately structured adversarial mathematical checks,
+not claims that independent human or external agents reviewed the proof.

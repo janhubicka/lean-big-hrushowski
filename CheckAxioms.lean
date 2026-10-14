@@ -515,3 +515,8 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.exists_minimalStrongStep_of_strong
 #print axioms BigHrushovski.Predimension.finite_minimal_decomposition_of_strong_absolute
 #print axioms BigHrushovski.FiniteSpan.exists_strong_amalgam_with_minimal_steps
+
+#print axioms BigHrushovski.GraphOn.closedUnderValues_block_dichotomy
+#print axioms BigHrushovski.GraphOn.closedUnderValues_block_noCross
+#print axioms BigHrushovski.GraphOn.closedUnderValues_blockSequence
+#print axioms BigHrushovski.GraphOn.closedUnderValues_strong_from_empty

@@ -134,3 +134,5 @@ import BigHrushovski.C0TaggedMinimal
 import BigHrushovski.C0FiniteClosedAge
 
 import BigHrushovski.C0FiniteGraphLift
+
+import BigHrushovski.C0UnaryFiniteStrong

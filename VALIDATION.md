@@ -2297,3 +2297,56 @@ tests all strong pairs in labelled graphs on at most five vertices,
 including pairs whose upper endpoint is not globally strong.
 Lean CI, exact axiom audit and placeholder scan must succeed
 before manuscript green markers are promoted.
+
+
+## From the named unary function to finite strongness (14 October 2026; CI pending)
+
+The finite-age argument now has a direct closure-to-strongness bridge.
+For a finite strong-block presentation and a set-valued unary function
+C, require only the two pointwise C0 properties for each new block B:
+
+1. Every u∈B has B⊆C(u) (the complete component is in its value).
+2. Every old neighbour v of u∈B lies in C(u) (back-edge closure).
+
+If a finite subset X is closed under C, then for every B either
+B⊆X or B∩X=∅: as soon as X contains one u∈B it contains all
+of C(u) and hence B. In the first case all old neighbours of B
+lie in X∩A, so the exact no-cross certificate required by
+closedBlock_strong_of_noCross follows. In the second case,
+strongness passes from the old selected set to the next ambient
+strong stage by transitivity.
+
+C0UnaryFiniteStrong.lean packages these deductions and yields
+GraphOn.closedUnderValues_strong_from_empty: every finite unary-closed
+X is graph-strong in the final finite graph, conditional only on
+the explicit strong block presentation and two pointwise unary
+value properties. No ambient Fraïssé limit or exhaustion is used.
+
+Five independent adversarial mathematical passes:
+* **Whole-component necessity.** The complete four-vertex graph K4
+  has minimal strong step {a}<{a,x,y,z}. Selecting {a,x,y}
+  retains the old neighbour but cuts its new component; it is
+  not strong in K4.
+* **Back-neighbour necessity.** The same K4 component B={x,y,z}
+  has a as a back neighbour of each vertex. Selecting B alone
+  takes the entire block but omits a, and is not strong in K4.
+* **Predimension/no-cross.** The proof invokes the audited
+  noCross_of_backNeighbours lemma to obtain the exact
+  no-cross condition for omitted old vertices; it does
+  not infer strongness merely from vertex-set closure.
+* **Scope of values.** The theorem uses complete set-valued
+  function values C(u), rather than replacing them by the
+  immediate back-neighbour set or a distinguished generator.
+* **Functional-age boundary.** It remains to instantiate
+  HasUnaryBlockPresentation for the function defined by
+  transitive component reachability on every abstract
+  member of D'_0. The countable reduct identification
+  itself is not claimed to be Lean-certified.
+
+The independent exhaustive regression
+scripts/check_c0_unary_finite_strong.py checks all labelled simple
+graphs of order at most five, chooses a minimal strong block
+presentation, computes full backward component closures, and
+checks graph strongness of every unary-closed subset. It also
+contains both K4 counterexamples. Full Lean CI/axiom checking
+is required before the new statement can be marked GREEN.
