@@ -140,3 +140,5 @@ import BigHrushovski.C0UnaryFiniteStrong
 import BigHrushovski.C0FiniteCanonicalValues
 
 import BigHrushovski.C0FiniteCanonicalHeredity
+
+import BigHrushovski.C0FiniteCanonicalRestriction

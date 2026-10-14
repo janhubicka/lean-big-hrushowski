@@ -528,3 +528,8 @@ import BigHrushovski
 
 #print axioms BigHrushovski.FiniteC0.canonicalValue_closed_cut_step
 #print axioms BigHrushovski.FiniteC0.canonicalValue_closed_minimalPresentation
+
+#print axioms BigHrushovski.FiniteC0.restrictAncestor_iff
+#print axioms BigHrushovski.FiniteC0.canonicalValue_restrict_image
+#print axioms BigHrushovski.FiniteC0.oldStage_restrict_image
+#print axioms BigHrushovski.FiniteC0.canonicalValue_restrict_minimalSteps

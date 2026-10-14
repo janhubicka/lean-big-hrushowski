@@ -2582,3 +2582,55 @@ Six independently structured attack surfaces were examined.
 This is an internally conducted adversarial mathematical
 audit supported by finite exhaustive models, not a claim
 of external human referee certification.
+
+
+## 14 October 2026 — adversarial panel: full finite functional heredity
+
+Seven distinct mathematical failure modes were examined.
+
+1. **Lost intermediate path witnesses.** A path may have several
+   backward dependency edges. Restricting its endpoints to a
+   vertex set would not preserve it if intermediate witnesses
+   were deleted. The proof uses *full* closure of s under
+   f_Cl(u) to put every witness of every reached component
+   into s before lifting the path.
+
+2. **Incorrect graph restriction.** The restricted graph is
+   the induced pullback along the subtype inclusion W→V.
+   This preserves and reflects adjacency on selected
+   vertices. The theorem does not apply to a mere
+   graph homomorphism or weak noninduced copy.
+
+3. **Incomplete components.** The function values contain
+   all vertices of every reachable component. If s cuts
+   a component, restricting the function by intersection
+   can yield a different structure. The prerequisite
+   IsClosedUnderValues prevents this.
+
+4. **Base old neighbours.** An edge from a selected
+   new block to an omitted old vertex would disappear
+   on restriction. Complete backward reachability
+   explicitly forbids that edge when the set is closed.
+
+5. **Unnecessary chronology compression.** The finite
+   age definition already allows empty increments.
+   Retaining the old κ-indices in the subtype avoids
+   any need to choose a new linear order of the
+   selected components; the path relation remains
+   literally comparable index by index.
+
+6. **Strong versus minimal steps.** The induced graph
+   inherits strict minimal strong steps only after
+   applying the already certified local no-cross
+   transfer and induced-image minimality theorem.
+   Function-value preservation is separately proved
+   and cannot replace this step.
+
+7. **No countable overclaim.** The results close finite
+   functional heredity for canonical presentations.
+   They do not on their own construct the class's
+   free functional amalgam or establish strong graph
+   extension for the reduct of its Fraïssé limit.
+
+These are separate adversarial mathematical arguments
+performed within the review, not external human referees.
