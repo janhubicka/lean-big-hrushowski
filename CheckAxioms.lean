@@ -502,3 +502,8 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.minimalStrongStep_image_iff
 #print axioms BigHrushovski.FiniteCatalogue.genericC0_realizes_minimalStrongStep_over_prefix
 #print axioms BigHrushovski.FiniteCatalogue.realizes_minimalStrongStep_over_prefix
+
+#print axioms BigHrushovski.TaggedAmalgam.rightDomain_eq_base_union_tail
+#print axioms BigHrushovski.TaggedAmalgam.leftDomain_union_tail_univ
+#print axioms BigHrushovski.TaggedAmalgam.tagged_freeGraph_minimal_left_extension
+#print axioms BigHrushovski.TaggedAmalgam.tagged_minimal_strong_free_amalgam

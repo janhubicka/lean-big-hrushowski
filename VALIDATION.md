@@ -2117,3 +2117,60 @@ injections (including all extra edges to a vertex outside the copy)
 and contains the two explicit hypothesis counterexamples.
 Theorem status remains orange until the pinned full Lean build,
 axiom audit and placeholder scan succeed.
+
+
+## Actual tagged amalgamation of one minimal C0 block (14 October 2026; CI pending)
+
+The finite graph response of PR #102 assumed its minimal strong target
+K had already been constructed on the literal old prefix. The new
+module C0TaggedMinimal.lean constructs precisely the canonical free
+amalgam normal form: an old graph G on P ⊕ L, a local one-component
+graph H on P ⊕ R, and their tagged union on P ⊕ (L ⊕ R).
+
+If the two graphs agree on the induced common P, the local inclusion
+P < P⊕R is minimal strong, and the common base P is strong in the
+2-sparse old graph, then the tagged free union remains 2-sparse and
+the whole old left factor P⊕L is a **minimal strong substructure**.
+Both input graphs occur as induced subgraphs; no left-tail/right-tail
+edge is created.
+
+Proof: let A be the left domain, D the right domain, P=A∩D and
+B=D\A. Verify D=P∪B, A∪B=the full carrier and A∩B=∅.
+The tagged no-cross theorem gives no edges between B and A\P.
+The local minimality is transferred through the induced right tag
+using minimalStrongStep_image_iff and lifted over A using
+minimalStrongStep_enlarged_of_local. The existing tagged strong
+free-amalgam theorem gives 2-sparsity from strongness of the
+common base on both sides; its right-hand strongness hypothesis
+is contained in the local minimal-step assumption.
+
+Adversarial perspectives:
+* **Overlap:** set B=D\A, not B=D or an independently tagged
+  right domain. Otherwise P would be counted twice.
+* **Minimality versus strongness:** the strong free-amalgamation
+  result alone does not exclude intermediate strong pieces; the
+  local minimal-step transfer is essential.
+* **Sparsity:** do not deduce 2-sparsity solely from local
+  minimality; use the strong-base assumption on the old side.
+* **Inducedness:** the two input factors must agree exactly on
+  the base's edges and nonedges. A free union without that
+  agreement cannot preserve both induced factor embeddings.
+* **Scope:** canonical tagged form is not yet the literal old
+  vertex naming needed by genericC0_realizes_minimalStrongStep_over_prefix.
+  Re-labelling arbitrary embeddings into tagged form and the
+  countable functional request scheduler are separate proof steps.
+
+The independent finite checker scripts/check_c0_tagged_minimal.py
+enumerates small tagged amalgams and checks the complete
+sparsity and minimality conditions. Verification status remains
+ORANGE until successful integrated Lean CI and an axiom audit.
+
+
+Regression correction (14 October 2026): a failed auxiliary Python
+assertion had demanded at least one admissible minimal strong
+extension in every small choice of (|P|,|L|,|R|). This is not true:
+there is no two-vertex minimal strong extension over the empty base.
+The Lean proof itself compiled and passed the 418-declaration axiom
+audit. The revised test recognises empty parameter classes and
+also enumerates |R|=3, including genuine nonsingleton minimal
+components. CI must be rerun; pending results are not certificates.
