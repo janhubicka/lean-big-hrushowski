@@ -3164,3 +3164,112 @@ not a replacement for the Lean proof.
 
 Promote theorem markers only after integrated Lean CI, standard-axiom
 audit and placeholder scan succeed.
+
+
+## Frontloading a closed C0 base: no common-order alignment needed (14 October 2026; CI certified on proof branch)
+
+The finite functional free-amalgamation argument can avoid the
+previous programme of aligning two linear extensions by
+successive independent-component swaps.
+
+For a finite canonical component indexing κ:V→Fin n and
+a complete-unary-closed subset S, define a new index
+  κ⁺(v)=κ(v) when v∈S, and κ⁺(v)=n+κ(v) otherwise,
+with values in Fin(2n). The first half of the new
+index records just the components of S in their original
+relative order, and the second half records the outside
+components in their original relative order. Empty
+positions are allowed.
+
+C0ClosedBaseFrontload.lean proves:
+- closed_mem_iff_of_same_component: closedness prevents S
+  from cutting a complete component;
+- closed_cross_edge_points_outward: every edge between S
+  and its complement has the S component **earlier**
+  in the original presentation;
+- frontloadIndex_same_components and
+  frontloadIndex_preserves_edge_orientation: κ⁺ preserves
+  exactly the component partition and all directions of
+  edges between different components;
+- canonicalValue_frontload_eq: the full set-valued
+  backward component closure of **every** vertex is
+  unchanged, by the certified PR #118 theorem;
+- oldStage_frontload_first, oldStage_frontload_boundary
+  and oldStage_frontload_after:
+    A⁺_k=S∩A_k for k≤n, A⁺_n=S, and
+    A⁺_(n+j)=S∪A_j;
+- frontloadIndex_minimal_steps: if the old presentation
+  has empty-or-minimal-strong stages, then so does the
+  frontloaded presentation. For components in S, use
+  closed-set restriction and local no-cross minimality.
+  For an outside component B_j, the new old stage is
+  S∪A_j. Any edge from B_j into S must lead to a
+  vertex already in A_j, by closedness. The local
+  no-cross minimality lemma then preserves the step.
+
+Thus an arbitrary finite closed union of components can
+be placed first without changing either the finite
+minimal-strong presentation or its named unary function.
+The proof does not use global strongness or a countable
+strong exhaustion.
+
+**Further simplification of two-sided amalgamation.**
+For two functional factors over a common closed P,
+choose the component order on P inherited from the
+left factor. Place P first, then the left tail in its
+old relative order, then the right tail in its old
+relative order. The order on P inherited from the right
+factor need not be matched: named unary values on P
+determine its component partition and the orientation
+of all graph edges between P components. A change of
+order on independent P components therefore does not
+change the function. There are no graph edges between
+the two fresh tails. Conditional local minimality and
+the full-unary orientation theorem supply the
+remaining finite composition argument.
+
+**Adversarial mathematical panel.**
+1. **Order-agreement referee:** common component orders
+   need not coincide; requiring them to do so would
+   impose an artificial extra expansion on the class.
+2. **Closedness referee:** if S is not unary-closed,
+   a graph edge may point from an earlier outside
+   component into a later S component, so frontloading
+   can reverse its dependency and change fCl.
+3. **Complete-component referee:** S cannot cut a
+   multi-vertex minimal-strong block; closure of one
+   vertex brings the whole block into S.
+4. **Minimality referee:** preservation of unary values
+   alone does not prove that the reordered stages
+   remain minimal strong; the proof checks both
+   halves of the index against the exact no-cross
+   local minimality theorems.
+5. **Old-stage referee:** A⁺_n=S is proved as an
+   equality of finite vertex sets; the second
+   half starts from S, not from the empty graph.
+6. **Independent tails referee:** the free tagged
+   amalgam has no edges between left and right tails;
+   without that hypothesis, placing all of one
+   tail first could change dependencies of the other.
+7. **Full-function referee:** equality is of
+   complete transitive unary closures. Comparing
+   only immediate edges is insufficient.
+8. **Remaining Lean scope:** frontloading one closed
+   base is now proved. Packaging the two-sided
+   tagged composition and the countable functional
+   Fraïssé/reduct extension remains a separate
+   theorem, not silently promoted.
+
+The exact integrated CI run 38633932188 built 484
+declarations (standard logical axioms only), scanned
+109 Lean files without placeholders, and passed all
+finite regressions. An independent explicit P-first
+counterexample checker tested 8,459 compatible closed
+two-sided functional diagrams across eight small
+parameter classes (total vertex order ≤5). It verified
+minimality of every stage and equality of both complete
+unary functions in the deterministic P-first,
+left-tail-then-right-tail presentation; no
+counterexample was found. Finite exhaustive tests are
+supporting evidence, not a proof of the general
+two-sided functional-amalgamation theorem.
