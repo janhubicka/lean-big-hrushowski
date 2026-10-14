@@ -84,21 +84,21 @@ function, possibly indexed by different finite ordinal types,
 partition the vertex set into exactly the same components. -/
 theorem same_components_of_equal_canonicalValues
     {m : ℕ}
-    (G : GraphOn V) (κ : V → Fin n) (λ : V → Fin m)
+    (G : GraphOn V) (κ : V → Fin n) (indexH : V → Fin m)
     (hValues : ∀ u : V,
-      canonicalValue G κ u = canonicalValue G λ u)
+      canonicalValue G κ u = canonicalValue G indexH u)
     (u v : V) :
-    (κ u = κ v) ↔ (λ u = λ v) := by
+    (κ u = κ v) ↔ (indexH u = indexH v) := by
   constructor
   · intro hκ
     have heqOld :=
       (canonicalValue_eq_iff_index_eq G κ u v).mpr hκ
-    have heqNew : canonicalValue G λ u = canonicalValue G λ v :=
+    have heqNew : canonicalValue G indexH u = canonicalValue G indexH v :=
       (hValues u).symm.trans (heqOld.trans (hValues v))
-    exact (canonicalValue_eq_iff_index_eq G λ u v).mp heqNew
-  · intro hλ
+    exact (canonicalValue_eq_iff_index_eq G indexH u v).mp heqNew
+  · intro hindexH
     have heqNew :=
-      (canonicalValue_eq_iff_index_eq G λ u v).mpr hλ
+      (canonicalValue_eq_iff_index_eq G indexH u v).mpr hindexH
     have heqOld : canonicalValue G κ u = canonicalValue G κ v :=
       (hValues u).trans (heqNew.trans (hValues v).symm)
     exact (canonicalValue_eq_iff_index_eq G κ u v).mp heqOld
