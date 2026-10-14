@@ -1,4 +1,12 @@
-# Adversarial foundation audit (9 October 2026)
+# Adversarial foundation audit (historical log, 9–15 October 2026)
+
+**Current frontier:** the [489-declaration validation ledger](VALIDATION.md)
+and [shared local-transfer audit](docs/LOCAL_FREE_TRANSFER.md) describe the
+latest certified mathematical interfaces. Earlier sections below record
+superseded proof routes, including P-first order alignment; they are retained
+as historical adversarial checks, not current proof obligations. The
+current C0 amalgamation argument leaves the first component witness fixed.
+
 
 The independent checks below are distinct lines of attack performed on the
 same development; they are NOT claims of independent external human refereeing.

@@ -1,6 +1,6 @@
-# Validation ledger — 9 October 2026
+# Validation ledger — updated 15 October 2026
 
-Manuscript: The-big-Hrushovski (v52). First milestone: finite predimensions.
+Manuscript: The-big-Hrushovski (v52). The milestones below are an archival, chronological record. The current certified frontier is summarised at the end of this ledger.
 
 | Manuscript statement | Lean declaration | Status |
 | --- | --- | --- |
@@ -3215,7 +3215,7 @@ minimal-strong presentation or its named unary function.
 The proof does not use global strongness or a countable
 strong exhaustion.
 
-**Further simplification of two-sided amalgamation.**
+**Historical P-first construction (superseded 15 October 2026).**
 For two functional factors over a common closed P,
 choose the component order on P inherited from the
 left factor. Place P first, then the left tail in its
@@ -3262,7 +3262,7 @@ remaining finite composition argument.
    Fraïssé/reduct extension remains a separate
    theorem, not silently promoted.
 
-The exact integrated CI run 38633932188 built 484
+The historical PR #119 integrated CI run 38633932188 built 484
 declarations (standard logical axioms only), scanned
 109 Lean files without placeholders, and passed all
 finite regressions. An independent explicit P-first
@@ -3275,3 +3275,48 @@ left-tail-then-right-tail presentation; no
 counterexample was found. Finite exhaustive tests are
 supporting evidence, not a proof of the general
 two-sided functional-amalgamation theorem.
+
+
+## Current finite C0 / CF audit frontier (15 October 2026)
+
+The newest certified checkpoint is
+[Lean PR #122](https://github.com/janhubicka/lean-big-hrushowski/pull/122),
+[Actions run 38654887365](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38654887365):
+**489 audited Lean declarations**, with only standard logical axioms;
+**111 Lean files** scanned for unproved placeholders; all 53 workflow
+steps completed successfully. The retained local-transfer checker
+verified 101,128 no-cross graph/partition diagrams, with zero
+counterexamples for the strong, strict d-closed, and minimal-strong
+correspondences.
+
+| Manuscript claim | Lean declaration | Exact scope |
+| --- | --- | --- |
+| Local no-cross relative predimension identity | GraphOn.local_relative_predim | Verified, for every finite intermediate vertex set |
+| Local-to-enlarged weak self-sufficiency | GraphOn.localFreeStrong_iff | Verified, both directions |
+| Local-to-enlarged strict d-closedness | GraphOn.localFreeDClosed_iff | Verified, both directions |
+| Local-to-enlarged minimal strong extension | GraphOn.minimalStrongStep_free_iff; GraphOn.localFreeTransfer | Verified, both directions |
+| Minimal **d-closed** extension correspondence | — | **Open in Lean**; direct intermediate-set proof in the manuscript; tracked by [issue #123](https://github.com/janhubicka/lean-big-hrushowski/issues/123) |
+| Full two-sided C0 finite **functional** amalgamation | Tagged finite components and conditional full-value interfaces | **Partial**: no single Lean theorem yet preserving both named complete unary functions |
+| Countable C0 functional Fraïssé limit and graph reduct | Finite C0 span lift and separately certified strong generic graph | **Open**: countable functional extension and reduct identification |
+| C_F finite-level genericity, block-root recovery, embedding monoid | CFStrictLocal only supplies local strict inequalities | **Open**, no certification implied by the finite transfer |
+
+**The simpler two-sided C0 construction now keeps the entire first
+witness unchanged.** Only the second factor's unary-closed common
+base is frontloaded. Its fresh components are appended after the
+first factor. The surviving
+scripts/check_c0_explicit_amalgam.py independently checked the
+construction in 8,459 compatible closed-base diagrams, including
+different orders on the common base and non-singleton components.
+A seven-vertex example tests an interleaved base and triangle
+closure-component. This replaces the historical P-first route
+above. It remains finite evidence, not a Lean theorem of the
+complete two-sided functional amalgamation.
+
+The original independent-component swap theorem remains a valid
+optional graph lemma, but no longer appears as an implicit
+dependency of C0OrientationInvariantValues. The weaker duplicate
+check_c0_common_base.py has been removed from the library and CI.
+See [docs/LOCAL_FREE_TRANSFER.md](docs/LOCAL_FREE_TRANSFER.md)
+for the short reusable mathematical interface and its necessary
+hypotheses. Manuscript validation links are pinned to the exact
+CI-certified PR #122 head, not to this documentation update.
