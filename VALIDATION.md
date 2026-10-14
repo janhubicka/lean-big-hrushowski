@@ -2419,3 +2419,63 @@ chronologies, singleton and multi-vertex components,
 and unused component positions. Full Lean CI, exact
 axiom checking, and placeholder scan are required
 before the new endpoints are marked GREEN.
+
+
+## Heredity of abstract finite canonical C0 presentations (14 October 2026; CI pending)
+
+The preceding canonical-value theorem establishes that every
+f_Cl-closed subset of a finite indexed strong presentation is
+graph-strong. The next theorem now establishes the sharper
+hereditary minimal-increment assertion for the *abstract finite
+age*, removing dependence on the particular M0 enumeration.
+
+Suppose κ:V→Fin n indexes a finite graph presentation with every
+nonempty successive inclusion A_k⊊A_(k+1) minimal strong and
+f_Cl is defined by full component back-edge reachability.
+For a finite f_Cl-closed subset X, either X omits B_k or
+contains all of B_k. In the latter case, closure under f_Cl
+contains every old graph neighbour of the new block, so there
+are no edges from B_k to A_k\X. The no-cross predimension
+lemma therefore transfers minimality:
+  X∩A_k < X∩A_(k+1).
+Omitted components produce equal cuts. Retaining only the
+nonempty cuts gives a finite MinimalStrongChain from ∅ to X,
+by the verified generic append operation.
+
+C0FiniteCanonicalHeredity.lean proves:
+- canonicalValue_closed_cut_step: each restricted stage cut
+  either stays equal or is minimal strong;
+- canonicalValue_closed_minimalPresentation: the finite
+  graph reduct on every canonically unary-closed set admits
+  a minimal strong block presentation.
+
+The new theorem operates on the finite vertex type V itself;
+it needs no globally strong ambient graph and no countable
+strong exhaustion.
+
+Adversarial proof perspectives:
+* **Skipped-index referee.** An omitted block is equality,
+  not a false minimal strong step; empty chronological
+  positions are harmless.
+* **Full-block referee.** A selected component is included
+  in its entirety by closure under the canonical f_Cl.
+* **No-cross referee.** Every old neighbour of every selected
+  vertex belongs to the selected earlier part; the transfer
+  uses the exact modular relative predimension statement.
+* **Minimality referee.** Strongness of restricted cuts is
+  insufficient to prove they are *minimal*: the argument
+  applies minimalStrongStep_local_of_noCross to every
+  fully retained block.
+* **Functional-reduct referee.** The theorem certifies the
+  restricted graph minimal chain; formal equality of the
+  named set-valued function after removing skipped blocks
+  is still a separate closure-transport obligation.
+* **Countable-limit referee.** No countable Fraïssé
+  amalgamation or extension property is claimed.
+
+An exhaustive regression tests all graphs with ≤4 vertices
+and all chronological index assignments whose steps are
+empty or minimal strong. For every canonical unary-closed
+subset it checks every retained cut is minimal and every
+omitted cut is equal. All changes require successful Lean
+CI and exact axiom/placeholder audits before promotion.
