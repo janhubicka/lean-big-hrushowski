@@ -2365,3 +2365,16 @@ generic functional extension property.
 
 These are adversarial mathematical checks, not independently
 recruited external human referees.
+
+
+**Sixth check (regression admissibility).** The first small-model
+test wrongly required a minimal strong extension in every possible
+combination of base size and new-block size. This is false; over an
+empty base no two-vertex graph produces a minimal strong extension.
+The checker now enumerates the admissible diagrams without demanding
+existence in impossible parameter classes, and explicitly includes
+the nontrivial K4 example with one old and three new vertices.
+The first CI run compiled and audited 418 Lean declarations
+(standard logical axioms, no proof placeholders), then failed at
+this diagnostic assertion rather than at the mathematical theorem.
+The corrected regression must pass before merging.
