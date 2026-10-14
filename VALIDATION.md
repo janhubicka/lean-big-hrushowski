@@ -2948,3 +2948,77 @@ on up to four vertices and all component-index assignments with
 up to four positions, comparing every pair of vertices and grouping
 alternative presentations that define the same entire unary function.
 Do not promote exact markers before successful integrated Lean CI.
+
+
+## Closed C0 component ideals and common-base partition coherence (14 October 2026; CI pending)
+
+The finite two-factor free-amalgamation proof requires its common
+closed functional base P to be a union of complete components whose
+dependency predecessors also lie in P. It also requires the two
+factor presentations to identify the same components on P despite
+potentially different witnessing chronological orders.
+
+C0CommonBaseComponents.lean adds the exact finite interfaces:
+
+* closed_contains_ancestor_component: if a canonical unary-closed
+  vertex set S meets a component i, it contains the *whole vertex
+  fibre* of every component j backward-reachable from i. This
+  includes paths of arbitrary finite length.
+* closed_contains_direct_predecessor: the one-step specialization
+  needed to conclude the selected component set is a lower ideal
+  in the dependency partial order.
+* common_component_partition_of_shared_unary_values: suppose a
+  finite functional base P has a named full set-valued unary
+  function F:P→Finset P and is embedded injectively into two
+  canonical finite indexed graph structures G,H. If both
+  embeddings preserve the complete F-values exactly as images,
+  then they identify *precisely the same pairs of base vertices*
+  as lying in the same closure-component, even when their
+  component index types and chronological orders differ.
+
+The first assertion follows from closure under the full function.
+A backward path starting at an element of S puts all vertices of
+every reached component into that element's value, hence into S.
+The common-partition assertion combines the certified intrinsic
+value-equality criterion with injectivity of both base embeddings:
+f_G(i p)=f_G(i q) iff F(p)=F(q) iff f_H(j p)=f_H(j q).
+
+Adversarial mathematical checks:
+
+1. **Full closure, not one edge:** the ideal property requires
+   arbitrary backward dependency paths and complete target
+   component fibres. It is stronger than closure under a
+   single immediate back-edge.
+2. **Closedness:** the ideal assertion is false for a selected
+   set cutting a component or omitting a required predecessor.
+   Complete unary closedness is essential.
+3. **Injective embeddings:** without injectivity, equality of
+   function images need not reflect equality of source values.
+   Both factor embeddings must therefore be injective.
+4. **Different chronological orders:** equal named functions
+   determine the common component partition, not a specific
+   linear ordering of those components.
+5. **Order-alignment gap:** the finite lemma does not prove that
+   the two witness orders can be aligned by commuting
+   incomparable components while retaining minimal strongness.
+   That is the remaining finite two-sided amalgamation step.
+6. **Graph-only versus functional amalgamation:** the verified
+   one-sided lifting theorem supplies a graph amalgam preserving
+   the old C factor, but not an independent prescribed unary
+   function on B. The present common-partition result addresses
+   only the compatibility of the shared base.
+7. **Countable boundary:** no Fraïssé limit or graph-reduct
+   extension property is constructed by these finite statements.
+
+Independent executable regression:
+scripts/check_c0_common_base.py exhaustively enumerates small
+canonical minimal strong presentations on two graphs over a common
+closed functional P, tests intrinsic component equivalence of
+shared vertices, and searches for a canonical presentation of the
+free graph amalgam preserving *both* complete unary functions.
+The tested configurations have total order at most five and
+include multi-vertex minimal blocks. This is a bounded diagnostic
+for the future two-sided theorem, not a Lean proof of it.
+
+Exact Lean build, standard-axiom audit and placeholder scan are
+required before these finite endpoints receive GREEN markers.
