@@ -54,10 +54,11 @@ theorem canonicalAncestor_transfer
       have hSameOld : κ w = κ u := hw.trans hu.symm
       have hSameNew : η w = η u :=
         (hSame w u).mp hSameOld
+      have hLtOld : (κ v).val < (κ u).val := by
+        rw [hu, hv]
+        exact hLt
       have hLtNew : (η v).val < (η u).val :=
-        (hOrient v u (G.symm u v hAdj)).mp (by
-          rw [hu, hv] at hLt
-          exact hLt)
+        (hOrient v u (G.symm u v hAdj)).mp hLtOld
       have hDepNew : backDependency G η (η u) (η v) :=
         ⟨hLtNew, u, v, rfl, rfl, hAdj⟩
       have hOldU : TaggedAmalgam.DependencyAncestor
@@ -88,7 +89,7 @@ theorem canonicalValue_eq_of_component_partition_and_edge_orientation
     have hTargetIndex : η w = η v :=
       (hSame w v).mp hwIndex
     apply (mem_canonicalValue_iff G η root v).mpr
-    rwa [hTargetIndex] at hReach
+    simpa only [hTargetIndex] using hReach
   · intro hv
     have hSameReverse : ∀ u v : V,
         η u = η v ↔ κ u = κ v :=
