@@ -136,3 +136,5 @@ import BigHrushovski.C0FiniteClosedAge
 import BigHrushovski.C0FiniteGraphLift
 
 import BigHrushovski.C0UnaryFiniteStrong
+
+import BigHrushovski.C0FiniteCanonicalValues
