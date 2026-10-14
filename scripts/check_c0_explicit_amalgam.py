@@ -163,6 +163,41 @@ def audit_span(p,l,r):
                         (p,l,r),el,er,idxL,idxR,vL,vR)
     return graph_spans,diagrams
 
+
+def audit_interleaved_triangle():
+    """Seven-vertex stress test: closed P is NOT initial in left.
+    
+    Left: P={0,1,2}, l=3, blocks {0},{3},{1},{2},
+    with edge 0--3. Right: reverse base order {2},{1},{0},
+    then one genuinely nonsingleton triangle {3,4,5}
+    meeting the three base vertices in distinct edges.
+    """
+    p,l,r=3,1,3
+    el=((0,3),)
+    er=((0,3),(1,4),(2,5),(3,4),(3,5),(4,5))
+    idxL=(0,2,3,1)
+    idxR=(2,1,0,3,3,3)
+    mapR=(0,1,2,4,5,6)
+    joined=tuple(sorted(set(el)|{tuple(sorted((mapR[u],mapR[v])))
+                                    for u,v in er}))
+    chosen=idxL+(4,4,4)
+    def stages(idx,m):
+        return [sum(1<<v for v,k in enumerate(idx) if k<i)
+                for i in range(m+1)]
+    assert all(minimal(el,a,b) for a,b in zip(stages(idxL,4),
+                                             stages(idxL,4)[1:]))
+    assert all(minimal(er,a,b) for a,b in zip(stages(idxR,4),
+                                             stages(idxR,4)[1:]))
+    assert all(minimal(joined,a,b) for a,b in zip(stages(chosen,5),
+                                                 stages(chosen,5)[1:]))
+    vl=values(el,idxL,4)
+    vr=values(er,idxR,4)
+    assert all(vl[i]==vr[i] and vl[i]<(1<<p) for i in range(p))
+    expected=vl+tuple(remap(vr[u],mapR) for u in range(p,p+r))
+    assert values(joined,chosen,5)==expected
+    assert chosen[:p+l]==idxL
+    return True
+
 configs=[(0,1,1),(1,1,1),(2,1,1),(1,2,1),
          (1,1,2),(1,2,2),(1,3,1),(2,2,1)]
 results=[audit_span(*c) for c in configs]
@@ -172,4 +207,5 @@ print({"configurations":len(configs),
        "compatible_closed_functional_diagrams":sum(b for _,b in results),
        "intrinsic_common_partitions_verified":True,
        "two_sided_functional_amalgam_counterexamples":0,
-       "left_witness_unchanged_construction_verified":True})
+       "left_witness_unchanged_construction_verified":True,
+       "seven_vertex_interleaved_triangle_verified":audit_interleaved_triangle()})
