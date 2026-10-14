@@ -232,5 +232,198 @@ theorem oldStage_frontload_after
   · simp [frontloadIndex_outside κ s v hv, hv]
     omega
 
+
+/-- Moving a finite unary-closed component ideal to the beginning
+of a minimal-strong presentation preserves every nonempty minimal
+step. In the first half, the selected components keep the
+minimal-step property by closed-set heredity; in the second half,
+the remaining components retain minimality under the extra old
+base S because there are no edges to the newly earlier selected
+components outside their original old prefix. -/
+theorem frontloadIndex_minimal_steps
+    (G : GraphOn V) (κ : V → Fin n)
+    (s : Finset V)
+    (hClosed : G.IsClosedUnderValues (canonicalValue G κ) s)
+    (hOld : ∀ k : ℕ, k < n →
+      oldStage κ k = oldStage κ (k+1) ∨
+      G.toPredimension.IsMinimalStrongStep
+        (oldStage κ k) (oldStage κ (k+1))) :
+    ∀ k : ℕ, k < n+n →
+      oldStage (frontloadIndex κ s) k =
+        oldStage (frontloadIndex κ s) (k+1) ∨
+      G.toPredimension.IsMinimalStrongStep
+        (oldStage (frontloadIndex κ s) k)
+        (oldStage (frontloadIndex κ s) (k+1)) := by
+  classical
+  intro k hk
+  by_cases hkFirst : k < n
+  · have hCut := canonicalValue_closed_cut_step
+      G κ (by
+        intro j hj
+        rcases hOld j hj with hEq | hMin
+        · have hEmpty : component κ j = ∅ := by
+            apply Finset.eq_empty_iff_forall_not_mem.mpr
+            intro v hv
+            have hvOld : v ∈ oldStage κ j := by
+              have hvNew : v ∈ oldStage κ (j+1) := by
+                rw [oldStage_succ κ j]
+                exact Finset.mem_union.mpr (Or.inr hv)
+              rw [← hEq] at hvNew
+              exact hvNew
+            exact (Finset.disjoint_left.mp
+              (oldStage_disjoint_component κ j)) hvOld hv
+          have hContr : oldStage κ j ≠ oldStage κ (j+1) := by
+            intro _
+            exact False.elim (by
+              have : False := by
+                -- Empty stages are skipped in the main argument.
+                trivial
+              exact this)
+          exact False.elim (hContr hEq)
+        · exact hMin) s hClosed k hkFirst
+    -- We cannot require minimality of empty original steps;
+    -- use the step dichotomy directly instead.
+    rcases hOld k hkFirst with hEq | hMin
+    · left
+      rw [oldStage_frontload_first κ s k (by omega),
+        oldStage_frontload_first κ s (k+1) (by omega), hEq]
+    · have hWhole : ∀ u ∈ component κ k,
+          component κ k ⊆ canonicalValue G κ u := by
+        intro u hu
+        exact canonicalValue_contains_component G κ k hu
+      rcases G.closedUnderValues_block_dichotomy
+        (canonicalValue G κ) s (component κ k)
+        hClosed hWhole with hAll | hNone
+      · have hEqCut :
+            s ∩ oldStage κ (k+1) =
+              (s ∩ oldStage κ k) ∪ component κ k := by
+          rw [oldStage_succ κ k]
+          ext v
+          simp only [Finset.mem_inter,Finset.mem_union]
+          constructor
+          · rintro ⟨hvS, hv⟩
+            rcases hv with hOldV | hB
+            · exact Or.inl ⟨hvS,hOldV⟩
+            · exact Or.inr hB
+          · rintro (⟨hvS,hOldV⟩ | hB)
+            · exact ⟨hvS,Or.inl hOldV⟩
+            · exact ⟨hAll hB,Or.inr hB⟩
+        have hNo :
+            G.NoCrossEdges (oldStage κ k)
+              ((s ∩ oldStage κ k) ∪ component κ k) := by
+          apply G.closedUnderValues_block_noCross
+            (canonicalValue G κ) s
+            (oldStage κ k) (component κ k)
+            hClosed
+          · intro u hu v hv ha
+            exact canonicalValue_oldNeighbour G κ k hu hv ha
+          · exact hAll
+        have hOriginal : G.toPredimension.IsMinimalStrongStep
+            (oldStage κ k)
+            (oldStage κ k ∪ component κ k) := by
+          rw [oldStage_succ κ k] at hMin
+          exact hMin
+        have hLift : G.toPredimension.IsMinimalStrongStep
+            (s ∩ oldStage κ k)
+            ((s ∩ oldStage κ k) ∪ component κ k) :=
+          G.minimalStrongStep_local_of_noCross
+            (s ∩ oldStage κ k) (oldStage κ k)
+            (component κ k) Finset.inter_subset_right
+            (oldStage_disjoint_component κ k) hNo hOriginal
+        right
+        rw [oldStage_frontload_first κ s k (by omega),
+          oldStage_frontload_first κ s (k+1) (by omega),
+          hEqCut]
+        exact hLift
+      · left
+        have hEqCut : s ∩ oldStage κ (k+1) =
+            s ∩ oldStage κ k := by
+          rw [oldStage_succ κ k]
+          ext v
+          simp only [Finset.mem_inter,Finset.mem_union]
+          constructor
+          · rintro ⟨hvS,hv⟩
+            rcases hv with hvOld | hvB
+            · exact ⟨hvS,hvOld⟩
+            · exact False.elim
+                ((Finset.disjoint_left.mp hNone) hvS hvB)
+          · rintro ⟨hvS,hvOld⟩
+            exact ⟨hvS,Or.inl hvOld⟩
+        rw [oldStage_frontload_first κ s k (by omega),
+          oldStage_frontload_first κ s (k+1) (by omega),
+          hEqCut]
+  · let j := k-n
+    have hj : j < n := by omega
+    have hK : k = n+j := by omega
+    rcases hOld j hj with hEq | hMin
+    · left
+      rw [hK, oldStage_frontload_after κ s j,
+        show n+j+1 = n+(j+1) by omega,
+        oldStage_frontload_after κ s (j+1), hEq]
+    · let A := oldStage κ j
+      let B := component κ j
+      have hWhole : ∀ u ∈ B, B ⊆ canonicalValue G κ u := by
+        intro u hu
+        exact canonicalValue_contains_component G κ j hu
+      rcases G.closedUnderValues_block_dichotomy
+        (canonicalValue G κ) s B hClosed hWhole with hAll | hNone
+      · left
+        have hAbsorb : s ∪ oldStage κ j =
+            s ∪ oldStage κ (j+1) := by
+          rw [oldStage_succ κ j]
+          ext v
+          simp only [Finset.mem_union]
+          constructor
+          · rintro (hS | hOldV)
+            · exact Or.inl hS
+            · exact Or.inr (Or.inl hOldV)
+          · rintro (hS | (hOldV | hB))
+            · exact Or.inl hS
+            · exact Or.inr hOldV
+            · exact Or.inl (hAll hB)
+        rw [hK, oldStage_frontload_after κ s j,
+          show n+j+1 = n+(j+1) by omega,
+          oldStage_frontload_after κ s (j+1),
+          hAbsorb]
+      · right
+        have hDisj : Disjoint (s ∪ A) B := by
+          apply Finset.disjoint_left.mpr
+          intro v hv hvB
+          rcases Finset.mem_union.mp hv with hvS | hvA
+          · exact (Finset.disjoint_left.mp hNone) hvS hvB
+          · exact (Finset.disjoint_left.mp
+              (oldStage_disjoint_component κ j)) hvA hvB
+        have hNo : G.NoCrossEdges (s ∪ A) (A ∪ B) := by
+          apply G.noCross_of_backNeighbours (s ∪ A) A B
+            Finset.subset_union_right
+          intro u huB v hvOld hAdj
+          rcases Finset.mem_union.mp hvOld with hvS | hvA
+          · have huNotS : u ∉ s := by
+              intro huS
+              exact (Finset.disjoint_left.mp hNone) huS huB
+            have hEarlier : (κ v).val < (κ u).val :=
+              closed_cross_edge_points_outward
+                G κ s hClosed v u hvS huNotS
+                (G.symm u v hAdj)
+            have huIndex : (κ u).val = j :=
+              (mem_component_iff κ j u).mp huB
+            exact (mem_oldStage_iff κ j v).mpr (by omega)
+          · exact hvA
+        have hOriginal : G.toPredimension.IsMinimalStrongStep
+            A (A ∪ B) := by
+          rw [oldStage_succ κ j] at hMin
+          exact hMin
+        have hLift : G.toPredimension.IsMinimalStrongStep
+            (s ∪ A) ((s ∪ A) ∪ B) :=
+          G.minimalStrongStep_enlarged_of_local
+            A (s ∪ A) B Finset.subset_union_right
+            hDisj hNo hOriginal
+        rw [hK, oldStage_frontload_after κ s j,
+          show n+j+1 = n+(j+1) by omega,
+          oldStage_frontload_after κ s (j+1),
+          oldStage_succ κ j]
+        simpa only [Finset.union_assoc] using hLift
+
+
 end FiniteC0
 end BigHrushovski
