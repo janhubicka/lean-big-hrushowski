@@ -577,3 +577,5 @@ import BigHrushovski
 
 #print axioms BigHrushovski.FiniteC0.adjacent_order_iff_unary_membership
 #print axioms BigHrushovski.FiniteC0.adjacent_orientation_of_equal_canonicalValues
+
+#print axioms BigHrushovski.GraphOn.independent_minimal_components_commute
