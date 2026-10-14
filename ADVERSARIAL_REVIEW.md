@@ -3037,3 +3037,59 @@ not external human referee reports.
 These are independently structured mathematical adversarial
 checks by the assistant, not independent external human referees.
 The finite exhaustive regression is an additional, separate check.
+
+
+## 14 October 2026 — adversarial audit: frontloading a closed base
+
+**A. Avoiding unnecessary global swaps.** A proof that
+any two linear extensions are joined by adjacent swaps
+is stronger than necessary. A common closed base can
+be placed first in each factor. One may use the left
+factor's chosen base order in the combined presentation;
+the right factor's different order on independent base
+components has no effect on the named fCl function.
+
+**B. Closedness is indispensable.** If a component of
+the selected set S depends on an outside component,
+moving all of S first would reverse that back edge and
+change a full unary closure. The exact closure-ideal
+hypothesis excludes this case.
+
+**C. Complete blocks are indispensable.** A set selecting
+only some vertices of one minimal-strong component
+cannot be frontloaded as a sequence of complete
+closure-components. The theorem derives the whole
+fibre condition from full unary closedness.
+
+**D. Original minimality is indispensable.** The
+function-preservation theorem needs only component
+partition and edge orientation. Preservation of a
+valid finite *presentation* additionally uses the
+minimal strong step hypothesis at every old index,
+and the no-cross transfer in both directions.
+
+**E. Boundary arithmetic.** The new index has bound
+2n and may have unused positions. The original
+selected stages are S∩A_k for k≤n; stage n is S;
+later stages are S∪A_j. All three identities are
+checked as literal finite set equalities.
+
+**F. No change in the two old functions.** In a
+two-factor tagged free graph, the original left and
+right tails remain induced, with no new edges between
+them. Common base edge directions are intrinsic to
+the named function. Consequently the constructed
+P-first ordering preserves every complete unary value
+in all tested finite diagrams, not just those on P.
+
+**G. Honest formal boundary.** The Lean theorem
+certifies frontloading one finite closed base. The
+general two-sided tagged-composition theorem, and
+the countable functional Fraïssé limit with its
+reduct extension property, are still open Lean
+obligations. The deterministic finite regression
+is not a substitute for either proof.
+
+These are distinct mathematical adversarial reviews
+and an independent executable bounded check, not
+a claim of external human referee certification.
