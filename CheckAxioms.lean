@@ -498,3 +498,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosure_subset_stage
 #print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_unaryClosed
 #print axioms BigHrushovski.FiniteCatalogue.genericC0MinimalStage_generated_eq
+
+#print axioms BigHrushovski.GraphOn.minimalStrongStep_image_iff
+#print axioms BigHrushovski.FiniteCatalogue.genericC0_realizes_minimalStrongStep_over_prefix
+#print axioms BigHrushovski.FiniteCatalogue.realizes_minimalStrongStep_over_prefix
