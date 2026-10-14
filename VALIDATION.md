@@ -2620,3 +2620,79 @@ with up to four positions; for every prefix and every old
 vertex, recomputes complete closures and checks equality.
 The exact Lean CI and axiom audit are required before the
 manuscript marker can be marked GREEN.
+
+
+## Appending a final finite C0 component (14 October 2026; CI pending)
+
+The missing graph-to-functional lifting lemma can be reduced to an
+explicit finite indexing construction, avoiding any unnecessary
+second scheduling argument.
+
+Let G be a finite graph on V and let a⊆V be the old induced graph.
+Suppose κ:a→Fin n is an existing canonical C0 component indexing.
+Define κ⁺:V→Fin(n+1) by
+  κ⁺(v)=castSucc(κ(v)) if v∈a, and κ⁺(v)=last(n) otherwise.
+Thus the complete fresh set V\a is one new final component.
+There is no implicit relabelling or loss of old vertices.
+
+C0FiniteAppend.lean proves:
+* oldStage_append_image: for k≤n the kth stage is exactly the
+  image of the previous kth stage under the old inclusion;
+* oldStage_append_old: stage n is literally a;
+* canonicalValue_castSucc: merely adding an unused final index
+  does not change any old complete reachability closure;
+* canonicalValue_append_old: for each old vertex the entire
+  set-valued f_Cl computed in the enlarged graph is exactly
+  the image of its original old-graph value, without assuming
+  the fresh block has no edges to old vertices;
+* appendIndex_minimal_steps: if every old step is empty or
+  minimal strong and a<V is minimal strong, then all steps of
+  the extended finite presentation are likewise empty or
+  minimal strong, with exactly one new final step.
+
+The value theorem follows from the certified finite restriction
+theorem: since every backward dependency has strictly smaller
+component index, the old set a is closed under the extended
+κ⁺-value. Restricting to a reproduces the old graph, with κ
+only cast to the larger finite index type; the castSucc path
+lemma identifies the original and extended transitive
+dependency relations on old components exactly.
+
+Independent adversarial referee perspectives:
+* **Inducedness.** The old carrier must be the induced graph on
+  a. Adding an edge between old components may change old unary
+  values. The regression includes an explicit two-old-vertex
+  counterexample.
+* **Last-index requirement.** New vertices must be later than
+  all old components. If a new adjacent vertex is put at an
+  earlier index, an old vertex gains that vertex in its value.
+* **Complete paths.** The statement concerns arbitrarily long
+  backward dependency paths, not only immediate edges.
+* **Old stages.** For k≤n the stage is precisely the image of
+  the original stage, while stage n=a. Finite index zero and
+  empty component slots are allowed.
+* **Minimality.** A final minimal strong step is necessary for
+  membership in the functional age; graph strongness alone
+  does not make the block minimal. The theorem carries the
+  previous minimal steps via induced-image invariance.
+* **New-to-old graph edges.** Such edges are permitted. They
+  generate backwards dependencies *from the fresh component*,
+  not new ancestors of old vertices. There is no false
+  no-cross assumption banning these edges.
+* **Scope.** Appending one compatible minimal strong block is
+  a finite construction. Iterating an arbitrary finite
+  MinimalStrongChain and combining it with a pre-existing
+  canonical presentation is the next bridging step. Neither
+  a countable functional Fraïssé limit nor its reduct
+  identification is claimed here.
+
+An exhaustive diagnostic checks all finite simple graphs through
+four vertices, all old vertex subsets, all assignments of old
+chronological indices up to three slots, and arbitrary edges to
+the final fresh block. It checks old stages and exact complete
+unary values; whenever both old and new inclusions are minimal
+strong it also checks the extended minimal presentation. The
+two necessary-hypothesis counterexamples are executable.
+
+Do not mark any new endpoint verified until the complete Lean
+CI run, standard-axiom audit and placeholder scan all pass.
