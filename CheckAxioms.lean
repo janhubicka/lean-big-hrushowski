@@ -544,3 +544,8 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.ancestor_castSucc_backward
 #print axioms BigHrushovski.FiniteC0.canonicalValue_castSucc
 #print axioms BigHrushovski.FiniteC0.canonicalValue_append_old
+
+#print axioms BigHrushovski.Predimension.freshBlock_of_minimal
+#print axioms BigHrushovski.Predimension.MinimalStrongChain.exists_blockRun
+#print axioms BigHrushovski.Predimension.IsMinimalBlockRun.toChain
+#print axioms BigHrushovski.Predimension.exists_minimalBlockRun_of_strong

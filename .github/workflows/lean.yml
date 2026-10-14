@@ -72,6 +72,8 @@ jobs:
         run: python3 scripts/check_c0_canonical_finite_values.py
       - name: Check complete C0 unary closure strongness
         run: python3 scripts/check_c0_unary_finite_strong.py
+      - name: Check explicit finite C0 minimal strong block runs
+        run: python3 scripts/check_c0_minimal_block_runs.py
       - name: Check absolute finite strong factorisation
         run: python3 scripts/check_c0_absolute_factorization.py
       - name: Check finite minimal decompositions

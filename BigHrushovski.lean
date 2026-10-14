@@ -146,3 +146,5 @@ import BigHrushovski.C0FiniteCanonicalRestriction
 import BigHrushovski.C0FinitePrefixPersistence
 
 import BigHrushovski.C0FiniteAppend
+
+import BigHrushovski.C0MinimalBlockRuns
