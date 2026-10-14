@@ -48,7 +48,9 @@ theorem mem_blockPrefix_iff (blocks : List (Finset V))
   induction blocks with
   | nil =>
       intro i hi
-      have hzero : i = 0 := by omega
+      have hzero : i = 0 := by
+        simp only [List.length_nil] at hi
+        omega
       subst i
       simp [blockPrefix, blockIndex]
   | cons B rest ih =>
@@ -303,6 +305,7 @@ theorem extendRunIndex_minimal_steps
     right
     have hMin := minimalStep_of_blockRun G a blocks hRun j hj
     rw [hk, oldStage_extend_later a κ blocks hCover j (by omega),
+      show n+j+1 = n+(j+1) by omega,
       oldStage_extend_later a κ blocks hCover (j+1) (by omega)]
     exact hMin
 
