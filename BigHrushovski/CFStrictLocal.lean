@@ -1,4 +1,4 @@
-import BigHrushovski.C0LocalFreeMinimal
+import BigHrushovski.C0LocalFreeConverse
 
 /-!
 # Strict predimension closure under a local no-cross amalgam
@@ -78,19 +78,8 @@ theorem dClosed_enlarged_of_noCross
     exact Finset.mem_inter.mpr
       ⟨hAY (hPA hvP), Finset.mem_union.mpr (Or.inl hvP)⟩
   have hDB : D ⊆ P ∪ B := Finset.inter_subset_right
-  have hYeq : Y = A ∪ D := by
-    ext v
-    constructor
-    · intro hvY
-      rcases Finset.mem_union.mp (hYAB hvY) with hvA | hvB
-      · exact Finset.mem_union.mpr (Or.inl hvA)
-      · exact Finset.mem_union.mpr (Or.inr
-          (Finset.mem_inter.mpr
-            ⟨hvY, Finset.mem_union.mpr (Or.inr hvB)⟩))
-    · intro hv
-      rcases Finset.mem_union.mp hv with hvA | hvD
-      · exact hAY hvA
-      · exact (Finset.mem_inter.mp hvD).1
+  have hYeq : Y = A ∪ D :=
+    local_enlarged_intermediate_form P A B Y hPA hAY hYAB
   have hDNe : D ≠ P := by
     intro hEq
     have hEqA : Y = A := by
