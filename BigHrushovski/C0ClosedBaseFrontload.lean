@@ -257,32 +257,7 @@ theorem frontloadIndex_minimal_steps
   classical
   intro k hk
   by_cases hkFirst : k < n
-  · have hCut := canonicalValue_closed_cut_step
-      G κ (by
-        intro j hj
-        rcases hOld j hj with hEq | hMin
-        · have hEmpty : component κ j = ∅ := by
-            apply Finset.eq_empty_iff_forall_not_mem.mpr
-            intro v hv
-            have hvOld : v ∈ oldStage κ j := by
-              have hvNew : v ∈ oldStage κ (j+1) := by
-                rw [oldStage_succ κ j]
-                exact Finset.mem_union.mpr (Or.inr hv)
-              rw [← hEq] at hvNew
-              exact hvNew
-            exact (Finset.disjoint_left.mp
-              (oldStage_disjoint_component κ j)) hvOld hv
-          have hContr : oldStage κ j ≠ oldStage κ (j+1) := by
-            intro _
-            exact False.elim (by
-              have : False := by
-                -- Empty stages are skipped in the main argument.
-                trivial
-              exact this)
-          exact False.elim (hContr hEq)
-        · exact hMin) s hClosed k hkFirst
-    -- We cannot require minimality of empty original steps;
-    -- use the step dichotomy directly instead.
+  · -- Restrict the original minimal steps to the closed base.
     rcases hOld k hkFirst with hEq | hMin
     · left
       rw [oldStage_frontload_first κ s k (by omega),
