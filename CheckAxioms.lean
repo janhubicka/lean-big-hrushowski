@@ -570,3 +570,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.canonicalValue_eq_iff_index_eq
 #print axioms BigHrushovski.FiniteC0.component_eq_unary_value_class
 #print axioms BigHrushovski.FiniteC0.same_components_of_equal_canonicalValues
+
+#print axioms BigHrushovski.FiniteC0.closed_contains_ancestor_component
+#print axioms BigHrushovski.FiniteC0.closed_contains_direct_predecessor
+#print axioms BigHrushovski.FiniteC0.common_component_partition_of_shared_unary_values
