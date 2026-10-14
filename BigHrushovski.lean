@@ -125,3 +125,6 @@ import BigHrushovski.C0TaggedDependency
 
 import BigHrushovski.C0ComponentValues
 import BigHrushovski.C0PrefixClosure
+
+import BigHrushovski.C0MinimalImage
+import BigHrushovski.C0OneBlockResponse
