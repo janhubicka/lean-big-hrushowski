@@ -520,3 +520,8 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.closedUnderValues_block_noCross
 #print axioms BigHrushovski.GraphOn.closedUnderValues_blockSequence
 #print axioms BigHrushovski.GraphOn.closedUnderValues_strong_from_empty
+
+#print axioms BigHrushovski.FiniteC0.oldStage_succ
+#print axioms BigHrushovski.FiniteC0.canonicalValue_contains_component
+#print axioms BigHrushovski.FiniteC0.canonicalValue_oldNeighbour
+#print axioms BigHrushovski.FiniteC0.canonicalValue_closed_strong
