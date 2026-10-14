@@ -582,3 +582,13 @@ import BigHrushovski
 
 #print axioms BigHrushovski.FiniteC0.canonicalAncestor_transfer
 #print axioms BigHrushovski.FiniteC0.canonicalValue_eq_of_component_partition_and_edge_orientation
+
+#print axioms BigHrushovski.FiniteC0.closed_cross_edge_points_outward
+#print axioms BigHrushovski.FiniteC0.frontloadIndex_same_components
+#print axioms BigHrushovski.FiniteC0.frontloadIndex_preserves_edge_orientation
+#print axioms BigHrushovski.FiniteC0.canonicalValue_frontload_eq
+#print axioms BigHrushovski.FiniteC0.oldStage_frontload_first
+#print axioms BigHrushovski.FiniteC0.oldStage_frontload_boundary
+#print axioms BigHrushovski.FiniteC0.oldStage_frontload_after
+
+#print axioms BigHrushovski.FiniteC0.frontloadIndex_minimal_steps

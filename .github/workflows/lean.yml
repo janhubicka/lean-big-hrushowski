@@ -74,6 +74,8 @@ jobs:
         run: python3 scripts/check_c0_orientation_invariant_values.py
       - name: Check exchange of independent finite minimal C0 components
         run: python3 scripts/check_c0_independent_swap.py
+      - name: Verify explicit P-first canonical C0 two-sided functional amalgams
+        run: python3 scripts/check_c0_explicit_amalgam.py
       - name: Audit C0 shared closed-base components and bounded amalgams
         run: python3 scripts/check_c0_common_base.py
       - name: Check intrinsic C0 component partition from unary values
