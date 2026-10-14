@@ -3100,3 +3100,67 @@ original minimal steps and both swapped minimal steps and
 includes the explicit K4 missing-hypothesis counterexample.
 Successful integrated CI/axiom/placeholder checking is required
 before upgrading the corresponding manuscript validation mark.
+
+
+## C0 full unary values depend only on components and graph-edge orientation (14 October 2026; CI pending)
+
+The named finite C0 functional language forgets the witnessing
+chronological component order. To justify interchanging independent
+components, the unary values must remain unchanged.
+
+C0OrientationInvariantValues.lean proves an order-free criterion.
+Let κ:V→Fin n and η:V→Fin m be two component indices of the same
+finite graph G. Assume:
+(a) κ(u)=κ(v) iff η(u)=η(v), for all vertices u,v;
+(b) for every graph edge uv, κ(u)<κ(v) iff η(u)<η(v).
+Then the *complete* set-valued canonical unary functions agree
+for every vertex: canonicalValue(G,κ,u)=canonicalValue(G,η,u).
+
+Proof: starting from a root component, transfer each backward
+dependency step κ(x)→κ(y) to the η-presentation. At each step
+choose the graph-edge witnesses x,y. The equality of component
+partitions matches any prior reached component representative
+to x, and the edge-orientation hypothesis supplies the
+η-dependency η(x)→η(y). Induction transports the whole path.
+The reverse implication swaps κ and η. This avoids selecting a
+distinguished vertex within a multi-vertex component and also
+handles unused finite index positions.
+
+Adversarial mathematical perspectives:
+* **Missing partition:** in an edgeless two-vertex graph, a
+  single two-vertex component and two singleton components
+  orient all (zero) edges identically but produce different
+  unary values.
+* **Missing orientation:** for an edge between singleton
+  components, reversing their order changes the closure
+  of the later vertex, even though the partition agrees.
+* **Transitive closure:** a pointwise comparison of direct
+  back edges does not suffice without path induction;
+  this theorem transports arbitrary-length paths.
+* **Witness choice:** a dependency is between whole components
+  and may be witnessed by any edge between their vertices;
+  the proof uses those witnesses to avoid arbitrary
+  component representatives.
+* **Unused indices:** the source index may have empty slots;
+  only visited components enter a dependency path, and
+  its endpoint is represented by an actual vertex.
+* **Minimality boundary:** the conclusion is exact equality
+  of full unary values. It does *not* prove the alternative
+  chronological order gives minimal strong steps. That
+  separate fact is supplied locally for adjacent independent
+  blocks by PR #117.
+* **Global alignment boundary:** the theorem plus the adjacent
+  swap lemma is the local core of common-order refinement,
+  but a finite sequence of swaps connecting arbitrary
+  compatible witness orders is not yet formalized.
+
+The independent exhaustive regression compares every graph through
+four labelled vertices under all chronological component assignments
+with at most four slots, grouping by component partition and
+orientation of every graph edge. It checks all canonical values
+within each compatibility class and exhibits explicit failures
+when either hypothesis is deleted. This is diagnostic validation,
+not a replacement for the Lean proof.
+
+Promote theorem markers only after integrated Lean CI, standard-axiom
+audit and placeholder scan succeed.

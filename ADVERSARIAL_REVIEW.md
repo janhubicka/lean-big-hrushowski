@@ -3004,3 +3004,36 @@ usable inside abstract finite free-amalgamation diagrams.
 The panel consists of separately structured
 adversarial mathematical checks within this review,
 not external human referee reports.
+
+
+## 14 October 2026 — adversarial component-order invariance panel
+
+1. **Component identity referee.** Two vertices share a canonical
+   component exactly when the named complete unary values agree.
+   A new indexing must retain these equivalence classes.
+2. **Edge-direction referee.** An intercomponent graph edge
+   creates a directed dependency from the later component to
+   the earlier one. Reversing that edge changes a closure, so
+   preserving edge orientation is necessary.
+3. **Path referee.** Unary values contain all vertices reached
+   by any finite backwards path, not just immediate predecessors.
+   Full reachability is transferred step by step via witnesses.
+4. **Disconnected components referee.** Orders can differ on
+   incomparable components with no connecting edges; such
+   changes cannot influence any dependency path and hence
+   preserve the function.
+5. **Empty-slot referee.** Different index bounds n and m and
+   unused positions cause no difficulty: the theorem matches
+   actual vertex fibres, not the set of numerical labels.
+6. **No implicit minimality referee.** The function-equivalence
+   theorem does not show a reordered presentation still uses
+   minimal strong increments. That requires the separate
+   no-cross adjacent-swap theorem.
+7. **No global order-alignment claim.** The finite lemma does
+   not yet construct a sequence of permitted swaps between
+   two arbitrary witnessing chronological orders. This is
+   the next distinct finite target.
+
+These are independently structured mathematical adversarial
+checks by the assistant, not independent external human referees.
+The finite exhaustive regression is an additional, separate check.

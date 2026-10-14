@@ -579,3 +579,6 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.adjacent_orientation_of_equal_canonicalValues
 
 #print axioms BigHrushovski.GraphOn.independent_minimal_components_commute
+
+#print axioms BigHrushovski.FiniteC0.canonicalAncestor_transfer
+#print axioms BigHrushovski.FiniteC0.canonicalValue_eq_of_component_partition_and_edge_orientation
