@@ -131,6 +131,10 @@ def audit_span(p,l,r):
                             assert (idxL[u]==idxL[v])==(
                                 idxR[u]==idxR[v]), (
                                     "common component mismatch",p,l,r)
+                            if u<v and (u,v) in el and idxL[u]!=idxL[v]:
+                                assert (idxL[u]<idxL[v])==(
+                                    idxR[u]<idxR[v]), (
+                                    "common edge orientation mismatch",p,l,r)
                         assert vL[u]&~base==0
                     required=vL+tuple(remap(vR[u],mapR)
                                       for u in range(p,nR))
