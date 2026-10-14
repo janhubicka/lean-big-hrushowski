@@ -70,6 +70,8 @@ jobs:
         run: python3 scripts/check_c0_prefix_persistence.py
       - name: Check full canonical C0 unary value restriction
         run: python3 scripts/check_c0_canonical_restriction.py
+      - name: Check intrinsic C0 component partition from unary values
+        run: python3 scripts/check_c0_intrinsic_components.py
       - name: Check canonical finite C0 hereditary minimal presentations
         run: python3 scripts/check_c0_canonical_heredity.py
       - name: Check canonical finite C0 component-index values
