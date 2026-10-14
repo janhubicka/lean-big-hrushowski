@@ -3011,14 +3011,16 @@ Adversarial mathematical checks:
    extension property is constructed by these finite statements.
 
 Independent executable regression:
-scripts/check_c0_common_base.py exhaustively enumerates small
-canonical minimal strong presentations on two graphs over a common
-closed functional P, tests intrinsic component equivalence of
-shared vertices, and searches for a canonical presentation of the
-free graph amalgam preserving *both* complete unary functions.
-The tested configurations have total order at most five and
-include multi-vertex minimal blocks. This is a bounded diagnostic
-for the future two-sided theorem, not a Lean proof of it.
+scripts/check_c0_explicit_amalgam.py now subsumes the earlier
+common-base search. It enumerates the same eight small families of
+canonical minimal-strong presentations with a shared unary-closed P,
+checks the intrinsic component partition, and **constructs** the
+left-order-fixed amalgam enumeration, checking both complete unary
+functions and every minimal strong step. It includes non-singleton
+components and an additional seven-vertex stress case. This is
+bounded counterexample evidence, not a Lean proof of general
+two-sided functional amalgamation. The weaker duplicated
+check_c0_common_base.py script was retired on 15 October 2026.
 
 Exact Lean build, standard-axiom audit and placeholder scan are
 required before these finite endpoints receive GREEN markers.
