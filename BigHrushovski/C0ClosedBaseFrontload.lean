@@ -206,6 +206,7 @@ theorem oldStage_frontload_first
   by_cases hv : v ∈ s
   · simp [frontloadIndex_inside κ s v hv, hv]
   · simp [frontloadIndex_outside κ s v hv, hv]
+    omega
 
 /-- The first stage after the frontloaded part is exactly S. -/
 theorem oldStage_frontload_boundary
@@ -229,7 +230,6 @@ theorem oldStage_frontload_after
     have hBound := (κ v).isLt
     omega
   · simp [frontloadIndex_outside κ s v hv, hv]
-    omega
 
 
 /-- Moving a finite unary-closed component ideal to the beginning
