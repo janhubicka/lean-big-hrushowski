@@ -117,8 +117,8 @@ theorem hasFiniteFunctionalPresentation_closed_restrict
       restrictedValues F s u = canonicalValue H κs u := by
     intro u
     ext w
-    change (w.val ∈ F u.val) ↔
-      w ∈ canonicalValue H κs u
+    simp only [restrictedValues, Finset.mem_filter,
+      Finset.mem_univ, true_and]
     rw [hValues u.val]
     have hAnc := restrictAncestor_iff G κ s hClosedκ u (κ w.val)
     exact (mem_canonicalValue_iff G κ u.val w.val).trans
