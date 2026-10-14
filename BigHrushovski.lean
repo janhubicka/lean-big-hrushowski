@@ -144,3 +144,5 @@ import BigHrushovski.C0FiniteCanonicalHeredity
 import BigHrushovski.C0FiniteCanonicalRestriction
 
 import BigHrushovski.C0FinitePrefixPersistence
+
+import BigHrushovski.C0FiniteAppend
