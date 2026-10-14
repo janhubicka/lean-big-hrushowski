@@ -565,3 +565,8 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.exists_canonical_extension_over_embedding
 
 #print axioms BigHrushovski.FiniteSpan.exists_canonical_functional_strong_amalgam
+
+#print axioms BigHrushovski.FiniteC0.mem_canonicalValue_self
+#print axioms BigHrushovski.FiniteC0.canonicalValue_eq_iff_index_eq
+#print axioms BigHrushovski.FiniteC0.component_eq_unary_value_class
+#print axioms BigHrushovski.FiniteC0.same_components_of_equal_canonicalValues

@@ -2889,3 +2889,62 @@ The exact theorem is certified on the PR branch, and may be
 marked GREEN after the branch is merged and the manuscript's
 validation pin is updated. Proposition C0-free-generic remains
 PARTIAL.
+
+
+## Intrinsic finite C0 closure-component partition (14 October 2026; CI pending)
+
+The chronological enumeration of finite minimal strong blocks is a
+witness and is forgotten from the functional structure. To amalgamate
+two already named functional structures over a common closed
+substructure, their shared components must be identifiable without
+assuming their witnessing linear orders agree.
+
+C0IntrinsicComponents.lean shows that the complete set-valued unary
+function determines the component partition. For vertices u,v in
+any finite indexed graph presentation κ, even without two-sparsity:
+
+  canonicalValue(u) = canonicalValue(v)  iff  κ(u) = κ(v).
+
+The easy direction holds because the canonical unary value is defined
+by the component index of its root. For the converse, each vertex is
+in its own value. If the two values agree, u is backward reachable
+from κ(v), and v backward reachable from κ(u). As every dependency
+strictly decreases the index, these two paths force equal indices.
+The complete fibre of κ(u) is therefore exactly the set of vertices
+having the same full unary value as u.
+
+For any two canonical presentations on the same vertex graph, possibly
+with different numbers of chronological component slots, equality of
+their *named complete unary functions* implies equality of their
+component partitions, though not equality of their component orders.
+This proves that the partition is intrinsic to the functional
+structure rather than a feature of the chosen witness enumeration.
+
+Adversarial perspectives:
+* **Mutual reachability:** one-way membership v∈C(u) does not
+  imply the same component. Equality of whole values gives
+  reachability in both directions, and strict descent forces
+  the same index.
+* **Full values:** replacing C(u) with the set of immediate
+  graph neighbours does not recover the component partition.
+  The proof uses whole backward-reachable *vertex fibres*.
+* **Order independence:** the argument makes no assertion
+  that the chronological orders in two factors agree.
+  The same function may arise from different orders of
+  independent components.
+* **Empty indices:** unused positions do not create
+  spurious components. The component equivalence is
+  defined by equal fibres, not by a surjective κ.
+* **No ambient predimension:** the reconstruction theorem
+  does not require sparsity or minimality, only strict
+  backward orientation.
+* **Common-base scope:** this settles identification of
+  common components of two functional expansions, not yet
+  the order-interleaving needed to amalgamate them while
+  preserving both sets of unary values.
+
+An independent exhaustive checker covers all labelled graphs
+on up to four vertices and all component-index assignments with
+up to four positions, comparing every pair of vertices and grouping
+alternative presentations that define the same entire unary function.
+Do not promote exact markers before successful integrated Lean CI.

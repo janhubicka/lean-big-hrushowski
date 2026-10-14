@@ -2862,3 +2862,44 @@ These are separately structured adversarial mathematical
 audits carried out in this review, not external human
 referee certifications. The kernel audit and independent
 finite-model regressions are distinct checks.
+
+
+## 14 October 2026 — adversarial audit of intrinsic finite C0 components
+
+**Referee 1: equality rather than intersection.** Two vertices
+may have overlapping closures, or one closure may contain
+the other, without belonging to the same component. The
+criterion requires equality of full set-valued unary values.
+
+**Referee 2: two decreasing paths.** When values agree, the
+closure of u contains v and the closure of v contains u.
+Induction on backward paths gives κ(v)≤κ(u) and
+κ(u)≤κ(v). Thus indices agree. Using only one inequality
+would fail.
+
+**Referee 3: whole fibres.** The component of u is exactly
+its equality class for the unary function. The theorem
+does not choose a distinguished generator in a
+multi-vertex component.
+
+**Referee 4: unused slots.** The source finite indexing
+may include empty positions; the recovered equivalence
+relation ignores those without making arbitrary
+chronology choices.
+
+**Referee 5: factor compatibility.** Two finite presentations
+whose vertex-valued unary functions agree necessarily
+induce the same component partition, even if their
+component orderings differ. The remaining two-sided
+free-amalgamation step must still select a compatible
+order of those common components.
+
+**Referee 6: no infinite overclaim.** This is a finite
+intrinsic presentation lemma and does not establish
+the countable functional Fraïssé extension property
+or its graph-reduct identification.
+
+The six checks are distinct adversarial mathematical
+perspectives performed within the review and supported
+by independent finite-model regressions, not external
+human referee certifications.
