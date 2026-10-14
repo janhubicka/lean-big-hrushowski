@@ -1,5 +1,4 @@
 import BigHrushovski.C0CommonBaseComponents
-import BigHrushovski.C0IndependentComponentSwap
 
 /-!
 # Canonical C0 unary values depend only on the component partition and edge orientation
@@ -17,9 +16,9 @@ The proof transfers each complete backward dependency path by
 replacing the edge witnesses of its successive components. This
 avoids any choice of distinguished representative for a component.
 
-This is the unary-function half of the adjacent-swap argument.
-Minimality of the swapped graph steps is separately certified
-by GraphOn.independent_minimal_components_commute.
+This is the general unary-function invariance lemma used in the
+closed-base frontloading construction. It needs neither an
+adjacent-swap argument nor any minimality hypothesis.
 -/
 
 namespace BigHrushovski
