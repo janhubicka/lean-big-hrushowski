@@ -164,3 +164,5 @@ import BigHrushovski.C0IndependentComponentSwap
 import BigHrushovski.C0OrientationInvariantValues
 
 import BigHrushovski.C0ClosedBaseFrontload
+
+import BigHrushovski.CFStrictLocal

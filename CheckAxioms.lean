@@ -592,3 +592,6 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.oldStage_frontload_after
 
 #print axioms BigHrushovski.FiniteC0.frontloadIndex_minimal_steps
+
+#print axioms BigHrushovski.GraphOn.dClosed_local_of_noCross
+#print axioms BigHrushovski.GraphOn.dClosed_enlarged_of_noCross
