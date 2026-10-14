@@ -511,3 +511,7 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.closedSubset_strong_step
 #print axioms BigHrushovski.GraphOn.closedSubset_strong_of_sequence
 #print axioms BigHrushovski.GraphOn.closedSubset_strong_from_empty
+
+#print axioms BigHrushovski.Predimension.exists_minimalStrongStep_of_strong
+#print axioms BigHrushovski.Predimension.finite_minimal_decomposition_of_strong_absolute
+#print axioms BigHrushovski.FiniteSpan.exists_strong_amalgam_with_minimal_steps

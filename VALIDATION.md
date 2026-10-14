@@ -2238,3 +2238,62 @@ finite functional extensions; and apply the abstract strong-generic
 uniqueness theorem to the resulting graph reduct. This is a
 clearer interface than forcing the given M0 to answer two
 different schedules simultaneously.
+
+
+## Absolute finite minimal-step factorisation and arbitrary strong graph spans (14 October 2026; CI pending)
+
+The manuscript's reduct-identification proof uses A≤C and A≤B,
+where A is a strong graph base but need not be functionally closed.
+The graph amalgam D=C⊕_A B is two-sparse, with C≤D and B≤D.
+To extend the functional structure on C, it must be possible to
+factor C≤D into *minimal* strong steps even before any countable
+ambient generic or globally strong exhaustion is available.
+
+The earlier finite decomposition theorem was conditional on a
+StrongExhaustion. The new theorem
+Predimension.finite_minimal_decomposition_of_strong_absolute
+removes this unnecessary hypothesis. From any finite A≤D,
+select a cardinality-minimal C with A⊊C≤D. The choice exists
+because D itself is eligible. The inclusion A≤C is strong by
+restriction. If A⊊Z⊆C is strong in C, then Z≤D by transitivity
+and contradicts the minimum-cardinality choice unless Z=C.
+Thus A<C is minimal. Induction on |D\C| terminates.
+
+FiniteSpan.exists_strong_amalgam_with_minimal_steps now combines
+the already certified arbitrary-embedded-base strong amalgam
+with this absolute decomposition. Given two finite two-sparse
+graphs C,B with agreeing induced embeddings of a common strong
+base A, it produces a tagged finite D and induced strong factor
+embeddings, agreeing exactly on A, plus a finite chain of minimal
+strong steps from the image of C to all of D.
+
+Adversarial review panel (independent mathematical perspectives,
+not external human or independently spawned agents):
+* **Globality referee.** The theorem must not assume D is
+  globally strong in a larger graph. The independent finite
+  regression includes a three-leaf star: the induced graph
+  on its three leaves is two-sparse and ∅ is strong in it,
+  but that three-leaf set is NOT strong in the full star.
+* **Minimisation referee.** Choose C from *all strong
+  intermediate supersets of A*, not arbitrary intermediate
+  sets. Cardinal minimum yields inclusion-minimality only
+  because a strong substructure Z≤C is also strong in D.
+* **Termination referee.** Every selected step is proper,
+  so the finite difference D\C strictly shrinks. A chain
+  of merely non-strict strong steps would not suffice.
+* **Amalgamation referee.** The arbitrary base maps must
+  be injective induced embeddings, and the two factor
+  graphs must agree on both edges and nonedges of A;
+  the tagged carrier identifies no points outside A.
+* **Functional-age referee.** The new result constructs
+  a finite *graph* and a minimal-step chain. It does not
+  yet define the complete f_Cl values on the appended
+  components or prove that the finite functional age
+  represents this graph extension. The reduct-identification
+  proposition remains partially validated.
+
+The new finite checker scripts/check_c0_absolute_factorization.py
+tests all strong pairs in labelled graphs on at most five vertices,
+including pairs whose upper endpoint is not globally strong.
+Lean CI, exact axiom audit and placeholder scan must succeed
+before manuscript green markers are promoted.
