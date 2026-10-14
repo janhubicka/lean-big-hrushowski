@@ -156,3 +156,5 @@ import BigHrushovski.C0FiniteEquivTransport
 import BigHrushovski.C0FiniteStrongSpanFunctional
 
 import BigHrushovski.C0IntrinsicComponents
+
+import BigHrushovski.C0CommonBaseComponents
