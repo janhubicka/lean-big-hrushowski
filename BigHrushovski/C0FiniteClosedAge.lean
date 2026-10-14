@@ -28,7 +28,7 @@ variable {V : Type*} [DecidableEq V] (G : GraphOn V)
 entirely. If it takes the block, it must contain every old neighbour
 of that block (the no-cross certificate). Every old-to-new step is
 also strong in the graph predimension. -/
-def IsClosedBlockSequence (s a : Finset V) :
+def IsClosedBlockSequence (G : GraphOn V) (s a : Finset V) :
     List (Finset V) → Prop
   | [] => True
   | B :: rest =>
