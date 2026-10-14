@@ -595,3 +595,7 @@ import BigHrushovski
 
 #print axioms BigHrushovski.GraphOn.dClosed_local_of_noCross
 #print axioms BigHrushovski.GraphOn.dClosed_enlarged_of_noCross
+
+#print axioms BigHrushovski.GraphOn.localFreeStrong_iff
+#print axioms BigHrushovski.GraphOn.localFreeDClosed_iff
+#print axioms BigHrushovski.GraphOn.localFreeTransfer

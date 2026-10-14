@@ -27,13 +27,16 @@ the Hrushovski manuscript merely because these theorems are available.
 
 ## Mathematical integration points
 
-1. **Finite strong Fraïssé construction (current priority).**
-   Neither external Ramsey library replaces the finite graph
-   predimension, amalgamation, coherent countable union, and fair
-   strong-extension property. Use
-   `FiniteCatalogue.exists_finite_strong_response` together with
-   `FiniteSpan.extendInitialEquiv` and the old-stage graph transport;
-   then prove an unbounded increasing chain and its coherent union.
+1. **Strong generic graph (certified).**
+   The finite predimension, tagged strong amalgam, growing countable
+   strong generic graph, its extension property, and strong
+   homogeneity are formalized in this repository. These do not
+   depend on the abstract Milliken or Ellentuck libraries.
+   The new LocalFreeTransfer module unifies the finite no-cross
+   inequalities for the C0 and CF parts.
+   The next *functional* step remains the exact two-sided unary
+   amalgamation and countable reduct identification, not a new
+   construction of the already certified graph generic.
 2. **Closure-component enumeration and big Ramsey upper bound.**
    Once the unary closure presentation and its tree of types are
    formalized, identify the actual finite approximation maps and

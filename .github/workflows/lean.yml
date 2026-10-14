@@ -76,8 +76,6 @@ jobs:
         run: python3 scripts/check_c0_independent_swap.py
       - name: Verify left-order-fixed C0 two-sided functional amalgams
         run: python3 scripts/check_c0_explicit_amalgam.py
-      - name: Audit C0 shared closed-base components and bounded amalgams
-        run: python3 scripts/check_c0_common_base.py
       - name: Check intrinsic C0 component partition from unary values
         run: python3 scripts/check_c0_intrinsic_components.py
       - name: Check canonical finite C0 hereditary minimal presentations
@@ -127,7 +125,7 @@ jobs:
         run: python3 scripts/check_c0_no_cross.py
       - name: Check C0 local minimality under no-cross joins
         run: python3 scripts/check_c0_local_minimal.py
-      - name: Check strict C_F d-closure transfer for all small no-cross joins
+      - name: Audit strong, minimal-strong and strict d-closed no-cross transfers
         run: python3 scripts/check_cf_strict_local.py
       - name: Check nonempty C0 trace offsets and boundary joins
         run: python3 scripts/check_c0_trace_offsets.py

@@ -21,9 +21,9 @@ intercomponent graph edge are unchanged, so the certified
 orientation-invariance theorem preserves complete unary
 closures, not merely immediate predecessors.
 
-This module proves the chronological and unary-value
-identities. Preservation of minimal strong steps in the
-reordered presentation is the next separate lemma.
+This module proves the chronological and exact unary-value
+identities as well as preservation of every minimal strong step
+in the reordered presentation.
 -/
 
 namespace BigHrushovski

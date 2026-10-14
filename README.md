@@ -92,6 +92,25 @@ Ellentuck results. The abstract Milliken and Todorčević libraries
 can be reused once the appropriate concrete coding and axioms
 are formalized.
 
+## Shared C0 / CF finite predimension lemma
+
+The [local free-extension transfer module](docs/LOCAL_FREE_TRANSFER.md)
+collects the same no-cross calculation used in the two enumeration
+arguments. Under an explicit closed-support boundary for a fresh block,
+it identifies weak strongness, strict d-closedness, and minimal-strong
+steps before and after freely adjoining a larger old graph.
+The strict d-closed endpoint lemmas were certified in
+[PR #121](https://github.com/janhubicka/lean-big-hrushowski/pull/121);
+the common interface and proof cleanup are in
+[PR #122](https://github.com/janhubicka/lean-big-hrushowski/pull/122).
+
+The **minimal d-closed step equivalence** is proved in the manuscript
+from the intermediate-set predimension identity, but is not yet an
+exact Lean theorem. More importantly, the common lemma does not imply
+simultaneous preservation of both complete C0 unary functions, the
+countable functional reduct theorem, or any C_F level/monoid theorem.
+Those remain separate tasks.
+
 ## Reusable libraries
 
 See [FORMALIZATION_DEPENDENCIES.md](FORMALIZATION_DEPENDENCIES.md)

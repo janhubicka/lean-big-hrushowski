@@ -17,8 +17,9 @@ two-sided functional free amalgamation are:
    and finite index types differ.
 
 These statements avoid choosing a common chronological ordering.
-Aligning two resulting orders by swaps of incomparable components
-remains a separate next step.
+There is no need to align the witnessing orders. A closed common
+base can be frontloaded in the second factor while the first
+factor's component order is kept fixed.
 -/
 
 namespace BigHrushovski
