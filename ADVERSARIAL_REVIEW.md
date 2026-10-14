@@ -2727,3 +2727,40 @@ functional graph extension.
 All seven are separately structured adversarial mathematical
 checks within this review, supplemented by an independent
 finite-model checker; they are not external human referees.
+
+## 14 October 2026 — adversarial panel for explicit fresh minimal blocks
+
+**Referee A: disjointness.** Each stage C of the strong chain is
+a *full old-plus-new set*. Only the difference C\A is new.
+Listing C itself as a component would reuse every old vertex,
+contradicting the component-partition interpretation.
+
+**Referee B: exact endpoint.** The fold of these finite differences
+must reconstruct the target B as an equality of Finset values.
+An unspecified inclusion or an isomorphism type does not suffice
+for literal component indices and old-stage preservation.
+
+**Referee C: strictness.** Minimal strong steps are proper by
+definition. Hence each fresh difference is nonempty; the strong
+chain's reflexive base case supplies the empty list, not an
+artificial new component.
+
+**Referee D: reversible interface.** Besides extracting a block
+list from an inductive minimal chain, the reverse lemma shows
+that a disjoint minimal block run reconstructs a valid
+MinimalStrongChain. This prevents the new list representation
+from silently weakening the strong-step hypotheses.
+
+**Referee E: quantitative termination.** Each listed step consumes
+at least one previously unused vertex. Therefore a finite run has
+at most |B\A| nontrivial blocks; the finite-model checker checks
+strict progress of all intermediate stages.
+
+**Referee F: use in functional lifting.** The graph-stage list
+does not itself define any f_Cl values. It is the exact finite
+input for the separate final-index append theorem. The countable
+functional Fraïssé argument remains partial until their
+composition is formalized.
+
+These are distinct adversarial mathematical checks carried out
+in the review, not a panel of external human referees.
