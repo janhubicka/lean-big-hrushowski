@@ -2429,3 +2429,34 @@ The separate strong-span regression checked 1,846 amalgamation diagrams,
 21,103 unary-closed selected subsets and preservation of 4,441 old
 unary-function values. These finite certificates do not replace
 the pending functional Fraïssé reduct-identification theorem.
+
+
+## 14 October 2026 — independent adversarial passes: absolute strong factorisation
+
+1. **Hypothesis minimisation.** A finite strong pair A≤D
+   suffices; no strong exhaustion or global strongness of
+   D is needed. The proof selects an intermediate strong
+   C by minimum cardinality among finitely many candidates.
+2. **Strongness direction.** From A≤D and A⊆C⊆D,
+   strong restriction gives A≤C. If Z≤C and C≤D,
+   strong transitivity gives Z≤D. Both directions are
+   required; reversing either invalidates the argument.
+3. **Strict progress.** C properly contains A. Selecting
+   any v∈C\A witnesses strict decrease of the finite
+   complement D\C, which supplies the induction measure.
+4. **Counterexample to unnecessary globality.** In the
+   four-vertex star with three leaves and one centre,
+   the three-leaf induced subgraph is two-sparse and
+   ∅ is strong inside it, but its predimension drops
+   on adding the centre. Requiring the upper endpoint
+   to be ambient-globally strong would exclude a
+   legitimate finite minimal-step decomposition.
+5. **Free-amalgam scope.** The resulting tagged free
+   graph preserves induced factor embeddings, their
+   exact common base, and strongness. None of these
+   facts by themselves provide a functional Fraïssé
+   extension or identify an enumeration with M0.
+
+This is an internal adversarial audit with executable
+finite-model checking, not a claim of external human
+referee certification.
