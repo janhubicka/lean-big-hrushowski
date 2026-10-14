@@ -64,7 +64,8 @@ theorem oldStage_append_image
     · exact Finset.mem_image.mpr
         ⟨⟨v,ha⟩,
           (mem_oldStage_iff κ k ⟨v,ha⟩).mpr (by
-            rw [← appendIndex_old a κ ⟨v,ha⟩]
+            have hIdx := appendIndex_old a κ ⟨v,ha⟩
+            rw [hIdx] at hlt
             exact hlt), rfl⟩
     · have hlast : appendIndex a κ v = Fin.last n :=
         appendIndex_fresh a κ v ha
@@ -170,7 +171,7 @@ theorem canonicalValue_castSucc
   · intro h
     obtain ⟨j0,hEq,hOld⟩ :=
       ancestor_castSucc_backward H κ (κ u) h
-    have hvEq : κ v = j0 := Fin.castSucc_injective hEq.symm
+    have hvEq : κ v = j0 := Fin.castSucc_injective hEq
     rw [hvEq]
     exact hOld
   · intro h
@@ -190,8 +191,9 @@ theorem canonicalValue_append_old
   classical
   have hClosed : G.IsClosedUnderValues
       (canonicalValue G (appendIndex a κ)) a := by
-    rw [← oldStage_append_old a κ]
-    exact canonicalValue_oldStage_closed G (appendIndex a κ) n
+    have hPrefix := canonicalValue_oldStage_closed G (appendIndex a κ) n
+    rw [oldStage_append_old a κ] at hPrefix
+    exact hPrefix
   have hRestr := canonicalValue_restrict_image G
     (appendIndex a κ) a hClosed u
   have hIdx : restrictIndex (appendIndex a κ) a =
