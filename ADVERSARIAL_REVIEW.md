@@ -2634,3 +2634,48 @@ Seven distinct mathematical failure modes were examined.
 
 These are separate adversarial mathematical arguments
 performed within the review, not external human referees.
+
+
+## 14 October 2026 — adversarial panel: no changes to old unary values
+
+**Referee A (dependency direction).** Every direct dependency
+strictly decreases the component index. The proof inducts
+over whole dependency paths and excludes any increase of
+the starting index, hence any path from an old block to
+a future block. Reversing this orientation is a concrete
+failure mode.
+
+**Referee B (graph edges across the boundary).** A newly
+appended block may have graph edges to the old prefix.
+Those edges contribute dependencies starting in the *new*
+block and pointing backward; they do not create new
+backward paths from old vertices. The theorem does not
+forbid these edges.
+
+**Referee C (induced old part).** The old prefix is taken
+as an induced subgraph. Introducing an edge between two
+old vertices could create a new old-to-old dependency
+and enlarge unary values; such an operation is not
+covered by the theorem.
+
+**Referee D (complete closure).** The value consists of
+full vertex components reached along arbitrary-length
+dependency paths. The test compares entire bitsets of
+vertices, rather than only immediate neighbours.
+
+**Referee E (unnecessary hypotheses).** The persistence
+statement needs no sparsity, strongness, or minimality
+assumption. These hypotheses are needed elsewhere to
+form an admissible finite C0 extension, not to show
+the function of old vertices stays fixed after one
+has been formed.
+
+**Referee F (countable interface).** These finite
+results justify a key invariant when new minimal
+blocks are appended, but do not replace construction
+of the finite functional extension diagrams or the
+countable Fraïssé extension-property proof.
+
+The six perspectives were independently structured
+adversarial checks within this review; no external
+human referees were recruited.
