@@ -61,7 +61,8 @@ theorem exists_minimalStrongStep_of_strong
     · exact Or.inl hEqA
     · right
       have hAZ : a ⊂ z :=
-        Finset.ssubset_iff_subset_ne.mpr ⟨haz, hEqA.symm⟩
+        Finset.ssubset_iff_subset_ne.mpr
+          ⟨haz, by intro heq; exact hEqA heq.symm⟩
       have hzStrongB : d.IsStrong z b :=
         d.strong_trans hzStrong hcStrong
       have hzCand : z ∈ candidates := by
