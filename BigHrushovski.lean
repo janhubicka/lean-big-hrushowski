@@ -158,3 +158,5 @@ import BigHrushovski.C0FiniteStrongSpanFunctional
 import BigHrushovski.C0IntrinsicComponents
 
 import BigHrushovski.C0CommonBaseComponents
+
+import BigHrushovski.C0IndependentComponentSwap
