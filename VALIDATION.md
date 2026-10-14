@@ -2174,3 +2174,63 @@ The Lean proof itself compiled and passed the 418-declaration axiom
 audit. The revised test recognises empty parameter classes and
 also enumerates |R|=3, including genuine nonsingleton minimal
 components. CI must be rerun; pending results are not certificates.
+
+
+## Finite graph-reduct lifting through unary closure (14 October 2026; CI pending)
+
+A shorter route to Proposition C0-free-generic constructs the Fraïssé
+limit O of the finite functional class first and identifies its graph
+reduct N with the strong graph generic M0. This avoids a second
+simultaneous fair scheduling argument inside the *given* graph M0.
+
+The essential finite argument is:
+
+1. Every finite unary-closed substructure C of a finite functional
+   member is graph-strong. For any finite ambient graph test X in N,
+   first enlarge X to a finite unary-closed member D; strongness
+   C≤D then implies δ(C)≤δ(X). Thus closed finite substructures
+   of the functional limit are globally strong in its graph reduct.
+2. For a finite strong graph embedding A≤N and a finite strong
+   extension A≤B, take the finite unary closure C=〈A〉_f.
+   Since A≤N, it is strong in C. The graph free amalgam
+   D=C⊕_A B is two-sparse and both C and B are strong in D.
+3. Decompose C≤D into finitely many minimal strong extensions.
+   Append their blocks after the old functional components of C.
+   The old unary values remain unchanged because all dependencies
+   of new blocks point backwards; the result is a finite functional
+   extension of C in the age.
+4. The functional Fraïssé extension property realises this expansion
+   over C. Restricting to B produces an induced strong graph
+   copy over A. The graph reduct therefore has the strong
+   extension property. The already Lean-certified strong-Fraïssé
+   uniqueness theorem identifies N with M0.
+5. An increasing exhaustion by finite unary-closed sets in O can
+   be refined to minimal strong component steps, yielding an
+   enumeration of M0 by transport of the graph isomorphism.
+
+New Lean module C0FiniteClosedAge.lean proves the reusable finite
+step and induction: any chosen finite subset S whose membership
+is a union of complete blocks and which contains each included
+block's old neighbours is strong in the final graph, provided all
+block extensions are strong. The implication is stated for
+arbitrary finite graphs and finite block sequences, not only
+the previously fixed enumeration of M0.
+
+An independent finite-model regression
+scripts/check_c0_reduct_lifting.py checks every small strongly
+amalgamated graph span A≤C, A≤B with up to five total vertices.
+It constructs minimal strong decompositions of ∅≤C≤D, checks
+strongness of all induced unary-closed subsets of D, and verifies
+all old unary values survive appended components. The diagnostic
+enumerated 1,846 admissible spans in the independent model audit.
+The exact CI rerun must pass before Lean verification markers are
+promoted.
+
+Remaining Lean obligations: construct and formalise the finite
+functional class and its Fraïssé limit; derive the precise
+IsClosedBlockSequence certificates from the actual finite unary
+functions; certify arbitrary strong graph extensions lift to
+finite functional extensions; and apply the abstract strong-generic
+uniqueness theorem to the resulting graph reduct. This is a
+clearer interface than forcing the given M0 to answer two
+different schedules simultaneously.
