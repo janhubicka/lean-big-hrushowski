@@ -70,6 +70,8 @@ jobs:
         run: python3 scripts/check_c0_prefix_persistence.py
       - name: Check full canonical C0 unary value restriction
         run: python3 scripts/check_c0_canonical_restriction.py
+      - name: Check C0 full unary invariance under compatible component orders
+        run: python3 scripts/check_c0_orientation_invariant_values.py
       - name: Check exchange of independent finite minimal C0 components
         run: python3 scripts/check_c0_independent_swap.py
       - name: Audit C0 shared closed-base components and bounded amalgams
