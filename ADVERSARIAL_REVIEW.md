@@ -2950,3 +2950,16 @@ and a countable construction.
 These are six independently structured adversarial
 mathematical analyses carried out within this review.
 No external human referee certification is claimed.
+
+
+**Seventh adversarial check — edge orientation.**
+If u and v are joined by a graph edge but lie in distinct
+components, then which component is earlier is intrinsic:
+u lies in fCl(v) exactly when u's component is earlier
+than v's. If two canonical presentations define the
+same full unary functions, they cannot reverse an edge
+between distinct components. The proof requires both
+adjacency and distinctness of the component indices;
+neither can be omitted. The remaining freedom is to
+commute components not forced by the dependency order.
+That adjacent-swap argument is not yet Lean-verified.
