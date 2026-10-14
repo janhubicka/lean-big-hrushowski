@@ -563,3 +563,5 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.minimalSteps_relabel
 #print axioms BigHrushovski.FiniteC0.canonicalPresentation_on_image
 #print axioms BigHrushovski.FiniteC0.exists_canonical_extension_over_embedding
+
+#print axioms BigHrushovski.FiniteSpan.exists_canonical_functional_strong_amalgam
