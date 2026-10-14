@@ -2679,3 +2679,51 @@ countable Fraïssé extension-property proof.
 The six perspectives were independently structured
 adversarial checks within this review; no external
 human referees were recruited.
+
+
+## 14 October 2026 — seven adversarial checks for canonical one-block append
+
+**Predimension referee.** The graph on a is induced, and
+minimalStrongStep_image_iff transfers every old finite step
+to its exact image in V. Merely knowing each old step
+is relatively strong is not enough to certify minimal
+components. The new final step has hypothesis a<V.
+
+**Index referee.** The original values are cast to Fin(n+1).
+Every fresh vertex receives exactly n. Thus the first n
+stage cuts are preserved literally and the n-th cut is
+the complete old set a; no vertex is duplicated or
+discarded. The proof permits n=0 only when a is empty.
+
+**Dependency referee.** A direct back edge strictly decreases
+the component index. Induction on the full path shows
+that a path originating in an old component never
+visits the fresh component n. The proof reconstructs
+each intermediate old component index from the larger
+finite type before lifting its dependency.
+
+**Inducedness counterexample.** If the old graph has two
+components and no edge, but the enlarged graph adds an
+edge between them, the later old vertex acquires the
+earlier component in its closure. Such an extension is
+not induced on the old part and cannot preserve f_Cl.
+
+**Chronology counterexample.** If a new vertex adjacent
+to an old vertex is assigned an earlier index, the
+old vertex acquires the new vertex as a backward ancestor.
+Placing all fresh vertices at the last index is essential.
+
+**Whole-function referee.** Equality of the index reachability
+sets alone does not suffice without unfolding complete
+vertex component fibres. The final theorem equates literal
+Finset-valued functions transported by the old inclusion.
+
+**Scope referee.** This is one finite functional presentation
+step. It has no implicit countable scheduling, no independent
+definition of a new strong amalgam, and no claim that the
+finite chain has already been iterated into a completed
+functional graph extension.
+
+All seven are separately structured adversarial mathematical
+checks within this review, supplemented by an independent
+finite-model checker; they are not external human referees.
