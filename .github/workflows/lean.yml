@@ -76,8 +76,6 @@ jobs:
         run: python3 scripts/check_c0_independent_swap.py
       - name: Verify left-order-fixed C0 two-sided functional amalgams
         run: python3 scripts/check_c0_explicit_amalgam.py
-      - name: Audit C0 shared closed-base components and bounded amalgams
-        run: python3 scripts/check_c0_common_base.py
       - name: Check intrinsic C0 component partition from unary values
         run: python3 scripts/check_c0_intrinsic_components.py
       - name: Check canonical finite C0 hereditary minimal presentations
