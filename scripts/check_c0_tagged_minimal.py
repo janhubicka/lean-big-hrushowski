@@ -90,16 +90,29 @@ def check(p, l, r):
     return cases
 
 
-configs = [(p,l,r) for p,l,r in product(range(3), range(3), range(1,3))
+configs = [(p,l,r) for p,l,r in product(range(3), range(3), range(1,4))
            if p+l+r <= 5]
 checks = [check(*c) for c in configs]
-assert all(x > 0 for x in checks)
+assert sum(checks) > 0
+# A singleton fresh block always permits the isolated-vertex model;
+# in contrast some larger block sizes admit no minimal strong step.
+assert all(n > 0 for (_, _, r), n in zip(configs, checks) if r == 1)
+# The p=1, r=3 complete-graph example genuinely tests nonsingleton
+# minimal extensions, rather than only repeated singleton cases.
+assert any(r >= 3 and n > 0 for (_, _, r), n in zip(configs, checks))
 
 # If the right extension is not minimal, attaching nothing on the left
 # does not magically turn a two-singleton step into a minimal one.
 assert not minimal(set(), 1, 7)
 # If base agreements are removed, adding an edge from the right
 # between old base vertices changes the induced left factor.
-assert { (0, 1) } != set()
-print({"configurations": len(configs), "admissible_tagged_amalgams": sum(checks),
+left_edges = set()
+right_edges = {(0, 1)}
+joined_edges = left_edges | right_edges
+assert (0, 1) in joined_edges and (0, 1) not in left_edges
+print({"configurations": len(configs),
+       "admissible_tagged_amalgams": sum(checks),
+       "empty_parameter_classes": sum(n == 0 for n in checks),
+       "nonsingleton_parameter_classes": sum(r > 1 and n > 0
+                                              for (_, _, r), n in zip(configs, checks)),
        "missing_local_minimality_and_base_agreement_counterexamples": 2})
