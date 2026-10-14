@@ -2164,3 +2164,13 @@ The independent finite checker scripts/check_c0_tagged_minimal.py
 enumerates small tagged amalgams and checks the complete
 sparsity and minimality conditions. Verification status remains
 ORANGE until successful integrated Lean CI and an axiom audit.
+
+
+Regression correction (14 October 2026): a failed auxiliary Python
+assertion had demanded at least one admissible minimal strong
+extension in every small choice of (|P|,|L|,|R|). This is not true:
+there is no two-vertex minimal strong extension over the empty base.
+The Lean proof itself compiled and passed the 418-declaration axiom
+audit. The revised test recognises empty parameter classes and
+also enumerates |R|=3, including genuine nonsingleton minimal
+components. CI must be rerun; pending results are not certificates.
