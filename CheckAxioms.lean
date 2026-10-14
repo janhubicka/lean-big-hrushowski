@@ -590,3 +590,5 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.oldStage_frontload_first
 #print axioms BigHrushovski.FiniteC0.oldStage_frontload_boundary
 #print axioms BigHrushovski.FiniteC0.oldStage_frontload_after
+
+#print axioms BigHrushovski.FiniteC0.frontloadIndex_minimal_steps
