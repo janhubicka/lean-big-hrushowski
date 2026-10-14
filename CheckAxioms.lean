@@ -592,3 +592,5 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.oldStage_frontload_after
 
 #print axioms BigHrushovski.FiniteC0.frontloadIndex_minimal_steps
+
+#print axioms BigHrushovski.FiniteC0.hasFiniteFunctionalPresentation_closed_restrict
