@@ -507,3 +507,7 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.leftDomain_union_tail_univ
 #print axioms BigHrushovski.TaggedAmalgam.tagged_freeGraph_minimal_left_extension
 #print axioms BigHrushovski.TaggedAmalgam.tagged_minimal_strong_free_amalgam
+
+#print axioms BigHrushovski.GraphOn.closedSubset_strong_step
+#print axioms BigHrushovski.GraphOn.closedSubset_strong_of_sequence
+#print axioms BigHrushovski.GraphOn.closedSubset_strong_from_empty
