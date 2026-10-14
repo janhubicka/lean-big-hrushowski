@@ -2764,3 +2764,47 @@ composition is formalized.
 
 These are distinct adversarial mathematical checks carried out
 in the review, not a panel of external human referees.
+
+
+## 14 October 2026 — eight adversarial checks on complete finite C0 lift
+
+**Referee 1: chronology.** Assign each new vertex the index of
+the *first* fresh block containing it, after the old index range.
+A later index could break the prescribed intermediate stage; an
+earlier index could change an old unary value.
+
+**Referee 2: disjointness.** The finite strong-chain witness alone
+does not specify literal block membership. The proof uses the
+certified fresh-block list with disjointness at each stage and
+exact fold endpoint. Otherwise the index is not a partition.
+
+**Referee 3: old stage images.** The old index is preserved
+exactly, not merely up to an arbitrary relabelling. Both the
+old-stage equality for k≤n and its boundary k=n are proved.
+
+**Referee 4: appended stage values.** At stage n+j precisely
+the first j blocks have entered. The prefix-index equivalence
+is checked also when the list is empty, ensuring no overflow
+from the sentinel index blocks.length.
+
+**Referee 5: relative strongness.** Each new step is minimal
+strong in the finite G; ambient global strongness is absent
+and unnecessary. Old steps use induced-image minimality.
+
+**Referee 6: transitive unary reachability.** Cast of all old
+component indices into Fin(n+m) preserves complete dependency
+paths and whole-component union values. Merely preserving
+immediate old neighbour sets would be insufficient.
+
+**Referee 7: graph edges across the boundary.** New vertices
+may be adjacent to old ones. The arrows point from the later
+new block to earlier components, so no old unary value gains
+new vertices; the theorem does not wrongly forbid these edges.
+
+**Referee 8: precise proof boundary.** This supplies the finite
+functional lift for an existing induced old subset. The remaining
+embedded-base change of coordinates and countable extension
+property are independent, unverified interfaces.
+
+These are independently structured mathematical adversarial
+arguments by the assistant, not external human referees.
