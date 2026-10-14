@@ -2296,3 +2296,39 @@ subsequently certified by full Lean CI run 38486803292:
 files checked for placeholders; 121,104 whole-block value comparisons.
 The scope limitations stated by the five adversarial perspectives
 remain in force despite these successful audits.
+
+
+## 14 October 2026 — adversarial review of the one-block response theorem
+
+**Graph referee.** Mere injective homomorphisms are insufficient:
+nonedges matter when comparing strong intermediate subgraphs.
+The new theorem requires an induced embedding and transfers
+minimality in *both* directions by an exact filtered preimage.
+
+**Predimension referee.** Under an induced isomorphism every
+finite induced edge count and predimension value is unchanged.
+An intermediate set in the image is not assumed to be a literal
+substructure of the old carrier: its filtered preimage is proved
+to have exactly that image before applying minimality.
+
+**Fraisse referee.** Realising an unlabelled type is not the
+extension property needed by the manuscript. The response uses
+the labelled strong-diagram theorem and certifies g(inl x)=x.val
+for every old vertex. It also verifies the finite response image
+is *globally strong* in M0.
+
+**Counterexample referee.** Dropping inducedness changes minimality:
+the complete graph K4 has a minimal strong step from a singleton
+old base to all four vertices, but the edgeless graph on the same
+set does not. Dropping injectivity can collapse a singleton
+extension entirely.
+
+**Functional genericity referee.** Although the response theorem
+produces a minimal new graph increment over a chosen strong
+prefix, it does not endow the existing fixed enumeration with
+new positions. The still-open countable fair scheduling theorem
+must build its own chain, and preservation of named unary values
+must be established at each step.
+
+These are independently structured adversarial tests by this
+assistant, not human or separately spawned external agents.
