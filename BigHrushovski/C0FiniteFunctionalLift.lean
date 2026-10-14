@@ -48,7 +48,7 @@ theorem mem_blockPrefix_iff (blocks : List (Finset V))
   induction blocks with
   | nil =>
       intro i hi
-      have hzero : i = 0 := by simpa only [List.length_nil] using hi
+      have hzero : i = 0 := by omega
       subst i
       simp [blockPrefix, blockIndex]
   | cons B rest ih =>
