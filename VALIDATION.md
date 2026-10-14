@@ -2176,7 +2176,7 @@ also enumerates |R|=3, including genuine nonsingleton minimal
 components. CI must be rerun; pending results are not certificates.
 
 
-## Finite graph-reduct lifting through unary closure (14 October 2026; CI pending)
+## Finite graph-reduct lifting through unary closure (14 October 2026; Lean-certified finite lemma, PR #104)
 
 A shorter route to Proposition C0-free-generic constructs the Fraïssé
 limit O of the finite functional class first and identifies its graph
@@ -2223,8 +2223,12 @@ It constructs minimal strong decompositions of ∅≤C≤D, checks
 strongness of all induced unary-closed subsets of D, and verifies
 all old unary values survive appended components. The diagnostic
 enumerated 1,846 admissible spans in the independent model audit.
-The exact CI rerun must pass before Lean verification markers are
-promoted.
+The complete CI audit passed at commit accffd9, run 38503592428:
+421 declarations, standard logical axioms only; 92 Lean files checked
+for placeholders. The independent regression passed 1,846 strong tagged
+spans, 21,103 closed-subset strongness checks and 4,441 old unary-value
+preservation checks. These certify the finite component-selection lemma
+and diagnostic tests, NOT construction of the functional Fraïssé limit.
 
 Remaining Lean obligations: construct and formalise the finite
 functional class and its Fraïssé limit; derive the precise
