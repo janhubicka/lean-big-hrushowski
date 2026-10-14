@@ -120,11 +120,10 @@ def audit_span(p,l,r):
                              for u,v in er}
             maskD=sum(1<<k for k,e in enumerate(
                 combinations(range(nD),2)) if e in joined)
-            # Construct the amalgam order explicitly: components of the
-            # closed base in LEFT order, then left-tail components in
-            # their original order, finally right-tail components in
-            # their original order. No matching of the two old base
-            # orders is required.
+            # Keep the ENTIRE left witnessing order unchanged and
+            # append only the fresh right-tail components. Even when
+            # closed P is interleaved with left-tail components, no
+            # common base ordering or reindexing of left is needed.
             possible={vv for _,vv in presentations(nD,maskD)}
             for idxL,vL in left:
                 for idxR,vR in right:
@@ -143,27 +142,21 @@ def audit_span(p,l,r):
                         assert vL[u]&~base==0
                     required=vL+tuple(remap(vR[u],mapR)
                                       for u in range(p,nR))
-                    base_parts=sorted({idxL[u] for u in range(p)})
-                    left_parts=sorted({idxL[u] for u in range(p,nL)})
                     right_parts=sorted({idxR[u] for u in range(p,nR)})
-                    bpos={k:i for i,k in enumerate(base_parts)}
-                    lpos={k:i+len(base_parts) for i,k in enumerate(left_parts)}
-                    rpos={k:i+len(base_parts)+len(left_parts)
-                          for i,k in enumerate(right_parts)}
-                    chosen=tuple((bpos[idxL[u]] if u<p else lpos[idxL[u]])
-                                 for u in range(nL))+tuple(
-                                 rpos[idxR[u]] for u in range(p,nR))
-                    mChosen=len(base_parts)+len(left_parts)+len(right_parts)
+                    mLeft=max(idxL,default=-1)+1
+                    rpos={k:mLeft+i for i,k in enumerate(right_parts)}
+                    chosen=idxL+tuple(rpos[idxR[u]] for u in range(p,nR))
+                    mChosen=mLeft+len(right_parts)
                     assert set(chosen)==set(range(mChosen))
                     stages=[sum(1<<v for v,j in enumerate(chosen) if j<k)
                             for k in range(mChosen+1)]
                     assert all(minimal(tuple(joined),a,b)
                                for a,b in zip(stages,stages[1:])), (
-                        "explicit P-first order breaks minimality",
+                        "left-fixed appended-tail order breaks minimality",
                         (p,l,r),el,er,idxL,idxR,chosen,stages)
                     actual=values(tuple(joined),chosen,mChosen)
                     assert actual==required, (
-                        "explicit P-first order changes named unary values",
+                        "left-fixed appended-tail order changes named unary values",
                         (p,l,r),el,er,idxL,idxR,vL,vR,chosen,actual,required)
                     assert required in possible, (
                         "two-sided functional amalgam counterexample",
@@ -179,4 +172,4 @@ print({"configurations":len(configs),
        "compatible_closed_functional_diagrams":sum(b for _,b in results),
        "intrinsic_common_partitions_verified":True,
        "two_sided_functional_amalgam_counterexamples":0,
-       "explicit_P_first_construction_verified":True})
+       "left_witness_unchanged_construction_verified":True})
