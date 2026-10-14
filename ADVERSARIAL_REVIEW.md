@@ -2963,3 +2963,44 @@ adjacency and distinctness of the component indices;
 neither can be omitted. The remaining freedom is to
 commute components not forced by the dependency order.
 That adjacent-swap argument is not yet Lean-verified.
+
+
+## 14 October 2026 — adversarial audit of independent C0 component swaps
+
+**Predimension referee.** The local no-cross lemma applied to
+the second component with B omitted proves A<A∪C.
+The converse no-cross lemma then enlarges the old base of
+the first component to A∪C, proving A∪C<A∪B∪C.
+Both rely on the *minimality* versions of the lemmas,
+not merely preservation of self-sufficiency.
+
+**Boundary referee.** A,B,C are pairwise disjoint. In
+particular the no-cross hypothesis is taken between B and C,
+not between an entire old stage and its own new component,
+where old-to-new edges are allowed.
+
+**Counterexample referee.** The K4 sequence
+∅<{0}<{0,1,2,3} is valid with B={0} and C={1,2,3}.
+Swapping would require ∅<{1,2,3}, which is not minimal.
+Thus one cannot commute graph-adjacent components.
+
+**Chronology referee.** The components are consecutive
+in the witnessing order. A nonadjacent swap that jumps
+over other components would require checking every
+intermediate dependency boundary.
+
+**Function referee.** When no graph edge joins B,C,
+swapping their chronological positions changes no
+direct back-edge between them. Full canonical unary-value
+invariance nevertheless requires a separate finite
+index-relabeling proof, because other components'
+closure values use transitive reachability.
+
+**Globality referee.** The proof assumes neither
+two-sparsity of an infinite ambient graph nor global
+strongness of the finite endpoint, and is therefore
+usable inside abstract finite free-amalgamation diagrams.
+
+The panel consists of separately structured
+adversarial mathematical checks within this review,
+not external human referee reports.
