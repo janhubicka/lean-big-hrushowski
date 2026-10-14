@@ -108,8 +108,8 @@ theorem backDependency_castSucc_iff
       backDependency H κ i j := by
   constructor
   · rintro ⟨hLt,u,v,hu,hv,hAdj⟩
-    have hu0 : κ u = i := Fin.castSucc_injective hu
-    have hv0 : κ v = j := Fin.castSucc_injective hv
+    have hu0 : κ u = i := Fin.ext (congrArg Fin.val hu)
+    have hv0 : κ v = j := Fin.ext (congrArg Fin.val hv)
     exact ⟨hLt,u,v,hu0,hv0,hAdj⟩
   · rintro ⟨hLt,u,v,hu,hv,hAdj⟩
     exact ⟨hLt,u,v,by simp [hu],by simp [hv],hAdj⟩
@@ -171,7 +171,7 @@ theorem canonicalValue_castSucc
   · intro h
     obtain ⟨j0,hEq,hOld⟩ :=
       ancestor_castSucc_backward H κ (κ u) h
-    have hvEq : κ v = j0 := Fin.castSucc_injective hEq
+    have hvEq : κ v = j0 := Fin.ext (congrArg Fin.val hEq)
     rw [hvEq]
     exact hOld
   · intro h
