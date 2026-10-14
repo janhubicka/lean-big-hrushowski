@@ -2479,3 +2479,84 @@ empty or minimal strong. For every canonical unary-closed
 subset it checks every retained cut is minimal and every
 omitted cut is equal. All changes require successful Lean
 CI and exact axiom/placeholder audits before promotion.
+
+
+## Exact inherited unary values in finite canonical C0 substructures (14 October 2026; CI pending)
+
+The remaining finite hereditary question was not the graph
+minimal-strong chain, which was certified in PR #108,
+but whether the *named unary function inherited* by a
+finite f_Cl-closed set is again the canonical complete
+backward-reachability function on its induced graph.
+
+C0FiniteCanonicalRestriction.lean supplies this exact
+finite function-transport theorem without reordering
+or renumbering the original component indices.
+
+Given G on finite V, κ:V→Fin n, and a subset s closed
+under the full canonical C0 unary value, put W={v∈V:v∈s},
+let H be the induced graph on W, and let κs=κ∘val.
+For each starting u∈W and component index j:
+
+  j is backward-reachable from κs(u) in H
+      iff j is backward-reachable from κ(u) in G.
+
+The forward implication is immediate from inducedness.
+For the converse, induct on an original dependency path.
+At a step i→j, the edge witnesses a∈B_i and b∈B_j
+both belong to f_Cl(u), because i and j are reached from
+the root. Since u∈s and s is closed, a,b∈s, so the same
+edge and directed dependency occur in the induced graph.
+This lifts the complete path, not merely a one-step edge.
+
+It follows that for every u∈W the image under the inclusion
+W→V of the canonical unary value in H is *exactly*
+the original f_Cl(u), not only contained in it.
+The proof separately identifies every restricted old-stage
+image as s∩A_k and transfers each nonempty minimal strong
+cut to the induced graph using the already certified
+minimalStrongStep_image_iff theorem.
+
+Crucially, the inherited κs can still have empty component
+positions. This does not harm the manuscript's definition,
+which requires every *nonempty* increment to be minimal strong.
+There is no need for a separate index-compression lemma.
+Combined with PRs #107 and #108, these statements establish
+the full finite functional hereditary calculation for a
+canonical presentation, with no reference to the countable M0.
+
+Adversarial mathematical checks:
+* **Path referee:** all witnesses for *every* original
+  dependency step must lie in s, not only the root
+  and final vertex. Full unary closedness guarantees it.
+* **Inducedness referee:** the graph on W is the induced
+  pullback, so no extra adjacency or nonadjacency is invented;
+  old dependency edges lift through the actual witnesses.
+* **Whole-component referee:** closure values consist of
+  complete component fibres; restricting to a subset that
+  takes only some vertices of a fibre would invalidate
+  equality of the inherited functions.
+* **Back-neighbour referee:** a selected full component
+  cannot have an old graph neighbour outside s, by
+  closure under the complete unary value.
+* **Chronology referee:** keep the old index set Fin n
+  and allow empty positions. A needless reindexing
+  would introduce additional proof obligations and
+  could obscure the induced-value identity.
+* **Minimality referee:** equality of unary values
+  does not alone imply a minimal graph-step presentation;
+  the separate canonical heredity theorem and induced
+  minimality transfer are both required.
+* **Scope referee:** this finishes the finite
+  hereditary calculation, not the general tagged
+  functional amalgamation or infinite reduct
+  extension property.
+
+The independent checker exhaustively enumerates all
+labelled graphs and minimal/empty chronological component
+presentations through four vertices. For every
+unary-closed subset it reconstructs the complete unary
+function in the induced graph and checks exact equality
+of each inherited value, plus minimality of every
+retained block. Kernel and finite regression CI are
+required before green status.
