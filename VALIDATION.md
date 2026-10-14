@@ -2696,3 +2696,52 @@ two necessary-hypothesis counterexamples are executable.
 
 Do not mark any new endpoint verified until the complete Lean
 CI run, standard-axiom audit and placeholder scan all pass.
+
+## Literal finite lists of minimal strong blocks (14 October 2026; CI pending)
+
+The already certified absolute finite factorisation theorem produces a
+MinimalStrongChain d A B as a finite inductive proof. To iterate the
+new one-final-component C0 index append construction, one needs
+a literal list of *fresh vertex blocks* rather than an opaque chain
+of intermediate vertex sets.
+
+C0MinimalBlockRuns.lean defines
+  blockRunEnd A [B0,...,Bt] = A ∪ B0 ∪ ... ∪ Bt
+and the complete run predicate IsMinimalBlockRun. At each step,
+the new block is disjoint from the preceding old prefix and the
+inclusion into its union is a minimal strong step.
+
+MinimalStrongChain.exists_blockRun extracts an explicit list from
+any inductive finite minimal strong chain. For one step A<C it
+uses the fresh set C\A, proves (C\A)∩A=∅ and A∪(C\A)=C
+literally, then prepends that block to the induction witness
+for the remaining tail chain. The reverse theorem
+IsMinimalBlockRun.toChain reconstructs the original chain.
+Finally exists_minimalBlockRun_of_strong applies the absolute
+finite factorisation theorem to an arbitrary finite A≤B,
+without any ambient strong exhaustion.
+
+Adversarial mathematical perspectives:
+* **Exact carrier.** A new block is C\A, not all of C; otherwise
+  old vertices are counted again and block-indexing fails.
+* **Freshness.** The explicit Disjoint A (C\A) condition is
+  essential for building a component partition.
+* **Strictness.** The MinimalStrongStep hypothesis excludes
+  empty new blocks; a merely strong reflexive step would not
+  represent a new component.
+* **Endpoint.** The fold of all fresh blocks must equal B,
+  not just contain B or be an isomorphic copy.
+* **Reflexive case.** A=B is represented by an empty block
+  list. Inventing a singleton block at equality would break
+  the induction and the future stage-index construction.
+* **No ambient globality.** The result works for an abstract
+  finite strong pair, independently of any countable graph.
+* **Functional scope.** This is still a graph-stage list.
+  Combining its blocks with a canonical old C0 component
+  indexing is the separate finite lifting obligation.
+
+The independent regression reconstructs explicit fresh block lists
+for all finite strong graph pairs on at most five labelled vertices,
+checking nonemptiness, disjointness, exact union endpoints and
+minimality of every listed step. Full Lean CI, axiom audit and
+placeholder checks must succeed before green markers.
