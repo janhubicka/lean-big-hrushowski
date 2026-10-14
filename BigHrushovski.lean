@@ -148,3 +148,5 @@ import BigHrushovski.C0FinitePrefixPersistence
 import BigHrushovski.C0FiniteAppend
 
 import BigHrushovski.C0MinimalBlockRuns
+
+import BigHrushovski.C0FiniteFunctionalLift
