@@ -166,3 +166,5 @@ import BigHrushovski.C0OrientationInvariantValues
 import BigHrushovski.C0ClosedBaseFrontload
 
 import BigHrushovski.CFStrictLocal
+
+import BigHrushovski.LocalFreeTransfer
