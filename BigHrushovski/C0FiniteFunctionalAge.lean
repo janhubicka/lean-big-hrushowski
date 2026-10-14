@@ -121,11 +121,9 @@ theorem hasFiniteFunctionalPresentation_closed_restrict
       w ∈ canonicalValue H κs u
     rw [hValues u.val]
     have hAnc := restrictAncestor_iff G κ s hClosedκ u (κ w.val)
-    exact ((mem_canonicalValue_iff G κ u.val w.val).trans
-      ((mem_canonicalValue_iff H κs u w).symm)).mpr
-      (by
-        intro h
-        exact hAnc.mpr h)
+    exact (mem_canonicalValue_iff G κ u.val w.val).trans
+      (hAnc.symm.trans
+        (mem_canonicalValue_iff H κs u w).symm)
   exact ⟨n, κs, hSteps, hFunction⟩
 
 end FiniteC0
