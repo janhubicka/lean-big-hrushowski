@@ -202,5 +202,60 @@ theorem canonicalValue_append_old
   rw [canonicalValue_castSucc] at hRestr
   exact hRestr.symm
 
+
+/-- If every old indexed stage is empty or minimal strong, and the
+entire fresh complement is a minimal strong extension of the old
+graph, the extended index retains that exact presentation and
+places the fresh block in one new final step. -/
+theorem appendIndex_minimal_steps
+    (G : GraphOn V)
+    (a : Finset V) (κ : {v : V // v ∈ a} → Fin n)
+    (hOld : ∀ k : ℕ, k < n →
+      oldStage κ k = oldStage κ (k+1) ∨
+      (G.pullback (Subtype.val : {v : V // v ∈ a} → V)).toPredimension.IsMinimalStrongStep
+        (oldStage κ k) (oldStage κ (k+1)))
+    (hNew : G.toPredimension.IsMinimalStrongStep a Finset.univ) :
+    ∀ k : ℕ, k < n+1 →
+      oldStage (appendIndex a κ) k =
+        oldStage (appendIndex a κ) (k+1) ∨
+      G.toPredimension.IsMinimalStrongStep
+        (oldStage (appendIndex a κ) k)
+        (oldStage (appendIndex a κ) (k+1)) := by
+  classical
+  intro k hk
+  by_cases hkOld : k < n
+  · rcases hOld k hkOld with hEq | hMin
+    · left
+      rw [oldStage_append_image a κ k (by omega),
+          oldStage_append_image a κ (k+1) (by omega),
+          hEq]
+    · right
+      let H : GraphOn {v : V // v ∈ a} :=
+        G.pullback (Subtype.val : {v : V // v ∈ a} → V)
+      have hMono : oldStage κ k ⊆ oldStage κ (k+1) := by
+        intro v hv
+        have hvLt : (κ v).val < k :=
+          (mem_oldStage_iff κ k v).mp hv
+        exact (mem_oldStage_iff κ (k+1) v).mpr (by omega)
+      have hAdj : ∀ u v : {v : V // v ∈ a},
+          H.adj u v ↔ G.adj u.val v.val := fun _ _ => Iff.rfl
+      have hImage :
+          G.toPredimension.IsMinimalStrongStep
+            ((oldStage κ k).image (Subtype.val : {v : V // v ∈ a} → V))
+            ((oldStage κ (k+1)).image (Subtype.val : {v : V // v ∈ a} → V)) :=
+        (H.minimalStrongStep_image_iff G
+          (Subtype.val : {v : V // v ∈ a} → V)
+          Subtype.val_injective hAdj
+          (oldStage κ k) (oldStage κ (k+1)) hMono).mpr hMin
+      rw [← oldStage_append_image a κ k (by omega),
+          ← oldStage_append_image a κ (k+1) (by omega)] at hImage
+      exact hImage
+  · have hEq : k = n := by omega
+    subst k
+    right
+    rw [oldStage_append_old a κ, oldStage_final (appendIndex a κ)]
+    exact hNew
+
+
 end FiniteC0
 end BigHrushovski
