@@ -116,5 +116,73 @@ theorem common_component_partition_of_shared_unary_values
       rw [hG p, hG q, hF]
     exact (canonicalValue_eq_iff_index_eq G κG (i p) (i q)).mp hValsG
 
+
+/-- For adjacent vertices in different components, the direction
+of their component order is determined by membership in the
+complete unary value. The later component depends on the earlier
+one through their graph edge. -/
+theorem adjacent_order_iff_unary_membership
+    {X : Type*} [Fintype X] [DecidableEq X] {t : ℕ}
+    (G : GraphOn X) (κ : X → Fin t)
+    (u v : X) (hAdj : G.adj u v)
+    (hDifferent : κ u ≠ κ v) :
+    (κ u).val < (κ v).val ↔
+      u ∈ canonicalValue G κ v := by
+  constructor
+  · intro hLess
+    have hDep : backDependency G κ (κ v) (κ u) :=
+      ⟨hLess, v, u, rfl, rfl, G.symm u v hAdj⟩
+    exact (mem_canonicalValue_iff G κ v u).mpr
+      (TaggedAmalgam.DependencyAncestor.step
+        TaggedAmalgam.DependencyAncestor.root hDep)
+  · intro hValue
+    have hLe : (κ u).val ≤ (κ v).val :=
+      canonicalAncestor_index_le G κ
+        ((mem_canonicalValue_iff G κ v u).mp hValue)
+    have hNe : (κ u).val ≠ (κ v).val := by
+      intro hEq
+      exact hDifferent (Fin.ext hEq)
+    omega
+
+/-- Two presentations with the same complete named unary function
+orient every graph edge between distinct components in the same
+chronological direction. Their orders can differ only on pairs
+not forced by the dependency relation. -/
+theorem adjacent_orientation_of_equal_canonicalValues
+    {X : Type*} [Fintype X] [DecidableEq X] {t₁ t₂ : ℕ}
+    (G : GraphOn X) (κ : X → Fin t₁)
+    (indexH : X → Fin t₂)
+    (hValues : ∀ w : X,
+      canonicalValue G κ w = canonicalValue G indexH w)
+    (u v : X) (hAdj : G.adj u v)
+    (hDifferent : κ u ≠ κ v) :
+    ((κ u).val < (κ v).val) ↔
+      ((indexH u).val < (indexH v).val) := by
+  have hDiffH : indexH u ≠ indexH v := by
+    intro hEq
+    exact hDifferent
+      ((same_components_of_equal_canonicalValues
+        G κ indexH hValues u v).mpr hEq)
+  constructor
+  · intro hLess
+    have hMem : u ∈ canonicalValue G κ v :=
+      (adjacent_order_iff_unary_membership
+        G κ u v hAdj hDifferent).mp hLess
+    have hMemH : u ∈ canonicalValue G indexH v := by
+      rw [← hValues v]
+      exact hMem
+    exact (adjacent_order_iff_unary_membership
+      G indexH u v hAdj hDiffH).mpr hMemH
+  · intro hLess
+    have hMem : u ∈ canonicalValue G indexH v :=
+      (adjacent_order_iff_unary_membership
+        G indexH u v hAdj hDiffH).mp hLess
+    have hMemG : u ∈ canonicalValue G κ v := by
+      rw [hValues v]
+      exact hMem
+    exact (adjacent_order_iff_unary_membership
+      G κ u v hAdj hDifferent).mpr hMemG
+
+
 end FiniteC0
 end BigHrushovski
