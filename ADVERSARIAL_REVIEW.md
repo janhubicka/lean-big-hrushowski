@@ -2332,3 +2332,36 @@ must be established at each step.
 
 These are independently structured adversarial tests by this
 assistant, not human or separately spawned external agents.
+
+
+## 14 October 2026 — hostile review of tagged one-block amalgamation
+
+Referee A (component overlap): the right fresh block is the
+literal finite difference of right and left domains, while their
+intersection is the entire common base. Both set identities are
+proved explicitly and used to prevent duplicated base vertices.
+
+Referee B (predimension): a local minimal strong extension can
+be enlarged freely over an arbitrary old graph only under the
+no-cross condition. The existing modular predimension lemma
+guarantees all intermediate relative predimensions agree, not
+merely their endpoints.
+
+Referee C (sparsity): the common base must be strong in the
+left factor to invoke the strong tagged amalgamation theorem;
+right-base strength comes from local minimality. Omitting
+this premise from the 2-sparsity statement would overclaim.
+
+Referee D (embedding): actual induced adjacency and nonadjacency
+on both input factors are inherited from the tagged free graph,
+under explicit agreement on P.
+
+Referee E (scope): the new result is a finite canonical
+amalgamation theorem. Turning an arbitrary embedded closed
+base in a literal old finite subset of M0 into the canonical
+P⊕L presentation, then feeding this graph to the labelled
+response, are remaining steps. It does not prove the countable
+generic functional extension property.
+
+These are adversarial mathematical checks, not independently
+recruited external human referees.
