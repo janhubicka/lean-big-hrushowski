@@ -2378,3 +2378,46 @@ The first CI run compiled and audited 418 Lean declarations
 (standard logical axioms, no proof placeholders), then failed at
 this diagnostic assertion rather than at the mathematical theorem.
 The corrected regression must pass before merging.
+
+
+## 14 October 2026 — five adversarial checks for reduct identification
+
+**Closed-set referee.** Local finiteness is essential: the
+f_Cl-closure of a finite graph-strong A must be finite. The
+proof obtains global graph strongness of each finite
+f_Cl-closed C by testing inside a larger finite closed D,
+not by incorrectly assuming a strong graph embedding is
+automatically a functional embedding.
+
+**Free-amalgam referee.** In C⊕_A B the base A need not be
+unary-closed. The free amalgam is taken in the *graph*
+language, where A is strong in both C and B. Only after
+forming the two-sparse strong amalgam does one add the
+functional components of D\C. An amalgam over a nonclosed
+functional base would be invalid.
+
+**Component referee.** The new minimal strong blocks are
+inserted *after* all components of C. This preserves
+complete old unary closures. The finite selected-block
+strongness theorem checks both the whole-component
+dichotomy and all back-neighbour dependencies; neither
+hypothesis may be discarded.
+
+**Genericity referee.** The functional Fraïssé limit
+realises the newly expanded D over the entire closed C,
+not merely over the original possibly nonclosed graph A.
+Restriction to the original B is strong because B≤D
+and D is graph-strong in the reduct.
+
+**Enumeration referee.** An arbitrary minimal enumeration
+of M0 need not yield the functional Fraïssé limit.
+Only existence follows: a closed exhaustion of O
+can be refined compatibly and transported through
+the graph-reduct isomorphism. The revised manuscript
+makes this existential qualification explicit.
+
+The adversarial perspectives are distinct mathematical audits,
+not independently recruited human referees. The exhaustive
+finite regression is a separate executable counterexample
+search. The full functional Fraïssé identification remains
+unformalised even if these finite lemmas pass CI.
