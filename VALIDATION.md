@@ -3022,3 +3022,20 @@ for the future two-sided theorem, not a Lean proof of it.
 
 Exact Lean build, standard-axiom audit and placeholder scan are
 required before these finite endpoints receive GREEN markers.
+
+
+Additional finite orientation lemma (14 October 2026):
+adjacent_order_iff_unary_membership proves that for two adjacent
+vertices u,v in *different* canonical components, κ(u)<κ(v)
+exactly when u belongs to the complete unary value of v.
+Therefore, if two presentations on the same graph have equal
+full unary functions, adjacent_orientation_of_equal_canonicalValues
+shows they orient every intercomponent graph edge identically.
+
+This is a sharper intrinsic compatibility result: common
+component orders can differ only on choices not compelled by
+the directed dependency relation. It does NOT yet formalize the
+adjacent-swap/topological-sort theorem that aligns two such
+linear extensions while retaining all minimal strong steps.
+The bounded two-sided regression additionally asserts that
+common-base edge directions agree in every compatible diagram.
