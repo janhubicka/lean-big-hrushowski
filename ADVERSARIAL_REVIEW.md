@@ -2540,3 +2540,45 @@ amalgamation and strong-reduct lifting theorem.
 These are independent adversarial mathematical passes
 conducted within this validation, not claims of
 separately recruited external human referees.
+
+
+## 14 October 2026 — adversarial audit of finite canonical heredity
+
+Six independently structured attack surfaces were examined.
+
+1. **Chronological cuts.** A selected set X meets a component
+   B_k either not at all or completely. The proof explicitly
+   distinguishes equality of X_(k+1)=X_k from a proper
+   minimal strong extension.
+
+2. **Old-neighbour closure.** The hypothesis that X is closed
+   under the *entire* reachability-defined unary value forces
+   every old neighbour of a selected new block to lie in X_k.
+   This is the no-cross certificate with the correct old
+   stage A_k, not just an assertion about some closed base.
+
+3. **Relative predimension.** Minimality of A_k<A_(k+1)
+   descends to X_k<X_(k+1) under no-crossing. It would be
+   incorrect to infer minimality from the already certified
+   strongness of X_k in A_k alone.
+
+4. **No global exhaustions.** Every step is a finite
+   strong extension, and the endpoint is finite. The proof
+   uses no globally strong ambient structure.
+
+5. **Omitted and empty blocks.** Empty indexing positions
+   and omitted components must be erased rather than
+   made into fictitious minimal strong steps. The proof
+   concatenates only strict steps, with equality cases
+   passed through unchanged.
+
+6. **Exact scope.** The result provides a minimal graph
+   presentation on the vertices of an f_Cl-closed subset.
+   A separate lemma should show that the unary function
+   *inherited* from the original finite structure coincides
+   with the canonical backward-reachability function after
+   the retained components are reindexed.
+
+This is an internally conducted adversarial mathematical
+audit supported by finite exhaustive models, not a claim
+of external human referee certification.
