@@ -2421,3 +2421,11 @@ not independently recruited human referees. The exhaustive
 finite regression is a separate executable counterexample
 search. The full functional Fraïssé identification remains
 unformalised even if these finite lemmas pass CI.
+
+The exact finite closed-block strongness theorem passed GitHub Actions
+run 38503592428: 421 declarations with standard logical axioms,
+92 Lean files scanned for placeholders and full finite regressions.
+The separate strong-span regression checked 1,846 amalgamation diagrams,
+21,103 unary-closed selected subsets and preservation of 4,441 old
+unary-function values. These finite certificates do not replace
+the pending functional Fraïssé reduct-identification theorem.
