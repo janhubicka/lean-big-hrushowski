@@ -549,3 +549,10 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.MinimalStrongChain.exists_blockRun
 #print axioms BigHrushovski.Predimension.IsMinimalBlockRun.toChain
 #print axioms BigHrushovski.Predimension.exists_minimalBlockRun_of_strong
+
+#print axioms BigHrushovski.FiniteC0.mem_blockPrefix_iff
+#print axioms BigHrushovski.FiniteC0.blockRunEnd_eq_prefix
+#print axioms BigHrushovski.FiniteC0.extendRunIndex_minimal_steps
+#print axioms BigHrushovski.FiniteC0.canonicalValue_castAdd
+#print axioms BigHrushovski.FiniteC0.canonicalValue_extendRun_old
+#print axioms BigHrushovski.FiniteC0.exists_canonical_extension_of_strong

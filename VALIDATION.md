@@ -2745,3 +2745,69 @@ for all finite strong graph pairs on at most five labelled vertices,
 checking nonemptiness, disjointness, exact union endpoints and
 minimality of every listed step. Full Lean CI, axiom audit and
 placeholder checks must succeed before green markers.
+
+
+## Finite graph-to-functional lifting over arbitrary strong inclusions (14 October 2026; CI pending)
+
+This module packages the complete finite C0 lifting construction for a
+literal finite inclusion A≤V. We assume the induced graph on A already
+has a finite canonical component presentation κ:A→Fin n with every
+nonempty step minimal strong. Then:
+- the previously verified absolute factorisation produces a finite
+  list of disjoint fresh minimal strong blocks covering V\A;
+- blockIndex chooses the *first* block containing a new vertex and
+  uses blocks.length for vertices contained in no fresh block;
+- the covering hypothesis excludes the sentinel case on V\A;
+- extendRunIndex keeps the exact old index and gives every vertex in
+  the jth fresh block index n+j;
+- for k≤n the new stage is the image of the original kth stage;
+  for each j≤blocks.length the new stage n+j is exactly the union
+  of A with the first j fresh blocks;
+- every successive new stage is minimal strong by the list certificate;
+  old stages remain minimal because their induced edge relations
+  have not changed;
+- the entire *set-valued* unary closure of every old vertex agrees
+  literally with the old canonical value, transported through the
+  inclusion. The castAdd index lemma and closed-prefix restriction
+  theorem prove this for paths of arbitrary length.
+
+The endpoint exists_canonical_extension_of_strong obtains a global
+κFinal : V→Fin m for every strong finite graph inclusion A≤V,
+with a canonical empty-or-minimal strong presentation and unchanged
+old complete unary values. It has no hidden StrongExhaustion or
+countable Fraïssé assumption.
+
+Adversarial mathematical referee checks:
+1. **Vertex omission/duplication:** blockRunEnd=A∪⋃B_j=V, and
+   disjoint minimal block-run certificates ensure each new vertex
+   appears exactly once. No vertex is assigned a phantom index.
+2. **First occurrence:** blockIndex uses the first containing block;
+   its correctness is proved by the equivalence with finite prefix
+   membership, including the sentinel for an absent vertex.
+3. **Boundary stage:** n is the entire old A, not a new block.
+   At n+j the union is the old A and the *first* j blocks; this
+   excludes a fencepost error in the append step.
+4. **Inducedness:** old indexed minimality is preserved only
+   because the old graph is the induced restriction of G.
+   Arbitrary extra old-old edges would invalidate it.
+5. **Old-value preservation:** new-to-old graph edges are allowed;
+   their backward dependencies originate in new components.
+   The entire transitive closure of an old root stays inside A.
+6. **Empty-index case:** n=0 is permitted only if A is empty.
+   An empty list is permitted when A=V, with no spurious block.
+7. **Globality:** neither A nor V is required to be globally
+   strong inside a larger graph; only A≤V in the finite graph.
+8. **Scope:** the theorem lifts a *literal strong inclusion*.
+   Applying it to an abstract strong free-amalgamation diagram
+   additionally requires transporting the old canonical indexing
+   along its injected factor embedding. The countable functional
+   Fraïssé/reduct theorem remains partial until that interface
+   and the final extension argument are proved.
+
+The independent finite regression enumerates old canonical
+presentations, strong finite graph inclusions and their actual
+minimal block lists in graphs of order at most four. It checks
+all old stage identities, each new minimal step, and the literal
+value of every complete old unary closure. A successful integrated
+Lean build, standard-axiom audit and placeholder scan are required
+before promoting the manuscript's main finite lifting marker.
