@@ -130,3 +130,5 @@ import BigHrushovski.C0MinimalImage
 import BigHrushovski.C0OneBlockResponse
 
 import BigHrushovski.C0TaggedMinimal
+
+import BigHrushovski.C0FiniteClosedAge
