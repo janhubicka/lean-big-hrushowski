@@ -525,3 +525,6 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.canonicalValue_contains_component
 #print axioms BigHrushovski.FiniteC0.canonicalValue_oldNeighbour
 #print axioms BigHrushovski.FiniteC0.canonicalValue_closed_strong
+
+#print axioms BigHrushovski.FiniteC0.canonicalValue_closed_cut_step
+#print axioms BigHrushovski.FiniteC0.canonicalValue_closed_minimalPresentation
