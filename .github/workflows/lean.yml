@@ -60,6 +60,8 @@ jobs:
           python3 scripts/check_no_placeholders.py
       - name: Check all graphs on up to five vertices
         run: python3 scripts/check_finite_models.py
+      - name: Check finite C0 embedded strong functional lift
+        run: python3 scripts/check_c0_embedded_functional_lift.py
       - name: Check entire finite C0 strong graph-to-functional lift
         run: python3 scripts/check_c0_finite_functional_lift.py
       - name: Check one-block C0 index append preserves old values

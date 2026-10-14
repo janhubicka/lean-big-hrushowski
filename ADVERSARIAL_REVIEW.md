@@ -2808,3 +2808,57 @@ property are independent, unverified interfaces.
 
 These are independently structured mathematical adversarial
 arguments by the assistant, not external human referees.
+
+
+## 14 October 2026 — adversarial finite C0 strong-span functional transport
+
+Seven separate attack surfaces were tested.
+
+**Referee A — labels.** An arbitrary induced embedding f:C→K
+is not a literal inclusion. The source's indexing must be
+relabelled through the equivalence between C and f[C],
+then the literal finite lifting theorem applies. The
+proof uses the actual image of f, not an unnamed copy.
+
+**Referee B — relational inducedness.** Edges and nonedges
+in the old source must be reflected by K. Otherwise
+back-dependency witnesses may appear or disappear and
+the unary function changes. The hypotheses use an
+adjacency iff, not just a forward homomorphism.
+
+**Referee C — base intersection.** The tagged union
+identifies exactly f(i(p))=g(j(p)) for p in A and
+nothing else. Without this, preserving a finite source
+function would not provide the requested extension
+over the supplied old base.
+
+**Referee D — strongness.** A strong copy of the old
+factor is required to decompose its extension in K
+into minimal strong blocks. The tagged amalgam proof
+supplies it when the common base is strong in both
+graph factors.
+
+**Referee E — full function values.** The conclusion
+is literal Finset equality for the full backward
+component-closure of each old vertex under f, not
+an assertion only about immediate back edges.
+
+**Referee F — nonclosed graph base.** In the reduct
+argument the original strong graph A can fail to be
+closed in the named functional expansion. The theorem
+correctly preserves a canonical functional structure
+on its closure C while freely amalgamating the graph
+C with an arbitrary strong graph extension B over A.
+
+**Referee G — no two-factor overclaim.** The target B
+was supplied as a graph and has no independent f_Cl
+assignment. Hence this theorem certifies a finite
+graph-to-functional lifting step, not yet free
+amalgamation of two already expanded finite functional
+structures. The countable functional Fraïssé argument
+remains partial.
+
+These are separately structured adversarial mathematical
+audits carried out in this review, not external human
+referee certifications. The kernel audit and independent
+finite-model regressions are distinct checks.

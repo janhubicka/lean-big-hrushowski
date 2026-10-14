@@ -150,3 +150,7 @@ import BigHrushovski.C0FiniteAppend
 import BigHrushovski.C0MinimalBlockRuns
 
 import BigHrushovski.C0FiniteFunctionalLift
+
+import BigHrushovski.C0FiniteEquivTransport
+
+import BigHrushovski.C0FiniteStrongSpanFunctional

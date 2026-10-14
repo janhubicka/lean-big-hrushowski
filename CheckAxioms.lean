@@ -556,3 +556,12 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.canonicalValue_castAdd
 #print axioms BigHrushovski.FiniteC0.canonicalValue_extendRun_old
 #print axioms BigHrushovski.FiniteC0.exists_canonical_extension_of_strong
+
+#print axioms BigHrushovski.FiniteC0.backDependency_relabel_iff
+#print axioms BigHrushovski.FiniteC0.canonicalValue_relabel
+#print axioms BigHrushovski.FiniteC0.oldStage_relabel
+#print axioms BigHrushovski.FiniteC0.minimalSteps_relabel
+#print axioms BigHrushovski.FiniteC0.canonicalPresentation_on_image
+#print axioms BigHrushovski.FiniteC0.exists_canonical_extension_over_embedding
+
+#print axioms BigHrushovski.FiniteSpan.exists_canonical_functional_strong_amalgam
