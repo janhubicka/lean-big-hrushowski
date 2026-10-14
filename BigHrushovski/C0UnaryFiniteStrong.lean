@@ -27,13 +27,13 @@ variable {V : Type*} [DecidableEq V] (G : GraphOn V)
 
 /-- A finite set is closed under the complete set-valued unary
 function C, not merely under individual graph neighbours. -/
-def IsClosedUnderValues (C : V → Finset V) (s : Finset V) : Prop :=
+def IsClosedUnderValues (G : GraphOn V) (C : V → Finset V) (s : Finset V) : Prop :=
   ∀ u ∈ s, C u ⊆ s
 
 /-- A finite strong block enumeration carries enough local unary
 closure information: C(u) contains the whole block of u and
 every old neighbour of u. No global strongness is assumed. -/
-def HasUnaryBlockPresentation (C : V → Finset V)
+def HasUnaryBlockPresentation (G : GraphOn V) (C : V → Finset V)
     (a : Finset V) : List (Finset V) → Prop
   | [] => True
   | B :: rest =>
@@ -118,8 +118,8 @@ theorem closedUnderValues_strong_from_empty
     (hClosed : G.IsClosedUnderValues C s)
     (hRun : G.HasUnaryBlockPresentation C ∅ blocks) :
     G.toPredimension.IsStrong
-      (s ∩ G.attachedClosedBlocks ∅ blocks)
-      (G.attachedClosedBlocks ∅ blocks) := by
+      (s ∩ attachedClosedBlocks ∅ blocks)
+      (attachedClosedBlocks ∅ blocks) := by
   exact G.closedSubset_strong_from_empty s blocks
     (G.closedUnderValues_blockSequence C s hClosed blocks ∅ hRun)
 
