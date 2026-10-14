@@ -2068,3 +2068,52 @@ Fraisse genericity proposition remains PARTIAL.
 The concrete construction of a tagged **functional** amalgamation
 diagram, and the fair countable C0 functional extension schedule,
 remain open in Lean even after these bridge theorems.
+
+
+## Realising a minimal block over a literal strong prefix (14 October 2026; CI pending)
+
+The next gap in Proposition C0-free-generic is a *finite response theorem*,
+not another calculation of component ancestry. Module
+C0MinimalImage.lean proves that induced injective graph maps preserve and
+reflect **minimal** strong extensions. The proof uses the existing
+strong_image_iff theorem, but also pulls every hypothetical intermediate
+strong subgraph of the image back through the embedding; simply transporting
+self-sufficiency would be insufficient.
+
+C0OneBlockResponse.lean applies the fully proved labelled strong extension
+property of the constructed countable generic M0 via
+arbitrary_finite_strong_extension. Let a⊆M0 be finite and globally strong,
+let B be a finite fresh type, and let K be a finite two-sparse graph on
+a ⊕ B (old vertices as a literal subtype) whose restriction to a is the
+existing induced graph and whose inclusion a→K is a **minimal** strong
+step. Then the exact response theorem supplies an induced injective copy
+g: a⊕B → M0, fixes every old vertex pointwise, has a finite globally
+strong full image, and makes the inclusion of a into that image minimal
+strong. This works for any such K, not just a particular chosen generator.
+
+Independent adversarial passes:
+* **Inducedness** (graph referee): If nonedges are not reflected, a
+  minimal strong block may cease to be minimal; in K4, the singleton
+  old base A={0} < K4 is minimal strong, whereas the same vertex
+  sets in an edgeless graph are not a minimal strong step.
+* **Injectivity** (embedding referee): identifying a fresh vertex with
+  an old one turns a strict step into an equality.
+* **Strong ambient base** (predimension referee): the available
+  generic extension theorem requires a *globally strong* finite
+  old image; a merely induced or relatively strong finite base
+  cannot be substituted without an additional global-strongness proof.
+* **Exact old values** (Fraisse referee): the old inclusion must be
+  fixed pointwise; an unlabelled finite copy is not an answer to
+  a request over the chosen prefix.
+* **Functional-schedule scope** (model-theoretic referee): this is
+  a finite graph response for an arbitrary minimal strong K. It is
+  NOT a proof that K arises from each permitted unary functional
+  extension, nor that g(B) is a component of the previously fixed
+  C0 enumeration. A *new* fair enumeration must be constructed.
+
+The independent finite checker scripts/check_c0_minimal_image.py
+exhaustively transports minimal strong steps along finite induced
+injections (including all extra edges to a vertex outside the copy)
+and contains the two explicit hypothesis counterexamples.
+Theorem status remains orange until the pinned full Lean build,
+axiom audit and placeholder scan succeed.
