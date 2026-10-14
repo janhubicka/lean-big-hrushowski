@@ -2489,3 +2489,54 @@ referee certification.
 
 These are separately structured adversarial mathematical checks,
 not claims that independent human or external agents reviewed the proof.
+
+
+## 14 October 2026 — adversarial audit of canonical finite C0 values
+
+**Referee A: indexing.** Each vertex belongs to exactly one
+fibre of κ:V→Fin n; the old prefix contains precisely the
+vertices with smaller index. The equalities A_0=∅,
+A_n=V and A_(k+1)=A_k∪B_k are checked formally, including
+n=0 when V is necessarily empty.
+
+**Referee B: paths.** The named unary value is defined by
+full *component reachability*. The root step forces every
+vertex in B_(κ(u)) into C(u), irrespective of how many
+vertices it has. One old-neighbour edge is a directed
+dependency and therefore makes that neighbour belong
+to C(u). No decomposability approximation is substituted.
+
+**Referee C: closed selections.** If s is closed under C
+and meets a new block, it contains the block and all its
+old neighbours. Hence any edge from the new block into
+the omitted old vertices is impossible. These are the
+exact two certificates for the finite no-cross strongness
+lemma, not an unsupported assertion that every union of
+whole blocks is strong.
+
+**Referee D: hypotheses.** Only finite strong steps
+A_k≤A_(k+1) are needed. Requiring the final finite graph
+to be globally strong in a larger ambient graph would
+exclude valid finite age presentations, as shown by the
+previous three-leaf-star counterexample.
+
+**Referee E: exhaustive models.** The checker runs all
+small simple graphs and all choices of chronological
+component indices, including unused values of κ and
+components with several vertices. It checks full unary
+values and graph strongness of each unary-closed set.
+The earlier K4 examples separately demonstrate failure
+when either complete-block closure or old-neighbour
+closure is removed.
+
+**Referee F: claimed scope.** This is the exact finite
+canonical closure calculation needed by the manuscript's
+hereditary strongness proof; it does not prove that a
+functional reduct of an infinite Fraïssé limit satisfies
+all required extension properties. Those steps remain
+PARTIAL until linked to the explicit finite-age
+amalgamation and strong-reduct lifting theorem.
+
+These are independent adversarial mathematical passes
+conducted within this validation, not claims of
+separately recruited external human referees.

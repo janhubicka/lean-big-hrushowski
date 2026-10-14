@@ -2350,3 +2350,72 @@ presentation, computes full backward component closures, and
 checks graph strongness of every unary-closed subset. It also
 contains both K4 counterexamples. Full Lean CI/axiom checking
 is required before the new statement can be marked GREEN.
+
+
+## Canonical finite C0 unary values from indexed components (14 October 2026; CI pending)
+
+The previous PR #106 established the finite strongness implication
+conditional on each unary value containing (a) the whole new
+component and (b) its old graph neighbours. This last finite-age
+interface is now instantiated for the actual canonical value formula,
+not merely assumed.
+
+Give the finite vertex set V a component-index map
+κ:V→Fin n. For a natural index k, the old stage is precisely
+A_k={v:κ(v)<k}, and the new component is B_k={v:κ(v)=k}.
+These fibres are disjoint and A_(k+1)=A_k∪B_k,
+A_0=∅ and A_n=V. The indexing may contain empty steps;
+the theorem is stronger than a presentation with nonempty steps.
+
+For component indices i and j, the direct dependency i→j
+holds when j<i and an actual graph edge joins a vertex of
+B_i to a vertex of B_j. Define C(v) as all vertices whose
+component index is reachable from κ(v) by finitely many
+such backwards steps, including the starting component.
+This is exactly the finite analogue of the manuscript's
+set-valued f_Cl, with no special generator vertex selected.
+
+C0FiniteCanonicalValues.lean proves:
+- canonicalValue_contains_component: all vertices in the
+  same component as v belong to C(v), by the zero-step path;
+- canonicalValue_oldNeighbour: each old graph neighbour of
+  a vertex of B_k belongs to C(v), by a single back-edge step;
+- canonicalValue_closed_strong: if every A_k≤A_(k+1)
+  and a finite s is closed under these *actual* values,
+  then s≤V. The proof uses the now-certified PR #106
+  closure-to-dichotomy and no-cross transfer at each index.
+
+Adversarial mathematical perspectives:
+1. **Empty-index referee.** Surjectivity of κ is not needed;
+   an empty B_k is a reflexive strong step and may simply
+   be deleted when converting to the manuscript's
+   nonempty presentation.
+2. **Whole-block referee.** Reachability at the component
+   level must unfold to *all vertices* in a fibre, not
+   merely the endpoints of a chosen back edge.
+3. **Old-neighbour referee.** A graph edge from B_k to
+   A_k certifies a dependency from κ(u) to κ(v) because
+   κ(v)<κ(u). No chronological order inside B_k is assumed.
+4. **Strongness referee.** The stage hypothesis is
+   A_k≤A_(k+1), not ambient global strongness; the
+   previous no-cross induction suffices for s≤V.
+5. **Cyclicity referee.** The direct dependency strictly
+   decreases the component index, so paths cannot move
+   forward or form nontrivial cycles. Zero-step reachability
+   is the only path back to its own component.
+6. **Scope referee.** This certifies finite closed-set
+   graph strongness for a canonical labelled presentation,
+   not the Fraïssé extension property of the infinite
+   functional age. An arbitrary age member must still be
+   represented by such an index and its unary values,
+   and arbitrary finite functional strong extensions
+   must still be realized in the countable limit.
+
+A separate exhaustive checker tries *all* assignments
+κ:V→Fin n for n≤4 on all simple graphs with at most
+four vertices. Thus the proof is not only tested against
+one chosen minimal decomposition: it checks alternative
+chronologies, singleton and multi-vertex components,
+and unused component positions. Full Lean CI, exact
+axiom checking, and placeholder scan are required
+before the new endpoints are marked GREEN.
