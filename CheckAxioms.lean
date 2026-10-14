@@ -574,3 +574,6 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.closed_contains_ancestor_component
 #print axioms BigHrushovski.FiniteC0.closed_contains_direct_predecessor
 #print axioms BigHrushovski.FiniteC0.common_component_partition_of_shared_unary_values
+
+#print axioms BigHrushovski.FiniteC0.adjacent_order_iff_unary_membership
+#print axioms BigHrushovski.FiniteC0.adjacent_orientation_of_equal_canonicalValues
