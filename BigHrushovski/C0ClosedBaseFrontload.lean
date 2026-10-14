@@ -206,7 +206,6 @@ theorem oldStage_frontload_first
   by_cases hv : v ∈ s
   · simp [frontloadIndex_inside κ s v hv, hv]
   · simp [frontloadIndex_outside κ s v hv, hv]
-    omega
 
 /-- The first stage after the frontloaded part is exactly S. -/
 theorem oldStage_frontload_boundary
