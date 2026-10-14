@@ -138,3 +138,5 @@ import BigHrushovski.C0FiniteGraphLift
 import BigHrushovski.C0UnaryFiniteStrong
 
 import BigHrushovski.C0FiniteCanonicalValues
+
+import BigHrushovski.C0FiniteCanonicalHeredity
