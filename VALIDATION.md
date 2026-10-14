@@ -2811,3 +2811,81 @@ all old stage identities, each new minimal step, and the literal
 value of every complete old unary closure. A successful integrated
 Lean build, standard-axiom audit and placeholder scan are required
 before promoting the manuscript's main finite lifting marker.
+
+
+## Arbitrary embedded-base finite strong functional C0 lift (14 October 2026; Lean-certified CI, PR pending)
+
+The final finite embedded-coordinate bridge now has two Lean endpoints:
+
+* FiniteC0.exists_canonical_extension_over_embedding:
+  given an induced injection f:C→K whose image is strong in K,
+  and a canonical C0 component presentation κ on C,
+  construct a canonical component presentation κFinal on the
+  complete graph K such that the original image f[C] inherits
+  **exactly** the original finite set-valued unary functions.
+  The proof identifies C with the literal induced subgraph on
+  its image using imageCarrierEquiv, transports κ across
+  that equivalence, then applies the certified finite strong
+  literal-inclusion functional lifting theorem.
+
+* FiniteSpan.exists_canonical_functional_strong_amalgam:
+  start with two finite 2-sparse graphs C and B and an arbitrary
+  common induced graph A embedded strongly into both. The verified
+  tagged graph free-amalgamation theorem constructs K=C⊕_A B,
+  with injective induced strong factor embeddings f,g and
+  exact intersection A. The embedded-base lifting theorem
+  equips K with a canonical C0 unary presentation extending
+  the original prescribed unary values of **C** through f.
+
+These results do not assume that A is functionally closed in C:
+the amalgam is first formed in the graph language, and the
+entire old canonical functional structure C is preserved.
+This distinction is essential for the reduct-extension argument.
+
+The successful integrated GitHub Actions run 38600514014 checked
+464 Lean declarations, with standard logical axioms only and
+104 Lean files without proof placeholders. The independent
+finite test enumerated 4,301 injective maps, 4,085 strong induced
+embeddings, 17,118 canonical old presentations, 74,426 indexed
+steps and 41,038 exact transported old-unary-value equalities.
+
+Adversarial mathematical referee passes:
+
+1. **Arbitrary base map:** the common finite base is embedded
+   into C and B, not necessarily identified with a literal
+   vertex subset of both. The tagged normalisation theorem
+   identifies no vertices outside its image.
+2. **Inducedness:** the value-transport statement requires
+   an induced graph embedding, reflecting nonedges as well
+   as edges; a homomorphism cannot preserve the component
+   dependency relation exactly.
+3. **Complete unary functions:** preservation is an equality
+   of images of complete finite vertex-valued closures,
+   not merely of direct edges or component labels.
+4. **Strong source image:** the finite extension theorem
+   requires the old image to be strong in K. The tagged
+   strong-amalgamation theorem supplies this because A is
+   strong in both original factors.
+5. **Old graph not functionally closed over A:** arbitrary
+   strong graph requests A≤B may start at A not closed
+   under f_Cl in C. Amalgamating *functional* structures
+   over A would therefore be invalid; first take the
+   entire finite functional closure C and amalgamate
+   only the graphs over A, then lift the old structure.
+6. **Both-factor caveat:** the theorem preserves the named
+   unary values of C, but B has not been given a unary
+   presentation. It does not by itself establish free
+   amalgamation over a closed *functional* base when
+   both factors carry prescribed functions. That separate
+   step requires an interleaving/ordering of the component
+   presentations and equality of unary values on both sides.
+7. **Countable-limit caveat:** a finite strong-span lifting
+   result is an input to the strong extension property of
+   the graph reduct of the countable functional Fraïssé
+   limit. Construction of that limit and verification of
+   its extension property remain separate Lean obligations.
+
+The exact theorem is certified on the PR branch, and may be
+marked GREEN after the branch is merged and the manuscript's
+validation pin is updated. Proposition C0-free-generic remains
+PARTIAL.
