@@ -154,3 +154,5 @@ import BigHrushovski.C0FiniteFunctionalLift
 import BigHrushovski.C0FiniteEquivTransport
 
 import BigHrushovski.C0FiniteStrongSpanFunctional
+
+import BigHrushovski.C0IntrinsicComponents
