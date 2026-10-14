@@ -3039,3 +3039,64 @@ adjacent-swap/topological-sort theorem that aligns two such
 linear extensions while retaining all minimal strong steps.
 The bounded two-sided regression additionally asserts that
 common-base edge directions agree in every compatible diagram.
+
+
+## Commuting independent finite minimal strong C0 components (14 October 2026; CI pending)
+
+The remaining two-factor C0 functional-amalgamation proof must align
+different witness orders on the common closed component base.
+The elementary local move is an interchange of adjacent independent
+minimal strong blocks.
+
+C0IndependentComponentSwap.lean proves that if A,B,C are pairwise
+disjoint finite vertex sets, there are **no graph edges between B,C**,
+and both successive steps A<A∪B and A∪B<A∪B∪C are minimal strong,
+then the swapped steps A<A∪C and A∪C<A∪C∪B are also minimal strong.
+
+The proof applies the previously certified no-cross minimality
+transport in both directions:
+
+1. Since C has no edges to B, apply the local-from-enlarged lemma
+   to the minimal step A∪B<A∪B∪C, removing B from the old base.
+   This produces A<A∪C.
+2. Since B has no edges to C, apply the enlarged-from-local lemma
+   to A<A∪B, enlarging its old base to A∪C.
+   This produces A∪C<A∪C∪B.
+
+No ambient strong exhaustion or global strongness is required.
+The pairwise disjointness hypotheses are explicit; the old sets and
+the final union are literal Finset expressions.
+
+Adversarial mathematical checks:
+* **No-edge requirement:** the statement is false if B,C are
+  adjacent. In K4, ∅<{0}<K4 are minimal strong steps,
+  but the complementary triple is not minimal over ∅.
+* **Two directions:** it is insufficient to know only the
+  strongness of the final union; one needs the *minimal*
+  local-from-enlarged and enlarged-from-local statements.
+* **Disjointness:** old vertices cannot be reused as fresh
+  vertices in either chronology.
+* **Relative predimension:** the argument is local and works
+  inside an arbitrary graph, without global self-sufficiency
+  of the final finite union.
+* **Unary-value scope:** swapping graph blocks with no edges
+  between them does not intuitively change any back-edge,
+  but the equality of the *full canonical set-valued unary
+  functions* after swapping the finite indices still requires
+  a separate Lean lemma.
+* **Order-alignment scope:** any two linear extensions of a
+  finite dependency order are connected by adjacent swaps
+  of incomparable elements. Combining that combinatorial
+  fact with the present local swap and unary-value transport
+  is the next finite two-sided free-amalgamation bridge.
+* **Countable limit:** this local interchange does not by
+  itself construct the functional Fraïssé limit or verify
+  its graph-reduct strong extension property.
+
+The independent checker exhaustively enumerates all labelled
+simple graphs of order at most five and all disjoint choices
+of A,B,C with independent new blocks. It tests the two
+original minimal steps and both swapped minimal steps and
+includes the explicit K4 missing-hypothesis counterexample.
+Successful integrated CI/axiom/placeholder checking is required
+before upgrading the corresponding manuscript validation mark.
