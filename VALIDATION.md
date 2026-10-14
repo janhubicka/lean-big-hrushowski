@@ -2560,3 +2560,63 @@ function in the induced graph and checks exact equality
 of each inherited value, plus minimality of every
 retained block. Kernel and finite regression CI are
 required before green status.
+
+
+## Temporal persistence of the complete finite C0 unary function (14 October 2026; CI pending)
+
+When constructing a larger finite functional C0 structure by
+appending minimal strong blocks after an old closed prefix, it
+is essential that the unary values already assigned to old
+vertices do not change. This is now a direct consequence of
+the canonical reachability definition, not a separately assumed
+extension invariant.
+
+C0FinitePrefixPersistence.lean proves:
+
+* canonicalAncestor_index_le: every component reached from
+  index i by backward dependencies has index at most i;
+* canonicalValue_subset_oldStage: if u belongs to A_k,
+  then its entire complete unary value C(u) lies in A_k;
+* canonicalValue_oldStage_closed: A_k is closed under
+  the canonical C0 set-valued function;
+* canonicalValue_oldStage_restrict_image: computing C(u)
+  inside the induced graph on A_k gives **exactly** the
+  complete value of u in the eventual full finite graph,
+  mapped along the prefix inclusion.
+
+The last theorem applies PR #109's exact restriction lemma
+to the old prefix, whose closure follows from descending
+component indices. There is no assumption of 2-sparsity,
+strongness, minimality, or genericity: any finite graph with
+a component-index assignment has this persistence property.
+
+Adversarial mathematical perspectives:
+1. **Orientation.** Backward dependency must point from a
+   *later* component to an earlier one. Reversing the
+   direction would allow old values to gain future vertices.
+2. **Transitive reachability.** Checking only immediate
+   old neighbours is inadequate: a complete unary value
+   contains components reached through arbitrarily long
+   decreasing paths.
+3. **Whole fibres.** Every reached component contributes
+   all its vertices. The theorem is about equality of the
+   *full set-valued function*, not only path endpoints.
+4. **Inducedness.** The old prefix is an induced graph
+   substructure. The no-change conclusion is not asserted
+   for adding edges between old vertices.
+5. **Empty stages.** Some index positions may have no
+   vertices; the index argument still works unchanged.
+6. **Globality.** The proof needs no ambient strong
+   exhaustion, unlike earlier finite-decomposition
+   statements; it is a combinatorial invariant.
+7. **Remaining scope.** This proves persistence *after*
+   a finite compatible block extension has been built.
+   It does not construct the extension itself or establish
+   the countable Fraïssé extension property.
+
+An independent exhaustive regression checks every labelled
+graph through four vertices and all component-index assignments
+with up to four positions; for every prefix and every old
+vertex, recomputes complete closures and checks equality.
+The exact Lean CI and axiom audit are required before the
+manuscript marker can be marked GREEN.
