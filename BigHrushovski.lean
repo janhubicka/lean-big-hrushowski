@@ -162,3 +162,5 @@ import BigHrushovski.C0CommonBaseComponents
 import BigHrushovski.C0IndependentComponentSwap
 
 import BigHrushovski.C0OrientationInvariantValues
+
+import BigHrushovski.C0ClosedBaseFrontload
