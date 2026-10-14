@@ -2903,3 +2903,50 @@ The six checks are distinct adversarial mathematical
 perspectives performed within the review and supported
 by independent finite-model regressions, not external
 human referee certifications.
+
+
+## 14 October 2026 — adversarial common functional base audit
+
+**Referee 1 — ideal completeness.** If S contains one vertex
+of a component i, it contains all of the root's unary value,
+hence all vertices of every component reached by any
+backward dependency path. The proof does not stop after
+one direct predecessor.
+
+**Referee 2 — boundary edges.** If a selected P component
+had an edge to an omitted earlier component, that edge
+would witness a direct predecessor; closedness would
+force its entire component into P, a contradiction.
+This justifies moving a closed P to the front of a
+witnessing chronological presentation.
+
+**Referee 3 — exact base labels.** The two factor injections
+i:P→C and j:P→B are arbitrary and need not have the same
+image labels. Each complete base value is compared via
+the image of the same finite F(p)⊆P, using injectivity
+to reflect equality of the source function values.
+
+**Referee 4 — independent component orders.** Even when
+f_C and f_B coincide on P, their witnessing linear orders
+may differ on components without dependency relations.
+The common-partition lemma identifies blocks, not order
+positions; a separate adjacent-swap argument is required.
+
+**Referee 5 — bounded adversarial search.** All tested
+compatible finite functional diagrams with a common closed
+base admitted a two-sided functional presentation on
+their free graph amalgam. The finite search includes
+multi-vertex minimal blocks and empty-base cases.
+This diagnostic provides evidence and potential
+counterexample discovery, not a proof for arbitrary sizes.
+
+**Referee 6 — no countable overclaim.** The finite intrinsic
+component and ideal results do not produce the Fraïssé
+limit of D'_0 or establish the strong extension property
+of its graph reduct. The latter still depends on the
+fully verified two-sided finite functional amalgamation
+and a countable construction.
+
+These are six independently structured adversarial
+mathematical analyses carried out within this review.
+No external human referee certification is claimed.
