@@ -538,3 +538,9 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.canonicalValue_subset_oldStage
 #print axioms BigHrushovski.FiniteC0.canonicalValue_oldStage_closed
 #print axioms BigHrushovski.FiniteC0.canonicalValue_oldStage_restrict_image
+
+#print axioms BigHrushovski.FiniteC0.oldStage_append_image
+#print axioms BigHrushovski.FiniteC0.oldStage_append_old
+#print axioms BigHrushovski.FiniteC0.ancestor_castSucc_backward
+#print axioms BigHrushovski.FiniteC0.canonicalValue_castSucc
+#print axioms BigHrushovski.FiniteC0.canonicalValue_append_old
