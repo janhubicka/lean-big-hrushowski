@@ -57,7 +57,7 @@ theorem IsLocalDClosedBatchRun.toMinimalChain
     {A : Finset V} {blocks : List (Finset V)}
     (h : G.IsLocalDClosedBatchRun A blocks) :
     Predimension.MinimalDClosedChain G.toPredimension
-      A (G.localBatchEnd A blocks) := by
+      A (localBatchEnd A blocks) := by
   induction h with
   | nil A =>
       exact Predimension.MinimalDClosedChain.refl A
@@ -66,7 +66,7 @@ theorem IsLocalDClosedBatchRun.toMinimalChain
         (G.minimalLocalDClosed_support_persists
           P A B hP hDisj hBack hMin hExact).2.1
       change Predimension.MinimalDClosedChain G.toPredimension
-        A (G.localBatchEnd (A ∪ B) rest)
+        A (localBatchEnd (A ∪ B) rest)
       exact Predimension.MinimalDClosedChain.step hStep ih
 
 /-- The original old stage is *strictly d-closed* in the
@@ -77,7 +77,7 @@ theorem IsLocalDClosedBatchRun.old_dClosed_final
     {A : Finset V} {blocks : List (Finset V)}
     (h : G.IsLocalDClosedBatchRun A blocks) :
     G.toPredimension.IsDClosed
-      A (G.localBatchEnd A blocks) := by
+      A (localBatchEnd A blocks) := by
   induction h with
   | nil A =>
       exact G.toPredimension.dclosed_refl A
@@ -86,7 +86,7 @@ theorem IsLocalDClosedBatchRun.old_dClosed_final
         (G.minimalLocalDClosed_support_persists
           P A B hP hDisj hBack hMin hExact).2.1.1
       change G.toPredimension.IsDClosed
-        A (G.localBatchEnd (A ∪ B) rest)
+        A (localBatchEnd (A ∪ B) rest)
       exact G.toPredimension.dclosed_trans hStep ih
 
 end GraphOn
