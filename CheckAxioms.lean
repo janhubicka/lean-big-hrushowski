@@ -647,3 +647,8 @@ import BigHrushovski
 
 #print axioms BigHrushovski.GraphOn.oldNeighbourSet_image
 #print axioms BigHrushovski.GraphOn.canonicalOldSupport_image
+
+#print axioms BigHrushovski.CFLocalCatalogue.increasing_old_image
+#print axioms BigHrushovski.CFLocalCatalogue.increasing_fresh_image
+#print axioms BigHrushovski.CFLocalCatalogue.normalizeOrderedLocalType
+#print axioms BigHrushovski.CFLocalCatalogue.exists_normalizedOrderedLocalType
