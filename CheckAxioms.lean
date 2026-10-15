@@ -742,3 +742,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.toVertex_birth_lt
 #print axioms BigHrushovski.CFCoherentTower.toVertex_injective
 #print axioms BigHrushovski.CFCoherentTower.everyVertex_in_stage
+
+#print axioms BigHrushovski.CFCoherentTower.ascend_injective
+#print axioms BigHrushovski.CFCoherentTower.ascend_induced
+#print axioms BigHrushovski.CFCoherentTower.toVertex_ascend
+#print axioms BigHrushovski.CFCoherentTower.toVertex_ascend_injective
