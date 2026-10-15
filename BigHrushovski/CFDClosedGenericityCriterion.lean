@@ -175,8 +175,9 @@ theorem dClosedExtensionProperty_of_fairResponses
     hn.trans (chain.stage_monotone hnk)
   have hApplicable : AppliesAt G F (chain.stage k) req := by
     obtain ⟨hInj, hInd, hClosedGlobal⟩ := hGlobal
-    exact ⟨hInj, hInd,
-      hClosedGlobal.restrict hSstage⟩
+    refine ⟨hInj, hInd, hSstage, ?_⟩
+    intro x hxS hne hxStage
+    exact hClosedGlobal x hxS hne
   obtain ⟨g, hgInj, hgInd, hgBase, hgClosed⟩ :=
     hRespond k req hk hApplicable
   refine ⟨g, hgInj, hgInd, hgBase, ?_⟩
