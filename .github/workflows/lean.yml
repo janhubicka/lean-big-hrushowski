@@ -133,6 +133,8 @@ jobs:
         run: python3 scripts/check_cf_local_support.py
       - name: Audit bounded ordered CF local-type catalogue
         run: python3 scripts/check_cf_ordered_catalogue.py
+      - name: Audit increasing ordered CF block normalization
+        run: python3 scripts/check_cf_ordered_normalization.py
       - name: Check nonempty C0 trace offsets and boundary joins
         run: python3 scripts/check_c0_trace_offsets.py
       - name: Check finite C0 back-edge ancestor closure
