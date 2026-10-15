@@ -632,3 +632,11 @@ import BigHrushovski
 #print axioms BigHrushovski.CFLocalCatalogue.OrderedLocalType.total_size_le_of_generator_bound
 #print axioms BigHrushovski.CFLocalCatalogue.OrderedLocalType.fresh_size_le_of_uniform_bound
 #print axioms BigHrushovski.CFLocalCatalogue.OrderedLocalType.occurs_of_uniform_bound
+
+#print axioms BigHrushovski.CFLocalCatalogue.taggedIncreasingEquiv_old
+#print axioms BigHrushovski.CFLocalCatalogue.taggedIncreasingEquiv_new
+#print axioms BigHrushovski.CFLocalCatalogue.increasingNewBlock_lt_iff
+#print axioms BigHrushovski.CFLocalCatalogue.orderedNormalizeGraph_adj_iff
+#print axioms BigHrushovski.CFLocalCatalogue.orderedNormalizeGraph_old_adj
+#print axioms BigHrushovski.CFLocalCatalogue.orderedNormalizeGraph_fresh_adj
+#print axioms BigHrushovski.CFLocalCatalogue.orderedNormalizeGraph_boundary_adj
