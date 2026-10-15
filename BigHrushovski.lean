@@ -170,3 +170,5 @@ import BigHrushovski.CFStrictLocal
 import BigHrushovski.LocalFreeTransfer
 
 import BigHrushovski.CFMinimalDClosed
+
+import BigHrushovski.CFClosedFactor

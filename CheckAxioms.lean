@@ -602,3 +602,7 @@ import BigHrushovski
 
 #print axioms BigHrushovski.GraphOn.dClosed_intermediate_free_iff
 #print axioms BigHrushovski.GraphOn.minimalDClosedStep_free_iff
+
+#print axioms BigHrushovski.GraphOn.dClosed_left_of_noCross
+#print axioms BigHrushovski.GraphOn.dClosed_right_of_noCross
+#print axioms BigHrushovski.GraphOn.dClosed_local_right_factor
