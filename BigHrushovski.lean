@@ -195,3 +195,5 @@ import BigHrushovski.CFSupportPersistence
 import BigHrushovski.CFStageCatalogue
 
 import BigHrushovski.CFSimultaneousGraph
+
+import BigHrushovski.CFBatchInducedOld
