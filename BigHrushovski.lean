@@ -199,3 +199,5 @@ import BigHrushovski.CFSimultaneousGraph
 import BigHrushovski.CFBatchInducedOld
 
 import BigHrushovski.CFBatchLocalInduced
+
+import BigHrushovski.CFBatchClosureRun
