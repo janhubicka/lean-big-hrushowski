@@ -640,3 +640,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFLocalCatalogue.orderedNormalizeGraph_old_adj
 #print axioms BigHrushovski.CFLocalCatalogue.orderedNormalizeGraph_fresh_adj
 #print axioms BigHrushovski.CFLocalCatalogue.orderedNormalizeGraph_boundary_adj
+
+#print axioms BigHrushovski.GraphOn.dClosed_image_iff
+#print axioms BigHrushovski.GraphOn.minimalDClosedStep_image_iff
+#print axioms BigHrushovski.GraphOn.dClosedHull_image
