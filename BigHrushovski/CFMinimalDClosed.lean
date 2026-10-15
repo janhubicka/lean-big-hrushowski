@@ -64,7 +64,7 @@ theorem dClosed_intermediate_free_iff
     have hPY : P ⊆ Y := hPD.trans hDY
     have hYE : Y ⊆ P ∪ B := Finset.inter_subset_right
     have hAZ : A ⊆ Z :=
-      Finset.subset_trans Finset.subset_union_left hADZ
+      Finset.subset_union_left.trans hADZ
     have hZeq : Z = A ∪ Y :=
       local_enlarged_intermediate_form P A B Z hPA hAZ hZAB
     have hYNe : Y ≠ D := by
