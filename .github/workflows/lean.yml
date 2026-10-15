@@ -131,6 +131,8 @@ jobs:
         run: python3 scripts/check_cf_dclosed_decomposition.py
       - name: Audit canonical finite CF local support from old neighbours
         run: python3 scripts/check_cf_local_support.py
+      - name: Audit bounded ordered CF local-type catalogue
+        run: python3 scripts/check_cf_ordered_catalogue.py
       - name: Check nonempty C0 trace offsets and boundary joins
         run: python3 scripts/check_c0_trace_offsets.py
       - name: Check finite C0 back-edge ancestor closure

@@ -179,3 +179,5 @@ import BigHrushovski.CFDClosedHull
 import BigHrushovski.CFDClosedGenerators
 
 import BigHrushovski.CFLocalSupport
+
+import BigHrushovski.CFOrderedCatalogue
