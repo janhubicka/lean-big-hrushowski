@@ -119,10 +119,10 @@ for old in (0, 1 << 4):
     delta = lambda s: 2*s.bit_count()-sum(
         s & (1<<u) != 0 and s & (1<<v) != 0 for u,v in E)
     b = old | ((1 << 4) - 1)
-    assert delta[b] > delta[old]
+    assert delta(b) > delta(old)
     for sub in range(1, 1<<4):
         c = old | sub
-        assert delta[c] > delta[old]
+        assert delta(c) > delta(old)
 
 print({
     "graphs_up_to_vertices":5,
