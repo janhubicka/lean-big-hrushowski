@@ -686,3 +686,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.taggedSupport_dClosed_old
 #print axioms BigHrushovski.CFStageCatalogue.taggedLocal_minimal
 #print axioms BigHrushovski.CFStageCatalogue.taggedLocal_exactSupport
+
+#print axioms BigHrushovski.GraphOn.growthSparse_restrict
+#print axioms BigHrushovski.GraphOn.twoSparse_of_growthSparse
+#print axioms BigHrushovski.GraphOn.growthSparse_image_iff
+#print axioms BigHrushovski.GraphOn.growthSparse_free_join
