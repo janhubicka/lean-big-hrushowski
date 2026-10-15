@@ -112,9 +112,11 @@ theorem growthSparse_free_join
     (hA : G.IsGrowthSparse F a)
     (hB : G.IsGrowthSparse F b) :
     G.IsGrowthSparse F (a ∪ b) := by
-  exact hFree a b hNo
-    (hCap ▸ hPA)
-    (hCap ▸ hPB) hA hB
+  have hInterA : G.toPredimension.IsDClosed (a ∩ b) a := by
+    simpa only [hCap] using hPA
+  have hInterB : G.toPredimension.IsDClosed (a ∩ b) b := by
+    simpa only [hCap] using hPB
+  exact hFree a b hNo hInterA hInterB hA hB
 
 end GraphOn
 end BigHrushovski
