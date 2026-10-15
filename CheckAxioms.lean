@@ -606,3 +606,8 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.dClosed_left_of_noCross
 #print axioms BigHrushovski.GraphOn.dClosed_right_of_noCross
 #print axioms BigHrushovski.GraphOn.dClosed_local_right_factor
+
+#print axioms BigHrushovski.Predimension.dclosed_refl
+#print axioms BigHrushovski.Predimension.dclosed_restrict
+#print axioms BigHrushovski.Predimension.exists_minimalDClosedStep_of_dClosed
+#print axioms BigHrushovski.Predimension.finite_minimal_decomposition_of_dClosed_absolute
