@@ -39,10 +39,10 @@ ordered local requests is finite. -/
 noncomputable instance freshAt_finite (F : ℕ → ℝ) (K : ℕ → ℕ)
     (n : ℕ) : Finite (FreshAt F K n) := by
   classical
-  have h : Fintype (FreshAt F K n) := by
+  letI : Fintype (FreshAt F K n) := by
     unfold FreshAt
     infer_instance
-  exact Finite.of_fintype _
+  infer_instance
 
 /-- The canonical countable universe: a vertex remembers its
 birth level and exact fresh request tag. -/
