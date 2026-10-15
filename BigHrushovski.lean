@@ -209,3 +209,5 @@ import BigHrushovski.CFBatchDClosed
 import BigHrushovski.CFGrowthClass
 
 import BigHrushovski.CFBatchGrowthMembership
+
+import BigHrushovski.CFDClosedChain
