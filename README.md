@@ -115,6 +115,24 @@ decompositions and their one-generated hulls are in
 certifies canonical local support as the d-closure of all old neighbours.
 See [the finite C_F API](docs/CF_FINITE_CLOSURE.md) for precise statements.
 
+The next finite stage infrastructure is also certified:
+[PR #133](https://github.com/janhubicka/lean-big-hrushowski/pull/133)
+provides bounded ordered local-type codes;
+[PRs #134–#137](https://github.com/janhubicka/lean-big-hrushowski/pull/137)
+normalize arbitrary ordered blocks over named supports and transport
+their complete graph, strict d-closedness and exact support;
+[PR #138](https://github.com/janhubicka/lean-big-hrushowski/pull/138)
+proves persistence of a minimal block's exact support when freely
+attached to a larger d-closed old graph;
+[PR #139](https://github.com/janhubicka/lean-big-hrushowski/pull/139)
+enumerates the finite set of level requests over **all actual**
+d-closed supports. The latest passing CI run
+[38686527978](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38686527978)
+audited 539 declarations and 124 placeholder-free Lean files.
+The remaining finite work is to **attach all those requests**
+in one permitted free amalgam; concrete C_F membership and the
+countable schedule remain separate.
+
 These finite results **do not** prove simultaneous preservation of both
 named complete C0 unary functions, the countable C0 functional reduct,
 membership of a free amalgam in the restricted class C_F, countable

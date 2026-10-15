@@ -54,13 +54,23 @@ They do **not** establish that a particular growth-function subclass
 C_F is closed under the permitted free amalgams. They do not
 construct its countable Fraïssé limit.
 
-The next independent obligations are:
-1. incorporate the assumed C_F closure bound into a finite
-   catalogue of ordered local extension types over a fixed base;
-2. define the successive finite levels and prove that the
-   schedule realizes every d-closed extension requirement;
-3. formalize the finite block-root functions and prove the
-   embedding-lift/monoid claims.
+Subsequent PRs have already certified the *conditional*
+bounded ordered local-type catalogue, its increasing normalization,
+transport of strict closure and intrinsic support, exact one-block
+support persistence and the finite catalogue of requests over
+all actual supports; see [CF_STAGE_REQUEST_CATALOGUE_AUDIT.md](CF_STAGE_REQUEST_CATALOGUE_AUDIT.md).
+
+The remaining obligations are:
+1. instantiate the published C_F growth-function bound and
+   concrete class-membership predicate in those finite interfaces;
+2. construct the **simultaneous finite free attachment** of the
+   complete request catalogue, with disjoint fresh blocks, no
+   crossing edges, and preservation of every support and of
+   C_F membership;
+3. iterate finite levels, verify the fair countable d-closed
+   extension property, then prove the graph-reduct identification;
+4. formalize block-root functions and prove the embedding-lift
+   and embedding-monoid claims.
 
 The abstract Milliken and Ellentuck libraries become relevant
 only when these concrete approximation and embedding data

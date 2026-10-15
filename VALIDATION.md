@@ -3322,7 +3322,7 @@ This is an archival checkpoint; the manuscript's latest validation
 pin and current finite C_F results are recorded below.
 
 
-## Current certified finite C_F frontier — 15 October 2026
+## Historical finite C_F closure checkpoint — PR #129 (15 October 2026)
 
 The most recent finite checkpoint is
 [Lean PR #129](https://github.com/janhubicka/lean-big-hrushowski/pull/129),
@@ -3361,3 +3361,46 @@ The next task is to instantiate the finite C_F local-type catalogue
 and then construct the level schedule. Do not promote its genericity,
 block-root functions, or the embedding monoid using only the finite
 support results.
+
+
+## Current certified finite C_F stage frontier — PR #139 (15 October 2026)
+
+The current integrated checkpoint is [Lean PR #139](https://github.com/janhubicka/lean-big-hrushowski/pull/139),
+[Actions run 38686527978](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38686527978):
+**539 audited declarations**, only standard logical axioms,
+**124 Lean source files** without proof placeholders and all
+**62 workflow steps** successful. This checkpoint includes the
+earlier verified generic strong Fraïssé construction.
+
+| Manuscript or finite library assertion | Exact Lean endpoint | Scope |
+| --- | --- | --- |
+| Bounded ordered local graph types over one named P | CFLocalCatalogue.OrderedLocalType.occurs_of_uniform_bound | [PR #133](https://github.com/janhubicka/lean-big-hrushowski/pull/133), *conditional* on an explicit finite hull bound and Allowed predicate |
+| Increasing relabelling of an arbitrary ordered fresh block | CFLocalCatalogue.orderedNormalizeGraph_adj_iff; increasingNewBlock_lt_iff | [PR #134](https://github.com/janhubicka/lean-big-hrushowski/pull/134), graph/order only |
+| Strict d-closure, minimal-step and finite hull transport | GraphOn.dClosed_image_iff; minimalDClosedStep_image_iff; dClosedHull_image | [PR #135](https://github.com/janhubicka/lean-big-hrushowski/pull/135), exact finite induced image |
+| Complete old-neighbour support under induced images | GraphOn.canonicalOldSupport_image | [PR #136](https://github.com/janhubicka/lean-big-hrushowski/pull/136), finite ambient |
+| Combined complete normalized ordered local-type record | CFLocalCatalogue.exists_normalizedOrderedLocalType | [PR #137](https://github.com/janhubicka/lean-big-hrushowski/pull/137), caller supplies Allowed on normalized graph |
+| Exact support after freely attaching one minimal local block | GraphOn.minimalLocalDClosed_support_persists | [PR #138](https://github.com/janhubicka/lean-big-hrushowski/pull/138), requires P≤d A and full no-cross boundary |
+| Finite list of requests over **every actual d-closed P≤d U** | CFStageCatalogue.includes_ordered_code; mem_stageCatalogue | [PR #139](https://github.com/janhubicka/lean-big-hrushowski/pull/139), caller supplies per-support bound and admissibility |
+| Simultaneous attachment of all fresh blocks over U in C_F | — | **Open**: concrete free-amalgamation membership and disjoint tagged batch |
+| Countable C_F levels, genericity and reduct identification | — | **Open** |
+| Block-root recovery, embedding lifts, embedding monoid | — | **Open** |
+| Complete two-sided C0 finite functional amalgamation | — | **Partial**, unrelated to the finite C_F catalogue |
+
+The finite stage-request diagnostic enumerated 12 small old graphs,
+69 actual d-closed supports and 10,470 complete local graph codes,
+producing 122 distinct bounded ordered requests. It explicitly
+kept isomorphic but different named supports distinct and found
+no code collisions. The independent one-block persistence test
+previously checked 254,254 finite partitions, including 3,847
+applicable minimal attachments, with no mismatches.
+
+The green manuscript link pin is PR #139's CI-certified head
+80a22e75ccbec77620a17c75845359a24a922c09.
+The documentation-only commits after that head do not alter
+the mathematical verification.
+
+Next milestone: form the finite **tagged simultaneous free join**
+of the full request catalogue, preserve each prescribed support
+and verify the restricted C_F class membership under the assumed
+free-amalgamation hypothesis. Only then iterate levels and prove
+the countable extension property. See issue #131.
