@@ -77,11 +77,37 @@ for n in range(6):
         E={e for i,e in enumerate(possible) if mask&(1<<i)}
         check_graph(n,E)
 
+def dclosed_control(delta, a, b):
+    if a & ~b:
+        return False
+    tail = b & ~a
+    sub = tail
+    while sub:
+        if delta(a) >= delta(a | sub):
+            return False
+        sub = (sub-1) & tail
+    return True
+
+def hull_control(delta, s, b):
+    h = b
+    subset = b
+    while True:
+        if not s & ~subset and dclosed_control(delta, subset, b):
+            h &= subset
+        if not subset:
+            break
+        subset = (subset-1) & b
+    assert dclosed_control(delta, h, b)
+    return h
+
 # Dropping the no-cross hypothesis: a--b grows the old support.
 cross={(0,1)}
 def delta2(s):return 2*s.bit_count()-int(s==3)
-assert delta2(1)>delta2(0) and delta2(2)>delta2(0)
-assert cross
+assert dclosed_control(delta2, 0, 1)
+assert dclosed_control(delta2, 0, 2)
+assert hull_control(delta2, 0, 0) == 0
+assert hull_control(delta2, 1, 1) == 1
+assert hull_control(delta2, 1, 1) != 0
 
 # Dropping P≤d A: an isolated new vertex over empty P,
 # old A=K5 has δ(A)=0, so the least empty-generated hull in A
@@ -90,8 +116,13 @@ K5=set(combinations(range(5),2))
 def delta5(s):
     return 2*s.bit_count()-sum(bool(s&(1<<u)) and bool(s&(1<<v))
                                for u,v in K5)
-assert delta5(31)==0 and delta5(0)==0
-assert all(delta5(s)>0 for s in range(1,31))
+assert delta5(31) == 0 and delta5(0) == 0
+assert all(delta5(s) > 0 for s in range(1,31))
+assert dclosed_control(delta5, 0, 32)
+assert not dclosed_control(delta5, 0, 31)
+assert hull_control(delta5, 0, 0) == 0
+assert hull_control(delta5, 0, 31) == 31
+assert not dclosed_control(delta5, 32, 63)
 
 assert eligible>0 and multi_vertex>0
 print({
