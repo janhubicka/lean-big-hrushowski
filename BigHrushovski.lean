@@ -207,3 +207,5 @@ import BigHrushovski.CFTaggedBlockCertificates
 import BigHrushovski.CFBatchDClosed
 
 import BigHrushovski.CFGrowthClass
+
+import BigHrushovski.CFBatchGrowthMembership
