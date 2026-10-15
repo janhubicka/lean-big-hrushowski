@@ -723,3 +723,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFDClosedGenericity.dClosedExtensionProperty_of_fairResponses
 
 #print axioms BigHrushovski.CFStageCatalogue.taggedSupportClosedSubbatch_dClosed_full
+
+#print axioms BigHrushovski.Predimension.MinimalDClosedChain.lift_by_minimal_steps
+#print axioms BigHrushovski.Predimension.lift_dClosed_extension_of_minimal_responses
