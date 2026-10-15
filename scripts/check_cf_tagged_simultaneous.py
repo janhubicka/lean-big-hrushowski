@@ -22,6 +22,7 @@ from functools import lru_cache
 
 stages = request_count = fresh_count = total_edges = 0
 local_pair_checks = no_cross_checks = base_checks = 0
+predimension_image_checks = minimal_image_checks = 0
 multi_block_requests = nontrivial_supports = 0
 
 def predim(size, edges):
@@ -123,6 +124,21 @@ for m in range(4):
                 assert (tuple(sorted((local_image(a),local_image(b))))
                         in stageE) == ((a,b) in E)
                 local_pair_checks+=1
+            # Adversarially compare every induced predimension value,
+            # not just pairwise edges, and recheck strict minimality
+            # in the copied code's entire finite image interval.
+            code_delta = predim(sz,E)
+            stage_delta = []
+            for sub in range(1<<sz):
+                image={local_image(k) for k in range(sz) if sub&(1<<k)}
+                stage_edges=sum(a in image and b in image for a,b in stageE)
+                stage_delta.append(2*sub.bit_count()-stage_edges)
+                assert stage_delta[-1]==code_delta[sub]
+                predimension_image_checks+=1
+            full=(1<<sz)-1
+            base=(1<<len(pnames))-1
+            assert minimal(tuple(stage_delta),base,full)
+            minimal_image_checks+=1
             for j in range(n):
                 u=("new",tag,j)
                 for v in range(m):
@@ -145,6 +161,8 @@ print({
     "fresh_vertices":fresh_count,
     "total_constructed_edges":total_edges,
     "complete_local_adjacency_checks":local_pair_checks,
+    "all_local_predimension_image_checks":predimension_image_checks,
+    "strict_minimal_image_checks":minimal_image_checks,
     "absence_of_crossing_checks":no_cross_checks,
     "old_base_edge_checks":base_checks,
     "multi_vertex_blocks":multi_block_requests,

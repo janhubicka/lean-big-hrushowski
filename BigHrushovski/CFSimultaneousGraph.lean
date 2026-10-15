@@ -55,6 +55,15 @@ noncomputable instance finite_levelCarrier
   classical
   infer_instance
 
+/-- The dependent finite carrier supports executable finite graph
+predimension operations after the canonical classical choice of
+equality decisions. This instance carries no mathematical content. -/
+noncomputable instance decidableEq_levelCarrier
+    (G : GraphOn U) (Allowed : AllowedLocal U)
+    (bound : Finset U → ℕ) :
+    DecidableEq (LevelCarrier G Allowed bound) :=
+  Classical.decEq _
+
 /-- The old vertices retain their actual names and are not renumbered. -/
 def oldTag (G : GraphOn U)
     (Allowed : AllowedLocal U) (bound : Finset U → ℕ) :
