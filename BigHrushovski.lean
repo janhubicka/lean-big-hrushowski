@@ -204,4 +204,6 @@ import BigHrushovski.CFBatchClosureRun
 
 import BigHrushovski.CFTaggedBlockCertificates
 
+import BigHrushovski.CFBatchDClosed
+
 import BigHrushovski.CFGrowthClass
