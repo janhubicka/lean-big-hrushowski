@@ -201,3 +201,5 @@ import BigHrushovski.CFBatchInducedOld
 import BigHrushovski.CFBatchLocalInduced
 
 import BigHrushovski.CFBatchClosureRun
+
+import BigHrushovski.CFTaggedBlockCertificates

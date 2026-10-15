@@ -23,6 +23,7 @@ from functools import lru_cache
 stages = request_count = fresh_count = total_edges = 0
 local_pair_checks = no_cross_checks = base_checks = 0
 predimension_image_checks = minimal_image_checks = 0
+exact_support_image_checks = finite_closed_old_support_checks = 0
 multi_block_requests = nontrivial_supports = 0
 
 def predim(size, edges):
@@ -139,6 +140,19 @@ for m in range(4):
             base=(1<<len(pnames))-1
             assert minimal(tuple(stage_delta),base,full)
             minimal_image_checks+=1
+            # The complete old-neighbour set and its finite strict
+            # hull in this *actual tagged induced copy* coincide
+            # with the prescribed named support of the original type.
+            source_n=sum(1<<v for v in range(len(pnames))
+                         if any((v,w) in E for w in range(len(pnames),sz)))
+            target_n=sum(1<<v for v in range(len(pnames))
+                         if any(tuple(sorted((local_image(v),local_image(w))))
+                                in stageE for w in range(len(pnames),sz)))
+            assert source_n == target_n
+            assert hull(tuple(stage_delta),target_n,base) == base
+            exact_support_image_checks+=1
+            assert closed(predim(m,oldE),P,(1<<m)-1)
+            finite_closed_old_support_checks+=1
             for j in range(n):
                 u=("new",tag,j)
                 for v in range(m):
@@ -163,6 +177,8 @@ print({
     "complete_local_adjacency_checks":local_pair_checks,
     "all_local_predimension_image_checks":predimension_image_checks,
     "strict_minimal_image_checks":minimal_image_checks,
+    "exact_tagged_support_hull_checks":exact_support_image_checks,
+    "actual_old_support_closed_checks":finite_closed_old_support_checks,
     "absence_of_crossing_checks":no_cross_checks,
     "old_base_edge_checks":base_checks,
     "multi_vertex_blocks":multi_block_requests,
