@@ -213,3 +213,5 @@ import BigHrushovski.CFBatchGrowthMembership
 import BigHrushovski.CFDClosedChain
 
 import BigHrushovski.CFBatchRelativeDClosed
+
+import BigHrushovski.CFSelectedClosedSubbatch
