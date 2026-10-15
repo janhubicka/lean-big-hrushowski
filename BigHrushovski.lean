@@ -219,3 +219,5 @@ import BigHrushovski.CFDClosedGenericityCriterion
 import BigHrushovski.CFSelectedClosedSubbatch
 
 import BigHrushovski.CFOneLevelResponse
+
+import BigHrushovski.CFMinimalChainLifting

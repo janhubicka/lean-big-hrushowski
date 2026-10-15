@@ -727,3 +727,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.taggedLocal_dClosed_full
 #print axioms BigHrushovski.CFStageCatalogue.taggedResponse_dClosed_full
 #print axioms BigHrushovski.CFStageCatalogue.orderedCode_oneLevelResponse
+
+#print axioms BigHrushovski.Predimension.MinimalDClosedChain.lift_by_minimal_steps
+#print axioms BigHrushovski.Predimension.lift_dClosed_extension_of_minimal_responses
