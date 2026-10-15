@@ -9,6 +9,7 @@ exactly on the induced image interval. No global target d-closedness
 is asserted.
 """
 from itertools import combinations, permutations
+from functools import lru_cache
 
 graph_embeddings=intervals_checked=closed_pairs=minimal_pairs=0
 hull_equalities=outside_crossing_cases=0
@@ -20,6 +21,7 @@ def predim(n,E):
 
 def checker(n,E):
     delta=predim(n,E)
+    @lru_cache(maxsize=None)
     def closed(a,b):
         if a&~b:return False
         t=b&~a
@@ -27,12 +29,14 @@ def checker(n,E):
             if delta[a]>=delta[a|t]:return False
             t=(t-1)&(b&~a)
         return True
+    @lru_cache(maxsize=None)
     def minimal(a,b):
         if a==b or not closed(a,b):return False
         for z in range(1<<n):
             if z!=a and z!=b and not a&~z and not z&~b:
                 if closed(z,b):return False
         return True
+    @lru_cache(maxsize=None)
     def hull(s,b):
         h=b
         for z in range(1<<n):
