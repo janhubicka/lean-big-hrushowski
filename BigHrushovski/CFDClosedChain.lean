@@ -44,8 +44,10 @@ theorem globallyDClosed_of_dClosed_in_global
     (hb : d.IsGloballyDClosed b) :
     d.IsGloballyDClosed a := by
   intro c hac hne
-  have hbUnion : d.IsDClosed b (b ∪ c) :=
-    hb.restrict Finset.subset_union_left
+  have hbUnion : d.IsDClosed b (b ∪ c) := by
+    refine ⟨Finset.subset_union_left, ?_⟩
+    intro x hbx hne hxc
+    exact hb x hbx hne
   have haUnion : d.IsDClosed a (b ∪ c) :=
     d.dclosed_trans hab hbUnion
   exact haUnion.2 c hac hne Finset.subset_union_right
