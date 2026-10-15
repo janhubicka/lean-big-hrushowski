@@ -104,12 +104,21 @@ The strict d-closed endpoint lemmas were certified in
 the common interface and proof cleanup are in
 [PR #122](https://github.com/janhubicka/lean-big-hrushowski/pull/122).
 
-The **minimal d-closed step equivalence** is proved in the manuscript
-from the intermediate-set predimension identity, but is not yet an
-exact Lean theorem. More importantly, the common lemma does not imply
-simultaneous preservation of both complete C0 unary functions, the
-countable functional reduct theorem, or any C_F level/monoid theorem.
-Those remain separate tasks.
+The **minimal d-closed step equivalence** is now formally certified
+in [PR #125](https://github.com/janhubicka/lean-big-hrushowski/pull/125).
+[PR #126](https://github.com/janhubicka/lean-big-hrushowski/pull/126)
+also verifies strict d-closedness of the other free-amalgamation factor
+when the common base is d-closed in the old graph. Finite d-closed
+decompositions and their one-generated hulls are in
+[PR #128](https://github.com/janhubicka/lean-big-hrushowski/pull/128);
+[PR #129](https://github.com/janhubicka/lean-big-hrushowski/pull/129)
+certifies canonical local support as the d-closure of all old neighbours.
+See [the finite C_F API](docs/CF_FINITE_CLOSURE.md) for precise statements.
+
+These finite results **do not** prove simultaneous preservation of both
+named complete C0 unary functions, the countable C0 functional reduct,
+membership of a free amalgam in the restricted class C_F, countable
+C_F level genericity, block-root recovery, or the embedding monoid.
 
 ## Reusable libraries
 
