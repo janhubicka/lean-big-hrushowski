@@ -37,8 +37,7 @@ theorem embedToLater_induced (F : ℕ → ℝ) (K : ℕ → ℕ)
       (embedToLater F K n m hnm a)
       (embedToLater F K n m hnm b) ↔
       (stage F K n).graph.adj a b := by
-  unfold embedToLater
-  simpa only [Nat.add_sub_of_le hnm] using
+  simpa [embedToLater, Nat.add_sub_of_le hnm] using
     (ascend_induced F K n (m - n) a b)
 
 /-- Birth labels are unchanged by the canonical embedding
@@ -48,8 +47,7 @@ theorem toVertex_embedToLater (F : ℕ → ℝ) (K : ℕ → ℕ)
     (a : (stage F K n).carrier) :
     toVertex F K m (embedToLater F K n m hnm a) =
       toVertex F K n a := by
-  unfold embedToLater
-  simpa only [Nat.add_sub_of_le hnm] using
+  simpa [embedToLater, Nat.add_sub_of_le hnm] using
     (toVertex_ascend F K n (m - n) a)
 
 /-- Equal birth-labelled vertices represented in different
