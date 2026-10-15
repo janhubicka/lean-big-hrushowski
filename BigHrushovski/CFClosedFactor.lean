@@ -101,7 +101,7 @@ theorem dClosed_local_right_factor
     (hBase : G.toPredimension.IsDClosed P A) :
     G.toPredimension.IsDClosed (P ∪ B) (A ∪ B) := by
   have hIntersect : A ∩ (P ∪ B) = P :=
-    G.local_inter_eq P A B (P ∪ B)
+    local_inter_eq P A B (P ∪ B)
       hPA hDisj Finset.subset_union_left (le_refl _)
   have hBase' : G.toPredimension.IsDClosed
       (A ∩ (P ∪ B)) A := by
@@ -109,7 +109,7 @@ theorem dClosed_local_right_factor
     exact hBase
   have hFactor :=
     G.dClosed_right_of_noCross A (P ∪ B) hNo hBase'
-  rw [G.local_old_union_eq P A B hPA] at hFactor
+  rw [local_old_union_eq P A B hPA] at hFactor
   exact hFactor
 
 end GraphOn
