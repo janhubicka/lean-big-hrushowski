@@ -66,8 +66,8 @@ theorem lift_dClosed_extension_of_minimal_responses
     (hab : d.IsDClosed a b)
     (f : V → W) (hf : Valid a f) :
     ∃ g : V → W, Valid b g ∧ ∀ v ∈ a, g v = f v := by
-  exact (d.finite_minimal_decomposition_of_dClosed_absolute hab)
-    |>.lift_by_minimal_steps d Valid hLocal f hf
+  exact MinimalDClosedChain.lift_by_minimal_steps d Valid hLocal
+    (d.finite_minimal_decomposition_of_dClosed_absolute hab) f hf
 
 end Predimension
 end BigHrushovski
