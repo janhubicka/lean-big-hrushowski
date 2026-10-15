@@ -730,3 +730,9 @@ import BigHrushovski
 
 #print axioms BigHrushovski.Predimension.MinimalDClosedChain.lift_by_minimal_steps
 #print axioms BigHrushovski.Predimension.lift_dClosed_extension_of_minimal_responses
+
+#print axioms BigHrushovski.CFCoherentTower.next_old_induced
+#print axioms BigHrushovski.CFCoherentTower.next_old_dClosed
+#print axioms BigHrushovski.CFCoherentTower.stage_succ_induced
+#print axioms BigHrushovski.CFCoherentTower.stage_succ_dClosed
+#print axioms BigHrushovski.CFCoherentTower.all_stages_growth
