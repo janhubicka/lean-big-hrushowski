@@ -669,3 +669,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_old_iff
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_fresh_old_support
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_old_fresh_support
+
+#print axioms BigHrushovski.CFStageCatalogue.localTag_fresh_forces_request
+#print axioms BigHrushovski.CFStageCatalogue.levelGraph_edge_from_fresh
+#print axioms BigHrushovski.CFStageCatalogue.levelGraph_local_adj_iff
+#print axioms BigHrushovski.CFStageCatalogue.levelGraph_local_minimal_image
