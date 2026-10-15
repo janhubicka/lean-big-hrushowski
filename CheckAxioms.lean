@@ -674,3 +674,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_edge_from_fresh
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_local_adj_iff
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_local_minimal_image
+
+#print axioms BigHrushovski.GraphOn.IsLocalDClosedBatchRun.toMinimalChain
+#print axioms BigHrushovski.GraphOn.IsLocalDClosedBatchRun.old_dClosed_final
