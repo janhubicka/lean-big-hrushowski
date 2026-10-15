@@ -8,7 +8,7 @@ import Mathlib.Data.Nat.Pairing
 # A fair-response criterion for countable d-closed C_F generics
 
 All finite growth-class graphs and finite d-closed embedding
-diagrams admit a countable labelled catalogue. A potential
+diagrams have a countable labelled catalogue. A potential
 request consists of such a diagram and a map from its source
 into the natural-number ambient carrier.
 
