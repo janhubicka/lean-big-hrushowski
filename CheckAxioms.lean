@@ -623,3 +623,12 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.oldNeighbourSet_subset
 #print axioms BigHrushovski.GraphOn.oldNeighbourSet_contains
 #print axioms BigHrushovski.GraphOn.canonical_dClosed_local_support
+
+#print axioms BigHrushovski.CFLocalCatalogue.old_fresh_disjoint
+#print axioms BigHrushovski.CFLocalCatalogue.old_union_fresh
+#print axioms BigHrushovski.CFLocalCatalogue.mem_catalogue
+#print axioms BigHrushovski.CFLocalCatalogue.toBounded_mem
+#print axioms BigHrushovski.CFLocalCatalogue.OrderedLocalType.fresh_pos
+#print axioms BigHrushovski.CFLocalCatalogue.OrderedLocalType.total_size_le_of_generator_bound
+#print axioms BigHrushovski.CFLocalCatalogue.OrderedLocalType.fresh_size_le_of_uniform_bound
+#print axioms BigHrushovski.CFLocalCatalogue.OrderedLocalType.occurs_of_uniform_bound
