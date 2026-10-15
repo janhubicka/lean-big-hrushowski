@@ -619,3 +619,7 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.minimalDClosedStep_every_generator
 #print axioms BigHrushovski.Predimension.minimalDClosedStep_of_every_generator
 #print axioms BigHrushovski.Predimension.minimalDClosedStep_iff_every_generator
+
+#print axioms BigHrushovski.GraphOn.oldNeighbourSet_subset
+#print axioms BigHrushovski.GraphOn.oldNeighbourSet_contains
+#print axioms BigHrushovski.GraphOn.canonical_dClosed_local_support
