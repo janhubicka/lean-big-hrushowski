@@ -23,6 +23,7 @@ from functools import lru_cache
 stages = request_count = fresh_count = total_edges = 0
 local_pair_checks = no_cross_checks = base_checks = 0
 predimension_image_checks = minimal_image_checks = 0
+relative_subbatch_strict_checks = 0
 exact_support_image_checks = finite_closed_old_support_checks = 0
 sequential_relative_predimension_checks = multiblock_strict_samples = 0
 multi_block_requests = nontrivial_supports = 0
@@ -201,6 +202,33 @@ for m in range(4):
             if selection:
                 assert full_delta(old_set|selection)>base_d
                 multiblock_strict_samples+=1
+        # Arbitrary sub-batch prefixes, not just chronological
+        # initial segments: verify strict growth against added
+        # vertices from previously unused request tags.
+        all_req_ids=sorted({u[1] for u in tags})
+        done_samples=[
+            set(),
+            set(all_req_ids[::2]),
+            set(all_req_ids[1::2]),
+            set(all_req_ids[:2]),
+            set(all_req_ids[:-1]),
+            set(all_req_ids)
+        ]
+        for done_tags in done_samples:
+            prefix=old_set|{u for u in tags if u[1] in done_tags}
+            fresh_outside=sorted(u for u in tags if u[1] not in done_tags)
+            base=full_delta(prefix)
+            increments=[{u} for u in fresh_outside]
+            increments.extend(set(z) for z in
+                              combinations(fresh_outside[:12],2))
+            for stride in (1,2,3,5):
+                added=set(fresh_outside[::stride])
+                if added: increments.append(added)
+            for added in increments:
+                assert added and added.isdisjoint(prefix)
+                assert full_delta(prefix|added)>base, (
+                    m,mask,done_tags,added,"relative prefix not d-closed")
+                relative_subbatch_strict_checks+=1
 
 assert request_count>0 and multi_block_requests>0
 # A deliberately invalid added cross-edge is detectable:
@@ -218,6 +246,7 @@ print({
     "exact_tagged_support_hull_checks":exact_support_image_checks,
     "strict_chronological_new_subset_checks":sequential_relative_predimension_checks,
     "global_old_dclosed_multiblock_samples":multiblock_strict_samples,
+    "arbitrary_dclosed_subbatch_prefix_checks":relative_subbatch_strict_checks,
     "actual_old_support_closed_checks":finite_closed_old_support_checks,
     "absence_of_crossing_checks":no_cross_checks,
     "old_base_edge_checks":base_checks,

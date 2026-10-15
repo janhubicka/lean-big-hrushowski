@@ -714,3 +714,7 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.DClosedChain.contains_finite
 #print axioms BigHrushovski.Predimension.DClosedChain.stage_global
 #print axioms BigHrushovski.Predimension.DClosedChain.toStrongChain
+
+#print axioms BigHrushovski.CFStageCatalogue.taggedBatchPrefix_dClosed_union
+#print axioms BigHrushovski.CFStageCatalogue.taggedBatchPrefix_dClosed_full
+#print axioms BigHrushovski.CFStageCatalogue.taggedSingleBlockPrefix_dClosed_full
