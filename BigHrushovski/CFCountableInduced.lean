@@ -19,17 +19,41 @@ between two vertices already present in an earlier finite stage.
 namespace BigHrushovski
 namespace CFCoherentTower
 
-/-- The canonical iterated old embedding from any stage n to
-any later stage m. The formula uses the exact difference m-n,
-not an arbitrary renumbering. -/
-noncomputable def embedToLater (F : ℕ → ℝ) (K : ℕ → ℕ)
-    (n m : ℕ) (hnm : n ≤ m) :
-    (stage F K n).carrier → (stage F K m).carrier := by
-  simpa only [Nat.add_sub_of_le hnm] using
-    (ascend F K n (m - n))
+/-- Equality of level indices transports both endpoints of the
+same finite graph without changing its adjacency. This explicit
+transport lemma avoids relying on simplification of dependent casts. -/
+private theorem graph_adj_cast (F : ℕ → ℝ) (K : ℕ → ℕ)
+    {i j : ℕ} (h : i = j)
+    (a b : (stage F K i).carrier) :
+    (stage F K j).graph.adj
+      (cast (congrArg (fun t => (stage F K t).carrier) h) a)
+      (cast (congrArg (fun t => (stage F K t).carrier) h) b) ↔
+        (stage F K i).graph.adj a b := by
+  cases h
+  rfl
 
-/-- Iterated inducedness is independent of the arithmetic
-presentation of the later stage. -/
+/-- Equality of level indices likewise preserves the canonical
+birth label of an old vertex. -/
+private theorem toVertex_cast (F : ℕ → ℝ) (K : ℕ → ℕ)
+    {i j : ℕ} (h : i = j)
+    (a : (stage F K i).carrier) :
+    toVertex F K j
+        (cast (congrArg (fun t => (stage F K t).carrier) h) a) =
+      toVertex F K i a := by
+  cases h
+  rfl
+
+/-- The canonical iterated old embedding from stage n to a
+later stage m, using explicit transport of the carrier type. -/
+noncomputable def embedToLater (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (n m : ℕ) (hnm : n ≤ m)
+    (a : (stage F K n).carrier) : (stage F K m).carrier :=
+  cast (congrArg (fun t => (stage F K t).carrier)
+    (Nat.add_sub_of_le hnm))
+    (ascend F K n (m - n) a)
+
+/-- Iterated inducedness is unchanged by the dependent index cast
+used to describe a later stage by its absolute level number. -/
 theorem embedToLater_induced (F : ℕ → ℝ) (K : ℕ → ℕ)
     (n m : ℕ) (hnm : n ≤ m)
     (a b : (stage F K n).carrier) :
@@ -37,18 +61,22 @@ theorem embedToLater_induced (F : ℕ → ℝ) (K : ℕ → ℕ)
       (embedToLater F K n m hnm a)
       (embedToLater F K n m hnm b) ↔
       (stage F K n).graph.adj a b := by
-  simpa [embedToLater, Nat.add_sub_of_le hnm] using
-    (ascend_induced F K n (m - n) a b)
+  unfold embedToLater
+  exact (graph_adj_cast F K (Nat.add_sub_of_le hnm)
+    (ascend F K n (m - n) a)
+    (ascend F K n (m - n) b)).trans
+      (ascend_induced F K n (m - n) a b)
 
-/-- Birth labels are unchanged by the canonical embedding
-into any later finite stage. -/
+/-- Birth labels are preserved by the same dependent transport. -/
 theorem toVertex_embedToLater (F : ℕ → ℝ) (K : ℕ → ℕ)
     (n m : ℕ) (hnm : n ≤ m)
     (a : (stage F K n).carrier) :
     toVertex F K m (embedToLater F K n m hnm a) =
       toVertex F K n a := by
-  simpa [embedToLater, Nat.add_sub_of_le hnm] using
-    (toVertex_ascend F K n (m - n) a)
+  unfold embedToLater
+  exact (toVertex_cast F K (Nat.add_sub_of_le hnm)
+    (ascend F K n (m - n) a)).trans
+      (toVertex_ascend F K n (m - n) a)
 
 /-- Equal birth-labelled vertices represented in different
 finite stages have equal images in any common later stage. -/
