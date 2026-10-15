@@ -32,6 +32,22 @@ namespace CFStageCatalogue
 
 variable {U : Type*} [Fintype U] [DecidableEq U]
 
+/-- The finite request type may be used as an indexed finite set
+when constructing or inducting over the actual batch. -/
+noncomputable instance fintype_stageRequests
+    (G : GraphOn U) (Allowed : AllowedLocal U)
+    (bound : Finset U → ℕ) :
+    Fintype (Requests G Allowed bound) :=
+  Fintype.ofFinite _
+
+/-- Classical decidability of equality for dependent request
+records, used only to form their literal finite index sets. -/
+noncomputable instance decidableEq_stageRequests
+    (G : GraphOn U) (Allowed : AllowedLocal U)
+    (bound : Finset U → ℕ) :
+    DecidableEq (Requests G Allowed bound) :=
+  Classical.decEq _
+
 /-- The old stage together with the fresh blocks of a chosen
 finite set of requests; other fresh vertices remain outside. -/
 noncomputable def taggedBatchPrefix
