@@ -37,6 +37,14 @@ structure FiniteStage where
   decEqCarrier : DecidableEq carrier
   graph : GraphOn carrier
 
+/-- Installed only for the carrier of a specified finite stage. -/
+instance (S : FiniteStage) : Fintype S.carrier :=
+  S.finiteCarrier
+
+/-- Decidable equality is supplied by the finite stage itself. -/
+noncomputable instance (S : FiniteStage) : DecidableEq S.carrier :=
+  S.decEqCarrier
+
 /-- The initial stage has no vertices. -/
 noncomputable def emptyStage : FiniteStage where
   carrier := Fin 0
