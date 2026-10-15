@@ -221,3 +221,5 @@ import BigHrushovski.CFSelectedClosedSubbatch
 import BigHrushovski.CFOneLevelResponse
 
 import BigHrushovski.CFMinimalChainLifting
+
+import BigHrushovski.CFCoherentStages
