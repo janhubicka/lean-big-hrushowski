@@ -24,6 +24,7 @@ stages = request_count = fresh_count = total_edges = 0
 local_pair_checks = no_cross_checks = base_checks = 0
 predimension_image_checks = minimal_image_checks = 0
 exact_support_image_checks = finite_closed_old_support_checks = 0
+sequential_relative_predimension_checks = multiblock_strict_samples = 0
 multi_block_requests = nontrivial_supports = 0
 
 def predim(size, edges):
@@ -104,13 +105,29 @@ for m in range(4):
             if n>1:multi_block_requests+=1
             vertices={("new",tag,j) for j in range(n)}
             assert not(tags & vertices)
-            tags |= vertices
+            prefix={("old",u) for u in range(m)} | tags
             def local_image(k):
                 return ("old",pnames[k]) if k<len(pnames) else \
                        ("new",tag,k-len(pnames))
             assert len({local_image(i) for i in range(len(pnames)+n)}) == len(pnames)+n
             for a,b in E:
                 stageE.add(tuple(sorted((local_image(a),local_image(b)))))
+            def delta_on(vertex_set):
+                return 2*len(vertex_set)-sum(
+                    u in vertex_set and v in vertex_set for u,v in stageE)
+            support={("old",u) for u in pnames}
+            # Check the *actual chronological prefix*, not only
+            # an abstract relative predimension identity. Each
+            # nonempty subset of the next fresh block increases
+            # its predimension relative to the current prefix.
+            for subset in range(1,1<<n):
+                selected={("new",tag,j) for j in range(n)
+                          if subset&(1<<j)}
+                prefix_diff=delta_on(prefix|selected)-delta_on(prefix)
+                local_diff=delta_on(support|selected)-delta_on(support)
+                assert prefix_diff==local_diff and prefix_diff>0
+                sequential_relative_predimension_checks+=1
+            tags |= vertices
         fresh_count+=len(tags)
         total_edges+=len(stageE)
         assert {tuple(sorted((a[1],b[1]))) for a,b in stageE
@@ -163,6 +180,27 @@ for m in range(4):
             if a[0]=="new" and b[0]=="new":
                 assert a[1]==b[1],(m,mask,a,b,"cross between request tags")
                 no_cross_checks+=1
+        # Directly sample strict d-closedness of the original old
+        # prefix against intermediate sets meeting several blocks.
+        # These bounded samples supplement the certified finite
+        # transitivity proof and do not replace its universal claim.
+        old_set={("old",u) for u in range(m)}
+        def full_delta(vertex_set):
+            return 2*len(vertex_set)-sum(
+                u in vertex_set and v in vertex_set for u,v in stageE)
+        base_d=full_delta(old_set)
+        for u in sorted(tags):
+            assert full_delta(old_set|{u})>base_d
+            multiblock_strict_samples+=1
+        for u,v in combinations(sorted(tags),2):
+            assert full_delta(old_set|{u,v})>base_d
+            multiblock_strict_samples+=1
+        ordered=sorted(tags)
+        for stride in range(1,min(7,len(ordered)+1)):
+            selection=set(ordered[::stride])
+            if selection:
+                assert full_delta(old_set|selection)>base_d
+                multiblock_strict_samples+=1
 
 assert request_count>0 and multi_block_requests>0
 # A deliberately invalid added cross-edge is detectable:
@@ -178,6 +216,8 @@ print({
     "all_local_predimension_image_checks":predimension_image_checks,
     "strict_minimal_image_checks":minimal_image_checks,
     "exact_tagged_support_hull_checks":exact_support_image_checks,
+    "strict_chronological_new_subset_checks":sequential_relative_predimension_checks,
+    "global_old_dclosed_multiblock_samples":multiblock_strict_samples,
     "actual_old_support_closed_checks":finite_closed_old_support_checks,
     "absence_of_crossing_checks":no_cross_checks,
     "old_base_edge_checks":base_checks,
