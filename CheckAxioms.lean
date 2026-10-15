@@ -723,3 +723,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFDClosedGenericity.dClosedExtensionProperty_of_fairResponses
 
 #print axioms BigHrushovski.CFStageCatalogue.taggedSupportClosedSubbatch_dClosed_full
+
+#print axioms BigHrushovski.CFStageCatalogue.taggedLocal_dClosed_full
+#print axioms BigHrushovski.CFStageCatalogue.taggedResponse_dClosed_full
+#print axioms BigHrushovski.CFStageCatalogue.orderedCode_oneLevelResponse
