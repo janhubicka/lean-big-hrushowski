@@ -233,3 +233,5 @@ import BigHrushovski.CFCountableGraph
 import BigHrushovski.CFCountableInduced
 
 import BigHrushovski.CFCountableGrowth
+
+import BigHrushovski.CFCountableDClosedChain
