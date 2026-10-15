@@ -172,3 +172,5 @@ import BigHrushovski.LocalFreeTransfer
 import BigHrushovski.CFMinimalDClosed
 
 import BigHrushovski.CFClosedFactor
+
+import BigHrushovski.CFDClosedDecomposition
