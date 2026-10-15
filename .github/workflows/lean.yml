@@ -139,6 +139,8 @@ jobs:
         run: python3 scripts/check_cf_dclosed_transport.py
       - name: Audit intrinsic CF old-neighbour support image transport
         run: python3 scripts/check_cf_old_support_image.py
+      - name: Audit fully normalized ordered CF local type records
+        run: python3 scripts/check_cf_normalized_local_type.py
       - name: Check nonempty C0 trace offsets and boundary joins
         run: python3 scripts/check_c0_trace_offsets.py
       - name: Check finite C0 back-edge ancestor closure
