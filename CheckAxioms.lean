@@ -704,3 +704,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.taggedLocal_growthSparse
 #print axioms BigHrushovski.CFStageCatalogue.taggedBatchPrefix_growthSparse
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_growthSparse_full
+
+#print axioms BigHrushovski.CFStageCatalogue.levelGraph_growthSparse_of_growth_allowed
