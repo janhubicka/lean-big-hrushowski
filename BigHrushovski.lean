@@ -225,3 +225,5 @@ import BigHrushovski.CFMinimalChainLifting
 import BigHrushovski.CFCoherentStages
 
 import BigHrushovski.CFBirthCarrier
+
+import BigHrushovski.CFStageEmbeddings
