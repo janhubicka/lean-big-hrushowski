@@ -47,8 +47,6 @@ theorem increasing_old_image :
   classical
   simp only [oldVertices, actualOld, Finset.image_image]
   congr 1
-  funext p
-  exact taggedIncreasingEquiv_old (P := P) (B := B) p
 
 /-- The fresh part maps bijectively to the whole actual fresh
 block, preserving the chosen finite order. -/
@@ -65,8 +63,6 @@ theorem increasing_fresh_image :
           (fun b => (Sum.inr b : Sum P B)) := by
         simp only [freshVertices, Finset.image_image]
         congr 1
-        funext i
-        exact taggedIncreasingEquiv_new (P := P) (B := B) i
     _ = actualFresh P B := by
       rw [Finset.image_univ_of_surjective
         (increasingNewBlock (B := B)).surjective]
