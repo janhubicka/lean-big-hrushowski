@@ -181,5 +181,29 @@ theorem levelGraph_growthSparse_full
   rw [taggedBatchPrefix_univ] at h
   exact h
 
+/-- Use the *actual* growth-function class itself as the
+admissibility predicate for complete finite ordered local codes.
+The type and size bounds are supplied independently. -/
+def GrowthAllowedLocal (F : ℕ → ℝ) : AllowedLocal U :=
+  fun P n K => K.IsGrowthSparse F Finset.univ
+
+/-- When permitted local codes are selected precisely from the
+growth class, the code-membership hypothesis in the finite
+tagged-batch theorem is automatic. The separate free-amalgamation
+hypothesis is retained explicitly. -/
+theorem levelGraph_growthSparse_of_growth_allowed
+    (G : GraphOn U)
+    (bound : Finset U → ℕ)
+    (F : ℕ → ℝ)
+    (hOld : G.IsGrowthSparse F (Finset.univ : Finset U))
+    (hFree : (levelGraph G (GrowthAllowedLocal F) bound).GrowthClosedUnderDClosedFreeJoins F) :
+    (levelGraph G (GrowthAllowedLocal F) bound).IsGrowthSparse F
+      (Finset.univ : Finset
+        (LevelCarrier G (GrowthAllowedLocal F) bound)) := by
+  apply levelGraph_growthSparse_full G (GrowthAllowedLocal F)
+    bound F hOld ?_ hFree
+  intro r
+  exact r.code.2.allowed
+
 end CFStageCatalogue
 end BigHrushovski
