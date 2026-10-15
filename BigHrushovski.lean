@@ -189,3 +189,5 @@ import BigHrushovski.CFDClosedTransport
 import BigHrushovski.CFLocalSupportTransport
 
 import BigHrushovski.CFNormalizedLocalType
+
+import BigHrushovski.CFSupportPersistence
