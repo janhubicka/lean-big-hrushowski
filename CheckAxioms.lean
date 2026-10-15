@@ -677,3 +677,12 @@ import BigHrushovski
 
 #print axioms BigHrushovski.GraphOn.IsLocalDClosedBatchRun.toMinimalChain
 #print axioms BigHrushovski.GraphOn.IsLocalDClosedBatchRun.old_dClosed_final
+
+#print axioms BigHrushovski.CFStageCatalogue.localOld_image_eq_taggedSupport
+#print axioms BigHrushovski.CFStageCatalogue.localFresh_image_eq_taggedBlock
+#print axioms BigHrushovski.CFStageCatalogue.localUniv_image_eq_support_union_block
+#print axioms BigHrushovski.CFStageCatalogue.taggedBlock_disjoint_old
+#print axioms BigHrushovski.CFStageCatalogue.taggedBlocks_disjoint
+#print axioms BigHrushovski.CFStageCatalogue.taggedSupport_dClosed_old
+#print axioms BigHrushovski.CFStageCatalogue.taggedLocal_minimal
+#print axioms BigHrushovski.CFStageCatalogue.taggedLocal_exactSupport
