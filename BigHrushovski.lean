@@ -191,3 +191,5 @@ import BigHrushovski.CFLocalSupportTransport
 import BigHrushovski.CFNormalizedLocalType
 
 import BigHrushovski.CFSupportPersistence
+
+import BigHrushovski.CFStageCatalogue
