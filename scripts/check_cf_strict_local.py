@@ -7,10 +7,12 @@ between B and A\P, check the equivalence
 
     P <=_s P ∪ B   iff   A <=_s A ∪ B,
     P <=_d P ∪ B   iff   A <=_d A ∪ B,
-    P <min_s P∪B   iff   A <min_s A∪B.
+    P <min_s P∪B   iff   A <min_s A∪B,
+    P <min_d P∪B   iff   A <min_d A∪B.
 
 Strict d-closure means δ grows on EVERY proper intermediate set.
 Minimal strongness excludes any proper strong intermediate vertex set.
+Minimal d-closedness excludes proper *strictly d-closed* intermediates.
 This is a counterexample search, independent of the Lean proof.
 """
 from itertools import combinations, product
@@ -52,6 +54,25 @@ def minimal_strong(delta, a, b):
         t = (t - 1) & tail
     return True
 
+def minimal_dclosed(delta, a, b):
+    if a == b or not dclosed(delta, a, b):
+        return False
+    tail = b & ~a
+    t = (tail - 1) & tail
+    while t:
+        if dclosed(delta, a | t, b):
+            return False
+        t = (t - 1) & tail
+    return True
+
+def all_subsets(mask):
+    t = mask
+    while True:
+        yield t
+        if not t:
+            break
+        t = (t - 1) & mask
+
 def has_cross(edge_list, old_only, fresh):
     return any(((old_only >> u) & 1 and (fresh >> v) & 1) or
                ((old_only >> v) & 1 and (fresh >> u) & 1)
@@ -84,6 +105,15 @@ for n in range(6):
                 delta, a, a | b), (
                 "minimal strong step transfer fails", n, E,
                 p, old_only, b)
+            assert minimal_dclosed(delta, p, p | b) == minimal_dclosed(
+                delta, a, a | b), (
+                "minimal d-closed step transfer fails", n, E,
+                p, old_only, b)
+            for intermediate in all_subsets(b):
+                assert dclosed(delta, p | intermediate, p | b) == dclosed(
+                    delta, a | intermediate, a | b), (
+                    "d-closed intermediate transfer fails",
+                    n, E, p, old_only, b, intermediate)
             checked += 1
 
 # Hypothesis necessity: P is empty, A={0,1} and B={2}.
@@ -92,6 +122,8 @@ E = ((0, 2), (1, 2))
 delta = lambda s: predim(3, E, s)
 assert dclosed(delta, 0, 4)
 assert not dclosed(delta, 3, 7)
+assert minimal_dclosed(delta, 0, 4)
+assert not minimal_dclosed(delta, 3, 7)
 assert has_cross(E, 3, 4)
 
 E = ((0, 3), (1, 3), (2, 3))
@@ -108,5 +140,7 @@ print({
     "strict_local_global_dclosed_mismatches": 0,
     "weak_local_global_strong_mismatches": 0,
     "minimal_strong_step_mismatches": 0,
+    "minimal_dclosed_step_mismatches": 0,
+    "intermediate_dclosed_mismatches": 0,
     "no_cross_hypothesis_is_necessary": True
 })
