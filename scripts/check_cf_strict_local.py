@@ -84,6 +84,10 @@ for n in range(6):
                 delta, a, a | b), (
                 "minimal strong step transfer fails", n, E,
                 p, old_only, b)
+            if dclosed(delta, p, a):
+                assert dclosed(delta, p | b, a | b), (
+                    "right factor strict d-closedness failed",
+                    n, E, p, old_only, b)
             checked += 1
 
 # Hypothesis necessity: P is empty, A={0,1} and B={2}.
@@ -102,11 +106,22 @@ assert minimal_strong(delta, 0, 8)
 assert not minimal_strong(delta, 7, 15)
 assert has_cross(E, 7, 8)
 
+# The base d-closedness condition is necessary for the second factor.
+# P=empty, A=K5, B={5} isolated: the ambient 2-sparse K5 has delta 0.
+K5 = tuple(combinations(range(5), 2))
+k5delta = lambda s: predim(6, K5, s)
+assert not dclosed(k5delta, 0, (1 << 5) - 1)
+assert dclosed(k5delta, (1 << 5) - 1, (1 << 6) - 1)
+assert dclosed(k5delta, 0, 1 << 5)
+assert not dclosed(k5delta, 1 << 5, (1 << 6) - 1)
+
 print({
     "graphs_up_to_vertices": 5,
     "no_cross_partition_cases": checked,
     "strict_local_global_dclosed_mismatches": 0,
     "weak_local_global_strong_mismatches": 0,
     "minimal_strong_step_mismatches": 0,
+    "right_factor_dclosed_failures_with_dclosed_base": 0,
+    "base_closedness_hypothesis_is_necessary": True,
     "no_cross_hypothesis_is_necessary": True
 })
