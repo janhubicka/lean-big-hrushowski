@@ -40,12 +40,17 @@ strong closure-components across a free graph amalgam. For CF it
 transports the *strict* d-closedness inequalities for the local
 minimal-support construction.
 
-**Not yet formalized:** an equivalence of *minimal d-closed
-extensions* over P and over A. The same intermediate-set argument
-proves it mathematically, but the existing Lean result checks only
-the strict d-closedness of the endpoints. In the manuscript this
-additional step is marked partial. Neither this module nor the
-finite check constructs a countable functional Fraïssé limit.
+**Now certified:** [Lean PR #125](https://github.com/janhubicka/lean-big-hrushowski/pull/125)
+proves the *minimal d-closed* extension equivalence across the
+whole interval of intermediate d-closed sets, not only strict
+d-closedness of its endpoints. [PR #126](https://github.com/janhubicka/lean-big-hrushowski/pull/126)
+certifies the second factor under the additional P≤d A hypothesis.
+[PR #128](https://github.com/janhubicka/lean-big-hrushowski/pull/128)
+constructs finite d-closed hulls and minimal decompositions, and
+[PR #129](https://github.com/janhubicka/lean-big-hrushowski/pull/129)
+recovers the canonical old-neighbour support of every minimal step.
+None of these constructs a countable functional Fraïssé limit;
+see [CF_FINITE_CLOSURE.md](CF_FINITE_CLOSURE.md).
 
 ## Four adversarial challenges
 
@@ -76,8 +81,10 @@ finite regressions.
 
 scripts/check_cf_strict_local.py enumerates all labelled graphs on
 up to five vertices and every partition into P, A\P, B satisfying
-no-cross. It checks all three equivalences, with explicit negative
-controls for weakened hypotheses. The checker is a finite diagnostic,
+no-cross. It now checks weak strongness, strict d-closedness, minimal
+strongness, minimal d-closedness and the intermediate d-closed
+correspondence, with negative controls for weakened hypotheses.
+The checker is a finite diagnostic,
 not a general proof.
 
 scripts/check_c0_explicit_amalgam.py remains the stronger functional
