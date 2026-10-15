@@ -123,6 +123,10 @@ noncomputable instance finite_boundedCatalogue
     (Allowed : ∀ n : ℕ, GraphOn (Sum P (Fin n)) → Prop)
     (K : ℕ) :
     Finite (BoundedOrderedLocalType P base Allowed K) := by
+  classical
+  letI : ∀ i : Fin (K + 1),
+      Finite (OrderedLocalType P base Allowed i.val) :=
+    fun i => finite_orderedLocalType base Allowed i.val
   infer_instance
 
 /-- The whole finite collection of permitted ordered codes.
@@ -131,6 +135,8 @@ noncomputable def catalogue (base : GraphOn P)
     (Allowed : ∀ n : ℕ, GraphOn (Sum P (Fin n)) → Prop)
     (K : ℕ) : Finset (BoundedOrderedLocalType P base Allowed K) := by
   classical
+  letI : Fintype (BoundedOrderedLocalType P base Allowed K) :=
+    Fintype.ofFinite _
   exact Finset.univ
 
 theorem mem_catalogue
