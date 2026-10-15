@@ -761,3 +761,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.finiteSet_covered
 #print axioms BigHrushovski.CFCoherentTower.countableGraph_growth_of_stages
 #print axioms BigHrushovski.CFCoherentTower.countableGraph_growth_of_freeJoins
+
+#print axioms BigHrushovski.CFCoherentTower.stageImage_succ_old
+#print axioms BigHrushovski.CFCoherentTower.stageImage_dClosed_succ
+#print axioms BigHrushovski.CFCoherentTower.birthDClosedChain
+#print axioms BigHrushovski.CFCoherentTower.stageImage_global_dClosed
