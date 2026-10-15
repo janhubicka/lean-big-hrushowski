@@ -215,3 +215,5 @@ import BigHrushovski.CFDClosedChain
 import BigHrushovski.CFBatchRelativeDClosed
 
 import BigHrushovski.CFDClosedGenericityCriterion
+
+import BigHrushovski.CFSelectedClosedSubbatch
