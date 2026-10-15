@@ -121,7 +121,7 @@ theorem taggedBlock_disjoint_old
   intro z hOld hNew
   obtain ⟨u, _, huz⟩ := Finset.mem_image.mp hOld
   obtain ⟨i, _, hiz⟩ := Finset.mem_image.mp hNew
-  exact (Sum.noConfusion (huz.trans hiz.symm))
+  cases huz.trans hiz.symm
 
 /-- Fresh blocks of two different requests are disjoint,
 even when their supports and ordered graphs are isomorphic. -/
