@@ -736,3 +736,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.stage_succ_induced
 #print axioms BigHrushovski.CFCoherentTower.stage_succ_dClosed
 #print axioms BigHrushovski.CFCoherentTower.all_stages_growth
+
+#print axioms BigHrushovski.CFCoherentTower.toVertex_old
+#print axioms BigHrushovski.CFCoherentTower.toVertex_new
+#print axioms BigHrushovski.CFCoherentTower.toVertex_birth_lt
+#print axioms BigHrushovski.CFCoherentTower.toVertex_injective
+#print axioms BigHrushovski.CFCoherentTower.everyVertex_in_stage
