@@ -751,3 +751,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.countableGraph
 #print axioms BigHrushovski.CFCoherentTower.stage_edge_in_countableGraph
 #print axioms BigHrushovski.CFCoherentTower.countableGraph_vertex_covered
+
+#print axioms BigHrushovski.CFCoherentTower.embedToLater_induced
+#print axioms BigHrushovski.CFCoherentTower.toVertex_embedToLater
+#print axioms BigHrushovski.CFCoherentTower.same_birth_in_common_stage
+#print axioms BigHrushovski.CFCoherentTower.countableGraph_stage_induced
