@@ -127,6 +127,8 @@ jobs:
         run: python3 scripts/check_c0_local_minimal.py
       - name: Audit strong, minimal-strong and strict d-closed no-cross transfers
         run: python3 scripts/check_cf_strict_local.py
+      - name: Audit finite d-closed decomposition and one-generated hulls
+        run: python3 scripts/check_cf_dclosed_decomposition.py
       - name: Check nonempty C0 trace offsets and boundary joins
         run: python3 scripts/check_c0_trace_offsets.py
       - name: Check finite C0 back-edge ancestor closure

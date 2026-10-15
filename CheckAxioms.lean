@@ -606,3 +606,16 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.dClosed_left_of_noCross
 #print axioms BigHrushovski.GraphOn.dClosed_right_of_noCross
 #print axioms BigHrushovski.GraphOn.dClosed_local_right_factor
+
+#print axioms BigHrushovski.Predimension.dclosed_refl
+#print axioms BigHrushovski.Predimension.dclosed_restrict
+#print axioms BigHrushovski.Predimension.exists_minimalDClosedStep_of_dClosed
+#print axioms BigHrushovski.Predimension.finite_minimal_decomposition_of_dClosed_absolute
+#print axioms BigHrushovski.Predimension.dclosed_intersectFamily
+#print axioms BigHrushovski.Predimension.dClosedHull_dclosed
+#print axioms BigHrushovski.Predimension.subset_dClosedHull
+#print axioms BigHrushovski.Predimension.dClosedHull_least
+#print axioms BigHrushovski.Predimension.exists_least_dClosed_hull
+#print axioms BigHrushovski.Predimension.minimalDClosedStep_every_generator
+#print axioms BigHrushovski.Predimension.minimalDClosedStep_of_every_generator
+#print axioms BigHrushovski.Predimension.minimalDClosedStep_iff_every_generator
