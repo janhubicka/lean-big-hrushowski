@@ -62,7 +62,7 @@ theorem taggedSupportClosedSubbatch_dClosed_full
       simpa [taggedBatchPrefix, old] using hy
     have hSupport :=
       taggedBlock_backNeighbours_prefix G Allowed bound
-        ∅ r (Finset.not_mem_empty r)
+        ∅ r (by simp)
         x hxBlock y hyPrefix hAdj
     exact hSupports r hr hSupport
   have hNo : H.NoCrossEdges old (a ∪ fresh) :=
