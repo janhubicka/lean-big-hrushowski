@@ -90,7 +90,7 @@ theorem taggedResponse_dClosed_full
 
 /-- Encode a specified named ordered local extension as the
 literal tagged-stage request selected by the complete catalogue. -/
-def requestOfOrderedLocal
+noncomputable def requestOfOrderedLocal
     (G : GraphOn U) (Allowed : AllowedLocal U)
     (bound : Finset U → ℕ)
     (P : Finset U)
