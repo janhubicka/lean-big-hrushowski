@@ -193,3 +193,5 @@ import BigHrushovski.CFNormalizedLocalType
 import BigHrushovski.CFSupportPersistence
 
 import BigHrushovski.CFStageCatalogue
+
+import BigHrushovski.CFSimultaneousGraph

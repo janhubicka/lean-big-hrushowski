@@ -660,3 +660,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.StageRequest.support_dClosed
 #print axioms BigHrushovski.CFStageCatalogue.mem_stageCatalogue
 #print axioms BigHrushovski.CFStageCatalogue.includes_ordered_code
+
+#print axioms BigHrushovski.CFStageCatalogue.localTag_injective
+#print axioms BigHrushovski.CFStageCatalogue.levelGraph_old_edge
+#print axioms BigHrushovski.CFStageCatalogue.levelGraph_local_edge
+#print axioms BigHrushovski.CFStageCatalogue.levelGraph_no_cross_fresh
