@@ -686,3 +686,11 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.taggedSupport_dClosed_old
 #print axioms BigHrushovski.CFStageCatalogue.taggedLocal_minimal
 #print axioms BigHrushovski.CFStageCatalogue.taggedLocal_exactSupport
+
+#print axioms BigHrushovski.CFStageCatalogue.taggedBatchPrefix_insert
+#print axioms BigHrushovski.CFStageCatalogue.taggedBlock_disjoint_prefix
+#print axioms BigHrushovski.CFStageCatalogue.taggedBlock_backNeighbours_prefix
+#print axioms BigHrushovski.CFStageCatalogue.taggedOld_dClosed_prefix
+#print axioms BigHrushovski.CFStageCatalogue.taggedBatchPrefix_univ
+#print axioms BigHrushovski.CFStageCatalogue.levelGraph_old_dClosed_full
+#print axioms BigHrushovski.CFStageCatalogue.taggedSupport_dClosed_full
