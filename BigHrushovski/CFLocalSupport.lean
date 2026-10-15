@@ -51,6 +51,7 @@ theorem canonical_dClosed_local_support
     let N := G.oldNeighbourSet A B
     let P := G.toPredimension.dClosedHull N A
     G.toPredimension.IsDClosed P A ∧
+    G.NoCrossEdges A (P ∪ B) ∧
     G.toPredimension.IsMinimalDClosedStep P (P ∪ B) ∧
     G.toPredimension.IsDClosed (P ∪ B) (A ∪ B) ∧
     G.toPredimension.dClosedHull N P = P := by
@@ -83,7 +84,7 @@ theorem canonical_dClosed_local_support
     have hPsubH : P ⊆ H :=
       d.dClosedHull_least hNsubH hHclosedA
     exact le_antisymm hHclosedP.1 hPsubH
-  exact ⟨hPclosed, hMinLocal, hRight, hHull⟩
+  exact ⟨hPclosed, hNo, hMinLocal, hRight, hHull⟩
 
 end GraphOn
 end BigHrushovski
