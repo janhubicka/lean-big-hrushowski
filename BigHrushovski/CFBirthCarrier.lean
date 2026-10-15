@@ -85,7 +85,7 @@ vertex and any vertex from the old stage. -/
 theorem toVertex_birth_lt (F : ℕ → ℝ) (K : ℕ → ℕ)
     (n : ℕ) (v : (stage F K n).carrier) :
     (toVertex F K n v).1 < n := by
-  induction n generalizing v with
+  induction n with
   | zero =>
       exact Fin.elim0 v
   | succ n ih =>
