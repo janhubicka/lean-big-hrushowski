@@ -185,3 +185,5 @@ import BigHrushovski.CFOrderedCatalogue
 import BigHrushovski.CFOrderedNormalization
 
 import BigHrushovski.CFDClosedTransport
+
+import BigHrushovski.CFLocalSupportTransport
