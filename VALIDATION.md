@@ -3277,9 +3277,9 @@ supporting evidence, not a proof of the general
 two-sided functional-amalgamation theorem.
 
 
-## Current finite C0 / CF audit frontier (15 October 2026)
+## Historical C0 / CF checkpoint: PR #122 (15 October 2026)
 
-The newest certified checkpoint is
+The historical certified checkpoint was
 [Lean PR #122](https://github.com/janhubicka/lean-big-hrushowski/pull/122),
 [Actions run 38654887365](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38654887365):
 **489 audited Lean declarations**, with only standard logical axioms;
@@ -3295,10 +3295,10 @@ correspondences.
 | Local-to-enlarged weak self-sufficiency | GraphOn.localFreeStrong_iff | Verified, both directions |
 | Local-to-enlarged strict d-closedness | GraphOn.localFreeDClosed_iff | Verified, both directions |
 | Local-to-enlarged minimal strong extension | GraphOn.minimalStrongStep_free_iff; GraphOn.localFreeTransfer | Verified, both directions |
-| Minimal **d-closed** extension correspondence | — | **Open in Lean**; direct intermediate-set proof in the manuscript; tracked by [issue #123](https://github.com/janhubicka/lean-big-hrushowski/issues/123) |
+| Minimal **d-closed** extension correspondence | — | Open at this checkpoint; subsequently certified in PR #125 (issue #123 completed) |
 | Full two-sided C0 finite **functional** amalgamation | Tagged finite components and conditional full-value interfaces | **Partial**: no single Lean theorem yet preserving both named complete unary functions |
 | Countable C0 functional Fraïssé limit and graph reduct | Finite C0 span lift and separately certified strong generic graph | **Open**: countable functional extension and reduct identification |
-| C_F finite-level genericity, block-root recovery, embedding monoid | CFStrictLocal only supplies local strict inequalities | **Open**, no certification implied by the finite transfer |
+| C_F finite-level genericity, block-root recovery, embedding monoid | Only CFStrictLocal was available at this checkpoint | **Open**; finite local-support results were certified subsequently, but countable statements remain open |
 
 **The simpler two-sided C0 construction now keeps the entire first
 witness unchanged.** Only the second factor's unary-closed common
@@ -3317,6 +3317,47 @@ optional graph lemma, but no longer appears as an implicit
 dependency of C0OrientationInvariantValues. The weaker duplicate
 check_c0_common_base.py has been removed from the library and CI.
 See [docs/LOCAL_FREE_TRANSFER.md](docs/LOCAL_FREE_TRANSFER.md)
-for the short reusable mathematical interface and its necessary
-hypotheses. Manuscript validation links are pinned to the exact
-CI-certified PR #122 head, not to this documentation update.
+for the reusable mathematical interface and its necessary hypotheses.
+This is an archival checkpoint; the manuscript's latest validation
+pin and current finite C_F results are recorded below.
+
+
+## Current certified finite C_F frontier — 15 October 2026
+
+The most recent finite checkpoint is
+[Lean PR #129](https://github.com/janhubicka/lean-big-hrushowski/pull/129),
+[Actions run 38668876684](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38668876684):
+**509 audited declarations**, only standard logical axioms,
+**117 Lean source files** free from unproved placeholders, and
+**55 successful workflow steps**.
+
+| Manuscript claim | Lean declaration | Verified boundary |
+| --- | --- | --- |
+| Every finite d-closed inclusion has a minimal-step decomposition | Predimension.finite_minimal_decomposition_of_dClosed_absolute | [PR #128](https://github.com/janhubicka/lean-big-hrushowski/pull/128), absolute finite predimension |
+| Least generated finite d-closed hull | Predimension.dClosedHull_dclosed; dClosedHull_least | Intersection of finite d-closed supersets in a named ambient |
+| Every new vertex generates a minimal d-closed increment | Predimension.minimalDClosedStep_iff_every_generator | [PR #128](https://github.com/janhubicka/lean-big-hrushowski/pull/128), exact one-generator equivalence |
+| Transfer minimal d-closedness through free attachment | GraphOn.minimalDClosedStep_free_iff | [PR #125](https://github.com/janhubicka/lean-big-hrushowski/pull/125), all intermediate sets |
+| Strict d-closedness of the other free factor | GraphOn.dClosed_local_right_factor | [PR #126](https://github.com/janhubicka/lean-big-hrushowski/pull/126), explicitly requires P≤d A |
+| Canonical local support of a minimal d-closed increment | GraphOn.canonical_dClosed_local_support | [PR #129](https://github.com/janhubicka/lean-big-hrushowski/pull/129), old-neighbour hull P, minimal local step, both closed factors, no-cross and recovered support |
+| Full two-sided finite C0 **functional** amalgamation | Conditional component-value interfaces | **Partial**; both complete named unary functions have not been packaged into one Lean amalgamation theorem |
+| Countable C0 functional generic and reduct identification | Finite graph strong generic; functional span lifting | **Open** as a countable functional construction |
+| Countable C_F level construction and genericity | Finite d-closed support library | **Open**; no assumed C_F free amalgamation or uniform closure bounds verified by this library |
+| C_F root functions, unique level lifts and embedding monoid | — | **Open** concrete functional interfaces |
+
+The canonical local support regression checked **33,867**
+old/new partitions of 1,100 finite labelled graphs, including
+**3,847** genuine minimal d-closed extensions, and found no
+support mismatch. The independent finite decomposition checker
+tested **254,254** graph inclusions, including 74,179 minimal
+d-closed steps, with no mismatch of finite hulls or generators.
+
+The reusable theorem-level descriptions and their exact hypotheses
+are collected in [docs/CF_FINITE_CLOSURE.md](docs/CF_FINITE_CLOSURE.md).
+The manuscript's green link pin is the passing PR #129 head
+b89f52f5c417cdb4ebf023e36e7cb761c9d1d60c, not the
+documentation-only commit.
+
+The next task is to instantiate the finite C_F local-type catalogue
+and then construct the level schedule. Do not promote its genericity,
+block-root functions, or the embedding monoid using only the finite
+support results.
