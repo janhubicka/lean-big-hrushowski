@@ -96,8 +96,7 @@ theorem taggedBatchPrefix_growthSparse
     (hOld : G.IsGrowthSparse F (Finset.univ : Finset U))
     (hCodes : ∀ r : Requests G Allowed bound,
       r.code.2.graph.IsGrowthSparse F Finset.univ)
-    (hFree : (levelGraph G Allowed bound).
-      GrowthClosedUnderDClosedFreeJoins F)
+    (hFree : (levelGraph G Allowed bound).GrowthClosedUnderDClosedFreeJoins F)
     (done : Finset (Requests G Allowed bound)) :
     (levelGraph G Allowed bound).IsGrowthSparse F
       (taggedBatchPrefix G Allowed bound done) := by
@@ -173,8 +172,7 @@ theorem levelGraph_growthSparse_full
     (hOld : G.IsGrowthSparse F (Finset.univ : Finset U))
     (hCodes : ∀ r : Requests G Allowed bound,
       r.code.2.graph.IsGrowthSparse F Finset.univ)
-    (hFree : (levelGraph G Allowed bound).
-      GrowthClosedUnderDClosedFreeJoins F) :
+    (hFree : (levelGraph G Allowed bound).GrowthClosedUnderDClosedFreeJoins F) :
     (levelGraph G Allowed bound).IsGrowthSparse F
       (Finset.univ : Finset (LevelCarrier G Allowed bound)) := by
   have h := taggedBatchPrefix_growthSparse G Allowed bound
