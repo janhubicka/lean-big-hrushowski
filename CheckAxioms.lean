@@ -756,3 +756,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.toVertex_embedToLater
 #print axioms BigHrushovski.CFCoherentTower.same_birth_in_common_stage
 #print axioms BigHrushovski.CFCoherentTower.countableGraph_stage_induced
+
+#print axioms BigHrushovski.CFCoherentTower.stageImage_mono
+#print axioms BigHrushovski.CFCoherentTower.finiteSet_covered
+#print axioms BigHrushovski.CFCoherentTower.countableGraph_growth_of_stages
+#print axioms BigHrushovski.CFCoherentTower.countableGraph_growth_of_freeJoins
