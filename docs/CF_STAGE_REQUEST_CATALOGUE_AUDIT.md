@@ -73,8 +73,17 @@ d-closedness and a sample admissibility predicate, rejects
 duplicate request keys and checks that isomorphic but
 distinct supports produce different requests.
 
-All three new exported theorem endpoints require successful
-integrated Lean build, standard-axiom audit and placeholder
-scan. The manuscript should mark only the finite request
-catalogue green; the class C_F free-amalgamation and genericity
-claims must remain orange until their own concrete proof.
+Lean PR #139 passed
+[Actions run 38686527978](https://github.com/janhubicka/lean-big-hrushowski/actions/runs/38686527978):
+539 declarations using only standard logical axioms, 124 Lean
+files without placeholders and all 62 workflow steps successful.
+The independent checker examined 12 old graphs, 69 actual
+d-closed supports, 10470 complete local codes and 122
+distinct bounded ordered requests, including 81 multivertex
+new blocks. There were no duplicate request keys or failed
+support/minimality checks. The manuscript marker is green
+for the **finite request catalogue only**.
+
+The actual C_F class predicate, class-level simultaneous
+amalgamation and countable genericity remain unverified
+by these finite coding theorems.
