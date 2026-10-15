@@ -706,3 +706,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_growthSparse_full
 
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_growthSparse_of_growth_allowed
+
+#print axioms BigHrushovski.CFStageCatalogue.taggedBatchPrefix_dClosed_union
+#print axioms BigHrushovski.CFStageCatalogue.taggedBatchPrefix_dClosed_full
+#print axioms BigHrushovski.CFStageCatalogue.taggedSingleBlockPrefix_dClosed_full
