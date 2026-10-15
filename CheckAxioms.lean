@@ -656,3 +656,7 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.dClosedHull_restrict_of_dClosed
 #print axioms BigHrushovski.GraphOn.oldNeighbourSet_eq_of_backNeighbours
 #print axioms BigHrushovski.GraphOn.minimalLocalDClosed_support_persists
+
+#print axioms BigHrushovski.CFStageCatalogue.StageRequest.support_dClosed
+#print axioms BigHrushovski.CFStageCatalogue.mem_stageCatalogue
+#print axioms BigHrushovski.CFStageCatalogue.includes_ordered_code
