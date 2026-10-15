@@ -747,3 +747,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.ascend_induced
 #print axioms BigHrushovski.CFCoherentTower.toVertex_ascend
 #print axioms BigHrushovski.CFCoherentTower.toVertex_ascend_injective
+
+#print axioms BigHrushovski.CFCoherentTower.countableGraph
+#print axioms BigHrushovski.CFCoherentTower.stage_edge_in_countableGraph
+#print axioms BigHrushovski.CFCoherentTower.countableGraph_vertex_covered
