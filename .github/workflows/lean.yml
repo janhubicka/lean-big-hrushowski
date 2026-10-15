@@ -149,6 +149,8 @@ jobs:
         run: python3 scripts/check_cf_tagged_simultaneous.py
       - name: Audit strict closure of chronological C_F two-block runs
         run: python3 scripts/check_cf_batch_closure_run.py
+      - name: Audit real-valued C_F growth class and free-join hypothesis
+        run: python3 scripts/check_cf_growth_class.py
       - name: Check nonempty C0 trace offsets and boundary joins
         run: python3 scripts/check_c0_trace_offsets.py
       - name: Check finite C0 back-edge ancestor closure

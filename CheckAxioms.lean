@@ -694,3 +694,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.taggedBatchPrefix_univ
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_old_dClosed_full
 #print axioms BigHrushovski.CFStageCatalogue.taggedSupport_dClosed_full
+
+#print axioms BigHrushovski.GraphOn.growthSparse_restrict
+#print axioms BigHrushovski.GraphOn.twoSparse_of_growthSparse
+#print axioms BigHrushovski.GraphOn.growthSparse_image_iff
+#print axioms BigHrushovski.GraphOn.growthSparse_free_join
