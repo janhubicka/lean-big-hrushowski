@@ -126,15 +126,15 @@ theorem levelGraph_local_minimal_image
       ((Finset.univ : Finset
           (Sum (SupportCarrier U r.support) (Fin r.code.1.val))).image
         (localTag G Allowed bound r)) := by
-  apply (r.code.2.graph.minimalDClosedStep_image_iff
+  classical
+  exact (r.code.2.graph.minimalDClosedStep_image_iff
     (levelGraph G Allowed bound)
     (localTag G Allowed bound r)
     (localTag_injective G Allowed bound r)
     (fun u v => (levelGraph_local_adj_iff G Allowed bound r u v).symm)
     (CFLocalCatalogue.oldVertices
       (SupportCarrier U r.support) r.code.1.val)
-    Finset.univ (Finset.subset_univ _)).mpr
-  exact r.code.2.minimal
+    Finset.univ (Finset.subset_univ _)).mpr r.code.2.minimal
 
 end CFStageCatalogue
 end BigHrushovski
