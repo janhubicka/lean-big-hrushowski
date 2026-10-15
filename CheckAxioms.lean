@@ -644,3 +644,6 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.dClosed_image_iff
 #print axioms BigHrushovski.GraphOn.minimalDClosedStep_image_iff
 #print axioms BigHrushovski.GraphOn.dClosedHull_image
+
+#print axioms BigHrushovski.GraphOn.oldNeighbourSet_image
+#print axioms BigHrushovski.GraphOn.canonicalOldSupport_image
