@@ -652,3 +652,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFLocalCatalogue.increasing_fresh_image
 #print axioms BigHrushovski.CFLocalCatalogue.normalizeOrderedLocalType
 #print axioms BigHrushovski.CFLocalCatalogue.exists_normalizedOrderedLocalType
+
+#print axioms BigHrushovski.Predimension.dClosedHull_restrict_of_dClosed
+#print axioms BigHrushovski.GraphOn.oldNeighbourSet_eq_of_backNeighbours
+#print axioms BigHrushovski.GraphOn.minimalLocalDClosed_support_persists
