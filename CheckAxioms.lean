@@ -665,3 +665,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_old_edge
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_local_edge
 #print axioms BigHrushovski.CFStageCatalogue.levelGraph_no_cross_fresh
+
+#print axioms BigHrushovski.CFStageCatalogue.levelGraph_old_iff
+#print axioms BigHrushovski.CFStageCatalogue.levelGraph_fresh_old_support
+#print axioms BigHrushovski.CFStageCatalogue.levelGraph_old_fresh_support
