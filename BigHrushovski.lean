@@ -229,3 +229,5 @@ import BigHrushovski.CFBirthCarrier
 import BigHrushovski.CFStageEmbeddings
 
 import BigHrushovski.CFCountableGraph
+
+import BigHrushovski.CFCountableInduced
