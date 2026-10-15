@@ -599,3 +599,6 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.localFreeStrong_iff
 #print axioms BigHrushovski.GraphOn.localFreeDClosed_iff
 #print axioms BigHrushovski.GraphOn.localFreeTransfer
+
+#print axioms BigHrushovski.GraphOn.dClosed_intermediate_free_iff
+#print axioms BigHrushovski.GraphOn.minimalDClosedStep_free_iff
