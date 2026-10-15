@@ -168,3 +168,5 @@ import BigHrushovski.C0ClosedBaseFrontload
 import BigHrushovski.CFStrictLocal
 
 import BigHrushovski.LocalFreeTransfer
+
+import BigHrushovski.CFMinimalDClosed
