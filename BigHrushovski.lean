@@ -173,4 +173,7 @@ import BigHrushovski.CFMinimalDClosed
 
 import BigHrushovski.CFClosedFactor
 
+
 import BigHrushovski.CFDClosedDecomposition
+import BigHrushovski.CFDClosedHull
+import BigHrushovski.CFDClosedGenerators
