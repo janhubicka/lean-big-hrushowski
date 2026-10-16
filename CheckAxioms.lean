@@ -775,3 +775,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFLocalCatalogue.growthSparse_orderedNormalize_iff
 #print axioms BigHrushovski.CFLocalCatalogue.growthLocalType_of_orderedGraph
 #print axioms BigHrushovski.CFLocalCatalogue.bounded_growthLocalType_of_orderedGraph
+
+#print axioms BigHrushovski.CFLocalCatalogue.splitValue_injective
+#print axioms BigHrushovski.CFLocalCatalogue.splitUniv_image
+#print axioms BigHrushovski.CFLocalCatalogue.splitGraph_growthSparse_iff
+#print axioms BigHrushovski.CFLocalCatalogue.splitGraph_minimal
+#print axioms BigHrushovski.CFLocalCatalogue.splitGraph_exactSupport
