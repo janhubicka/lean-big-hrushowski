@@ -45,9 +45,8 @@ theorem finiteClosedPart_global
       (toVertex F K n) (toVertex_injective F K n)
       (fun x y => (countableGraph_stage_induced F K n x y).symm)
       a Finset.univ (Finset.subset_univ _)).mpr ha
-  exact (countableGraph F K).toPredimension
-    |>.globallyDClosed_of_dClosed_in_global
-      hFinite (stageImage_global_dClosed F K n)
+  exact (countableGraph F K).toPredimension.globallyDClosed_of_dClosed_in_global
+    hFinite (stageImage_global_dClosed F K n)
 
 /-- In the countable graph the precise fresh block for a
 permitted named-support local type produces a globally
