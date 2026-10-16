@@ -283,3 +283,5 @@ import BigHrushovski.CFArbitraryMinimalResponse
 import BigHrushovski.CFFiniteMinimalDiagramResponse
 
 import BigHrushovski.CFFiniteIntervalEquiv
+
+import BigHrushovski.CFMinimalLiteralIntervalResponse
