@@ -44,7 +44,11 @@ theorem splitIntoUnion_injective
     Function.Injective (splitIntoUnion a b) := by
   intro x y hxy
   apply splitValue_injective a b hDisj
-  exact congrArg Subtype.val hxy
+  have hx : (splitIntoUnion a b x).val = splitValue a b x := by
+    cases x <;> rfl
+  have hy : (splitIntoUnion a b y).val = splitValue a b y := by
+    cases y <;> rfl
+  exact hx.symm.trans ((congrArg Subtype.val hxy).trans hy)
 
 /-- Every vertex in a∪b belongs to at least one of the two
 split sides; the corresponding tagged subtype gives a preimage. -/
@@ -112,7 +116,15 @@ theorem orderedSplitUnion_adj_iff
       G.adj
         (orderedSplitUnionEquiv a b hDisj x).val
         (orderedSplitUnionEquiv a b hDisj y).val := by
-  rfl
+  cases x with
+  | inl sx =>
+      cases y with
+      | inl sy => rfl
+      | inr j => rfl
+  | inr i =>
+      cases y with
+      | inl sy => rfl
+      | inr j => rfl
 
 end CFCoherentTower
 end BigHrushovski
