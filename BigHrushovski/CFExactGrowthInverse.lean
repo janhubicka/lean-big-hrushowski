@@ -108,15 +108,12 @@ theorem minimal_growth_size_with_inverse
     (hGrowth : G.IsGrowthSparse F b)
     (x : V) (hxb : x ∈ b) (hxna : x ∉ a) :
     b.card ≤ growthInverseSize F hUnbounded a.card := by
-  apply G.minimal_growth_extension_card_le F
+  exact G.minimal_growth_extension_card_le F
     (growthInverseSize F hUnbounded)
-  · intro k n hFn
-    exact (growthInverseSize_iff
-      F hZero hMono hUnbounded k n).mp hFn
-  · exact hMin
-  · exact hGrowth
-  · exact hxb
-  · exact hxna
+    (fun k n hFn =>
+      (growthInverseSize_iff
+        F hZero hMono hUnbounded k n).mp hFn)
+    a b hMin hGrowth x hxb hxna
 
 end CFGrowthNumerics
 end BigHrushovski
