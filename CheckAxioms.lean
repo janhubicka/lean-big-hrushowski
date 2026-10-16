@@ -769,3 +769,5 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFCoherentTower.finiteClosedPart_global
 #print axioms BigHrushovski.CFCoherentTower.orderedCode_globalResponse
+
+#print axioms BigHrushovski.CFCoherentTower.globalFiniteSource_in_dClosedStage
