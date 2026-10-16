@@ -815,3 +815,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFGrowthNumerics.realGrowth_nat_monotone
 #print axioms BigHrushovski.CFGrowthNumerics.realGrowth_nat_unbounded
 #print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_of_real_growth
+
+#print axioms BigHrushovski.CFCoherentTower.prescribedClosedSource_liftToStage

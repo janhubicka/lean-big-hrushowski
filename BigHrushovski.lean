@@ -259,3 +259,5 @@ import BigHrushovski.CFExactGrowthInverse
 import BigHrushovski.CFNamedSupportEquiv
 
 import BigHrushovski.CFRealGrowthRestriction
+
+import BigHrushovski.CFPrescribedSourceLift
