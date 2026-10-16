@@ -835,6 +835,12 @@ import BigHrushovski
 #print axioms BigHrushovski.CFLocalCatalogue.transportedLocal_support_boundary_iff
 #print axioms BigHrushovski.CFLocalCatalogue.transportedLocal_full_boundary_iff
 
+#print axioms BigHrushovski.CFCoherentTower.oldSupportImageEquiv_val
+#print axioms BigHrushovski.CFCoherentTower.namedLocalExtension_globalResponse
+
+#print axioms BigHrushovski.CFLocalCatalogue.canonicalNamedSupport_image
+#print axioms BigHrushovski.CFLocalCatalogue.canonicalNamedSupport_certificates
+
 #print axioms BigHrushovski.CFLocalCatalogue.oldSubsetInclusion_injective
 #print axioms BigHrushovski.CFLocalCatalogue.oldSubsetUniv_image
 #print axioms BigHrushovski.CFLocalCatalogue.oldSubsetLocal_growth
