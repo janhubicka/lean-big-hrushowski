@@ -267,3 +267,5 @@ import BigHrushovski.CFPrescribedClosedSupport
 import BigHrushovski.CFExactOldFreshBoundary
 
 import BigHrushovski.CFCompleteOneBlockResponse
+
+import BigHrushovski.CFTransportedBoundary
