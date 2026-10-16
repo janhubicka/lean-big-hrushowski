@@ -54,10 +54,13 @@ theorem fresh_nonempty_of_minimal
   classical
   by_contra hn
   have hFreshEmpty : actualFresh S B = ∅ := by
-    apply Finset.eq_empty_iff_forall_not_mem.mpr
-    intro x hx
-    obtain ⟨b, _, _⟩ := Finset.mem_image.mp hx
-    exact hn ⟨b, Finset.mem_univ b⟩
+    ext x
+    constructor
+    · intro hx
+      obtain ⟨b, _, _⟩ := Finset.mem_image.mp hx
+      exact False.elim (hn ⟨b, Finset.mem_univ b⟩)
+    · intro hx
+      cases hx
   have hUnion :
       actualOld S B ∪ actualFresh S B =
         (Finset.univ : Finset (Sum S B)) := by
