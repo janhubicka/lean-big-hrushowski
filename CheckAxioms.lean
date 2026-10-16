@@ -782,3 +782,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFLocalCatalogue.namedBase_old_adj_iff
 
 #print axioms BigHrushovski.CFLocalCatalogue.bounded_named_growthLocalType
+
+#print axioms BigHrushovski.CFLocalCatalogue.splitValue_injective
+#print axioms BigHrushovski.CFLocalCatalogue.splitUniv_image
+#print axioms BigHrushovski.CFLocalCatalogue.splitGraph_growthSparse_iff
+#print axioms BigHrushovski.CFLocalCatalogue.splitGraph_minimal
+#print axioms BigHrushovski.CFLocalCatalogue.splitGraph_exactSupport
