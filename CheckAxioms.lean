@@ -815,3 +815,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFGrowthNumerics.realGrowth_nat_monotone
 #print axioms BigHrushovski.CFGrowthNumerics.realGrowth_nat_unbounded
 #print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_of_real_growth
+
+#print axioms BigHrushovski.CFStageCatalogue.tagged_old_fresh_adj_iff
+#print axioms BigHrushovski.CFStageCatalogue.tagged_no_old_fresh_outside_support
