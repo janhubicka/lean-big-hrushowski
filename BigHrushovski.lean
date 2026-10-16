@@ -279,3 +279,5 @@ import BigHrushovski.CFLocalSplitCertificates
 import BigHrushovski.CFLocalFreshBound
 
 import BigHrushovski.CFArbitraryMinimalResponse
+
+import BigHrushovski.CFFiniteMinimalDiagramResponse
