@@ -811,3 +811,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFNamedSupport.restrictedSupportMap_surjective
 #print axioms BigHrushovski.CFNamedSupport.supportImageEquiv_val
 #print axioms BigHrushovski.CFNamedSupport.supportImageEquiv_induced
+
+#print axioms BigHrushovski.CFGrowthNumerics.realGrowth_nat_monotone
+#print axioms BigHrushovski.CFGrowthNumerics.realGrowth_nat_unbounded
+#print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_of_real_growth

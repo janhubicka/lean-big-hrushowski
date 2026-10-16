@@ -257,3 +257,5 @@ import BigHrushovski.CFGrowthCutoff
 import BigHrushovski.CFExactGrowthInverse
 
 import BigHrushovski.CFNamedSupportEquiv
+
+import BigHrushovski.CFRealGrowthRestriction
