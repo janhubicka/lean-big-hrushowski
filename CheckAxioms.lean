@@ -834,3 +834,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFLocalCatalogue.transportedLocal_fresh_iff
 #print axioms BigHrushovski.CFLocalCatalogue.transportedLocal_support_boundary_iff
 #print axioms BigHrushovski.CFLocalCatalogue.transportedLocal_full_boundary_iff
+
+#print axioms BigHrushovski.CFLocalCatalogue.canonicalNamedSupport_image
+#print axioms BigHrushovski.CFLocalCatalogue.canonicalNamedSupport_certificates
