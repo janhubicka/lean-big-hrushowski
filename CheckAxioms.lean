@@ -821,3 +821,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.inducedSource_namedSupport_dClosed
 #print axioms BigHrushovski.CFCoherentTower.inducedSource_namedSupport_global
 #print axioms BigHrushovski.CFCoherentTower.inducedSource_namedSupport_subset
+
+#print axioms BigHrushovski.CFStageCatalogue.tagged_old_fresh_adj_iff
+#print axioms BigHrushovski.CFStageCatalogue.tagged_no_old_fresh_outside_support
