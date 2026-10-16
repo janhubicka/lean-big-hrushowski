@@ -242,4 +242,8 @@ import BigHrushovski.CFGlobalSourceStage
 
 import BigHrushovski.CFGrowthNormalizedLocal
 
+import BigHrushovski.CFNamedBaseTransport
+
+import BigHrushovski.CFBoundedNamedLocal
+
 import BigHrushovski.CFLocalSplitGraph
