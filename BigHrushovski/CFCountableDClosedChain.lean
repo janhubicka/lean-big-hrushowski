@@ -35,14 +35,26 @@ theorem stageImage_succ_old
           (stage F K (n + 1)).carrier)).image
         (toVertex F K (n + 1))) := by
   classical
-  change (Finset.univ : Finset (stage F K n).carrier).image
-      (toVertex F K n) =
-    (((Finset.univ : Finset (stage F K n).carrier).image Sum.inl).image
-      (toVertex F K (n + 1)))
-  rw [Finset.image_image]
-  apply Finset.image_congr
-  intro v hv
-  exact (toVertex_old F K n v).symm
+  classical
+  ext x
+  constructor
+  · intro hx
+    change x ∈ (Finset.univ : Finset (stage F K n).carrier).image
+      (toVertex F K n) at hx
+    obtain ⟨a, _, ha⟩ := Finset.mem_image.mp hx
+    apply Finset.mem_image.mpr
+    refine ⟨Sum.inl a, ?_, ?_⟩
+    · exact Finset.mem_image.mpr ⟨a, Finset.mem_univ _, rfl⟩
+    · exact (toVertex_old F K n a).trans ha
+  · intro hx
+    obtain ⟨b, hb, hbx⟩ := Finset.mem_image.mp hx
+    obtain ⟨a, _, hab⟩ := Finset.mem_image.mp hb
+    subst b
+    change x ∈ (Finset.univ : Finset (stage F K n).carrier).image
+      (toVertex F K n)
+    apply Finset.mem_image.mpr
+    refine ⟨a, Finset.mem_univ _, ?_⟩
+    exact (toVertex_old F K n a).symm.trans hbx
 
 /-- The finite strict d-closed successor relation transfers
 through an exact induced birth-labelled stage map. -/
