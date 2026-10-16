@@ -63,13 +63,15 @@ theorem growthInverseSize_admissible
         sizeCutoff F hUnbounded k := by
     dsimp [growthInverseSize]
     omega
-  have hNot :
-      ¬ T < F (growthInverseSize F hUnbounded k) := by
-    exact Nat.find_min'
-      (hUnbounded T)
-      (growthInverseSize F hUnbounded k)
-      hLess
-  exact le_of_not_gt hNot
+  by_contra hBad
+  have hAbove :
+      T < F (growthInverseSize F hUnbounded k) :=
+    lt_of_not_ge hBad
+  have hFirst :
+      sizeCutoff F hUnbounded k ≤
+        growthInverseSize F hUnbounded k :=
+    Nat.find_min' (hUnbounded T) hAbove
+  omega
 
 /-- Membership in the finite growth interval is *equivalent*
 to being at most the generalized inverse. This explicitly
