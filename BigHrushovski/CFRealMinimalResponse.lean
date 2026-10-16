@@ -92,8 +92,7 @@ theorem arbitraryMinimalRealCF_globalResponse
             (CFGrowthNumerics.cardinalGrowthBound F hMono hUnbounded)).adj
             (g x) (g y)) ∧
       (countableGraph (CFGrowthNumerics.cardinalGrowth F)
-        (CFGrowthNumerics.cardinalGrowthBound F hMono hUnbounded))
-        .toPredimension.IsGloballyDClosed
+        (CFGrowthNumerics.cardinalGrowthBound F hMono hUnbounded)).toPredimension.IsGloballyDClosed
         ((Finset.univ : Finset (Sum S (Fin (Fintype.card B)))).image g) := by
   classical
   let Fnat : ℕ → ℝ := CFGrowthNumerics.cardinalGrowth F
