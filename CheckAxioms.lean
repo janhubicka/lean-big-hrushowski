@@ -837,3 +837,6 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFCoherentTower.oldSupportImageEquiv_val
 #print axioms BigHrushovski.CFCoherentTower.namedLocalExtension_globalResponse
+
+#print axioms BigHrushovski.CFLocalCatalogue.canonicalNamedSupport_image
+#print axioms BigHrushovski.CFLocalCatalogue.canonicalNamedSupport_certificates

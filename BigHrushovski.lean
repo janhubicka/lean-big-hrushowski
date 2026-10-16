@@ -271,3 +271,5 @@ import BigHrushovski.CFCompleteOneBlockResponse
 import BigHrushovski.CFTransportedBoundary
 
 import BigHrushovski.CFNamedOneStepResponse
+
+import BigHrushovski.CFCanonicalNamedSupport
