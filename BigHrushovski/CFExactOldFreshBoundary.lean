@@ -67,7 +67,7 @@ theorem tagged_old_fresh_adj_iff
 
 /-- No vertex outside the literal support of r is adjacent
 to any of its fresh vertices. This is a theorem about the
-constructed tagged level, not an auxiliary no-cross axiom. -/
+constructed tagged level, not an auxiliary no-cross assumption. -/
 theorem tagged_no_old_fresh_outside_support
     (G : GraphOn U) (Allowed : AllowedLocal U)
     (bound : Finset U → ℕ)
