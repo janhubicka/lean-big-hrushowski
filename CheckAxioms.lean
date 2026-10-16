@@ -775,3 +775,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFLocalCatalogue.growthSparse_orderedNormalize_iff
 #print axioms BigHrushovski.CFLocalCatalogue.growthLocalType_of_orderedGraph
 #print axioms BigHrushovski.CFLocalCatalogue.bounded_growthLocalType_of_orderedGraph
+
+#print axioms BigHrushovski.CFLocalCatalogue.namedBase_growthSparse_iff
+#print axioms BigHrushovski.CFLocalCatalogue.namedBase_minimal_iff
+#print axioms BigHrushovski.CFLocalCatalogue.namedBase_exactSupport_iff
+#print axioms BigHrushovski.CFLocalCatalogue.namedBase_old_adj_iff
