@@ -35,7 +35,14 @@ theorem stageImage_succ_old
           (stage F K (n + 1)).carrier)).image
         (toVertex F K (n + 1))) := by
   classical
-  simp only [stageImage, Finset.image_image, toVertex_old]
+  change (Finset.univ : Finset (stage F K n).carrier).image
+      (toVertex F K n) =
+    (((Finset.univ : Finset (stage F K n).carrier).image Sum.inl).image
+      (toVertex F K (n + 1)))
+  rw [Finset.image_image]
+  apply Finset.image_congr
+  intro v hv
+  exact (toVertex_old F K n v).symm
 
 /-- The finite strict d-closed successor relation transfers
 through an exact induced birth-labelled stage map. -/
@@ -61,7 +68,8 @@ theorem stageImage_dClosed_succ
         (Sum.inl : (stage F K n).carrier →
           (stage F K (n + 1)).carrier))
       Finset.univ (Finset.subset_univ _)).mpr hStage
-  simpa only [stageImage, Finset.image_image, toVertex_old] using hImage
+  rw [stageImage_succ_old F K n]
+  exact hImage
 
 /-- The actual embedded finite stages form a strict d-closed
 covering chain in one fixed, countable ambient graph. -/
