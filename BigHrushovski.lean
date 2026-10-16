@@ -239,3 +239,5 @@ import BigHrushovski.CFCountableDClosedChain
 import BigHrushovski.CFCountableResponse
 
 import BigHrushovski.CFGlobalSourceStage
+
+import BigHrushovski.CFGrowthNormalizedLocal
