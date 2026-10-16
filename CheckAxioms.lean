@@ -766,3 +766,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.stageImage_dClosed_succ
 #print axioms BigHrushovski.CFCoherentTower.birthDClosedChain
 #print axioms BigHrushovski.CFCoherentTower.stageImage_global_dClosed
+
+#print axioms BigHrushovski.CFCoherentTower.globalFiniteSource_in_dClosedStage
