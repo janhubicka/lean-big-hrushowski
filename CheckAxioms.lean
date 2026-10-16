@@ -860,3 +860,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.orderedSplitUnionEquiv_old
 #print axioms BigHrushovski.CFCoherentTower.orderedSplitUnionEquiv_fresh
 #print axioms BigHrushovski.CFCoherentTower.orderedSplitUnion_adj_iff
+
+#print axioms BigHrushovski.CFCoherentTower.minimalLiteralInterval_globalResponse
