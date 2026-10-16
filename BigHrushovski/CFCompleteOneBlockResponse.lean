@@ -219,7 +219,9 @@ theorem completeOneBlock_global
     GrowthAllowedLocal F
   let bound : Finset (stage F K n).carrier → ℕ :=
     fun P => K P.card
-  let fStage := taggedCompleteMap G allowed bound r f
+  let fStage : Sum S (Fin r.code.1.val) →
+      (stage F K (n + 1)).carrier :=
+    taggedCompleteMap G allowed bound r f
   let g : Sum S (Fin r.code.1.val) → Vertex F K :=
     fun x => toVertex F K (n + 1) (fStage x)
   have hInj : Function.Injective g :=
