@@ -46,8 +46,8 @@ theorem globalFiniteSource_in_dClosedStage
       s hCover
   have hWithin : (countableGraph F K).toPredimension.IsDClosed
       s (stageImage F K n) :=
-    (countableGraph F K).toPredimension.IsGloballyDClosed.restrict
-      hGlobal hCover
+    Predimension.IsGloballyDClosed.restrict
+      (d := (countableGraph F K).toPredimension) hGlobal hCover
   have hStage : (stage F K n).graph.toPredimension.IsDClosed
       a Finset.univ := by
     apply (((stage F K n).graph).dClosed_image_iff
