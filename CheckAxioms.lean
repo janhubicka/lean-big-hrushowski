@@ -796,3 +796,8 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.growth_dClosedHull_le_twice_card
 #print axioms BigHrushovski.GraphOn.minimal_growth_extension_card_le
 #print axioms BigHrushovski.GraphOn.minimal_growth_fresh_card_le
+
+#print axioms BigHrushovski.CFGrowthNumerics.sizeCutoff_spec
+#print axioms BigHrushovski.CFGrowthNumerics.growthSize_below_cutoff
+#print axioms BigHrushovski.CFGrowthNumerics.sizeCutoff_inverse_property
+#print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_with_cutoff

@@ -251,3 +251,5 @@ import BigHrushovski.CFLocalSplitGraph
 import BigHrushovski.CFDClosedHullDelta
 
 import BigHrushovski.CFMinimalGrowthSize
+
+import BigHrushovski.CFGrowthCutoff
