@@ -783,5 +783,11 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFLocalCatalogue.bounded_named_growthLocalType
 
+#print axioms BigHrushovski.CFLocalCatalogue.splitValue_injective
+#print axioms BigHrushovski.CFLocalCatalogue.splitUniv_image
+#print axioms BigHrushovski.CFLocalCatalogue.splitGraph_growthSparse_iff
+#print axioms BigHrushovski.CFLocalCatalogue.splitGraph_minimal
+#print axioms BigHrushovski.CFLocalCatalogue.splitGraph_exactSupport
+
 #print axioms BigHrushovski.Predimension.exists_dClosed_superset_delta_le
 #print axioms BigHrushovski.Predimension.delta_dClosedHull_le
