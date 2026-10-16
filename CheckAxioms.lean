@@ -771,3 +771,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.orderedCode_globalResponse
 
 #print axioms BigHrushovski.CFCoherentTower.globalFiniteSource_in_dClosedStage
+
+#print axioms BigHrushovski.CFLocalCatalogue.namedBase_growthSparse_iff
+#print axioms BigHrushovski.CFLocalCatalogue.namedBase_minimal_iff
+#print axioms BigHrushovski.CFLocalCatalogue.namedBase_exactSupport_iff
+#print axioms BigHrushovski.CFLocalCatalogue.namedBase_old_adj_iff
