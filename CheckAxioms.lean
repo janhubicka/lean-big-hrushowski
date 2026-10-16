@@ -840,3 +840,10 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFLocalCatalogue.canonicalNamedSupport_image
 #print axioms BigHrushovski.CFLocalCatalogue.canonicalNamedSupport_certificates
+
+#print axioms BigHrushovski.CFLocalCatalogue.oldSubsetInclusion_injective
+#print axioms BigHrushovski.CFLocalCatalogue.oldSubsetUniv_image
+#print axioms BigHrushovski.CFLocalCatalogue.oldSubsetLocal_growth
+#print axioms BigHrushovski.CFLocalCatalogue.oldSubsetLocal_minimal
+#print axioms BigHrushovski.CFLocalCatalogue.oldSubsetLocal_exactSupport
+#print axioms BigHrushovski.CFLocalCatalogue.oldSubsetLocal_certificates
