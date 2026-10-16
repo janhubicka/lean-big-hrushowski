@@ -62,7 +62,7 @@ theorem transportedLocal_fresh_iff
         (Sum.inr (increasingNewBlock (B := B) j)) := by
   simp [transportedLocalGraph, oldSubsetLocalGraph,
     orderedNormalizeGraph, namedBaseGraph,
-    taggedIncreasingEquiv, namedBaseEquiv]
+    taggedIncreasingEquiv, namedBaseEquiv, GraphOn.pullback]
 
 /-- At the actual named vertex e(p) of Q, the normalized
 old--fresh adjacency is exactly the original adjacency
@@ -77,7 +77,7 @@ theorem transportedLocal_support_boundary_iff
         (Sum.inr (increasingNewBlock (B := B) i)) := by
   simp [transportedLocalGraph, oldSubsetLocalGraph,
     orderedNormalizeGraph, namedBaseGraph,
-    taggedIncreasingEquiv, namedBaseEquiv]
+    taggedIncreasingEquiv, namedBaseEquiv, GraphOn.pullback]
 
 /-- Full boundary matching for the entire old source V.
 All new neighbours must lie in the canonical source support P,
