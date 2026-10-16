@@ -852,3 +852,5 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFCoherentTower.fresh_nonempty_of_minimal
 #print axioms BigHrushovski.CFCoherentTower.arbitraryMinimalCF_globalResponse
+
+#print axioms BigHrushovski.CFCoherentTower.arbitraryMinimalRealCF_globalResponse
