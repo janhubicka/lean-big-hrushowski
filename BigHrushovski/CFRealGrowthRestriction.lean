@@ -61,9 +61,12 @@ theorem minimal_growth_size_of_real_growth
     b.card ≤ growthInverseSize (fun n : ℕ => F (n : ℝ))
       (realGrowth_nat_unbounded F hMono hUnbounded)
       a.card := by
+  have hZeroNat :
+      (fun n : ℕ => F (n : ℝ)) 0 = 0 := by
+    simpa using hZero
   exact minimal_growth_size_with_inverse G
     (fun n : ℕ => F (n : ℝ))
-    hZero
+    hZeroNat
     (realGrowth_nat_monotone F hMono)
     (realGrowth_nat_unbounded F hMono hUnbounded)
     a b hMin hGrowth x hxb hxna
