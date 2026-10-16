@@ -791,3 +791,8 @@ import BigHrushovski
 
 #print axioms BigHrushovski.Predimension.exists_dClosed_superset_delta_le
 #print axioms BigHrushovski.Predimension.delta_dClosedHull_le
+
+#print axioms BigHrushovski.CFNamedSupport.restrictedSupportMap_injective
+#print axioms BigHrushovski.CFNamedSupport.restrictedSupportMap_surjective
+#print axioms BigHrushovski.CFNamedSupport.supportImageEquiv_val
+#print axioms BigHrushovski.CFNamedSupport.supportImageEquiv_induced
