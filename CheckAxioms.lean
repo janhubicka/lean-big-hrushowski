@@ -837,3 +837,5 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFCoherentTower.oldSupportImageEquiv_val
 #print axioms BigHrushovski.CFCoherentTower.namedLocalExtension_globalResponse
+
+#print axioms BigHrushovski.CFLocalCatalogue.minimalLocal_fresh_size_le
