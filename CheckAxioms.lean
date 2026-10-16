@@ -806,3 +806,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFGrowthNumerics.growthInverseSize_admissible
 #print axioms BigHrushovski.CFGrowthNumerics.growthInverseSize_iff
 #print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_with_inverse
+
+#print axioms BigHrushovski.CFNamedSupport.restrictedSupportMap_injective
+#print axioms BigHrushovski.CFNamedSupport.restrictedSupportMap_surjective
+#print axioms BigHrushovski.CFNamedSupport.supportImageEquiv_val
+#print axioms BigHrushovski.CFNamedSupport.supportImageEquiv_induced
