@@ -824,3 +824,9 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFStageCatalogue.tagged_old_fresh_adj_iff
 #print axioms BigHrushovski.CFStageCatalogue.tagged_no_old_fresh_outside_support
+
+#print axioms BigHrushovski.CFStageCatalogue.taggedCompleteMap_injective
+#print axioms BigHrushovski.CFStageCatalogue.taggedCompleteMap_image
+#print axioms BigHrushovski.CFStageCatalogue.taggedCompleteMap_induced
+#print axioms BigHrushovski.CFStageCatalogue.taggedCompleteMap_dClosed_full
+#print axioms BigHrushovski.CFCoherentTower.completeOneBlock_global
