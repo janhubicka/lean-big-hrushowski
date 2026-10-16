@@ -821,3 +821,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.inducedSource_namedSupport_dClosed
 #print axioms BigHrushovski.CFCoherentTower.inducedSource_namedSupport_global
 #print axioms BigHrushovski.CFCoherentTower.inducedSource_namedSupport_subset
+
+#print axioms BigHrushovski.CFLocalCatalogue.transportedLocal_fresh_iff
+#print axioms BigHrushovski.CFLocalCatalogue.transportedLocal_support_boundary_iff
+#print axioms BigHrushovski.CFLocalCatalogue.transportedLocal_full_boundary_iff
