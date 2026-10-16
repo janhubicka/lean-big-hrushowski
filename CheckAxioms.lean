@@ -801,3 +801,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFGrowthNumerics.growthSize_below_cutoff
 #print axioms BigHrushovski.CFGrowthNumerics.sizeCutoff_inverse_property
 #print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_with_cutoff
+
+#print axioms BigHrushovski.CFCoherentTower.prescribedClosedSource_liftToStage
