@@ -36,7 +36,7 @@ private theorem old_fresh_union_univ :
   | inl s => simp [actualOld, actualFresh]
   | inr b => simp [actualOld, actualFresh]
 
-private theorem old_fresh_disjoint :
+private theorem actual_old_fresh_disjoint_local :
     Disjoint (actualOld S B) (actualFresh S B) := by
   classical
   apply Finset.disjoint_left.mpr
@@ -122,7 +122,7 @@ theorem canonicalNamedSupport_certificates
   have hMinimal : H.toPredimension.IsMinimalDClosedStep A (A ∪ D) := by
     simpa only [hUnion] using hMin
   obtain ⟨hTClosed, hNoCross, hTMin, hTRight, hTExact⟩ :=
-    H.canonical_dClosed_local_support A D old_fresh_disjoint hMinimal
+    H.canonical_dClosed_local_support A D actual_old_fresh_disjoint_local hMinimal
   have hTsub : T ⊆ A := hTClosed.1
   have hNsubT : N ⊆ T :=
     H.toPredimension.subset_dClosedHull
@@ -135,7 +135,10 @@ theorem canonicalNamedSupport_certificates
       Sum.inl Sum.inl_injective
       (fun _ _ => Iff.rfl) P Finset.univ
       (Finset.subset_univ _)).mp
-    simpa only [hImage, A, actualOld] using hTClosed
+    have hOldEq :
+        (Finset.univ : Finset S).image Sum.inl = A := rfl
+    rw [hImage, hOldEq]
+    exact hTClosed
   have hBack : ∀ x : S, ∀ b : B,
       H.adj (Sum.inl x) (Sum.inr b) → x ∈ P := by
     intro x b hAdj
