@@ -771,3 +771,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.orderedCode_globalResponse
 
 #print axioms BigHrushovski.CFCoherentTower.globalFiniteSource_in_dClosedStage
+
+#print axioms BigHrushovski.CFLocalCatalogue.growthSparse_orderedNormalize_iff
+#print axioms BigHrushovski.CFLocalCatalogue.growthLocalType_of_orderedGraph
+#print axioms BigHrushovski.CFLocalCatalogue.bounded_growthLocalType_of_orderedGraph
