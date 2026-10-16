@@ -822,6 +822,15 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.inducedSource_namedSupport_global
 #print axioms BigHrushovski.CFCoherentTower.inducedSource_namedSupport_subset
 
+#print axioms BigHrushovski.CFStageCatalogue.tagged_old_fresh_adj_iff
+#print axioms BigHrushovski.CFStageCatalogue.tagged_no_old_fresh_outside_support
+
+#print axioms BigHrushovski.CFStageCatalogue.taggedCompleteMap_injective
+#print axioms BigHrushovski.CFStageCatalogue.taggedCompleteMap_image
+#print axioms BigHrushovski.CFStageCatalogue.taggedCompleteMap_induced
+#print axioms BigHrushovski.CFStageCatalogue.taggedCompleteMap_dClosed_full
+#print axioms BigHrushovski.CFCoherentTower.completeOneBlock_global
+
 #print axioms BigHrushovski.CFLocalCatalogue.transportedLocal_fresh_iff
 #print axioms BigHrushovski.CFLocalCatalogue.transportedLocal_support_boundary_iff
 #print axioms BigHrushovski.CFLocalCatalogue.transportedLocal_full_boundary_iff
