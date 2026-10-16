@@ -45,7 +45,7 @@ theorem stageImage_mono
   exact Finset.mem_image.mpr
     ⟨embedToLater F K n m hnm a,
       Finset.mem_univ _,
-      (toVertex_embedToLater F K n m hnm a).symm⟩
+      (toVertex_embedToLater F K n m hnm a)⟩
 
 /-- Each birth-labelled vertex belongs to its birth successor
 stage, and hence to a finite stage image. -/
