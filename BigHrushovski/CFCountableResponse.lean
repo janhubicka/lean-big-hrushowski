@@ -90,7 +90,7 @@ theorem orderedCode_globalResponse
   classical
   dsimp only
   let G := (stage F K n).graph
-  let allowed := GrowthAllowedLocal F
+  let allowed : AllowedLocal (stage F K n).carrier := GrowthAllowedLocal F
   let bound : Finset (stage F K n).carrier → ℕ :=
     fun Q => K Q.card
   let r := requestOfOrderedLocal G allowed bound
