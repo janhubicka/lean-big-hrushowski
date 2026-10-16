@@ -281,3 +281,5 @@ import BigHrushovski.CFLocalFreshBound
 import BigHrushovski.CFArbitraryMinimalResponse
 
 import BigHrushovski.CFFiniteMinimalDiagramResponse
+
+import BigHrushovski.CFDependentMinimalChain
