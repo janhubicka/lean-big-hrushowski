@@ -843,3 +843,6 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFLocalCatalogue.oldSubsetLocal_certificates
 #print axioms BigHrushovski.CFLocalCatalogue.minimalLocal_fresh_size_le
+
+#print axioms BigHrushovski.CFCoherentTower.fresh_nonempty_of_minimal
+#print axioms BigHrushovski.CFCoherentTower.arbitraryMinimalCF_globalResponse
