@@ -802,4 +802,18 @@ import BigHrushovski
 #print axioms BigHrushovski.CFGrowthNumerics.sizeCutoff_inverse_property
 #print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_with_cutoff
 
+#print axioms BigHrushovski.CFGrowthNumerics.sizeCutoff_pos
+#print axioms BigHrushovski.CFGrowthNumerics.growthInverseSize_admissible
+#print axioms BigHrushovski.CFGrowthNumerics.growthInverseSize_iff
+#print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_with_inverse
+
+#print axioms BigHrushovski.CFNamedSupport.restrictedSupportMap_injective
+#print axioms BigHrushovski.CFNamedSupport.restrictedSupportMap_surjective
+#print axioms BigHrushovski.CFNamedSupport.supportImageEquiv_val
+#print axioms BigHrushovski.CFNamedSupport.supportImageEquiv_induced
+
+#print axioms BigHrushovski.CFGrowthNumerics.realGrowth_nat_monotone
+#print axioms BigHrushovski.CFGrowthNumerics.realGrowth_nat_unbounded
+#print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_of_real_growth
+
 #print axioms BigHrushovski.CFCoherentTower.prescribedClosedSource_liftToStage
