@@ -245,11 +245,16 @@ theorem completeOneBlock_global
       hSourceClosed hSupport
   have hGlobalClosed : (countableGraph F K).toPredimension.IsGloballyDClosed
       ((Finset.univ : Finset (Sum S (Fin r.code.1.val))).image g) := by
-    have h :=
-      finiteClosedPart_global F K (n + 1)
-        ((Finset.univ : Finset (Sum S (Fin r.code.1.val))).image fStage)
-        hFiniteClosed
-    simpa only [Finset.image_image] using h
+    have hImage :
+        ((Finset.univ : Finset (Sum S (Fin r.code.1.val))).image g) =
+        (((Finset.univ : Finset (Sum S (Fin r.code.1.val))).image
+          fStage).image (toVertex F K (n + 1))) := by
+      simp only [Finset.image_image]
+      rfl
+    rw [hImage]
+    exact finiteClosedPart_global F K (n + 1)
+      ((Finset.univ : Finset (Sum S (Fin r.code.1.val))).image fStage)
+      hFiniteClosed
   refine ⟨g, hInj, ?_, hAdjGlobal, hGlobalClosed⟩
   intro x
   exact toVertex_old F K n (f x)
