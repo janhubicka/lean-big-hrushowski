@@ -48,11 +48,13 @@ theorem restrictedSupportMap_injective
     (he : Function.Injective e) :
     Function.Injective (restrictedSupportMap A P hPA e) := by
   intro p q hpq
-  apply Subtype.ext
   have heq : e ⟨p.val, hPA p.property⟩ =
       e ⟨q.val, hPA q.property⟩ :=
     congrArg Subtype.val hpq
-  exact congrArg Subtype.val (he heq)
+  have hSource :
+      (⟨p.val, hPA p.property⟩ : {v : V // v ∈ A}) =
+      ⟨q.val, hPA q.property⟩ := he heq
+  exact Subtype.ext (congrArg Subtype.val hSource)
 
 /-- Every target vertex of Q=e[P] has an old support
 preimage; the subtype-level map is onto. -/
