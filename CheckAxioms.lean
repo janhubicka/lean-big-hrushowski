@@ -780,3 +780,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFLocalCatalogue.namedBase_minimal_iff
 #print axioms BigHrushovski.CFLocalCatalogue.namedBase_exactSupport_iff
 #print axioms BigHrushovski.CFLocalCatalogue.namedBase_old_adj_iff
+
+#print axioms BigHrushovski.CFLocalCatalogue.bounded_named_growthLocalType
