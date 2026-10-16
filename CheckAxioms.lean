@@ -782,3 +782,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFLocalCatalogue.namedBase_old_adj_iff
 
 #print axioms BigHrushovski.CFLocalCatalogue.bounded_named_growthLocalType
+
+#print axioms BigHrushovski.Predimension.exists_dClosed_superset_delta_le
+#print axioms BigHrushovski.Predimension.delta_dClosedHull_le
