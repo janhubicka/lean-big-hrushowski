@@ -61,7 +61,7 @@ theorem MinimalDClosedChain.lift_dependent
     ∃ f : {v : V // v ∈ b} → W,
       Valid b f ∧
       (∀ v : {v : V // v ∈ a},
-        f ⟨v.val, chain.subset v.property⟩ = e v) := by
+        f ⟨v.val, (MinimalDClosedChain.subset d chain) v.property⟩ = e v) := by
   induction chain generalizing e with
   | refl a =>
       exact ⟨e, he, by intro v; rfl⟩
@@ -73,9 +73,9 @@ theorem MinimalDClosedChain.lift_dependent
       let vm : {v : V // v ∈ m} :=
         ⟨v.val, hab.1.1 v.property⟩
       calc
-        g ⟨v.val, (MinimalDClosedChain.step hab hTail).subset
-              v.property⟩ =
-            g ⟨vm.val, hTail.subset vm.property⟩ := rfl
+        g ⟨v.val, (MinimalDClosedChain.subset d
+              (MinimalDClosedChain.step hab hTail)) v.property⟩ =
+            g ⟨vm.val, (MinimalDClosedChain.subset d hTail) vm.property⟩ := rfl
         _ = f vm := hgf vm
         _ = e v := hfa v
 
@@ -99,8 +99,8 @@ theorem lift_dClosed_extension_dependent
       Valid b f ∧
       (∀ v : {v : V // v ∈ a},
         f ⟨v.val, hab.1 v.property⟩ = e v) := by
-  have h := (d.finite_minimal_decomposition_of_dClosed_absolute
-    hab).lift_dependent d Valid hLocal e he
+  have h := MinimalDClosedChain.lift_dependent d Valid hLocal
+    (d.finite_minimal_decomposition_of_dClosed_absolute hab) e he
   obtain ⟨f, hf, hfa⟩ := h
   refine ⟨f, hf, ?_⟩
   intro v
