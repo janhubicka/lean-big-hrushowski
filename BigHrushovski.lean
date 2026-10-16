@@ -247,3 +247,5 @@ import BigHrushovski.CFNamedBaseTransport
 import BigHrushovski.CFBoundedNamedLocal
 
 import BigHrushovski.CFLocalSplitGraph
+
+import BigHrushovski.CFDClosedHullDelta
