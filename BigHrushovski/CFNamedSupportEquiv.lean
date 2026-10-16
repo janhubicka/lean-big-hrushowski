@@ -30,7 +30,7 @@ embedding defined only on the finite source A. -/
 noncomputable def supportImage
     (A P : Finset V) (hPA : P ⊆ A)
     (e : {v : V // v ∈ A} → W) : Finset W :=
-  P.image (fun v => e ⟨v, hPA (by assumption)⟩)
+  P.attach.image (fun p => e ⟨p.val, hPA p.property⟩)
 
 /-- The prescribed source map restricted to the subtype of P,
 taking values in the actual image subtype Q=e[P]. -/
@@ -40,7 +40,7 @@ noncomputable def restrictedSupportMap
     {v : V // v ∈ P} →
       {w : W // w ∈ supportImage A P hPA e} :=
   fun p => ⟨e ⟨p.val, hPA p.property⟩,
-    Finset.mem_image.mpr ⟨p.val, p.property, rfl⟩⟩
+    Finset.mem_image.mpr ⟨p, Finset.mem_attach P p, rfl⟩⟩
 
 theorem restrictedSupportMap_injective
     (A P : Finset V) (hPA : P ⊆ A)
@@ -61,11 +61,11 @@ theorem restrictedSupportMap_surjective
     (e : {v : V // v ∈ A} → W) :
     Function.Surjective (restrictedSupportMap A P hPA e) := by
   intro q
-  obtain ⟨v, hv, hvq⟩ :=
+  obtain ⟨p, _, hpq⟩ :=
     Finset.mem_image.mp q.property
-  refine ⟨⟨v, hv⟩, ?_⟩
+  refine ⟨p, ?_⟩
   apply Subtype.ext
-  exact hvq
+  exact hpq
 
 /-- The canonical equivalence between the abstract support
 and its prescribed *literal* image in the target. -/
