@@ -854,3 +854,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.arbitraryMinimalCF_globalResponse
 
 #print axioms BigHrushovski.CFCoherentTower.finiteMinimalDiagram_globalResponse
+
+#print axioms BigHrushovski.CFCoherentTower.splitIntoUnion_injective
+#print axioms BigHrushovski.CFCoherentTower.splitIntoUnion_surjective
+#print axioms BigHrushovski.CFCoherentTower.orderedSplitUnionEquiv_old
+#print axioms BigHrushovski.CFCoherentTower.orderedSplitUnionEquiv_fresh
+#print axioms BigHrushovski.CFCoherentTower.orderedSplitUnion_adj_iff
