@@ -791,3 +791,8 @@ import BigHrushovski
 
 #print axioms BigHrushovski.Predimension.exists_dClosed_superset_delta_le
 #print axioms BigHrushovski.Predimension.delta_dClosedHull_le
+
+#print axioms BigHrushovski.GraphOn.predim_le_twice_card
+#print axioms BigHrushovski.GraphOn.growth_dClosedHull_le_twice_card
+#print axioms BigHrushovski.GraphOn.minimal_growth_extension_card_le
+#print axioms BigHrushovski.GraphOn.minimal_growth_fresh_card_le
