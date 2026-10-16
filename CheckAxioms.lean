@@ -801,3 +801,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFGrowthNumerics.growthSize_below_cutoff
 #print axioms BigHrushovski.CFGrowthNumerics.sizeCutoff_inverse_property
 #print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_with_cutoff
+
+#print axioms BigHrushovski.CFGrowthNumerics.sizeCutoff_pos
+#print axioms BigHrushovski.CFGrowthNumerics.growthInverseSize_admissible
+#print axioms BigHrushovski.CFGrowthNumerics.growthInverseSize_iff
+#print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_with_inverse
