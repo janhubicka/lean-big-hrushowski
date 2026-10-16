@@ -806,3 +806,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFGrowthNumerics.growthInverseSize_admissible
 #print axioms BigHrushovski.CFGrowthNumerics.growthInverseSize_iff
 #print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_with_inverse
+
+#print axioms BigHrushovski.CFGrowthNumerics.realGrowth_nat_monotone
+#print axioms BigHrushovski.CFGrowthNumerics.realGrowth_nat_unbounded
+#print axioms BigHrushovski.CFGrowthNumerics.minimal_growth_size_of_real_growth
