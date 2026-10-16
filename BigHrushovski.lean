@@ -235,3 +235,5 @@ import BigHrushovski.CFCountableInduced
 import BigHrushovski.CFCountableGrowth
 
 import BigHrushovski.CFCountableDClosedChain
+
+import BigHrushovski.CFGlobalSourceStage
