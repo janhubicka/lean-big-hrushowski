@@ -240,4 +240,6 @@ import BigHrushovski.CFCountableResponse
 
 import BigHrushovski.CFGlobalSourceStage
 
+import BigHrushovski.CFGrowthNormalizedLocal
+
 import BigHrushovski.CFNamedBaseTransport
