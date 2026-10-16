@@ -14,7 +14,11 @@ and exact old-neighbour support remain intact.
 We isolate the precise numerical interface: a bound on the
 *whole* finite local extension yields a bound on its fresh
 block, hence an actual record in the bounded catalogue.
-The published closure estimate is not reproved here.
+The published closure estimate is not reproved here.\nThe exact identity of the normalized graph is already
+recorded by exists_normalizedOrderedLocalType. A dependent
+bounded-code record carries its fresh size as an index, so
+we state the size equality separately rather than comparing
+graphs at two potentially different Fin indices.
 -/
 
 namespace BigHrushovski
@@ -91,7 +95,6 @@ theorem bounded_growthLocalType_of_orderedGraph
     ∃ code : BoundedOrderedLocalType P base
         (fun _ H => H.IsGrowthSparse F Finset.univ) K,
       code.1.val = Fintype.card B ∧
-      code.2.graph = orderedNormalizeGraph G ∧
       code ∈ catalogue base
         (fun _ H => H.IsGrowthSparse F Finset.univ) K := by
   let t := growthLocalType_of_orderedGraph F base G
@@ -101,7 +104,7 @@ theorem bounded_growthLocalType_of_orderedGraph
       (fun _ H => H.IsGrowthSparse F Finset.univ) K :=
     toBounded base (fun _ H => H.IsGrowthSparse F Finset.univ)
       K (Fintype.card B) hFresh t
-  refine ⟨code, rfl, rfl, ?_⟩
+  refine ⟨code, rfl, ?_⟩
   exact mem_catalogue base
     (fun _ H => H.IsGrowthSparse F Finset.univ) K code
 
