@@ -92,11 +92,12 @@ theorem prescribedClosedSource_liftToStage
         (Finset.univ : Finset S).image
           (fun x => toVertex F K n (f x)) := by
             rw [Finset.image_image]
+            rfl
       _ = (Finset.univ : Finset S).image e := by
             apply Finset.image_congr
             intro x _
             exact hfBirth x
-      _ = a.image (toVertex F K n) := haBirth.symm
+      _ = a.image (toVertex F K n) := haBirth
   have hImage : ((Finset.univ : Finset S).image f) = a :=
     (Finset.image_injective (toVertex_injective F K n))
       hBirthImages
