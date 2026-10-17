@@ -218,7 +218,7 @@ theorem RootedMinimalDClosedChain.roots_generate
   have hRootsX : roots ⊆ x :=
     Finset.subset_union_right.trans hContained
   exact le_antisymm hX.1
-    (chain.subset_of_closed x hX hAX hRootsX)
+    (chain.subset_of_closed d x hX hAX hRootsX)
 
 end Predimension
 end BigHrushovski
