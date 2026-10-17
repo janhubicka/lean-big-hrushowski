@@ -871,3 +871,7 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFGrowthNumerics.cardinalGrowth_inverse
 #print axioms BigHrushovski.CFCoherentTower.finiteRealDClosedInterval_globalResponse
+
+#print axioms BigHrushovski.Predimension.minimal_block_forced_by_root
+#print axioms BigHrushovski.Predimension.minimalStrongStep_forced_by_root
+#print axioms BigHrushovski.Predimension.minimalDClosedStep_forced_by_root
