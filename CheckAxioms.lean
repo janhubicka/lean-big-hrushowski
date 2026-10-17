@@ -868,3 +868,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.minimalLiteralInterval_globalResponse
 
 #print axioms BigHrushovski.CFCoherentTower.finiteDClosedInterval_globalResponse
+
+#print axioms BigHrushovski.CFGrowthNumerics.cardinalGrowth_inverse
+#print axioms BigHrushovski.CFCoherentTower.finiteRealDClosedInterval_globalResponse
