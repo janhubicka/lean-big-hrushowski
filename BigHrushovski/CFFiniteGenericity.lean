@@ -108,8 +108,13 @@ theorem finiteDClosedInterval_globalResponse
     -- Reinterpret the result on the original literal target subtype.
     let E : {v : V // v ∈ t} ≃
         {v : V // v ∈ s ∪ (t \ s)} :=
-      { toFun := fun x => ⟨x.val, hUnion.symm ▸ x.property⟩
-        invFun := fun x => ⟨x.val, hUnion ▸ x.property⟩
+      { toFun := fun x => ⟨x.val, by
+          rw [hUnion]
+          exact x.property⟩
+        invFun := fun x => ⟨x.val, by
+          have hx : x.val ∈ s ∪ (t \ s) := x.property
+          rw [hUnion] at hx
+          exact hx⟩
         left_inv := by
           intro x
           apply Subtype.ext
