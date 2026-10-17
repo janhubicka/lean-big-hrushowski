@@ -109,12 +109,14 @@ theorem finiteDClosedInterval_globalResponse
     let E : {v : V // v ∈ t} ≃
         {v : V // v ∈ s ∪ (t \ s)} :=
       { toFun := fun x => ⟨x.val, by
-          rw [hUnion]
-          exact x.property⟩
+          by_cases hx : x.val ∈ s
+          · exact Finset.mem_union.mpr (Or.inl hx)
+          · exact Finset.mem_union.mpr
+              (Or.inr (Finset.mem_sdiff.mpr ⟨x.property, hx⟩))⟩
         invFun := fun x => ⟨x.val, by
-          have hx : x.val ∈ s ∪ (t \ s) := x.property
-          rw [hUnion] at hx
-          exact hx⟩
+          rcases Finset.mem_union.mp x.property with hxS | hxFresh
+          · exact hst.1.1 hxS
+          · exact (Finset.mem_sdiff.mp hxFresh).1⟩
         left_inv := by
           intro x
           apply Subtype.ext
