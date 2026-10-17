@@ -90,6 +90,8 @@ jobs:
         run: python3 scripts/check_c0_absolute_factorization.py
       - name: Check finite minimal decompositions
         run: python3 scripts/check_minimal_decomposition.py
+      - name: Audit finite-cut inheritance and minimal root forcing
+        run: python3 scripts/check_minimal_root_forcing.py
       - name: Check six-vertex closure component
         run: python3 scripts/check_c0_triangle_component.py
       - name: Check old-neighbour and unordered back-edge correspondence
