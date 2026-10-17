@@ -291,3 +291,5 @@ import BigHrushovski.CFMinimalLiteralIntervalResponse
 import BigHrushovski.CFFiniteGenericity
 
 import BigHrushovski.CFRealFiniteGenericity
+
+import BigHrushovski.MinimalRootForcing
