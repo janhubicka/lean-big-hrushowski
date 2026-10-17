@@ -860,3 +860,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.orderedSplitUnionEquiv_old
 #print axioms BigHrushovski.CFCoherentTower.orderedSplitUnionEquiv_fresh
 #print axioms BigHrushovski.CFCoherentTower.orderedSplitUnion_adj_iff
+
+#print axioms BigHrushovski.Predimension.MinimalDClosedChain.subset
+#print axioms BigHrushovski.Predimension.MinimalDClosedChain.lift_dependent
+#print axioms BigHrushovski.Predimension.lift_dClosed_extension_dependent
