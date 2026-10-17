@@ -866,3 +866,5 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.lift_dClosed_extension_dependent
 
 #print axioms BigHrushovski.CFCoherentTower.minimalLiteralInterval_globalResponse
+
+#print axioms BigHrushovski.CFCoherentTower.finiteDClosedInterval_globalResponse

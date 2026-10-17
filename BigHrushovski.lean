@@ -287,3 +287,5 @@ import BigHrushovski.CFFiniteIntervalEquiv
 import BigHrushovski.CFDependentMinimalChain
 
 import BigHrushovski.CFMinimalLiteralIntervalResponse
+
+import BigHrushovski.CFFiniteGenericity
