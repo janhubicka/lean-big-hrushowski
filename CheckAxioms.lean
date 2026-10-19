@@ -889,3 +889,10 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.selectedRequests_supports_subset_old
 #print axioms BigHrushovski.CFCoherentTower.stageCut_dClosed_of_birthBlockClosed
 #print axioms BigHrushovski.CFCoherentTower.birthBlockClosed_global_dClosed
+
+#print axioms BigHrushovski.CFCoherentTower.mem_stageImage_iff_birth_lt
+#print axioms BigHrushovski.CFCoherentTower.stageImage_birthBlockClosed
+#print axioms BigHrushovski.CFCoherentTower.IsBirthBlockClosed.inter
+#print axioms BigHrushovski.CFCoherentTower.IsBirthBlockClosed.union
+#print axioms BigHrushovski.CFCoherentTower.birthBlockClosed_intersectFamily
+#print axioms BigHrushovski.CFCoherentTower.exists_least_finite_birthBlockClosure
