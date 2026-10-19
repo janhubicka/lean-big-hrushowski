@@ -299,3 +299,5 @@ import BigHrushovski.CFBirthBlockClosure
 import BigHrushovski.CFBirthGeneratedClosure
 
 import BigHrushovski.GlobalDClosedHull
+
+import BigHrushovski.CFBirthLocalRoots
