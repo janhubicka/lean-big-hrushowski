@@ -103,7 +103,7 @@ theorem birthLocal_minimal
       (birthSupport F K n r ∪ birthBlock F K n r) := by
   classical
   let G := (stage F K n).graph
-  let Allowed := GrowthAllowedLocal F
+  let Allowed : AllowedLocal (stage F K n).carrier := GrowthAllowedLocal F
   let bound : Finset (stage F K n).carrier → ℕ :=
     fun P => K P.card
   let H := (stage F K (n + 1)).graph
