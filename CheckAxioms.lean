@@ -905,3 +905,10 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.globalDClosedHull_idempotent
 #print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_global
 #print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_eq_stage
+
+#print axioms BigHrushovski.CFCoherentTower.birthRoot_mem_block
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_mem_of_old
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_birth_lt
+#print axioms BigHrushovski.CFCoherentTower.birthLocal_minimal
+#print axioms BigHrushovski.CFCoherentTower.rootOf_mem_birthClosed
+#print axioms BigHrushovski.CFCoherentTower.rootsOf_subset_closed
