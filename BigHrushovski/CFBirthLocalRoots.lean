@@ -120,8 +120,8 @@ theorem birthLocal_minimal
       (taggedSupport G Allowed bound r ∪
         taggedBlock G Allowed bound r)
       Finset.subset_union_left).mpr hLocal
-  simpa only [birthSupport, birthBlock, Finset.image_union]
-    using hImage
+  rw [Finset.image_union] at hImage
+  exact hImage
 
 /-- The roots of all vertices are determined only by their
 birth level and full request tag, not by their fresh ordinal. -/
