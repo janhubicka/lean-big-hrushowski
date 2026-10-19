@@ -96,10 +96,6 @@ theorem stageCut_succ_eq_selected
         (taggedBlock (stage F K n).graph
           (GrowthAllowedLocal F) (fun P => K P.card)) := by
   classical
-  let G := (stage F K n).graph
-  let Allowed := GrowthAllowedLocal F
-  let bound : Finset (stage F K n).carrier → ℕ :=
-    fun P => K P.card
   ext v
   cases v with
   | inl u =>
@@ -208,7 +204,11 @@ theorem stageCut_dClosed_of_birthBlockClosed
         ext v
         exact Fin.elim0 v
       rw [hEmpty]
-      simpa using (stage F K 0).graph.toPredimension.dclosed_refl
+      have hUniv : (Finset.univ : Finset (stage F K 0).carrier) = ∅ := by
+        ext v
+        exact Fin.elim0 v
+      rw [hUniv]
+      exact (stage F K 0).graph.toPredimension.dclosed_refl
         (∅ : Finset (stage F K 0).carrier)
   | succ n ih =>
       have hOld := stageCut_succ_old_dClosed F K s n ih
