@@ -120,7 +120,29 @@ theorem birthLocal_minimal
       (taggedSupport G Allowed bound r ∪
         taggedBlock G Allowed bound r)
       Finset.subset_union_left).mpr hLocal
-  rw [Finset.image_union] at hImage
+  have hUnion :
+      (taggedSupport G Allowed bound r ∪
+        taggedBlock G Allowed bound r).image j =
+      (taggedSupport G Allowed bound r).image j ∪
+        (taggedBlock G Allowed bound r).image j := by
+    ext z
+    constructor
+    · intro hz
+      obtain ⟨v, hv, hvz⟩ := Finset.mem_image.mp hz
+      rcases Finset.mem_union.mp hv with hP | hB
+      · exact Finset.mem_union.mpr
+          (Or.inl (Finset.mem_image.mpr ⟨v, hP, hvz⟩))
+      · exact Finset.mem_union.mpr
+          (Or.inr (Finset.mem_image.mpr ⟨v, hB, hvz⟩))
+    · intro hz
+      rcases Finset.mem_union.mp hz with hP | hB
+      · obtain ⟨v, hv, hvz⟩ := Finset.mem_image.mp hP
+        exact Finset.mem_image.mpr
+          ⟨v, Finset.mem_union.mpr (Or.inl hv), hvz⟩
+      · obtain ⟨v, hv, hvz⟩ := Finset.mem_image.mp hB
+        exact Finset.mem_image.mpr
+          ⟨v, Finset.mem_union.mpr (Or.inr hv), hvz⟩
+  rw [hUnion] at hImage
   exact hImage
 
 /-- The roots of all vertices are determined only by their
