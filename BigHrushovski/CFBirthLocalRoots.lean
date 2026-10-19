@@ -39,6 +39,42 @@ noncomputable def birthBlock
     (GrowthAllowedLocal F) (fun P => K P.card) r).image
     (toVertex F K (n + 1))
 
+/-- The complete literal finite local interval, with both the
+named support and the fresh block taken together before the induced
+birth-image transport. This is the exact endpoint of the local
+minimal strict d-closed extension. -/
+noncomputable def birthLocal
+    (F : ℕ → ℝ) (K : ℕ → ℕ) (n : ℕ)
+    (r : BirthRequest F K n) : Finset (Vertex F K) := by
+  classical
+  exact (taggedSupport (stage F K n).graph
+      (GrowthAllowedLocal F) (fun P => K P.card) r ∪
+    taggedBlock (stage F K n).graph
+      (GrowthAllowedLocal F) (fun P => K P.card) r).image
+      (toVertex F K (n + 1))
+
+/-- The literal fresh block is part of its complete local interval. -/
+theorem birthBlock_subset_local
+    (F : ℕ → ℝ) (K : ℕ → ℕ) (n : ℕ)
+    (r : BirthRequest F K n) :
+    birthBlock F K n r ⊆ birthLocal F K n r := by
+  classical
+  intro v hv
+  obtain ⟨w, hw, hwv⟩ := Finset.mem_image.mp hv
+  exact Finset.mem_image.mpr
+    ⟨w, Finset.mem_union.mpr (Or.inr hw), hwv⟩
+
+/-- The old support is included in the same finite local interval. -/
+theorem birthSupport_subset_local
+    (F : ℕ → ℝ) (K : ℕ → ℕ) (n : ℕ)
+    (r : BirthRequest F K n) :
+    birthSupport F K n r ⊆ birthLocal F K n r := by
+  classical
+  intro v hv
+  obtain ⟨w, hw, hwv⟩ := Finset.mem_image.mp hv
+  exact Finset.mem_image.mpr
+    ⟨w, Finset.mem_union.mpr (Or.inl hw), hwv⟩
+
 /-- Every minimal local type has a nonempty new block.
 Its first vertex is the ordinal zero, with unchanged request tag. -/
 noncomputable def birthRoot
@@ -100,7 +136,7 @@ theorem birthLocal_minimal
     (r : BirthRequest F K n) :
     (countableGraph F K).toPredimension.IsMinimalDClosedStep
       (birthSupport F K n r)
-      (birthSupport F K n r ∪ birthBlock F K n r) := by
+      (birthLocal F K n r) := by
   classical
   let G := (stage F K n).graph
   let Allowed : AllowedLocal (stage F K n).carrier := GrowthAllowedLocal F
@@ -120,29 +156,6 @@ theorem birthLocal_minimal
       (taggedSupport G Allowed bound r ∪
         taggedBlock G Allowed bound r)
       Finset.subset_union_left).mpr hLocal
-  have hUnion :
-      (taggedSupport G Allowed bound r ∪
-        taggedBlock G Allowed bound r).image j =
-      (taggedSupport G Allowed bound r).image j ∪
-        (taggedBlock G Allowed bound r).image j := by
-    ext z
-    constructor
-    · intro hz
-      obtain ⟨v, hv, hvz⟩ := Finset.mem_image.mp hz
-      rcases Finset.mem_union.mp hv with hP | hB
-      · exact Finset.mem_union.mpr
-          (Or.inl (Finset.mem_image.mpr ⟨v, hP, hvz⟩))
-      · exact Finset.mem_union.mpr
-          (Or.inr (Finset.mem_image.mpr ⟨v, hB, hvz⟩))
-    · intro hz
-      rcases Finset.mem_union.mp hz with hP | hB
-      · obtain ⟨v, hv, hvz⟩ := Finset.mem_image.mp hP
-        exact Finset.mem_image.mpr
-          ⟨v, Finset.mem_union.mpr (Or.inl hv), hvz⟩
-      · obtain ⟨v, hv, hvz⟩ := Finset.mem_image.mp hB
-        exact Finset.mem_image.mpr
-          ⟨v, Finset.mem_union.mpr (Or.inr hv), hvz⟩
-  rw [hUnion] at hImage
   exact hImage
 
 /-- The roots of all vertices are determined only by their
