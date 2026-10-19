@@ -881,3 +881,11 @@ import BigHrushovski
 #print axioms BigHrushovski.Predimension.RootedMinimalDClosedChain.subset
 #print axioms BigHrushovski.Predimension.RootedMinimalDClosedChain.subset_of_closed
 #print axioms BigHrushovski.Predimension.RootedMinimalDClosedChain.roots_generate
+
+#print axioms BigHrushovski.CFCoherentTower.mem_stageCut_iff
+#print axioms BigHrushovski.CFCoherentTower.mem_selectedRequests_iff
+#print axioms BigHrushovski.CFCoherentTower.stageCut_succ_eq_selected
+#print axioms BigHrushovski.CFCoherentTower.stageCut_succ_old_dClosed
+#print axioms BigHrushovski.CFCoherentTower.selectedRequests_supports_subset_old
+#print axioms BigHrushovski.CFCoherentTower.stageCut_dClosed_of_birthBlockClosed
+#print axioms BigHrushovski.CFCoherentTower.birthBlockClosed_global_dClosed
