@@ -28,13 +28,13 @@ It is not yet the identity H(R(v))=C(v).
 namespace BigHrushovski
 namespace Predimension
 
-variable {V : Type*} [DecidableEq V] (d : Predimension V)
-variable (e : DClosedChain d)
+variable {V : Type*} [DecidableEq V]
 
 /-- A finite generator has a least finite globally strictly
 d-closed hull whenever there is a countable finite d-closed
 exhaustion. No class membership or Fraïssé genericity is used. -/
-theorem exists_least_globalDClosed_hull (s : Finset V) :
+theorem exists_least_globalDClosed_hull
+    (d : Predimension V) (e : DClosedChain d) (s : Finset V) :
     ∃ h : Finset V,
       s ⊆ h ∧ d.IsGloballyDClosed h ∧
       ∀ t : Finset V,
@@ -63,18 +63,22 @@ theorem exists_least_globalDClosed_hull (s : Finset V) :
 
 /-- Canonical finite hull, characterized by global strict
 d-closedness and universal leastness. -/
-noncomputable def globalDClosedHull (s : Finset V) : Finset V :=
+noncomputable def globalDClosedHull
+    (d : Predimension V) (e : DClosedChain d) (s : Finset V) : Finset V :=
   Classical.choose (d.exists_least_globalDClosed_hull e s)
 
-theorem subset_globalDClosedHull (s : Finset V) :
+theorem subset_globalDClosedHull
+    (d : Predimension V) (e : DClosedChain d) (s : Finset V) :
     s ⊆ d.globalDClosedHull e s :=
   (Classical.choose_spec (d.exists_least_globalDClosed_hull e s)).1
 
-theorem globalDClosedHull_global (s : Finset V) :
+theorem globalDClosedHull_global
+    (d : Predimension V) (e : DClosedChain d) (s : Finset V) :
     d.IsGloballyDClosed (d.globalDClosedHull e s) :=
   (Classical.choose_spec (d.exists_least_globalDClosed_hull e s)).2.1
 
 theorem globalDClosedHull_least
+    (d : Predimension V) (e : DClosedChain d)
     {s t : Finset V}
     (hst : s ⊆ t) (ht : d.IsGloballyDClosed t) :
     d.globalDClosedHull e s ⊆ t :=
@@ -85,6 +89,7 @@ theorem globalDClosedHull_least
 global hull; the result is not tied to the chosen stage in the
 exhaustion. -/
 theorem globalDClosedHull_eq_finiteStageHull
+    (d : Predimension V) (e : DClosedChain d)
     (s : Finset V) (n : ℕ) (hs : s ⊆ e.stage n) :
     d.globalDClosedHull e s = d.dClosedHull s (e.stage n) := by
   have hFinite : d.IsDClosed
@@ -106,13 +111,15 @@ theorem globalDClosedHull_eq_finiteStageHull
   exact le_antisymm hSub hOther
 
 theorem globalDClosedHull_mono
+    (d : Predimension V) (e : DClosedChain d)
     {s t : Finset V} (hst : s ⊆ t) :
     d.globalDClosedHull e s ⊆ d.globalDClosedHull e t :=
   d.globalDClosedHull_least e
     (hst.trans (d.subset_globalDClosedHull e t))
     (d.globalDClosedHull_global e t)
 
-theorem globalDClosedHull_idempotent (s : Finset V) :
+theorem globalDClosedHull_idempotent
+    (d : Predimension V) (e : DClosedChain d) (s : Finset V) :
     d.globalDClosedHull e (d.globalDClosedHull e s) =
       d.globalDClosedHull e s := by
   apply le_antisymm
@@ -120,10 +127,6 @@ theorem globalDClosedHull_idempotent (s : Finset V) :
       (d.globalDClosedHull_global e s)
   · exact d.subset_globalDClosedHull e (d.globalDClosedHull e s)
 
-/-- The canonical H-operation on the actual countable birth
-graph: least globally strictly d-closed hull of any finite
-vertex set. Its restriction to block-root inputs is the
-manuscript's partial set-to-set operation H. -/
 end Predimension
 
 namespace CFCoherentTower
