@@ -293,3 +293,5 @@ import BigHrushovski.CFFiniteGenericity
 import BigHrushovski.CFRealFiniteGenericity
 
 import BigHrushovski.MinimalRootForcing
+
+import BigHrushovski.CFBirthBlockClosure
