@@ -51,7 +51,7 @@ theorem exists_least_globalDClosed_hull
   refine ⟨h, hS, hGlobal, ?_⟩
   intro t hst hGlob
   have hTClosed : d.IsDClosed t (t ∪ e.stage n) :=
-    d.IsGloballyDClosed.restrict hGlob Finset.subset_union_left
+    IsGloballyDClosed.restrict d hGlob Finset.subset_union_left
   have hTcap : d.IsDClosed (t ∩ e.stage n) (e.stage n) :=
     d.dclosed_inter_restrict hTClosed Finset.subset_union_right
   have hScap : s ⊆ t ∩ e.stage n := by
@@ -104,7 +104,7 @@ theorem globalDClosedHull_eq_finiteStageHull
   have hStage : d.globalDClosedHull e s ⊆ e.stage n :=
     d.globalDClosedHull_least e hs (e.stage_global n)
   have hRel : d.IsDClosed (d.globalDClosedHull e s) (e.stage n) :=
-    d.IsGloballyDClosed.restrict (d.globalDClosedHull_global e s) hStage
+    IsGloballyDClosed.restrict d (d.globalDClosedHull_global e s) hStage
   have hOther : d.dClosedHull s (e.stage n) ⊆
       d.globalDClosedHull e s :=
     d.dClosedHull_least (d.subset_globalDClosedHull e s) hRel
