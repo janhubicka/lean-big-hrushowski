@@ -912,3 +912,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthLocal_minimal
 #print axioms BigHrushovski.CFCoherentTower.rootOf_mem_birthClosed
 #print axioms BigHrushovski.CFCoherentTower.rootsOf_subset_closed
+
+#print axioms BigHrushovski.CFCoherentTower.birthBlock_subset_local
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_subset_local
