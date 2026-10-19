@@ -915,3 +915,11 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFCoherentTower.birthBlock_subset_local
 #print axioms BigHrushovski.CFCoherentTower.birthSupport_subset_local
+
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_subset_closed_of_fresh
+#print axioms BigHrushovski.CFCoherentTower.birthFresh_mem_block
+#print axioms BigHrushovski.CFCoherentTower.birthRoot_not_support
+#print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_rootsOf_closed
+#print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_contains
+#print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_closed
+#print axioms BigHrushovski.CFCoherentTower.birthRoot_recovery
