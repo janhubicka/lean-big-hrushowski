@@ -301,3 +301,5 @@ import BigHrushovski.CFBirthGeneratedClosure
 import BigHrushovski.GlobalDClosedHull
 
 import BigHrushovski.CFBirthLocalRoots
+
+import BigHrushovski.CFBirthRootRecovery
