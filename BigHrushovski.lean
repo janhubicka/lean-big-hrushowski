@@ -297,3 +297,5 @@ import BigHrushovski.MinimalRootForcing
 import BigHrushovski.CFBirthBlockClosure
 
 import BigHrushovski.CFBirthGeneratedClosure
+
+import BigHrushovski.GlobalDClosedHull

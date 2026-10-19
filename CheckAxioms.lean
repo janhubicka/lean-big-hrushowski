@@ -896,3 +896,12 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.IsBirthBlockClosed.union
 #print axioms BigHrushovski.CFCoherentTower.birthBlockClosed_intersectFamily
 #print axioms BigHrushovski.CFCoherentTower.exists_least_finite_birthBlockClosure
+
+#print axioms BigHrushovski.Predimension.exists_least_globalDClosed_hull
+#print axioms BigHrushovski.Predimension.globalDClosedHull_global
+#print axioms BigHrushovski.Predimension.globalDClosedHull_least
+#print axioms BigHrushovski.Predimension.globalDClosedHull_eq_finiteStageHull
+#print axioms BigHrushovski.Predimension.globalDClosedHull_mono
+#print axioms BigHrushovski.Predimension.globalDClosedHull_idempotent
+#print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_global
+#print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_eq_stage
