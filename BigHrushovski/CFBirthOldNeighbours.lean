@@ -83,7 +83,10 @@ theorem birthOldNeighbours_eq_supportNeighbours
   exact G.oldNeighbourSet_eq_of_backNeighbours
     (birthSupport F K n r) (stageImage F K n)
     (birthBlock F K n r)
-    (birthSupport_subset_stageImage F K n r)
+    (by
+      intro v hv
+      exact (mem_stageImage_iff_birth_lt F K n v).mpr
+        (birthSupport_birth_lt F K n r hv))
     (by
       intro u hu v hv huv
       exact birthOldAdjacent_forces_support F K n r hv hu
