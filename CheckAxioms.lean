@@ -946,3 +946,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthBlockClosed_iff_bValue_subset
 #print axioms BigHrushovski.CFCoherentTower.birthBlockClosed_image_of_bValues
 #print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_image_of_bValues
+
+#print axioms BigHrushovski.CFCoherentTower.birthOldAdjacent_forces_support
+#print axioms BigHrushovski.CFCoherentTower.birthOldNeighbours_eq_supportNeighbours
+#print axioms BigHrushovski.CFCoherentTower.birthOldNeighbours_eq_within_old
