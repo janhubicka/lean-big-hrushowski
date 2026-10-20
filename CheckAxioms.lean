@@ -923,3 +923,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_contains
 #print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_closed
 #print axioms BigHrushovski.CFCoherentTower.birthRoot_recovery
+
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_global_dClosed
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_eq_finiteHull_neighbours
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_eq_globalHull_neighbours
