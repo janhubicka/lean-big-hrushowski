@@ -19,6 +19,9 @@ or quotient of the countable vertex carrier is introduced.
 namespace BigHrushovski
 namespace CFCoherentTower
 
+-- Dependent finite carriers require additional elaboration fuel here.
+set_option maxHeartbeats 1200000
+
 /-- Leastness of the finite generated b-closure against any
 finite complete-block closed container. -/
 theorem birthGeneratedClosure_le_of_closed
@@ -118,7 +121,6 @@ theorem birthSupportClosure_union_block_bClosed
 /-- The generated closure of a vertex is precisely its entire
 birth block together with the closure of its old named support.
 This identity is independent of the fresh ordinal i. -/
-set_option maxHeartbeats 1200000 in
 theorem birthGeneratedClosure_fresh_decompose
     (F : ℕ → ℝ) (K : ℕ → ℕ)
     (n : ℕ) (r : BirthRequest F K n)
