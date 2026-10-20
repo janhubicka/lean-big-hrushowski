@@ -307,3 +307,5 @@ import BigHrushovski.CFBirthRootRecovery
 import BigHrushovski.CFRHClosedSubstructures
 
 import BigHrushovski.CFBirthSupportRecovery
+
+import BigHrushovski.CFBirthHullNaturality
