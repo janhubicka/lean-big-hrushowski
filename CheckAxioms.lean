@@ -946,3 +946,12 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthBlockClosed_iff_bValue_subset
 #print axioms BigHrushovski.CFCoherentTower.birthBlockClosed_image_of_bValues
 #print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_image_of_bValues
+
+#print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_le_of_closed
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_subset_stageImage
+#print axioms BigHrushovski.CFCoherentTower.birthGeneratedSupport_subset_stageImage
+#print axioms BigHrushovski.CFCoherentTower.birthBlock_birth_eq
+#print axioms BigHrushovski.CFCoherentTower.birthBValue_eq_of_mem_block
+#print axioms BigHrushovski.CFCoherentTower.birthSupportClosure_union_block_bClosed
+#print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_fresh_decompose
+#print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_topBlock_iff
