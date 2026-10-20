@@ -73,6 +73,15 @@ theorem reachableRoots_are_roots
   rw [← hw]
   exact rootOf_idempotent F K w
 
+/-- The finite part of an arbitrary vertex subset lying in one
+birth stage. Classical membership decisions are confined here;
+the closure assertions themselves are propositions. -/
+noncomputable def stageSetCut
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (X : Set (Vertex F K)) (n : ℕ) : Finset (Vertex F K) := by
+  classical
+  exact (stageImage F K n).filter (fun v => v ∈ X)
+
 /-- The intersection of an arbitrary b-closed set with the finite
 birth stage is b-closed as a Finset. All whole blocks and old
 supports remain in the stage because dependencies go backwards. -/
@@ -81,7 +90,7 @@ theorem stageCut_closedSet_bClosed
     (X : Set (Vertex F K))
     (hX : IsBirthBlockClosedSet F K X) (n : ℕ) :
     IsBirthBlockClosed F K
-      ((stageImage F K n).filter (fun v => v ∈ X)) := by
+      (stageSetCut F K X n) := by
   classical
   intro m r i hi
   obtain ⟨hStage, hInX⟩ := Finset.mem_filter.mp hi
@@ -111,8 +120,7 @@ theorem generatedClosure_subset_closedSet
     ∀ v ∈ birthGeneratedClosure F K s, v ∈ X := by
   classical
   obtain ⟨n, hsStage⟩ := finiteSet_covered F K s
-  let t : Finset (Vertex F K) :=
-    (stageImage F K n).filter (fun v => v ∈ X)
+  let t : Finset (Vertex F K) := stageSetCut F K X n
   have htClosed : IsBirthBlockClosed F K t :=
     stageCut_closedSet_bClosed F K X hX n
   have hst : s ⊆ t := by
