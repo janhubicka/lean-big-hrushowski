@@ -118,6 +118,7 @@ theorem birthSupportClosure_union_block_bClosed
 /-- The generated closure of a vertex is precisely its entire
 birth block together with the closure of its old named support.
 This identity is independent of the fresh ordinal i. -/
+set_option maxHeartbeats 1200000 in
 theorem birthGeneratedClosure_fresh_decompose
     (F : ℕ → ℝ) (K : ℕ → ℕ)
     (n : ℕ) (r : BirthRequest F K n)
