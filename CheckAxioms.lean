@@ -932,3 +932,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.rhClosed_of_birthBlockClosedSet
 #print axioms BigHrushovski.CFCoherentTower.birthBlockClosedSet_of_rhClosed
 #print axioms BigHrushovski.CFCoherentTower.birthBlockClosedSet_iff_rhClosed
+
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_global_dClosed
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_eq_finiteHull_neighbours
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_eq_globalHull_neighbours
