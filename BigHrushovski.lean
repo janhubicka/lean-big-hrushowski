@@ -303,3 +303,5 @@ import BigHrushovski.GlobalDClosedHull
 import BigHrushovski.CFBirthLocalRoots
 
 import BigHrushovski.CFBirthRootRecovery
+
+import BigHrushovski.CFRHClosedSubstructures
