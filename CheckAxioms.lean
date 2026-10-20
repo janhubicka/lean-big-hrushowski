@@ -955,3 +955,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthSupportClosure_union_block_bClosed
 #print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_fresh_decompose
 #print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_topBlock_iff
+
+#print axioms BigHrushovski.CFCoherentTower.birthOldAdjacent_forces_support
+#print axioms BigHrushovski.CFCoherentTower.birthOldNeighbours_eq_supportNeighbours
+#print axioms BigHrushovski.CFCoherentTower.birthOldNeighbours_eq_within_old
