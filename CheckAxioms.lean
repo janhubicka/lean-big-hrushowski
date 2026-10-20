@@ -936,3 +936,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthSupport_global_dClosed
 #print axioms BigHrushovski.CFCoherentTower.birthSupport_eq_finiteHull_neighbours
 #print axioms BigHrushovski.CFCoherentTower.birthSupport_eq_globalHull_neighbours
+
+#print axioms BigHrushovski.Predimension.globalDClosedHull_eq_closedContainer
+#print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_image_of_closedContainer
