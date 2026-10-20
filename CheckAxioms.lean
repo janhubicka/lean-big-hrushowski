@@ -923,3 +923,12 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_contains
 #print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_closed
 #print axioms BigHrushovski.CFCoherentTower.birthRoot_recovery
+
+#print axioms BigHrushovski.CFCoherentTower.rootOf_idempotent
+#print axioms BigHrushovski.CFCoherentTower.reachableRoots_are_roots
+#print axioms BigHrushovski.CFCoherentTower.stageCut_closedSet_bClosed
+#print axioms BigHrushovski.CFCoherentTower.generatedClosure_subset_closedSet
+#print axioms BigHrushovski.CFCoherentTower.birthHull_subset_closedSet
+#print axioms BigHrushovski.CFCoherentTower.rhClosed_of_birthBlockClosedSet
+#print axioms BigHrushovski.CFCoherentTower.birthBlockClosedSet_of_rhClosed
+#print axioms BigHrushovski.CFCoherentTower.birthBlockClosedSet_iff_rhClosed
