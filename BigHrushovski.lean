@@ -305,3 +305,5 @@ import BigHrushovski.CFBirthLocalRoots
 import BigHrushovski.CFBirthRootRecovery
 
 import BigHrushovski.CFRHClosedSubstructures
+
+import BigHrushovski.CFBirthSupportRecovery
