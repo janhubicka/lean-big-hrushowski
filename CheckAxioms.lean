@@ -939,3 +939,10 @@ import BigHrushovski
 
 #print axioms BigHrushovski.Predimension.globalDClosedHull_eq_closedContainer
 #print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_image_of_closedContainer
+
+#print axioms BigHrushovski.CFCoherentTower.birthBValue_of_fresh
+#print axioms BigHrushovski.CFCoherentTower.birthBlock_subset_closed_of_fresh
+#print axioms BigHrushovski.CFCoherentTower.birthBValue_subset_of_closed
+#print axioms BigHrushovski.CFCoherentTower.birthBlockClosed_iff_bValue_subset
+#print axioms BigHrushovski.CFCoherentTower.birthBlockClosed_image_of_bValues
+#print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_image_of_bValues
