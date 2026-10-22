@@ -967,3 +967,13 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthReachableRoots_image_of_bValues
 #print axioms BigHrushovski.CFCoherentTower.isBirthRoot_iff_image
 #print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_image_of_all_bValues
+
+#print axioms BigHrushovski.CFCoherentTower.birthBValue_eq_support_union_block
+#print axioms BigHrushovski.CFCoherentTower.birthBlockOf_mem_iff
+#print axioms BigHrushovski.CFCoherentTower.birthSupportOf_eq_hull_inside
+#print axioms BigHrushovski.CFCoherentTower.finite_image_sdiff_of_injective
+#print axioms BigHrushovski.CFCoherentTower.birthBlockOf_image_of_closure_levels
+#print axioms BigHrushovski.CFCoherentTower.birthSupportOf_image_of_closure_levels
+#print axioms BigHrushovski.CFCoherentTower.birthBValue_image_of_closure_levels
+#print axioms BigHrushovski.CFCoherentTower.birthCValue_image_of_RHValues
+#print axioms BigHrushovski.CFCoherentTower.birthBValue_image_of_RHValues
