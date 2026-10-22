@@ -990,3 +990,6 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.restrictFiniteSet_image_val
 #print axioms BigHrushovski.GraphOn.finiteSubtype_univ_image_val
 #print axioms BigHrushovski.GraphOn.dClosedHull_image_on
+
+#print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_image_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_image_on_closedSet
