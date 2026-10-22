@@ -70,6 +70,41 @@ presentation (397 audited declarations, [successful run](https://github.com/janh
 Both integrated runs audited standard logical axioms only and passed
 the finite regressions.
 
+**Two-sided C0 closure reconciliation (23 October 2026).**
+The companion modules
+`C0CanonicalOrderInvariance.lean` and
+`C0TaggedWholeBlocks.lean` isolate the last finite
+set-theoretic ingredients for preserving BOTH complete
+unary values when two canonical component presentations
+are freely amalgamated over a common closed base.
+
+The first proves that `canonicalValue G κ x`
+depends only on the partition into whole components
+and on the orientation of graph edges between
+components; changing the chronological order of
+components with no intervening dependency does not
+change the complete unary value.
+The second constructs the tagged joined component
+fibres, proves that each is exactly the complete
+image of the corresponding original fibre, and
+combines the left/right tagged dependency transport
+into `freeDependency_wholeClosure_both`.
+The only common-base compatibility input is equality
+of the full named base-component fibres.
+These are actual kernel-checked equalities of finite
+vertex-valued closures, not merely equality of
+old-neighbour sets.
+
+The full finite two-sided D'_0 amalgamation still
+requires instantiating the abstract tagged component
+relations with the particular aligned canonical
+presentations and proving their minimal strong
+stages. The external manuscript now gives this
+reconciliation argument, but the complete finite
+functional amalgamation is not yet a single
+unconditional Lean theorem. Its countable
+Fraïssé reduct identification remains separate.
+
 **Complete finite dependency and unary-value transfer is now certified.**
 [PR #99](https://github.com/janhubicka/lean-big-hrushowski/pull/99)
 proves preservation of tagged component dependency closures over a
