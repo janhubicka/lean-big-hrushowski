@@ -1002,3 +1002,13 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthReachableRoots_image_on_closedSet
 #print axioms BigHrushovski.CFCoherentTower.rootDomain_iff_image_on_closedSet
 #print axioms BigHrushovski.CFCoherentTower.bValues_imply_RHValues_on_closedSet
+
+#print axioms BigHrushovski.GraphOn.oldNeighbourSet_image_on
+
+#print axioms BigHrushovski.CFCoherentTower.finite_image_sdiff_on
+#print axioms BigHrushovski.CFCoherentTower.birthCValue_image_of_RHValues_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.birthBlockOf_image_of_CValues_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.birthSupportOf_image_of_CValues_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.birthBValue_image_of_CValues_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.RHValues_imply_bValues_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.bValues_iff_RHValues_on_closedSet
