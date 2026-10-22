@@ -993,3 +993,12 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_image_on_closedSet
 #print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_image_on_closedSet
+
+#print axioms BigHrushovski.CFCoherentTower.birthLevelEq_on
+#print axioms BigHrushovski.CFCoherentTower.birthBlockOf_image_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.rootOf_mem_closedSet
+#print axioms BigHrushovski.CFCoherentTower.rootOf_image_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.isBirthRoot_iff_image_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.birthReachableRoots_image_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.rootDomain_iff_image_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.bValues_imply_RHValues_on_closedSet
