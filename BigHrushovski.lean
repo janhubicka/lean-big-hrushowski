@@ -331,3 +331,5 @@ import BigHrushovski.CFClosedSourceHTransport
 import BigHrushovski.CFClosedSourceRootOrder
 
 import BigHrushovski.FiniteRestrictedNeighbourTransport
+
+import BigHrushovski.CFClosedSourceEmbeddingValues
