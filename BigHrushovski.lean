@@ -329,3 +329,5 @@ import BigHrushovski.FiniteRestrictedHullTransport
 import BigHrushovski.CFClosedSourceHTransport
 
 import BigHrushovski.CFClosedSourceRootOrder
+
+import BigHrushovski.FiniteRestrictedNeighbourTransport
