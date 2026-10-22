@@ -1016,3 +1016,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_noCrossExclusive
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_unionEdges
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_unionIsClosed
+
+#print axioms BigHrushovski.FiniteC0.mem_canonicalValue_iff_vertexReach
+#print axioms BigHrushovski.FiniteC0.backOrSame_congr
+#print axioms BigHrushovski.FiniteC0.canonicalValue_eq_of_same_components_and_edge_orientation
