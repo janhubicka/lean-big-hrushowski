@@ -959,3 +959,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthOldAdjacent_forces_support
 #print axioms BigHrushovski.CFCoherentTower.birthOldNeighbours_eq_supportNeighbours
 #print axioms BigHrushovski.CFCoherentTower.birthOldNeighbours_eq_within_old
+
+#print axioms BigHrushovski.CFCoherentTower.birthSupport_eq_hull_inside_generated
