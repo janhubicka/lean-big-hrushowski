@@ -86,7 +86,7 @@ theorem birthBlockOf_image_on_closedSet
           have huv : u = v := by simpa using hu
           subst u
           exact hv)
-    simpa only [birthCValue, Finset.image_singleton] using h
+    simpa only [C, birthCValue, Finset.image_singleton] using h
   ext y
   constructor
   · intro hy
@@ -230,7 +230,7 @@ theorem birthReachableRoots_image_on_closedSet
           have huv : u = v := by simpa using hu
           subst u
           exact hv)
-    simpa only [birthCValue, Finset.image_singleton] using h
+    simpa only [C, birthCValue, Finset.image_singleton] using h
   change (rootsOf F K C).image f =
     rootsOf F K (birthCValue F K (f v))
   rw [rootsOf_image_of_rootMap F K f C
