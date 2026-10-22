@@ -101,12 +101,12 @@ private theorem vertexReach_congr
 they agree on component equivalence and orientation of each edge. -/
 theorem backOrSame_congr {n m : ℕ}
     (G : GraphOn V) (κ : V → Fin n)
-    (λ : V → Fin m)
-    (hComponents : ∀ u v, κ u = κ v ↔ λ u = λ v)
+    (κ₂ : V → Fin m)
+    (hComponents : ∀ u v, κ u = κ v ↔ κ₂ u = κ₂ v)
     (hOrientation : ∀ u v, G.adj u v →
-      ((κ v).val < (κ u).val ↔ (λ v).val < (λ u).val))
+      ((κ v).val < (κ u).val ↔ (κ₂ v).val < (κ₂ u).val))
     (u v : V) :
-    BackOrSame G κ u v ↔ BackOrSame G λ u v := by
+    BackOrSame G κ u v ↔ BackOrSame G κ₂ u v := by
   constructor
   · intro h
     rcases h with hSame | ⟨hEdge, hEarlier⟩
@@ -125,12 +125,12 @@ renumbering a shared closed base to align two finite presentations
 preserves every named unary function value, not just old neighbours. -/
 theorem canonicalValue_eq_of_same_components_and_edge_orientation
     {n m : ℕ} (G : GraphOn V)
-    (κ : V → Fin n) (λ : V → Fin m)
-    (hComponents : ∀ u v, κ u = κ v ↔ λ u = λ v)
+    (κ : V → Fin n) (κ₂ : V → Fin m)
+    (hComponents : ∀ u v, κ u = κ v ↔ κ₂ u = κ₂ v)
     (hOrientation : ∀ u v, G.adj u v →
-      ((κ v).val < (κ u).val ↔ (λ v).val < (λ u).val))
+      ((κ v).val < (κ u).val ↔ (κ₂ v).val < (κ₂ u).val))
     (x : V) :
-    canonicalValue G κ x = canonicalValue G λ x := by
+    canonicalValue G κ x = canonicalValue G κ₂ x := by
   classical
   apply Finset.ext
   intro y
@@ -138,10 +138,10 @@ theorem canonicalValue_eq_of_same_components_and_edge_orientation
     mem_canonicalValue_iff_vertexReach]
   constructor
   · exact vertexReach_congr
-      (backOrSame_congr G κ λ hComponents hOrientation)
+      (backOrSame_congr G κ κ₂ hComponents hOrientation)
   · exact vertexReach_congr
       (fun u v =>
-        (backOrSame_congr G κ λ hComponents hOrientation u v).symm)
+        (backOrSame_congr G κ κ₂ hComponents hOrientation u v).symm)
 
 end FiniteC0
 end BigHrushovski
