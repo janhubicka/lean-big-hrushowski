@@ -1012,3 +1012,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthBValue_image_of_CValues_on_closedSet
 #print axioms BigHrushovski.CFCoherentTower.RHValues_imply_bValues_on_closedSet
 #print axioms BigHrushovski.CFCoherentTower.bValues_iff_RHValues_on_closedSet
+
+#print axioms BigHrushovski.CFCoherentTower.extendClosedSourceMap_apply
+#print axioms BigHrushovski.CFCoherentTower.literalClosedSource_bValues_iff_RHValues
