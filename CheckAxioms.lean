@@ -1012,3 +1012,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthBValue_image_of_CValues_on_closedSet
 #print axioms BigHrushovski.CFCoherentTower.RHValues_imply_bValues_on_closedSet
 #print axioms BigHrushovski.CFCoherentTower.bValues_iff_RHValues_on_closedSet
+
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_noCrossExclusive
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_unionEdges
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_unionIsClosed
