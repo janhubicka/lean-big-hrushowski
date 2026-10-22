@@ -317,3 +317,5 @@ import BigHrushovski.CFBirthTopBlock
 import BigHrushovski.CFBirthOldNeighbours
 
 import BigHrushovski.CFSupportInsideGenerated
+
+import BigHrushovski.CFBirthGeneratedTransport
