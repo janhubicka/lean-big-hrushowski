@@ -1,4 +1,4 @@
-import BigHrushovski.CFBirthBValues
+import BigHrushovski.CFBirthTopBlock
 import BigHrushovski.CFRHClosedSubstructures
 
 /-!
