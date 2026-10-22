@@ -337,3 +337,5 @@ import BigHrushovski.CFClosedSourceEmbeddingValues
 import BigHrushovski.C0ClosedFreeIntersection
 
 import BigHrushovski.C0CanonicalOrderInvariance
+
+import BigHrushovski.C0TaggedWholeBlocks
