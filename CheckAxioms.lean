@@ -961,3 +961,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthOldNeighbours_eq_within_old
 
 #print axioms BigHrushovski.CFCoherentTower.birthSupport_eq_hull_inside_generated
+
+#print axioms BigHrushovski.CFCoherentTower.birthGeneratedClosure_image_of_bValues
+#print axioms BigHrushovski.CFCoherentTower.rootsOf_image_of_rootMap
+#print axioms BigHrushovski.CFCoherentTower.birthReachableRoots_image_of_bValues
+#print axioms BigHrushovski.CFCoherentTower.isBirthRoot_iff_image
+#print axioms BigHrushovski.CFCoherentTower.birthDClosedHull_image_of_all_bValues
