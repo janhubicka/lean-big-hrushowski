@@ -323,3 +323,5 @@ import BigHrushovski.CFBirthGeneratedTransport
 import BigHrushovski.CFRHToBValues
 
 import BigHrushovski.CFBirthFirstOrder
+
+import BigHrushovski.FiniteRestrictedHullTransport

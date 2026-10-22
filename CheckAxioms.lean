@@ -986,3 +986,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.rootOf_image_of_bValues_order
 #print axioms BigHrushovski.CFCoherentTower.rootDomain_iff_image_of_bValues_order
 #print axioms BigHrushovski.CFCoherentTower.bValues_iff_RHValues_of_birthOrder
+
+#print axioms BigHrushovski.GraphOn.restrictFiniteSet_image_val
+#print axioms BigHrushovski.GraphOn.finiteSubtype_univ_image_val
+#print axioms BigHrushovski.GraphOn.dClosedHull_image_on
