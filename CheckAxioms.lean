@@ -977,3 +977,12 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthBValue_image_of_closure_levels
 #print axioms BigHrushovski.CFCoherentTower.birthCValue_image_of_RHValues
 #print axioms BigHrushovski.CFCoherentTower.birthBValue_image_of_RHValues
+
+#print axioms BigHrushovski.CFCoherentTower.birthLevelEq_of_preorder
+#print axioms BigHrushovski.CFCoherentTower.rootOf_mem_birthBlockOf
+#print axioms BigHrushovski.CFCoherentTower.birthOrdinal_rootOf
+#print axioms BigHrushovski.CFCoherentTower.birthOrdinal_zero_eq_root_of_mem
+#print axioms BigHrushovski.CFCoherentTower.rootOf_image_of_blockOrder
+#print axioms BigHrushovski.CFCoherentTower.rootOf_image_of_bValues_order
+#print axioms BigHrushovski.CFCoherentTower.rootDomain_iff_image_of_bValues_order
+#print axioms BigHrushovski.CFCoherentTower.bValues_iff_RHValues_of_birthOrder
