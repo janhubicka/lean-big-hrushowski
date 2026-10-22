@@ -333,3 +333,5 @@ import BigHrushovski.CFClosedSourceRootOrder
 import BigHrushovski.FiniteRestrictedNeighbourTransport
 
 import BigHrushovski.CFClosedSourceEmbeddingValues
+
+import BigHrushovski.CFClosedSubtypeEmbeddings
