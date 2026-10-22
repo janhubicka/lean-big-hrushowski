@@ -1002,3 +1002,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthReachableRoots_image_on_closedSet
 #print axioms BigHrushovski.CFCoherentTower.rootDomain_iff_image_on_closedSet
 #print axioms BigHrushovski.CFCoherentTower.bValues_imply_RHValues_on_closedSet
+
+#print axioms BigHrushovski.GraphOn.oldNeighbourSet_image_on
