@@ -1020,3 +1020,7 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.mem_canonicalValue_iff_vertexReach
 #print axioms BigHrushovski.FiniteC0.backOrSame_congr
 #print axioms BigHrushovski.FiniteC0.canonicalValue_eq_of_same_components_and_edge_orientation
+
+#print axioms BigHrushovski.TaggedAmalgam.joinedWholeBlocks_left
+#print axioms BigHrushovski.TaggedAmalgam.joinedWholeBlocks_right
+#print axioms BigHrushovski.TaggedAmalgam.freeDependency_wholeClosure_both
