@@ -1046,3 +1046,7 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.namedBase_edge_orientation
 #print axioms BigHrushovski.TaggedAmalgam.namedBase_left_closed
 #print axioms BigHrushovski.TaggedAmalgam.taggedCanonicalValues_both_of_named_base
+
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_oldStage_before
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_oldStage_after
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_oldStage_boundary
