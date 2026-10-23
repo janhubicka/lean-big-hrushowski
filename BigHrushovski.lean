@@ -345,3 +345,5 @@ import BigHrushovski.C0TaggedOrderReconciliation
 import BigHrushovski.C0ClosedEmbeddingValues
 
 import BigHrushovski.C0TaggedCanonicalIndex
+
+import BigHrushovski.C0TaggedClosedFactors
