@@ -351,3 +351,5 @@ import BigHrushovski.C0TaggedClosedFactors
 import BigHrushovski.C0TaggedCanonicalBoth
 
 import BigHrushovski.C0TaggedSharedBaseValues
+
+import BigHrushovski.C0TaggedMinimalStages
