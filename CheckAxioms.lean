@@ -1032,3 +1032,7 @@ import BigHrushovski
 
 #print axioms BigHrushovski.FiniteC0.backOrSame_embedding_iff
 #print axioms BigHrushovski.FiniteC0.canonicalValue_transport_of_closed_embedding
+
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_left_component_iff
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_right_component_iff
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_right_edge_orientation
