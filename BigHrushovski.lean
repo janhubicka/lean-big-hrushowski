@@ -341,3 +341,5 @@ import BigHrushovski.C0CanonicalOrderInvariance
 import BigHrushovski.C0TaggedWholeBlocks
 
 import BigHrushovski.C0TaggedOrderReconciliation
+
+import BigHrushovski.C0ClosedEmbeddingValues

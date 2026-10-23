@@ -1029,3 +1029,6 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.joinedRank_right_tail
 #print axioms BigHrushovski.TaggedAmalgam.joinedRank_right_edge_orientation
 #print axioms BigHrushovski.TaggedAmalgam.joinedRank_left_edge_orientation
+
+#print axioms BigHrushovski.FiniteC0.backOrSame_embedding_iff
+#print axioms BigHrushovski.FiniteC0.canonicalValue_transport_of_closed_embedding
