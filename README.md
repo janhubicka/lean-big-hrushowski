@@ -72,7 +72,8 @@ the finite regressions.
 
 **Two-sided C0 closure reconciliation (23 October 2026).**
 The companion modules
-`C0CanonicalOrderInvariance.lean` and
+`C0CanonicalOrderInvariance.lean`,
+`C0TaggedOrderReconciliation.lean` and
 `C0TaggedWholeBlocks.lean` isolate the last finite
 set-theoretic ingredients for preserving BOTH complete
 unary values when two canonical component presentations
@@ -84,7 +85,15 @@ and on the orientation of graph edges between
 components; changing the chronological order of
 components with no intervening dependency does not
 change the complete unary value.
-The second constructs the tagged joined component
+The rank reconciliation lemma retains the entire left
+component order and appends the fresh right components
+above its last rank. It proves that every graph edge of
+the right factor keeps its original orientation, provided
+the common base was frontloaded on the right and the
+named unary values determine the same edge directions
+inside the common base.
+
+The tagged whole-block module constructs the joined component
 fibres, proves that each is exactly the complete
 image of the corresponding original fibre, and
 combines the left/right tagged dependency transport
