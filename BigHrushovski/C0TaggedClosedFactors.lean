@@ -35,10 +35,14 @@ theorem closedUnderCanonicalValue_of_step_closed
   intro x hx y hy
   have hReach : VertexReach (BackOrSame G κ) x y :=
     (mem_canonicalValue_iff_vertexReach G κ x y).mp hy
-  induction hReach with
-  | root => exact hx
-  | @next u v hReach hUV ih =>
-      exact hStep u ih v hUV
+  have hInside :
+      ∀ {v : V}, VertexReach (BackOrSame G κ) x v → v ∈ s := by
+    intro v hPath
+    induction hPath with
+    | root => exact hx
+    | @next u w hPath hUW ih =>
+        exact hStep u ih w hUW
+  exact hInside hReach
 
 end FiniteC0
 
