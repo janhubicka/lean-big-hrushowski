@@ -353,3 +353,5 @@ import BigHrushovski.C0TaggedCanonicalBoth
 import BigHrushovski.C0TaggedSharedBaseValues
 
 import BigHrushovski.C0TaggedMinimalStages
+
+import BigHrushovski.C0TaggedLeftStages
