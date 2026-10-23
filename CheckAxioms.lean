@@ -1024,3 +1024,8 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.joinedWholeBlocks_left
 #print axioms BigHrushovski.TaggedAmalgam.joinedWholeBlocks_right
 #print axioms BigHrushovski.TaggedAmalgam.freeDependency_wholeClosure_both
+
+#print axioms BigHrushovski.TaggedAmalgam.joinedRank_left
+#print axioms BigHrushovski.TaggedAmalgam.joinedRank_right_tail
+#print axioms BigHrushovski.TaggedAmalgam.joinedRank_right_edge_orientation
+#print axioms BigHrushovski.TaggedAmalgam.joinedRank_left_edge_orientation
