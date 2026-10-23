@@ -1042,3 +1042,7 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.rightTaggedImage_closed
 
 #print axioms BigHrushovski.TaggedAmalgam.taggedCanonicalValues_both
+
+#print axioms BigHrushovski.TaggedAmalgam.namedBase_edge_orientation
+#print axioms BigHrushovski.TaggedAmalgam.namedBase_left_closed
+#print axioms BigHrushovski.TaggedAmalgam.taggedCanonicalValues_both_of_named_base
