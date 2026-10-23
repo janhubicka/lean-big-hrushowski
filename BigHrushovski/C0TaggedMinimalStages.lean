@@ -169,7 +169,6 @@ theorem joinedIndex_oldStage_boundary
     (κL : Sum P L → Fin n) (κR : Sum P R → Fin m) :
     FiniteC0.oldStage (joinedIndex κL κR) n =
       (leftDomain : Finset (Carrier P L R)) := by
-  rw [joinedIndex_oldStage_after κL κR 0]
   have hZero : rightTailPrefix κR 0 = ∅ := by
     classical
     apply Finset.eq_empty_iff_forall_not_mem.mpr
@@ -177,7 +176,8 @@ theorem joinedIndex_oldStage_boundary
     obtain ⟨r, hr, hEq⟩ := Finset.mem_image.mp hx
     have hlt := (Finset.mem_filter.mp hr).2
     omega
-  simp [hZero]
+  have hAfter := joinedIndex_oldStage_after κL κR 0
+  simpa [hZero] using hAfter
 
 end TaggedAmalgam
 end BigHrushovski
