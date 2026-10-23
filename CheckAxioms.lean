@@ -1036,3 +1036,7 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.joinedIndex_left_component_iff
 #print axioms BigHrushovski.TaggedAmalgam.joinedIndex_right_component_iff
 #print axioms BigHrushovski.TaggedAmalgam.joinedIndex_right_edge_orientation
+
+#print axioms BigHrushovski.FiniteC0.closedUnderCanonicalValue_of_step_closed
+#print axioms BigHrushovski.TaggedAmalgam.leftTaggedImage_closed
+#print axioms BigHrushovski.TaggedAmalgam.rightTaggedImage_closed
