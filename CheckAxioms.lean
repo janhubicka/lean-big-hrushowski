@@ -1050,3 +1050,5 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.joinedIndex_oldStage_before
 #print axioms BigHrushovski.TaggedAmalgam.joinedIndex_oldStage_after
 #print axioms BigHrushovski.TaggedAmalgam.joinedIndex_oldStage_boundary
+
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_old_minimal_steps
