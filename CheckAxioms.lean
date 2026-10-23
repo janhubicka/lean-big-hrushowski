@@ -1040,3 +1040,5 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.closedUnderCanonicalValue_of_step_closed
 #print axioms BigHrushovski.TaggedAmalgam.leftTaggedImage_closed
 #print axioms BigHrushovski.TaggedAmalgam.rightTaggedImage_closed
+
+#print axioms BigHrushovski.TaggedAmalgam.taggedCanonicalValues_both
