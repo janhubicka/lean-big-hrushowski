@@ -335,3 +335,9 @@ import BigHrushovski.FiniteRestrictedNeighbourTransport
 import BigHrushovski.CFClosedSourceEmbeddingValues
 
 import BigHrushovski.C0ClosedFreeIntersection
+
+import BigHrushovski.C0CanonicalOrderInvariance
+
+import BigHrushovski.C0TaggedWholeBlocks
+
+import BigHrushovski.C0TaggedOrderReconciliation
