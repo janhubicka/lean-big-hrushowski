@@ -1046,3 +1046,6 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.namedBase_edge_orientation
 #print axioms BigHrushovski.TaggedAmalgam.namedBase_left_closed
 #print axioms BigHrushovski.TaggedAmalgam.taggedCanonicalValues_both_of_named_base
+
+#print axioms BigHrushovski.CFCoherentTower.extendClosedSourceMap_apply
+#print axioms BigHrushovski.CFCoherentTower.literalClosedSource_bValues_iff_RHValues
