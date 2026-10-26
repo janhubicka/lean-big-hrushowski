@@ -353,3 +353,5 @@ import BigHrushovski.C0TaggedCanonicalBoth
 import BigHrushovski.C0TaggedSharedBaseValues
 
 import BigHrushovski.CFClosedSubtypeEmbeddings
+
+import BigHrushovski.CFChosenOrderBridge
