@@ -1049,3 +1049,7 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFCoherentTower.extendClosedSourceMap_apply
 #print axioms BigHrushovski.CFCoherentTower.literalClosedSource_bValues_iff_RHValues
+
+#print axioms BigHrushovski.CFCoherentTower.preservesBirthBlockOrderOn_of_compatibleOrder
+#print axioms BigHrushovski.CFCoherentTower.bValues_iff_RHValues_on_closedSet_of_chosenOrder
+#print axioms BigHrushovski.CFCoherentTower.literalClosedSource_bValues_iff_RHValues_of_chosenOrder
