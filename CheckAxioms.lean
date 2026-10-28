@@ -1070,3 +1070,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.requestLexLt_irrefl
 #print axioms BigHrushovski.CFStageCatalogue.requestLexKey_support
 #print axioms BigHrushovski.CFStageCatalogue.requestLexKey_fresh_size
+
+#print axioms BigHrushovski.GraphOn.mem_adjacencyCoordinatePairs
+#print axioms BigHrushovski.GraphOn.orderedAdjacencyBits_injective_of_complete
+#print axioms BigHrushovski.CFStageCatalogue.requestSupportTuple_eq_implies_support
+#print axioms BigHrushovski.CFStageCatalogue.requestLexLt_trans
