@@ -355,3 +355,5 @@ import BigHrushovski.C0TaggedSharedBaseValues
 import BigHrushovski.CFClosedSubtypeEmbeddings
 
 import BigHrushovski.CFChosenOrderBridge
+
+import BigHrushovski.CFRankedBirthOrder
