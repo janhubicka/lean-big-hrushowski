@@ -23,21 +23,27 @@ namespace CFCoherentTower
 
 open CFStageCatalogue
 
+/-- The strict order on a finite stage, with the precise
+recursively constructed linear-order instance supplied explicitly. -/
+noncomputable def stageLt
+    (F : ℕ → ℝ) (K : ℕ → ℕ) (n : ℕ)
+    (u v : (stage F K n).carrier) : Prop := by
+  letI : LinearOrder (stage F K n).carrier :=
+    stageLinearOrder F K n
+  exact u < v
+
 /-- Under the *actual recursively constructed orders*, the literal
 old-stage embedding into its successor preserves and reflects <. -/
 theorem stageOrder_old_iff
     (F : ℕ → ℝ) (K : ℕ → ℕ) (n : ℕ)
     (u v : (stage F K n).carrier) :
-    letI : LinearOrder (stage F K n).carrier :=
-      stageLinearOrder F K n
-    letI : LinearOrder (stage F K (n + 1)).carrier :=
-      stageLinearOrder F K (n + 1)
-    (Sum.inl u : (stage F K (n + 1)).carrier) <
-      Sum.inl v ↔ u < v := by
+    stageLt F K (n + 1) (Sum.inl u) (Sum.inl v) ↔
+      stageLt F K n u v := by
   letI : LinearOrder (stage F K n).carrier :=
     stageLinearOrder F K n
-  letI : LinearOrder (stage F K (n + 1)).carrier :=
-    stageLinearOrder F K (n + 1)
+  letI : LinearOrder (FreshAt F K n) :=
+    freshRequestLinearOrder (stage F K n).graph
+      (GrowthAllowedLocal F) (fun P => K P.card)
   change (toLex (Sum.inl u) :
     (stage F K n).carrier ⊕ₗ (FreshAt F K n)) <
     toLex (Sum.inl v) ↔ u < v
@@ -48,12 +54,12 @@ successor order, including when its request catalogue is sparse. -/
 theorem stageOrder_old_lt_fresh
     (F : ℕ → ℝ) (K : ℕ → ℕ) (n : ℕ)
     (u : (stage F K n).carrier) (v : FreshAt F K n) :
-    letI : LinearOrder (stage F K (n + 1)).carrier :=
-      stageLinearOrder F K (n + 1)
-    (Sum.inl u : (stage F K (n + 1)).carrier) <
-      Sum.inr v := by
-  letI : LinearOrder (stage F K (n + 1)).carrier :=
-    stageLinearOrder F K (n + 1)
+    stageLt F K (n + 1) (Sum.inl u) (Sum.inr v) := by
+  letI : LinearOrder (stage F K n).carrier :=
+    stageLinearOrder F K n
+  letI : LinearOrder (FreshAt F K n) :=
+    freshRequestLinearOrder (stage F K n).graph
+      (GrowthAllowedLocal F) (fun P => K P.card)
   change (toLex (Sum.inl u) :
     (stage F K n).carrier ⊕ₗ (FreshAt F K n)) <
     toLex (Sum.inr v)
@@ -66,11 +72,8 @@ theorem stageOrder_fresh_iff
     (F : ℕ → ℝ) (K : ℕ → ℕ) (n : ℕ)
     (r s : BirthRequest F K n)
     (i : Fin r.code.1.val) (j : Fin s.code.1.val) :
-    letI : LinearOrder (stage F K (n + 1)).carrier :=
-      stageLinearOrder F K (n + 1)
-    (Sum.inr (⟨r, i⟩ : FreshAt F K n) :
-      (stage F K (n + 1)).carrier) <
-      Sum.inr ⟨s, j⟩ ↔
+    stageLt F K (n + 1) (Sum.inr (⟨r, i⟩ : FreshAt F K n))
+      (Sum.inr (⟨s, j⟩ : FreshAt F K n)) ↔
       stageCanonicalRank F K n r < stageCanonicalRank F K n s ∨
         (stageCanonicalRank F K n r =
            stageCanonicalRank F K n s ∧ i.val < j.val) := by
@@ -79,8 +82,6 @@ theorem stageOrder_fresh_iff
   letI : LinearOrder (FreshAt F K n) :=
     freshRequestLinearOrder (stage F K n).graph
       (GrowthAllowedLocal F) (fun P => K P.card)
-  letI : LinearOrder (stage F K (n + 1)).carrier :=
-    stageLinearOrder F K (n + 1)
   change
     (toLex (Sum.inr (⟨r, i⟩ : FreshAt F K n)) :
       (stage F K n).carrier ⊕ₗ (FreshAt F K n)) <
@@ -107,10 +108,8 @@ theorem stageOrder_fresh_of_requestLexLt
         stageLinearOrder F K n
       RequestLexLt (stage F K n).graph
         (GrowthAllowedLocal F) (fun P => K P.card) r s) :
-    letI : LinearOrder (stage F K (n + 1)).carrier :=
-      stageLinearOrder F K (n + 1)
-    (Sum.inr (⟨r, i⟩ : FreshAt F K n) :
-      (stage F K (n + 1)).carrier) < Sum.inr ⟨s, j⟩ := by
+    stageLt F K (n + 1) (Sum.inr (⟨r, i⟩ : FreshAt F K n))
+      (Sum.inr (⟨s, j⟩ : FreshAt F K n)) := by
   apply (stageOrder_fresh_iff F K n r s i j).2
   exact Or.inl ((stageCanonicalRank_comparison F K n r s).mp h)
 
