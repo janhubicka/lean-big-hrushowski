@@ -1070,3 +1070,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.requestLexLt_irrefl
 #print axioms BigHrushovski.CFStageCatalogue.requestLexKey_support
 #print axioms BigHrushovski.CFStageCatalogue.requestLexKey_fresh_size
+
+#print axioms BigHrushovski.CFStageCatalogue.requestLexLt_trans
