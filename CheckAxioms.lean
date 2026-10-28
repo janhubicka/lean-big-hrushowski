@@ -1079,3 +1079,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.requestLocalCoordinates_complete
 #print axioms BigHrushovski.CFStageCatalogue.requestLocalGraphCode_injective
 #print axioms BigHrushovski.CFStageCatalogue.requestAdjacencyCode_eq_complete
+
+#print axioms BigHrushovski.CFStageCatalogue.requestLexKey_injective
+#print axioms BigHrushovski.CFStageCatalogue.requestLexLt_trichotomy
+#print axioms BigHrushovski.CFStageCatalogue.requestLexLt_strict_total
