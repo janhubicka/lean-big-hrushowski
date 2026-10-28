@@ -361,3 +361,5 @@ import BigHrushovski.CFRankedBirthOrder
 import BigHrushovski.CFRequestLexKeys
 
 import BigHrushovski.FiniteGraphAdjacencyCode
+
+import BigHrushovski.CFRequestMatrixComplete
