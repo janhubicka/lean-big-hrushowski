@@ -1108,3 +1108,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.stageOrder_fresh_iff
 #print axioms BigHrushovski.CFCoherentTower.stageOrder_fresh_of_requestLexLt
 #print axioms BigHrushovski.CFCoherentTower.freshVertex_eq_of_completeCode
+
+#print axioms BigHrushovski.CFCoherentTower.canonicalBirthLt_birthLevel_le
+#print axioms BigHrushovski.CFCoherentTower.stageLt_asymm
+#print axioms BigHrushovski.CFCoherentTower.stageLt_iff_canonicalBirthLt
+#print axioms BigHrushovski.CFCoherentTower.stageLt_ascend_iff
