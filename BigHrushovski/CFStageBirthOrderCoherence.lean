@@ -29,6 +29,7 @@ theorem canonicalBirthLt_birthLevel_le
     u.1 ≤ v.1 := by
   rcases u with ⟨n, ⟨r, i⟩⟩
   rcases v with ⟨m, ⟨s, j⟩⟩
+  change n ≤ m
   dsimp [canonicalBirthLt, rankedBirthLt,
     birthOrderKey, tripleLexLt] at h
   rcases h with h | ⟨h, _⟩ <;> omega
@@ -103,6 +104,13 @@ theorem stageLt_iff_canonicalBirthLt
           | inr v =>
               rcases u with ⟨r, i⟩
               rcases v with ⟨s, j⟩
+              change
+                stageLt F K (n + 1)
+                  (Sum.inr (⟨r, i⟩ : FreshAt F K n))
+                  (Sum.inr (⟨s, j⟩ : FreshAt F K n)) ↔
+                canonicalBirthLt F K
+                  (⟨n, ⟨r, i⟩⟩ : Vertex F K)
+                  (⟨n, ⟨s, j⟩⟩ : Vertex F K)
               simpa [canonicalBirthLt, rankedBirthLt,
                 birthOrderKey, tripleLexLt] using
                 (stageOrder_fresh_iff F K n r s i j)
