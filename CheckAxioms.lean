@@ -1088,3 +1088,15 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.requestLexRank_lt_of_lt
 #print axioms BigHrushovski.CFStageCatalogue.requestLexRank_injective
 #print axioms BigHrushovski.CFStageCatalogue.requestLexLt_iff_rank_lt
+
+#print axioms BigHrushovski.CFCoherentTower.lexSumLinearOrder
+#print axioms BigHrushovski.CFCoherentTower.freshRequestLinearOrder
+#print axioms BigHrushovski.CFCoherentTower.stageLinearOrder
+#print axioms BigHrushovski.CFCoherentTower.stageCanonicalRank
+#print axioms BigHrushovski.CFCoherentTower.stageCanonicalRank_injective
+#print axioms BigHrushovski.CFCoherentTower.stageCanonicalRank_comparison
+#print axioms BigHrushovski.CFCoherentTower.canonicalBirthLt
+#print axioms BigHrushovski.CFCoherentTower.canonicalBirthLt_compatible
+#print axioms BigHrushovski.CFCoherentTower.canonicalBirthLt_irrefl
+#print axioms BigHrushovski.CFCoherentTower.canonicalBirthLt_trans
+#print axioms BigHrushovski.CFCoherentTower.canonicalBirthLt_total
