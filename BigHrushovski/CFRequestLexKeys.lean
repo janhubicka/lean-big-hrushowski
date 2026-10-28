@@ -1,4 +1,5 @@
 import BigHrushovski.CFRankedBirthOrder
+import BigHrushovski.FiniteGraphAdjacencyCode
 import Mathlib.Data.Finset.Sort
 import Mathlib.Data.List.Lex
 
@@ -60,11 +61,9 @@ boundary edges; it is not merely the old-neighbour set. -/
 noncomputable def requestAdjacencyCode
     (G : GraphOn U) (Allowed : AllowedLocal U)
     (bound : Finset U → ℕ)
-    (r : StageRequest G Allowed bound) : List Nat := by
-  classical
-  let xs := requestLocalCoordinates G Allowed bound r
-  exact xs.flatMap (fun u =>
-    xs.map (fun v => if r.code.2.graph.adj u v then 1 else 0))
+    (r : StageRequest G Allowed bound) : List Nat :=
+  GraphOn.orderedAdjacencyBits r.code.2.graph
+    (requestLocalCoordinates G Allowed bound r)
 
 /-- The finite request key of the manuscript: first the support
 tuple; then the number of fresh vertices and the complete
