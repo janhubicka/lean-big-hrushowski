@@ -357,3 +357,5 @@ import BigHrushovski.CFClosedSubtypeEmbeddings
 import BigHrushovski.CFChosenOrderBridge
 
 import BigHrushovski.CFRankedBirthOrder
+
+import BigHrushovski.FiniteGraphAdjacencyCode
