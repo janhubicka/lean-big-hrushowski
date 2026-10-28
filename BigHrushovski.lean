@@ -367,3 +367,5 @@ import BigHrushovski.CFRequestMatrixComplete
 import BigHrushovski.CFRequestLexInjection
 
 import BigHrushovski.CFCanonicalRequestRank
+
+import BigHrushovski.CFCanonicalStageOrder
