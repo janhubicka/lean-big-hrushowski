@@ -1108,3 +1108,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.stageOrder_fresh_iff
 #print axioms BigHrushovski.CFCoherentTower.stageOrder_fresh_of_requestLexLt
 #print axioms BigHrushovski.CFCoherentTower.freshVertex_eq_of_completeCode
+
+#print axioms BigHrushovski.CFCoherentTower.mem_birthBlock_iff_exists_ordinal
+#print axioms BigHrushovski.CFCoherentTower.fin_value_eq_of_strictMono_surjective
+#print axioms BigHrushovski.CFCoherentTower.birthOrdinal_eq_of_complete_block_image
+#print axioms BigHrushovski.CFCoherentTower.birthOrdinal_image_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.birthOrdinal_image_on_closedSet_of_canonicalOrder
