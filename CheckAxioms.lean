@@ -1100,3 +1100,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.canonicalBirthLt_irrefl
 #print axioms BigHrushovski.CFCoherentTower.canonicalBirthLt_trans
 #print axioms BigHrushovski.CFCoherentTower.canonicalBirthLt_total
+
+#print axioms BigHrushovski.CFCoherentTower.literalClosedSource_bValues_iff_RHValues_of_canonicalOrder
