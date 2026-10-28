@@ -1,4 +1,4 @@
-import BigHrushovski.Predimension
+import BigHrushovski.InducedEmbedding
 
 /-!
 # Complete adjacency codes of finite graphs
