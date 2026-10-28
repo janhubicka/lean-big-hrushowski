@@ -1102,3 +1102,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.canonicalBirthLt_total
 
 #print axioms BigHrushovski.CFCoherentTower.literalClosedSource_bValues_iff_RHValues_of_canonicalOrder
+
+#print axioms BigHrushovski.CFCoherentTower.stageOrder_old_iff
+#print axioms BigHrushovski.CFCoherentTower.stageOrder_old_lt_fresh
+#print axioms BigHrushovski.CFCoherentTower.stageOrder_fresh_iff
+#print axioms BigHrushovski.CFCoherentTower.stageOrder_fresh_of_requestLexLt
+#print axioms BigHrushovski.CFCoherentTower.freshVertex_eq_of_completeCode
