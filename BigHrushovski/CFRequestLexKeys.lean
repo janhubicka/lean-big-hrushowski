@@ -125,6 +125,42 @@ theorem requestLexLt_irrefl
     ¬ RequestLexLt G Allowed bound r r := by
   simp [RequestLexLt]
 
+/-- Lexicographic request comparison is transitive already
+at a fixed finite stage. This uses only the linear order on the
+inherited old support vertices and the ordinary lex orders on
+finite code lists; code injectivity is not needed for transitivity. -/
+theorem requestLexLt_trans
+    (G : GraphOn U) (Allowed : AllowedLocal U)
+    (bound : Finset U → ℕ)
+    (r s t : StageRequest G Allowed bound)
+    (hrs : RequestLexLt G Allowed bound r s)
+    (hst : RequestLexLt G Allowed bound s t) :
+    RequestLexLt G Allowed bound r t := by
+  dsimp only [RequestLexLt] at hrs hst ⊢
+  rcases hrs with hp | ⟨hp, hc⟩
+  · rcases hst with hq | ⟨hq, _⟩
+    · exact Or.inl (lt_trans hp hq)
+    · left
+      rw [hq] at hp
+      exact hp
+  · rcases hst with hq | ⟨hq, hd⟩
+    · left
+      rw [hp]
+      exact hq
+    · right
+      refine ⟨hp.trans hq, ?_⟩
+      rcases hc with hn | ⟨hn, hbits⟩
+      · rcases hd with hm | ⟨hm, _⟩
+        · exact Or.inl (lt_trans hn hm)
+        · left
+          rw [hm] at hn
+          exact hn
+      · rcases hd with hm | ⟨hm, hbits'⟩
+        · left
+          rw [hn]
+          exact hm
+        · exact Or.inr ⟨hn.trans hm, lt_trans hbits hbits'⟩
+
 /-- The support key is exactly the ordered old support, rather
 than an arbitrary finite request enumeration. -/
 theorem requestLexKey_support
