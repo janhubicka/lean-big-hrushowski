@@ -78,6 +78,28 @@ noncomputable def requestLexKey
   (requestSupportTuple G Allowed bound r,
     (r.code.1.val, requestAdjacencyCode G Allowed bound r))
 
+/-- Equality of increasing support tuples implies equality of
+the *literal named supports*. This remains true for supports
+of different cardinalities and does not identify isomorphic
+or merely order-equivalent subsets of the old stage. -/
+theorem requestSupportTuple_eq_implies_support
+    (G : GraphOn U) (Allowed : AllowedLocal U)
+    (bound : Finset U → ℕ)
+    (r s : StageRequest G Allowed bound)
+    (h : requestSupportTuple G Allowed bound r =
+      requestSupportTuple G Allowed bound s) :
+    r.support = s.support := by
+  classical
+  apply Finset.ext
+  intro u
+  have hu :
+      u ∈ (r.support.sort (· ≤ ·)) ↔
+        u ∈ (s.support.sort (· ≤ ·)) := by
+    change u ∈ requestSupportTuple G Allowed bound r ↔
+      u ∈ requestSupportTuple G Allowed bound s
+    rw [h]
+  simpa only [Finset.mem_sort] using hu
+
 /-- This matches exactly the finite lexicographic request
 comparison specified in the manuscript, including the
 proper-prefix convention for different support tuples. -/
@@ -124,6 +146,42 @@ theorem requestLexLt_irrefl
     (r : StageRequest G Allowed bound) :
     ¬ RequestLexLt G Allowed bound r r := by
   simp [RequestLexLt]
+
+/-- Lexicographic request comparison is transitive already
+at a fixed finite stage. This uses only the linear order on the
+inherited old support vertices and the ordinary lex orders on
+finite code lists; code injectivity is not needed for transitivity. -/
+theorem requestLexLt_trans
+    (G : GraphOn U) (Allowed : AllowedLocal U)
+    (bound : Finset U → ℕ)
+    (r s t : StageRequest G Allowed bound)
+    (hrs : RequestLexLt G Allowed bound r s)
+    (hst : RequestLexLt G Allowed bound s t) :
+    RequestLexLt G Allowed bound r t := by
+  dsimp only [RequestLexLt] at hrs hst ⊢
+  rcases hrs with hp | ⟨hp, hc⟩
+  · rcases hst with hq | ⟨hq, _⟩
+    · exact Or.inl (lt_trans hp hq)
+    · left
+      rw [hq] at hp
+      exact hp
+  · rcases hst with hq | ⟨hq, hd⟩
+    · left
+      rw [hp]
+      exact hq
+    · right
+      refine ⟨hp.trans hq, ?_⟩
+      rcases hc with hn | ⟨hn, hbits⟩
+      · rcases hd with hm | ⟨hm, _⟩
+        · exact Or.inl (lt_trans hn hm)
+        · left
+          rw [hm] at hn
+          exact hn
+      · rcases hd with hm | ⟨hm, hbits'⟩
+        · left
+          rw [hn]
+          exact hm
+        · exact Or.inr ⟨hn.trans hm, lt_trans hbits hbits'⟩
 
 /-- The support key is exactly the ordered old support, rather
 than an arbitrary finite request enumeration. -/
