@@ -78,6 +78,27 @@ noncomputable def requestLexKey
   (requestSupportTuple G Allowed bound r,
     (r.code.1.val, requestAdjacencyCode G Allowed bound r))
 
+/-- Equality of increasing support tuples implies equality of
+the *literal named supports*. This remains true for supports
+of different cardinalities and does not identify isomorphic
+or merely order-equivalent subsets of the old stage. -/
+theorem requestSupportTuple_eq_implies_support
+    (G : GraphOn U) (Allowed : AllowedLocal U)
+    (bound : Finset U → ℕ)
+    (r s : StageRequest G Allowed bound)
+    (h : requestSupportTuple G Allowed bound r =
+      requestSupportTuple G Allowed bound s) :
+    r.support = s.support := by
+  classical
+  apply Finset.ext
+  intro u
+  have hu :
+      u ∈ (r.support.sort (· ≤ ·)) ↔
+        u ∈ (s.support.sort (· ≤ ·)) := by
+    simpa only [requestSupportTuple] using
+      congrArg (fun xs : List U => u ∈ xs) h
+  simpa only [Finset.mem_sort] using hu
+
 /-- This matches exactly the finite lexicographic request
 comparison specified in the manuscript, including the
 proper-prefix convention for different support tuples. -/
