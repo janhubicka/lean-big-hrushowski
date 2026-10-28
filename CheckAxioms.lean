@@ -1064,3 +1064,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.rankedBirthLt_trans
 #print axioms BigHrushovski.CFCoherentTower.rankedBirthLt_total
 #print axioms BigHrushovski.CFCoherentTower.arbitraryRequestRank_injective
+
+#print axioms BigHrushovski.GraphOn.mem_adjacencyCoordinatePairs
+#print axioms BigHrushovski.GraphOn.orderedAdjacencyBits_injective_of_complete
