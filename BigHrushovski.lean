@@ -363,3 +363,5 @@ import BigHrushovski.CFRequestLexKeys
 import BigHrushovski.FiniteGraphAdjacencyCode
 
 import BigHrushovski.CFRequestMatrixComplete
+
+import BigHrushovski.CFRequestLexInjection
