@@ -49,20 +49,20 @@ noncomputable def freshRequestLinearOrder
     LinearOrder (FreshCarrier G Allowed bound) := by
   classical
   let key : FreshCarrier G Allowed bound → ℕ ×ₗ ℕ :=
-    fun x => Prod.Lex.toLex
+    fun x => toLex
       (requestLexRank G Allowed bound x.1, x.2.val)
   have hkey : Function.Injective key := by
     intro x y h
     rcases x with ⟨r, i⟩
     rcases y with ⟨s, j⟩
     change
-      (Prod.Lex.toLex (requestLexRank G Allowed bound r, i.val) :
+      (toLex (requestLexRank G Allowed bound r, i.val) :
         ℕ ×ₗ ℕ) =
-      Prod.Lex.toLex (requestLexRank G Allowed bound s, j.val) at h
+      toLex (requestLexRank G Allowed bound s, j.val) at h
     have hp :
         (requestLexRank G Allowed bound r, i.val) =
         (requestLexRank G Allowed bound s, j.val) :=
-      congrArg (Prod.Lex.ofLex : (ℕ ×ₗ ℕ) → ℕ × ℕ) h
+      congrArg (ofLex : (ℕ ×ₗ ℕ) → ℕ × ℕ) h
     have hrs : r = s :=
       requestLexRank_injective G Allowed bound (congrArg Prod.fst hp)
     cases hrs
