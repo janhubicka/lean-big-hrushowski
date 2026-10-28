@@ -95,8 +95,9 @@ theorem requestSupportTuple_eq_implies_support
   have hu :
       u ∈ (r.support.sort (· ≤ ·)) ↔
         u ∈ (s.support.sort (· ≤ ·)) := by
-    simpa only [requestSupportTuple] using
-      congrArg (fun xs : List U => u ∈ xs) h
+    change u ∈ requestSupportTuple G Allowed bound r ↔
+      u ∈ requestSupportTuple G Allowed bound s
+    rw [h]
   simpa only [Finset.mem_sort] using hu
 
 /-- This matches exactly the finite lexicographic request
