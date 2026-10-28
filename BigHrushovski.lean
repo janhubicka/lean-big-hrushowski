@@ -373,3 +373,5 @@ import BigHrushovski.CFCanonicalStageOrder
 import BigHrushovski.CFCanonicalOrderEmbedding
 
 import BigHrushovski.CFFiniteLevelOrderRigidity
+
+import BigHrushovski.CFStageBirthOrderCoherence
