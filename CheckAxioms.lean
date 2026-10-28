@@ -1075,3 +1075,7 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.orderedAdjacencyBits_injective_of_complete
 #print axioms BigHrushovski.CFStageCatalogue.requestSupportTuple_eq_implies_support
 #print axioms BigHrushovski.CFStageCatalogue.requestLexLt_trans
+
+#print axioms BigHrushovski.CFStageCatalogue.requestLocalCoordinates_complete
+#print axioms BigHrushovski.CFStageCatalogue.requestLocalGraphCode_injective
+#print axioms BigHrushovski.CFStageCatalogue.requestAdjacencyCode_eq_complete
