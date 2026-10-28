@@ -1083,3 +1083,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.requestLexKey_injective
 #print axioms BigHrushovski.CFStageCatalogue.requestLexLt_trichotomy
 #print axioms BigHrushovski.CFStageCatalogue.requestLexLt_strict_total
+
+#print axioms BigHrushovski.CFStageCatalogue.mem_requestLexPredecessors
+#print axioms BigHrushovski.CFStageCatalogue.requestLexRank_lt_of_lt
+#print axioms BigHrushovski.CFStageCatalogue.requestLexRank_injective
+#print axioms BigHrushovski.CFStageCatalogue.requestLexLt_iff_rank_lt
