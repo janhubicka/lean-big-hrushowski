@@ -1053,3 +1053,14 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.preservesBirthBlockOrderOn_of_compatibleOrder
 #print axioms BigHrushovski.CFCoherentTower.bValues_iff_RHValues_on_closedSet_of_chosenOrder
 #print axioms BigHrushovski.CFCoherentTower.literalClosedSource_bValues_iff_RHValues_of_chosenOrder
+
+#print axioms BigHrushovski.CFCoherentTower.tripleLexLt_irrefl
+#print axioms BigHrushovski.CFCoherentTower.tripleLexLt_trans
+#print axioms BigHrushovski.CFCoherentTower.tripleLexLt_trichotomy
+#print axioms BigHrushovski.CFCoherentTower.rankedBirthLt_of_earlier
+#print axioms BigHrushovski.CFCoherentTower.rankedBirthLt_compatible
+#print axioms BigHrushovski.CFCoherentTower.birthOrderKey_injective
+#print axioms BigHrushovski.CFCoherentTower.rankedBirthLt_irrefl
+#print axioms BigHrushovski.CFCoherentTower.rankedBirthLt_trans
+#print axioms BigHrushovski.CFCoherentTower.rankedBirthLt_total
+#print axioms BigHrushovski.CFCoherentTower.arbitraryRequestRank_injective
