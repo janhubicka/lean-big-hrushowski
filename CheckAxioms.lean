@@ -1064,3 +1064,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.rankedBirthLt_trans
 #print axioms BigHrushovski.CFCoherentTower.rankedBirthLt_total
 #print axioms BigHrushovski.CFCoherentTower.arbitraryRequestRank_injective
+
+#print axioms BigHrushovski.CFStageCatalogue.requestLexLt_of_support_lt
+#print axioms BigHrushovski.CFStageCatalogue.requestLexLt_same_support_and_size
+#print axioms BigHrushovski.CFStageCatalogue.requestLexLt_irrefl
+#print axioms BigHrushovski.CFStageCatalogue.requestLexKey_support
+#print axioms BigHrushovski.CFStageCatalogue.requestLexKey_fresh_size
