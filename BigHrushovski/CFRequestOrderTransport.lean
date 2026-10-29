@@ -35,46 +35,38 @@ variable {U V : Type*}
 variable [Fintype U] [LinearOrder U] [DecidableEq U]
 variable [Fintype V] [LinearOrder V] [DecidableEq V]
 
-/-- Lexicographic comparison of lists is preserved and reflected by
-an order embedding, including when one list is a proper prefix. -/
+/-- The usual strict lexicographic list order is transported
+exactly by an order embedding, even for unequal lengths. -/
+theorem listLt_map_orderEmbedding_iff
+    (f : U ↪o V) (xs ys : List U) :
+    xs.map f < ys.map f ↔ xs < ys := by
+  have hForward : ∀ as bs : List U,
+      as < bs → as.map f < bs.map f := by
+    intro as bs h
+    change List.Lex (· < ·) as bs at h
+    change List.Lex (· < ·) (as.map f) (bs.map f)
+    induction h with
+    | nil => exact List.Lex.nil
+    | rel hlt => exact List.Lex.rel (f.strictMono hlt)
+    | cons htail ih => exact List.Lex.cons ih
+  constructor
+  · intro h
+    rcases lt_trichotomy xs ys with hlt | heq | hgt
+    · exact hlt
+    · subst ys
+      exact False.elim (lt_irrefl _ h)
+    · have hReverse := hForward ys xs hgt
+      exact False.elim (lt_asymm hReverse h)
+  · exact hForward xs ys
+
+/-- The underlying List.Lex relation has the same transport
+property, including the proper-prefix convention. -/
 theorem listLex_map_orderEmbedding_iff
     (f : U ↪o V) (xs ys : List U) :
     List.Lex (· < ·) (xs.map f) (ys.map f) ↔
       List.Lex (· < ·) xs ys := by
-  induction xs generalizing ys with
-  | nil =>
-      cases ys with
-      | nil =>
-          constructor <;> intro h <;> cases h
-      | cons b bs =>
-          exact ⟨fun _ => List.Lex.nil, fun _ => List.Lex.nil⟩
-  | cons a as ih =>
-      cases ys with
-      | nil =>
-          constructor <;> intro h <;> cases h
-      | cons b bs =>
-          constructor
-          · intro h
-            cases h with
-            | rel hlt =>
-                exact List.Lex.rel (f.lt_iff_lt.mp hlt)
-            | cons htail =>
-                exact List.Lex.cons ((ih bs).mp htail)
-          · intro h
-            cases h with
-            | rel hlt =>
-                exact List.Lex.rel (f.strictMono hlt)
-            | cons htail =>
-                exact List.Lex.cons ((ih bs).mpr htail)
-
-/-- The usual strict lexicographic list order is transported
-exactly by an order embedding. -/
-theorem listLt_map_orderEmbedding_iff
-    (f : U ↪o V) (xs ys : List U) :
-    xs.map f < ys.map f ↔ xs < ys := by
-  change List.Lex (· < ·) (xs.map f) (ys.map f) ↔
-    List.Lex (· < ·) xs ys
-  exact listLex_map_orderEmbedding_iff f xs ys
+  change xs.map f < ys.map f ↔ xs < ys
+  exact listLt_map_orderEmbedding_iff f xs ys
 
 /-- Equality of mapped lists reflects equality, since an order
 embedding is injective. -/
@@ -82,7 +74,8 @@ theorem listMap_orderEmbedding_eq_iff
     (f : U ↪o V) (xs ys : List U) :
     xs.map f = ys.map f ↔ xs = ys := by
   constructor
-  · exact (List.map_injective_iff.mpr f.injective)
+  · intro h
+    exact (List.map_injective_iff.mpr f.injective) h
   · intro h
     rw [h]
 
