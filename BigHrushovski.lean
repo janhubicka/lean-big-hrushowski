@@ -377,3 +377,5 @@ import BigHrushovski.CFFiniteLevelOrderRigidity
 import BigHrushovski.CFStageBirthOrderCoherence
 
 import BigHrushovski.CFBlockOrdinalRigidity
+
+import BigHrushovski.CFRequestOrderTransport
