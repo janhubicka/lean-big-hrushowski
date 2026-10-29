@@ -1143,3 +1143,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.sort_image_strictMonoOn
 #print axioms BigHrushovski.CFStageCatalogue.requestSupportTuple_of_namedImageOn
 #print axioms BigHrushovski.CFStageCatalogue.requestCodeTransportOn_of_namedImage
+
+#print axioms BigHrushovski.CFStageCatalogue.sortedUniv_map_orderIso
+#print axioms BigHrushovski.CFStageCatalogue.sortedSumCoordinates_map_orderIso
+#print axioms BigHrushovski.CFStageCatalogue.requestLocalCoordinates_eq_sortedSum
+#print axioms BigHrushovski.CFStageCatalogue.requestLocalCoordinates_map_orderIso
+#print axioms BigHrushovski.CFStageCatalogue.requestAdjacencyCode_eq_of_localOrderIso
