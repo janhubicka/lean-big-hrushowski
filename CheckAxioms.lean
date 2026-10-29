@@ -1174,3 +1174,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMap_image
 #print axioms BigHrushovski.CFStageCatalogue.selectedSourceMap_image
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMap_dClosed_full
+
+#print axioms BigHrushovski.CFLocalCatalogue.namedBaseGraph_fresh_iff
+#print axioms BigHrushovski.CFLocalCatalogue.namedBaseGraph_full_boundary_iff
