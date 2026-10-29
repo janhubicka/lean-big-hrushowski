@@ -1113,3 +1113,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.stageLt_asymm
 #print axioms BigHrushovski.CFCoherentTower.stageLt_iff_canonicalBirthLt
 #print axioms BigHrushovski.CFCoherentTower.stageLt_ascend_iff
+
+#print axioms BigHrushovski.CFCoherentTower.mem_birthBlock_iff_exists_ordinal
+#print axioms BigHrushovski.CFCoherentTower.fin_value_eq_of_strictMono_surjective
+#print axioms BigHrushovski.CFCoherentTower.birthOrdinal_eq_of_complete_block_image
+#print axioms BigHrushovski.CFCoherentTower.birthOrdinal_image_on_closedSet
+#print axioms BigHrushovski.CFCoherentTower.birthOrdinal_image_on_closedSet_of_canonicalOrder
