@@ -401,3 +401,5 @@ import BigHrushovski.CFSelectedBatchImageExact
 import BigHrushovski.CFActualSelectedBatchMap
 
 import BigHrushovski.CFLiteralBoundaryTransport
+
+import BigHrushovski.CFActualSelectedBatchInduced
