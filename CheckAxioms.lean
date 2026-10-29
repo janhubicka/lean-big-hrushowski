@@ -1186,3 +1186,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthLocal_fresh_iff
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthLocal_boundary_iff
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMap_induced
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMap_taggedLex_iff
