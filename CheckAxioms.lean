@@ -1128,3 +1128,10 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.requestLexLt_transport_iff
 #print axioms BigHrushovski.CFStageCatalogue.requestCodeTransport_unique
 #print axioms BigHrushovski.CFStageCatalogue.requestCodeTransport_reflects_eq
+
+#print axioms BigHrushovski.CFStageCatalogue.listLt_map_strictMonoOn_iff
+#print axioms BigHrushovski.CFStageCatalogue.listMap_eq_strictMonoOn_iff
+#print axioms BigHrushovski.CFStageCatalogue.requestSupportTuple_subset_of_support_subset
+#print axioms BigHrushovski.CFStageCatalogue.requestLexLt_transportOn_iff
+#print axioms BigHrushovski.CFStageCatalogue.requestCodeTransportOn_unique
+#print axioms BigHrushovski.CFStageCatalogue.requestCodeTransportOn_reflects_eq
