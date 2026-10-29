@@ -127,8 +127,20 @@ theorem selectedSourceMap_image
     G Allowed bound S D (fun u : U => u)
     (fun r : SelectedRequests G Allowed bound D => r.val)
     (fun r i => i) (fun r j => ⟨j, rfl⟩)
-  simpa [selectedSourceMap, selectedTargetMap,
-    selectedTargetTags, hD] using h
+  have hMap :
+      selectedTargetMap G Allowed bound G Allowed bound S D
+          (fun u : U => u)
+          (fun r : SelectedRequests G Allowed bound D => r.val)
+          (fun r i => i) =
+        selectedSourceMap G Allowed bound S D := by
+    funext x
+    cases x with
+    | inl u => rfl
+    | inr x =>
+        rcases x with ⟨r, i⟩
+        rfl
+  rw [← hMap]
+  simpa [selectedTargetTags, hD] using h
 
 /-- The complete image of the selected map is strictly d-closed
 in the *entire* target level. All new blocks are attached
