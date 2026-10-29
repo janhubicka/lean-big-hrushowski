@@ -1165,3 +1165,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_unique
 #print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_order_iff
 #print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_reflects_eq
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedBatchImage_dClosed_full
+#print axioms BigHrushovski.CFStageCatalogue.selectedSourceMap_injective
+#print axioms BigHrushovski.CFStageCatalogue.selectedTargetMap_injective
+#print axioms BigHrushovski.CFStageCatalogue.selectedTargetMap_induced
