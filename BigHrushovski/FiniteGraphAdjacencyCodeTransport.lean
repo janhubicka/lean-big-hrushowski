@@ -72,15 +72,6 @@ theorem orderedAdjacencyBits_induced
       fun h' => h ((hAdj _ _).mpr h')
     simp [h, hh]
 
-/-- Special case for the actual pullback graph: the full ordered
-matrix of a pullback is the matrix on the mapped coordinates. -/
-theorem orderedAdjacencyBits_pullback_map
-    (H : GraphOn V) (f : U → V) (xs : List U) :
-    orderedAdjacencyBits (H.pullback f) xs =
-      orderedAdjacencyBits H (xs.map f) :=
-  orderedAdjacencyBits_induced (H.pullback f) H f
-    (fun _ _ => Iff.rfl) xs
-
 /-- Exact target coordinate equality is the only additional
 input needed to transport the entire adjacency matrix. -/
 theorem orderedAdjacencyBits_of_coordinate_eq
