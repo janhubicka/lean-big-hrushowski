@@ -1155,3 +1155,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.supportOrderIsoOn_card
 #print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_support
 #print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_size
+
+#print axioms BigHrushovski.CFLocalCatalogue.namedBaseEquiv_sumMap
+#print axioms BigHrushovski.CFLocalCatalogue.namedBaseGraph_adj_orderIso
+#print axioms BigHrushovski.CFStageCatalogue.namedBaseGraph_orderedAdjacencyCode
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_adjacencyCode
