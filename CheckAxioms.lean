@@ -1139,3 +1139,7 @@ import BigHrushovski
 #print axioms BigHrushovski.GraphOn.adjacencyCoordinatePairs_map
 #print axioms BigHrushovski.GraphOn.orderedAdjacencyBits_induced
 #print axioms BigHrushovski.GraphOn.orderedAdjacencyBits_of_coordinate_eq
+
+#print axioms BigHrushovski.CFStageCatalogue.sort_image_strictMonoOn
+#print axioms BigHrushovski.CFStageCatalogue.requestSupportTuple_of_namedImageOn
+#print axioms BigHrushovski.CFStageCatalogue.requestCodeTransportOn_of_namedImage
