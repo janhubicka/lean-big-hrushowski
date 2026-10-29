@@ -389,3 +389,5 @@ import BigHrushovski.CFPartialSupportTuple
 import BigHrushovski.CFCompleteLocalCodeTransport
 
 import BigHrushovski.CFActualNamedRequest
+
+import BigHrushovski.CFConstructedRequestCode
