@@ -33,6 +33,18 @@ and nonedges. Equality of degree sequences or of old-neighbour
 sets would not determine the request. Uniqueness invokes the
 previously kernel-checked injectivity of the complete request key.
 
+**Partial-source referee.** The theorem is stated for an order
+embedding of an entire finite carrier U. In the manuscript's finite
+level lifting, however, the prescribed map is only defined on the
+selected b-closed old source A_{<i}, not on the whole stage U_{t_i}.
+If the target level is earlier, U_{s_i} may be smaller than U_{t_i},
+so an order embedding of those whole stages need not exist.
+**This is a genuine remaining interface obligation**: first
+re-present the source request over the selected closed old carrier,
+or prove a partial-support transport lemma. It must not be
+silently assumed that the current theorem already handles arbitrary
+finite level assignments.
+
 **Amalgamation referee.** The result does not construct a target
 request. In the actual finite lifting proof, the earlier image
 must first be shown d-closed in the target old stage, and the
