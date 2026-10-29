@@ -395,3 +395,5 @@ import BigHrushovski.CFConstructedRequestCode
 import BigHrushovski.CFActualRequestOrderTransport
 
 import BigHrushovski.CFSelectedBatchMaps
+
+import BigHrushovski.CFSelectedBatchImageExact
