@@ -160,7 +160,8 @@ theorem selectedGrowthBatchMap_induced
     (selectedGrowthTag F K G H S f hf D h)
     (selectedGrowthTag_injective F K G H S f hf D h)
     (fun r i => selectedGrowthOrdinalIso F K G H S f hf D h r i)
-    (selectedGrowthLocal_boundary_iff F K G H S f hf D h hfInj)
+    (fun u r i =>
+      selectedGrowthLocal_boundary_iff F K G H S f hf D h hfInj r u i)
     (selectedGrowthLocal_fresh_iff F K G H S f hf D h)
     x y
 
