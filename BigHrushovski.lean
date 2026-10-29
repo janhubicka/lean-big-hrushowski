@@ -383,3 +383,5 @@ import BigHrushovski.CFRequestOrderTransport
 import BigHrushovski.CFRequestPartialOrderTransport
 
 import BigHrushovski.FiniteGraphAdjacencyCodeTransport
+
+import BigHrushovski.CFPartialSupportTuple
