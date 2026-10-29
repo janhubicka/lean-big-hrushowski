@@ -32,7 +32,7 @@ ordered local request codes.
    remains a separate finite lifting step.
 5. **Empty cases.** The empty list produces the empty matrix;
    no inhabitedness or nonempty extension is assumed.
-6. **Lean kernel.** Four exact axiom endpoints, full build,
+6. **Lean kernel.** Three exact axiom endpoints, full build,
    placeholder scan and existing finite regressions are
    required before treating these statements as verified.
 
