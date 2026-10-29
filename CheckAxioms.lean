@@ -1160,3 +1160,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFLocalCatalogue.namedBaseGraph_adj_orderIso
 #print axioms BigHrushovski.CFStageCatalogue.namedBaseGraph_orderedAdjacencyCode
 #print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_adjacencyCode
+
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_codeTransportOn
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_unique
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_order_iff
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_reflects_eq
