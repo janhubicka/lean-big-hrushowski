@@ -134,7 +134,7 @@ noncomputable def transportGrowthStageRequest
       supportOrderIsoOn_val S r.support f hf hSub Q rfl q
     rw [hp, hq]
     exact hBase p q
-  let local : CFLocalCatalogue.OrderedLocalType
+  let localType : CFLocalCatalogue.OrderedLocalType
       (SupportCarrier V Q) baseQ
       (GrowthAllowedLocal F Q) r.code.1.val :=
     CFLocalCatalogue.namedBaseGrowthOrderedLocalType
@@ -146,7 +146,7 @@ noncomputable def transportGrowthStageRequest
     exact Nat.lt_succ_iff.mp r.code.1.isLt
   exact ⟨Q, hClosed,
     CFLocalCatalogue.toBounded baseQ (GrowthAllowedLocal F Q)
-      (K Q.card) r.code.1.val hBound local⟩
+      (K Q.card) r.code.1.val hBound localType⟩
 
 /-- The constructed request has the literal transported support. -/
 theorem transportGrowthStageRequest_support
