@@ -1149,3 +1149,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.requestLocalCoordinates_eq_sortedSum
 #print axioms BigHrushovski.CFStageCatalogue.requestLocalCoordinates_map_orderIso
 #print axioms BigHrushovski.CFStageCatalogue.requestAdjacencyCode_eq_of_localOrderIso
+
+#print axioms BigHrushovski.CFLocalCatalogue.namedBaseGrowthOrderedLocalType_graph
+#print axioms BigHrushovski.CFStageCatalogue.supportOrderIsoOn_val
+#print axioms BigHrushovski.CFStageCatalogue.supportOrderIsoOn_card
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_support
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_size
