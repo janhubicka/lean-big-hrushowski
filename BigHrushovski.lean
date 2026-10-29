@@ -381,3 +381,5 @@ import BigHrushovski.CFBlockOrdinalRigidity
 import BigHrushovski.CFRequestOrderTransport
 
 import BigHrushovski.CFRequestPartialOrderTransport
+
+import BigHrushovski.FiniteGraphAdjacencyCodeTransport
