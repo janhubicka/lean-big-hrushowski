@@ -38,7 +38,10 @@ theorem sort_image_strictMonoOn
       (P.sort (· ≤ ·)).map f := by
   classical
   let I := {u : U // u ∈ P}
-  let incl : I ↪o U := OrderEmbedding.subtype _
+  let incl : I ↪o U :=
+    OrderEmbedding.ofStrictMono (fun p : I => p.val) (by
+      intro a b hab
+      exact hab)
   let g : I ↪o V :=
     OrderEmbedding.ofStrictMono (fun p : I => f p.val) (by
       intro a b hab
@@ -75,7 +78,7 @@ theorem sort_image_strictMonoOn
         P.sort (· ≤ ·) := by
     have h := hInclMono.map_finsetSort
     rw [hInc] at h
-    simpa [incl, OrderEmbedding.subtype] using h
+    simpa [incl, OrderEmbedding.ofStrictMono] using h
   have hSortG :
       ((Finset.univ : Finset I).sort (· ≤ ·)).map (fun p : I => f p.val) =
         (P.image f).sort (· ≤ ·) := by
