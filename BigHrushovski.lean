@@ -387,3 +387,5 @@ import BigHrushovski.FiniteGraphAdjacencyCodeTransport
 import BigHrushovski.CFPartialSupportTuple
 
 import BigHrushovski.CFCompleteLocalCodeTransport
+
+import BigHrushovski.CFActualNamedRequest
