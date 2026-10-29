@@ -1119,3 +1119,12 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.birthOrdinal_eq_of_complete_block_image
 #print axioms BigHrushovski.CFCoherentTower.birthOrdinal_image_on_closedSet
 #print axioms BigHrushovski.CFCoherentTower.birthOrdinal_image_on_closedSet_of_canonicalOrder
+
+#print axioms BigHrushovski.CFStageCatalogue.listLex_map_orderEmbedding_iff
+#print axioms BigHrushovski.CFStageCatalogue.listLt_map_orderEmbedding_iff
+#print axioms BigHrushovski.CFStageCatalogue.listMap_orderEmbedding_eq_iff
+#print axioms BigHrushovski.CFStageCatalogue.requestSupportTuple_of_namedImage
+#print axioms BigHrushovski.CFStageCatalogue.requestCodeTransport_of_namedImage
+#print axioms BigHrushovski.CFStageCatalogue.requestLexLt_transport_iff
+#print axioms BigHrushovski.CFStageCatalogue.requestCodeTransport_unique
+#print axioms BigHrushovski.CFStageCatalogue.requestCodeTransport_reflects_eq
