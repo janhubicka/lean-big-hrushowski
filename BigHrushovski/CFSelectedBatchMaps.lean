@@ -234,15 +234,19 @@ theorem selectedTargetMap_induced
       rcases x with ⟨r, i⟩
       cases y with
       | inl v =>
-          have hSrc := (levelGraph G Allowed bound).symm
-            (Sum.inl v.val) (Sum.inr ⟨r.val, i⟩)
-          have hDst := (levelGraph H AllowedV boundV).symm
-            (Sum.inl (f v.val)) (Sum.inr ⟨T r, phi r i⟩)
           constructor
           · intro h
-            exact hDst _ _ ((hBoundary v r i).mp (hSrc _ _ h))
+            have hOldFresh : (levelGraph G Allowed bound).adj
+                (Sum.inl v.val) (Sum.inr ⟨r.val, i⟩) :=
+              (levelGraph G Allowed bound).symm _ _ h
+            exact (levelGraph H AllowedV boundV).symm _ _
+              ((hBoundary v r i).mp hOldFresh)
           · intro h
-            exact hSrc _ _ ((hBoundary v r i).mpr (hDst _ _ h))
+            have hOldFresh : (levelGraph H AllowedV boundV).adj
+                (Sum.inl (f v.val)) (Sum.inr ⟨T r, phi r i⟩) :=
+              (levelGraph H AllowedV boundV).symm _ _ h
+            exact (levelGraph G Allowed bound).symm _ _
+              ((hBoundary v r i).mpr hOldFresh)
       | inr y =>
           rcases y with ⟨s, j⟩
           by_cases hrs : r = s
