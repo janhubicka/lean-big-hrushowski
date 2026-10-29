@@ -1135,3 +1135,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.requestLexLt_transportOn_iff
 #print axioms BigHrushovski.CFStageCatalogue.requestCodeTransportOn_unique
 #print axioms BigHrushovski.CFStageCatalogue.requestCodeTransportOn_reflects_eq
+
+#print axioms BigHrushovski.GraphOn.adjacencyCoordinatePairs_map
+#print axioms BigHrushovski.GraphOn.orderedAdjacencyBits_induced
+#print axioms BigHrushovski.GraphOn.orderedAdjacencyBits_of_coordinate_eq
