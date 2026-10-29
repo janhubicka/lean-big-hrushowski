@@ -1138,5 +1138,4 @@ import BigHrushovski
 
 #print axioms BigHrushovski.GraphOn.adjacencyCoordinatePairs_map
 #print axioms BigHrushovski.GraphOn.orderedAdjacencyBits_induced
-#print axioms BigHrushovski.GraphOn.orderedAdjacencyBits_pullback_map
 #print axioms BigHrushovski.GraphOn.orderedAdjacencyBits_of_coordinate_eq
