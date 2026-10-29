@@ -399,3 +399,5 @@ import BigHrushovski.CFSelectedBatchMaps
 import BigHrushovski.CFSelectedBatchImageExact
 
 import BigHrushovski.CFActualSelectedBatchMap
+
+import BigHrushovski.CFLiteralBoundaryTransport

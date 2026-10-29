@@ -1179,3 +1179,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthOrdinalIso_val
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMap_injective
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMap_dClosed_full
+
+#print axioms BigHrushovski.CFLocalCatalogue.namedBaseGraph_fresh_iff
+#print axioms BigHrushovski.CFLocalCatalogue.namedBaseGraph_full_boundary_iff
