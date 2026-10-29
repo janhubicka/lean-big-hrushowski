@@ -29,6 +29,8 @@ lemmas is the next step.
 namespace BigHrushovski
 namespace CFLocalCatalogue
 
+open CFStageCatalogue
+
 variable {U V : Type*}
 variable [Fintype U] [DecidableEq U]
 variable [Fintype V] [DecidableEq V]
