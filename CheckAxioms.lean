@@ -1170,3 +1170,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedSourceMap_injective
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMap_injective
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMap_induced
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedTargetMap_image
+#print axioms BigHrushovski.CFStageCatalogue.selectedSourceMap_image
+#print axioms BigHrushovski.CFStageCatalogue.selectedTargetMap_dClosed_full
