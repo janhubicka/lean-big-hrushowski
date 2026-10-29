@@ -193,17 +193,17 @@ theorem selectedGrowthBatchMap_dClosed_full
         (GrowthAllowedLocal F) (fun P => K P.card) S D)).image
         (selectedGrowthBatchMap F K G H S f hf D h))
       Finset.univ := by
-  apply selectedTargetMap_dClosed_full
+  exact selectedTargetMap_dClosed_full
     G (GrowthAllowedLocal F) (fun P => K P.card)
     H (GrowthAllowedLocal F) (fun Q => K Q.card)
     S D f hOld
     (selectedGrowthTag F K G H S f hf D h)
-  · intro r
-    change r.val.support.image f ⊆ S.image f
-    exact Finset.image_mono f (h.supports r.val r.property)
-  · exact fun r i => selectedGrowthOrdinalIso F K G H S f hf D h r i
-  · exact fun r =>
-      (selectedGrowthOrdinalIso F K G H S f hf D h r).surjective
+    (by
+      intro r
+      change r.val.support.image f ⊆ S.image f
+      exact Finset.image_mono f (h.supports r.val r.property))
+    (fun r i => selectedGrowthOrdinalIso F K G H S f hf D h r i)
+    (fun r => (selectedGrowthOrdinalIso F K G H S f hf D h r).surjective)
 
 end CFStageCatalogue
 end BigHrushovski
