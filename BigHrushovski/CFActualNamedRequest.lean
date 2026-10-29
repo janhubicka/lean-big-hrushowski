@@ -128,7 +128,12 @@ noncomputable def transportGrowthStageRequest
     intro p q
     change G.adj p.val q.val ↔
       H.adj (e p).val (e q).val
-    simpa only [supportOrderIsoOn_val] using hBase p q
+    have hp : (e p).val = f p.val :=
+      supportOrderIsoOn_val S r.support f hf hSub Q rfl p
+    have hq : (e q).val = f q.val :=
+      supportOrderIsoOn_val S r.support f hf hSub Q rfl q
+    rw [hp, hq]
+    exact hBase p q
   let local : CFLocalCatalogue.OrderedLocalType
       (SupportCarrier V Q) baseQ
       (GrowthAllowedLocal F Q) r.code.1.val :=
