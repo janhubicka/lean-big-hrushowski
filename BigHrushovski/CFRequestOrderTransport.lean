@@ -7,10 +7,15 @@ import Mathlib.Data.List.Lex
 /-!
 # Transport of the exact C_F request order through a named old embedding
 
-Finite level lifting uses an order-preserving embedding of the already
-constructed old part into a later finite stage. The target catalogue
-contains the transported literal support and the complete ordered local
-graph code. We isolate the resulting order and uniqueness assertions.
+Finite level lifting uses an order-preserving embedding of the
+*selected finite closed old source* into a later finite stage. The
+present lemma takes an order embedding of an entire finite carrier U.
+To apply it, source requests must first be represented over the
+selected closed old carrier; an embedding of the whole original
+stage U_t into a possibly smaller target U_s is NOT available.
+The target catalogue contains the transported literal support and
+the complete ordered local graph code. We isolate the resulting
+order and uniqueness assertions.
 
 The key observation is that lexicographic order on *finite lists*
 is preserved and reflected by an order embedding, even for unequal
@@ -23,9 +28,10 @@ the exact request comparison is preserved and reflected. Two distinct
 source requests cannot collapse to one target request; conversely,
 there is at most one target request with a prescribed transported key.
 
-These are conditional transport lemmas. Constructing the transported
-request as a member of the actual target catalogue, and simultaneously
-assembling all source blocks at a prescribed level, are separate steps.
+These are conditional transport lemmas. Restricting a source request
+to the selected old closed carrier, constructing its transported
+request in the actual target catalogue, and simultaneously assembling
+all source blocks at a prescribed level are separate steps.
 -/
 
 namespace BigHrushovski
