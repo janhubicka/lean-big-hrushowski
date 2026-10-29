@@ -1174,3 +1174,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMap_image
 #print axioms BigHrushovski.CFStageCatalogue.selectedSourceMap_image
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMap_dClosed_full
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTag_injective
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthOrdinalIso_val
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMap_injective
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMap_dClosed_full
