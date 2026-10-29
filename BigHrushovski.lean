@@ -374,4 +374,6 @@ import BigHrushovski.CFCanonicalOrderEmbedding
 
 import BigHrushovski.CFFiniteLevelOrderRigidity
 
+import BigHrushovski.CFStageBirthOrderCoherence
+
 import BigHrushovski.CFBlockOrdinalRigidity
