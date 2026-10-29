@@ -75,13 +75,13 @@ theorem sort_image_strictMonoOn
         P.sort (· ≤ ·) := by
     have h := hInclMono.map_finsetSort
     rw [hInc] at h
-    simpa [incl] using h
+    simpa [incl, OrderEmbedding.subtype] using h
   have hSortG :
       ((Finset.univ : Finset I).sort (· ≤ ·)).map (fun p : I => f p.val) =
         (P.image f).sort (· ≤ ·) := by
     have h := hGMono.map_finsetSort
     rw [hImg] at h
-    simpa [g] using h
+    simpa [g, OrderEmbedding.ofStrictMono] using h
   calc
     (P.image f).sort (· ≤ ·) =
         ((Finset.univ : Finset I).sort (· ≤ ·)).map
