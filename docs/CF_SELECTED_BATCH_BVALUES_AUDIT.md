@@ -42,7 +42,10 @@ about edges or neighbourhoods.
    *new* selected blocks at one level. Old vertices may have
    b-values involving earlier levels; their preservation is
    supplied by the finite-lifting induction hypothesis.
-   The theorem alone is not a complete functional embedding
+   The actual-map corollary uses the constructed target request
+   and its canonical surjective ordinal isomorphism, with no
+   separate support-equality or ordinal-surjectivity hypothesis.
+   The corollary alone is not a complete functional embedding
    nor a proof of finite unique level lifting.
 
 5. **Lean/kernel referee.** The exact endpoint is recorded
@@ -56,8 +59,8 @@ project, not independent external human referee reports.
 
 ## Next bridge
 
-Instantiate the generic theorem with selectedGrowthTag and
-selectedGrowthOrdinalIso. Then compare the induced map with
+The generic theorem is instantiated with selectedGrowthTag and
+selectedGrowthOrdinalIso. The next step is comparing the induced map with
 the actual birth-labelled vertices and prove that all
 old vertices preserve their previously constructed complete
 b-values. Combining this with the verified graph inducedness,
