@@ -1195,3 +1195,8 @@ import BigHrushovski
 
 #print axioms BigHrushovski.CFStageCatalogue.selectedBlockBValue_image
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMap_bValue_image
+
+#print axioms BigHrushovski.CFStageCatalogue.partialSupportOrderIso_val
+#print axioms BigHrushovski.CFStageCatalogue.partialSupportOrderIso_card
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_support
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_size
