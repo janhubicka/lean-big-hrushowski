@@ -1217,3 +1217,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTagSubtype_adjacencyCode
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTagSubtype_injective
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_injective
+
+#print axioms BigHrushovski.CFLocalCatalogue.namedBaseGraph_partial_boundary_iff
