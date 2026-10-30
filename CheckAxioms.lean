@@ -1219,3 +1219,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_injective
 
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_induced
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedBlockBValue_image_subtype
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_bValue_image
