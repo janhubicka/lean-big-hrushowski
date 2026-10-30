@@ -128,5 +128,44 @@ theorem selectedBlockBValue_image
         rw [hij]
         exact hjz
 
+
+/-- The actual constructed C_F transport sends the complete auxiliary
+b-value of each selected new block ONTO the complete target value.
+The target support equality and finite-ordinal surjectivity are no
+longer assumptions: both come from the constructed request. -/
+theorem selectedGrowthBatchMap_bValue_image
+    [LinearOrder U] [LinearOrder V]
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (G : GraphOn U) (H : GraphOn V)
+    (S : Finset U) (f : U → V)
+    (hf : StrictMonoOn f S)
+    (D : Finset (Requests G (GrowthAllowedLocal F)
+      (fun P => K P.card)))
+    (h : SelectedGrowthTransport F K G H S f D)
+    (r : SelectedRequests G (GrowthAllowedLocal F)
+      (fun P => K P.card) D) :
+    (selectedBlockBValue G (GrowthAllowedLocal F)
+      (fun P => K P.card) S D r
+      (h.supports r.val r.property)).image
+        (selectedGrowthBatchMap F K G H S f hf D h) =
+      taggedSupport H (GrowthAllowedLocal F)
+        (fun Q => K Q.card)
+        (selectedGrowthTag F K G H S f hf D h r) ∪
+      taggedBlock H (GrowthAllowedLocal F)
+        (fun Q => K Q.card)
+        (selectedGrowthTag F K G H S f hf D h r) := by
+  exact selectedBlockBValue_image
+    G (GrowthAllowedLocal F) (fun P => K P.card)
+    H (GrowthAllowedLocal F) (fun Q => K Q.card)
+    S D f
+    (selectedGrowthTag F K G H S f hf D h)
+    (fun r i => selectedGrowthOrdinalIso F K G H S f hf D h r i)
+    r (h.supports r.val r.property)
+    (transportGrowthStageRequest_support F K G H S f hf
+      r.val (h.supports r.val r.property)
+      (h.induced r.val r.property)
+      (h.closed r.val r.property))
+    (selectedGrowthOrdinalIso F K G H S f hf D h r).surjective
+
 end CFStageCatalogue
 end BigHrushovski
