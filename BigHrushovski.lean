@@ -413,3 +413,5 @@ import BigHrushovski.CFSelectedBatchBValues
 import BigHrushovski.CFPartialOldSourceRequest
 
 import BigHrushovski.CFPartialOldSourceCode
+
+import BigHrushovski.CFSelectedBatchSubtypeMap
