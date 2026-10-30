@@ -423,3 +423,5 @@ import BigHrushovski.CFPartialTagNoncollision
 import BigHrushovski.CFSelectedSubtypeInduced
 
 import BigHrushovski.CFPartialBoundaryTransport
+
+import BigHrushovski.CFActualSubtypeBatchInduced

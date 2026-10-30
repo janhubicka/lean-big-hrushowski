@@ -1221,3 +1221,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_induced
 
 #print axioms BigHrushovski.CFLocalCatalogue.namedBaseGraph_partial_boundary_iff
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthLocalSubtype_fresh_iff
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthLocalSubtype_boundary_iff
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_induced
