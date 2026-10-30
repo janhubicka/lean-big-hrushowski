@@ -1192,3 +1192,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.stageLt_fresh_iff_requestLex
 #print axioms BigHrushovski.CFCoherentTower.taggedLexLt_stage_iff
 #print axioms BigHrushovski.CFCoherentTower.selectedGrowthBatchMap_stageOrder_iff
+
+#print axioms BigHrushovski.CFStageCatalogue.partialSupportOrderIso_val
+#print axioms BigHrushovski.CFStageCatalogue.partialSupportOrderIso_card
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_support
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_size
