@@ -1206,3 +1206,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_injective
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_image
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_dClosed_full
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTagSubtype_support
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthOrdinalIsoSubtype_val
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTagSubtype_support_subset_oldImage
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_dClosed_full
