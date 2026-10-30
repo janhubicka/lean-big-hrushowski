@@ -51,7 +51,8 @@ theorem stageLt_fresh_iff_requestLex
       stageCanonicalRank F K n r =
           stageCanonicalRank F K n s ↔ r = s := by
     constructor
-    · exact (stageCanonicalRank_injective F K n)
+    · intro heq
+      exact (stageCanonicalRank_injective F K n) heq
     · intro h
       cases h
       rfl
@@ -126,6 +127,10 @@ theorem selectedGrowthBatchMap_stageOrder_iff
       (stage F K n).graph (stage F K m).graph S f D)
     (x y : SelectedCarrier (stage F K n).graph
       (GrowthAllowedLocal F) (fun P => K P.card) S D) :
+    letI : LinearOrder (stage F K n).carrier :=
+      stageLinearOrder F K n
+    letI : LinearOrder (stage F K m).carrier :=
+      stageLinearOrder F K m
     stageLt F K (n + 1)
       (selectedSourceMap (stage F K n).graph
         (GrowthAllowedLocal F) (fun P => K P.card) S D x)
