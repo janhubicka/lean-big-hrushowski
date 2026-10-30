@@ -403,3 +403,5 @@ import BigHrushovski.CFActualSelectedBatchMap
 import BigHrushovski.CFLiteralBoundaryTransport
 
 import BigHrushovski.CFActualSelectedBatchInduced
+
+import BigHrushovski.CFSelectedBatchLexOrder
