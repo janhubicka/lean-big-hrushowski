@@ -421,3 +421,5 @@ import BigHrushovski.CFActualSubtypeSelectedBatch
 import BigHrushovski.CFPartialTagNoncollision
 
 import BigHrushovski.CFSelectedSubtypeInduced
+
+import BigHrushovski.CFSelectedSubtypeBValues
