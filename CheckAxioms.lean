@@ -1200,3 +1200,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.partialSupportOrderIso_card
 #print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_support
 #print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_size
+
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_adjacencyCode
