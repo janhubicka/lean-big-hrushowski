@@ -1200,3 +1200,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.partialSupportOrderIso_card
 #print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_support
 #print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_size
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_injective
+#print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_image
+#print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_dClosed_full
