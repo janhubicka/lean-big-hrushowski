@@ -1225,3 +1225,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthLocalSubtype_fresh_iff
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthLocalSubtype_boundary_iff
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_induced
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedBlockBValue_image_subtype
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_bValue_image
