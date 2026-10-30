@@ -407,3 +407,5 @@ import BigHrushovski.CFActualSelectedBatchInduced
 import BigHrushovski.CFSelectedBatchLexOrder
 
 import BigHrushovski.CFSelectedBatchStageOrder
+
+import BigHrushovski.CFSelectedBatchBValues
