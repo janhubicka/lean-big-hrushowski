@@ -405,3 +405,5 @@ import BigHrushovski.CFLiteralBoundaryTransport
 import BigHrushovski.CFActualSelectedBatchInduced
 
 import BigHrushovski.CFSelectedBatchLexOrder
+
+import BigHrushovski.CFSelectedBatchBValues
