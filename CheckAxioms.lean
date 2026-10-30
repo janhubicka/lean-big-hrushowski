@@ -1188,3 +1188,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMap_induced
 
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMap_taggedLex_iff
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedBlockBValue_image
