@@ -411,3 +411,5 @@ import BigHrushovski.CFSelectedBatchStageOrder
 import BigHrushovski.CFSelectedBatchBValues
 
 import BigHrushovski.CFPartialOldSourceRequest
+
+import BigHrushovski.CFSelectedBatchSubtypeMap
