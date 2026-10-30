@@ -425,3 +425,5 @@ import BigHrushovski.CFSelectedSubtypeInduced
 import BigHrushovski.CFPartialBoundaryTransport
 
 import BigHrushovski.CFActualSubtypeBatchInduced
+
+import BigHrushovski.CFSelectedSubtypeOrder
