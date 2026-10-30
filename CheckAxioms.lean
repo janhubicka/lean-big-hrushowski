@@ -1211,3 +1211,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthOrdinalIsoSubtype_val
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTagSubtype_support_subset_oldImage
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_dClosed_full
+
+#print axioms BigHrushovski.CFStageCatalogue.supportImage_partial_reflects_eq
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTagSubtype_size
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTagSubtype_adjacencyCode
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTagSubtype_injective
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_injective
