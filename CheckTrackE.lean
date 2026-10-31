@@ -8,6 +8,9 @@ do not assume the existence of a unique C_F level lift.
 -/
 
 #print axioms BigHrushovski.Ellentuck.supportDomain_mono
+#print axioms BigHrushovski.Ellentuck.supportDomain_local
+#print axioms BigHrushovski.Ellentuck.supportDomain_excludes_missing
+#print axioms BigHrushovski.Ellentuck.mem_supportDomain_iff_finite_witness
 #print axioms BigHrushovski.Ellentuck.supportDomain_inter
 #print axioms BigHrushovski.Ellentuck.supportDomain_univ
 #print axioms BigHrushovski.Ellentuck.supportDomain_empty_of_nonempty
