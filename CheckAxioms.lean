@@ -1227,3 +1227,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_induced
 
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_taggedLex_iff
+
+#print axioms BigHrushovski.Predimension.globallyStrong_of_cofinal_finite
+#print axioms BigHrushovski.FiniteC0.globallyStrong_of_closed_stages
+#print axioms BigHrushovski.FiniteC0.finiteStrongCover_of_unaryClosedCovers
+#print axioms BigHrushovski.FiniteC0.graphReduct_iso_generic_of_unaryPresentation
