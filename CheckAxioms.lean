@@ -1253,3 +1253,7 @@ import BigHrushovski
 
 #print axioms BigHrushovski.FiniteC0.completeFunctionalImage_closed
 #print axioms BigHrushovski.FiniteC0.globallyStrong_image_of_completeFunctionalEmbedding
+
+#print axioms BigHrushovski.FiniteC0.exists_strongGraphResponse_of_stageFunctionalExtension
+#print axioms BigHrushovski.FiniteC0.strongExtension_of_canonicalStageFunctionalExtension
+#print axioms BigHrushovski.FiniteC0.graphReduct_iso_generic_of_functionalStageExtension
