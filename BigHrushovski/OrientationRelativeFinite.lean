@@ -81,10 +81,15 @@ theorem singleton_successorClosed_of_sink {a : V}
 theorem pair_successorClosed_of_sinks {a b : V}
     (ha : O.IsSink a) (hb : O.IsSink b) :
     O.IsSuccessorClosed ({a, b} : Finset V) := by
-  change O.IsSuccessorClosed ({a} ∪ {b} : Finset V)
-  exact O.successorClosed_union
-    (O.singleton_successorClosed_of_sink ha)
-    (O.singleton_successorClosed_of_sink hb)
+  intro x hx y hy
+  rcases Finset.mem_insert.mp hx with hxa | hxb
+  · subst x
+    rw [ha] at hy
+    exact (Finset.not_mem_empty y hy).elim
+  · have hxb' : x = b := Finset.mem_singleton.mp hxb
+    subst x
+    rw [hb] at hy
+    exact (Finset.not_mem_empty y hy).elim
 
 /-- Distinct sinks cannot be joined by an oriented edge. -/
 theorem sinks_nonadjacent {a b : V}
