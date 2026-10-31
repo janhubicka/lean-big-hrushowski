@@ -1,4 +1,4 @@
-import BigHrushovski.OrientationComponentOrder
+import BigHrushovski.OrientationComponentDownsets
 
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_empty
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_union
@@ -57,3 +57,8 @@ import BigHrushovski.OrientationComponentOrder
 #print axioms BigHrushovski.FiniteOrientation.componentPrecedes_asymm
 #print axioms BigHrushovski.FiniteOrientation.componentPrecedes_iff_strictSuccessor
 #print axioms BigHrushovski.FiniteOrientation.reaches_component_eq_or_precedes
+
+
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_component_subset
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_predecessor
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_iff_component_downward

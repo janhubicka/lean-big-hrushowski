@@ -48,13 +48,15 @@ jobs:
       - name: Track F finite orientation kernel audit
         run: |
           set -euo pipefail
-          lake build BigHrushovski.OrientationComponentOrder
+          lake build BigHrushovski.OrientationComponentDownsets
           lake env lean CheckOrientationAxioms.lean > track-f-axioms.log 2>&1 || { tail -100 track-f-axioms.log; exit 1; }
           python3 scripts/check_axioms.py track-f-axioms.log CheckOrientationAxioms.lean
       - name: Track F independent finite regressions
         run: |
           python3 scripts/check_track_f_finite.py
           python3 scripts/check_track_f_component_order.py
+          python3 scripts/check_track_f_component_downsets.py
+          python3 scripts/check_track_f_degrees.py
       - name: Check theorem axioms
         run: |
           set -euo pipefail

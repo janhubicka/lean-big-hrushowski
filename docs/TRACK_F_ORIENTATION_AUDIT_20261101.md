@@ -88,3 +88,30 @@ must remain incomparable; a time order of a chosen enumeration is
 not a graph invariant. The zero-vertex orientation has one empty
 linear extension. The definitions state these distinctions explicitly.
 The Lean results remain CI-pending until the exact branch build passes.
+
+## Successor-closed sets as component downsets
+
+The new `OrientationComponentDownsets.lean` proves precisely:
+a finite vertex set is successor-closed if and only if it contains
+the **whole** strongly connected component of each of its vertices
+and is downward closed under the intrinsic strict component
+dependency relation. It also separates the two forward
+implications into reusable lemmata. This makes the component
+decomposition and its allowable orders explicit rather than
+using an arbitrary chronological presentation.
+
+An independent test checked the equivalence on all **977,655**
+vertex subsets of the **30,887** orientations on up to five
+vertices. The complementary independent test checks direct
+permitted-vertex-order counts against
+`ell(A) * product_B |Aut(C_B)_(P_B)|` on all 653 orientations of
+at most four vertices and 1,312 sampled orientations of five
+vertices (1,965 orientations; 172,514 orders considered). It
+does not use the manuscript's original counting script.
+
+**Scope boundary:** the finite counting formula itself is
+still not an elaborated Lean theorem; we have only the SCC
+dependency/downset infrastructure and independent arithmetic
+regressions. The degree-one Ramsey theorem and recurrence of
+the ordered generic remain entirely open in Lean. No
+validation marker in the paper is promoted by these checks.
