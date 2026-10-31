@@ -29,3 +29,6 @@ import BigHrushovski.C0CoordinateClosedRestriction
 #print axioms BigHrushovski.FiniteCatalogue.genericC0OneGenerated_C_image
 #print axioms BigHrushovski.FiniteCatalogue.genericC0OneGenerated_J_image
 #print axioms BigHrushovski.FiniteCatalogue.genericC0OneGenerated_restrict_J
+#print axioms BigHrushovski.FiniteUnaryCoordinates.restrictValue_restrict
+#print axioms BigHrushovski.FiniteUnaryCoordinates.backAdjacency_closed
+#print axioms BigHrushovski.FiniteUnaryCoordinates.restrictBackAdjacencyValue_restrict
