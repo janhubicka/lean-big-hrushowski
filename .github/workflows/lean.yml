@@ -45,6 +45,14 @@ jobs:
             exit 1
           fi
           tail -1 build.log
+      - name: Track F finite orientation kernel audit
+        run: |
+          set -euo pipefail
+          lake build BigHrushovski.OrientationRelativeFinite
+          lake env lean CheckOrientationAxioms.lean > track-f-axioms.log 2>&1 || { tail -100 track-f-axioms.log; exit 1; }
+          python3 scripts/check_axioms.py track-f-axioms.log CheckOrientationAxioms.lean
+      - name: Track F independent finite regressions
+        run: python3 scripts/check_track_f_finite.py
       - name: Check theorem axioms
         run: |
           set -euo pipefail
