@@ -50,7 +50,7 @@ def underlying : GraphOn V where
 
 theorem successorClosed_empty : O.IsSuccessorClosed ∅ := by
   intro x hx
-  exact (Finset.not_mem_empty x hx).elim
+  simp at hx
 
 theorem successorClosed_union {s t : Finset V}
     (hs : O.IsSuccessorClosed s)
@@ -76,7 +76,7 @@ theorem singleton_successorClosed_of_sink {a : V}
   have hxa : x = a := Finset.mem_singleton.mp hx
   subst x
   rw [ha] at hy
-  exact (Finset.not_mem_empty y hy).elim
+  simp at hy
 
 theorem pair_successorClosed_of_sinks {a b : V}
     (ha : O.IsSink a) (hb : O.IsSink b) :
@@ -85,11 +85,11 @@ theorem pair_successorClosed_of_sinks {a b : V}
   rcases Finset.mem_insert.mp hx with hxa | hxb
   · subst x
     rw [ha] at hy
-    exact (Finset.not_mem_empty y hy).elim
+    simp at hy
   · have hxb' : x = b := Finset.mem_singleton.mp hxb
     subst x
     rw [hb] at hy
-    exact (Finset.not_mem_empty y hy).elim
+    simp at hy
 
 /-- Distinct sinks cannot be joined by an oriented edge. -/
 theorem sinks_nonadjacent {a b : V}
@@ -98,9 +98,9 @@ theorem sinks_nonadjacent {a b : V}
   intro h
   rcases h with h | h
   · rw [ha] at h
-    exact Finset.not_mem_empty b h
+    simp at h
   · rw [hb] at h
-    exact Finset.not_mem_empty a h
+    simp at h
 
 /-- Two distinct outgoing neighbours exhaust the permitted out-degree. -/
 theorem two_successors_outDegree {x a b : V}
