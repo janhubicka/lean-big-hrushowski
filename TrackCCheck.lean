@@ -2,3 +2,5 @@ import BigHrushovski.CFRealGenericCertificate
 
 #print axioms BigHrushovski.CFCoherentTower.hasFiniteRealDClosedResponses
 #print axioms BigHrushovski.CFCoherentTower.realCountableGraph_genericCertificate
+#print axioms BigHrushovski.CFCoherentTower.emptyStage_growth_of_zero
+#print axioms BigHrushovski.CFCoherentTower.realCountableGraph_genericCertificate_of_classFreeJoins
