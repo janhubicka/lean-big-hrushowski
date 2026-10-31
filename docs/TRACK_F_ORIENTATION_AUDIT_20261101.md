@@ -41,3 +41,11 @@ These are independent mathematical attack roles within one audit, not a panel of
 - NFSinkObstructionInfinite.lean: strong generic, sink graph Rado and absoluteness in strong copies, unavoidable nonedge two-colouring, trace count and four-colour obstruction.
 
 Acceptance gate: exact manuscript statement matched by fully quantified Lean theorem, passing CI and standard-axiom audit, no placeholders, explicit finite negative cases and an independent adversarial review. The existing C0 enumeration closure, successor closure, and strict successor-d-closure must remain distinct.
+
+## 1 November finite extension
+
+New module `OrientationRelativeStrong.lean` proves the concrete implication `IsSuccessorClosed s → GraphOn.IsStrong s t` for all finite `s⊆t`, by bounding new unoriented edges by the outgoing edges whose tail lies outside `s`. It also proves the exact numerical bound on newly occurring edges. The proof does **not** assume the target predimension is nonnegative and does **not** confuse weak strongness with strict `d`-closure. The new finite API also proves there is no edge between the exclusive parts of two successor-closed vertex sets. All these new Lean endpoints remain **CI pending** until the branch build and `CheckOrientationAxioms.lean` audit both succeed.
+
+An independent exhaustive checker tests 21,195 comparisons across 653 admissible orientations on at most four vertices. A regular tournament on five vertices (underlying K5) shows that the strongness conclusion fails if successor-closedness is omitted: the singleton `{0}` has predimension 2 and the whole K5 has predimension 0. These finite diagnostics are not an infinite Ramsey theorem.
+
+**Further adversarial checks:** the new edge-tail argument counts undirected edges once despite an orientation; it does not require an acyclic orientation; source and target can be empty; internal strongly connected components cause no problem because only edges crossing the closed base matter. The `N_0` recurrence, the `N_F` Rado sink graph, and all degree assertions remain open in Lean.
