@@ -114,6 +114,63 @@ theorem restrictBackAdjacencyValue
       (fun w : s => restrictValue C s w) u v).mpr
     exact ⟨(mem_restrictValue_iff C s u v).mpr hC, hAdj⟩
 
+
+/-- The finite restriction operation is coherent under successive
+restrictions to closed subdomains. This is the precise statement
+behind "restrictions of restrictions agree" in the coordinate host.
+The comparison is between literal subtype carriers; no choice of
+a global enumeration or of a new finite renumbering is hidden. -/
+theorem restrictValue_restrict
+    (C : U → Finset U) (s t : Finset U)
+    (hts : t ⊆ s) (ht : ClosedUnder C t)
+    (u : t) :
+    (restrictValue C t u).image
+      (fun v : t => (⟨v.val, hts v.property⟩ : s)) =
+      restrictValue C s (⟨u.val, hts u.property⟩ : s) := by
+  classical
+  ext z
+  constructor
+  · intro hz
+    obtain ⟨v, hv, hEq⟩ := Finset.mem_image.mp hz
+    have hvC : v.val ∈ C u.val :=
+      (mem_restrictValue_iff C t u v).mp hv
+    have hvz : v.val = z.val := congrArg Subtype.val hEq
+    apply (mem_restrictValue_iff C s
+      ⟨u.val, hts u.property⟩ z).mpr
+    simpa only [hvz] using hvC
+  · intro hz
+    have hzC : z.val ∈ C u.val :=
+      (mem_restrictValue_iff C s
+        ⟨u.val, hts u.property⟩ z).mp hz
+    have hzt : z.val ∈ t := ht u.val u.property hzC
+    refine Finset.mem_image.mpr
+      ⟨⟨z.val, hzt⟩,
+        (mem_restrictValue_iff C t u
+          ⟨z.val, hzt⟩).mpr hzC, ?_⟩
+    exact Subtype.ext rfl
+
+/-- A finite C-closed set is also closed under the complete J-values.
+This step must not silently replace equality of values with inclusion. -/
+theorem backAdjacency_closed
+    (G : GraphOn U) (C : U → Finset U)
+    (s : Finset U) (hs : ClosedUnder C s) :
+    ClosedUnder (G.backAdjacencyValue C) s := by
+  intro u hu v hv
+  exact hs u hu ((G.mem_backAdjacencyValue_iff C u v).mp hv).1
+
+/-- Coherent two-stage restriction of J follows from the same generic
+set-valued restriction lemma as C. No separate edge analysis is needed. -/
+theorem restrictBackAdjacencyValue_restrict
+    (G : GraphOn U) (C : U → Finset U)
+    (s t : Finset U) (hts : t ⊆ s)
+    (ht : ClosedUnder C t) (u : t) :
+    (restrictValue (G.backAdjacencyValue C) t u).image
+      (fun v : t => (⟨v.val, hts v.property⟩ : s)) =
+      restrictValue (G.backAdjacencyValue C) s
+        (⟨u.val, hts u.property⟩ : s) :=
+  restrictValue_restrict (G.backAdjacencyValue C) s t hts
+    (backAdjacency_closed G C t ht) u
+
 end FiniteUnaryCoordinates
 
 namespace FiniteCatalogue
