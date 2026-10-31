@@ -157,3 +157,33 @@ Internal adversarial checks:
 
 Status: new finite-subtype proof awaiting CI; the countable
 `M_F` identification remains unverified.
+
+
+## Nat-labelled finite source interval to actual birth-graph response
+
+The subsequent module `CFRealFiniteSubtypeResponse.lean` applies
+the already-validated `finiteRealDClosedInterval_globalResponse`
+to the literal finite carrier `{v : ℕ // v ∈ b}` of an arbitrary
+finite interval `a≤_d b` in a graph on ℕ. It uses a canonical
+equivalence between the old subtype of a and its filtered image
+inside b; the complete resulting induced map is transported back
+onto the **original labels** in b. The target remains the
+birth-labelled real-growth graph.
+
+Five adversarial roles:
+1. *Old-label referee*: the old embedding is fixed pointwise,
+   not merely up to isomorphism or a selected extension.
+2. *Nonedge referee*: the result is full graph inducedness in both
+   directions on every pair of b.
+3. *Strictness referee*: both source relative closure and target
+   global closure stay strict throughout the source reindexing.
+4. *Finite-class referee*: the only class hypothesis is the exact
+   finite growth inequality on the given b. The theorem asserts
+   no class membership of an unrelated infinite source graph.
+5. *Certification referee*: the new endpoint must compile and
+   pass `#print axioms` on its isolated CI; the target-to-Nat
+   equivalence, infinitude and final countable uniqueness are
+   still open.
+
+This extension is not yet kernel-certified. No manuscript green
+marker is promoted.
