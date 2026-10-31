@@ -1,4 +1,4 @@
-import BigHrushovski.OrientationRelativeStrong
+import BigHrushovski.OrientationReachability
 
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_empty
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_union
@@ -17,3 +17,25 @@ import BigHrushovski.OrientationRelativeStrong
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_strong
 
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_noCrossExclusive
+
+
+#print axioms BigHrushovski.FiniteOrientation.reaches_refl
+#print axioms BigHrushovski.FiniteOrientation.reaches_arrow
+#print axioms BigHrushovski.FiniteOrientation.reaches_trans
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_of_reaches
+#print axioms BigHrushovski.FiniteOrientation.stronglyConnected_refl
+#print axioms BigHrushovski.FiniteOrientation.stronglyConnected_symm
+#print axioms BigHrushovski.FiniteOrientation.stronglyConnected_trans
+#print axioms BigHrushovski.FiniteOrientation.mem_successorClosure_iff
+#print axioms BigHrushovski.FiniteOrientation.subset_successorClosure
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_mono
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_isClosed
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_minimal
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_eq_of_closed
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_idempotent
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_strong
+#print axioms BigHrushovski.FiniteOrientation.mem_component_iff
+#print axioms BigHrushovski.FiniteOrientation.self_mem_component
+#print axioms BigHrushovski.FiniteOrientation.component_eq_of_stronglyConnected
+#print axioms BigHrushovski.FiniteOrientation.stronglyConnected_iff_component_eq
+#print axioms BigHrushovski.FiniteOrientation.component_subset_successorClosure

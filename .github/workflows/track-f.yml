@@ -5,6 +5,7 @@ on:
     paths:
       - 'BigHrushovski/OrientationRelativeFinite.lean'
       - 'BigHrushovski/OrientationRelativeStrong.lean'
+      - 'BigHrushovski/OrientationReachability.lean'
       - 'CheckOrientationAxioms.lean'
       - 'scripts/check_track_f_finite.py'
       - '.github/workflows/track-f.yml'
@@ -12,6 +13,7 @@ on:
     paths:
       - 'BigHrushovski/OrientationRelativeFinite.lean'
       - 'BigHrushovski/OrientationRelativeStrong.lean'
+      - 'BigHrushovski/OrientationReachability.lean'
       - 'CheckOrientationAxioms.lean'
       - 'scripts/check_track_f_finite.py'
       - '.github/workflows/track-f.yml'
@@ -32,7 +34,7 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Compile the independent finite module
-        run: lake build BigHrushovski.OrientationRelativeStrong
+        run: lake build BigHrushovski.OrientationReachability
       - name: Kernel dependencies and placeholders
         run: |
           set -euo pipefail

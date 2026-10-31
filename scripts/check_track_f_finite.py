@@ -243,8 +243,60 @@ def audit_successor_closed_strong():
             "nonclosed_counterexample": "regular K5 tournament"}
 
 
+
+def audit_reachability_and_components():
+    """All finite successor closures and SCC partitions through four vertices."""
+    instances = closure_cases = minimal_cases = component_cases = 0
+    for n in range(5):
+        pairs = tuple(combinations(range(n), 2))
+        for choices in product((0, 1, 2), repeat=len(pairs)):
+            out = [0] * n
+            for (a, b), choice in zip(pairs, choices):
+                if choice == 1:
+                    out[a] |= 1 << b
+                elif choice == 2:
+                    out[b] |= 1 << a
+            if any(s.bit_count() > 2 for s in out):
+                continue
+            instances += 1
+            reach = [(1 << x) | out[x] for x in range(n)]
+            for k in range(n):
+                for x in range(n):
+                    if reach[x] >> k & 1:
+                        reach[x] |= reach[k]
+            def closure(s):
+                value = 0
+                for x in bits(s):
+                    value |= reach[x]
+                return value
+            for s in range(1 << n):
+                c = closure(s)
+                assert s & c == s
+                assert successor_closed(out, c)
+                assert closure(c) == c
+                for t in range(1 << n):
+                    if s & t == s and successor_closed(out, t):
+                        assert c & t == c
+                        minimal_cases += 1
+                closure_cases += 1
+            for x in range(n):
+                cx = sum(1 << y for y in range(n)
+                         if reach[x] >> y & 1 and reach[y] >> x & 1)
+                for y in range(n):
+                    cy = sum(1 << z for z in range(n)
+                             if reach[y] >> z & 1 and reach[z] >> y & 1)
+                    mutual = bool(reach[x] >> y & 1 and reach[y] >> x & 1)
+                    assert (cx == cy) == mutual
+                    component_cases += 1
+    return {"orientations": instances,
+            "closure_cases": closure_cases,
+            "closure_minimality_cases": minimal_cases,
+            "component_pair_cases": component_cases}
+
+
 if __name__ == "__main__":
     print(json.dumps({"status": "PASS", "scope": "finite diagnostics only",
                       "N0": audit_n0(), "NF": audit_nf(),
                       "successor_closed_strong": audit_successor_closed_strong(),
+                      "reachability": audit_reachability_and_components(),
                       "NF_star_extensions": audit_nf_star_extensions()}, indent=2))

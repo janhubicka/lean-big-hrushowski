@@ -49,3 +49,11 @@ New module `OrientationRelativeStrong.lean` proves the concrete implication `IsS
 An independent exhaustive checker tests 21,195 comparisons across 653 admissible orientations on at most four vertices. A regular tournament on five vertices (underlying K5) shows that the strongness conclusion fails if successor-closedness is omitted: the singleton `{0}` has predimension 2 and the whole K5 has predimension 0. These finite diagnostics are not an infinite Ramsey theorem.
 
 **Further adversarial checks:** the new edge-tail argument counts undirected edges once despite an orientation; it does not require an acyclic orientation; source and target can be empty; internal strongly connected components cause no problem because only edges crossing the closed base matter. The `N_0` recurrence, the `N_F` Rado sink graph, and all degree assertions remain open in Lean.
+
+## Finite directed reachability and SCC API (1 November 2026)
+
+New `OrientationReachability.lean` defines reflexive/transitive arrow reachability; mutual reachability; the **least** finite successor-closed hull of any vertex set; its monotonicity and idempotence; strongness of every generated hull by the preceding edge-tail lemma; and equality of SCC fibres exactly for mutually reachable vertices. No artificial acyclicity hypothesis is used. This is the structural beginning of the `N_0` exact-degree track, **not** a proof of the finite component-order count or the infinite Ramsey theorem.
+
+Independent exhaustive checks over every orientation of up to four vertices examined **10,167** generated successor closures, **21,411** minimality comparisons against closed supersets, and **10,192** vertex-pair SCC equality tests. The numerical diagnostic does not certify the Lean theorem. Lean kernel compilation/axioms are still subject to passing Actions on this branch.
+
+The SCC calculation is separate from `C0` enumeration blocks. It uses actual directed paths rather than simply naming a `C0` minimal increment a strongly connected component. That identification is a separate orientation-extension theorem.

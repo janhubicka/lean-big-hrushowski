@@ -48,7 +48,7 @@ jobs:
       - name: Track F finite orientation kernel audit
         run: |
           set -euo pipefail
-          lake build BigHrushovski.OrientationRelativeStrong
+          lake build BigHrushovski.OrientationReachability
           lake env lean CheckOrientationAxioms.lean > track-f-axioms.log 2>&1 || { tail -100 track-f-axioms.log; exit 1; }
           python3 scripts/check_axioms.py track-f-axioms.log CheckOrientationAxioms.lean
       - name: Track F independent finite regressions
