@@ -159,5 +159,18 @@ theorem commonPredecessor_unique
     hxaNe hxbNe hyaNe hybNe
     (Or.inl hxa) (Or.inl hxb) (Or.inl hya) (Or.inl hyb)
 
+
+/-- Two successor-closed vertex sets have no arrow, in either direction,
+between their exclusive parts.  This is the common finite
+free-amalgamation observation for the two orientation classes. -/
+theorem successorClosed_noCrossExclusive {s t : Finset V} {x y : V}
+    (hs : O.IsSuccessorClosed s) (ht : O.IsSuccessorClosed t)
+    (hxs : x ∈ s) (hxt : x ∉ t)
+    (hyt : y ∈ t) (hys : y ∉ s)
+    (hxy : O.Adjacent x y) : False := by
+  rcases hxy with hxy | hyx
+  · exact hys (hs x hxs hxy)
+  · exact hxt (ht y hyt hyx)
+
 end FiniteOrientation
 end BigHrushovski
