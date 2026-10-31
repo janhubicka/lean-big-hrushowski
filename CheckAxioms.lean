@@ -1244,3 +1244,6 @@ import BigHrushovski
 
 #print axioms BigHrushovski.TaggedAmalgam.taggedFunctionalAmalgam_frontloaded
 #print axioms BigHrushovski.TaggedAmalgam.exists_taggedFunctionalAmalgam_of_named_base
+
+#print axioms BigHrushovski.CFStageCatalogue.request_eq_of_support_size_adjacency
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_unique
