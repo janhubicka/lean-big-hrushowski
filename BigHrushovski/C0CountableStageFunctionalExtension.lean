@@ -80,7 +80,7 @@ theorem exists_strongGraphResponse_of_stageFunctionalExtension
     (hCover : ∀ b : Finset ℕ, ∃ n : ℕ, b ⊆ stage n)
     (hStages : HasCanonicalFiniteStages N C stage)
     (hFunctionalExt : HasCanonicalStageExtensionProperty N C stage)
-    {P B : Type*} [Fintype P] [Fintype B]
+    {P B : Type} [Fintype P] [Fintype B]
     [DecidableEq P] [DecidableEq B]
     (H : GraphOn B)
     (i : P → ℕ) (j : P → B)
