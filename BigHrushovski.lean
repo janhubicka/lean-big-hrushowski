@@ -427,3 +427,7 @@ import BigHrushovski.CFPartialBoundaryTransport
 import BigHrushovski.CFActualSubtypeBatchInduced
 
 import BigHrushovski.CFSelectedSubtypeOrder
+
+import BigHrushovski.C0TaggedFunctionalOneBlock
+
+import BigHrushovski.C0TaggedStageCuts

@@ -1227,3 +1227,11 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_induced
 
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_taggedLex_iff
+
+#print axioms BigHrushovski.TaggedAmalgam.taggedOneBlock_twoSidedFunctionalAmalgam
+#print axioms BigHrushovski.TaggedAmalgam.namedBase_strong_of_minimalPresentation
+
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_oldStage_left
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_oldStage_leftDomain
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_oldStage_right
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_rightStep
