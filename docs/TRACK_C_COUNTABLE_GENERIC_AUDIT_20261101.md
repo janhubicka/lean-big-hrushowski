@@ -17,7 +17,10 @@ validated facts about the **actual** birth-labelled countable graph:
    stage-local strict d-closed free-amalgamation property.
 2. For **every** finite subset S, a finite stage image contains S and is
    globally strictly d-closed in the entire countable graph.
-3. For every finite growth-class graph H and finite inclusion
+3. The empty initial stage is itself globally strictly d-closed,
+   so back-and-forth may begin at the empty partial embedding
+   (subject to the published singleton condition for infinitude).
+4. For every finite growth-class graph H and finite inclusion
    `a ≤_d b`, any prescribed **induced**, injective embedding of a into
    the countable graph with globally strictly d-closed image extends to
    an induced embedding of b whose image is also globally strictly
@@ -112,3 +115,16 @@ free-join premise at each constructed stage. The additional endpoints
 by deriving the first from F(0)=0 and the second from one universal
 finite-ambient amalgamation property. This revision remains pending the
 isolated Lean build and axiom audit; do not promote its status prematurely.
+
+## Second adversarial correction: the empty start
+
+An abstract strong-limit recognition criterion must be able to start
+its back-and-forth with the empty partial isomorphism. Finite d-closed
+coverage by itself does **not** imply that the empty set is globally
+d-closed. The initial three-field certificate therefore lacked an
+important fact. The revised certificate adds `empty_closed`, derived
+from the canonical first stage `U_0=∅` and the already verified
+global stage-closure theorem. This does not replace the independent
+one-vertex/infinitude obligation.
+
+Status: new fourth field and its proof are awaiting the exact CI build.
