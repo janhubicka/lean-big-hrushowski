@@ -429,11 +429,3 @@ import BigHrushovski.CFActualSubtypeBatchInduced
 import BigHrushovski.CFSelectedSubtypeOrder
 
 import BigHrushovski.C0CountableReductCriterion
-
-import BigHrushovski.C0CompleteUnaryCovers
-
-import BigHrushovski.C0CountableCanonicalStages
-
-import BigHrushovski.C0CountableFunctionalStrongImages
-
-import BigHrushovski.C0CountableStageFunctionalExtension
