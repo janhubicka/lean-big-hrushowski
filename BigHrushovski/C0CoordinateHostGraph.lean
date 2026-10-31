@@ -111,6 +111,25 @@ theorem induced_of_backAdjacencyValue
       H.adj_iff_backAdjacencyValue D hCoverH (f u) (f v)]
   exact or_congr (hMem u v) (hMem v u)
 
+
+/-- If two vertex sets are closed under complete unary values, there
+are no graph edges between their exclusive parts. In particular their
+induced graph union is the free amalgam over their intersection. -/
+theorem noCrossEdges_of_closed
+    (G : GraphOn U) (C : U → Finset U)
+    (hCover : ∀ u v, G.adj u v → v ∈ C u ∨ u ∈ C v)
+    (s t : Finset U)
+    (hs : ∀ u ∈ s, C u ⊆ s)
+    (ht : ∀ v ∈ t, C v ⊆ t)
+    {u v : U}
+    (hus : u ∈ s) (hut : u ∉ t)
+    (hvt : v ∈ t) (hvs : v ∉ s) :
+    ¬ G.adj u v := by
+  intro hadj
+  rcases hCover u v hadj with hCl | hCl
+  · exact hvs (hs u hus hCl)
+  · exact hut (ht v hvt hCl)
+
 end GraphOn
 
 namespace FiniteCatalogue
@@ -197,6 +216,22 @@ theorem genericC0CJEmbedding_iff_unaryEmbedding (f : ℕ → ℕ) :
     exact genericTwoSparseGraph.backAdjacencyValue_image
       genericTwoSparseGraph genericC0UnaryClosure
       genericC0UnaryClosure f hAdj hC u
+
+
+/-- The canonical C₀ unary presentation has no crossing edges
+between the exclusive parts of two finite unary-closed sets.
+This is the free-union observation used in the coordinate host. -/
+theorem genericC0UnaryClosed_noCross
+    (s t : Finset ℕ)
+    (hs : IsGenericC0UnaryClosed s)
+    (ht : IsGenericC0UnaryClosed t)
+    {u v : ℕ}
+    (hus : u ∈ s) (hut : u ∉ t)
+    (hvt : v ∈ t) (hvs : v ∉ s) :
+    ¬ genericTwoSparseGraph.adj u v :=
+  genericTwoSparseGraph.noCrossEdges_of_closed
+    genericC0UnaryClosure genericC0_edge_covered s t
+    hs ht hus hut hvt hvs
 
 end FiniteCatalogue
 end BigHrushovski
