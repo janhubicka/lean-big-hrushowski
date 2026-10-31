@@ -45,7 +45,9 @@ theorem request_eq_of_support_size_adjacency
       (r.code.1.val, requestAdjacencyCode G Allowed bound r)) =
     (s.support.sort (· ≤ ·),
       (s.code.1.val, requestAdjacencyCode G Allowed bound s))
-  rw [hSupport, hSize, hCode]
+  exact Prod.ext
+    (congrArg (fun P : Finset U => P.sort (· ≤ ·)) hSupport)
+    (Prod.ext hSize hCode)
 
 /-- The genuine partial-map target request is the unique target
 record with the prescribed literal named support, unchanged fresh
