@@ -1259,4 +1259,3 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.supportImage_partial_dClosed_of_induced
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTransportSubtype_of_induced_dClosed
 
-#print axioms BigHrushovski.FiniteCatalogue.fairFunctionalC0Request_after
