@@ -1,4 +1,4 @@
-import BigHrushovski.OrientationMinimalStep
+import BigHrushovski.OrientationComponentOrder
 
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_empty
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_union
@@ -45,3 +45,15 @@ import BigHrushovski.OrientationMinimalStep
 #print axioms BigHrushovski.FiniteOrientation.minimalSuccessorStep_reaches_new
 #print axioms BigHrushovski.FiniteOrientation.minimalSuccessorStep_new_stronglyConnected
 #print axioms BigHrushovski.FiniteOrientation.minimalSuccessorStep_sdiff_eq_component
+
+
+#print axioms BigHrushovski.FiniteOrientation.strictSuccessor_irrefl
+#print axioms BigHrushovski.FiniteOrientation.strictSuccessor_trans
+#print axioms BigHrushovski.FiniteOrientation.strictSuccessor_asymm
+#print axioms BigHrushovski.FiniteOrientation.strictSuccessor_transport
+#print axioms BigHrushovski.FiniteOrientation.component_mem_components
+#print axioms BigHrushovski.FiniteOrientation.componentPrecedes_irrefl
+#print axioms BigHrushovski.FiniteOrientation.componentPrecedes_trans
+#print axioms BigHrushovski.FiniteOrientation.componentPrecedes_asymm
+#print axioms BigHrushovski.FiniteOrientation.componentPrecedes_iff_strictSuccessor
+#print axioms BigHrushovski.FiniteOrientation.reaches_component_eq_or_precedes

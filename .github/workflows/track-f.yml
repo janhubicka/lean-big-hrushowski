@@ -7,6 +7,8 @@ on:
       - 'BigHrushovski/OrientationRelativeStrong.lean'
       - 'BigHrushovski/OrientationReachability.lean'
       - 'BigHrushovski/OrientationMinimalStep.lean'
+      - 'BigHrushovski/OrientationComponentOrder.lean'
+      - 'scripts/check_track_f_component_order.py'
       - 'CheckOrientationAxioms.lean'
       - 'scripts/check_track_f_finite.py'
       - '.github/workflows/track-f.yml'
@@ -16,6 +18,8 @@ on:
       - 'BigHrushovski/OrientationRelativeStrong.lean'
       - 'BigHrushovski/OrientationReachability.lean'
       - 'BigHrushovski/OrientationMinimalStep.lean'
+      - 'BigHrushovski/OrientationComponentOrder.lean'
+      - 'scripts/check_track_f_component_order.py'
       - 'CheckOrientationAxioms.lean'
       - 'scripts/check_track_f_finite.py'
       - '.github/workflows/track-f.yml'
@@ -36,7 +40,7 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Compile the independent finite module
-        run: lake build BigHrushovski.OrientationMinimalStep
+        run: lake build BigHrushovski.OrientationComponentOrder
       - name: Kernel dependencies and placeholders
         run: |
           set -euo pipefail
@@ -44,4 +48,6 @@ jobs:
           python3 scripts/check_axioms.py track-f-axioms.log CheckOrientationAxioms.lean
           python3 scripts/check_no_placeholders.py
       - name: Adversarial finite checks
-        run: python3 scripts/check_track_f_finite.py
+        run: |
+          python3 scripts/check_track_f_finite.py
+          python3 scripts/check_track_f_component_order.py

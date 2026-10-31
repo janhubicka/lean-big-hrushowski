@@ -63,3 +63,28 @@ The SCC calculation is separate from `C0` enumeration blocks. It uses actual dir
 New `OrientationMinimalStep.lean` states the genuine minimal proper successor-closed extension predicate. Using the least successor closure of a new vertex, it proves every fresh vertex reaches every other fresh vertex; hence `t \ s = component x` for **each** fresh generator `x`. This isolates the SCC decomposition fact in the manuscript's `N_0` proof without importing an unproved order-count or infinite genericity result.
 
 The independent exhaustive checker found **3,761** minimal successor-closed steps across all **653** orientations up to four vertices and checked **4,203** generator-to-component identifications. Two isolated sinks show why *minimality* is necessary. Passing finite tests are not Lean certification; all new theorems remain pending branch CI.
+
+## Component dependency partial order (1 November 2026)
+
+`OrientationComponentOrder.lean` now isolates the **strict** relation
+`ComponentPrecedes B C`: a proper directed path from component `C`
+to component `B`. It proves irreflexivity, transitivity, asymmetry and
+independence of the representatives in each SCC. A directed path
+either stays inside one SCC or gives the strict comparison of two
+distinct components. These facts are purely finite and separate the
+intrinsic dependency relation from an arbitrary chronological order.
+
+The independent Python regression enumerates **30,887**
+2-orientations on up to five vertices, checks the component relation
+and compares the number of its linear extensions computed by
+permutations with an independent recurrence over downsets.
+The result is a finite diagnostic, not a proof of the manuscript's
+`N_0` degree-one Ramsey theorem.
+
+**Referee counterchecks:** directed cycles must be *collapsed*
+into a single SCC before forming the component order; otherwise
+the proposed order is cyclic. A nonreachable pair of components
+must remain incomparable; a time order of a chosen enumeration is
+not a graph invariant. The zero-vertex orientation has one empty
+linear extension. The definitions state these distinctions explicitly.
+The Lean results remain CI-pending until the exact branch build passes.
