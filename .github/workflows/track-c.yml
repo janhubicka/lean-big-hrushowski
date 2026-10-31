@@ -1,9 +1,6 @@
 name: Track C - C_F generic certificate
 
 on:
-  push:
-    branches:
-      - "formalization/track-c-*"
   pull_request:
     paths:
       - "BigHrushovski/CFRealGenericCertificate.lean"
