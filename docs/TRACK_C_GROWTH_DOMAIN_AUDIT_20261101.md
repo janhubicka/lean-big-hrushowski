@@ -38,3 +38,23 @@ requirements are separate.
 
 Status: implementation created, CI pending. This is internal
 role-separated checking, not externally recruited referees.
+
+## Complete published finite-response specialization
+
+`CFPublishedFiniteGenericity.lean` now states the prescribed-base
+finite extension theorem with **F : PublishedGrowth** directly.
+The source finite graph is tested against
+`publishedCardinalGrowth F`, not against an unannounced real
+extension; the two cardinal predicates coincide by the exact
+`publishedCardinalGrowth_eq` theorem.
+
+The full target result includes injection, exact pointwise fixing
+of the old source, preservation and reflection of adjacency (hence
+nonedges), and global strict d-closedness of the resulting image.
+It is a specialization of the existing kernel-checked real-response
+theorem; the new specialization itself remains pending CI.
+
+Further audit: this theorem quantifies over finite linearly ordered
+source vertex types, exactly as the existing finite response theorem
+does. It does not assert a countable Fraisse-limit isomorphism,
+finite unique level lifting or a non-precompact Ramsey result.
