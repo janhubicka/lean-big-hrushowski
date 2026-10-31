@@ -1,4 +1,4 @@
-import BigHrushovski.RamseyTransfer
+import BigHrushovski.CFLevelRamseyTransfer
 
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_forward
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_iff
@@ -8,3 +8,5 @@ import BigHrushovski.RamseyTransfer
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_of_coordinateHost
 #print axioms BigHrushovski.RamseyTransfer.singleton_degree_one
 #print axioms BigHrushovski.RamseyTransfer.two_unseparated_lifts_not_degree_one
+
+#print axioms BigHrushovski.RamseyTransfer.finiteRamsey_of_levelCodes
