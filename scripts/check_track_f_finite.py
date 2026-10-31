@@ -150,6 +150,66 @@ def audit_nf():
     return {"higher_root_gadgets": gadgets, "growth_samples": 20000}
 
 
+def audit_nf_star_extensions():
+    """Exhaust 2-oriented C_F sources through four vertices, and all subsets of sinks."""
+    old_count = 0
+    orientation_count = 0
+    extension_count = 0
+    subset_count = 0
+    for n in range(5):
+        pairs = tuple(combinations(range(n), 2))
+        for graph_mask in range(1 << len(pairs)):
+            edges = tuple(pair for i, pair in enumerate(pairs) if graph_mask >> i & 1)
+            old = [0] * n
+            for a, b in edges:
+                old[a] |= 1 << b
+                old[b] |= 1 << a
+            old_delta = delta_from_adjacency(old)
+            if any(d < threshold(mask.bit_count()) for mask, d in enumerate(old_delta)):
+                continue
+            old_count += 1
+            for directions in product((0, 1), repeat=len(edges)):
+                outgoing = [0] * n
+                for (a, b), direction in zip(edges, directions):
+                    outgoing[a if direction else b] |= 1 << (b if direction else a)
+                if any(s.bit_count() > 2 for s in outgoing):
+                    continue
+                orientation_count += 1
+                sinks = sum(1 << i for i, s in enumerate(outgoing) if not s)
+                chosen = sinks
+                while True:
+                    picked = bits(chosen)
+                    z = n
+                    star = old + [0] * (1 + len(picked))
+                    for new_vertex, a in enumerate(picked, n + 1):
+                        star[new_vertex] |= (1 << z) | (1 << a)
+                        star[z] |= 1 << new_vertex
+                        star[a] |= 1 << new_vertex
+                    ds = delta_from_adjacency(star)
+                    assert all(d >= threshold(mask.bit_count()) for mask, d in enumerate(ds))
+                    full_old = (1 << n) - 1
+                    for new_mask in range(1, 1 << (len(star) - n)):
+                        assert ds[full_old | (new_mask << n)] > old_delta[full_old]
+                    extension_count += 1
+                    subset_count += len(ds)
+                    if chosen == 0:
+                        break
+                    chosen = (chosen - 1) & sinks
+    return dict(old_graphs=old_count, old_orientations=orientation_count,
+                strict_star_extensions=extension_count, induced_subsets=subset_count)
+
+
+def delta_from_adjacency(adj):
+    result = [0] * (1 << len(adj))
+    for mask in range(1, len(result)):
+        bit = mask & -mask
+        v = bit.bit_length() - 1
+        prev = mask ^ bit
+        result[mask] = result[prev] + 2 - (adj[v] & prev).bit_count()
+    return result
+
+
 if __name__ == "__main__":
     print(json.dumps({"status": "PASS", "scope": "finite diagnostics only",
-                      "N0": audit_n0(), "NF": audit_nf()}, indent=2))
+                      "N0": audit_n0(), "NF": audit_nf(),
+                      "NF_star_extensions": audit_nf_star_extensions()}, indent=2))
