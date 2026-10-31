@@ -1,4 +1,5 @@
 import BigHrushovski.HrushovskiEllentuckSupport
+import BigHrushovski.HrushovskiEllentuckSplicing
 
 /-!
 Independent Track E audit entrypoint. The exact finite-support lemmas below
@@ -14,3 +15,8 @@ do not assume the existence of a unique C_F level lift.
 #print axioms BigHrushovski.Ellentuck.supportDomain_subset_iff
 #print axioms BigHrushovski.Ellentuck.supportDomain_injective
 #print axioms BigHrushovski.Ellentuck.supportDomain_closedUnder
+
+#print axioms BigHrushovski.Ellentuck.splicedCore_closed
+#print axioms BigHrushovski.Ellentuck.subset_splicedCore_of_closed
+#print axioms BigHrushovski.Ellentuck.prefix_subset_splicedCore
+#print axioms BigHrushovski.Ellentuck.closed_subset_splicedCore_subset_X
