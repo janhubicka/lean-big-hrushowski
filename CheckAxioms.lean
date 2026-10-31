@@ -1258,3 +1258,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedSubtype_univ_image_val
 #print axioms BigHrushovski.CFStageCatalogue.supportImage_partial_dClosed_of_induced
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTransportSubtype_of_induced_dClosed
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_allBValues
+#print axioms BigHrushovski.CFCoherentTower.selectedGrowthBatchMapSubtype_oneLevel
+#print axioms BigHrushovski.CFStageCatalogue.request_eq_of_support_size_adjacency
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_unique
