@@ -1,6 +1,13 @@
 name: Lean Track D Ramsey Transfer
 
 on:
+  push:
+    paths:
+      - "BigHrushovski/RamseyTransfer.lean"
+      - "BigHrushovski/CFLevelRamseyTransfer.lean"
+      - "BigHrushovski/C0CoordinateHostGraph.lean"
+      - "TrackDCheckAxioms.lean"
+      - ".github/workflows/track-d-ramsey.yml"
   pull_request:
     paths:
       - "BigHrushovski/RamseyTransfer.lean"
