@@ -1232,3 +1232,13 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.globallyStrong_of_closed_stages
 #print axioms BigHrushovski.FiniteC0.finiteStrongCover_of_unaryClosedCovers
 #print axioms BigHrushovski.FiniteC0.graphReduct_iso_generic_of_unaryPresentation
+
+#print axioms BigHrushovski.TaggedAmalgam.dependencyAncestor_trans
+#print axioms BigHrushovski.FiniteC0.canonicalValue_mem_self
+#print axioms BigHrushovski.FiniteC0.canonicalValue_subset_of_mem
+#print axioms BigHrushovski.FiniteC0.canonicalValue_isComplete
+#print axioms BigHrushovski.FiniteC0.mem_completeUnaryGenerated
+#print axioms BigHrushovski.FiniteC0.completeUnaryGenerated_extensive
+#print axioms BigHrushovski.FiniteC0.completeUnaryGenerated_closed
+#print axioms BigHrushovski.FiniteC0.finiteUnaryClosedCovers
+#print axioms BigHrushovski.FiniteC0.graphReduct_iso_generic_of_completeUnary
