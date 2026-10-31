@@ -440,3 +440,5 @@ import BigHrushovski.CFPartialSupportLex
 import BigHrushovski.CFSelectedSubtypeBValues
 import BigHrushovski.CFActualSubtypeRequestOrder
 import BigHrushovski.CFActualSubtypeStageOrder
+
+import BigHrushovski.CFPartialOneLevelFunctional
