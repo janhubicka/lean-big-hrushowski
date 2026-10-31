@@ -55,7 +55,10 @@ theorem extendPublishedGrowth_monotone (F : PublishedGrowth)
   intro x y hxy
   have hmax : max x 0 ≤ max y 0 :=
     max_le_max hxy (le_refl (0 : ℝ))
-  exact hMono hmax
+  have hxy' :
+      (⟨max x 0, le_max_right x 0⟩ : NonnegativeReal) ≤
+        (⟨max y 0, le_max_right y 0⟩ : NonnegativeReal) := hmax
+  exact hMono hxy'
 
 /-- Unboundedness of the published growth function supplies the
 real-domain unboundedness used by the exact inverse K. -/
