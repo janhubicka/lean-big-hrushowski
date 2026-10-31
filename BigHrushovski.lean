@@ -427,3 +427,8 @@ import BigHrushovski.CFPartialBoundaryTransport
 import BigHrushovski.CFActualSubtypeBatchInduced
 
 import BigHrushovski.CFSelectedSubtypeOrder
+
+import BigHrushovski.CFPartialSupportLex
+import BigHrushovski.CFSelectedSubtypeBValues
+import BigHrushovski.CFActualSubtypeRequestOrder
+import BigHrushovski.CFActualSubtypeStageOrder
