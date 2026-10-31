@@ -1,6 +1,6 @@
 # Track D: Ramsey-transfer validation (1 November 2026)
 
-**Pinned inputs.** Lean main `1f5fcd06fe6fcdbfdfeab997125b31609df98b38`; paper main `264bc23505f2c6c9fda83b544edf55badcd120b2` (v52). This branch has its own `BigHrushovski/RamseyTransfer.lean`, `TrackDCheckAxioms.lean`, and dedicated workflow. It does not edit the shared umbrella, global axiom list, or manuscript markers.
+**Pinned inputs.** Lean main `1f5fcd06fe6fcdbfdfeab997125b31609df98b38`; paper main `264bc23505f2c6c9fda83b544edf55badcd120b2` (v52). This branch has its own `BigHrushovski/RamseyTransfer.lean`, `BigHrushovski/CFLevelRamseyTransfer.lean`, `TrackDCheckAxioms.lean`, and dedicated workflow. It does not edit the shared umbrella, global axiom list, or manuscript markers.
 
 ## Precise certification boundary
 
@@ -10,9 +10,9 @@ The embedding version of `DegreeAtMost E S action d` means: for each finite numb
 * `exactDegree_iff`: the least bounds coincide, so the proof does not transfer only the upper bound and silently assume unavoidability.
 * `levelDegree_iff` / `exactLevelDegree_iff`: specialize to increasing tuples `Fin m ↪o L` and increasing self-maps `L ↪o L`. The level-lift equivalences and compatibility are explicit hypotheses, **not conclusions**.
 * `degreeAtMost_of_coordinateHost`: for the C0 coordinate-host argument, an encoding, a return map, and a compatible construction of actual self-embeddings suffice. This requires no false claim that the host is globally order-isomorphic to C0.
-* `singleton_degree_one` / `two_unseparated_lifts_not_degree_one`: formal negative control. One coordinate type has degree one; two embeddings lying above it, with no self-map that can separate their colours, do not. Hence a surjective level code alone is insufficient.
+* `finiteRamsey_of_levelCodes`: an actual finite combinatorial arrow on level tuples gives the corresponding finite arrow for the concrete structures when the host embeddings have unique codes and composition preserves them. The represented A-within-B coordinate tuples need only be mapped into all a-subsets of b; surjectivity there is unnecessary.\n* `singleton_degree_one` / `two_unseparated_lifts_not_degree_one`: formal negative control. One coordinate type has degree one; two embeddings lying above it, with no self-map that can separate their colours, do not. Hence a surjective level code alone is insufficient.
 
-The workflow builds the otherwise unimported Track D file, checks eight exact `#print axioms` endpoints against the whitelist of ordinary logical axioms, and runs the repository's placeholder scanner. The standard project build does not imply that a new file, absent from the umbrella, was checked.
+The workflow builds the otherwise unimported Track D file, checks nine exact `#print axioms` endpoints against the whitelist of ordinary logical axioms, and runs the repository's placeholder scanner. The standard project build does not imply that a new file, absent from the umbrella, was checked.
 
 ## Manuscript-to-formalization ledger
 
@@ -22,7 +22,7 @@ The workflow builds the otherwise unimported Track D file, checks eight exact `#
 | `thm:big`, §4 | Degree-one portion above; independently show recurrence inside *every* unexpanded functional self-copy before claiming equality with the number of realized induced orders. These orders need not have the expansion property. | Open |
 | `thm:CF-D-BRD1`, §4 | Obtain the bijection `Emb(A, Mhat_F) ≃ (Fin m ↪o ℕ)` from existence **and uniqueness** of the prescribed level lift, including genuinely partial old sources. Show each increasing map of ω lifts and commutes with finite maps. Apply the ordinary infinite Ramsey theorem. | Exact abstract transfer isolated; blocked by Track B |
 | `thm:UF-rational-reduction` (ii),(iii), §5 | Establish `Emb(A,U_F) ≃ (Fin m ↪o ℚ)` and the full self-embedding correspondence, including finite substructure coverage, compatibility, and monoid multiplication. Apply the transfer lemma; import/verify Devlin's theorem to obtain D_m. Level-order density and end-freeness are separate. | Conditional abstract exact-degree transfer; concrete equivalences/open |
-| `thm:CF-D-Ramsey`, §10 | Use the **finite** Ramsey theorem on level subsets, closure under finite unions of represented substructures, and the finite unique lifts. This is not an automatic consequence of the infinite transfer lemma. | Open |
+| `thm:CF-D-Ramsey`, §10 | Use the **finite** Ramsey theorem on level subsets, closure under finite unions of represented substructures, and the finite unique lifts. The combinatorial transfer itself is now isolated in `finiteRamsey_of_levelCodes`, but closure and unique lifts are still needed. | Conditional finite transfer isolated; concrete instance/open |
 | `cor:UF-big-ramsey-structure`, §5 | Beyond exact degrees, prove that all Devlin types are realized on *every* rational copy and one expansion-preserving self-map occurs inside any copy (recurrence). The finite and ω-recursive Devlin-pattern extension construction remains a separate obligation. | Open |
 | Three concrete Ellentuck spaces, §6 | The abstract Ellentuck theorem does not discharge the concrete A.1–A.4 approximation and topological closedness assumptions. Owned by Track E. | Not certified in Track D |
 
@@ -40,11 +40,11 @@ The full tuple equivalence is **not** a conclusion of bijectivity of the level m
 
 **Rational-level referee.** Finite lift compatibility, existence/uniqueness of the infinite lift, and closure under composition are needed before speaking of a monoid isomorphism. The equality with tangent numbers additionally needs the classical Devlin result and the lower-bound unavoidability.
 
-**Formalization referee.** The dedicated source is intentionally unimported by the shared umbrella pending integration. Only a successful Track D workflow run certifies the eight declarations here. A green marker needs separate source-to-manuscript comparison and an integration audit.
+**Formalization referee.** The dedicated source is intentionally unimported by the shared umbrella pending integration. Only a successful Track D workflow run certifies the nine declarations here. A green marker needs separate source-to-manuscript comparison and an integration audit.
 
 ## Next obligations within Track D
 
-1. Encode the finite-level Ramsey transfer independently (using the finite Ramsey theorem as a named premise), without using C_F closure axioms.
+1. Establish the concrete finite Ramsey instance by giving canonical A/B copies in a finite closed host, the level-code bijections, and their compatibility; the finite transfer lemma is now isolated.
 2. Formalize the concrete coordinate model for one-generated C0 closures, including complete J and C values and reflection of nonedges.
 3. After Track B's actual partial-source lift is certified, instantiate the ω-level transfer; after countable rational finite lifting is certified, instantiate the exact Devlin reduction.
 4. Add the concrete instances to the global axiom ledger **only in an integration PR**; do not turn paper markers green for these abstract statements alone.
