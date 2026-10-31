@@ -29,6 +29,38 @@ variable [Fintype P] [Fintype L] [Fintype R]
 variable [DecidableEq P] [DecidableEq L] [DecidableEq R]
 variable {n m : ℕ}
 
+/-- Every named unary-closed base in a genuine finite minimal-strong
+component presentation is strong. This discharges the base-strongness
+hypothesis of the graph amalgamation theorem from the *source* data,
+rather than assuming that the desired amalgam is already strong. -/
+theorem namedBase_strong_of_minimalPresentation
+    (G : GraphOn (Sum P L))
+    (κL : Sum P L → Fin n)
+    (F : P → Finset P)
+    (hStages : ∀ k : ℕ, k < n →
+      FiniteC0.oldStage κL k =
+        FiniteC0.oldStage κL (k + 1) ∨
+      G.toPredimension.IsMinimalStrongStep
+        (FiniteC0.oldStage κL k)
+        (FiniteC0.oldStage κL (k + 1)))
+    (hG : ∀ p : P,
+      FiniteC0.canonicalValue G κL (.inl p) =
+        (F p).image (Sum.inl : P → Sum P L)) :
+    G.toPredimension.IsStrong leftBase
+      (Finset.univ : Finset (Sum P L)) := by
+  have hStrongSteps : ∀ k : ℕ, k < n →
+      G.toPredimension.IsStrong
+        (FiniteC0.oldStage κL k)
+        (FiniteC0.oldStage κL (k + 1)) := by
+    intro k hk
+    rcases hStages k hk with hEq | hMinimal
+    · rw [hEq]
+      exact G.toPredimension.strong_refl _
+    · exact hMinimal.1
+  have hClosed := namedBase_left_closed G κL F hG
+  exact FiniteC0.canonicalValue_closed_strong
+    G κL hStrongSteps leftBase hClosed
+
 /-- The exact labelled, two-sided functional one-block bridge.
 The right factor's fresh tail is one minimal strong increment.
 The shared base's *named* unary values are the only functional
@@ -42,8 +74,12 @@ theorem taggedOneBlock_twoSidedFunctionalAmalgam
       (Finset.univ : Finset (Sum P L)))
     (hSparseH : H.IsTwoSparse
       (Finset.univ : Finset (Sum P R)))
-    (hBaseStrong : G.toPredimension.IsStrong leftBase
-      (Finset.univ : Finset (Sum P L)))
+    (hLeftStages : ∀ k : ℕ, k < n →
+      FiniteC0.oldStage κL k =
+        FiniteC0.oldStage κL (k + 1) ∨
+      G.toPredimension.IsMinimalStrongStep
+        (FiniteC0.oldStage κL k)
+        (FiniteC0.oldStage κL (k + 1)))
     (hMinimalH : H.toPredimension.IsMinimalStrongStep rightBase
       (Finset.univ : Finset (Sum P R)))
     (hG : ∀ p : P,
@@ -72,6 +108,8 @@ theorem taggedOneBlock_twoSidedFunctionalAmalgam
         (joinedIndex κL κR) (rightTag u) =
       (FiniteC0.canonicalValue H κR u).image
         (rightTag : Sum P R → Carrier P L R)) := by
+  have hBaseStrong :=
+    namedBase_strong_of_minimalPresentation G κL F hLeftStages hG
   obtain ⟨hSparse, hMinimal, hLeft, hRight⟩ :=
     tagged_minimal_strong_free_amalgam
       G H hAgree hSparseG hSparseH hBaseStrong hMinimalH
