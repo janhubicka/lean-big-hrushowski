@@ -18,3 +18,5 @@ import BigHrushovski.C0CoordinateHostGraph
 #print axioms BigHrushovski.FiniteCatalogue.genericC0_edge_covered
 #print axioms BigHrushovski.FiniteCatalogue.genericC0Graph_iff_backAdjacency
 #print axioms BigHrushovski.FiniteCatalogue.genericC0CJEmbedding_iff_unaryEmbedding
+#print axioms BigHrushovski.GraphOn.noCrossEdges_of_closed
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_noCross
