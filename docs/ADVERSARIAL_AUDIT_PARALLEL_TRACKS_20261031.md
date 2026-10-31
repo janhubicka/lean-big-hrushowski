@@ -100,7 +100,7 @@ all certified endpoints --> G: marker audit, manuscript edits, PDF
 - In `03b_enumeration_CF`, replace the several interleaved total/partial map citations in the finite-lift proof by a named **partial-source one-level extension lemma**. The induction becomes one paragraph for existence and one for uniqueness.
 - Keep the shared predimension/no-cross/minimal-block arguments in `02_preliminaries`. There is no benefit in re-stating them for each class.
 - Make the dependence of the finite Ramsey, Devlin and Ellentuck statements on **unique level lifting** explicit in the verification ledger; avoid duplicate historical comments in the displayed proof.
-- Preserve the distinction between weak strong closure, strict `d`-closure, enumeration closure and successor-`d)-closure. A single untyped "closure" API would conceal rather than simplify the hypotheses.
+- Preserve the distinction between weak strong closure, strict `d`-closure, enumeration closure and successor-`d`-closure. A single untyped "closure" API would conceal rather than simplify the hypotheses.
 
 ## Internal adversarial panel, October 31 pass
 
