@@ -1,5 +1,6 @@
 import BigHrushovski.CFLevelRamseyTransfer
 import BigHrushovski.C0CoordinateHostGraph
+import BigHrushovski.C0CoordinateClosedRestriction
 
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_forward
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_iff
@@ -20,3 +21,11 @@ import BigHrushovski.C0CoordinateHostGraph
 #print axioms BigHrushovski.FiniteCatalogue.genericC0CJEmbedding_iff_unaryEmbedding
 #print axioms BigHrushovski.GraphOn.noCrossEdges_of_closed
 #print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_noCross
+
+#print axioms BigHrushovski.FiniteUnaryCoordinates.restrictValue_image
+#print axioms BigHrushovski.FiniteUnaryCoordinates.restrictValue_nested
+#print axioms BigHrushovski.FiniteUnaryCoordinates.restrictBackAdjacencyValue
+#print axioms BigHrushovski.FiniteCatalogue.genericC0OneGenerated_isClosed
+#print axioms BigHrushovski.FiniteCatalogue.genericC0OneGenerated_C_image
+#print axioms BigHrushovski.FiniteCatalogue.genericC0OneGenerated_J_image
+#print axioms BigHrushovski.FiniteCatalogue.genericC0OneGenerated_restrict_J
