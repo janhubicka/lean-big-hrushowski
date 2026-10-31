@@ -1,0 +1,34 @@
+name: Track C - C_F generic certificate
+
+on:
+  push:
+    branches:
+      - "formalization/track-c-*"
+  pull_request:
+    paths:
+      - "BigHrushovski/CFRealGenericCertificate.lean"
+      - "TrackCCheck.lean"
+      - ".github/workflows/track-c.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  track-c:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build isolated Track C certificate
+        run: lake build BigHrushovski.CFRealGenericCertificate
+      - name: Audit Track C theorem axioms and placeholders
+        run: |
+          lake env lean TrackCCheck.lean > track-c-axioms.log
+          python3 scripts/check_axioms.py track-c-axioms.log TrackCCheck.lean
+          python3 scripts/check_no_placeholders.py
