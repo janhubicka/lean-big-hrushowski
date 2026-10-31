@@ -431,3 +431,5 @@ import BigHrushovski.CFSelectedSubtypeOrder
 import BigHrushovski.C0CountableReductCriterion
 
 import BigHrushovski.C0CompleteUnaryCovers
+
+import BigHrushovski.C0CountableCanonicalStages
