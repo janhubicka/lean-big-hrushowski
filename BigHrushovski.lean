@@ -435,3 +435,8 @@ import BigHrushovski.C0TaggedStageCuts
 import BigHrushovski.C0TaggedMinimalStages
 
 import BigHrushovski.C0TaggedFullFunctionalAmalgam
+
+import BigHrushovski.CFPartialSupportLex
+import BigHrushovski.CFSelectedSubtypeBValues
+import BigHrushovski.CFActualSubtypeRequestOrder
+import BigHrushovski.CFActualSubtypeStageOrder
