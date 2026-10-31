@@ -33,6 +33,44 @@ theorem supportDomain_mono {S T : Set Level} (hST : S ⊆ T) :
   intro x hx q hq
   exact hST (hx q hq)
 
+/-- Membership of a given vertex depends on finitely many level
+coordinates, namely the elements of its complete support. -/
+theorem supportDomain_local (S T : Set Level) (v : Vertex)
+    (hST : ∀ q ∈ support v, (q ∈ S ↔ q ∈ T)) :
+    v ∈ supportDomain support S ↔ v ∈ supportDomain support T := by
+  constructor
+  · intro hv q hq
+    exact (hST q hq).mp (hv q hq)
+  · intro hv q hq
+    exact (hST q hq).mpr (hv q hq)
+
+/-- A single missing closure-support level excludes the vertex. A
+vertex's own level being retained does not suffice. -/
+theorem supportDomain_excludes_missing
+    {S : Set Level} {v : Vertex} {q : Level}
+    (hq : q ∈ support v) (hnot : q ∉ S) :
+    v ∉ supportDomain support S := by
+  intro hv
+  exact hnot (hv q hq)
+
+/-- Every vertex in a saturated range already belongs to a finite-level
+subrange. This is the set-theoretic part of the displayed union
+M[S] = ⋃{M[T] : T ⊆ S finite} in the manuscript. -/
+theorem mem_supportDomain_iff_finite_witness
+    (S : Set Level) (v : Vertex) :
+    v ∈ supportDomain support S ↔
+      ∃ T : Finset Level, (↑T : Set Level) ⊆ S ∧
+        v ∈ supportDomain support (↑T : Set Level) := by
+  constructor
+  · intro hv
+    refine ⟨support v, ?_, ?_⟩
+    · intro q hq
+      exact hv q hq
+    · intro q hq
+      exact hq
+  · rintro ⟨T, hTS, hv⟩
+    exact supportDomain_mono support hTS hv
+
 /-- Exact preservation of intersections, unlike unions. -/
 theorem supportDomain_inter (S T : Set Level) :
     supportDomain support (S ∩ T) =
