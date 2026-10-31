@@ -37,9 +37,9 @@ theorem completeFunctionalImage_closed
   intro x hx y hy
   obtain ⟨u, _, hEq⟩ := Finset.mem_image.mp hx
   rw [← hEq, hValues u] at hy
+  obtain ⟨v, _, hvEq⟩ := Finset.mem_image.mp hy
   exact Finset.mem_image.mpr
-    (by obtain ⟨v, hv, hvEq⟩ := Finset.mem_image.mp hy
-        exact ⟨v, Finset.mem_univ _, hvEq⟩)
+    ⟨v, Finset.mem_univ _, hvEq⟩
 
 /-- The image of a finite strong graph set inside a finite canonical
 functional structure is globally strong in a countable functional
