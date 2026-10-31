@@ -15,3 +15,5 @@ import BigHrushovski.OrientationRelativeStrong
 #print axioms BigHrushovski.FiniteOrientation.new_edges_card_le_two
 #print axioms BigHrushovski.FiniteOrientation.predim_le_of_successorClosed
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_strong
+
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_noCrossExclusive
