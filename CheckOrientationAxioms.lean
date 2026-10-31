@@ -1,4 +1,4 @@
-import BigHrushovski.OrientationRelativeFinite
+import BigHrushovski.OrientationRelativeStrong
 
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_empty
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_union
@@ -8,3 +8,10 @@ import BigHrushovski.OrientationRelativeFinite
 #print axioms BigHrushovski.FiniteOrientation.sinks_nonadjacent
 #print axioms BigHrushovski.FiniteOrientation.two_successors_outDegree
 #print axioms BigHrushovski.FiniteOrientation.commonPredecessor_unique
+
+#print axioms BigHrushovski.FiniteOrientation.edge_eq_pair_of_adj
+#print axioms BigHrushovski.FiniteOrientation.new_edge_of_arrow
+#print axioms BigHrushovski.FiniteOrientation.new_edges_subset_outgoing
+#print axioms BigHrushovski.FiniteOrientation.new_edges_card_le_two
+#print axioms BigHrushovski.FiniteOrientation.predim_le_of_successorClosed
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_strong
