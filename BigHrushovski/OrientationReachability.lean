@@ -116,7 +116,7 @@ theorem successorClosure_eq_of_closed [Fintype V]
     {s : Finset V} (hs : O.IsSuccessorClosed s) :
     O.successorClosure s = s := by
   apply Finset.Subset.antisymm
-  · exact O.successorClosure_minimal (Subset.refl s) hs
+  · exact O.successorClosure_minimal (by intro x hx; exact hx) hs
   · exact O.subset_successorClosure s
 
 theorem successorClosure_idempotent [Fintype V]
