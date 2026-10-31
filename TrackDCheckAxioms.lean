@@ -1,4 +1,5 @@
 import BigHrushovski.CFLevelRamseyTransfer
+import BigHrushovski.C0CoordinateHostGraph
 
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_forward
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_iff
@@ -10,3 +11,10 @@ import BigHrushovski.CFLevelRamseyTransfer
 #print axioms BigHrushovski.RamseyTransfer.two_unseparated_lifts_not_degree_one
 
 #print axioms BigHrushovski.RamseyTransfer.finiteRamsey_of_levelCodes
+
+#print axioms BigHrushovski.GraphOn.adj_iff_backAdjacencyValue
+#print axioms BigHrushovski.GraphOn.backAdjacencyValue_image
+#print axioms BigHrushovski.GraphOn.induced_of_backAdjacencyValue
+#print axioms BigHrushovski.FiniteCatalogue.genericC0_edge_covered
+#print axioms BigHrushovski.FiniteCatalogue.genericC0Graph_iff_backAdjacency
+#print axioms BigHrushovski.FiniteCatalogue.genericC0CJEmbedding_iff_unaryEmbedding
