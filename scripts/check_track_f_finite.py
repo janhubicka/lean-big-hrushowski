@@ -209,7 +209,42 @@ def delta_from_adjacency(adj):
     return result
 
 
+def audit_successor_closed_strong():
+    """Independent exhaustive edge counting, including a nonclosed counterexample."""
+    checks = 0
+    for n in range(5):
+        for choices in product((0, 1, 2), repeat=n * (n - 1) // 2):
+            outgoing = [0] * n
+            for (a, b), choice in zip(combinations(range(n), 2), choices):
+                if choice == 1:
+                    outgoing[a] |= 1 << b
+                elif choice == 2:
+                    outgoing[b] |= 1 << a
+            if any(s.bit_count() > 2 for s in outgoing):
+                continue
+            for s in range(1 << n):
+                if not successor_closed(outgoing, s):
+                    continue
+                for t in range(1 << n):
+                    if s & t != s:
+                        continue
+                    assert delta(outgoing, s) <= delta(outgoing, t)
+                    checks += 1
+    # The hypothesis must not be deleted: a regular tournament on K5
+    # is a 2-orientation and {0} is not strong in the full graph.
+    tournament = tuple((1 << ((i + 1) % 5)) | (1 << ((i + 2) % 5))
+                       for i in range(5))
+    assert all(v.bit_count() == 2 for v in tournament)
+    assert all((tournament[a] >> b & 1) != (tournament[b] >> a & 1)
+               for a, b in combinations(range(5), 2))
+    assert not successor_closed(tournament, 1)
+    assert delta(tournament, 1) == 2 > delta(tournament, 31) == 0
+    return {"successor_closed_strong_checks": checks,
+            "nonclosed_counterexample": "regular K5 tournament"}
+
+
 if __name__ == "__main__":
     print(json.dumps({"status": "PASS", "scope": "finite diagnostics only",
                       "N0": audit_n0(), "NF": audit_nf(),
+                      "successor_closed_strong": audit_successor_closed_strong(),
                       "NF_star_extensions": audit_nf_star_extensions()}, indent=2))
