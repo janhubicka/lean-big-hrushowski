@@ -1,0 +1,10 @@
+import BigHrushovski.RamseyTransfer
+
+#print axioms BigHrushovski.RamseyTransfer.degreeAtMost_forward
+#print axioms BigHrushovski.RamseyTransfer.degreeAtMost_iff
+#print axioms BigHrushovski.RamseyTransfer.exactDegree_iff
+#print axioms BigHrushovski.RamseyTransfer.levelDegree_iff
+#print axioms BigHrushovski.RamseyTransfer.exactLevelDegree_iff
+#print axioms BigHrushovski.RamseyTransfer.degreeAtMost_of_coordinateHost
+#print axioms BigHrushovski.RamseyTransfer.singleton_degree_one
+#print axioms BigHrushovski.RamseyTransfer.two_unseparated_lifts_not_degree_one
