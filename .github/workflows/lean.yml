@@ -76,6 +76,8 @@ jobs:
         run: python3 scripts/check_c0_independent_swap.py
       - name: Verify left-order-fixed C0 two-sided functional amalgams
         run: python3 scripts/check_c0_explicit_amalgam.py
+      - name: Check complete C0 unary closure covers and counterexamples
+        run: python3 scripts/check_c0_complete_unary_covers.py
       - name: Check intrinsic C0 component partition from unary values
         run: python3 scripts/check_c0_intrinsic_components.py
       - name: Check canonical finite C0 hereditary minimal presentations
