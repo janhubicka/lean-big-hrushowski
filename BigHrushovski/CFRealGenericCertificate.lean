@@ -119,5 +119,49 @@ theorem realCountableGraph_genericCertificate
       (cardinalGrowthBound F hMono hUnbounded) n⟩
   · exact hasFiniteRealDClosedResponses F hZero hMono hUnbounded
 
+
+/-- The empty graph satisfies the growth inequality as soon as F(0)=0.
+There are no additional initial-stage membership hypotheses. -/
+theorem emptyStage_growth_of_zero
+    (F : ℝ → ℝ) (hZero : F 0 = 0) :
+    emptyStage.graph.IsGrowthSparse (cardinalGrowth F)
+      (Finset.univ : Finset emptyStage.carrier) := by
+  classical
+  intro s _
+  have hs : s = ∅ := by
+    ext x
+    exact Fin.elim0 x
+  subst s
+  simp [GraphOn.predim, GraphOn.edgesWithin,
+    GraphOn.IsEdge, cardinalGrowth, hZero]
+
+/-- A finite-ambient formulation of the published standing
+assumption that the restricted growth class is closed under
+free amalgamation over strictly d-closed substructures.
+It quantifies over arbitrary finite graphs, not only the
+stages already constructed. -/
+def HasFiniteClassDClosedFreeJoins (F : ℕ → ℝ) : Prop :=
+  ∀ (V : Type) [Fintype V] [DecidableEq V]
+    (H : GraphOn V), H.GrowthClosedUnderDClosedFreeJoins F
+
+/-- The canonical graph satisfies all three countable genericity
+criteria using one class-level free-amalgamation hypothesis, rather
+than a new assumption for each finite constructed stage. -/
+theorem realCountableGraph_genericCertificate_of_classFreeJoins
+    (F : ℝ → ℝ)
+    (hZero : F 0 = 0)
+    (hMono : Monotone F)
+    (hUnbounded : ∀ t : ℝ, ∃ x : ℝ, t < F x)
+    (hFree : HasFiniteClassDClosedFreeJoins (cardinalGrowth F)) :
+    RealGrowthGenericCertificate F hMono hUnbounded := by
+  apply realCountableGraph_genericCertificate F hZero hMono hUnbounded
+    (emptyStage_growth_of_zero F hZero)
+  intro n
+  exact hFree
+    (stage (cardinalGrowth F)
+      (cardinalGrowthBound F hMono hUnbounded) (n + 1)).carrier
+    (stage (cardinalGrowth F)
+      (cardinalGrowthBound F hMono hUnbounded) (n + 1)).graph
+
 end CFCoherentTower
 end BigHrushovski
