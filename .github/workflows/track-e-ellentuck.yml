@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'BigHrushovski/HrushovskiEllentuckSupport.lean'
+      - 'BigHrushovski/HrushovskiEllentuckSplicing.lean'
       - 'CheckTrackE.lean'
       - '.github/workflows/track-e-ellentuck.yml'
   pull_request:
@@ -35,7 +36,7 @@ jobs:
       - name: Get Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Compile Track E (independent of global umbrella)
-        run: lake build BigHrushovski.HrushovskiEllentuckSupport
+        run: lake build BigHrushovski.HrushovskiEllentuckSupport BigHrushovski.HrushovskiEllentuckSplicing
       - name: Verify theorem dependencies and reject placeholders
         run: |
           lake env lean CheckTrackE.lean > track-e-axioms.log
