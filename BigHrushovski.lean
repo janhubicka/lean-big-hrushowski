@@ -429,3 +429,5 @@ import BigHrushovski.CFActualSubtypeBatchInduced
 import BigHrushovski.CFSelectedSubtypeOrder
 
 import BigHrushovski.C0CountableReductCriterion
+
+import BigHrushovski.C0CompleteUnaryCovers
