@@ -1,0 +1,4 @@
+import BigHrushovski.CFRealGenericCertificate
+
+#print axioms BigHrushovski.CFCoherentTower.hasFiniteRealDClosedResponses
+#print axioms BigHrushovski.CFCoherentTower.realCountableGraph_genericCertificate
