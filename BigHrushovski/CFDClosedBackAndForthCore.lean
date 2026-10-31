@@ -30,7 +30,12 @@ theorem globallyStrong_of_globallyDClosed
     (ha : M.toPredimension.IsGloballyDClosed a) :
     M.toPredimension.IsGloballyStrong a := by
   intro b hab
-  exact M.toPredimension.strong_of_dClosed (ha.restrict hab)
+  refine ⟨hab, ?_⟩
+  intro c hac hcb
+  by_cases hca : c = a
+  · subst c
+    exact le_refl _
+  · exact le_of_lt (ha c hac hca)
 
 /-- Finite induced partial isomorphisms whose source and image
 are both globally strictly d-closed. Unlike the C_0 partial
