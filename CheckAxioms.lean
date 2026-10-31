@@ -1258,3 +1258,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedSubtype_univ_image_val
 #print axioms BigHrushovski.CFStageCatalogue.supportImage_partial_dClosed_of_induced
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTransportSubtype_of_induced_dClosed
+
+#print axioms BigHrushovski.CFCoherentTower.selectedRequests_support_subset_stageCut
+#print axioms BigHrushovski.CFCoherentTower.stageCut_succ_eq_selectedSourceImage
+#print axioms BigHrushovski.CFCoherentTower.selectedCut_growthTransport_of_induced_dClosed
