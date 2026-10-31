@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Tactic
+import Mathlib.Order.Hom.Basic
 
 /-!
 # Ramsey transfers for the Big Hrushovski manuscript
