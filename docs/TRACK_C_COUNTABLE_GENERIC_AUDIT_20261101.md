@@ -88,6 +88,14 @@ and `CFCountableDClosedChain.stageImage_global_dClosed`.
   apply; the source-growth premise is substantive.
 - A hypothetical bounded/nonmonotone F: cannot invoke the canonical
   numerical inverse. The real growth hypotheses are indispensable.
+- **Concrete missing-singleton control:** take F(x)=3 max(x,0). It is
+  monotone, unbounded and F(0)=0, yet any singleton has δ=2<F(1)=3.
+  Thus the permitted finite C_F age contains no singleton and the
+  canonical request tower need not acquire any vertices. This shows
+  that the paper's *separate* one-vertex membership assumption is
+  essential for deducing infinitude from the certificate; neither
+  the real-growth assumptions nor free-amalgamation closure alone
+  can replace it.
 
 Current branch status: **aggregate and class-level interface written, CI pending**.
 The manuscript's identification with M_F remains **PARTIAL** until
