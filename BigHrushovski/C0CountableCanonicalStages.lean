@@ -180,6 +180,31 @@ theorem completeUnary_of_canonicalFiniteStages
     rw [← hValues u] at hzIn
     exact hzIn
 
+/-- The exact finite minimal-component presentations themselves
+already force all finite induced subgraphs of the countable union
+to be 2-sparse. An ambient 2-sparsity premise would be redundant. -/
+theorem sparse_of_canonicalFiniteStages
+    (N : GraphOn ℕ) (C : ℕ → Finset ℕ)
+    (stage : ℕ → Finset ℕ)
+    (hCover : ∀ b : Finset ℕ, ∃ n : ℕ, b ⊆ stage n)
+    (hStage : HasCanonicalFiniteStages N C stage) :
+    ∀ s : Finset ℕ, 0 ≤ N.predim s := by
+  intro s
+  obtain ⟨n, hn⟩ := hCover s
+  have hEmptyClosed : N.IsClosedUnderValues C ∅ := by
+    intro u hu
+    exact (Finset.not_mem_empty u hu).elim
+  have hEmptyStrong : N.toPredimension.IsStrong ∅ (stage n) :=
+    localStrong_of_canonicalFiniteStages N C stage hStage
+      n ∅ (Finset.empty_subset _) hEmptyClosed
+  have hStrong : N.toPredimension.IsStrong ∅ s :=
+    N.toPredimension.strong_restrict hEmptyStrong
+      (Finset.empty_subset _) hn
+  have hDelta : N.predim ∅ ≤ N.predim s :=
+    hStrong.2 s (Finset.empty_subset _) (Finset.Subset.refl s)
+  rw [N.predim_empty] at hDelta
+  exact hDelta
+
 /-- Recognition of M₀ now requires only cofinality of
 *literal* finite canonical stages, finite graph sparsity and
 the genuinely labelled strong graph extension property. Finite
