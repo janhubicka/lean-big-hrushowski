@@ -6,3 +6,5 @@ import BigHrushovski.CFNonnegativeGrowthAdapter
 #print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_monotone
 #print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_unbounded
 #print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_zero
+#print axioms BigHrushovski.CFGrowthNumerics.publishedCardinalGrowth_eq
+#print axioms BigHrushovski.CFCoherentTower.finitePublishedDClosedInterval_globalResponse
