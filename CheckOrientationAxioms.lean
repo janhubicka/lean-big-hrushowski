@@ -1,4 +1,4 @@
-import BigHrushovski.OrientationReachability
+import BigHrushovski.OrientationMinimalStep
 
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_empty
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_union
@@ -39,3 +39,9 @@ import BigHrushovski.OrientationReachability
 #print axioms BigHrushovski.FiniteOrientation.component_eq_of_stronglyConnected
 #print axioms BigHrushovski.FiniteOrientation.stronglyConnected_iff_component_eq
 #print axioms BigHrushovski.FiniteOrientation.component_subset_successorClosure
+
+
+#print axioms BigHrushovski.FiniteOrientation.mem_successorClosure_singleton_iff
+#print axioms BigHrushovski.FiniteOrientation.minimalSuccessorStep_reaches_new
+#print axioms BigHrushovski.FiniteOrientation.minimalSuccessorStep_new_stronglyConnected
+#print axioms BigHrushovski.FiniteOrientation.minimalSuccessorStep_sdiff_eq_component

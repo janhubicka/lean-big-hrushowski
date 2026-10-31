@@ -294,9 +294,56 @@ def audit_reachability_and_components():
             "component_pair_cases": component_cases}
 
 
+
+def audit_minimal_successor_steps():
+    """Every minimal proper successor-closed increment is exactly one SCC."""
+    orientations = minimal_steps = generator_checks = 0
+    for n in range(5):
+        pairs = tuple(combinations(range(n), 2))
+        for choices in product((0, 1, 2), repeat=len(pairs)):
+            out = [0] * n
+            for (a, b), choice in zip(pairs, choices):
+                if choice == 1:
+                    out[a] |= 1 << b
+                elif choice == 2:
+                    out[b] |= 1 << a
+            if any(s.bit_count() > 2 for s in out):
+                continue
+            orientations += 1
+            reach = [(1 << v) | out[v] for v in range(n)]
+            for k in range(n):
+                for v in range(n):
+                    if reach[v] >> k & 1:
+                        reach[v] |= reach[k]
+            closed = [s for s in range(1 << n) if successor_closed(out, s)]
+            for s in closed:
+                for t in closed:
+                    if s == t or s & t != s:
+                        continue
+                    if any(s != u != t and s & u == s and u & t == u
+                           for u in closed):
+                        continue
+                    new = t ^ s
+                    minimal_steps += 1
+                    for x in bits(new):
+                        comp = sum(1 << y for y in range(n)
+                                   if reach[x] >> y & 1 and reach[y] >> x & 1)
+                        assert comp == new
+                        generator_checks += 1
+    # Minimality cannot be dropped: two isolated sinks can enter together,
+    # but are distinct strongly connected components.
+    assert successor_closed((0, 0), 0)
+    assert successor_closed((0, 0), 3)
+    assert successor_closed((0, 0), 1)
+    return {"orientations": orientations, "minimal_steps": minimal_steps,
+            "generator_checks": generator_checks,
+            "counterexample_without_minimality": "two isolated sinks"}
+
+
 if __name__ == "__main__":
     print(json.dumps({"status": "PASS", "scope": "finite diagnostics only",
                       "N0": audit_n0(), "NF": audit_nf(),
                       "successor_closed_strong": audit_successor_closed_strong(),
                       "reachability": audit_reachability_and_components(),
+                      "minimal_steps": audit_minimal_successor_steps(),
                       "NF_star_extensions": audit_nf_star_extensions()}, indent=2))

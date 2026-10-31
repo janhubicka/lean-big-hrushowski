@@ -57,3 +57,9 @@ New `OrientationReachability.lean` defines reflexive/transitive arrow reachabili
 Independent exhaustive checks over every orientation of up to four vertices examined **10,167** generated successor closures, **21,411** minimality comparisons against closed supersets, and **10,192** vertex-pair SCC equality tests. The numerical diagnostic does not certify the Lean theorem. Lean kernel compilation/axioms are still subject to passing Actions on this branch.
 
 The SCC calculation is separate from `C0` enumeration blocks. It uses actual directed paths rather than simply naming a `C0` minimal increment a strongly connected component. That identification is a separate orientation-extension theorem.
+
+## Minimal successor-closed increments (1 November, further validation)
+
+New `OrientationMinimalStep.lean` states the genuine minimal proper successor-closed extension predicate. Using the least successor closure of a new vertex, it proves every fresh vertex reaches every other fresh vertex; hence `t \ s = component x` for **each** fresh generator `x`. This isolates the SCC decomposition fact in the manuscript's `N_0` proof without importing an unproved order-count or infinite genericity result.
+
+The independent exhaustive checker found **3,761** minimal successor-closed steps across all **653** orientations up to four vertices and checked **4,203** generator-to-component identifications. Two isolated sinks show why *minimality* is necessary. Passing finite tests are not Lean certification; all new theorems remain pending branch CI.
