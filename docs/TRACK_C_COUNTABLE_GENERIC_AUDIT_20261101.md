@@ -32,13 +32,17 @@ and `CFCountableDClosedChain.stageImage_global_dClosed`.
 
 ### Exact remaining assumptions and obligations
 
-- **Free amalgamation**: currently the theorem asks for the instance
-  `∀ n, (stage (n+1)).graph.GrowthClosedUnderDClosedFreeJoins F_nat`.
-  The paper assumes this property on the entire finite C_F class.
-  The stage-local premise must be explicitly derived from the class-level
-  one; neither follows merely from analytic monotonicity/unboundedness.
-- **Initial graph**: the empty-stage growth premise is explicit. It is
-  elementary from F(0)=0, but is not yet eliminated by this theorem.
+- **Free amalgamation**: the aggregate theorem first states the exact
+  finite stage-local free-join hypothesis. The new endpoint
+  `realCountableGraph_genericCertificate_of_classFreeJoins`
+  derives those stage-local hypotheses from one universal
+  finite-ambient `HasFiniteClassDClosedFreeJoins` assumption.
+  This matches the *free-join closure component* of the paper's
+  class-level standing hypothesis, but the explicit equivalence
+  with the published formulation needs one more statement.
+  Neither condition follows from monotonicity or unboundedness alone.
+- **Initial graph**: `emptyStage_growth_of_zero` discharges
+  the initial-stage growth premise directly from F(0)=0.
 - **Real domain**: Lean uses `F : ℝ → ℝ`. The printed paper takes
   `F : ℝ≥0 → ℝ≥0`. An explicit, monotone, unbounded extension/restriction
   adapter must be checked; negative arguments cannot be silently supplied.
@@ -85,7 +89,18 @@ and `CFCountableDClosedChain.stageImage_global_dClosed`.
 - A hypothetical bounded/nonmonotone F: cannot invoke the canonical
   numerical inverse. The real growth hypotheses are indispensable.
 
-Status at branch creation: **new aggregate Lean theorem, CI pending**.
+Current branch status: **aggregate and class-level interface written, CI pending**.
 The manuscript's identification with M_F remains **PARTIAL** until
 the exact published-assumption adapter, infinitude, and countable
 uniqueness theorem are certified.
+
+## Post-review improvement
+
+The hypothesis referee identified two avoidable assumptions in the first
+aggregate declaration: empty-stage membership and a separately stated
+free-join premise at each constructed stage. The additional endpoints
+`emptyStage_growth_of_zero` and
+`realCountableGraph_genericCertificate_of_classFreeJoins` eliminate them
+by deriving the first from F(0)=0 and the second from one universal
+finite-ambient amalgamation property. This revision remains pending the
+isolated Lean build and axiom audit; do not promote its status prematurely.
