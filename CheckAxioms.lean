@@ -1254,3 +1254,6 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_bValue_image
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTagSubtype_order_iff
 #print axioms BigHrushovski.CFCoherentTower.selectedGrowthBatchMapSubtype_stageOrder_iff
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_allBValues
+#print axioms BigHrushovski.CFCoherentTower.selectedGrowthBatchMapSubtype_oneLevel
