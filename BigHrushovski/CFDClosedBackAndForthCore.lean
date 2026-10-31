@@ -30,10 +30,7 @@ theorem globallyStrong_of_globallyDClosed
     (ha : M.toPredimension.IsGloballyDClosed a) :
     M.toPredimension.IsGloballyStrong a := by
   intro b hab
-  by_cases heq : b = a
-  · subst b
-    exact le_refl _
-  · exact le_of_lt (ha b hab heq)
+  exact M.toPredimension.strong_of_dClosed (ha.restrict hab)
 
 /-- Finite induced partial isomorphisms whose source and image
 are both globally strictly d-closed. Unlike the C_0 partial
@@ -89,8 +86,8 @@ noncomputable def empty (M N : GraphOn ℕ)
   target_global := hEmptyN
   induced := by
     intro x y
-    have hx : False := by simpa using x.property
-    exact False.elim hx
+    have hNone : ∀ z : ℕ, z ∉ (∅ : Finset ℕ) := by simp
+    exact (hNone x.val x.property).elim
 
 /-- Choose a coherent chain, preserving strict d-closedness
 at every finite stage. -/
