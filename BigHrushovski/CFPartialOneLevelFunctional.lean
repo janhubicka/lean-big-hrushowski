@@ -109,6 +109,7 @@ theorem selectedGrowthBatchMapSubtype_allBValues
             (fun v : V => (Sum.inl v :
               LevelCarrier H (GrowthAllowedLocal F) (fun P => K P.card))) := by
                 rw [Finset.image_image]
+                rfl
         _ = _ := by rw [hOldB u]
   | inr z =>
       rcases z with ⟨r, i⟩
