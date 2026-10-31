@@ -1,7 +1,12 @@
 import BigHrushovski.CFRealGenericCertificate
+import BigHrushovski.CFDClosedFiniteSubtype
 
 #print axioms BigHrushovski.CFCoherentTower.hasFiniteRealDClosedResponses
 #print axioms BigHrushovski.CFCoherentTower.realCountableGraph_genericCertificate
 #print axioms BigHrushovski.CFCoherentTower.emptyStage_growth_of_zero
 #print axioms BigHrushovski.CFCoherentTower.realCountableGraph_genericCertificate_of_classFreeJoins
 #print axioms BigHrushovski.CFCoherentTower.realCountableGraph_empty_globalDClosed
+#print axioms BigHrushovski.CFDClosedFiniteSubtype.univ_image
+#print axioms BigHrushovski.CFDClosedFiniteSubtype.base_image
+#print axioms BigHrushovski.CFDClosedFiniteSubtype.dClosed_iff
+#print axioms BigHrushovski.CFDClosedFiniteSubtype.growthSparse_iff
