@@ -103,8 +103,8 @@ theorem realCountableGraph_genericCertificate
       (Finset.univ : Finset emptyStage.carrier))
     (hFree : ∀ n,
       ((stage (cardinalGrowth F)
-        (cardinalGrowthBound F hMono hUnbounded) (n + 1)).graph)
-        .GrowthClosedUnderDClosedFreeJoins (cardinalGrowth F)) :
+        (cardinalGrowthBound F hMono hUnbounded) (n + 1)).graph).GrowthClosedUnderDClosedFreeJoins
+          (cardinalGrowth F)) :
     RealGrowthGenericCertificate F hMono hUnbounded := by
   refine ⟨?_, ?_, ?_⟩
   · exact countableGraph_growth_of_freeJoins
