@@ -1,0 +1,28 @@
+name: Track C strict d-closed finite joint steps
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFDClosedJointSteps.lean"
+      - "TrackCJointStepsCheck.lean"
+      - ".github/workflows/track-c-jointsteps.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  strict-jointsteps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build strict finite joint steps
+        run: lake build BigHrushovski.CFDClosedJointSteps
+      - name: Audit exact theorem axioms and placeholders
+        run: |
+          lake env lean TrackCJointStepsCheck.lean > track-c-jointsteps-axioms.log
+          python3 scripts/check_axioms.py track-c-jointsteps-axioms.log TrackCJointStepsCheck.lean
+          python3 scripts/check_no_placeholders.py
