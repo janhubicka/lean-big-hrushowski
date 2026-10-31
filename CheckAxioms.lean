@@ -1242,3 +1242,8 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.completeUnaryGenerated_closed
 #print axioms BigHrushovski.FiniteC0.finiteUnaryClosedCovers
 #print axioms BigHrushovski.FiniteC0.graphReduct_iso_generic_of_completeUnary
+
+#print axioms BigHrushovski.FiniteC0.localStrong_of_canonicalStage
+#print axioms BigHrushovski.FiniteC0.localStrong_of_canonicalFiniteStages
+#print axioms BigHrushovski.FiniteC0.completeUnary_of_canonicalFiniteStages
+#print axioms BigHrushovski.FiniteC0.graphReduct_iso_generic_of_canonicalFiniteStages
