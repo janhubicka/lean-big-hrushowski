@@ -1227,3 +1227,15 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_induced
 
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_taggedLex_iff
+
+#print axioms BigHrushovski.CFStageCatalogue.supportInside_image_val
+#print axioms BigHrushovski.CFStageCatalogue.supportInside_image_partial
+#print axioms BigHrushovski.CFStageCatalogue.supportInside_sorted_val
+#print axioms BigHrushovski.CFStageCatalogue.supportInside_sorted_partial
+#print axioms BigHrushovski.CFStageCatalogue.supportImage_partial_sort_lt_iff
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedBlockBValue_image_subtype
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_bValue_image
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTagSubtype_order_iff
+#print axioms BigHrushovski.CFCoherentTower.selectedGrowthBatchMapSubtype_stageOrder_iff
