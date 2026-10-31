@@ -50,6 +50,20 @@ theorem supportDomain_univ :
   ext x
   simp [supportDomain]
 
+/-- In the concrete level presentations every vertex represents its own
+level, hence has nonempty complete level support. In particular the
+empty-level range is empty; this fails without that hypothesis. -/
+theorem supportDomain_empty_of_nonempty
+    (hnonempty : ∀ x : Vertex, (support x).Nonempty) :
+    supportDomain support (∅ : Set Level) = ∅ := by
+  ext x
+  constructor
+  · intro hx
+    rcases hnonempty x with ⟨q, hq⟩
+    exact False.elim (hx q hq)
+  · intro hx
+    exact False.elim hx
+
 /-- Empty-support vertices belong to every support-saturated domain. -/
 theorem empty_support_mem (x : Vertex) (h : support x = ∅)
     (S : Set Level) : x ∈ supportDomain support S := by
