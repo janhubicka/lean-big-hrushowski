@@ -1235,3 +1235,12 @@ import BigHrushovski
 #print axioms BigHrushovski.TaggedAmalgam.joinedIndex_oldStage_leftDomain
 #print axioms BigHrushovski.TaggedAmalgam.joinedIndex_oldStage_right
 #print axioms BigHrushovski.TaggedAmalgam.joinedIndex_rightStep
+
+#print axioms BigHrushovski.TaggedAmalgam.rightBase_oldStage_of_tail
+#print axioms BigHrushovski.TaggedAmalgam.rightComponent_all_tail
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_rightStep_eq_of_noTail
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_rightTail_minimalStep
+#print axioms BigHrushovski.TaggedAmalgam.joinedIndex_minimalStages
+
+#print axioms BigHrushovski.TaggedAmalgam.taggedFunctionalAmalgam_frontloaded
+#print axioms BigHrushovski.TaggedAmalgam.exists_taggedFunctionalAmalgam_of_named_base
