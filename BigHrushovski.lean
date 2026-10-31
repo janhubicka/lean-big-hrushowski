@@ -442,3 +442,6 @@ import BigHrushovski.CFActualSubtypeRequestOrder
 import BigHrushovski.CFActualSubtypeStageOrder
 
 import BigHrushovski.CFPartialSupportAutomaticClosure
+
+import BigHrushovski.CFPartialOneLevelFunctional
+import BigHrushovski.CFPartialRequestUniqueness
