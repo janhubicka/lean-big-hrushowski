@@ -1,9 +1,6 @@
 name: Lean Track D Ramsey Transfer
 
 on:
-  push:
-    branches:
-      - formalization/track-d-ramsey-transfer-20261101
   pull_request:
     paths:
       - "BigHrushovski/RamseyTransfer.lean"
@@ -14,6 +11,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
 
 jobs:
   track-d:
