@@ -172,7 +172,7 @@ theorem completeUnary_of_canonicalFiniteStages
     intro z hz
     have hzImage : z ∈ (canonicalValue G κ v).image
         (Subtype.val : {v : ℕ // v ∈ stage n} → ℕ) := by
-      rw [← hValues v, ← hvVal]
+      rw [← hValues v, hvVal]
       exact hz
     have hzIn : z ∈ (canonicalValue G κ u).image
         (Subtype.val : {v : ℕ // v ∈ stage n} → ℕ) := by
