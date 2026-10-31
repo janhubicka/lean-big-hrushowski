@@ -12,12 +12,19 @@ on:
   pull_request:
     paths:
       - 'BigHrushovski/HrushovskiEllentuckSupport.lean'
+      - 'BigHrushovski/HrushovskiEllentuckSplicing.lean'
+      - 'BigHrushovski/HrushovskiEllentuckThinning.lean'
       - 'CheckTrackE.lean'
+      - 'scripts/check_ellentuck_splicing.py'
       - '.github/workflows/track-e-ellentuck.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
 
 jobs:
   build-and-audit:
