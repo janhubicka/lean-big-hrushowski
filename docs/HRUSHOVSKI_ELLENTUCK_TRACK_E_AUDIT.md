@@ -145,3 +145,68 @@ a green endpoint.
 
 No changes to mathematical prose or global manuscript markers are
 made by this Track E audit branch.
+
+
+## Continuation: independent finite closure-core calculations
+
+Three new modules isolate unconditional, non-Ramsey calculations without
+assuming that the structural space is already topologically Ramsey.
+
+- `HrushovskiEllentuckSupport`: the complete finite support of each
+  vertex determines inclusion in a lifted range. Inclusion of all
+  support-saturated ranges reflects inclusion of level sets precisely
+  when there is a singleton-support witness at each level. A vertex with
+  a missing support level is excluded even if its own level is retained.
+  For every S, membership is determined by one finite support and every
+  supported vertex occurs in a finite-level subrange.
+- `HrushovskiEllentuckSplicing`: for transitive unary closure Γ,
+  the core of W = X ∪ {v∈Y:Γ(v) meets D} inside Y is closed; it
+  contains the original closed X and all the protected closed prefix C
+  whenever C⊆X∪D. Every closed subset of the core disjoint from D
+  lies in X. This is the exact *set-theoretic* part of A.3(2). It does
+  not create a self-copy of the generic inside the core.
+- `HrushovskiEllentuckThinning`: for a deleted set U, all vertices
+  whose closure meets U are removed. The remainder is closed, retains
+  any original closed prefix disjoint from U, and is disjoint from U.
+  This is the exact *set-theoretic* part of relative A.4. It does
+  not prove infinite pigeonhole or preservation of every permitted
+  one-component extension.
+
+An independent Python checker `scripts/check_ellentuck_splicing.py`
+exhaustively enumerates all reflexive/transitive one-generated closure
+systems on 0–4 vertices. It passed 390 closure relations, 69,490 splicing
+cases, 287,213 protected-prefix cases, 118,095 closed-stem cases,
+38,501 thinning cases, and 69,490 retained-prefix cases. It also
+finds a negative control where the intermediate W is not closed.
+These checks supplement, but do not replace, exact Lean compilation.
+
+## Track E's abstract-library branch
+
+The separate PR #19 for `lean-ramsey-space-todorcevic` has a historical
+**green** exact CI checkpoint `677d2b6` (run 41253289004) for
+`RamseySpace.EquivTransport` and the literal proper-prefix
+`Examples/EllentuckProperA2`. Its subsequent synthetic
+`Examples/SupportedEllentuck` module is a conditional realization:
+finite-support domains represented by increasing level sets, rather
+than the *actual* functional embedding ranges in the Hrushovski
+generic. Exact inclusion and first-n level approximations and
+transported Tychonoff closedness are formal theorem targets.
+Until this branch's current HEAD has green checks, neither the
+new synthetic theorem nor the topology comparison is certified.
+
+The source for the rational external theorem was checked directly
+against Natasha Dobrinen, arXiv:2203.00169v3, Theorem 6.4
+(Section 6.2): the rational coding-antichain spaces are among the
+topological Ramsey spaces. This **does not** certify the exact
+similarity identification with the manuscript's expanded functional
+self-copies. Theorem 6.3 is only the Borel input.
+
+## Current gates
+
+Keep both PRs draft while current-head targeted builds and standard
+axiom audits are incomplete. No manuscript prose or validation markers
+have been changed by this track. Track B owns the actual unique
+level-lift recognition theorem; Track A owns the countable C0
+functional tail extension. The remaining concrete R0 tail
+amalgamation and one-component pigeonhole argument must be checked
+against those inputs, not replaced by finite closure calculations.
