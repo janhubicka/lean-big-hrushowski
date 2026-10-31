@@ -1,6 +1,7 @@
 import BigHrushovski.CFLevelRamseyTransfer
 import BigHrushovski.C0CoordinateHostGraph
 import BigHrushovski.C0CoordinateClosedRestriction
+import BigHrushovski.C0CoordinateNormalForm
 
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_forward
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_iff
@@ -32,3 +33,8 @@ import BigHrushovski.C0CoordinateClosedRestriction
 #print axioms BigHrushovski.FiniteUnaryCoordinates.restrictValue_restrict
 #print axioms BigHrushovski.FiniteUnaryCoordinates.backAdjacency_closed
 #print axioms BigHrushovski.FiniteUnaryCoordinates.restrictBackAdjacencyValue_restrict
+#print axioms BigHrushovski.FiniteUnaryCoordinates.labelEquiv_val
+#print axioms BigHrushovski.FiniteUnaryCoordinates.labelValue_at
+#print axioms BigHrushovski.FiniteUnaryCoordinates.labelValue_mem_iff
+#print axioms BigHrushovski.FiniteUnaryCoordinates.labelGraph_adj_iff
+#print axioms BigHrushovski.FiniteUnaryCoordinates.labelBackAdjacencyValue
