@@ -18,9 +18,9 @@ The response theorem uses only the real-growth assumptions.
 The certificate is NOT a formal identification with the Fraisse limit.
 Its remaining obligations are (1) the countable strict d-closed
 back-and-forth uniqueness theorem, (2) the bridge from the published
-nonnegative-domain F to the present real-domain F, and (3) stating the
-class-level free-amalgamation assumption once rather than as an
-assumption separately for each stage.
+nonnegative-domain F to the present real-domain F, and (3) the
+one-vertex stage request establishing infinitude. The standing
+class-level free-amalgamation hypothesis remains explicit.
 -/
 
 namespace BigHrushovski
@@ -75,6 +75,26 @@ structure RealGrowthGenericCertificate
           (stageImage (cardinalGrowth F)
             (cardinalGrowthBound F hMono hUnbounded) n)
   finite_responses : HasFiniteRealDClosedResponses F hMono hUnbounded
+  empty_closed :
+    (realCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed ∅
+
+/-- Every canonical birth graph has its empty first-stage image
+globally strictly d-closed, including when there are no permitted
+fresh requests. -/
+theorem realCountableGraph_empty_globalDClosed
+    (F : ℝ → ℝ)
+    (hMono : Monotone F)
+    (hUnbounded : ∀ t : ℝ, ∃ x : ℝ, t < F x) :
+    (realCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed ∅ := by
+  let Fnat := cardinalGrowth F
+  let K := cardinalGrowthBound F hMono hUnbounded
+  have hEmptyImage : stageImage Fnat K 0 =
+      (∅ : Finset (RealBirthVertex F hMono hUnbounded)) := by
+    classical
+    simp [stageImage, stage, emptyStage, Fnat, K]
+  have hClosed := stageImage_global_dClosed Fnat K 0
+  rw [hEmptyImage] at hClosed
+  exact hClosed
 
 /-- The exact finite response half of the countable recognition
 certificate. No fair schedule is required because the canonical
@@ -106,7 +126,7 @@ theorem realCountableGraph_genericCertificate
         (cardinalGrowthBound F hMono hUnbounded) (n + 1)).graph).GrowthClosedUnderDClosedFreeJoins
           (cardinalGrowth F)) :
     RealGrowthGenericCertificate F hMono hUnbounded := by
-  refine ⟨?_, ?_, ?_⟩
+  refine ⟨?_, ?_, ?_, ?_⟩
   · exact countableGraph_growth_of_freeJoins
       (cardinalGrowth F)
       (cardinalGrowthBound F hMono hUnbounded) hEmpty hFree
@@ -118,6 +138,7 @@ theorem realCountableGraph_genericCertificate
       (cardinalGrowth F)
       (cardinalGrowthBound F hMono hUnbounded) n⟩
   · exact hasFiniteRealDClosedResponses F hZero hMono hUnbounded
+  · exact realCountableGraph_empty_globalDClosed F hMono hUnbounded
 
 
 /-- The empty graph satisfies the growth inequality as soon as F(0)=0.
