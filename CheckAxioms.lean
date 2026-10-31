@@ -1247,3 +1247,6 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.localStrong_of_canonicalFiniteStages
 #print axioms BigHrushovski.FiniteC0.completeUnary_of_canonicalFiniteStages
 #print axioms BigHrushovski.FiniteC0.graphReduct_iso_generic_of_canonicalFiniteStages
+
+#print axioms BigHrushovski.FiniteC0.sparse_of_canonicalFiniteStages
+#print axioms BigHrushovski.FiniteC0.graphReduct_iso_generic_of_canonicalStages_and_extension
