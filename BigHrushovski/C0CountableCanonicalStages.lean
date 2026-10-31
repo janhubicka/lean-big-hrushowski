@@ -225,5 +225,24 @@ theorem graphReduct_iso_generic_of_canonicalFiniteStages
     (localStrong_of_canonicalFiniteStages N C stage hStage)
     hExt
 
+/-- Under cofinal coherent finite canonical presentations,
+the countable reduct is determined by a single genuine
+model-theoretic input: the labelled strong graph extension
+property. Complete unary closure, local strongness and
+2-sparsity all follow from the finite certificates. -/
+theorem graphReduct_iso_generic_of_canonicalStages_and_extension
+    (N : GraphOn ℕ) (C : ℕ → Finset ℕ)
+    (stage : ℕ → Finset ℕ)
+    (hCover : ∀ b : Finset ℕ, ∃ n : ℕ, b ⊆ stage n)
+    (hStage : HasCanonicalFiniteStages N C stage)
+    (hExt : FiniteCatalogue.HasStrongExtensionProperty N) :
+    ∃ e : ℕ ≃ ℕ, ∀ x y : ℕ,
+      FiniteCatalogue.genericTwoSparseGraph.adj x y ↔
+        N.adj (e x) (e y) := by
+  exact graphReduct_iso_generic_of_canonicalFiniteStages
+    N C stage
+    (sparse_of_canonicalFiniteStages N C stage hCover hStage)
+    hCover hStage hExt
+
 end FiniteC0
 end BigHrushovski
