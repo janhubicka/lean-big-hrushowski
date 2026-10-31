@@ -1,0 +1,10 @@
+import BigHrushovski.OrientationRelativeFinite
+
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_empty
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_union
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_inter
+#print axioms BigHrushovski.FiniteOrientation.singleton_successorClosed_of_sink
+#print axioms BigHrushovski.FiniteOrientation.pair_successorClosed_of_sinks
+#print axioms BigHrushovski.FiniteOrientation.sinks_nonadjacent
+#print axioms BigHrushovski.FiniteOrientation.two_successors_outDegree
+#print axioms BigHrushovski.FiniteOrientation.commonPredecessor_unique
