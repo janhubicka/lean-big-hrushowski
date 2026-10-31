@@ -7,6 +7,7 @@ on:
   pull_request:
     paths:
       - "BigHrushovski/RamseyTransfer.lean"
+      - "BigHrushovski/CFLevelRamseyTransfer.lean"
       - "TrackDCheckAxioms.lean"
       - ".github/workflows/track-d-ramsey.yml"
   workflow_dispatch:
@@ -32,7 +33,7 @@ jobs:
       - name: Check Track D declarations
         run: |
           set -euo pipefail
-          lake build BigHrushovski.RamseyTransfer
+          lake build BigHrushovski.RamseyTransfer BigHrushovski.CFLevelRamseyTransfer
           lake env lean TrackDCheckAxioms.lean > track-d-axioms.log
           python3 scripts/check_axioms.py track-d-axioms.log TrackDCheckAxioms.lean
           python3 scripts/check_no_placeholders.py
