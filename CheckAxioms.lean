@@ -1229,3 +1229,4 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.selectedTargetMapSubtype_taggedLex_iff
 
 #print axioms BigHrushovski.TaggedAmalgam.taggedOneBlock_twoSidedFunctionalAmalgam
+#print axioms BigHrushovski.TaggedAmalgam.namedBase_strong_of_minimalPresentation
