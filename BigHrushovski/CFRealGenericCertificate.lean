@@ -38,7 +38,7 @@ def HasFiniteRealDClosedResponses
   ∀ (V : Type) [Fintype V] [LinearOrder V],
     ∀ (H : GraphOn V) (a b : Finset V),
       H.IsGrowthSparse (cardinalGrowth F) Finset.univ →
-      H.toPredimension.IsDClosed a b →
+      (hab : H.toPredimension.IsDClosed a b) →
       ∀ (e : {v : V // v ∈ a} → RealBirthVertex F hMono hUnbounded),
         Function.Injective e →
         (∀ x y : {v : V // v ∈ a},
@@ -49,9 +49,7 @@ def HasFiniteRealDClosedResponses
         ∃ g : {v : V // v ∈ b} → RealBirthVertex F hMono hUnbounded,
           Function.Injective g ∧
           (∀ x : {v : V // v ∈ a},
-            g ⟨x.val, (show a ⊆ b from
-              (show H.toPredimension.IsDClosed a b from
-                by assumption).1) x.property⟩ = e x) ∧
+            g ⟨x.val, hab.1 x.property⟩ = e x) ∧
           (∀ x y : {v : V // v ∈ b},
             H.adj x.val y.val ↔
               (realCountableGraph F hMono hUnbounded).adj (g x) (g y)) ∧
@@ -104,9 +102,9 @@ theorem realCountableGraph_genericCertificate
     (hEmpty : emptyStage.graph.IsGrowthSparse (cardinalGrowth F)
       (Finset.univ : Finset emptyStage.carrier))
     (hFree : ∀ n,
-      (stage (cardinalGrowth F)
-        (cardinalGrowthBound F hMono hUnbounded) (n + 1)).graph
-        |>.GrowthClosedUnderDClosedFreeJoins (cardinalGrowth F)) :
+      ((stage (cardinalGrowth F)
+        (cardinalGrowthBound F hMono hUnbounded) (n + 1)).graph)
+        .GrowthClosedUnderDClosedFreeJoins (cardinalGrowth F)) :
     RealGrowthGenericCertificate F hMono hUnbounded := by
   refine ⟨?_, ?_, ?_⟩
   · exact countableGraph_growth_of_freeJoins
