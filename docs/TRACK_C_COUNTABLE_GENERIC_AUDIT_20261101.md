@@ -128,3 +128,32 @@ global stage-closure theorem. This does not replace the independent
 one-vertex/infinitude obligation.
 
 Status: new fourth field and its proof are awaiting the exact CI build.
+
+
+## New finite-subtype bridge (post-review)
+
+`CFDClosedFiniteSubtype.lean` adds a genuinely **literal** induced
+finite carrier `{v : ℕ // v ∈ b}` and the old subset
+`Finset.univ.filter (fun v => v.val ∈ a)`, without choosing an
+arbitrary relabelling. Its exact image equalities show the
+finite old base maps to `a` and the finite whole carrier
+maps to `b`. Reuse of `GraphOn.dClosed_image_iff` and
+`growthSparse_image_iff` then proves both strict relative
+d-closedness and full C_F growth membership are preserved
+**and reflected**.
+
+Internal adversarial checks:
+- *Support referee*: the literal old image is exactly a; no
+  total embedding of a larger unrelated old stage is required.
+- *Predimension referee*: comparison is of the entire intervals
+  `a≤d b` and the whole finite-subtype carrier, not weak
+  strongness or just an edge-preserving homomorphism.
+- *Class referee*: `M.IsGrowthSparse F b` is equivalent to
+  growth membership of the entire induced finite graph.
+- *Certification referee*: these endpoints must pass their own
+  isolated Lean compilation and `#print axioms` audit. No
+  claim is made that the countable carrier/response transport
+  is complete.
+
+Status: new finite-subtype proof awaiting CI; the countable
+`M_F` identification remains unverified.
