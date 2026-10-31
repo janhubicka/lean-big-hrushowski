@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "BigHrushovski/CFRealGenericCertificate.lean"
+      - "BigHrushovski/CFDClosedFiniteSubtype.lean"
       - "TrackCCheck.lean"
       - ".github/workflows/track-c.yml"
   workflow_dispatch:
@@ -23,7 +24,7 @@ jobs:
       - name: Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Build isolated Track C certificate
-        run: lake build BigHrushovski.CFRealGenericCertificate
+        run: lake build BigHrushovski.CFRealGenericCertificate BigHrushovski.CFDClosedFiniteSubtype
       - name: Audit Track C theorem axioms and placeholders
         run: |
           lake env lean TrackCCheck.lean > track-c-axioms.log
