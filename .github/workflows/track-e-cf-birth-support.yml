@@ -1,0 +1,47 @@
+name: Track E actual CF birth support
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckCFBirthSupport.lean'
+      - 'CheckTrackECFBirthSupport.lean'
+      - '.github/workflows/track-e-cf-birth-support.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckCFBirthSupport.lean'
+      - 'CheckTrackECFBirthSupport.lean'
+      - '.github/workflows/track-e-cf-birth-support.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-cf-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-cf-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile actual C_F birth support and audit exact endpoints
+        run: |
+          lake build BigHrushovski.HrushovskiEllentuckCFBirthSupport
+          lake env lean CheckTrackECFBirthSupport.lean > cf-birth-support-axioms.log
+          cat cf-birth-support-axioms.log
+          python3 scripts/check_axioms.py cf-birth-support-axioms.log CheckTrackECFBirthSupport.lean
+          python3 scripts/check_no_placeholders.py
