@@ -12,6 +12,7 @@ on:
       - "BigHrushovski/C0CoordinatePointedSubcode.lean"
       - "BigHrushovski/C0CoordinateGeneratedSubcode.lean"
       - "scripts/check_c0_coordinate_host_finite.py"
+      - "scripts/check_c0_pointed_subcode.py"
       - "TrackDCheckAxioms.lean"
       - ".github/workflows/track-d-ramsey.yml"
   workflow_dispatch:
@@ -39,7 +40,9 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Check small C0 code and closure counterexamples
-        run: python3 scripts/check_c0_coordinate_host_finite.py
+        run: |
+          python3 scripts/check_c0_coordinate_host_finite.py
+          python3 scripts/check_c0_pointed_subcode.py
       - name: Check Track D declarations
         run: |
           set -euo pipefail
