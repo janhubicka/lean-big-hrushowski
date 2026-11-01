@@ -1,0 +1,3 @@
+import BigHrushovski.C0FunctionalForcedGrowth
+
+#print axioms BigHrushovski.FiniteCatalogue.exists_growingCanonicalFunctionalC0Stage
