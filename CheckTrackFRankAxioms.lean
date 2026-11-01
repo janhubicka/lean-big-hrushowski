@@ -1,0 +1,7 @@
+import BigHrushovski.N0ComponentRankPrefixes
+
+#print axioms BigHrushovski.FiniteOrientation.mem_componentRankPrefix_iff
+#print axioms BigHrushovski.FiniteOrientation.componentRankPrefix_mono
+#print axioms BigHrushovski.FiniteOrientation.component_subset_rankPrefix
+#print axioms BigHrushovski.FiniteOrientation.componentRankPrefix_isSuccessorClosed
+#print axioms BigHrushovski.FiniteOrientation.componentRankPrefix_isStrong

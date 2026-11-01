@@ -1,0 +1,71 @@
+import BigHrushovski.N0LocalSymmetry
+
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_empty
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_union
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_inter
+#print axioms BigHrushovski.FiniteOrientation.singleton_successorClosed_of_sink
+#print axioms BigHrushovski.FiniteOrientation.pair_successorClosed_of_sinks
+#print axioms BigHrushovski.FiniteOrientation.sinks_nonadjacent
+#print axioms BigHrushovski.FiniteOrientation.two_successors_outDegree
+#print axioms BigHrushovski.FiniteOrientation.commonPredecessor_unique
+
+#print axioms BigHrushovski.FiniteOrientation.edge_eq_pair_of_adj
+#print axioms BigHrushovski.FiniteOrientation.new_edge_of_arrow
+#print axioms BigHrushovski.FiniteOrientation.new_edges_subset_outgoing
+#print axioms BigHrushovski.FiniteOrientation.new_edges_card_le_two
+#print axioms BigHrushovski.FiniteOrientation.predim_le_of_successorClosed
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_strong
+
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_noCrossExclusive
+
+
+#print axioms BigHrushovski.FiniteOrientation.reaches_refl
+#print axioms BigHrushovski.FiniteOrientation.reaches_arrow
+#print axioms BigHrushovski.FiniteOrientation.reaches_trans
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_of_reaches
+#print axioms BigHrushovski.FiniteOrientation.stronglyConnected_refl
+#print axioms BigHrushovski.FiniteOrientation.stronglyConnected_symm
+#print axioms BigHrushovski.FiniteOrientation.stronglyConnected_trans
+#print axioms BigHrushovski.FiniteOrientation.mem_successorClosure_iff
+#print axioms BigHrushovski.FiniteOrientation.subset_successorClosure
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_mono
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_isClosed
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_minimal
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_eq_of_closed
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_idempotent
+#print axioms BigHrushovski.FiniteOrientation.successorClosure_strong
+#print axioms BigHrushovski.FiniteOrientation.mem_component_iff
+#print axioms BigHrushovski.FiniteOrientation.self_mem_component
+#print axioms BigHrushovski.FiniteOrientation.component_eq_of_stronglyConnected
+#print axioms BigHrushovski.FiniteOrientation.stronglyConnected_iff_component_eq
+#print axioms BigHrushovski.FiniteOrientation.component_subset_successorClosure
+
+
+#print axioms BigHrushovski.FiniteOrientation.mem_successorClosure_singleton_iff
+#print axioms BigHrushovski.FiniteOrientation.minimalSuccessorStep_reaches_new
+#print axioms BigHrushovski.FiniteOrientation.minimalSuccessorStep_new_stronglyConnected
+#print axioms BigHrushovski.FiniteOrientation.minimalSuccessorStep_sdiff_eq_component
+
+
+#print axioms BigHrushovski.FiniteOrientation.strictSuccessor_irrefl
+#print axioms BigHrushovski.FiniteOrientation.strictSuccessor_trans
+#print axioms BigHrushovski.FiniteOrientation.strictSuccessor_asymm
+#print axioms BigHrushovski.FiniteOrientation.strictSuccessor_transport
+#print axioms BigHrushovski.FiniteOrientation.component_mem_components
+#print axioms BigHrushovski.FiniteOrientation.componentPrecedes_irrefl
+#print axioms BigHrushovski.FiniteOrientation.componentPrecedes_trans
+#print axioms BigHrushovski.FiniteOrientation.componentPrecedes_asymm
+#print axioms BigHrushovski.FiniteOrientation.componentPrecedes_iff_strictSuccessor
+#print axioms BigHrushovski.FiniteOrientation.reaches_component_eq_or_precedes
+
+
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_component_subset
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_predecessor
+#print axioms BigHrushovski.FiniteOrientation.successorClosed_iff_component_downward
+
+
+#print axioms BigHrushovski.FiniteOrientation.isPointwiseLowerAutomorphism_refl
+#print axioms BigHrushovski.FiniteOrientation.pointwiseLowerAutomorphisms_nonempty
+#print axioms BigHrushovski.FiniteOrientation.transportedLocalEnumeration_injective
+#print axioms BigHrushovski.FiniteOrientation.localEnumeration_orbit_card
+#print axioms BigHrushovski.FiniteOrientation.transportedLocalEnumeration_fixed_lower

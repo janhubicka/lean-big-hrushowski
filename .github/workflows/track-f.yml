@@ -1,0 +1,63 @@
+name: Track F finite orientation audit
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/OrientationRelativeFinite.lean'
+      - 'BigHrushovski/OrientationRelativeStrong.lean'
+      - 'BigHrushovski/OrientationReachability.lean'
+      - 'BigHrushovski/OrientationMinimalStep.lean'
+      - 'BigHrushovski/OrientationComponentOrder.lean'
+      - 'BigHrushovski/OrientationComponentDownsets.lean'
+      - 'BigHrushovski/N0LocalSymmetry.lean'
+      - 'scripts/check_track_f_component_downsets.py'
+      - 'scripts/check_track_f_degrees.py'
+      - 'scripts/check_track_f_component_order.py'
+      - 'CheckOrientationAxioms.lean'
+      - 'scripts/check_track_f_finite.py'
+      - '.github/workflows/track-f.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/OrientationRelativeFinite.lean'
+      - 'BigHrushovski/OrientationRelativeStrong.lean'
+      - 'BigHrushovski/OrientationReachability.lean'
+      - 'BigHrushovski/OrientationMinimalStep.lean'
+      - 'BigHrushovski/OrientationComponentOrder.lean'
+      - 'BigHrushovski/OrientationComponentDownsets.lean'
+      - 'BigHrushovski/N0LocalSymmetry.lean'
+      - 'scripts/check_track_f_component_downsets.py'
+      - 'scripts/check_track_f_degrees.py'
+      - 'scripts/check_track_f_component_order.py'
+      - 'CheckOrientationAxioms.lean'
+      - 'scripts/check_track_f_finite.py'
+      - '.github/workflows/track-f.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-orientation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile the independent finite module
+        run: lake build BigHrushovski.N0LocalSymmetry
+      - name: Kernel dependencies and placeholders
+        run: |
+          set -euo pipefail
+          lake env lean CheckOrientationAxioms.lean > track-f-axioms.log
+          python3 scripts/check_axioms.py track-f-axioms.log CheckOrientationAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Adversarial finite checks
+        run: |
+          python3 scripts/check_track_f_finite.py
+          python3 scripts/check_track_f_component_order.py
+          python3 scripts/check_track_f_component_downsets.py
+          python3 scripts/check_track_f_degrees.py
