@@ -116,3 +116,66 @@ A pass requires an exact Lean build, all new
 `#print axioms` endpoints with only standard logical axioms,
 the no-placeholder scan, and the finite regressions. The
 finite Python checks are diagnostic evidence only.
+
+
+## Additional adversarial panel — functional-to-strong transfer
+
+The further modules `C0CountableFunctionalStrongImages.lean` and
+`C0CountableStageFunctionalExtension.lean` reduce countable graph
+genericity to a specific **functional** extension property over
+cofinal canonical stages. This is the remaining finite-to-countable
+bridge; existence of the functional limit is still not asserted.
+
+**Referee 7 — nonclosed strong base.** A graph-strong substructure
+need not be closed under `C`. For example, a later endpoint of a
+two-vertex edge can be strong in the graph, while its complete unary
+value includes the earlier endpoint. Hence the labelled graph map
+is embedded into a sufficiently large *closed finite stage*
+before performing the graph free amalgam. The strong span is glued
+over the original graph base, never treated as a functional base.
+
+**Referee 8 — genuine source map.** The finite tagged graph-span
+theorem gives induced maps `f` and `g` identifying *only* the
+prescribed graph base. The source map into the countable graph is
+retained literally: the functional realization fixes every
+vertex of the old stage, and therefore every source vertex.
+No replacement by an abstract isomorphic copy is allowed.
+
+**Referee 9 — inducedness.** Every graph embedding used in the
+transfer is an `↔` on adjacency, not just an implication.
+An omitted nonedge would invalidate predimension invariance and
+the strong-image transfer.
+
+**Referee 10 — complete unary values.** The functional realization
+condition is equality of the full `C`-value for **every** new
+vertex, including the entire finite image of its canonical
+one-generated closure. This implies the finite realized image
+is `C`-closed, hence globally strong. The image of the requested
+strong target is then globally strong by composition of strong
+embeddings. Restricting an induced graph map alone would not
+justify global strength.
+
+**Referee 11 — countable hypothesis.** The only new substantive
+assumption is `HasCanonicalStageExtensionProperty`, requiring
+functional realization of every permitted finite canonical
+extension over a literal finite canonical stage. This is a
+proper functional Fraïssé extension property; it is not
+`HasStrongExtensionProperty` renamed. The theorem proves the
+latter from the former using the finite tagged graph-to-functional
+span lift.
+
+**Referee 12 — remaining existence.** Neither these new theorems
+nor the countable recognition criterion build the functional
+Fraïssé limit or prove the stage functional extension property
+for a concrete recursively constructed structure. A separate
+fair finite functional request catalogue is developed in
+draft PR #286; the one-step response and coherent countable
+functional-stage recursion remain open.
+
+The new endpoints are registered in `CheckC0Countable.lean`
+and have dedicated CI in
+`.github/workflows/track-a-countable.yml`.
+The main global import and axiom files are deliberately not
+edited in this branch, avoiding conflicts with concurrent
+`C_F` tracks. Do not mark any endpoint green without the
+exact branch build and axiom audit passing.
