@@ -182,3 +182,43 @@ the three span normalization endpoints. The dedicated
 workflow builds `C0FunctionalFiniteResponse`, rather than
 only its predecessor module. No finite or countable
 green claim is made before this exact run passes.
+
+
+## Finite extension with consecutive old labels
+
+`C0FunctionalFiniteInitialLabels.lean` adds an exact generic
+renumbering lemma
+`exists_initialSegment_canonicalFunctionalExtension`.
+For any finite canonical component-indexed graph `K`, an induced
+old map `i:A→B`, and an old finite coordinate enumeration, it
+constructs a bijection of the new finite carrier with
+`Fin(card B)` extending the original labels. The induced graph
+and complete set-valued unary function are transported by that
+**same** bijection. If `K` preserves the old factor's canonical
+unary values exactly, the finite labelled response does too.
+
+**Referee 12 — label coherence.** The label equivalence is
+`FiniteSpan.extendInitialEquiv`, already verified to fix each
+old coordinate. Merely choosing an arbitrary bijection with
+`Fin(card B)` would not be sufficient for recursive stages.
+
+**Referee 13 — functional fidelity.** The new graph is the induced
+pullback along the inverse equivalence; the new component index
+is `FiniteC0.relabelIndex`. The existing exact
+`canonicalValue_relabel` theorem gives the entire new unary
+value, not merely a finite support or a forward inclusion.
+Old full unary values are preserved by composing two image
+equalities, not by assuming the desired new values in advance.
+
+**Referee 14 — full versus partial claim.** This gives a labelled
+finite canonical structure and a literal embedding of its old
+finite carrier. It still does not produce a coherent **countable**
+graph and unary operation: that requires a finite functional
+successor construction on ℕ, a fair scheduler, and a union theorem
+asserting exact persistence of the complete unary values under
+all future successor steps.
+
+The standalone source audit now registers the exact new
+initial-label theorem. The dedicated workflow builds
+`C0FunctionalFiniteInitialLabels`. Until those exact checks
+finish, these are draft proof claims, not a kernel certificate.
