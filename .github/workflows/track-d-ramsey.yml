@@ -10,6 +10,7 @@ on:
       - "BigHrushovski/C0CoordinateNormalForm.lean"
       - "BigHrushovski/C0CoordinateLiteralCode.lean"
       - "BigHrushovski/C0CoordinatePointedSubcode.lean"
+      - "BigHrushovski/C0CoordinateGeneratedSubcode.lean"
       - "scripts/check_c0_coordinate_host_finite.py"
       - "TrackDCheckAxioms.lean"
       - ".github/workflows/track-d-ramsey.yml"
@@ -42,7 +43,7 @@ jobs:
       - name: Check Track D declarations
         run: |
           set -euo pipefail
-          lake build BigHrushovski.RamseyTransfer BigHrushovski.CFLevelRamseyTransfer BigHrushovski.C0CoordinateHostGraph BigHrushovski.C0CoordinateClosedRestriction BigHrushovski.C0CoordinateNormalForm BigHrushovski.C0CoordinateLiteralCode BigHrushovski.C0CoordinatePointedSubcode
+          lake build BigHrushovski.RamseyTransfer BigHrushovski.CFLevelRamseyTransfer BigHrushovski.C0CoordinateHostGraph BigHrushovski.C0CoordinateClosedRestriction BigHrushovski.C0CoordinateNormalForm BigHrushovski.C0CoordinateLiteralCode BigHrushovski.C0CoordinatePointedSubcode BigHrushovski.C0CoordinateGeneratedSubcode
           lake env lean TrackDCheckAxioms.lean > track-d-axioms.log
           python3 scripts/check_axioms.py track-d-axioms.log TrackDCheckAxioms.lean
           python3 scripts/check_no_placeholders.py
