@@ -9,6 +9,7 @@ on:
       - 'BigHrushovski/OrientationMinimalStep.lean'
       - 'BigHrushovski/OrientationComponentOrder.lean'
       - 'BigHrushovski/OrientationComponentDownsets.lean'
+      - 'BigHrushovski/N0LocalSymmetry.lean'
       - 'scripts/check_track_f_component_downsets.py'
       - 'scripts/check_track_f_degrees.py'
       - 'scripts/check_track_f_component_order.py'
@@ -23,6 +24,7 @@ on:
       - 'BigHrushovski/OrientationMinimalStep.lean'
       - 'BigHrushovski/OrientationComponentOrder.lean'
       - 'BigHrushovski/OrientationComponentDownsets.lean'
+      - 'BigHrushovski/N0LocalSymmetry.lean'
       - 'scripts/check_track_f_component_downsets.py'
       - 'scripts/check_track_f_degrees.py'
       - 'scripts/check_track_f_component_order.py'
@@ -46,7 +48,7 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Compile the independent finite module
-        run: lake build BigHrushovski.OrientationComponentDownsets
+        run: lake build BigHrushovski.N0LocalSymmetry
       - name: Kernel dependencies and placeholders
         run: |
           set -euo pipefail

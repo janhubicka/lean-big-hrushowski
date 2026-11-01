@@ -115,3 +115,22 @@ dependency/downset infrastructure and independent arithmetic
 regressions. The degree-one Ramsey theorem and recurrence of
 the ordered generic remain entirely open in Lean. No
 validation marker in the paper is promoted by these checks.
+
+## Local component symmetry factor (1 November)
+
+New `N0LocalSymmetry.lean` defines the complete oriented-graph
+automorphisms of a finite one-component successor closure `C_B`
+which fix its lower successor part `P_B` pointwise. It proves
+that the identity belongs to this finite set, distinct local
+automorphisms transport a fixed enumeration to distinct
+enumerations, the orbit has exactly the stabilizer's cardinality,
+and each transport fixes every old point. These are the
+kernel-level counting interfaces for the local factor `g_A(B)`.
+
+**Adversarial limit:** this currently counts **enumerations**.
+Identifying their transported finite linear orders, proving that
+these are precisely all locally permitted orders, assembling
+independent choices along component linear extensions, and
+proving recurrence and infinite Ramsey degree one remain open.
+Do not cite this lemma alone as a verification of
+`thm:N0-exact`. CI/axiom audit required at the new commit.

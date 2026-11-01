@@ -1,4 +1,4 @@
-import BigHrushovski.OrientationComponentDownsets
+import BigHrushovski.N0LocalSymmetry
 
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_empty
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_union
@@ -62,3 +62,10 @@ import BigHrushovski.OrientationComponentDownsets
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_component_subset
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_predecessor
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_iff_component_downward
+
+
+#print axioms BigHrushovski.FiniteOrientation.isPointwiseLowerAutomorphism_refl
+#print axioms BigHrushovski.FiniteOrientation.pointwiseLowerAutomorphisms_nonempty
+#print axioms BigHrushovski.FiniteOrientation.transportedLocalEnumeration_injective
+#print axioms BigHrushovski.FiniteOrientation.localEnumeration_orbit_card
+#print axioms BigHrushovski.FiniteOrientation.transportedLocalEnumeration_fixed_lower
