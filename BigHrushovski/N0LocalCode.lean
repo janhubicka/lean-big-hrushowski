@@ -58,7 +58,7 @@ theorem sameOrientedCode_iff_automorphism {n : ℕ}
 fixation of the lower part. -/
 theorem sameLowerPositions_iff_fixed {n : ℕ}
     (P : Finset V) (e f : Fin n ≃ V) :
-    O.SameLowerPositions P e f ↔
+    SameLowerPositions P e f ↔
       (∀ x : V, x ∈ P → (e.symm.trans f) x = x) := by
   constructor
   · intro h x hx
@@ -71,21 +71,21 @@ theorem sameLowerPositions_iff_fixed {n : ℕ}
 codes and pointwise lower-part automorphisms. -/
 theorem codeAndLower_iff_pointwiseAut {n : ℕ}
     (P : Finset V) (e f : Fin n ≃ V) :
-    (O.SameOrientedCode e f ∧ O.SameLowerPositions P e f) ↔
+    (O.SameOrientedCode e f ∧ SameLowerPositions P e f) ↔
       O.IsPointwiseLowerAutomorphism P (e.symm.trans f) := by
   constructor
   · rintro ⟨hCode, hLower⟩
     exact ⟨(O.sameOrientedCode_iff_automorphism e f).mp hCode,
-      (O.sameLowerPositions_iff_fixed P e f).mp hLower⟩
+      (sameLowerPositions_iff_fixed P e f).mp hLower⟩
   · rintro ⟨hCode, hLower⟩
     exact ⟨(O.sameOrientedCode_iff_automorphism e f).mpr hCode,
-      (O.sameLowerPositions_iff_fixed P e f).mpr hLower⟩
+      (sameLowerPositions_iff_fixed P e f).mpr hLower⟩
 
 /-- Equivalently, the change of enumeration lies in the
 finite pointwise-stabilizer set. -/
 theorem codeAndLower_iff_mem_pointwiseAut {n : ℕ}
     (P : Finset V) (e f : Fin n ≃ V) :
-    (O.SameOrientedCode e f ∧ O.SameLowerPositions P e f) ↔
+    (O.SameOrientedCode e f ∧ SameLowerPositions P e f) ↔
       e.symm.trans f ∈ O.pointwiseLowerAutomorphisms P := by
   classical
   constructor
@@ -102,7 +102,7 @@ same old positions if and only if it is a transport of the
 chosen representative by a pointwise lower-part automorphism. -/
 theorem codeAndLower_iff_transported {n : ℕ}
     (P : Finset V) (e f : Fin n ≃ V) :
-    (O.SameOrientedCode e f ∧ O.SameLowerPositions P e f) ↔
+    (O.SameOrientedCode e f ∧ SameLowerPositions P e f) ↔
       ∃ h : Equiv.Perm V,
         h ∈ O.pointwiseLowerAutomorphisms P ∧
         (∀ i : Fin n, f i = h (e i)) := by

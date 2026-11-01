@@ -35,3 +35,8 @@ old lower part pointwise. This directly rules out an incorrect
 setwise-stabilizer replacement. The empty oriented structure is
 included. A passing Lean build and exact axiom audit are mandatory
 before this new finite correspondence is marked verified.
+
+
+## Additional adversarial round
+
+The independent regression now uses up to 24 distinct source enumerations per orientation of size at most three and three different source enumerations for four vertices, then compares all target enumerations. For each of 252,115 pairs it constructs the actual change-of-enumeration permutation and checks full directed adjacency agreement against orientation automorphism, and old-position agreement against pointwise fixation. All checks passed; the initial Lean compile was repaired by removing an invalid orientation-qualified prefix on the orientation-independent `SameLowerPositions` predicate. Kernel certification remains subject to the next successful CI run.
