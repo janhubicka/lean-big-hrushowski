@@ -111,15 +111,18 @@ section SingletonWitness
 
 variable [DecidableEq Level]
 variable (singleton : Level → Vertex)
-variable (hsingleton : ∀ q, support (singleton q) = {q})
 
 /-- Singleton-support level vertices detect membership of levels. -/
-theorem singleton_mem_supportDomain (S : Set Level) (q : Level) :
+theorem singleton_mem_supportDomain
+    (hsingleton : ∀ q, support (singleton q) = {q})
+    (S : Set Level) (q : Level) :
     singleton q ∈ supportDomain support S ↔ q ∈ S := by
   simp [supportDomain, hsingleton q]
 
 /-- Inclusion of saturated domains reflects inclusion of level sets. -/
-theorem supportDomain_subset_iff (S T : Set Level) :
+theorem supportDomain_subset_iff
+    (hsingleton : ∀ q, support (singleton q) = {q})
+    (S T : Set Level) :
     supportDomain support S ⊆ supportDomain support T ↔ S ⊆ T := by
   constructor
   · intro h q hq
@@ -128,7 +131,8 @@ theorem supportDomain_subset_iff (S T : Set Level) :
   · exact supportDomain_mono support
 
 /-- The complete-support range representation is injective. -/
-theorem supportDomain_injective :
+theorem supportDomain_injective
+    (hsingleton : ∀ q, support (singleton q) = {q}) :
     Function.Injective (supportDomain support) := by
   intro S T h
   apply Set.Subset.antisymm
