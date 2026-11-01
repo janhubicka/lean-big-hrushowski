@@ -78,6 +78,8 @@ jobs:
         run: python3 scripts/check_c0_explicit_amalgam.py
       - name: Check complete C0 unary closure covers and counterexamples
         run: python3 scripts/check_c0_complete_unary_covers.py
+      - name: Check exact C0 joined component-index stage cuts
+        run: python3 scripts/check_c0_joined_stage_cuts.py
       - name: Check intrinsic C0 component partition from unary values
         run: python3 scripts/check_c0_intrinsic_components.py
       - name: Check canonical finite C0 hereditary minimal presentations

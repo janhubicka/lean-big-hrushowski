@@ -1,0 +1,10 @@
+import BigHrushovski.CFDClosedBackAndForthCore
+
+#print axioms BigHrushovski.CFDClosedBackAndForth.globallyStrong_of_globallyDClosed
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.chain_step
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.chain_source_covers
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.chain_target_covers
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.strongChain_step
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.equivOfJointSteps_induced
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.equivOfJointSteps_initial
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.exists_induced_equiv_of_joint_steps
