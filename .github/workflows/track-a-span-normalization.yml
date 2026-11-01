@@ -5,6 +5,7 @@ on:
     paths:
       - 'BigHrushovski/C0FunctionalSpanNormalization.lean'
       - 'BigHrushovski/C0FunctionalFiniteResponse.lean'
+      - 'BigHrushovski/C0FunctionalFiniteInitialLabels.lean'
       - 'CheckC0FunctionalSpan.lean'
       - 'scripts/check_c0_functional_span_normalization.py'
       - '.github/workflows/track-a-span-normalization.yml'
@@ -12,6 +13,7 @@ on:
     paths:
       - 'BigHrushovski/C0FunctionalSpanNormalization.lean'
       - 'BigHrushovski/C0FunctionalFiniteResponse.lean'
+      - 'BigHrushovski/C0FunctionalFiniteInitialLabels.lean'
       - 'CheckC0FunctionalSpan.lean'
       - '.github/workflows/track-a-span-normalization.yml'
   workflow_dispatch:
@@ -43,7 +45,7 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Build exact C0 finite arbitrary-span normalization
-        run: lake build BigHrushovski.C0FunctionalFiniteResponse
+        run: lake build BigHrushovski.C0FunctionalFiniteInitialLabels
       - name: Audit exact theorem axioms and placeholders
         run: |
           set -euo pipefail
