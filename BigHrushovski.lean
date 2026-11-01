@@ -447,3 +447,9 @@ import BigHrushovski.C0CountableReductCriterion
 
 import BigHrushovski.CFPartialOneLevelFunctional
 import BigHrushovski.CFPartialRequestUniqueness
+
+import BigHrushovski.CFSelectedCutLevel
+import BigHrushovski.CFSelectedCutEquiv
+import BigHrushovski.CFSelectedCutEmbedding
+import BigHrushovski.CFSelectedCutBlockRigidity
+import BigHrushovski.CFRepresentedLevels
