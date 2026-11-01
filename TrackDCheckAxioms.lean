@@ -63,3 +63,5 @@ import BigHrushovski.C0CoordinatePointedRigidity
 #print axioms BigHrushovski.FiniteCatalogue.genericC0OneGenerated_pointedSubcodeClosed
 #print axioms BigHrushovski.FiniteUnaryCoordinates.coordinateMap_unique
 #print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_eq_crossSource
+#print axioms BigHrushovski.FiniteUnaryCoordinates.coordinateMap_lt_iff
+#print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_eq_crossSource_order
