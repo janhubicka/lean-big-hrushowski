@@ -31,6 +31,18 @@ theorem coordinateMap_unique
   apply f.injective
   exact (hh u).trans (hk u).symm
 
+
+/-- A coordinate-preserving map between two increasingly labelled
+finite carriers preserves AND reflects their linear orders. -/
+theorem coordinateMap_lt_iff
+    (e : U ↪o ℕ) (f : V ↪o ℕ) (h : U → V)
+    (hh : ∀ u : U, f (h u) = e u) (u v : U) :
+    u < v ↔ h u < h v := by
+  calc
+    u < v ↔ e u < e v := (e.lt_iff_lt).symm
+    _ ↔ f (h u) < f (h v) := by rw [hh u, hh v]
+    _ ↔ h u < h v := f.lt_iff_lt
+
 /-- Equality of COMPLETE literal pointed codes, even with different
 finite source carriers, gives the uniquely determined pointed
 coordinate-preserving induced functional bijection. -/
@@ -99,6 +111,29 @@ theorem literalPointedCode_eq_crossSource
     rw [hPair]
     exact mem_coordinateClosurePairs_iff D f (h u) (h v)
   exact ⟨h, ⟨hInj, hSurj⟩, hCoord, hRoot, hAdj, hC⟩
+
+
+/-- The cross-source matching is an ordered *and* functional pointed
+isomorphism, with strict-order reflection made explicit. Uniqueness of
+the coordinate-preserving map is `coordinateMap_unique`. -/
+theorem literalPointedCode_eq_crossSource_order
+    (G : GraphOn U) (H : GraphOn V)
+    (C : U → Finset U) (D : V → Finset V)
+    (e : U ↪o ℕ) (f : V ↪o ℕ)
+    (a : U) (b : V)
+    (hCode : literalPointedCode G C e a =
+      literalPointedCode H D f b) :
+    ∃ h : U → V,
+      Function.Bijective h ∧
+      (∀ u v : U, u < v ↔ h u < h v) ∧
+      (∀ u : U, f (h u) = e u) ∧
+      h a = b ∧
+      (∀ u v : U, G.adj u v ↔ H.adj (h u) (h v)) ∧
+      (∀ u v : U, v ∈ C u ↔ h v ∈ D (h u)) := by
+  obtain ⟨h, hBij, hCoord, hRoot, hAdj, hC⟩ :=
+    literalPointedCode_eq_crossSource G H C D e f a b hCode
+  exact ⟨h, hBij, coordinateMap_lt_iff e f h hCoord,
+    hCoord, hRoot, hAdj, hC⟩
 
 end FiniteUnaryCoordinates
 end BigHrushovski
