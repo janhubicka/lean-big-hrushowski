@@ -54,6 +54,7 @@ theorem globallyDClosed_pullback_iff
     have hStrict := hSource t hat hne'
     change (G.pullback e).predim a < (G.pullback e).predim t at hStrict
     rw [← hPredim a, ← hPredim t] at hStrict
+    change G.predim (a.image e) < G.predim b
     simpa only [htImage] using hStrict
   · intro hTarget b hab hne
     have hne' : b.image e ≠ a.image e := by
@@ -62,6 +63,7 @@ theorem globallyDClosed_pullback_iff
     have hStrict :=
       hTarget (b.image e) (Finset.image_mono e hab) hne'
     change G.predim (a.image e) < G.predim (b.image e) at hStrict
+    change (G.pullback e).predim a < (G.pullback e).predim b
     simpa only [hPredim a, hPredim b] using hStrict
 
 /-- Strict finite closed-cover existence is invariant under a genuine
