@@ -1262,3 +1262,8 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.selectedRequests_support_subset_stageCut
 #print axioms BigHrushovski.CFCoherentTower.stageCut_succ_eq_selectedSourceImage
 #print axioms BigHrushovski.CFCoherentTower.selectedCut_growthTransport_of_induced_dClosed
+
+#print axioms BigHrushovski.CFCoherentTower.selectedCutEquiv
+#print axioms BigHrushovski.CFCoherentTower.selectedCutEquiv_val
+#print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift
+#print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_injective
