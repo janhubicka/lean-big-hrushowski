@@ -11,6 +11,7 @@ on:
       - "BigHrushovski/C0CoordinateLiteralCode.lean"
       - "BigHrushovski/C0CoordinatePointedSubcode.lean"
       - "BigHrushovski/C0CoordinateGeneratedSubcode.lean"
+      - "BigHrushovski/C0CoordinatePointedRigidity.lean"
       - "scripts/check_c0_coordinate_host_finite.py"
       - "scripts/check_c0_pointed_subcode.py"
       - "TrackDCheckAxioms.lean"
@@ -46,7 +47,7 @@ jobs:
       - name: Check Track D declarations
         run: |
           set -euo pipefail
-          lake build BigHrushovski.RamseyTransfer BigHrushovski.CFLevelRamseyTransfer BigHrushovski.C0CoordinateHostGraph BigHrushovski.C0CoordinateClosedRestriction BigHrushovski.C0CoordinateNormalForm BigHrushovski.C0CoordinateLiteralCode BigHrushovski.C0CoordinatePointedSubcode BigHrushovski.C0CoordinateGeneratedSubcode
+          lake build BigHrushovski.RamseyTransfer BigHrushovski.CFLevelRamseyTransfer BigHrushovski.C0CoordinateHostGraph BigHrushovski.C0CoordinateClosedRestriction BigHrushovski.C0CoordinateNormalForm BigHrushovski.C0CoordinateLiteralCode BigHrushovski.C0CoordinatePointedSubcode BigHrushovski.C0CoordinateGeneratedSubcode BigHrushovski.C0CoordinatePointedRigidity
           lake env lean TrackDCheckAxioms.lean > track-d-axioms.log
           python3 scripts/check_axioms.py track-d-axioms.log TrackDCheckAxioms.lean
           python3 scripts/check_no_placeholders.py
