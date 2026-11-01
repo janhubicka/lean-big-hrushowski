@@ -1,0 +1,10 @@
+import BigHrushovski.CoherentNatC0Stages
+
+#print axioms BigHrushovski.GraphOn.eq_of_adj_iff
+#print axioms BigHrushovski.CoherentNatC0Stages.finite_stage_cover
+#print axioms BigHrushovski.CoherentNatC0Stages.old_stage_closed_in_successor
+#print axioms BigHrushovski.CoherentNatC0Stages.strong_steps
+#print axioms BigHrushovski.CoherentNatC0Stages.limit_pullback_eq_stage
+#print axioms BigHrushovski.CoherentNatC0Stages.limit_hasCanonicalFiniteStages
+#print axioms BigHrushovski.CoherentNatC0Stages.limit_finiteStrongCover
+#print axioms BigHrushovski.CoherentNatC0Stages.limit_reduct_iso_generic_of_functionalExtension
