@@ -1267,3 +1267,9 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.selectedCutEquiv_val
 #print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift
 #print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_injective
+
+#print axioms BigHrushovski.CFCoherentTower.selectedCutEquiv_symm_val
+#print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_induced
+#print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_stageOrder_iff
+#print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_image_eq
+#print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_dClosed_full
