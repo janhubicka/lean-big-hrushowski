@@ -1,0 +1,28 @@
+name: Track C actual birth graph recognition
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFRealBirthRecognition.lean"
+      - "TrackCRealBirthRecognitionCheck.lean"
+      - ".github/workflows/track-c-birth-recognition.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-birth:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build actual birth graph recognition
+        run: lake build BigHrushovski.CFRealBirthRecognition
+      - name: Audit theorem axioms and placeholders
+        run: |
+          lake env lean TrackCRealBirthRecognitionCheck.lean > track-c-birth-recognition-axioms.log
+          python3 scripts/check_axioms.py track-c-birth-recognition-axioms.log TrackCRealBirthRecognitionCheck.lean
+          python3 scripts/check_no_placeholders.py
