@@ -1,5 +1,7 @@
-import BigHrushovski.C0FunctionalSpanNormalization
+import BigHrushovski.C0FunctionalFiniteResponse
 
 #print axioms BigHrushovski.FiniteSpan.splitEquiv_symm_base
 #print axioms BigHrushovski.FiniteSpan.normalGraph_namedBase_canonicalValue
 #print axioms BigHrushovski.FiniteSpan.exists_normalized_canonicalFunctionalAmalgam
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalC0.sparse
+#print axioms BigHrushovski.FiniteCatalogue.exists_taggedResponse_to_functionalC0Request
