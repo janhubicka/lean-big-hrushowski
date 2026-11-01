@@ -116,7 +116,7 @@ theorem exists_extending_forth
   have hv : v ∈ c :=
     hContains (Finset.mem_insert_self v p.source)
   have hAC : M.toPredimension.IsDClosed p.source c :=
-    p.source_global.restrict hac
+    Predimension.IsGloballyDClosed.restrict M.toPredimension p.source_global hac
   have hGrowthC : M.IsGrowthSparse F c := by
     intro s _
     exact hGrowthM s
