@@ -1,0 +1,5 @@
+import BigHrushovski.C0FunctionalSpanNormalization
+
+#print axioms BigHrushovski.FiniteSpan.splitEquiv_symm_base
+#print axioms BigHrushovski.FiniteSpan.normalGraph_namedBase_canonicalValue
+#print axioms BigHrushovski.FiniteSpan.exists_normalized_canonicalFunctionalAmalgam
