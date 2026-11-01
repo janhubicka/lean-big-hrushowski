@@ -1,0 +1,3 @@
+import BigHrushovski.CFSingletonStageRequest
+
+#print axioms BigHrushovski.CFStageCatalogue.singletonStageRequest_exists
