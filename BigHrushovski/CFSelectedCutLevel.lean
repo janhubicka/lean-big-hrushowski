@@ -56,15 +56,11 @@ theorem stageCut_succ_eq_selectedSourceImage
         (stageCut F K s n) (selectedRequests F K s n))) =
       stageCut F K s (n + 1) := by
   classical
-  calc
-    _ = selectedBatchImage (stage F K n).graph
-          (GrowthAllowedLocal F) (fun P => K P.card)
-          (stageCut F K s n) (selectedRequests F K s n) :=
-        selectedSourceMap_image (stage F K n).graph
-          (GrowthAllowedLocal F) (fun P => K P.card)
-          (stageCut F K s n) (selectedRequests F K s n)
-    _ = stageCut F K s (n + 1) :=
-      (stageCut_succ_eq_selected F K s hs n).symm
+  rw [stageCut_succ_eq_selected F K s hs n]
+  simpa only [selectedBatchImage] using
+    (selectedSourceMap_image (stage F K n).graph
+      (GrowthAllowedLocal F) (fun P => K P.card)
+      (stageCut F K s n) (selectedRequests F K s n))
 
 /-- A single old embedding, induced and strictly d-closed on its
 literal selected domain, automatically supplies every local
@@ -87,6 +83,8 @@ theorem selectedCut_growthTransport_of_induced_dClosed
     SelectedGrowthTransportSubtype F K
       (stage F K n).graph (stage F K m).graph
       (stageCut F K s n) e (selectedRequests F K s n) := by
+  letI : LinearOrder (stage F K n).carrier := stageLinearOrder F K n
+  letI : LinearOrder (stage F K m).carrier := stageLinearOrder F K m
   exact selectedGrowthTransportSubtype_of_induced_dClosed
     F K (stage F K n).graph (stage F K m).graph
     (stageCut F K s n) e he hAdj hImageClosed
