@@ -446,3 +446,5 @@ import BigHrushovski.CFPartialSupportAutomaticClosure
 import BigHrushovski.CFSelectedCutLevel
 
 import BigHrushovski.CFSelectedCutEquiv
+
+import BigHrushovski.CFSelectedCutEmbedding
