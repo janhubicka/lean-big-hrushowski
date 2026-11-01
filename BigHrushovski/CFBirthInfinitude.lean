@@ -1,5 +1,5 @@
 import BigHrushovski.CFBirthCarrier
-import Mathlib.Logic.Denumerable
+import Mathlib.Basic.Denumerable
 
 /-!
 # Infinitude and natural-number enumeration of the C_F birth carrier
