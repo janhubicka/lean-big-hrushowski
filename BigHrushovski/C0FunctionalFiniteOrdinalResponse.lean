@@ -112,10 +112,9 @@ theorem exists_finiteOrdinalFunctionalResponse
         (FiniteC0.canonicalValue K κ (g x)).image label :=
           hValLabel (g x)
       _ = ((D.target.unaryValue x).image g).image label := by
-        rw [hValuesR x]
+        exact congrArg (fun s : Finset W => s.image label) (hValuesR x)
       _ = (D.target.unaryValue x).image target := by
         rw [Finset.image_image]
-        rfl
   have hKToM : ∀ x y : W,
       K.adj x y ↔ M.graph.adj (label x) (label y) := hAdjLabel
   have hOldStrongK : K.toPredimension.IsStrong
