@@ -97,6 +97,7 @@ theorem transportedLocalEnumeration_fixed_lower
     (hh : h ∈ O.pointwiseLowerAutomorphisms P)
     (i : Fin n) (hi : e i ∈ P) :
     transportedLocalEnumeration e h i = e i := by
+  classical
   have hfix := ((Finset.mem_filter.mp hh).2).2
   exact hfix (e i) hi
 
