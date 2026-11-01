@@ -1263,3 +1263,8 @@ import BigHrushovski
 #print axioms BigHrushovski.FiniteC0.globallyStrong_of_closed_stages
 #print axioms BigHrushovski.FiniteC0.finiteStrongCover_of_unaryClosedCovers
 #print axioms BigHrushovski.FiniteC0.graphReduct_iso_generic_of_unaryPresentation
+
+#print axioms BigHrushovski.CFStageCatalogue.selectedGrowthBatchMapSubtype_allBValues
+#print axioms BigHrushovski.CFCoherentTower.selectedGrowthBatchMapSubtype_oneLevel
+#print axioms BigHrushovski.CFStageCatalogue.request_eq_of_support_size_adjacency
+#print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_unique
