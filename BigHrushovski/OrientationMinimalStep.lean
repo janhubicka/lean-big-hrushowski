@@ -110,7 +110,8 @@ theorem minimalSuccessorStep_sdiff_eq_component [Fintype V]
     (hmin : O.IsMinimalSuccessorStep s t)
     {x : V} (hx : x ∈ t \ s) :
     t \ s = O.component x := by
-  obtain ⟨_, hs, ht, _⟩ := hmin
+  have hs : O.IsSuccessorClosed s := hmin.2.1
+  have ht : O.IsSuccessorClosed t := hmin.2.2.1
   obtain ⟨hxT, hxNotS⟩ := Finset.mem_sdiff.mp hx
   apply Finset.Subset.antisymm
   · intro y hy
