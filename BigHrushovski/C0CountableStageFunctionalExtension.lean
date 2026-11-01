@@ -32,7 +32,7 @@ Every finite canonical extension preserving the original complete
 unary values can be realized over the chosen stage, with the same
 old vertices, graph edges and nonedges, and every complete new
 unary value. This is the Fraïssé extension property restricted to
-the cofinal finite canonical stages, not a graph extension axiom. -/
+the cofinal finite canonical stages, not an assumed graph extension property. -/
 def HasCanonicalStageExtensionProperty
     (N : GraphOn ℕ) (C : ℕ → Finset ℕ)
     (stage : ℕ → Finset ℕ) : Prop :=
