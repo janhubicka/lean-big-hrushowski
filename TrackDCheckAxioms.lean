@@ -5,6 +5,7 @@ import BigHrushovski.C0CoordinateNormalForm
 import BigHrushovski.C0CoordinateLiteralCode
 import BigHrushovski.C0CoordinatePointedSubcode
 import BigHrushovski.C0CoordinateGeneratedSubcode
+import BigHrushovski.C0CoordinatePointedRigidity
 
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_forward
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_iff
@@ -60,3 +61,5 @@ import BigHrushovski.C0CoordinateGeneratedSubcode
 #print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_restrict_closure_iff
 
 #print axioms BigHrushovski.FiniteCatalogue.genericC0OneGenerated_pointedSubcodeClosed
+#print axioms BigHrushovski.FiniteUnaryCoordinates.coordinateMap_unique
+#print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_eq_crossSource
