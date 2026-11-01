@@ -33,9 +33,10 @@ theorem selectedCutEquiv_symm_val
       (GrowthAllowedLocal F) (fun P => K P.card)
       (stageCut F K s n) (selectedRequests F K s n)
       ((selectedCutEquiv F K s hs n).symm x) = x.val := by
-  simpa only [selectedCutEquiv_val] using
-    congrArg Subtype.val
-      ((selectedCutEquiv F K s hs n).apply_symm_apply x)
+  change (selectedCutEquiv F K s hs n
+      ((selectedCutEquiv F K s hs n).symm x)).val = x.val
+  exact congrArg Subtype.val
+    ((selectedCutEquiv F K s hs n).apply_symm_apply x)
 
 /-- Graph inducedness for the true finite next-cut source, not
 only its auxiliary selected old-plus-fresh carrier. -/
@@ -141,6 +142,8 @@ theorem selectedCutOneStepLift_image_eq
     (h : SelectedGrowthTransportSubtype F K
       (stage F K n).graph (stage F K m).graph
       (stageCut F K s n) e (selectedRequests F K s n)) :
+    letI : LinearOrder (stage F K n).carrier := stageLinearOrder F K n
+    letI : LinearOrder (stage F K m).carrier := stageLinearOrder F K m
     ((Finset.univ : Finset (SupportCarrier (stage F K (n+1)).carrier
         (stageCut F K s (n+1)))).image
       (selectedCutOneStepLift F K s hs n m e he h)) =
