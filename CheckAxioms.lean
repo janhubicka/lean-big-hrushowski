@@ -1281,3 +1281,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_stageOrder_iff
 #print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_image_eq
 #print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_dClosed_full
+
+#print axioms BigHrushovski.CFCoherentTower.representedLevels
+#print axioms BigHrushovski.CFCoherentTower.selectedRequests_nonempty_iff_represented
+#print axioms BigHrushovski.CFCoherentTower.stageCut_succ_eq_old_of_unrepresented
