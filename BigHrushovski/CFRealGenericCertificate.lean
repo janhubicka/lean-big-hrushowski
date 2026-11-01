@@ -91,7 +91,15 @@ theorem realCountableGraph_empty_globalDClosed
   have hEmptyImage : stageImage Fnat K 0 =
       (∅ : Finset (RealBirthVertex F hMono hUnbounded)) := by
     classical
-    simp [stageImage, stage, emptyStage, Fnat, K]
+    ext w
+    constructor
+    · intro hw
+      change w ∈
+        ((Finset.univ : Finset (stage Fnat K 0).carrier).image
+          (toVertex Fnat K 0)) at hw
+      obtain ⟨u, _, _⟩ := Finset.mem_image.mp hw
+      exact Fin.elim0 u
+    · simp
   have hClosed := stageImage_global_dClosed Fnat K 0
   rw [hEmptyImage] at hClosed
   exact hClosed
