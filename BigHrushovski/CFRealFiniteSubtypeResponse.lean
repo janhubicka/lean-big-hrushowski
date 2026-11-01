@@ -142,10 +142,14 @@ theorem finiteRealDClosedNatInterval_globalResponse
       M.adj x.val y.val ↔
         (realCountableGraph F hMono hUnbounded).adj (g x) (g y) := by
     intro x y
-    simpa [g, G, graph] using
-      (hg0Adj (⟨x, Finset.mem_univ _⟩ :
-          {v : V // v ∈ (Finset.univ : Finset V)})
-        ⟨y, Finset.mem_univ _⟩)
+    change M.adj x.val y.val ↔
+      (realCountableGraph F hMono hUnbounded).adj
+        (g0 ⟨x, Finset.mem_univ _⟩)
+        (g0 ⟨y, Finset.mem_univ _⟩)
+    exact hg0Adj
+      (⟨x, Finset.mem_univ _⟩ :
+        {v : V // v ∈ (Finset.univ : Finset V)})
+      ⟨y, Finset.mem_univ _⟩
   have hgImage :
       ((Finset.univ : Finset {v : ℕ // v ∈ b}).image g) =
       ((Finset.univ :
