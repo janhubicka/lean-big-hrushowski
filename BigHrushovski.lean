@@ -428,4 +428,19 @@ import BigHrushovski.CFActualSubtypeBatchInduced
 
 import BigHrushovski.CFSelectedSubtypeOrder
 
+import BigHrushovski.C0TaggedFunctionalOneBlock
+
+import BigHrushovski.C0TaggedStageCuts
+
+import BigHrushovski.C0TaggedMinimalStages
+
+import BigHrushovski.C0TaggedFullFunctionalAmalgam
+
+import BigHrushovski.CFPartialSupportLex
+import BigHrushovski.CFSelectedSubtypeBValues
+import BigHrushovski.CFActualSubtypeRequestOrder
+import BigHrushovski.CFActualSubtypeStageOrder
+
+import BigHrushovski.CFPartialSupportAutomaticClosure
+
 import BigHrushovski.C0CountableReductCriterion

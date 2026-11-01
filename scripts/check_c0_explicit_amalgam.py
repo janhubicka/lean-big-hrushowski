@@ -158,6 +158,25 @@ def audit_span(p,l,r):
                     assert actual==required, (
                         "left-fixed appended-tail order changes named unary values",
                         (p,l,r),el,er,idxL,idxR,vL,vR,chosen,actual,required)
+                    # Directly check the literal Fin(n+2*m) index used
+                    # in the Lean proof: first retain every left rank,
+                    # then frontload the right closed base and append
+                    # the fresh right tail with its ORIGINAL right rank.
+                    # Empty ranks create equality steps, not fake
+                    # minimal increments.
+                    mRight=max(idxR,default=-1)+1
+                    padded=idxL+tuple(mLeft+mRight+idxR[u]
+                                     for u in range(p,nR))
+                    mPadded=mLeft+2*mRight
+                    padded_stages=[sum(1<<v for v,j in enumerate(padded)
+                                       if j<k) for k in range(mPadded+1)]
+                    assert all(a==b or minimal(tuple(joined),a,b)
+                               for a,b in zip(padded_stages,padded_stages[1:])), (
+                        "uncompressed joined index has nonminimal stage",
+                        (p,l,r),el,er,idxL,idxR,padded,padded_stages)
+                    assert values(tuple(joined),padded,mPadded)==required, (
+                        "uncompressed joined index changes complete values",
+                        (p,l,r),el,er,idxL,idxR,padded,required)
                     assert required in possible, (
                         "two-sided functional amalgam counterexample",
                         (p,l,r),el,er,idxL,idxR,vL,vR)
