@@ -57,7 +57,7 @@ theorem generatedSupport_subset_of_closure
     ⟨z, htrans hxy hz, heq⟩
 
 /-- Supported ranges are closed under all complete functional
-dependencies, with no additional abstract support-transport axiom. -/
+dependencies, without an additional abstract support-transport assumption. -/
 theorem generatedSupport_domain_closed
     (Γ : Vertex → Finset Vertex) (π : Vertex → Level)
     (htrans : ∀ {x y : Vertex}, y ∈ Γ x → Γ y ⊆ Γ x)
