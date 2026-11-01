@@ -124,3 +124,61 @@ and no-placeholder scan are in the dedicated
 pass before this proposed theorem is called verified or
 merged. Keep this PR stacked on the finite request
 catalogue, with no change to shared umbrella and axiom files.
+
+
+## New exact finite labelled-response endpoint
+
+`C0FunctionalFiniteResponse.lean` instantiates the arbitrary-span
+normalization theorem for a current finite stage
+`S : FiniteFunctionalC0 a p`, a finite request
+`D : FunctionalC0Diagram b q c r`, and a **prescribed**
+functional embedding `e : Fin b → Fin a`. The hypotheses state
+injectivity of `e`, inducedness of its graph map and exact
+preservation of all complete source unary values.
+
+The result constructs the literal tagged free graph, a canonical
+minimal-component presentation on its whole carrier, two induced
+strong graph embeddings with both complete unary operations
+transported, and, crucially, the equality
+`leftTag(eS(e(x))) = rightTag(eD(D.embedding(x)))`
+for every original source vertex `x`. The old source map is never
+replaced by a chosen isomorphic copy.
+
+**Referee 8 — redundant sparsity assumption.** The catalogue's
+finite minimal-component presentations already start from the
+empty graph. The new `FiniteFunctionalC0.sparse` proves
+2-sparsity from this sequence via the strongness of the empty
+closed set. No separate sparseness field is needed in
+`FiniteFunctionalC0`.
+
+**Referee 9 — source versus target closure.** Both
+`S.unaryValue (e x) = image(e,D.source.unaryValue(x))`
+and `D.target.unaryValue(D.embedding x) =
+image(D.embedding,D.source.unaryValue(x))` are used. Merely
+assuming graph inducedness would not provide the named-base
+compatibility needed for the tagged amalgam, and the theorem
+does not infer that compatibility from the graph.
+
+**Referee 10 — labelled response property.** The old stage map
+and the requested target map are induced embeddings, and both
+carry complete function-value equalities. The calculation
+on the shared base uses the split equivalence's literal
+`symm_base` theorem. An arbitrary normal form lacking this
+pointwise identity would not answer the scheduled request.
+
+**Referee 11 — remaining embedding into a Nat stage.** The
+finite tagged graph has a valid canonical presentation but its
+carrier is a finite nested sum, not the required labelled
+`Fin n` or a consecutive natural interval. The next step
+must extend the old labels bijectively to the whole new
+carrier, transport its complete function values and prove
+coherence with later stage embeddings. This is not supplied
+by the graph-only label transport.
+
+The exact checker now audits
+`FiniteFunctionalC0.sparse` and
+`exists_taggedResponse_to_functionalC0Request` alongside
+the three span normalization endpoints. The dedicated
+workflow builds `C0FunctionalFiniteResponse`, rather than
+only its predecessor module. No finite or countable
+green claim is made before this exact run passes.
