@@ -137,7 +137,7 @@ theorem localStrong_of_canonicalFiniteStages
 
 /-- Complete canonical values on cofinal finite stages force
 the *ambient* one-generated operation C to be reflexive and
-transitive. There is no separate closure axiom. -/
+transitive. No extra closure premise is required. -/
 theorem completeUnary_of_canonicalFiniteStages
     (N : GraphOn ℕ) (C : ℕ → Finset ℕ)
     (stage : ℕ → Finset ℕ)
@@ -193,7 +193,7 @@ theorem sparse_of_canonicalFiniteStages
   obtain ⟨n, hn⟩ := hCover s
   have hEmptyClosed : N.IsClosedUnderValues C ∅ := by
     intro u hu
-    exact (Finset.not_mem_empty u hu).elim
+    simp at hu
   have hEmptyStrong : N.toPredimension.IsStrong ∅ (stage n) :=
     localStrong_of_canonicalFiniteStages N C stage hStage
       n ∅ (Finset.empty_subset _) hEmptyClosed
