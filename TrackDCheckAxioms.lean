@@ -21,7 +21,7 @@ import BigHrushovski.C0CoordinateNormalForm
 #print axioms BigHrushovski.FiniteCatalogue.genericC0Graph_iff_backAdjacency
 #print axioms BigHrushovski.FiniteCatalogue.genericC0CJEmbedding_iff_unaryEmbedding
 #print axioms BigHrushovski.GraphOn.noCrossEdges_of_closed
-#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_noCross
+#print axioms BigHrushovski.FiniteCatalogue.genericC0UnaryClosed_noCross_between
 
 #print axioms BigHrushovski.FiniteUnaryCoordinates.restrictValue_image
 #print axioms BigHrushovski.FiniteUnaryCoordinates.restrictValue_nested
