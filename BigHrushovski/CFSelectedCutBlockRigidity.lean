@@ -1,5 +1,4 @@
 import BigHrushovski.CFSelectedCutEmbedding
-import BigHrushovski.CFPartialRequestUniqueness
 
 /-!
 # Pointwise old-block and fresh-tag rigidity of a literal C_F cut lift
