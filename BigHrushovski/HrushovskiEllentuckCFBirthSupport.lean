@@ -104,6 +104,44 @@ theorem birthLevelDomain_bValueClosed
       (birthSingletonClosure_self F K v)
   exact birthLevelDomain_generatedClosed F K S hv (hb hw)
 
+/-- Initial-segment support saturation is *exactly* the original
+finite stage image. This requires neither a chosen level lift nor a
+new copy of the source carrier: it follows from the fact that finite
+birth stages are closed under all b-values and each vertex represents
+its own birth level. -/
+theorem birthLevelDomain_initial_eq_stageImage
+    (F : ℕ → ℝ) (K : ℕ → ℕ) (n : ℕ) :
+    birthLevelDomain F K (Set.Iio n) =
+      (↑(stageImage F K n) : Set (Vertex F K)) := by
+  ext v
+  constructor
+  · intro hv
+    have hvLevel : v.1 < n :=
+      hv _ (birthLevelSupport_self F K v)
+    exact (mem_stageImage_iff_birth_lt F K n v).2 hvLevel
+  · intro hv
+    have hvStage : v ∈ stageImage F K n := hv
+    have hClosureStage :
+        birthSingletonClosure F K v ⊆ stageImage F K n :=
+      birthGeneratedClosure_le_of_closed F K
+        ({v} : Finset (Vertex F K)) (stageImage F K n)
+        (by simpa using hvStage)
+        (stageImage_birthBlockClosed F K n)
+    intro q hq
+    rcases (birthLevelSupport_mem_iff F K v q).1 hq with
+      ⟨w, hw, hwq⟩
+    have hwLevel : w.1 < n :=
+      (mem_stageImage_iff_birth_lt F K n w).1 (hClosureStage hw)
+    simpa only [hwq] using hwLevel
+
+/-- In particular every initial finite-level support domain is finite,
+without the still-open unique finite level lifting theorem. -/
+theorem birthLevelDomain_initial_finite
+    (F : ℕ → ℝ) (K : ℕ → ℕ) (n : ℕ) :
+    (birthLevelDomain F K (Set.Iio n)).Finite := by
+  rw [birthLevelDomain_initial_eq_stageImage]
+  exact Finset.finite_toSet (stageImage F K n)
+
 /-- Empty represented level sets contain no birth vertices: every
 vertex's own birth level is already in its complete support. -/
 theorem birthLevelDomain_empty
