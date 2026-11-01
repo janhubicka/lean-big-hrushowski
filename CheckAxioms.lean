@@ -1259,3 +1259,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFStageCatalogue.supportImage_partial_dClosed_of_induced
 #print axioms BigHrushovski.CFStageCatalogue.selectedGrowthTransportSubtype_of_induced_dClosed
 
+#print axioms BigHrushovski.Predimension.globallyStrong_of_cofinal_finite
+#print axioms BigHrushovski.FiniteC0.globallyStrong_of_closed_stages
+#print axioms BigHrushovski.FiniteC0.finiteStrongCover_of_unaryClosedCovers
+#print axioms BigHrushovski.FiniteC0.graphReduct_iso_generic_of_unaryPresentation
