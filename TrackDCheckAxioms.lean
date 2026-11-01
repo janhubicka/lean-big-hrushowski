@@ -4,6 +4,7 @@ import BigHrushovski.C0CoordinateClosedRestriction
 import BigHrushovski.C0CoordinateNormalForm
 import BigHrushovski.C0CoordinateLiteralCode
 import BigHrushovski.C0CoordinatePointedSubcode
+import BigHrushovski.C0CoordinateGeneratedSubcode
 
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_forward
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_iff
@@ -51,3 +52,11 @@ import BigHrushovski.C0CoordinatePointedSubcode
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LiteralPointedCode.mem_restrictTo_closure_iff
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LiteralPointedCode.restrictTo_restrictTo
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LiteralPointedCode.closedSubset_of_restrictTo
+#print axioms BigHrushovski.FiniteUnaryCoordinates.mem_coordinateImage_iff
+#print axioms BigHrushovski.FiniteUnaryCoordinates.coordinateImage_subset_labelSupport
+#print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_closedImage
+#print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_generatedClosed
+#print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_restrict_adj_iff
+#print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_restrict_closure_iff
+
+#print axioms BigHrushovski.FiniteCatalogue.genericC0OneGenerated_pointedSubcodeClosed
