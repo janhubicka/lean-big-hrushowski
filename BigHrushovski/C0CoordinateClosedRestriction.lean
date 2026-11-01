@@ -213,10 +213,10 @@ theorem genericC0OneGenerated_J_image (a : ℕ)
 back-adjacency value is precisely the restricted ambient J value. -/
 theorem genericC0OneGenerated_restrict_J (a : ℕ)
     (u : genericC0UnaryClosure a) :
-    (restrictGraph genericTwoSparseGraph (genericC0UnaryClosure a)).
-      backAdjacencyValue
-        (fun v => restrictValue genericC0UnaryClosure
-          (genericC0UnaryClosure a) v) u =
+    GraphOn.backAdjacencyValue
+      (restrictGraph genericTwoSparseGraph (genericC0UnaryClosure a))
+      (fun v => restrictValue genericC0UnaryClosure
+        (genericC0UnaryClosure a) v) u =
       restrictValue genericC0BackAdjacency
         (genericC0UnaryClosure a) u :=
   restrictBackAdjacencyValue genericTwoSparseGraph
