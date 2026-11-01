@@ -1,0 +1,41 @@
+name: Track F local adjacency code audit
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0LocalCode.lean'
+      - 'CheckTrackFCodeAxioms.lean'
+      - 'scripts/check_track_f_local_code.py'
+      - '.github/workflows/track-f-code.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0LocalCode.lean'
+      - 'CheckTrackFCodeAxioms.lean'
+      - 'scripts/check_track_f_local_code.py'
+      - '.github/workflows/track-f-code.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  local-code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build local code correspondence
+        run: lake build BigHrushovski.N0LocalCode
+      - name: Check axioms and placeholders
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFCodeAxioms.lean > local-code-axioms.log
+          python3 scripts/check_axioms.py local-code-axioms.log CheckTrackFCodeAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Adversarial finite code checks
+        run: python3 scripts/check_track_f_local_code.py

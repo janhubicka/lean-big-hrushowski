@@ -1,0 +1,7 @@
+import BigHrushovski.N0LocalCode
+
+#print axioms BigHrushovski.FiniteOrientation.sameOrientedCode_iff_automorphism
+#print axioms BigHrushovski.FiniteOrientation.sameLowerPositions_iff_fixed
+#print axioms BigHrushovski.FiniteOrientation.codeAndLower_iff_pointwiseAut
+#print axioms BigHrushovski.FiniteOrientation.codeAndLower_iff_mem_pointwiseAut
+#print axioms BigHrushovski.FiniteOrientation.codeAndLower_iff_transported
