@@ -1,7 +1,7 @@
 name: Lean Track D Ramsey Transfer
 
 on:
-  push:
+  pull_request:
     paths:
       - "BigHrushovski/RamseyTransfer.lean"
       - "BigHrushovski/CFLevelRamseyTransfer.lean"
@@ -9,13 +9,7 @@ on:
       - "BigHrushovski/C0CoordinateClosedRestriction.lean"
       - "BigHrushovski/C0CoordinateNormalForm.lean"
       - "BigHrushovski/C0CoordinateLiteralCode.lean"
-      - "TrackDCheckAxioms.lean"
-      - ".github/workflows/track-d-ramsey.yml"
-  pull_request:
-    paths:
-      - "BigHrushovski/RamseyTransfer.lean"
-      - "BigHrushovski/CFLevelRamseyTransfer.lean"
-      - "BigHrushovski/C0CoordinateHostGraph.lean"
+      - "scripts/check_c0_coordinate_host_finite.py"
       - "TrackDCheckAxioms.lean"
       - ".github/workflows/track-d-ramsey.yml"
   workflow_dispatch:
@@ -42,6 +36,8 @@ jobs:
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Check small C0 code and closure counterexamples
+        run: python3 scripts/check_c0_coordinate_host_finite.py
       - name: Check Track D declarations
         run: |
           set -euo pipefail
