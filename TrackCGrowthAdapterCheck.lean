@@ -1,4 +1,4 @@
-import BigHrushovski.CFNonnegativeGrowthAdapter
+import BigHrushovski.CFPublishedFiniteGenericity
 
 #print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_nonneg
 #print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_agrees
