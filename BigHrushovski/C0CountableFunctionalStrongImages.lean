@@ -24,7 +24,7 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Exact preservation of complete unary values automatically makes
 the full finite embedding image closed under the ambient function.
-Neither a closure operator axiom nor injectivity is needed for
+Neither a separate closure premise nor injectivity is needed for
 this elementary inclusion statement. -/
 theorem completeFunctionalImage_closed
     (N : GraphOn ℕ) (C : ℕ → Finset ℕ)
