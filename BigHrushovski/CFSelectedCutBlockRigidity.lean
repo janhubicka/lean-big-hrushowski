@@ -72,6 +72,8 @@ theorem selectedCutOneStepLift_fresh
       (GrowthAllowedLocal F) (fun P => K P.card)
       (selectedRequests F K s n))
     (i : Fin r.val.code.1.val) :
+    letI : LinearOrder (stage F K n).carrier := stageLinearOrder F K n
+    letI : LinearOrder (stage F K m).carrier := stageLinearOrder F K m
     selectedCutOneStepLift F K s hs n m e he h
         (selectedCutEquiv F K s hs n (Sum.inr ⟨r, i⟩)) =
       (Sum.inr
@@ -123,7 +125,11 @@ theorem selectedCutOneStepLift_unique_of_block_codes
       (stageCut F K s n),
       g (selectedCutEquiv F K s hs n (Sum.inl u)) =
         (Sum.inl (e u) : (stage F K (m+1)).carrier))
-    (hgFresh : ∀ (r : SelectedRequests (stage F K n).graph
+    (hgFresh : letI : LinearOrder (stage F K n).carrier :=
+        stageLinearOrder F K n
+      letI : LinearOrder (stage F K m).carrier :=
+        stageLinearOrder F K m
+      ∀ (r : SelectedRequests (stage F K n).graph
         (GrowthAllowedLocal F) (fun P => K P.card)
         (selectedRequests F K s n))
         (i : Fin r.val.code.1.val),
