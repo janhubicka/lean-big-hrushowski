@@ -443,3 +443,4 @@ import BigHrushovski.CFActualSubtypeStageOrder
 
 import BigHrushovski.CFPartialSupportAutomaticClosure
 
+import BigHrushovski.C0CountableReductCriterion
