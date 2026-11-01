@@ -134,3 +134,25 @@ independent choices along component linear extensions, and
 proving recurrence and infinite Ramsey degree one remain open.
 Do not cite this lemma alone as a verification of
 `thm:N0-exact`. CI/axiom audit required at the new commit.
+
+## Consolidated Track F finite integration (1 November)
+
+Dependent PR #294 was merged into the Track F development branch as
+`97ca8a49`, after its isolated and full CI passed. Dependent PR
+#299 was similarly merged as `04d9780c`, after correcting the
+orientation-independent lower-position predicate and verifying
+252,115 independent changes of finite enumeration. The modules
+`N0ComponentRankPrefixes.lean` and `N0LocalCode.lean` are now
+both imported into the umbrella `BigHrushovski.lean`, and all
+their named endpoints are checked in `CheckOrientationAxioms.lean`.
+The integrated CI explicitly builds both and runs both regressions.
+The combined post-merge CI must succeed before promoting these
+dependencies to the certified integrated baseline.
+
+The local code dictionary treats *all* directed adjacency and
+nonadjacency data and fixes the lower part *pointwise*, not
+setwise. The SCC ranking theorem treats exact strong prefixes
+but does not select a canonical vertex order within an SCC.
+A finite bijection between complete permitted ordered expansions
+and their component-order/local-code data is still missing.
+The recurrence and infinite Ramsey theorem remain unformalized.

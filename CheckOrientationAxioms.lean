@@ -1,4 +1,5 @@
-import BigHrushovski.N0LocalSymmetry
+import BigHrushovski.N0ComponentRankPrefixes
+import BigHrushovski.N0LocalCode
 
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_empty
 #print axioms BigHrushovski.FiniteOrientation.successorClosed_union
@@ -69,3 +70,16 @@ import BigHrushovski.N0LocalSymmetry
 #print axioms BigHrushovski.FiniteOrientation.transportedLocalEnumeration_injective
 #print axioms BigHrushovski.FiniteOrientation.localEnumeration_orbit_card
 #print axioms BigHrushovski.FiniteOrientation.transportedLocalEnumeration_fixed_lower
+
+
+#print axioms BigHrushovski.FiniteOrientation.mem_componentRankPrefix_iff
+#print axioms BigHrushovski.FiniteOrientation.componentRankPrefix_mono
+#print axioms BigHrushovski.FiniteOrientation.component_subset_rankPrefix
+#print axioms BigHrushovski.FiniteOrientation.componentRankPrefix_isSuccessorClosed
+#print axioms BigHrushovski.FiniteOrientation.componentRankPrefix_isStrong
+
+#print axioms BigHrushovski.FiniteOrientation.sameOrientedCode_iff_automorphism
+#print axioms BigHrushovski.FiniteOrientation.sameLowerPositions_iff_fixed
+#print axioms BigHrushovski.FiniteOrientation.codeAndLower_iff_pointwiseAut
+#print axioms BigHrushovski.FiniteOrientation.codeAndLower_iff_mem_pointwiseAut
+#print axioms BigHrushovski.FiniteOrientation.codeAndLower_iff_transported

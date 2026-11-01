@@ -10,6 +10,10 @@ on:
       - 'BigHrushovski/OrientationComponentOrder.lean'
       - 'BigHrushovski/OrientationComponentDownsets.lean'
       - 'BigHrushovski/N0LocalSymmetry.lean'
+      - 'BigHrushovski/N0ComponentRankPrefixes.lean'
+      - 'BigHrushovski/N0LocalCode.lean'
+      - 'scripts/check_track_f_rank_prefixes.py'
+      - 'scripts/check_track_f_local_code.py'
       - 'scripts/check_track_f_component_downsets.py'
       - 'scripts/check_track_f_degrees.py'
       - 'scripts/check_track_f_component_order.py'
@@ -25,6 +29,10 @@ on:
       - 'BigHrushovski/OrientationComponentOrder.lean'
       - 'BigHrushovski/OrientationComponentDownsets.lean'
       - 'BigHrushovski/N0LocalSymmetry.lean'
+      - 'BigHrushovski/N0ComponentRankPrefixes.lean'
+      - 'BigHrushovski/N0LocalCode.lean'
+      - 'scripts/check_track_f_rank_prefixes.py'
+      - 'scripts/check_track_f_local_code.py'
       - 'scripts/check_track_f_component_downsets.py'
       - 'scripts/check_track_f_degrees.py'
       - 'scripts/check_track_f_component_order.py'
@@ -48,7 +56,7 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Compile the independent finite module
-        run: lake build BigHrushovski.N0LocalSymmetry
+        run: lake build BigHrushovski.N0ComponentRankPrefixes BigHrushovski.N0LocalCode
       - name: Kernel dependencies and placeholders
         run: |
           set -euo pipefail
@@ -61,3 +69,5 @@ jobs:
           python3 scripts/check_track_f_component_order.py
           python3 scripts/check_track_f_component_downsets.py
           python3 scripts/check_track_f_degrees.py
+          python3 scripts/check_track_f_rank_prefixes.py
+          python3 scripts/check_track_f_local_code.py

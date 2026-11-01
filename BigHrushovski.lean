@@ -427,3 +427,6 @@ import BigHrushovski.CFPartialBoundaryTransport
 import BigHrushovski.CFActualSubtypeBatchInduced
 
 import BigHrushovski.CFSelectedSubtypeOrder
+
+import BigHrushovski.N0ComponentRankPrefixes
+import BigHrushovski.N0LocalCode
