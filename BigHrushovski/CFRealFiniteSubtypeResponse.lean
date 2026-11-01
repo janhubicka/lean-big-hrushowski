@@ -95,7 +95,10 @@ theorem finiteRealDClosedNatInterval_globalResponse
       G.adj x.val y.val ↔
         (realCountableGraph F hMono hUnbounded).adj (f x) (f y) := by
     intro x y
-    simpa [f, E, G, graph] using heAdj (E.symm x) (E.symm y)
+    change M.adj x.val.val y.val.val ↔
+      (realCountableGraph F hMono hUnbounded).adj
+        (e (E.symm x)) (e (E.symm y))
+    exact heAdj (E.symm x) (E.symm y)
   have hfImage :
       ((Finset.univ : Finset {v : V // v ∈ P}).image f) =
       ((Finset.univ : Finset {v : ℕ // v ∈ a}).image e) := by
