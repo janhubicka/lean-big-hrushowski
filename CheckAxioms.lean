@@ -1268,3 +1268,21 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.selectedGrowthBatchMapSubtype_oneLevel
 #print axioms BigHrushovski.CFStageCatalogue.request_eq_of_support_size_adjacency
 #print axioms BigHrushovski.CFStageCatalogue.transportGrowthStageRequest_partial_unique
+
+-- Track C: isolated-CI-certified endpoints now included in global audit.
+#print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_nat
+#print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_monotone
+#print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_unbounded
+#print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_zero
+#print axioms BigHrushovski.CFGrowthNumerics.publishedCardinalGrowth_eq
+#print axioms BigHrushovski.CFCoherentTower.finitePublishedDClosedInterval_globalResponse
+#print axioms BigHrushovski.CFCoherentTower.realCountableGraph_genericCertificate_of_classFreeJoins
+#print axioms BigHrushovski.CFCoherentTower.realCountableGraph_empty_globalDClosed
+#print axioms BigHrushovski.CFDClosedFiniteSubtype.dClosed_iff
+#print axioms BigHrushovski.CFDClosedFiniteSubtype.growthSparse_iff
+#print axioms BigHrushovski.CFCoherentTower.finiteRealDClosedNatInterval_globalResponse
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.exists_induced_equiv_of_joint_steps
+#print axioms BigHrushovski.CFDClosedBackAndForth.exists_induced_equiv_of_finiteDClosedResponses
+#print axioms BigHrushovski.GraphOn.globallyDClosed_pullback_iff
+#print axioms BigHrushovski.GraphOn.finiteDClosedCover_pullback
+#print axioms BigHrushovski.GraphOn.finiteGrowth_pullback
