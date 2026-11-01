@@ -1273,3 +1273,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_stageOrder_iff
 #print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_image_eq
 #print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_dClosed_full
+
+#print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_old
+#print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_fresh
+#print axioms BigHrushovski.CFCoherentTower.selectedCutOneStepLift_unique_of_block_codes
