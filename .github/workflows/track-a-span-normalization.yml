@@ -5,6 +5,7 @@ on:
     paths:
       - 'BigHrushovski/C0FunctionalSpanNormalization.lean'
       - 'CheckC0FunctionalSpan.lean'
+      - 'scripts/check_c0_functional_span_normalization.py'
       - '.github/workflows/track-a-span-normalization.yml'
   pull_request:
     paths:
@@ -47,3 +48,5 @@ jobs:
           lake env lean CheckC0FunctionalSpan.lean > c0-span-axioms.log
           python3 scripts/check_axioms.py c0-span-axioms.log CheckC0FunctionalSpan.lean
           python3 scripts/check_no_placeholders.py
+      - name: Adversarial complete unary value regression
+        run: python3 scripts/check_c0_functional_span_normalization.py
