@@ -221,7 +221,7 @@ theorem genericC0CJEmbedding_iff_unaryEmbedding (f : ℕ → ℕ) :
 /-- The canonical C₀ unary presentation has no crossing edges
 between the exclusive parts of two finite unary-closed sets.
 This is the free-union observation used in the coordinate host. -/
-theorem genericC0UnaryClosed_noCross
+theorem genericC0UnaryClosed_noCross_between
     (s t : Finset ℕ)
     (hs : IsGenericC0UnaryClosed s)
     (ht : IsGenericC0UnaryClosed t)
