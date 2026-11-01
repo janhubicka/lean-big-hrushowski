@@ -22,7 +22,7 @@ namespace BigHrushovski
 namespace FiniteCatalogue
 
 /-- The finite canonical minimal-component presentation itself
-implies 2-sparsity, with no separate axiom. -/
+implies 2-sparsity without an additional premise. -/
 theorem FiniteFunctionalC0.sparse {n k : ℕ}
     (A : FiniteFunctionalC0 n k) :
     A.graph.IsTwoSparse (Finset.univ : Finset (Fin n)) := by
@@ -40,7 +40,7 @@ theorem FiniteFunctionalC0.sparse {n k : ℕ}
       (FiniteC0.canonicalValue A.graph A.index)
       (∅ : Finset (Fin n)) := by
     intro x hx
-    exact (Finset.not_mem_empty x hx).elim
+    simp at hx
   have hEmptyStrong :
       A.graph.toPredimension.IsStrong (∅ : Finset (Fin n))
         (Finset.univ : Finset (Fin n)) :=
@@ -52,6 +52,7 @@ theorem FiniteFunctionalC0.sparse {n k : ℕ}
       (Finset.empty_subset _) (Finset.subset_univ s)
   have hIneq := hStrong.2 s
     (Finset.empty_subset _) (Finset.Subset.refl s)
+  change A.graph.predim ∅ ≤ A.graph.predim s at hIneq
   rw [A.graph.predim_empty] at hIneq
   exact hIneq
 
