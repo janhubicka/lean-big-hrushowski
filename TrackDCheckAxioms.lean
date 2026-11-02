@@ -6,6 +6,7 @@ import BigHrushovski.C0CoordinateLiteralCode
 import BigHrushovski.C0CoordinatePointedSubcode
 import BigHrushovski.C0CoordinateGeneratedSubcode
 import BigHrushovski.C0CoordinatePointedRigidity
+import BigHrushovski.C0CoordinateFiniteAge
 
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_forward
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_iff
@@ -65,3 +66,9 @@ import BigHrushovski.C0CoordinatePointedRigidity
 #print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_eq_crossSource
 #print axioms BigHrushovski.FiniteUnaryCoordinates.coordinateMap_lt_iff
 #print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_eq_crossSource_order
+#print axioms BigHrushovski.FiniteC0.canonicalValue_mem_self
+#print axioms BigHrushovski.FiniteC0.canonicalValue_mem_trans
+#print axioms BigHrushovski.FiniteC0.canonicalValue_oneGenerated_closed
+#print axioms BigHrushovski.FiniteC0.canonicalValue_oneGenerated_minimalChain
+#print axioms BigHrushovski.FiniteC0.canonicalValue_oneGenerated_restrict_exact
+#print axioms BigHrushovski.FiniteC0.canonicalValue_oneGenerated_restrict_minimalSteps
