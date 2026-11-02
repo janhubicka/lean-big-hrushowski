@@ -73,15 +73,13 @@ theorem literalPointedCode_restrict_generated_closed
   classical
   constructor
   · exact literalPointedCode_restrict_generated G C e v hv
-  · apply LiteralPointedCode.closedSubset_of_restrictTo
-      (q := literalPointedCode G C e v)
-      (s := (C v).image e)
-      (t := (C v).image e)
+  · exact LiteralPointedCode.closedSubset_of_restrictTo
+      (literalPointedCode G C e v)
+      ((C v).image e) ((C v).image e)
       (coordinateImage_subset_labelSupport e (C v))
-    · exact literalPointedCode_generatedClosed G C e v v hNested
-    · exact Finset.Subset.rfl
-    · exact e v
-    · exact (mem_coordinateImage_iff e (C v) v).mpr hv
+      (literalPointedCode_generatedClosed G C e v v hNested)
+      Finset.Subset.rfl
+      (e v) ((mem_coordinateImage_iff e (C v) v).mpr hv)
 
 end FiniteUnaryCoordinates
 
