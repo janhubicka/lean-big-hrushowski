@@ -16,6 +16,8 @@ their codes, or require an increasing map on all ambient levels.
 namespace BigHrushovski
 namespace CFCoherentTower
 
+open CFStageCatalogue
+
 /-- The old-stage inclusion is a bijection between actual
 source cuts across an unrepresented birth level. -/
 noncomputable def skippedCutEquiv
