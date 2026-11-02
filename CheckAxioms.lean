@@ -1291,3 +1291,5 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.skippedCutEquiv
 #print axioms BigHrushovski.CFCoherentTower.skippedCutEquiv_val
 #print axioms BigHrushovski.CFCoherentTower.skippedCutEquiv_induced
+#print axioms BigHrushovski.CFCoherentTower.skippedCutEquiv_birthVertex
+#print axioms BigHrushovski.CFCoherentTower.skippedCutEquiv_stageOrder_iff
