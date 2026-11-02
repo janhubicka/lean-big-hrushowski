@@ -1,5 +1,6 @@
 import BigHrushovski.CFStageBirthOrderCoherence
 import BigHrushovski.CFPartialSupportAutomaticClosure
+import BigHrushovski.CFBirthBValues
 
 /-!
 # Strict d-closedness and order across arbitrary finite target-stage gaps
@@ -144,6 +145,18 @@ theorem selectedOldMap_ascend_strictMono
     stageLinearOrder F K (n+k)
   intro u v huv
   exact (stageLt_ascend_iff F K n k (e u) (e v)).mpr (he huv)
+
+
+/-- The actual complete auxiliary b-value of an old vertex is
+literally unchanged by any number of target-stage inclusions,
+because the birth-labelled vertex itself is unchanged. -/
+theorem birthBValue_ascend_exact
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (n k : ℕ) (u : (stage F K n).carrier) :
+    birthBValue F K
+      (toVertex F K (n+k) (ascend F K n k u)) =
+    birthBValue F K (toVertex F K n u) := by
+  rw [toVertex_ascend]
 
 end CFCoherentTower
 end BigHrushovski
