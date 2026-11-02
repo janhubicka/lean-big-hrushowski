@@ -13,6 +13,7 @@ on:
       - "BigHrushovski/C0CoordinateGeneratedSubcode.lean"
       - "BigHrushovski/C0CoordinatePointedRigidity.lean"
       - "BigHrushovski/C0CoordinateFiniteAge.lean"
+      - "BigHrushovski/C0CoordinatePointedAgeCode.lean"
       - "scripts/check_c0_coordinate_host_finite.py"
       - "scripts/check_c0_pointed_subcode.py"
       - "TrackDCheckAxioms.lean"
@@ -48,7 +49,7 @@ jobs:
       - name: Check Track D declarations
         run: |
           set -euo pipefail
-          lake build BigHrushovski.RamseyTransfer BigHrushovski.CFLevelRamseyTransfer BigHrushovski.C0CoordinateHostGraph BigHrushovski.C0CoordinateClosedRestriction BigHrushovski.C0CoordinateNormalForm BigHrushovski.C0CoordinateLiteralCode BigHrushovski.C0CoordinatePointedSubcode BigHrushovski.C0CoordinateGeneratedSubcode BigHrushovski.C0CoordinatePointedRigidity BigHrushovski.C0CoordinateFiniteAge
+          lake build BigHrushovski.RamseyTransfer BigHrushovski.CFLevelRamseyTransfer BigHrushovski.C0CoordinateHostGraph BigHrushovski.C0CoordinateClosedRestriction BigHrushovski.C0CoordinateNormalForm BigHrushovski.C0CoordinateLiteralCode BigHrushovski.C0CoordinatePointedSubcode BigHrushovski.C0CoordinateGeneratedSubcode BigHrushovski.C0CoordinatePointedRigidity BigHrushovski.C0CoordinateFiniteAge BigHrushovski.C0CoordinatePointedAgeCode
           lake env lean TrackDCheckAxioms.lean > track-d-axioms.log
           python3 scripts/check_axioms.py track-d-axioms.log TrackDCheckAxioms.lean
           python3 scripts/check_no_placeholders.py
