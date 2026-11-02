@@ -1,0 +1,56 @@
+name: Track E Ellentuck support audit
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckSupport.lean'
+      - 'BigHrushovski/HrushovskiEllentuckSplicing.lean'
+      - 'BigHrushovski/HrushovskiEllentuckThinning.lean'
+      - 'CheckTrackE.lean'
+      - 'scripts/check_ellentuck_splicing.py'
+      - '.github/workflows/track-e-ellentuck.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckSupport.lean'
+      - 'BigHrushovski/HrushovskiEllentuckSplicing.lean'
+      - 'BigHrushovski/HrushovskiEllentuckThinning.lean'
+      - 'CheckTrackE.lean'
+      - 'scripts/check_ellentuck_splicing.py'
+      - '.github/workflows/track-e-ellentuck.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile Track E (independent of global umbrella)
+        run: lake build BigHrushovski.HrushovskiEllentuckSupport BigHrushovski.HrushovskiEllentuckSplicing BigHrushovski.HrushovskiEllentuckThinning
+      - name: Exhaust finite closure-splicing and thinning instances
+        run: python3 scripts/check_ellentuck_splicing.py
+      - name: Verify theorem dependencies and reject placeholders
+        run: |
+          lake env lean CheckTrackE.lean > track-e-axioms.log
+          cat track-e-axioms.log
+          python3 scripts/check_axioms.py track-e-axioms.log CheckTrackE.lean
+          python3 scripts/check_no_placeholders.py
