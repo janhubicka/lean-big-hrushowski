@@ -53,3 +53,7 @@ Next: construct induced finite orientations on \`C_B\`, define the
 true pointwise stabilizers \`Aut(C_B)_(P_B)\`, and then assemble the
 bijection with permitted vertex orders. The degree-one Ramsey
 theorem and recurrence remain independent infinite obligations.
+
+## Exhaustive local canonical-code fibre audit
+
+The new independent script `check_track_f_n0_local_fibres.py` examines all 30,887 admissible finite orientations on at most five vertices. For each of the 106,264 distinct component closures in those labelled graphs, and for every permutation of its lower part, it compares the lexicographically minimal complete directed adjacency matrix over all internal component orders with the pointwise stabilizer cardinality. In total there are 478,199 ordered lower-part configurations and 1,170,649 tested local internal enumerations. Every fibre has size exactly `|Aut(C_B)_(P_B)|`. This detects accidental setwise stabilizers, incomplete adjacency codes, and dependence of the fibre size on the prior lower-part order. This is finite evidence only; the general equivalence with all global permitted vertex orders remains a Lean proof obligation.
