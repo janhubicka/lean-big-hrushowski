@@ -25,9 +25,9 @@ noncomputable def LiteralPointedCode.restrictTo
   point := p
   point_mem := hp
   adjacencyPairs := q.adjacencyPairs.filter
-    (fun xy => xy.1 ∈ s ∧ xy.2 ∈ s)
+    (fun (xy : ℕ × ℕ) => xy.1 ∈ s ∧ xy.2 ∈ s)
   closurePairs := q.closurePairs.filter
-    (fun xy => xy.1 ∈ s ∧ xy.2 ∈ s)
+    (fun (xy : ℕ × ℕ) => xy.1 ∈ s ∧ xy.2 ∈ s)
 
 @[simp] theorem LiteralPointedCode.restrictTo_support
     (q : LiteralPointedCode) (s : Finset ℕ)
@@ -73,9 +73,9 @@ theorem LiteralPointedCode.restrictTo_restrictTo
       q.restrictTo t (hts.trans hs) v hv := by
   classical
   have hAdj :
-      ((q.adjacencyPairs.filter (fun xy => xy.1 ∈ s ∧ xy.2 ∈ s)).
-        filter (fun xy => xy.1 ∈ t ∧ xy.2 ∈ t)) =
-        q.adjacencyPairs.filter (fun xy => xy.1 ∈ t ∧ xy.2 ∈ t) := by
+      ((q.adjacencyPairs.filter (fun (xy : ℕ × ℕ) => xy.1 ∈ s ∧ xy.2 ∈ s)).
+        filter (fun (xy : ℕ × ℕ) => xy.1 ∈ t ∧ xy.2 ∈ t)) =
+        q.adjacencyPairs.filter (fun (xy : ℕ × ℕ) => xy.1 ∈ t ∧ xy.2 ∈ t) := by
     ext xy
     simp only [Finset.mem_filter]
     constructor
@@ -84,9 +84,9 @@ theorem LiteralPointedCode.restrictTo_restrictTo
     · rintro ⟨h, ht1, ht2⟩
       exact ⟨⟨h, hts ht1, hts ht2⟩, ht1, ht2⟩
   have hCl :
-      ((q.closurePairs.filter (fun xy => xy.1 ∈ s ∧ xy.2 ∈ s)).
-        filter (fun xy => xy.1 ∈ t ∧ xy.2 ∈ t)) =
-        q.closurePairs.filter (fun xy => xy.1 ∈ t ∧ xy.2 ∈ t) := by
+      ((q.closurePairs.filter (fun (xy : ℕ × ℕ) => xy.1 ∈ s ∧ xy.2 ∈ s)).
+        filter (fun (xy : ℕ × ℕ) => xy.1 ∈ t ∧ xy.2 ∈ t)) =
+        q.closurePairs.filter (fun (xy : ℕ × ℕ) => xy.1 ∈ t ∧ xy.2 ∈ t) := by
     ext xy
     simp only [Finset.mem_filter]
     constructor
