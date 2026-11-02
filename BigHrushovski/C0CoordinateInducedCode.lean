@@ -131,14 +131,16 @@ theorem coordinateClosurePairs_restrict
 
 /-- The literal code of a finite induced pointed diagram agrees
 EXACTLY with restriction of the original complete pointed code.
-There is no arbitrary coordinate choice or graph-only shortcut.
+The distinguished point of the original code may lie outside the
+selected smaller closure; the new root is u. There is no arbitrary
+coordinate choice or graph-only shortcut.
 
 If s is not C-closed, the equality is only an induced-code equality;
 it does not assert complete preservation of the original values. -/
 theorem literalPointedCode_restrict_eq
     (G : GraphOn U) (C : U → Finset U)
-    (e : U ↪o ℕ) (s : Finset U) (u : s) :
-    (literalPointedCode G C e u.val).restrictTo (s.image e)
+    (e : U ↪o ℕ) (root : U) (s : Finset U) (u : s) :
+    (literalPointedCode G C e root).restrictTo (s.image e)
       (coordinateImage_subset_labelSupport e s)
       (e u.val) ((mem_coordinateImage_iff e s u.val).mpr u.property) =
     literalPointedCode (restrictGraph G s) (restrictValue C s)
