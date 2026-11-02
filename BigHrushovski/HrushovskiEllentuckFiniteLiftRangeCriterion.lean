@@ -9,7 +9,7 @@ finite inverse level-assignment theorem together with uniqueness of
 finite functional embeddings determined by their level assignments.
 
 We state the exact requirements in terms of a predicate on embeddings
-of the finite closed set Γ(v). In each concrete application this
+of the finite generated-closed set Γ(v). In each concrete application this
 predicate must mean genuine ordered functional embedding, including
 all complete function values. No theorem here asserts these
 requirements for the C_F construction: they are Track B obligations.
@@ -46,14 +46,14 @@ theorem range_eq_supportDomain_of_finite_lifts
     (hLevel : ∀ v, π (f v) = h (π v))
     (FiniteEmbedding : (s : Finset Vertex) →
       (FiniteDomain s → Vertex) → Prop)
-    (hInclusion : ∀ s, FiniteEmbedding s (fun x => x.1))
-    (hCompose : ∀ s (g : FiniteDomain s → Vertex),
-      FiniteEmbedding s g →
-        FiniteEmbedding s (fun x => f (g x)))
-    (hUnique : ∀ s (g k : FiniteDomain s → Vertex),
-      FiniteEmbedding s g →
-      FiniteEmbedding s k →
-      (∀ x : FiniteDomain s, π (g x) = π (k x)) →
+    (hInclusion : ∀ v, FiniteEmbedding (Γ v) (fun x => x.1))
+    (hCompose : ∀ v (g : FiniteDomain (Γ v) → Vertex),
+      FiniteEmbedding (Γ v) g →
+        FiniteEmbedding (Γ v) (fun x => f (g x)))
+    (hUnique : ∀ v (g k : FiniteDomain (Γ v) → Vertex),
+      FiniteEmbedding (Γ v) g →
+      FiniteEmbedding (Γ v) k →
+      (∀ x : FiniteDomain (Γ v), π (g x) = π (k x)) →
       g = k)
     (hInverseLift : ∀ v : Vertex,
       (∀ q ∈ generatedSupport Γ π v, q ∈ Set.range h) →
@@ -68,9 +68,9 @@ theorem range_eq_supportDomain_of_finite_lifts
   · intro v hv
     obtain ⟨g, hgEmb, hgLevel⟩ := hInverseLift v hv
     have hfgEmb : FiniteEmbedding (Γ v) (fun x => f (g x)) :=
-      hCompose (Γ v) g hgEmb
+      hCompose v g hgEmb
     have hinclEmb : FiniteEmbedding (Γ v) (fun x => x.1) :=
-      hInclusion (Γ v)
+      hInclusion v
     have hlevels :
         ∀ x : FiniteDomain (Γ v),
           π (f (g x)) = π x.1 := by
@@ -81,7 +81,7 @@ theorem range_eq_supportDomain_of_finite_lifts
     have hsame :
         (fun x : FiniteDomain (Γ v) => f (g x)) =
           (fun x : FiniteDomain (Γ v) => x.1) :=
-      hUnique (Γ v) (fun x => f (g x)) (fun x => x.1)
+      hUnique v (fun x => f (g x)) (fun x => x.1)
         hfgEmb hinclEmb hlevels
     refine ⟨g ⟨v, hSelf v⟩, ?_⟩
     exact congrFun hsame ⟨v, hSelf v⟩
