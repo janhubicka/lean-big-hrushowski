@@ -4,13 +4,13 @@ on:
     paths:
       - 'BigHrushovski/N0LocalCodeFibre.lean'
       - 'CheckTrackFCodeFibreAxioms.lean'
-      - 'scripts/check_track_f_n0_local_fibres.py'
+      - 'scripts/check_track_f_degrees.py'
       - '.github/workflows/track-f-code-fibre.yml'
   pull_request:
     paths:
       - 'BigHrushovski/N0LocalCodeFibre.lean'
       - 'CheckTrackFCodeFibreAxioms.lean'
-      - 'scripts/check_track_f_n0_local_fibres.py'
+      - 'scripts/check_track_f_degrees.py'
       - '.github/workflows/track-f-code-fibre.yml'
   workflow_dispatch:
 
@@ -36,4 +36,4 @@ jobs:
           python3 scripts/check_axioms.py track-f-code-fibre-axioms.log CheckTrackFCodeFibreAxioms.lean
           python3 scripts/check_no_placeholders.py
       - name: Exhaust local canonical code fibres
-        run: python3 scripts/check_track_f_n0_local_fibres.py
+        run: python3 scripts/check_track_f_degrees.py
