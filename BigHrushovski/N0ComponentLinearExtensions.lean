@@ -99,14 +99,20 @@ theorem linearComponentPrefix_isStrong
     (O.componentRankOnAll r)
     (O.componentRankOnAll_respects r hr) n
 
+/-- A choice function on the full finite component set, written
+with the membership proof accepted by Mathlib's finite pi API. -/
+abbrev ComponentAssignments (α : Type*) : Type _ :=
+  ∀ B : O.ComponentObject,
+    B ∈ (Finset.univ : Finset O.ComponentObject) → α
+
 /-- Independent local choices indexed by actual components.
 These are data, not yet the permitted orders of the manuscript. -/
 noncomputable def localComponentChoices
     {α : Type*} [DecidableEq α]
     (choices : O.ComponentObject → Finset α) :
-    Finset (O.ComponentObject → α) := by
+    Finset (O.ComponentAssignments α) := by
   classical
-  exact Finset.univ.pi choices
+  exact (Finset.univ : Finset O.ComponentObject).pi choices
 
 theorem localComponentChoices_card
     {α : Type*} [DecidableEq α]
@@ -121,7 +127,7 @@ from the local option set of each component. -/
 noncomputable def finiteOrderData
     {α : Type*} [DecidableEq α]
     (choices : O.ComponentObject → Finset α) :
-    Finset (O.ComponentRanking × (O.ComponentObject → α)) :=
+    Finset (O.ComponentRanking × O.ComponentAssignments α) :=
   O.linearComponentRankings.product
     (O.localComponentChoices choices)
 
