@@ -1,0 +1,53 @@
+name: Lean Track D Ramsey Transfer
+
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/RamseyTransfer.lean"
+      - "BigHrushovski/CFLevelRamseyTransfer.lean"
+      - "BigHrushovski/C0CoordinateHostGraph.lean"
+      - "BigHrushovski/C0CoordinateClosedRestriction.lean"
+      - "BigHrushovski/C0CoordinateNormalForm.lean"
+      - "BigHrushovski/C0CoordinateLiteralCode.lean"
+      - "BigHrushovski/C0CoordinatePointedSubcode.lean"
+      - "BigHrushovski/C0CoordinateGeneratedSubcode.lean"
+      - "BigHrushovski/C0CoordinatePointedRigidity.lean"
+      - "scripts/check_c0_coordinate_host_finite.py"
+      - "scripts/check_c0_pointed_subcode.py"
+      - "TrackDCheckAxioms.lean"
+      - ".github/workflows/track-d-ramsey.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  track-d:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v5
+        with:
+          path: ~/.elan/toolchains
+          key: lean-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Check small C0 code and closure counterexamples
+        run: |
+          python3 scripts/check_c0_coordinate_host_finite.py
+          python3 scripts/check_c0_pointed_subcode.py
+      - name: Check Track D declarations
+        run: |
+          set -euo pipefail
+          lake build BigHrushovski.RamseyTransfer BigHrushovski.CFLevelRamseyTransfer BigHrushovski.C0CoordinateHostGraph BigHrushovski.C0CoordinateClosedRestriction BigHrushovski.C0CoordinateNormalForm BigHrushovski.C0CoordinateLiteralCode BigHrushovski.C0CoordinatePointedSubcode BigHrushovski.C0CoordinateGeneratedSubcode BigHrushovski.C0CoordinatePointedRigidity
+          lake env lean TrackDCheckAxioms.lean > track-d-axioms.log
+          python3 scripts/check_axioms.py track-d-axioms.log TrackDCheckAxioms.lean
+          python3 scripts/check_no_placeholders.py
