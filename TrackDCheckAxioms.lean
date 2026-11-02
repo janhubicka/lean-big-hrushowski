@@ -8,6 +8,7 @@ import BigHrushovski.C0CoordinateGeneratedSubcode
 import BigHrushovski.C0CoordinatePointedRigidity
 import BigHrushovski.C0CoordinateFiniteAge
 import BigHrushovski.C0CoordinatePointedAgeCode
+import BigHrushovski.C0CoordinateInducedCode
 
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_forward
 #print axioms BigHrushovski.RamseyTransfer.degreeAtMost_iff
@@ -76,3 +77,8 @@ import BigHrushovski.C0CoordinatePointedAgeCode
 #print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_restrict_generated
 #print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_restrict_generated_closed
 #print axioms BigHrushovski.FiniteC0.canonicalValue_generated_pointedCode
+#print axioms BigHrushovski.FiniteUnaryCoordinates.restrictedLabel_apply
+#print axioms BigHrushovski.FiniteUnaryCoordinates.labelSupport_restrictedLabel
+#print axioms BigHrushovski.FiniteUnaryCoordinates.coordinateAdjacencyPairs_restrict
+#print axioms BigHrushovski.FiniteUnaryCoordinates.coordinateClosurePairs_restrict
+#print axioms BigHrushovski.FiniteUnaryCoordinates.literalPointedCode_restrict_eq
