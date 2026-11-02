@@ -6,6 +6,7 @@ on:
       - 'BigHrushovski/N0ComponentLinearExtensions.lean'
       - 'CheckTrackFComponentDataAxioms.lean'
       - 'scripts/check_track_f_n0_component_data.py'
+      - 'scripts/check_track_f_n0_local_fibres.py'
       - '.github/workflows/track-f-n0-data.yml'
   pull_request:
     paths:
@@ -38,4 +39,6 @@ jobs:
           python3 scripts/check_axioms.py component-data-axioms.log CheckTrackFComponentDataAxioms.lean
           python3 scripts/check_no_placeholders.py
       - name: Adversarial finite regression
-        run: python3 scripts/check_track_f_n0_component_data.py
+        run: |
+          python3 scripts/check_track_f_n0_component_data.py
+          python3 scripts/check_track_f_n0_local_fibres.py
