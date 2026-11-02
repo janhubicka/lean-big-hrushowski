@@ -54,3 +54,21 @@ order by already formalized exact stage-ascent equivalences.
 
 No manuscript mathematical prose or green markers are changed
 by this PR.
+
+## Additional exact b-value check (2 November 2026)
+
+The canonical old-stage ascent preserves the LITERAL birth label
+(`toVertex_ascend`, already kernel-checked). Hence applying the
+actual complete auxiliary `birthBValue` to that vertex gives
+the same complete finite set of birth-labelled vertices, with
+no loss of old support or part of a fresh block. The new
+`birthBValue_ascend_exact` theorem records this consequence.
+
+This proves persistence of the target birth-b-value itself,
+not yet preservation of complete b-values by the transported
+source embedding. That latter equality remains an induction
+premise and must be propagated through the actual source-cut
+one-level map.
+
+The new endpoint is listed in the standalone axiom audit and
+requires successful full CI before any green marker.
