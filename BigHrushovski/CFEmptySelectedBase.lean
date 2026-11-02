@@ -60,9 +60,12 @@ theorem empty_selectedOldImage_dClosed
     (stage F K n).graph.toPredimension.IsDClosed
       (selectedOldImage (∅ : Finset U) e) Finset.univ := by
   classical
+  have hDomain :
+      (Finset.univ : Finset (SupportCarrier U (∅ : Finset U))) = ∅ := by
+    ext u
+    exact False.elim (Finset.not_mem_empty u.val u.property)
   have hEmpty : selectedOldImage (∅ : Finset U) e = ∅ := by
-    ext x
-    simp [selectedOldImage]
+    simp only [selectedOldImage, hDomain, Finset.image_empty]
   rw [hEmpty]
   exact empty_dClosed_in_stage F K n
 
