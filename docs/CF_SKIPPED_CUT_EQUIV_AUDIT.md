@@ -31,3 +31,17 @@ Hostile checks:
   embeddings remains separate.
 
 These are internal audit roles, not outside referee reports.
+
+Additional checks (2 November 2026):
+
+- **Birth-label referee:** `skippedCutEquiv_birthVertex` proves
+  exactly `toVertex (n+1) (skippedCutEquiv u) = toVertex n u`.
+  Thus complete auxiliary birth b-values have the same literal
+  source vertex argument across skipped levels; this is not
+  merely equality up to graph isomorphism.
+- **Order referee:** `skippedCutEquiv_stageOrder_iff` proves
+  exact preservation **and reflection** of the recursively
+  inherited finite-stage order by the skipped-level map.
+  It uses the previously verified old-stage order inheritance.
+- Both new theorems are listed in the axiom audit. The full CI
+  must pass before they count as verified.
