@@ -58,13 +58,15 @@ the coordinates of s is the same as forming the induced relation
 on the literal subtype s and then labelling it. This applies to
 both graph edges and complete unary-value incidences. -/
 private theorem coordinateRelationPairs_restrict
-    (R : U → U → Prop) (e : U ↪o ℕ) (s : Finset U) :
+    (R : U → U → Prop) (e : U ↪o ℕ) (s : Finset U)
+    (Rsub : s → s → Prop)
+    (hR : ∀ u v : s, Rsub u v ↔ R u.val v.val) :
     ((((Finset.univ.product Finset.univ).filter
       (fun p : U × U => R p.1 p.2)).image
       (fun p => (e p.1, e p.2))).filter
       (fun p : ℕ × ℕ => p.1 ∈ s.image e ∧ p.2 ∈ s.image e)) =
     (((Finset.univ.product Finset.univ).filter
-      (fun p : s × s => R p.1.val p.2.val)).image
+      (fun p : s × s => Rsub p.1 p.2)).image
       (fun p => (restrictedLabel e s p.1,
         restrictedLabel e s p.2))) := by
   classical
@@ -81,15 +83,17 @@ private theorem coordinateRelationPairs_restrict
     obtain ⟨v',hv',hV'⟩ := Finset.mem_image.mp hy
     have huEq : u = u' := e.injective (hEU.trans hU'.symm)
     have hvEq : v = v' := e.injective (hEV.trans hV'.symm)
-    have hRel' : R u' v' := by simpa only [huEq, hvEq] using hRel
+    have hRel' : Rsub (⟨u', hu'⟩ : s) (⟨v', hv'⟩ : s) :=
+      (hR _ _).mpr (by simpa only [huEq, hvEq] using hRel)
     refine Finset.mem_image.mpr
       ⟨(⟨u', hu'⟩, ⟨v', hv'⟩), ?_, ?_⟩
     · exact Finset.mem_filter.mpr ⟨by simp, hRel'⟩
     · change (e u', e v') = (x, y)
-      exact Prod.mk.injEq.mpr ⟨hU', hV'⟩
+      simp [hU', hV']
   · intro hz
     obtain ⟨⟨u,v⟩, hUV, hEq⟩ := Finset.mem_image.mp hz
-    have hRel : R u.val v.val := (Finset.mem_filter.mp hUV).2
+    have hRel : R u.val v.val :=
+      (hR u v).mp (Finset.mem_filter.mp hUV).2
     have hEq' : (e u.val, e v.val) = (x, y) := by
       simpa only [restrictedLabel_apply] using hEq
     have hEU : e u.val = x := congrArg Prod.fst hEq'
@@ -111,6 +115,7 @@ theorem coordinateAdjacencyPairs_restrict
     coordinateAdjacencyPairs (restrictGraph G s)
       (restrictedLabel e s) := by
   exact coordinateRelationPairs_restrict G.adj e s
+    (restrictGraph G s).adj (fun _ _ => Iff.rfl)
 
 /-- The same equality for all members of every named unary value,
 using the literal finite subtype rather than a renumbered carrier. -/
@@ -121,6 +126,8 @@ theorem coordinateClosurePairs_restrict
     coordinateClosurePairs (restrictValue C s)
       (restrictedLabel e s) := by
   exact coordinateRelationPairs_restrict (fun u v => v ∈ C u) e s
+    (fun u v => v ∈ restrictValue C s u)
+    (fun u v => mem_restrictValue_iff C s u v)
 
 /-- The literal code of a finite induced pointed diagram agrees
 EXACTLY with restriction of the original complete pointed code.
