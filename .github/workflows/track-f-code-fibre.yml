@@ -1,0 +1,39 @@
+name: Track F exact local code fibres
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0LocalCodeFibre.lean'
+      - 'CheckTrackFCodeFibreAxioms.lean'
+      - 'scripts/check_track_f_n0_local_fibres.py'
+      - '.github/workflows/track-f-code-fibre.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0LocalCodeFibre.lean'
+      - 'CheckTrackFCodeFibreAxioms.lean'
+      - 'scripts/check_track_f_n0_local_fibres.py'
+      - '.github/workflows/track-f-code-fibre.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  fibre:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build exact local fibre theorem
+        run: lake build BigHrushovski.N0LocalCodeFibre
+      - name: Axiom and placeholder audit
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFCodeFibreAxioms.lean > track-f-code-fibre-axioms.log
+          python3 scripts/check_axioms.py track-f-code-fibre-axioms.log CheckTrackFCodeFibreAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Exhaust local canonical code fibres
+        run: python3 scripts/check_track_f_n0_local_fibres.py
