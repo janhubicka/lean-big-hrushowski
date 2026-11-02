@@ -76,5 +76,35 @@ theorem skippedCutEquiv_induced
   rw [skippedCutEquiv_val, skippedCutEquiv_val]
   exact (stage_succ_induced F K n u.val v.val).symm
 
+
+/-- A skipped level preserves each actual birth-labelled vertex.
+This is stronger than agreement up to abstract stage isomorphism. -/
+theorem skippedCutEquiv_birthVertex
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (s : Finset (Vertex F K))
+    (hs : IsBirthBlockClosed F K s) (n : ℕ)
+    (hn : n ∉ representedLevels F K s)
+    (u : SupportCarrier (stage F K n).carrier (stageCut F K s n)) :
+    toVertex F K (n+1) (skippedCutEquiv F K s hs n hn u).val =
+      toVertex F K n u.val := by
+  rw [skippedCutEquiv_val]
+  exact toVertex_old F K n u.val
+
+/-- Skipping an unrepresented level preserves and reflects the
+actual inherited finite-stage order, not just the induced graph. -/
+theorem skippedCutEquiv_stageOrder_iff
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (s : Finset (Vertex F K))
+    (hs : IsBirthBlockClosed F K s) (n : ℕ)
+    (hn : n ∉ representedLevels F K s)
+    (u v : SupportCarrier (stage F K n).carrier
+      (stageCut F K s n)) :
+    stageLt F K n u.val v.val ↔
+      stageLt F K (n+1)
+        (skippedCutEquiv F K s hs n hn u).val
+        (skippedCutEquiv F K s hs n hn v).val := by
+  rw [skippedCutEquiv_val, skippedCutEquiv_val]
+  exact (stageOrder_old_iff F K n u.val v.val).symm
+
 end CFCoherentTower
 end BigHrushovski
