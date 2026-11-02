@@ -14,7 +14,7 @@ resulting support domains are really closed under the complete b-values.
 
 We do not assert that every infinite support-saturated domain is the
 range of a functional self-embedding, or that arbitrary increasing level
-maps admit unique lifts. Those are separate Track B conclusions.
+maps have unique lifts. Those are separate Track B conclusions.
 -/
 
 namespace BigHrushovski
@@ -132,7 +132,8 @@ theorem birthLevelDomain_initial_eq_stageImage
       ⟨w, hw, hwq⟩
     have hwLevel : w.1 < n :=
       (mem_stageImage_iff_birth_lt F K n w).1 (hClosureStage hw)
-    simpa only [hwq] using hwLevel
+    change q < n
+    exact hwq ▸ hwLevel
 
 /-- In particular every initial finite-level support domain is finite,
 without the still-open unique finite level lifting theorem. -/
