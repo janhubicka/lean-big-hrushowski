@@ -62,10 +62,27 @@ theorem ascend_fullStage_dClosed
       have hWhole := stage_succ_dClosed F K (n+k)
       have h := (stage F K ((n+k)+1)).graph.toPredimension.dclosed_trans
         hRel hWhole
-      -- Normalize the nested old-image before comparing it with
-      -- the literal composite stage inclusion.
-      rw [Finset.image_image] at h
-      simpa only [Nat.add_succ, ascend, Function.comp_def] using h
+      -- Avoid a fragile implicit image-composition rewrite: the two
+      -- literal finite subsets agree by their membership witnesses.
+      have himage :
+          ((Finset.univ : Finset (stage F K n).carrier).image
+            (fun u => Sum.inl (ascend F K n k u))) =
+          (((Finset.univ : Finset (stage F K n).carrier).image
+            (ascend F K n k)).image
+            (Sum.inl : (stage F K (n+k)).carrier →
+              (stage F K ((n+k)+1)).carrier)) := by
+        ext v
+        constructor
+        · intro hv
+          obtain ⟨u, hu, heq⟩ := Finset.mem_image.mp hv
+          exact Finset.mem_image.mpr
+            ⟨ascend F K n k u,
+              Finset.mem_image.mpr ⟨u, hu, rfl⟩, heq⟩
+        · intro hv
+          obtain ⟨w, hw, heq⟩ := Finset.mem_image.mp hv
+          obtain ⟨u, hu, rfl⟩ := Finset.mem_image.mp hw
+          exact Finset.mem_image.mpr ⟨u, hu, heq⟩
+      simpa only [Nat.add_succ, ascend, himage] using h
 
 /-- Any strictly d-closed subset of stage n remains strictly
 d-closed in the whole stage n+k under the literal old ascent. -/
