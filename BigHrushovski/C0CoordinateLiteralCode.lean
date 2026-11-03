@@ -89,6 +89,21 @@ structure LiteralPointedCode where
   adjacencyPairs : Finset (ℕ × ℕ)
   closurePairs : Finset (ℕ × ℕ)
 
+/-- Equality of complete pointed records is determined by the actual
+support, distinguished point and both complete incidence matrices.
+The proof-valued point-membership field is irrelevant. -/
+@[ext] theorem LiteralPointedCode.ext {q r : LiteralPointedCode}
+    (hs : q.support = r.support) (hp : q.point = r.point)
+    (ha : q.adjacencyPairs = r.adjacencyPairs)
+    (hc : q.closurePairs = r.closurePairs) : q = r := by
+  cases q
+  cases r
+  cases hs
+  cases hp
+  cases ha
+  cases hc
+  rfl
+
 /-- Canonical finite pointed code of a source graph and complete unary
 values under a chosen increasing natural-coordinate assignment. -/
 noncomputable def literalPointedCode
