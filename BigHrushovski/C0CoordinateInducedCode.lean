@@ -115,6 +115,7 @@ theorem coordinateAdjacencyPairs_restrict
       (fun p : ℕ × ℕ => p.1 ∈ s.image e ∧ p.2 ∈ s.image e) =
     coordinateAdjacencyPairs (restrictGraph G s)
       (restrictedLabel e s) := by
+  classical
   exact coordinateRelationPairs_restrict G.adj e s
     (restrictGraph G s).adj (fun _ _ => Iff.rfl)
 
