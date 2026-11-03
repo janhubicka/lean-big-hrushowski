@@ -86,9 +86,11 @@ theorem literalPointedCode_restrict_adj_iff
       (e v) ((mem_coordinateImage_iff e s v).mpr hv)).adjacencyPairs ↔
       G.adj a b ∧ a ∈ s ∧ b ∈ s := by
   classical
-  simp only [LiteralPointedCode.mem_restrictTo_adj_iff]
-  rw [mem_coordinateAdjacencyPairs_iff,
-      mem_coordinateImage_iff, mem_coordinateImage_iff]
+  change (e a, e b) ∈ (coordinateAdjacencyPairs G e).filter
+      (fun xy : ℕ × ℕ => xy.1 ∈ s.image e ∧ xy.2 ∈ s.image e) ↔
+    G.adj a b ∧ a ∈ s ∧ b ∈ s
+  simp only [Finset.mem_filter,
+    mem_coordinateAdjacencyPairs_iff, mem_coordinateImage_iff]
 
 /-- The restricted code also preserves AND reflects every element of
 every complete unary value; no extension outside s is invented. -/
@@ -103,9 +105,11 @@ theorem literalPointedCode_restrict_closure_iff
       (e v) ((mem_coordinateImage_iff e s v).mpr hv)).closurePairs ↔
       b ∈ C a ∧ a ∈ s ∧ b ∈ s := by
   classical
-  simp only [LiteralPointedCode.mem_restrictTo_closure_iff]
-  rw [mem_coordinateClosurePairs_iff,
-      mem_coordinateImage_iff, mem_coordinateImage_iff]
+  change (e a, e b) ∈ (coordinateClosurePairs C e).filter
+      (fun xy : ℕ × ℕ => xy.1 ∈ s.image e ∧ xy.2 ∈ s.image e) ↔
+    b ∈ C a ∧ a ∈ s ∧ b ∈ s
+  simp only [Finset.mem_filter,
+    mem_coordinateClosurePairs_iff, mem_coordinateImage_iff]
 
 end FiniteUnaryCoordinates
 
