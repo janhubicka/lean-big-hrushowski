@@ -1,0 +1,18 @@
+import BigHrushovski.N0ComponentLinearExtensions
+
+#print axioms BigHrushovski.FiniteOrientation.component_subset_componentClosure
+#print axioms BigHrushovski.FiniteOrientation.componentClosure_eq_singleton
+#print axioms BigHrushovski.FiniteOrientation.lowerPart_subset_componentClosure
+#print axioms BigHrushovski.FiniteOrientation.lowerPart_disjoint_component
+#print axioms BigHrushovski.FiniteOrientation.component_union_lowerPart
+#print axioms BigHrushovski.FiniteOrientation.lowerPart_isSuccessorClosed
+#print axioms BigHrushovski.FiniteOrientation.lowerPart_strong_in_componentClosure
+#print axioms BigHrushovski.FiniteOrientation.componentClosure_eq_of_stronglyConnected
+#print axioms BigHrushovski.FiniteOrientation.lowerPart_eq_of_stronglyConnected
+
+#print axioms BigHrushovski.FiniteOrientation.mem_linearComponentRankings
+#print axioms BigHrushovski.FiniteOrientation.componentRankOnAll_respects
+#print axioms BigHrushovski.FiniteOrientation.linearComponentPrefix_isClosed
+#print axioms BigHrushovski.FiniteOrientation.linearComponentPrefix_isStrong
+#print axioms BigHrushovski.FiniteOrientation.localComponentChoices_card
+#print axioms BigHrushovski.FiniteOrientation.finiteOrderData_card
