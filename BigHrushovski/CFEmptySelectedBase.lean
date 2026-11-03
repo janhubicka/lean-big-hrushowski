@@ -63,9 +63,10 @@ theorem empty_selectedOldImage_dClosed
   classical
   have hDomain :
       (Finset.univ : Finset (SupportCarrier U (∅ : Finset U))) = ∅ := by
-    ext u
-    have hFalse : False := by simpa using u.property
-    exact hFalse.elim
+    -- A subtype element would have to carry a proof of membership
+    -- in the empty selected support.
+    ext ⟨u, hu⟩
+    simp at hu
   have hEmpty : selectedOldImage (∅ : Finset U) e = ∅ := by
     simp only [selectedOldImage, hDomain, Finset.image_empty]
   rw [hEmpty]
