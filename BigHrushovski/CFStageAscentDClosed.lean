@@ -82,7 +82,13 @@ theorem ascend_fullStage_dClosed
           obtain ⟨w, hw, heq⟩ := Finset.mem_image.mp hv
           obtain ⟨u, hu, rfl⟩ := Finset.mem_image.mp hw
           exact Finset.mem_image.mpr ⟨u, hu, heq⟩
-      simpa only [Nat.add_succ, Nat.add_zero, ascend, himage] using h
+      have hcomposed :
+          (stage F K ((n+k)+1)).graph.toPredimension.IsDClosed
+            ((Finset.univ : Finset (stage F K n).carrier).image
+              (fun u => Sum.inl (ascend F K n k u))) Finset.univ := by
+        rw [himage]
+        exact h
+      simpa only [Nat.add_succ, Nat.add_zero, ascend] using hcomposed
 
 /-- Any strictly d-closed subset of stage n remains strictly
 d-closed in the whole stage n+k under the literal old ascent. -/
