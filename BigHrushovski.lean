@@ -453,3 +453,5 @@ import BigHrushovski.CFSelectedCutEquiv
 import BigHrushovski.CFSelectedCutEmbedding
 import BigHrushovski.CFSelectedCutBlockRigidity
 import BigHrushovski.CFRepresentedLevels
+
+import BigHrushovski.CFSkippedCutEquiv
