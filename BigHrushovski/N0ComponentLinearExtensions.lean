@@ -76,7 +76,7 @@ theorem componentRankOnAll_respects
     exact O.component_mem_components upper
   have hRank := hr ⟨B, hBm⟩ ⟨C, hCm⟩
     ⟨lower, upper, hB, hC, hProper⟩
-  simpa [componentRankOnAll, hBm, hCm, Fin.lt_def] using hRank
+  simpa only [componentRankOnAll, dif_pos hBm, dif_pos hCm, Fin.lt_def] using hRank
 
 /-- Every prefix of a finite component linear extension is
 successor-closed. -/
@@ -120,7 +120,8 @@ theorem localComponentChoices_card
     (O.localComponentChoices choices).card =
       ∏ B : O.ComponentObject, (choices B).card := by
   classical
-  simp [localComponentChoices]
+  simp only [localComponentChoices, Finset.card_pi]
+  simp
 
 /-- A linear extension together with an independent choice
 from the local option set of each component. -/
@@ -141,8 +142,9 @@ theorem finiteOrderData_card
       O.componentLinearExtensionCount *
         ∏ B : O.ComponentObject, (choices B).card := by
   classical
-  simp [finiteOrderData, componentLinearExtensionCount,
-    localComponentChoices]
+  simp only [finiteOrderData, componentLinearExtensionCount,
+    Finset.card_product, localComponentChoices, Finset.card_pi]
+  simp
 
 end FiniteOrientation
 end BigHrushovski
