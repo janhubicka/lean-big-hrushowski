@@ -62,8 +62,10 @@ theorem ascend_fullStage_dClosed
       have hWhole := stage_succ_dClosed F K (n+k)
       have h := (stage F K ((n+k)+1)).graph.toPredimension.dclosed_trans
         hRel hWhole
-      simpa only [Nat.add_succ, ascend, Finset.image_image,
-        Function.comp_def] using h
+      -- Normalize the nested old-image before comparing it with
+      -- the literal composite stage inclusion.
+      rw [Finset.image_image] at h
+      simpa only [Nat.add_succ, ascend, Function.comp_def] using h
 
 /-- Any strictly d-closed subset of stage n remains strictly
 d-closed in the whole stage n+k under the literal old ascent. -/
