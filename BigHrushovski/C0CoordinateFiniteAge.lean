@@ -42,12 +42,19 @@ theorem canonicalValue_mem_trans
   have hBC : TaggedAmalgam.DependencyAncestor
       (backDependency G κ) (κ b) (κ c) :=
     (mem_canonicalValue_iff G κ b c).mp hbc
-  have hAC : TaggedAmalgam.DependencyAncestor
-      (backDependency G κ) (κ a) (κ c) := by
-    induction hBC with
-    | root => exact hAB
-    | @step u v hu hdep ih =>
+  have ancestor_trans :
+      ∀ {i j k : Fin n},
+        TaggedAmalgam.DependencyAncestor (backDependency G κ) i j →
+        TaggedAmalgam.DependencyAncestor (backDependency G κ) j k →
+        TaggedAmalgam.DependencyAncestor (backDependency G κ) i k := by
+    intro i j k h₁ h₂
+    induction h₂ with
+    | root => exact h₁
+    | @step u v hprev hdep ih =>
         exact TaggedAmalgam.DependencyAncestor.step ih hdep
+  have hAC : TaggedAmalgam.DependencyAncestor
+      (backDependency G κ) (κ a) (κ c) :=
+    ancestor_trans hAB hBC
   exact (mem_canonicalValue_iff G κ a c).mpr hAC
 
 /-- Every one-generated finite canonical C₀ value is itself a
