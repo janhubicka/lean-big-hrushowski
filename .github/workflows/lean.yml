@@ -59,6 +59,7 @@ jobs:
             fi
           done
           python3 scripts/check_axioms.py axioms.log "${sources[@]}"
+          python3 -m unittest discover -s scripts -p 'test_check_no_placeholders.py'
           python3 scripts/check_no_placeholders.py
       - name: Check all graphs on up to five vertices
         run: python3 scripts/check_finite_models.py
