@@ -58,8 +58,9 @@ the coordinates of s is the same as forming the induced relation
 on the literal subtype s and then labelling it. This applies to
 both graph edges and complete unary-value incidences. -/
 private theorem coordinateRelationPairs_restrict
-    (R : U → U → Prop) (e : U ↪o ℕ) (s : Finset U)
-    (Rsub : s → s → Prop)
+    (R : U → U → Prop) [DecidableRel R]
+    (e : U ↪o ℕ) (s : Finset U)
+    (Rsub : s → s → Prop) [DecidableRel Rsub]
     (hR : ∀ u v : s, Rsub u v ↔ R u.val v.val) :
     ((((Finset.univ.product Finset.univ).filter
       (fun p : U × U => R p.1 p.2)).image
