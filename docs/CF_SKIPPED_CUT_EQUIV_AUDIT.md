@@ -1,6 +1,6 @@
 # Track B: adversarial review of skipped-source-level equivalence
 
-1 November 2026. Internal independent reasoning roles.
+1 November 2026, revisited 3 November 2026. Independent adversarial checking roles (not external referees).
 
 If a finite b-closed C_F source has no birth vertex at source
 level n, its next cut is literally the Sum.inl image of its
@@ -23,7 +23,7 @@ Hostile checks:
   inclusion is induced.
 - The theorem does not assert that a target stage has no
   new vertices; it does not change any target assignment.
-- Three exact axiom endpoints and full Lean CI are required
+- Five exact axiom endpoints and full Lean CI are required
   before marking the result verified.
 - The full induction must still combine the skipped-level
   persistence step with the selected-block step at

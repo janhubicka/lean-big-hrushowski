@@ -1287,9 +1287,3 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.representedLevels
 #print axioms BigHrushovski.CFCoherentTower.selectedRequests_nonempty_iff_represented
 #print axioms BigHrushovski.CFCoherentTower.stageCut_succ_eq_old_of_unrepresented
-
-#print axioms BigHrushovski.CFCoherentTower.skippedCutEquiv
-#print axioms BigHrushovski.CFCoherentTower.skippedCutEquiv_val
-#print axioms BigHrushovski.CFCoherentTower.skippedCutEquiv_induced
-#print axioms BigHrushovski.CFCoherentTower.skippedCutEquiv_birthVertex
-#print axioms BigHrushovski.CFCoherentTower.skippedCutEquiv_stageOrder_iff
