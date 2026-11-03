@@ -27,7 +27,8 @@ block-plus-old-support operation. -/
 theorem empty_birthBlockClosed (F : ℕ → ℝ) (K : ℕ → ℕ) :
     IsBirthBlockClosed F K (∅ : Finset (Vertex F K)) := by
   intro n r i hi
-  exact False.elim (Finset.not_mem_empty _ hi)
+  have hFalse : False := by simpa using hi
+  exact hFalse.elim
 
 /-- The stage cut of the empty birth-labelled set is literally
 empty at every finite stage; no distinguished old vertex occurs. -/
@@ -63,7 +64,8 @@ theorem empty_selectedOldImage_dClosed
   have hDomain :
       (Finset.univ : Finset (SupportCarrier U (∅ : Finset U))) = ∅ := by
     ext u
-    exact False.elim (Finset.not_mem_empty u.val u.property)
+    have hFalse : False := by simpa using u.property
+    exact hFalse.elim
   have hEmpty : selectedOldImage (∅ : Finset U) e = ∅ := by
     simp only [selectedOldImage, hDomain, Finset.image_empty]
   rw [hEmpty]
