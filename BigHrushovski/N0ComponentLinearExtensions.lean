@@ -121,7 +121,6 @@ theorem localComponentChoices_card
       ∏ B : O.ComponentObject, (choices B).card := by
   classical
   simp only [localComponentChoices, Finset.card_pi]
-  simp
 
 /-- A linear extension together with an independent choice
 from the local option set of each component. -/
@@ -142,9 +141,14 @@ theorem finiteOrderData_card
       O.componentLinearExtensionCount *
         ∏ B : O.ComponentObject, (choices B).card := by
   classical
-  simp only [finiteOrderData, componentLinearExtensionCount,
-    Finset.card_product, localComponentChoices, Finset.card_pi]
-  simp
+  calc
+    (O.finiteOrderData choices).card =
+        O.linearComponentRankings.card * (O.localComponentChoices choices).card := by
+      exact Finset.card_product _ _
+    _ = O.componentLinearExtensionCount *
+        ∏ B : O.ComponentObject, (choices B).card := by
+      rw [O.localComponentChoices_card]
+      rfl
 
 end FiniteOrientation
 end BigHrushovski
