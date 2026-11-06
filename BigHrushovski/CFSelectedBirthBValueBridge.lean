@@ -47,7 +47,20 @@ theorem selectedBlockBValue_sourceImage
     (fun r i => i) r hSub
     (by simp)
     (fun j => ⟨j, rfl⟩)
-  simpa only [selectedSourceMap, selectedTargetMap] using h
+  have hMap :
+      selectedTargetMap G Allowed bound G Allowed bound S D
+        (fun u : U => u)
+        (fun r : SelectedRequests G Allowed bound D => r.val)
+        (fun r i => i) =
+      selectedSourceMap G Allowed bound S D := by
+    funext x
+    cases x with
+    | inl u => rfl
+    | inr z =>
+        rcases z with ⟨q, i⟩
+        rfl
+  rw [hMap] at h
+  exact h
 
 end CFStageCatalogue
 
@@ -80,22 +93,38 @@ theorem selectedFresh_birthBValue_source
   have hImage := selectedBlockBValue_sourceImage
     (stage F K n).graph (GrowthAllowedLocal F)
     (fun P => K P.card) S D r hSub
+  let j : LevelCarrier (stage F K n).graph
+      (GrowthAllowedLocal F) (fun P => K P.card) → Vertex F K :=
+    fun z => toVertex F K (n + 1) z
+  have hPush := congrArg (Finset.image j) hImage
+  have hBirth :
+      birthBValue F K (⟨n, ⟨r.val, i⟩⟩ : Vertex F K) =
+      (taggedSupport (stage F K n).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) r.val ∪
+       taggedBlock (stage F K n).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) r.val).image j := by
+    rw [birthBValue_of_fresh]
+    change (taggedSupport (stage F K n).graph
+      (GrowthAllowedLocal F) (fun P => K P.card) r.val).image j ∪
+      (taggedBlock (stage F K n).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) r.val).image j =
+      (taggedSupport (stage F K n).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) r.val ∪
+       taggedBlock (stage F K n).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) r.val).image j
+    rw [Finset.image_union]
   calc
     birthBValue F K (⟨n, ⟨r.val, i⟩⟩ : Vertex F K) =
       (taggedSupport (stage F K n).graph
         (GrowthAllowedLocal F) (fun P => K P.card) r.val ∪
        taggedBlock (stage F K n).graph
-        (GrowthAllowedLocal F) (fun P => K P.card) r.val).image
-          (toVertex F K (n + 1)) := by
-          rw [birthBValue_of_fresh]
-          simp only [birthSupport, birthBlock, Finset.image_union]
+        (GrowthAllowedLocal F) (fun P => K P.card) r.val).image j := hBirth
     _ = ((selectedBlockBValue (stage F K n).graph
         (GrowthAllowedLocal F) (fun P => K P.card)
         S D r hSub).image
           (selectedSourceMap (stage F K n).graph
             (GrowthAllowedLocal F) (fun P => K P.card)
-            S D)).image (toVertex F K (n + 1)) := by
-          rw [hImage]
+            S D)).image j := hPush.symm
     _ = _ := by
       rw [Finset.image_image]
       rfl
@@ -145,6 +174,30 @@ theorem selectedFresh_birthBValue_target
   have hImage := selectedGrowthBatchMapSubtype_bValue_image
     F K (stage F K n).graph (stage F K m).graph
     S e he D h r
+  let j : LevelCarrier (stage F K m).graph
+      (GrowthAllowedLocal F) (fun P => K P.card) → Vertex F K :=
+    fun z => toVertex F K (m + 1) z
+  have hPush := congrArg (Finset.image j) hImage
+  have hBirth :
+      birthBValue F K
+        (⟨m, ⟨target,
+          selectedGrowthOrdinalIsoSubtype F K
+            (stage F K n).graph (stage F K m).graph
+            S e he D h r i⟩⟩ : Vertex F K) =
+      (taggedSupport (stage F K m).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) target ∪
+       taggedBlock (stage F K m).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) target).image j := by
+    rw [birthBValue_of_fresh]
+    change (taggedSupport (stage F K m).graph
+      (GrowthAllowedLocal F) (fun P => K P.card) target).image j ∪
+      (taggedBlock (stage F K m).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) target).image j =
+      (taggedSupport (stage F K m).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) target ∪
+       taggedBlock (stage F K m).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) target).image j
+    rw [Finset.image_union]
   calc
     birthBValue F K
       (⟨m, ⟨target,
@@ -152,20 +205,15 @@ theorem selectedFresh_birthBValue_target
           (stage F K n).graph (stage F K m).graph
           S e he D h r i⟩⟩ : Vertex F K) =
       (taggedSupport (stage F K m).graph
-          (GrowthAllowedLocal F) (fun P => K P.card) target ∪
-        taggedBlock (stage F K m).graph
-          (GrowthAllowedLocal F) (fun P => K P.card) target).image
-            (toVertex F K (m + 1)) := by
-          rw [birthBValue_of_fresh]
-          simp only [birthSupport, birthBlock, Finset.image_union]
+        (GrowthAllowedLocal F) (fun P => K P.card) target ∪
+       taggedBlock (stage F K m).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) target).image j := hBirth
     _ = ((selectedBlockBValue (stage F K n).graph
           (GrowthAllowedLocal F) (fun P => K P.card)
           S D r (h.supports r.val r.property)).image
           (selectedGrowthBatchMapSubtype F K
             (stage F K n).graph (stage F K m).graph
-            S e he D h)).image
-            (toVertex F K (m + 1)) := by
-          rw [hImage]
+            S e he D h)).image j := hPush.symm
     _ = _ := by
       rw [Finset.image_image]
       rfl
