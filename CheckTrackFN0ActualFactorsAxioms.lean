@@ -1,0 +1,13 @@
+import BigHrushovski.N0ActualLocalFactors
+
+#print axioms BigHrushovski.FiniteOrientation.mem_inducedLowerPart_iff
+#print axioms BigHrushovski.FiniteOrientation.componentClosure_isSuccessorClosed
+#print axioms BigHrushovski.FiniteOrientation.inducedComponentOrientation_full_out
+#print axioms BigHrushovski.FiniteOrientation.inducedLowerPart_isSuccessorClosed
+#print axioms BigHrushovski.FiniteOrientation.actualLocalFactor_pos
+#print axioms BigHrushovski.FiniteOrientation.actualLocalFactor_eq_of_stronglyConnected
+#print axioms BigHrushovski.FiniteOrientation.exists_component_generator
+#print axioms BigHrushovski.FiniteOrientation.componentGenerator_spec
+#print axioms BigHrushovski.FiniteOrientation.componentLocalFactor_eq_of_generator
+#print axioms BigHrushovski.FiniteOrientation.actualComponentCodeFibre_card
+#print axioms BigHrushovski.FiniteOrientation.actualFiniteComponentData_card
