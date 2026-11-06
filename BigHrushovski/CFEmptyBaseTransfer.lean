@@ -47,9 +47,14 @@ theorem empty_globalDClosed_of_growth_and_class
     CFDClosedFiniteSubtype.graph N b
   have hSparseH : H.IsGrowthSparse F Finset.univ :=
     (CFDClosedFiniteSubtype.growthSparse_iff N F b).mp hSparse
+  have hBaseEmpty :
+      CFDClosedFiniteSubtype.base b ∅ =
+        (∅ : Finset (CFDClosedFiniteSubtype.Carrier b)) := by
+    simp [CFDClosedFiniteSubtype.base]
   have hLocal : H.toPredimension.IsDClosed
-      (CFDClosedFiniteSubtype.base b ∅) Finset.univ :=
-    hEmpty (CFDClosedFiniteSubtype.Carrier b) H hSparseH
+      (CFDClosedFiniteSubtype.base b ∅) Finset.univ := by
+    rw [hBaseEmpty]
+    exact hEmpty (CFDClosedFiniteSubtype.Carrier b) H hSparseH
   have hRelative : N.toPredimension.IsDClosed ∅ b :=
     (CFDClosedFiniteSubtype.dClosed_iff N ∅ b
       (Finset.empty_subset b)).mpr hLocal
