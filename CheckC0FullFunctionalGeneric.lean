@@ -1,0 +1,5 @@
+import BigHrushovski.C0FunctionalFairGeneric
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.exists_functionalStageExtension_in_fair_limit
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimit_hasFunctionalStageExtension
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimitReduct_isomorphic_M0
