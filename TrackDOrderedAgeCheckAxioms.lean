@@ -1,6 +1,7 @@
 import BigHrushovski.C0CoordinateOrderedAgeBridge
 import BigHrushovski.C0CoordinateIntrinsicLocalOrder
 import BigHrushovski.C0CoordinateLocalOrderChoice
+import BigHrushovski.C0CoordinateCanonicalLocalRepresentative
 
 #print axioms BigHrushovski.FiniteUnaryCoordinates.chronologicalBlockOrder_interval
 #print axioms BigHrushovski.FiniteUnaryCoordinates.chronologicalBlockOrder_restrict
@@ -27,3 +28,5 @@ import BigHrushovski.C0CoordinateLocalOrderChoice
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LocalOrderedRepresentative.localComparison_graph
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LocalOrderedRepresentative.localComparison_lower
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LocalOrderedRepresentative.localComparison_value
+#print axioms BigHrushovski.FiniteUnaryCoordinates.mem_canonicalLocalLower_iff
+#print axioms BigHrushovski.FiniteUnaryCoordinates.canonicalLocalRepresentative_lower_order
