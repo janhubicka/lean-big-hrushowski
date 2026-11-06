@@ -113,8 +113,7 @@ noncomputable def canonicalLocalRepresentative
     have hwC : w.val ∈ C b.val :=
       (mem_restrictValue_iff C S b w).mp hw
     have hwP : w.val ∈ P :=
-      canonical_unaryLowerClosure_closed G κ a b.val hbP
-        w.val hwC
+      canonical_unaryLowerClosure_closed G κ a b.val hbP hwC
     exact (mem_canonicalLocalLower_iff G κ a w).mpr hwP
   have hOrder' : ∀ p ∈ L, ∀ b ∉ L, p < b := by
     intro p hp b hb
