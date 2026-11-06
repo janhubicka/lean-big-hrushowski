@@ -71,3 +71,14 @@ the exact old-value induction premise, then uses the literal
 
 These checks are internal hostile review roles, not claims of
 independent external refereeing.
+
+## Integration state (6 November 2026)
+
+The parent literal old/new birth-value bridge was merged into
+main by PR #330 (merge commit 7286eb2f74b6c97907d1a28a9ce55778b1c50cbd),
+following successful full CI run 42216713837. This PR now
+targets main directly and adds only the new exact target and
+literal-source all-vertex lifting equalities. All its own
+proof obligations require a NEW full CI run on the updated base;
+the earlier failing run predated the parent repair and does
+not count as evidence for these declarations.
