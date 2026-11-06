@@ -4,3 +4,4 @@ import BigHrushovski.C0CoordinateOrderedAgeBridge
 #print axioms BigHrushovski.FiniteUnaryCoordinates.chronologicalBlockOrder_restrict
 #print axioms BigHrushovski.FiniteUnaryCoordinates.canonicalClosed_code_age_bridge
 #print axioms BigHrushovski.FiniteUnaryCoordinates.canonicalOneGenerated_code_age_bridge
+#print axioms BigHrushovski.FiniteUnaryCoordinates.canonicalClosed_J_image
