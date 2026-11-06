@@ -68,7 +68,10 @@ theorem enumeration_eq_of_same_order {n : ℕ}
       · exact ((hlt i j).mp hij).le
       · exact le_of_eq (σ.injective hij)
   let E : Fin n ≃o Fin n :=
-    { toEquiv := σ, map_rel_iff' := hle }
+    { toEquiv := σ
+      map_rel_iff' := by
+        intro i j
+        exact (hle i j).symm }
   have hid (i : Fin n) : σ i = i := by
     have h := Fin.coe_orderIso_apply E i
     change (σ i : ℕ) = (i : ℕ) at h
