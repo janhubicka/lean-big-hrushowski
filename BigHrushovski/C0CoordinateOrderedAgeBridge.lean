@@ -105,6 +105,31 @@ theorem canonicalClosed_code_age_bridge
     exact FiniteC0.canonicalValue_restrict_minimalSteps
       G κ hMin s hClosed k hk
 
+/-- On a finite C-closed domain, the complete back-adjacency value
+J(u) = N(u) ∩ C(u) is exactly preserved by the induced subtype.
+This bridges the (E,C) code to the (J,C) presentation used for W.
+It is stronger than mere inclusion of the restricted J-value. -/
+theorem canonicalClosed_J_image
+    (G : GraphOn V) (κ : V → Fin n)
+    (s : Finset V)
+    (hClosed : G.IsClosedUnderValues (FiniteC0.canonicalValue G κ) s)
+    (u : s) :
+    ((restrictGraph G s).backAdjacencyValue
+      (restrictValue (FiniteC0.canonicalValue G κ) s) u).image
+        (Subtype.val : s → V) =
+      G.backAdjacencyValue (FiniteC0.canonicalValue G κ) u.val := by
+  let C := FiniteC0.canonicalValue G κ
+  have hClosed' : ClosedUnder C s := hClosed
+  calc
+    ((restrictGraph G s).backAdjacencyValue
+        (restrictValue C s) u).image (Subtype.val : s → V) =
+      (restrictValue (G.backAdjacencyValue C) s u).image
+        (Subtype.val : s → V) := by
+          rw [restrictBackAdjacencyValue G C s u]
+    _ = G.backAdjacencyValue C u.val :=
+      restrictValue_image (G.backAdjacencyValue C) s
+        (backAdjacency_closed G C s hClosed') u
+
 /-- A one-generated canonical C₀ closure satisfies the preceding
 finite-age and code conditions, including the complete named
 functions and the chronological component order. Reflexivity and
