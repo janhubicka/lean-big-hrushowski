@@ -1,4 +1,5 @@
 import BigHrushovski.N0ComponentLinearExtensions
+import Mathlib.Data.Finset.Sort
 import Mathlib.Tactic
 
 /-!
@@ -192,6 +193,45 @@ theorem firstPosition_lt_iff_all_vertices_before {n : ℕ}
     obtain ⟨c, hc, hcFirst⟩ := O.firstComponentPosition_mem e C
     have hbc : e.symm b < e.symm c := h b hb c hc
     simpa only [hbFirst, hcFirst] using hbc
+
+
+/-- The strict order on actual SCCs induced by their first
+positions in a complete vertex enumeration. -/
+noncomputable def componentLinearOrderFromEnumeration {n : ℕ}
+    (e : Fin n ≃ V) : LinearOrder O.ComponentObject :=
+  LinearOrder.lift' (O.firstComponentPosition e)
+    (O.firstComponentPosition_injective e)
+
+/-- Every complete vertex enumeration determines a unique
+bijection ranking its actual SCCs by consecutive ordinals,
+in their first-occurrence order. -/
+noncomputable def rankingFromEnumeration {n : ℕ}
+    (e : Fin n ≃ V) : O.ComponentRanking := by
+  letI : LinearOrder O.ComponentObject :=
+    O.componentLinearOrderFromEnumeration e
+  exact ((Fintype.orderIsoFinOfCardEq O.ComponentObject rfl).symm).toEquiv
+
+/-- The component ranking recovered from a successor-first
+vertex enumeration is a genuine linear extension of the
+intrinsic SCC dependency order. -/
+theorem rankingFromEnumeration_isLegal {n : ℕ}
+    (e : Fin n ≃ V)
+    (he : O.IsSuccessorFirstEnumeration e) :
+    O.IsLinearComponentRanking (O.rankingFromEnumeration e) := by
+  letI : LinearOrder O.ComponentObject :=
+    O.componentLinearOrderFromEnumeration e
+  let E : O.ComponentObject ≃o Fin (Fintype.card O.ComponentObject) :=
+    (Fintype.orderIsoFinOfCardEq O.ComponentObject rfl).symm
+  intro B C hBC
+  have hFirst : O.firstComponentPosition e B <
+      O.firstComponentPosition e C :=
+    O.firstComponentPosition_respectsDependencies e he B C hBC
+  have hOrder : B < C := by
+    change O.firstComponentPosition e B < O.firstComponentPosition e C
+    exact hFirst
+  have hRank : E B < E C := E.strictMono hOrder
+  change E B < E C
+  exact hRank
 
 end FiniteOrientation
 end BigHrushovski
