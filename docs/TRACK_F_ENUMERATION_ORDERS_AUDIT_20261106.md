@@ -66,3 +66,29 @@ the minimum lower-component position must therefore be earlier.
 
 This remains finite and does not establish the manuscript's
 recurrence or big Ramsey degree theorem.
+
+## SCC interval recovery (additional adversarial round)
+
+The same module now defines the literal interval condition on a
+bijective vertex enumeration: no vertex outside an SCC may appear
+strictly between two vertices of that SCC. Distinct SCCs have
+disjoint carriers. Under this interval condition the order of
+their first positions is equivalent to the condition that
+**every** vertex of the earlier SCC precedes **every** vertex
+of the later SCC. Thus the block order is determined by the
+global order, not an extra choice.
+
+Independent regression checks all 15,074 complete enumerations
+of 653 oriented graphs on up to four labelled vertices. Of these,
+13,730 have SCC intervals, and 131,184 ordered pairs of distinct
+SCCs were tested for equivalence of first-position order and
+complete component separation; all pass. The additional
+successor-first checks remain 3,810 enumerations and 5,168
+dependency comparisons. No theorem about canonical local code
+orders follows solely from this interval recovery result.
+
+Adversarial checks: the relation is **on labelled vertices**;
+the intervals are disjoint and nonempty; an arbitrary
+enumeration can interleave two components, so the interval
+hypothesis is essential. The count `ell(A)` is recovered only
+after also imposing the successor-first condition.
