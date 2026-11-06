@@ -130,8 +130,8 @@ private theorem response_successor
     (req : FunctionalC0RequestCatalogue)
     (hFair : fairFunctionalC0Request step = some req)
     (hApp : s.Applies req) :
-    ∃ t : FiniteFunctionalNatStage,
-      IsFairFunctionalSuccessor step s t := by
+    Nonempty (Σ t : FiniteFunctionalNatStage,
+      IsFairFunctionalSuccessor step s t) := by
   classical
   obtain ⟨e, he, hLabels, hInd, hValues⟩ := hApp
   obtain ⟨m, b, M, old, target, hGrow,
@@ -162,8 +162,8 @@ request) are handled without invoking a countable Fraïssé limit or
 postulating that all requests are already realizable. -/
 theorem exists_fairFunctionalSuccessor
     (step : ℕ) (s : FiniteFunctionalNatStage) :
-    ∃ t : FiniteFunctionalNatStage,
-      IsFairFunctionalSuccessor step s t := by
+    Nonempty (Σ t : FiniteFunctionalNatStage,
+      IsFairFunctionalSuccessor step s t) := by
   classical
   cases hFair : fairFunctionalC0Request step with
   | none =>
