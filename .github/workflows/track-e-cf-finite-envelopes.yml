@@ -1,0 +1,47 @@
+name: Track E finite CF level envelopes
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckFiniteEnvelopes.lean'
+      - 'CheckTrackECFFiniteEnvelopes.lean'
+      - '.github/workflows/track-e-cf-finite-envelopes.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckFiniteEnvelopes.lean'
+      - 'CheckTrackECFFiniteEnvelopes.lean'
+      - '.github/workflows/track-e-cf-finite-envelopes.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-finite-env-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-finite-env-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build and audit concrete finite level envelopes
+        run: |
+          lake build BigHrushovski.HrushovskiEllentuckFiniteEnvelopes
+          lake env lean CheckTrackECFFiniteEnvelopes.lean > track-e-finite-env-axioms.log
+          cat track-e-finite-env-axioms.log
+          python3 scripts/check_axioms.py track-e-finite-env-axioms.log CheckTrackECFFiniteEnvelopes.lean
+          python3 scripts/check_no_placeholders.py
