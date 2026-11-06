@@ -85,7 +85,7 @@ operation on all old numeric labels, and answers the fair request
 whenever its full functional source embedding is applicable.
 Old strongness is retained as a separate exact certificate. -/
 structure IsFairFunctionalSuccessor
-    (step : ℕ) (s t : FiniteFunctionalNatStage) : Prop where
+    (step : ℕ) (s t : FiniteFunctionalNatStage) where
   grows : s.size < t.size
   old : Fin s.size → Fin t.size
   old_injective : Function.Injective old
