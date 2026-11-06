@@ -121,6 +121,8 @@ theorem selectedFresh_birthBValue_target
     (r : SelectedRequests (stage F K n).graph
       (GrowthAllowedLocal F) (fun P => K P.card) D)
     (i : Fin r.val.code.1.val) :
+    letI : LinearOrder (stage F K n).carrier := stageLinearOrder F K n
+    letI : LinearOrder (stage F K m).carrier := stageLinearOrder F K m
     birthBValue F K
       (⟨m, ⟨selectedGrowthTagSubtype F K
           (stage F K n).graph (stage F K m).graph S e he D h r,
