@@ -455,3 +455,7 @@ import BigHrushovski.CFSelectedCutBlockRigidity
 import BigHrushovski.CFRepresentedLevels
 
 import BigHrushovski.CFSkippedCutEquiv
+
+-- Track F: finite successor-closed orientation data (conditional degree interfaces).
+import BigHrushovski.N0ComponentRankPrefixes
+import BigHrushovski.N0LocalCode

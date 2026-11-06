@@ -1,0 +1,41 @@
+name: Track F component rank prefixes
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0ComponentRankPrefixes.lean'
+      - 'CheckTrackFRankAxioms.lean'
+      - 'scripts/check_track_f_rank_prefixes.py'
+      - '.github/workflows/track-f-rank.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0ComponentRankPrefixes.lean'
+      - 'CheckTrackFRankAxioms.lean'
+      - 'scripts/check_track_f_rank_prefixes.py'
+      - '.github/workflows/track-f-rank.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-rank-prefixes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile component prefix module
+        run: lake build BigHrushovski.N0ComponentRankPrefixes
+      - name: Check theorem axioms and placeholders
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFRankAxioms.lean > track-f-rank-axioms.log
+          python3 scripts/check_axioms.py track-f-rank-axioms.log CheckTrackFRankAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Exhaust finite ranking instances
+        run: python3 scripts/check_track_f_rank_prefixes.py

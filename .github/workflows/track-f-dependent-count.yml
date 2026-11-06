@@ -1,0 +1,39 @@
+name: Track F dependent finite fibre count
+on:
+  push:
+    paths:
+      - 'BigHrushovski/FiniteDependentChoiceCount.lean'
+      - 'CheckTrackFDependentCountAxioms.lean'
+      - 'scripts/check_track_f_dependent_fibres.py'
+      - '.github/workflows/track-f-dependent-count.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/FiniteDependentChoiceCount.lean'
+      - 'CheckTrackFDependentCountAxioms.lean'
+      - 'scripts/check_track_f_dependent_fibres.py'
+      - '.github/workflows/track-f-dependent-count.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  dependent-count:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build dependent fibre count
+        run: lake build BigHrushovski.FiniteDependentChoiceCount
+      - name: Kernel axioms and placeholders
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFDependentCountAxioms.lean > dependent-count-axioms.log
+          python3 scripts/check_axioms.py dependent-count-axioms.log CheckTrackFDependentCountAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent history counts and negative test
+        run: python3 scripts/check_track_f_dependent_fibres.py
