@@ -1,0 +1,5 @@
+import BigHrushovski.N0LocalCodeFibre
+
+#print axioms BigHrushovski.FiniteOrientation.mem_localCodeFibre_iff
+#print axioms BigHrushovski.FiniteOrientation.localCodeFibre_eq_automorphism_image
+#print axioms BigHrushovski.FiniteOrientation.localCodeFibre_card
