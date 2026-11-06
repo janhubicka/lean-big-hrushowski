@@ -153,3 +153,48 @@ CI now builds `C0FunctionalFairLimit` and
 `C0FunctionalFairPersistence`, and audits the latter's three
 eventual-applicability and response endpoints in addition to
 the graph/unary limit certificates.
+
+## Referee 11 — the finite response actually persists into the limit
+
+The module `C0FunctionalFairResponseLimit.lean` constructs an induced
+functional embedding in the actual countable limit for every
+finite target already realized at a scheduled stage. The new
+target map is simply the finite embedding followed by the
+literal `Fin.val` map. The graph embedding is induced in
+both directions by `natGraph_induced` and
+`CoherentNatGraphStages.limitGraph_induced`. The unary
+values agree **exactly** by the stable unary-limit theorem,
+the finite response's full-value equality and
+`Finset.image_image`. All prescribed source labels survive
+pointwise, rather than merely up to an abstract finite
+isomorphism.
+
+The resulting theorem
+`eventually_answered_in_fair_limit` combines
+`fairStages_eventually_answers` with this exact
+finite-to-countable response transport. It requires only
+that the catalogue request was applicable at some finite
+stage; it does **not** impose an already generic countable
+model or assume that the full extension property holds.
+
+## Referee 12 — the remaining encoding bridge
+
+The separate finite normalization lemma in draft PR #345
+transports an arbitrary finite functional target W to
+the catalogue's finite ordinal, without changing the source
+stage's original numerical labels. To complete the countable
+Fraïssé argument one must apply this normalization to a
+finite extension over a literal stage of the countable limit.
+In particular, the source's chosen component index in
+`HasCanonicalStageExtensionProperty` need not equal the
+selected stage model's index; the proof must first establish
+equality of their **complete unary values** from their common
+limit operation.
+
+Once this conversion is proved, the present eventual-response
+theorem will supply the target copy in the limit with the exact
+prescribed old labels and complete functions. Until then,
+the manuscript's `C0-free-generic` remains PARTIAL.
+
+Dedicated CI now builds `C0FunctionalFairResponseLimit`
+and audits its two additional exact theorem endpoints.
