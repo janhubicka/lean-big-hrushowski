@@ -104,7 +104,8 @@ theorem actualLocalFactor_eq_of_stronglyConnected
   have hp : O.lowerPart x = O.lowerPart y :=
     O.lowerPart_eq_of_stronglyConnected hxy
   simp only [actualLocalFactor, actualLocalStabilizer,
-    inducedComponentOrientation, inducedLowerPart, hc, hp]
+    inducedComponentOrientation, inducedLowerPart]
+  rw [← hc, ← hp]
 
 /-- Every component has an actual generator. -/
 theorem exists_component_generator (B : O.ComponentObject) :
