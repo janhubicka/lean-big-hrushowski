@@ -38,10 +38,14 @@ the first fresh ordinal. -/
 private theorem singletonCarrier_eq
     (x y : SingletonCarrier U) : x = y := by
   cases x with
-  | inl p => simp at p.property
+  | inl p =>
+    have hp : False := by simpa using p.property
+    exact hp.elim
   | inr i =>
     cases y with
-    | inl p => simp at p.property
+    | inl p =>
+      have hp : False := by simpa using p.property
+      exact hp.elim
     | inr j => exact congrArg Sum.inr (Subsingleton.elim i j)
 
 /-- The old part of the one-vertex local extension is empty. -/
@@ -52,8 +56,8 @@ private theorem singleton_old_empty :
   constructor
   · intro hx
     obtain ⟨p, _, hp⟩ := Finset.mem_image.mp hx
-    have h : p.val ∈ (∅ : Finset U) := p.property
-    simp at h
+    have h : False := by simpa using p.property
+    exact h.elim
   · simp
 
 /-- An arbitrary nonempty subset of a singleton carrier is its
@@ -185,8 +189,8 @@ theorem singletonStageRequest_exists
     { graph := H
       base_agrees := by
         intro p q
-        have hp : p.val ∈ (∅ : Finset U) := p.property
-        simp at hp
+        have hp : False := by simpa using p.property
+        exact hp.elim
       allowed := singleton_growth F hZero hOne
       minimal := singleton_minimal
       exact_support := singleton_exact_support }
