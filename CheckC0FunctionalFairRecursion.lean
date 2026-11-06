@@ -1,0 +1,8 @@
+import BigHrushovski.C0FunctionalFairRecursion
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairStages_step
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairStages_grows
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairStages_covers
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairStages_contains_finite
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairStages_responds
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairStages_old_strong
