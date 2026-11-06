@@ -1,0 +1,3 @@
+import BigHrushovski.CFPublishedBirthGenericity
+
+#print axioms BigHrushovski.CFCoherentTower.publishedBirth_unique_of_growthClassAssumptions
