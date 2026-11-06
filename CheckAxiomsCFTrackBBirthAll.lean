@@ -1,0 +1,14 @@
+import BigHrushovski.CFSelectedBirthBValueBridge
+import BigHrushovski.CFSelectedOldBirthBValues
+import BigHrushovski.CFActualCutBirthBValueSource
+
+/-! Track B integrated exact axiom audit for full old/new
+complete birth-b-value equality on the literal finite source cut. -/
+#print axioms BigHrushovski.CFStageCatalogue.selectedBlockBValue_sourceImage
+#print axioms BigHrushovski.CFCoherentTower.selectedFresh_birthBValue_source
+#print axioms BigHrushovski.CFCoherentTower.selectedFresh_birthBValue_target
+#print axioms BigHrushovski.CFCoherentTower.cutOldBirthBValue_image
+#print axioms BigHrushovski.CFCoherentTower.stageOldBirthBValue_image
+#print axioms BigHrushovski.CFCoherentTower.oldBValue_image_iff_birthBValue
+#print axioms BigHrushovski.CFCoherentTower.selectedCut_oneLevelBValue_birth_image
+#print axioms BigHrushovski.CFCoherentTower.selectedCut_oneLevelBValue_eq_actualCut
