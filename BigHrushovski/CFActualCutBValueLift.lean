@@ -215,32 +215,70 @@ theorem selectedCutOneStepLift_completeActualBirthBValues
     simpa only [z, Equiv.apply_symm_apply] using h
   have hAll := selectedBatch_completeActualBirthBValues
     F K s hs n m e he h hOldBirth z
+  have hPointwise :
+      ∀ y : CutSelectedCarrier F K s n,
+        selectedCutOneStepLift F K s hs n m e he h
+          (selectedCutEquiv F K s hs n y) =
+        selectedGrowthBatchMapSubtype F K
+          (stage F K n).graph (stage F K m).graph
+          (stageCut F K s n) e he (selectedRequests F K s n) h y := by
+    intro y
+    change selectedGrowthBatchMapSubtype F K
+        (stage F K n).graph (stage F K m).graph
+        (stageCut F K s n) e he (selectedRequests F K s n) h
+        ((selectedCutEquiv F K s hs n).symm
+          (selectedCutEquiv F K s hs n y)) =
+      selectedGrowthBatchMapSubtype F K
+        (stage F K n).graph (stage F K m).graph
+        (stageCut F K s n) e he (selectedRequests F K s n) h y
+    rw [Equiv.symm_apply_apply]
+  have hMapImage :
+      (B.image (selectedCutEquiv F K s hs n)).image
+        (selectedCutOneStepLift F K s hs n m e he h) =
+      B.image (selectedGrowthBatchMapSubtype F K
+        (stage F K n).graph (stage F K m).graph
+        (stageCut F K s n) e he (selectedRequests F K s n) h) := by
+    ext v
+    constructor
+    · intro hv
+      obtain ⟨x, hx, hxv⟩ := Finset.mem_image.mp hv
+      obtain ⟨y, hy, hyx⟩ := Finset.mem_image.mp hx
+      apply Finset.mem_image.mpr
+      refine ⟨y, hy, ?_⟩
+      calc
+        selectedGrowthBatchMapSubtype F K
+            (stage F K n).graph (stage F K m).graph
+            (stageCut F K s n) e he (selectedRequests F K s n) h y =
+          selectedCutOneStepLift F K s hs n m e he h
+            (selectedCutEquiv F K s hs n y) := (hPointwise y).symm
+        _ = selectedCutOneStepLift F K s hs n m e he h x := by rw [hyx]
+        _ = v := hxv
+    · intro hv
+      obtain ⟨y, hy, hyv⟩ := Finset.mem_image.mp hv
+      apply Finset.mem_image.mpr
+      refine ⟨selectedCutEquiv F K s hs n y, ?_, ?_⟩
+      · exact Finset.mem_image.mpr ⟨y, hy, rfl⟩
+      · exact (hPointwise y).trans hyv
+  have hFirst :
+      (cutOldBirthBValue F K s (n + 1) x).image
+        (selectedCutOneStepLift F K s hs n m e he h) =
+      (B.image (selectedCutEquiv F K s hs n)).image
+        (selectedCutOneStepLift F K s hs n m e he h) :=
+    congrArg
+      (fun Q : Finset
+        (SupportCarrier (stage F K (n + 1)).carrier
+          (stageCut F K s (n + 1))) =>
+        Q.image (selectedCutOneStepLift F K s hs n m e he h))
+      hSrc.symm
   calc
     (cutOldBirthBValue F K s (n + 1) x).image
         (selectedCutOneStepLift F K s hs n m e he h) =
       (B.image (selectedCutEquiv F K s hs n)).image
-        (selectedCutOneStepLift F K s hs n m e he h) := by
-          rw [hSrc]
+        (selectedCutOneStepLift F K s hs n m e he h) := hFirst
     _ = B.image (selectedGrowthBatchMapSubtype F K
-          (stage F K n).graph (stage F K m).graph
-          (stageCut F K s n) e he (selectedRequests F K s n) h) := by
-          rw [Finset.image_image]
-          apply Finset.image_congr
-          intro y hy
-          change selectedCutOneStepLift F K s hs n m e he h
-            (selectedCutEquiv F K s hs n y) =
-            selectedGrowthBatchMapSubtype F K
-              (stage F K n).graph (stage F K m).graph
-              (stageCut F K s n) e he (selectedRequests F K s n) h y
-          change selectedGrowthBatchMapSubtype F K
-              (stage F K n).graph (stage F K m).graph
-              (stageCut F K s n) e he (selectedRequests F K s n) h
-              ((selectedCutEquiv F K s hs n).symm
-                (selectedCutEquiv F K s hs n y)) =
-            selectedGrowthBatchMapSubtype F K
-              (stage F K n).graph (stage F K m).graph
-              (stageCut F K s n) e he (selectedRequests F K s n) h y
-          rw [Equiv.symm_apply_apply]
+        (stage F K n).graph (stage F K m).graph
+        (stageCut F K s n) e he (selectedRequests F K s n) h) :=
+      hMapImage
     _ = stageOldBirthBValue F K (m + 1)
         (selectedGrowthBatchMapSubtype F K
           (stage F K n).graph (stage F K m).graph
