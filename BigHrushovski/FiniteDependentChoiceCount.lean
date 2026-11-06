@@ -1,7 +1,7 @@
 import Mathlib.Tactic
 
 /-!
-# Counting finite choices with prefix-dependent fibres
+# Counting finite choices with prior-dependent fibres
 
 At each stage the permitted next choices can depend on the complete
 history of earlier choices. If the number of choices at stage n is
@@ -20,48 +20,48 @@ namespace FiniteChoiceHistory
 
 variable {α : Type*} [DecidableEq α]
 
-/-- Length-n histories of permitted choices. The prefix is stored
+/-- Length-n histories of permitted choices. The prior is stored
 in reverse order (most recent choice first), while the resulting
 history lists choices in their chronological order. -/
 noncomputable def histories (choose : ℕ → List α → Finset α) :
     (n : ℕ) → List α → Finset (List α)
   | 0, _ => {[]}
-  | n + 1, prefix =>
-      (choose n prefix).biUnion (fun a =>
-        (histories choose n (a :: prefix)).image (List.cons a))
+  | n + 1, prior =>
+      (choose n prior).biUnion (fun a =>
+        (histories choose n (a :: prior)).image (List.cons a))
 
 /-- Every resulting suffix has precisely the prescribed number
 of steps, even when some choice sets are empty. -/
 theorem length_of_mem_histories
     (choose : ℕ → List α → Finset α) :
-    ∀ (n : ℕ) (prefix history : List α),
-      history ∈ histories choose n prefix → history.length = n := by
+    ∀ (n : ℕ) (prior history : List α),
+      history ∈ histories choose n prior → history.length = n := by
   intro n
   induction n with
   | zero =>
-      intro prefix history h
+      intro prior history h
       have hnil : history = [] := by
         simpa [histories] using h
       subst history
       rfl
   | succ n ih =>
-      intro prefix history h
+      intro prior history h
       change history ∈
-        (choose n prefix).biUnion (fun a =>
-          (histories choose n (a :: prefix)).image (List.cons a)) at h
+        (choose n prior).biUnion (fun a =>
+          (histories choose n (a :: prior)).image (List.cons a)) at h
       obtain ⟨a, ha, hImage⟩ := Finset.mem_biUnion.mp h
       obtain ⟨tail, htail, hEq⟩ := Finset.mem_image.mp hImage
       subst history
-      simpa using congrArg Nat.succ (ih (a :: prefix) tail htail)
+      simpa using congrArg Nat.succ (ih (a :: prior) tail htail)
 
 /-- The sets of histories beginning with distinct next choices
 are disjoint, even though the remaining choices depend on the
 chosen first element. -/
 theorem history_first_choice_disjoint
     (choose : ℕ → List α → Finset α)
-    (n : ℕ) (prefix : List α) :
-    ((choose n prefix : Finset α) : Set α).PairwiseDisjoint
-      (fun a => (histories choose n (a :: prefix)).image
+    (n : ℕ) (prior : List α) :
+    ((choose n prior : Finset α) : Set α).PairwiseDisjoint
+      (fun a => (histories choose n (a :: prior)).image
         (List.cons a)) := by
   intro a ha b hb hab
   apply Finset.disjoint_left.mpr
@@ -79,45 +79,45 @@ for dependent finite histories. The choice *sets* may be entirely
 different for different previous histories. -/
 theorem histories_card
     (choose : ℕ → List α → Finset α) (g : ℕ → ℕ)
-    (hUniform : ∀ (n : ℕ) (prefix : List α),
-      (choose n prefix).card = g n) :
-    ∀ (n : ℕ) (prefix : List α),
-      (histories choose n prefix).card =
+    (hUniform : ∀ (n : ℕ) (prior : List α),
+      (choose n prior).card = g n) :
+    ∀ (n : ℕ) (prior : List α),
+      (histories choose n prior).card =
         ∏ i ∈ Finset.range n, g i := by
   intro n
   induction n with
   | zero =>
-      intro prefix
+      intro prior
       simp [histories]
   | succ n ih =>
-      intro prefix
-      change ((choose n prefix).biUnion (fun a =>
-        (histories choose n (a :: prefix)).image (List.cons a))).card =
+      intro prior
+      change ((choose n prior).biUnion (fun a =>
+        (histories choose n (a :: prior)).image (List.cons a))).card =
         ∏ i ∈ Finset.range (n + 1), g i
       calc
-        _ = ∑ a ∈ choose n prefix,
-              ((histories choose n (a :: prefix)).image
+        _ = ∑ a ∈ choose n prior,
+              ((histories choose n (a :: prior)).image
                 (List.cons a)).card :=
           Finset.card_biUnion
-            (history_first_choice_disjoint choose n prefix)
-        _ = ∑ a ∈ choose n prefix,
-              (histories choose n (a :: prefix)).card := by
+            (history_first_choice_disjoint choose n prior)
+        _ = ∑ a ∈ choose n prior,
+              (histories choose n (a :: prior)).card := by
           apply Finset.sum_congr rfl
           intro a ha
           apply Finset.card_image_iff.mpr
           intro u hu v hv huv
           have hTail := congrArg List.tail huv
           simpa using hTail
-        _ = ∑ a ∈ choose n prefix,
+        _ = ∑ a ∈ choose n prior,
               ∏ i ∈ Finset.range n, g i := by
           apply Finset.sum_congr rfl
           intro a ha
-          exact ih (a :: prefix)
-        _ = (choose n prefix).card *
+          exact ih (a :: prior)
+        _ = (choose n prior).card *
               (∏ i ∈ Finset.range n, g i) := by
           simp
         _ = ∏ i ∈ Finset.range (n + 1), g i := by
-          rw [hUniform n prefix, Finset.prod_range_succ]
+          rw [hUniform n prior, Finset.prod_range_succ]
           exact Nat.mul_comm _ _
 
 end FiniteChoiceHistory
