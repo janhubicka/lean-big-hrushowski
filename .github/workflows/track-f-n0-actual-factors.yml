@@ -1,0 +1,43 @@
+name: Track F N0 actual local factors
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0ActualLocalFactors.lean'
+      - 'scripts/check_track_f_actual_local_factor_examples.py'
+      - 'CheckTrackFN0ActualFactorsAxioms.lean'
+      - '.github/workflows/track-f-n0-actual-factors.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0ActualLocalFactors.lean'
+      - 'scripts/check_track_f_actual_local_factor_examples.py'
+      - 'CheckTrackFN0ActualFactorsAxioms.lean'
+      - '.github/workflows/track-f-n0-actual-factors.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  actual-local-factors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build actual induced local factors
+        run: lake build BigHrushovski.N0ActualLocalFactors
+      - name: Audit theorem axioms and placeholders
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFN0ActualFactorsAxioms.lean > track-f-actual-axioms.log
+          python3 scripts/check_axioms.py track-f-actual-axioms.log CheckTrackFN0ActualFactorsAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite factor regressions
+        run: |
+          python3 scripts/check_track_f_n0_local_fibres.py
+          python3 scripts/check_track_f_n0_all_orders_five.py
+          python3 scripts/check_track_f_actual_local_factor_examples.py
