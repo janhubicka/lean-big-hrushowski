@@ -49,12 +49,36 @@ theorem targetOneLevelBValue_birthImage
             (Sum.inl w : (stage F K (m + 1)).carrier))).image
               (toVertex F K (m + 1)) =
         birthBValue F K (toVertex F K m u)
-      calc
-        _ = (stageOldBirthBValue F K m u).image
+      have hOldImage :
+          ((stageOldBirthBValue F K m u).image
+            (fun w : (stage F K m).carrier =>
+              (Sum.inl w : (stage F K (m + 1)).carrier))).image
+                (toVertex F K (m + 1)) =
+          (stageOldBirthBValue F K m u).image
             (toVertex F K m) := by
-              rw [Finset.image_image]
-              rfl
-        _ = _ := stageOldBirthBValue_image F K m u
+        ext v
+        constructor
+        · intro hv
+          obtain ⟨w, hw, hwv⟩ := Finset.mem_image.mp hv
+          obtain ⟨a, ha, haw⟩ := Finset.mem_image.mp hw
+          apply Finset.mem_image.mpr
+          refine ⟨a, ha, ?_⟩
+          calc
+            toVertex F K m a =
+                toVertex F K (m + 1) (Sum.inl a) :=
+              (toVertex_old F K m a).symm
+            _ = toVertex F K (m + 1) w := by rw [← haw]
+            _ = v := hwv
+        · intro hv
+          obtain ⟨a, ha, hav⟩ := Finset.mem_image.mp hv
+          apply Finset.mem_image.mpr
+          refine ⟨Sum.inl a, ?_, ?_⟩
+          · exact Finset.mem_image.mpr ⟨a, ha, rfl⟩
+          · calc
+              toVertex F K (m + 1) (Sum.inl a) =
+                  toVertex F K m a := toVertex_old F K m a
+              _ = v := hav
+      exact hOldImage.trans (stageOldBirthBValue_image F K m u)
   | inr z =>
       rcases z with ⟨r, i⟩
       change
@@ -65,7 +89,7 @@ theorem targetOneLevelBValue_birthImage
           (toVertex F K (m + 1)) =
         birthBValue F K (⟨m, ⟨r, i⟩⟩ : Vertex F K)
       rw [birthBValue_of_fresh]
-      simp only [birthSupport, birthBlock, Finset.image_union]
+      exact Finset.image_union
 
 /-- The parametrized target one-level b-value is LITERALLY the
 finite-stage preimage of the TRUE complete birth-b-value.
