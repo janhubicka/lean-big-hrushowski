@@ -1,4 +1,5 @@
 import BigHrushovski.N0ComponentLinearExtensions
+import BigHrushovski.N0EnumerationOrders
 import Mathlib.Data.Finset.Sort
 import Mathlib.Tactic
 
@@ -273,6 +274,74 @@ theorem rankingFromEnumeration_isLegal {n : ℕ}
   have hRank := E.strictMono hWrapped
   change E ⟨B⟩ < E ⟨C⟩
   exact hRank
+
+
+/-- If SCCs are intervals, every comparison of vertices from
+distinct SCCs agrees with the order of their first positions.
+The interval hypothesis is essential: two components may
+otherwise be interleaved in an arbitrary enumeration. -/
+theorem vertices_before_iff_component_first_before {n : ℕ}
+    (e : Fin n ≃ V)
+    (hInterval : O.IsComponentIntervalEnumeration e)
+    (B C : O.ComponentObject) (hBC : B ≠ C)
+    {b c : V} (hb : b ∈ B.val) (hc : c ∈ C.val) :
+    e.symm b < e.symm c ↔
+      O.firstComponentPosition e B < O.firstComponentPosition e C := by
+  constructor
+  · intro hbc
+    have hPosNe : O.firstComponentPosition e B ≠
+        O.firstComponentPosition e C := by
+      intro hEq
+      exact hBC (O.firstComponentPosition_injective e hEq)
+    rcases lt_or_gt_of_ne hPosNe with hFirst | hReverse
+    · exact hFirst
+    · have hcb : e.symm c < e.symm b :=
+        O.all_vertices_before_of_firstPosition_lt
+          e hInterval C B hReverse hc hb
+      exact False.elim ((not_lt_of_ge hcb.le) hbc)
+  · intro hFirst
+    exact O.all_vertices_before_of_firstPosition_lt
+      e hInterval B C hFirst hb hc
+
+/-- A complete labelled enumeration with SCC intervals is
+determined by two pieces of information: the order of its
+component intervals and the order within each component.
+No third inter-component interleaving choice is possible. -/
+theorem enumeration_eq_of_same_component_order_and_local_orders {n : ℕ}
+    (e f : Fin n ≃ V)
+    (he : O.IsComponentIntervalEnumeration e)
+    (hf : O.IsComponentIntervalEnumeration f)
+    (hBlocks : ∀ B C : O.ComponentObject,
+      (O.firstComponentPosition e B < O.firstComponentPosition e C) ↔
+      (O.firstComponentPosition f B < O.firstComponentPosition f C))
+    (hLocal : ∀ x y : V,
+      O.StronglyConnected x y →
+      (e.symm x < e.symm y ↔ f.symm x < f.symm y)) :
+    e = f := by
+  apply enumeration_eq_of_same_order e f
+  intro x y
+  change (e.symm x < e.symm y) ↔ (f.symm x < f.symm y)
+  by_cases hxy : O.StronglyConnected x y
+  · exact hLocal x y hxy
+  · let B : O.ComponentObject :=
+      ⟨O.component x, O.component_mem_components x⟩
+    let C : O.ComponentObject :=
+      ⟨O.component y, O.component_mem_components y⟩
+    have hBC : B ≠ C := by
+      intro h
+      have hComp : O.component x = O.component y :=
+        congrArg Subtype.val h
+      exact hxy ((O.stronglyConnected_iff_component_eq x y).mpr hComp)
+    have hxB : x ∈ B.val := O.self_mem_component x
+    have hyC : y ∈ C.val := O.self_mem_component y
+    calc
+      e.symm x < e.symm y ↔
+          O.firstComponentPosition e B < O.firstComponentPosition e C :=
+        O.vertices_before_iff_component_first_before e he B C hBC hxB hyC
+      _ ↔ O.firstComponentPosition f B < O.firstComponentPosition f C :=
+        hBlocks B C
+      _ ↔ f.symm x < f.symm y :=
+        (O.vertices_before_iff_component_first_before f hf B C hBC hxB hyC).symm
 
 end FiniteOrientation
 end BigHrushovski
