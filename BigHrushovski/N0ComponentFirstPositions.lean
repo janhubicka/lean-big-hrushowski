@@ -195,42 +195,83 @@ theorem firstPosition_lt_iff_all_vertices_before {n : ℕ}
     simpa only [hbFirst, hcFirst] using hbc
 
 
-/-- The strict order on actual SCCs induced by their first
-positions in a complete vertex enumeration. -/
-noncomputable def componentLinearOrderFromEnumeration {n : ℕ}
-    (e : Fin n ≃ V) : LinearOrder O.ComponentObject :=
-  LinearOrder.lift' (O.firstComponentPosition e)
-    (O.firstComponentPosition_injective e)
+/-- A wrapper for the actual component type, keeping its
+first-position order separate from the inherited inclusion
+order on finite vertex sets. -/
+structure ComponentOrderCarrier where
+  component : O.ComponentObject
 
-/-- Every complete vertex enumeration determines a unique
-bijection ranking its actual SCCs by consecutive ordinals,
-in their first-occurrence order. -/
+/-- Forgetting the wrapper is a bijection with the actual
+strongly connected components of the original orientation. -/
+def componentOrderCarrierEquiv :
+    O.ComponentObject ≃ O.ComponentOrderCarrier where
+  toFun := fun B => ⟨B⟩
+  invFun := fun C => C.component
+  left_inv := fun B => rfl
+  right_inv := fun C => by cases C; rfl
+
+noncomputable instance componentOrderCarrierFintype :
+    Fintype O.ComponentOrderCarrier := by
+  classical
+  exact Fintype.ofEquiv O.ComponentObject
+    O.componentOrderCarrierEquiv
+
+/-- The strict linear order obtained by comparing the first
+vertex occurrence of each SCC, without confusing it with
+subset inclusion on component vertex sets. -/
+noncomputable def componentOrderCarrierLinearOrder {n : ℕ}
+    (e : Fin n ≃ V) : LinearOrder O.ComponentOrderCarrier :=
+  LinearOrder.lift'
+    (fun B : O.ComponentOrderCarrier =>
+      O.firstComponentPosition e B.component)
+    (by
+      intro B C h
+      cases B with
+      | mk B =>
+        cases C with
+        | mk C =>
+          congr 1
+          exact O.firstComponentPosition_injective e h)
+
+/-- Every finite vertex enumeration determines consecutive
+ranks of the actual components, in first-occurrence order. -/
 noncomputable def rankingFromEnumeration {n : ℕ}
     (e : Fin n ≃ V) : O.ComponentRanking := by
-  letI : LinearOrder O.ComponentObject :=
-    O.componentLinearOrderFromEnumeration e
-  exact ((Fintype.orderIsoFinOfCardEq O.ComponentObject rfl).symm).toEquiv
+  classical
+  letI : LinearOrder O.ComponentOrderCarrier :=
+    O.componentOrderCarrierLinearOrder e
+  have hcard : Fintype.card O.ComponentOrderCarrier =
+      Fintype.card O.ComponentObject :=
+    Fintype.card_congr O.componentOrderCarrierEquiv.symm
+  exact O.componentOrderCarrierEquiv.trans
+    ((Fintype.orderIsoFinOfCardEq O.ComponentOrderCarrier hcard).symm.toEquiv)
 
-/-- The component ranking recovered from a successor-first
-vertex enumeration is a genuine linear extension of the
-intrinsic SCC dependency order. -/
+/-- For a successor-first vertex enumeration, the recovered
+consecutive component ranking respects the intrinsic SCC
+dependency relation. -/
 theorem rankingFromEnumeration_isLegal {n : ℕ}
     (e : Fin n ≃ V)
     (he : O.IsSuccessorFirstEnumeration e) :
     O.IsLinearComponentRanking (O.rankingFromEnumeration e) := by
-  letI : LinearOrder O.ComponentObject :=
-    O.componentLinearOrderFromEnumeration e
-  let E : O.ComponentObject ≃o Fin (Fintype.card O.ComponentObject) :=
-    (Fintype.orderIsoFinOfCardEq O.ComponentObject rfl).symm
+  classical
+  letI : LinearOrder O.ComponentOrderCarrier :=
+    O.componentOrderCarrierLinearOrder e
+  have hcard : Fintype.card O.ComponentOrderCarrier =
+      Fintype.card O.ComponentObject :=
+    Fintype.card_congr O.componentOrderCarrierEquiv.symm
+  let E : O.ComponentOrderCarrier ≃o Fin (Fintype.card O.ComponentObject) :=
+    (Fintype.orderIsoFinOfCardEq O.ComponentOrderCarrier hcard).symm
   intro B C hBC
   have hFirst : O.firstComponentPosition e B <
       O.firstComponentPosition e C :=
     O.firstComponentPosition_respectsDependencies e he B C hBC
-  have hOrder : B < C := by
-    change O.firstComponentPosition e B < O.firstComponentPosition e C
+  have hWrapped : (⟨B⟩ : O.ComponentOrderCarrier) <
+      (⟨C⟩ : O.ComponentOrderCarrier) := by
+    change O.firstComponentPosition e B <
+      O.firstComponentPosition e C
     exact hFirst
-  have hRank : E B < E C := E.strictMono hOrder
-  change E B < E C
+  have hRank := E.strictMono hWrapped
+  change E ⟨B⟩ < E ⟨C⟩
   exact hRank
 
 end FiniteOrientation
