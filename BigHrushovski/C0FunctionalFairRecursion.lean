@@ -36,21 +36,25 @@ def empty : FiniteFunctionalNatStage where
 /-- Choose each next finite canonical stage by the previously
 certified existence theorem. This is a genuine definition of
 a Nat-indexed sequence, not an assumed fair-response chain. -/
+noncomputable def chooseFairSuccessor
+    (step : ℕ) (s : FiniteFunctionalNatStage) :
+    Σ t : FiniteFunctionalNatStage,
+      IsFairFunctionalSuccessor step s t :=
+  Classical.choice (exists_fairFunctionalSuccessor step s)
+
 noncomputable def fairStages : ℕ → FiniteFunctionalNatStage :=
   Nat.rec empty
-    (fun step s =>
-      Classical.choose (exists_fairFunctionalSuccessor step s))
+    (fun step s => (chooseFairSuccessor step s).1)
 
 /-- The recursively chosen successor retains every exact
-finite response, growth and old-value certificate. -/
-theorem fairStages_step (step : ℕ) :
+finite response, growth and old-value certificate. The witness
+is the one used in the actual recursive sequence. -/
+noncomputable def fairStages_step (step : ℕ) :
     IsFairFunctionalSuccessor step
       (fairStages step) (fairStages (step+1)) := by
   change IsFairFunctionalSuccessor step (fairStages step)
-    (Classical.choose
-      (exists_fairFunctionalSuccessor step (fairStages step)))
-  exact Classical.choose_spec
-    (exists_fairFunctionalSuccessor step (fairStages step))
+    (chooseFairSuccessor step (fairStages step)).1
+  exact (chooseFairSuccessor step (fairStages step)).2
 
 /-- Every chosen stage is strictly larger than its predecessor. -/
 theorem fairStages_grows (step : ℕ) :
