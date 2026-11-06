@@ -7,6 +7,7 @@ on:
       - 'BigHrushovski/C0FunctionalNatStageCanonical.lean'
       - 'BigHrushovski/C0FunctionalFairLimit.lean'
       - 'BigHrushovski/C0FunctionalFairPersistence.lean'
+      - 'BigHrushovski/C0FunctionalFairResponseLimit.lean'
       - 'CheckC0FunctionalNatStage.lean'
       - 'CheckC0FunctionalFairLimit.lean'
       - '.github/workflows/track-a-nat-functional-stage.yml'
@@ -16,6 +17,7 @@ on:
       - 'BigHrushovski/C0FunctionalNatStageCanonical.lean'
       - 'BigHrushovski/C0FunctionalFairLimit.lean'
       - 'BigHrushovski/C0FunctionalFairPersistence.lean'
+      - 'BigHrushovski/C0FunctionalFairResponseLimit.lean'
       - 'CheckC0FunctionalNatStage.lean'
       - 'CheckC0FunctionalFairLimit.lean'
       - '.github/workflows/track-a-nat-functional-stage.yml'
@@ -48,7 +50,7 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Build numerical graph/unary stage transport
-        run: lake build BigHrushovski.C0FunctionalFairLimit BigHrushovski.C0FunctionalFairPersistence
+        run: lake build BigHrushovski.C0FunctionalFairLimit BigHrushovski.C0FunctionalFairPersistence BigHrushovski.C0FunctionalFairResponseLimit
       - name: Exact axioms and placeholders
         run: |
           set -euo pipefail
