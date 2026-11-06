@@ -6,6 +6,7 @@ on:
       - "BigHrushovski/C0CoordinateOrderedAgeBridge.lean"
       - "BigHrushovski/C0CoordinateIntrinsicLocalOrder.lean"
       - "BigHrushovski/C0CoordinateLocalOrderChoice.lean"
+      - "BigHrushovski/C0CoordinateCanonicalLocalRepresentative.lean"
       - "TrackDOrderedAgeCheckAxioms.lean"
       - ".github/workflows/track-d-ordered-age.yml"
       - "scripts/check_c0_chronological_order.py"
@@ -42,7 +43,7 @@ jobs:
       - name: Build and audit exact Track D bridge
         run: |
           set -euo pipefail
-          lake build BigHrushovski.C0CoordinateOrderedAgeBridge BigHrushovski.C0CoordinateIntrinsicLocalOrder BigHrushovski.C0CoordinateLocalOrderChoice
+          lake build BigHrushovski.C0CoordinateOrderedAgeBridge BigHrushovski.C0CoordinateIntrinsicLocalOrder BigHrushovski.C0CoordinateLocalOrderChoice BigHrushovski.C0CoordinateCanonicalLocalRepresentative
           lake env lean TrackDOrderedAgeCheckAxioms.lean > track-d-ordered-age-axioms.log
           python3 scripts/check_axioms.py track-d-ordered-age-axioms.log TrackDOrderedAgeCheckAxioms.lean
           python3 scripts/check_no_placeholders.py
