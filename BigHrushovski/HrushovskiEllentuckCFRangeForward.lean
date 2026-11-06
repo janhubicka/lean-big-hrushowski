@@ -33,11 +33,11 @@ theorem generatedSupport_image
     (generatedSupport Γ π v).image h =
       generatedSupport Γ π (f v) := by
   classical
-  change ((Γ v).image π).image h = (Γ (f v)).image π
+  unfold generatedSupport
   rw [← hΓ v]
   simp only [Finset.image_image]
-  congr 1
-  funext w
+  apply Finset.image_congr
+  intro w hw
   exact (hπ w).symm
 
 /-- The unconditional forward inclusion of the expected copy-range
