@@ -110,5 +110,72 @@ theorem canonicalLocalInclusion_J_image
   exact restrictBackAdjacencyValue_restrict G C
     (C a) (C b.val) hSubset hClosed u
 
+
+/-- On a finite C-closed domain, equality of restricted complete
+unary values is equivalent to equality of the entire ambient values.
+This uses full image equality, not only preservation of membership. -/
+theorem restrictValue_eq_iff_of_closed
+    (C : V → Finset V) (s : Finset V)
+    (hs : ClosedUnder C s) (u v : s) :
+    restrictValue C s u = restrictValue C s v ↔
+      C u.val = C v.val := by
+  constructor
+  · intro h
+    have hImage := congrArg
+      (fun t : Finset s => t.image (Subtype.val : s → V)) h
+    simpa only [restrictValue_image C s hs u,
+      restrictValue_image C s hs v] using hImage
+  · intro h
+    classical
+    ext w
+    rw [mem_restrictValue_iff C s u w,
+      mem_restrictValue_iff C s v w, h]
+
+/-- A vertex inside C(b) lies in its intrinsic lower part precisely
+when its ambient COMPLETE unary value is not that of b. -/
+theorem canonicalLocalLower_mem_iff_value_ne
+    (G : GraphOn V) (κ : V → Fin n) (b : V)
+    (u : FiniteC0.canonicalValue G κ b) :
+    u ∈ canonicalLocalLower G κ b ↔
+      FiniteC0.canonicalValue G κ u.val ≠
+        FiniteC0.canonicalValue G κ b := by
+  rw [mem_canonicalLocalLower_iff G κ b u]
+  constructor
+  · intro hu hEq
+    exact (Finset.mem_sdiff.mp hu).2
+      (Finset.mem_filter.mpr ⟨Finset.mem_univ _, hEq⟩)
+  · intro hneq
+    exact Finset.mem_sdiff.mpr ⟨u.property, by
+      intro hc
+      exact hneq (Finset.mem_filter.mp hc).2⟩
+
+/-- The intrinsic lower part of the nested local C(b) is defined
+without reference to an arbitrary chronological index: it consists
+exactly of vertices whose COMPLETE unary values are different from
+the value at b, as calculated inside the larger local C(a).
+This is the lower-part compatibility needed in the hereditary
+local-order catalogue. -/
+theorem canonicalLocalInclusion_lower_iff
+    (G : GraphOn V) (κ : V → Fin n)
+    (a : V) (b : FiniteC0.canonicalValue G κ a)
+    (u : FiniteC0.canonicalValue G κ b.val) :
+    u ∈ canonicalLocalLower G κ b.val ↔
+      restrictValue (FiniteC0.canonicalValue G κ)
+        (FiniteC0.canonicalValue G κ a)
+        (canonicalLocalInclusion G κ a b u) ≠
+      restrictValue (FiniteC0.canonicalValue G κ)
+        (FiniteC0.canonicalValue G κ a) b := by
+  let C := FiniteC0.canonicalValue G κ
+  have hClosed : ClosedUnder C (C a) :=
+    FiniteC0.canonicalValue_oneGenerated_closed G κ a
+  have hEq := restrictValue_eq_iff_of_closed C (C a) hClosed
+    (canonicalLocalInclusion G κ a b u) b
+  rw [canonicalLocalLower_mem_iff_value_ne G κ b.val u]
+  constructor
+  · intro hneq hRestricted
+    exact hneq (hEq.mp hRestricted)
+  · intro hneq hAmbient
+    exact hneq (hEq.mpr hAmbient)
+
 end FiniteUnaryCoordinates
 end BigHrushovski
