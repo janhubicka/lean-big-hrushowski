@@ -1,0 +1,5 @@
+import BigHrushovski.CFStrictGenericCharacterization
+
+#print axioms BigHrushovski.CFDClosedBackAndForth.unique_of_strictGenericity
+#print axioms BigHrushovski.CFCoherentTower.realCountableGraphNat_hasStrictGenericity
+#print axioms BigHrushovski.CFCoherentTower.realBirth_unique_of_requests_hasStrictGenericity
