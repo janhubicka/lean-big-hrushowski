@@ -1,0 +1,57 @@
+name: Lean Track D C0 Ordered Age Bridge
+
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/C0CoordinateOrderedAgeBridge.lean"
+      - "BigHrushovski/C0CoordinateIntrinsicLocalOrder.lean"
+      - "BigHrushovski/C0CoordinateLocalOrderChoice.lean"
+      - "BigHrushovski/C0CoordinateCanonicalLocalRepresentative.lean"
+      - "BigHrushovski/C0CoordinateCoherentLocalOrders.lean"
+      - "BigHrushovski/C0CoordinateCodeRelabelling.lean"
+      - "BigHrushovski/C0CoordinateNestedLocalOrders.lean"
+      - "BigHrushovski/C0CoordinateIntrinsicLowerChoice.lean"
+      - "TrackDOrderedAgeCheckAxioms.lean"
+      - ".github/workflows/track-d-ordered-age.yml"
+      - "scripts/check_c0_chronological_order.py"
+      - "scripts/check_c0_intrinsic_local_order.py"
+      - "scripts/check_c0_local_order_transport.py"
+      - "scripts/check_c0_coordinate_relabel.py"
+      - "scripts/check_c0_nested_local_orders.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bridge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v5
+        with:
+          path: ~/.elan/toolchains
+          key: lean-toolchain-track-d-c0-ordered-age
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Check finite C0 regressions
+        run: |
+          python3 scripts/check_c0_coordinate_host_finite.py
+          python3 scripts/check_c0_pointed_subcode.py
+          python3 scripts/check_c0_induced_code.py
+          python3 scripts/check_c0_chronological_order.py
+          python3 scripts/check_c0_intrinsic_local_order.py
+          python3 scripts/check_c0_local_order_transport.py
+          python3 scripts/check_c0_coordinate_relabel.py
+          python3 scripts/check_c0_nested_local_orders.py
+      - name: Build and audit exact Track D bridge
+        run: |
+          set -euo pipefail
+          lake build BigHrushovski.C0CoordinateOrderedAgeBridge BigHrushovski.C0CoordinateIntrinsicLocalOrder BigHrushovski.C0CoordinateLocalOrderChoice BigHrushovski.C0CoordinateCanonicalLocalRepresentative BigHrushovski.C0CoordinateCoherentLocalOrders BigHrushovski.C0CoordinateCodeRelabelling BigHrushovski.C0CoordinateNestedLocalOrders BigHrushovski.C0CoordinateIntrinsicLowerChoice
+          lake env lean TrackDOrderedAgeCheckAxioms.lean > track-d-ordered-age-axioms.log
+          python3 scripts/check_axioms.py track-d-ordered-age-axioms.log TrackDOrderedAgeCheckAxioms.lean
+          python3 scripts/check_no_placeholders.py
