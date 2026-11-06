@@ -115,3 +115,41 @@ checks named theorem axioms, and runs the no-placeholder scan.
 No manuscript countable green marker is justified before the
 exact branch passes. The adversarial roles above are proof
 review, not an independent kernel certificate.
+
+## Referee 9 — persistence of actual labelled functional applicability
+
+The new module `C0FunctionalFairPersistence.lean` proves, without
+a new amalgamation argument, that if a finite labelled request
+is applicable in stage n then it remains applicable in every later
+stage. A successor extends the prescribed source map by composing
+it with its old map; this retains numeric labels, inducedness in
+both directions and the **complete** unary image equation. These
+are all required for the application's hypothesis — merely
+remembering edges would be insufficient.
+
+The fairness theorem `fairFunctionalC0Request_after` then gives
+a later scheduled occurrence of the same request, and the certified
+one-step response field supplies an actual strong induced finite
+target copy. Hence
+`fairStages_eventually_answers` is an exact eventual *finite*
+response theorem, not a statement of countable genericity.
+
+## Referee 10 — remaining arbitrary extension encoding
+
+To upgrade this result to
+`FiniteC0.HasCanonicalStageExtensionProperty`, an arbitrary
+finite functional extension over a stage must first be encoded
+as a member of `FunctionalC0RequestCatalogue`. The target may
+have an arbitrary finite carrier W, and the source index used
+to witness the functional extension need not be the specific
+canonical index selected in the recursive stage. A correct
+bridge must use the exact finite carrier equivalence and equality
+of **complete unary operations** to obtain the catalogue diagram.
+It must preserve each original numeric label and keep the source
+functional embedding, not merely its graph reduct. No such
+encoding theorem is assumed in the current code.
+
+CI now builds `C0FunctionalFairLimit` and
+`C0FunctionalFairPersistence`, and audits the latter's three
+eventual-applicability and response endpoints in addition to
+the graph/unary limit certificates.
