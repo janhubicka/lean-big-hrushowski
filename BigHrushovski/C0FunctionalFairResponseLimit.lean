@@ -40,7 +40,7 @@ theorem response_in_fair_countable_limit
   classical
   obtain ⟨target, hInjective, hAdj, hValues, hLabels, _⟩ := hResp
   let g : Fin req.2.2.1 → ℕ := fun x => (target x).val
-  refine ⟨g, fin_val_injective _ |>.comp hInjective, ?_, ?_, ?_⟩
+  refine ⟨g, (fin_val_injective _).comp hInjective, ?_, ?_, ?_⟩
   · intro x y
     calc
       req.diagram.target.graph.adj x y ↔
