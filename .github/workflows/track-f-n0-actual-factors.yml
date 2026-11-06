@@ -3,11 +3,13 @@ on:
   push:
     paths:
       - 'BigHrushovski/N0ActualLocalFactors.lean'
+      - 'scripts/check_track_f_actual_local_factor_examples.py'
       - 'CheckTrackFN0ActualFactorsAxioms.lean'
       - '.github/workflows/track-f-n0-actual-factors.yml'
   pull_request:
     paths:
       - 'BigHrushovski/N0ActualLocalFactors.lean'
+      - 'scripts/check_track_f_actual_local_factor_examples.py'
       - 'CheckTrackFN0ActualFactorsAxioms.lean'
       - '.github/workflows/track-f-n0-actual-factors.yml'
   workflow_dispatch:
@@ -38,3 +40,4 @@ jobs:
         run: |
           python3 scripts/check_track_f_n0_local_fibres.py
           python3 scripts/check_track_f_n0_all_orders_five.py
+          python3 scripts/check_track_f_actual_local_factor_examples.py

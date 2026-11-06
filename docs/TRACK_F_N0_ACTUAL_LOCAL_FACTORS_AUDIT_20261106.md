@@ -16,3 +16,7 @@ This is a **finite type/data count only**. The function (B\mapsto g_A(B)) is now
 6. **Certification referee.** New statements receive no verified marker until the branch's Lean build, standard axiom/placeholder audit and negative finite regressions all pass. This is not external human review.
 
 Finite regressions inherited from Track F exhaust all oriented graphs of order at most five and the local canonical-code fibre sizes. The local factor proofs must compile without `sorry`, `axiom` or unverified imported assumptions.
+
+## Independent concrete counterexample regression
+
+The additional script `scripts/check_track_f_actual_local_factor_examples.py` checks all 653 orientations on at most four vertices, all of their SCC generators, and successor-closedness of the strict lower part. The incoming-leaf directed triangle has **three** local automorphisms of its cycle closure but only **one** automorphism of the whole graph. The fork has pointwise lower-part stabilizer **one** but setwise stabilizer **two**. The regression rejects both incorrect substitutions. It is independent of the Lean implementation and of the product-formula scripts.
