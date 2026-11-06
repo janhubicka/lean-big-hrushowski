@@ -30,3 +30,4 @@ import BigHrushovski.C0CoordinateCanonicalLocalRepresentative
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LocalOrderedRepresentative.localComparison_value
 #print axioms BigHrushovski.FiniteUnaryCoordinates.mem_canonicalLocalLower_iff
 #print axioms BigHrushovski.FiniteUnaryCoordinates.canonicalLocalRepresentative_lower_order
+#print axioms BigHrushovski.FiniteUnaryCoordinates.canonicalValue_edge_covered
