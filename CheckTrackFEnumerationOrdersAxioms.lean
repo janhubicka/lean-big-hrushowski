@@ -16,3 +16,7 @@ import BigHrushovski.N0ComponentFirstPositions
 #print axioms BigHrushovski.FiniteOrientation.firstComponentPosition_le
 #print axioms BigHrushovski.FiniteOrientation.firstComponentPosition_injective
 #print axioms BigHrushovski.FiniteOrientation.firstComponentPosition_respectsDependencies
+
+#print axioms BigHrushovski.FiniteOrientation.distinctComponentObjects_disjoint
+#print axioms BigHrushovski.FiniteOrientation.all_vertices_before_of_firstPosition_lt
+#print axioms BigHrushovski.FiniteOrientation.firstPosition_lt_iff_all_vertices_before
