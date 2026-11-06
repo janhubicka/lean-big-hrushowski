@@ -85,7 +85,7 @@ operation on all old numeric labels, and answers the fair request
 whenever its full functional source embedding is applicable.
 Old strongness is retained as a separate exact certificate. -/
 structure IsFairFunctionalSuccessor
-    (step : ℕ) (s t : FiniteFunctionalNatStage) : Prop where
+    (step : ℕ) (s t : FiniteFunctionalNatStage) where
   grows : s.size < t.size
   old : Fin s.size → Fin t.size
   old_injective : Function.Injective old
@@ -108,16 +108,16 @@ private theorem growth_fallback
     (step : ℕ) (s : FiniteFunctionalNatStage)
     (hNoRequest : ∀ req : FunctionalC0RequestCatalogue,
       fairFunctionalC0Request step = some req → ¬ s.Applies req) :
-    ∃ t : FiniteFunctionalNatStage,
-      IsFairFunctionalSuccessor step s t := by
+    Nonempty (Σ t : FiniteFunctionalNatStage,
+      IsFairFunctionalSuccessor step s t) := by
   classical
   obtain ⟨m, b, M, old, hGrow, hInj, hFixed,
       hAdj, hValues, hStrong⟩ :=
     exists_growingCanonicalFunctionalC0Stage s.model
   let t : FiniteFunctionalNatStage :=
     ⟨m, b, M⟩
-  refine ⟨t, ⟨hGrow, old, hInj, hFixed,
-    hAdj, hValues, hStrong, ?_⟩⟩
+  refine ⟨⟨t, ⟨hGrow, old, hInj, hFixed,
+    hAdj, hValues, hStrong, ?_⟩⟩⟩
   intro req hFair hApp
   exact (hNoRequest req hFair hApp).elim
 
@@ -141,8 +141,8 @@ private theorem response_successor
     exists_growingFiniteOrdinalFunctionalResponse
       s.model req.diagram e he hInd hValues
   let t : FiniteFunctionalNatStage := ⟨m, b, M⟩
-  refine ⟨t, ⟨hGrow, old, hOldInjective, hFixed,
-    hOldAdj, hOldValue, hOldStrong, ?_⟩⟩
+  refine ⟨⟨t, ⟨hGrow, old, hOldInjective, hFixed,
+    hOldAdj, hOldValue, hOldStrong, ?_⟩⟩⟩
   intro req' hFair' _
   have hReq : req' = req :=
     Option.some.inj (hFair'.symm.trans hFair)
