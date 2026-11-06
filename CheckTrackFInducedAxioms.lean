@@ -1,0 +1,6 @@
+import BigHrushovski.OrientationInducedFinite
+
+#print axioms BigHrushovski.FiniteOrientation.inducedFinite_out_iff
+#print axioms BigHrushovski.FiniteOrientation.inducedFinite_adj_iff
+#print axioms BigHrushovski.FiniteOrientation.inducedFinite_full_out_of_closed
+#print axioms BigHrushovski.FiniteOrientation.inducedFinite_out_of_ambient
