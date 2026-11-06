@@ -40,7 +40,7 @@ theorem stageCut_empty_of_noEarlierBirth
     have hLt := toVertex_birth_lt F K n u
     exact False.elim ((not_lt_of_ge (hNoEarlier _ hv)) hLt)
   · intro hu
-    exact False.elim (Finset.not_mem_empty u hu)
+    simp at hu
 
 /-- A selected old source vertex at the first represented level
 is impossible, so proofs need not manufacture a target inhabitant. -/
@@ -50,9 +50,8 @@ theorem initialCut_noOldVertex
     (hNoEarlier : ∀ v ∈ s, n ≤ v.1)
     (u : SupportCarrier (stage F K n).carrier
       (stageCut F K s n)) : False := by
-  have hu := u.property
-  rw [stageCut_empty_of_noEarlierBirth F K s n hNoEarlier] at hu
-  exact Finset.not_mem_empty u.val hu
+  have hu : u.val ∈ stageCut F K s n := u.property
+  simp [stageCut_empty_of_noEarlierBirth F K s n hNoEarlier] at hu
 
 /-- The unique map from the actual empty selected old source cut
 to any target old stage, including the empty stage. -/
@@ -117,7 +116,7 @@ theorem initialCutOldMap_dClosed
       obtain ⟨u, _, _⟩ := Finset.mem_image.mp hv
       exact False.elim (initialCut_noOldVertex F K s n hNoEarlier u)
     · intro hv
-      exact False.elim (Finset.not_mem_empty v hv)
+      simp at hv
   rw [hImage]
   exact empty_dClosed_in_stage F K m
 
