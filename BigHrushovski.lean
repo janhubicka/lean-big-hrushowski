@@ -454,7 +454,9 @@ import BigHrushovski.CFSelectedCutEmbedding
 import BigHrushovski.CFSelectedCutBlockRigidity
 import BigHrushovski.CFRepresentedLevels
 
--- Track C: certified finite responses, strict genericity and countable recognition.
+import BigHrushovski.CFSkippedCutEquiv
+
+-- Track C: countable strict genericity and published-growth adapters.
 import BigHrushovski.CFNonnegativeGrowthAdapter
 import BigHrushovski.CFPublishedFiniteGenericity
 import BigHrushovski.CFRealGenericCertificate

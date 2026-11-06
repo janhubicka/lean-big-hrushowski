@@ -1288,7 +1288,7 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.selectedRequests_nonempty_iff_represented
 #print axioms BigHrushovski.CFCoherentTower.stageCut_succ_eq_old_of_unrepresented
 
--- Track C: kernel-checked exact theorem endpoints.
+-- Track C: exact independent certificate and countable recognition endpoints.
 #print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_nat
 #print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_monotone
 #print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_unbounded
