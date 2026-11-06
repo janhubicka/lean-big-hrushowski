@@ -32,7 +32,8 @@ private theorem finiteLevels_bounded (s : Finset ℕ) :
       rcases Finset.mem_insert.mp hq with hqa | hqs
       · subst q
         exact (Nat.lt_succ_self a).trans_le (le_max_left ..)
-      · have hqn : q < n := hn hqs
+      · have hqn : q ∈ Set.Iio n := hn hqs
+        change q < n at hqn
         exact hqn.trans_le (le_max_right ..)
 
 /-- A complete-support domain on finitely many selected levels is
