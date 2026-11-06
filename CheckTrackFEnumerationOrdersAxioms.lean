@@ -22,3 +22,6 @@ import BigHrushovski.N0ComponentFirstPositions
 #print axioms BigHrushovski.FiniteOrientation.firstPosition_lt_iff_all_vertices_before
 
 #print axioms BigHrushovski.FiniteOrientation.rankingFromEnumeration_isLegal
+
+#print axioms BigHrushovski.FiniteOrientation.vertices_before_iff_component_first_before
+#print axioms BigHrushovski.FiniteOrientation.enumeration_eq_of_same_component_order_and_local_orders
