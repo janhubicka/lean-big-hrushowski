@@ -9,7 +9,8 @@ consequence of chronology, nor a requirement that every automorphism
 of the underlying unordered local structure preserve the chosen order.
 
 Here a local representative has a complete graph, a complete finite
-unary function C, a closed lower part P, and an order with P before
+unary function C, reflexive and nested complete values, edge coverage,
+a closed lower part P, and an order with P before
 the whole top component B. Every member of B generates the full local
 carrier. No top vertex or temporary construction generator is singled
 out.
@@ -37,6 +38,10 @@ structure LocalOrderedRepresentative (U : Type*)
   graph : GraphOn U
   value : U → Finset U
   lower : Finset U
+  value_reflexive : ∀ u : U, u ∈ value u
+  value_nested : ∀ u v : U, v ∈ value u → value v ⊆ value u
+  graph_edge_covered : ∀ u v : U, graph.adj u v →
+    v ∈ value u ∨ u ∈ value v
   lower_closed : ClosedUnder value lower
   lower_before_top : ∀ p ∈ lower, ∀ b ∉ lower, p < b
   top_generates : ∀ b : U, b ∉ lower → value b = Finset.univ
