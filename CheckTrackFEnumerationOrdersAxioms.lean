@@ -1,0 +1,9 @@
+import BigHrushovski.N0EnumerationOrders
+
+#print axioms BigHrushovski.FiniteOrientation.orderBefore_irrefl
+#print axioms BigHrushovski.FiniteOrientation.orderBefore_trans
+#print axioms BigHrushovski.FiniteOrientation.orderBefore_total
+#print axioms BigHrushovski.FiniteOrientation.enumeration_eq_of_same_order
+#print axioms BigHrushovski.FiniteOrientation.sameOrder_iff_eq
+#print axioms BigHrushovski.FiniteOrientation.orderBefore_injective
+#print axioms BigHrushovski.FiniteOrientation.localCodeOrderRelations_card

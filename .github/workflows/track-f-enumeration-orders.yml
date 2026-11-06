@@ -1,0 +1,39 @@
+name: Track F enumerations are labelled orders
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0EnumerationOrders.lean'
+      - 'CheckTrackFEnumerationOrdersAxioms.lean'
+      - 'scripts/check_track_f_enumeration_orders.py'
+      - '.github/workflows/track-f-enumeration-orders.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0EnumerationOrders.lean'
+      - 'CheckTrackFEnumerationOrdersAxioms.lean'
+      - 'scripts/check_track_f_enumeration_orders.py'
+      - '.github/workflows/track-f-enumeration-orders.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  order-relations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build finite enumeration-order bridge
+        run: lake build BigHrushovski.N0EnumerationOrders
+      - name: Kernel axiom and placeholder check
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFEnumerationOrdersAxioms.lean > enumeration-order-axioms.log
+          python3 scripts/check_axioms.py enumeration-order-axioms.log CheckTrackFEnumerationOrdersAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent labelled order test
+        run: python3 scripts/check_track_f_enumeration_orders.py
