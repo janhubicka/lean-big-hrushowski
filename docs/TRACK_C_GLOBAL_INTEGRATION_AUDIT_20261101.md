@@ -9,8 +9,8 @@ other track's imports and axiom declarations, then adds Track C.
 
 ## Exact integrated scope
 
-Eleven already merged and isolated-CI-certified modules are added
-to `BigHrushovski.lean` and 22 exact theorem endpoints to
+Twelve already merged and isolated-CI-certified modules are added
+to `BigHrushovski.lean` and 23 exact theorem endpoints to
 `CheckAxioms.lean`. This includes:
 - published nonnegative-domain F and complete finite response;
 - the real canonical countable birth graph certificate and
@@ -20,7 +20,10 @@ to `BigHrushovski.lean` and 22 exact theorem endpoints to
 - conditional infinitude of the birth carrier from actual
   requests at each finite level;
 - countable genericity of the canonical graph after an actual
-  Nat equivalence, under the published F hypotheses.
+  Nat equivalence, under the published F hypotheses;
+- conditional induced uniqueness for the original birth-labelled
+  carrier, from merged PR #312, including the literal request
+  hypothesis that remains to be discharged.
 
 Every declaration was previously checked in its isolated workflow
 at merged PRs #269, #276, #277, #291, #292, #300, #302, #311.
