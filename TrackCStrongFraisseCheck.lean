@@ -1,0 +1,5 @@
+import BigHrushovski.CFStrongFraisseLimitPresentation
+
+#print axioms BigHrushovski.CFDClosedBackAndForth.HasFiniteDClosedResponsesOn.pullback
+#print axioms BigHrushovski.CFDClosedBackAndForth.StrongFraisseLimitPresentation.toPresentedFraisseData
+#print axioms BigHrushovski.CFDClosedBackAndForth.realBirth_iso_strongFraisseLimit
