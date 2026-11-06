@@ -1,0 +1,28 @@
+name: Track C strict closed graph relabelling
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFCountableRelabelling.lean"
+      - "TrackCRelabelCheck.lean"
+      - ".github/workflows/track-c-relabel.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  relabel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build countable relabelling lemmas
+        run: lake build BigHrushovski.CFCountableRelabelling
+      - name: Audit axioms and placeholders
+        run: |
+          lake env lean TrackCRelabelCheck.lean > track-c-relabel-axioms.log
+          python3 scripts/check_axioms.py track-c-relabel-axioms.log TrackCRelabelCheck.lean
+          python3 scripts/check_no_placeholders.py

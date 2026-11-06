@@ -1,0 +1,5 @@
+import BigHrushovski.CFRealNatRecognition
+
+#print axioms BigHrushovski.CFCoherentTower.realCountableGraphNat_finiteResponses
+#print axioms BigHrushovski.CFCoherentTower.realCountableGraphNat_genericData
+#print axioms BigHrushovski.CFCoherentTower.realCountableGraphNat_unique_against

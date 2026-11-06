@@ -1,0 +1,10 @@
+import BigHrushovski.CoherentNatUnaryStages
+
+#print axioms BigHrushovski.CoherentNatUnaryStages.size_monotone
+#print axioms BigHrushovski.CoherentNatUnaryStages.value_stable
+#print axioms BigHrushovski.CoherentNatUnaryStages.vertex_covered
+#print axioms BigHrushovski.CoherentNatUnaryStages.witnessStage_contains
+#print axioms BigHrushovski.CoherentNatUnaryStages.limitValue_eq_stage
+#print axioms BigHrushovski.CoherentNatUnaryStages.stage_closed
+#print axioms BigHrushovski.CoherentNatUnaryStages.finite_stage_cover
+#print axioms BigHrushovski.CoherentNatUnaryStages.finite_unaryClosed_cover

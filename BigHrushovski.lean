@@ -428,5 +428,34 @@ import BigHrushovski.CFActualSubtypeBatchInduced
 
 import BigHrushovski.CFSelectedSubtypeOrder
 
+import BigHrushovski.C0TaggedFunctionalOneBlock
+
+import BigHrushovski.C0TaggedStageCuts
+
+import BigHrushovski.C0TaggedMinimalStages
+
+import BigHrushovski.C0TaggedFullFunctionalAmalgam
+
+import BigHrushovski.CFPartialSupportLex
+import BigHrushovski.CFSelectedSubtypeBValues
+import BigHrushovski.CFActualSubtypeRequestOrder
+import BigHrushovski.CFActualSubtypeStageOrder
+
+import BigHrushovski.CFPartialSupportAutomaticClosure
+
+import BigHrushovski.C0CountableReductCriterion
+
+import BigHrushovski.CFPartialOneLevelFunctional
+import BigHrushovski.CFPartialRequestUniqueness
+
+import BigHrushovski.CFSelectedCutLevel
+import BigHrushovski.CFSelectedCutEquiv
+import BigHrushovski.CFSelectedCutEmbedding
+import BigHrushovski.CFSelectedCutBlockRigidity
+import BigHrushovski.CFRepresentedLevels
+
+import BigHrushovski.CFSkippedCutEquiv
+
+-- Track F: finite successor-closed orientation data (conditional degree interfaces).
 import BigHrushovski.N0ComponentRankPrefixes
 import BigHrushovski.N0LocalCode

@@ -1,0 +1,10 @@
+import BigHrushovski.CFPublishedFiniteGenericity
+
+#print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_nonneg
+#print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_agrees
+#print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_nat
+#print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_monotone
+#print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_unbounded
+#print axioms BigHrushovski.CFGrowthNumerics.extendPublishedGrowth_zero
+#print axioms BigHrushovski.CFGrowthNumerics.publishedCardinalGrowth_eq
+#print axioms BigHrushovski.CFCoherentTower.finitePublishedDClosedInterval_globalResponse

@@ -1,0 +1,3 @@
+import BigHrushovski.C0FunctionalGrowingResponse
+
+#print axioms BigHrushovski.FiniteCatalogue.exists_growingFiniteOrdinalFunctionalResponse

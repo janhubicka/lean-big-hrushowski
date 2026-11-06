@@ -1,0 +1,7 @@
+import BigHrushovski.CFDClosedJointSteps
+
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.Extends.inverse
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.exists_extending_forth
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.exists_extending_back
+#print axioms BigHrushovski.CFDClosedBackAndForth.PartialIso.hasJointSteps_of_finiteDClosedResponses
+#print axioms BigHrushovski.CFDClosedBackAndForth.exists_induced_equiv_of_finiteDClosedResponses
