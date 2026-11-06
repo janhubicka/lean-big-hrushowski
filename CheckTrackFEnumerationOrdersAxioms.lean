@@ -20,3 +20,5 @@ import BigHrushovski.N0ComponentFirstPositions
 #print axioms BigHrushovski.FiniteOrientation.distinctComponentObjects_disjoint
 #print axioms BigHrushovski.FiniteOrientation.all_vertices_before_of_firstPosition_lt
 #print axioms BigHrushovski.FiniteOrientation.firstPosition_lt_iff_all_vertices_before
+
+#print axioms BigHrushovski.FiniteOrientation.rankingFromEnumeration_isLegal
