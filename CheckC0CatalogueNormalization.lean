@@ -1,0 +1,3 @@
+import BigHrushovski.C0FunctionalCatalogueNormalization
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.exists_catalogue_diagram_of_functional_extension
