@@ -20,6 +20,9 @@ namespace BigHrushovski.Ellentuck
 universe u v
 
 variable {Vertex : Type u} {Level : Type v}
+-- These instances only enable finite images; no mathematical
+-- assumption beyond classical decidable equality is introduced.
+variable [DecidableEq Vertex] [DecidableEq Level]
 
 /-- A finite source domain with its original vertex names. -/
 abbrev FiniteDomain (s : Finset Vertex) : Type u :=
