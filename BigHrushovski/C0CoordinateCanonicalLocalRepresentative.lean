@@ -25,6 +25,33 @@ namespace FiniteUnaryCoordinates
 variable {V : Type*} [Fintype V] [DecidableEq V] [LinearOrder V]
 variable {n : ℕ}
 
+/-- For any canonical finite C₀ component presentation, every edge
+is covered by the complete unary closure of one of its endpoints.
+This is a purely finite consequence of backward dependencies and
+requires neither sparsity nor minimal-strong-step hypotheses. -/
+theorem canonicalValue_edge_covered
+    (G : GraphOn V) (κ : V → Fin n) (u v : V)
+    (hadj : G.adj u v) :
+    v ∈ FiniteC0.canonicalValue G κ u ∨
+      u ∈ FiniteC0.canonicalValue G κ v := by
+  rcases lt_trichotomy (κ u) (κ v) with huv | heq | hvu
+  · right
+    have hDep : FiniteC0.backDependency G κ (κ v) (κ u) :=
+      ⟨huv, v, u, rfl, rfl, G.symm u v hadj⟩
+    exact (FiniteC0.mem_canonicalValue_iff G κ v u).mpr
+      (TaggedAmalgam.DependencyAncestor.step
+        TaggedAmalgam.DependencyAncestor.root hDep)
+  · left
+    apply (FiniteC0.mem_canonicalValue_iff G κ u v).mpr
+    rw [← heq]
+    exact TaggedAmalgam.DependencyAncestor.root
+  · left
+    have hDep : FiniteC0.backDependency G κ (κ u) (κ v) :=
+      ⟨hvu, u, v, rfl, rfl, hadj⟩
+    exact (FiniteC0.mem_canonicalValue_iff G κ u v).mpr
+      (TaggedAmalgam.DependencyAncestor.step
+        TaggedAmalgam.DependencyAncestor.root hDep)
+
 /-- The intrinsic lower closure of a as a literal subset of its
 finite one-generated unary closure. -/
 noncomputable def canonicalLocalLower
@@ -55,6 +82,30 @@ noncomputable def canonicalLocalRepresentative
   let S : Finset V := C a
   let P : Finset V := unaryLowerClosure C a
   let L : Finset S := canonicalLocalLower G κ a
+  have hReflexive : ∀ b : S, b ∈ restrictValue C S b := by
+    intro b
+    exact (mem_restrictValue_iff C S b b).mpr
+      (FiniteC0.canonicalValue_mem_self G κ b.val)
+  have hNested : ∀ b c : S,
+      c ∈ restrictValue C S b →
+      restrictValue C S c ⊆ restrictValue C S b := by
+    intro b c hbc d hcd
+    have hbc' : c.val ∈ C b.val :=
+      (mem_restrictValue_iff C S b c).mp hbc
+    have hcd' : d.val ∈ C c.val :=
+      (mem_restrictValue_iff C S c d).mp hcd
+    exact (mem_restrictValue_iff C S b d).mpr
+      (FiniteC0.canonicalValue_mem_trans G κ hbc' hcd')
+  have hEdgeCover : ∀ b c : S,
+      (restrictGraph G S).adj b c →
+        c ∈ restrictValue C S b ∨
+        b ∈ restrictValue C S c := by
+    intro b c hadj
+    have hAdjG : G.adj b.val c.val := hadj
+    rcases canonicalValue_edge_covered G κ b.val c.val hAdjG with
+      hbc | hcb
+    · exact Or.inl ((mem_restrictValue_iff C S b c).mpr hbc)
+    · exact Or.inr ((mem_restrictValue_iff C S c b).mpr hcb)
   have hClosed : ClosedUnder (restrictValue C S) L := by
     intro b hb w hw
     have hbP : b.val ∈ P :=
@@ -115,6 +166,9 @@ noncomputable def canonicalLocalRepresentative
     graph := restrictGraph G S
     value := restrictValue C S
     lower := L
+    value_reflexive := hReflexive
+    value_nested := hNested
+    graph_edge_covered := hEdgeCover
     lower_closed := hClosed
     lower_before_top := hOrder'
     top_generates := hGenerates
