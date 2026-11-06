@@ -92,3 +92,27 @@ the intervals are disjoint and nonempty; an arbitrary
 enumeration can interleave two components, so the interval
 hypothesis is essential. The count `ell(A)` is recovered only
 after also imposing the successor-first condition.
+
+## The recovered legal finite ranking
+
+`rankingFromEnumeration` equips the actual finite SCC type
+with the strict order induced by first occurrence, then uses the
+unique increasing bijection between any finite linear order
+and a consecutive finite ordinal. This is an actual
+`ComponentRanking`, not merely a numerical first-position
+function. If the original vertex enumeration is successor-first,
+the ranking is a legal linear extension of the SCC dependency
+order by `rankingFromEnumeration_isLegal`.
+
+Together with the interval-recovery lemma, this supplies the
+component-order extraction direction of the desired finite
+bijection. What is still missing is the reverse reconstruction
+of a complete permitted vertex order from the ranking and its
+compatible **local code orders**, with a uniqueness proof.
+
+Adversarial reviewers checked that the rank is injective
+because SCCs have disjoint nonempty vertex sets, that it is
+consecutive by the finite-order isomorphism (not by
+the potentially gapped numerical first positions), and that
+the dependency order is inherited from actual successor-first
+vertex order. These endpoints require renewed Lean CI.
