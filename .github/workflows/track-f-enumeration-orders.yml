@@ -3,12 +3,16 @@ on:
   push:
     paths:
       - 'BigHrushovski/N0EnumerationOrders.lean'
+      - 'BigHrushovski/N0ComponentFirstPositions.lean'
+      - 'scripts/check_track_f_component_first_positions.py'
       - 'CheckTrackFEnumerationOrdersAxioms.lean'
       - 'scripts/check_track_f_enumeration_orders.py'
       - '.github/workflows/track-f-enumeration-orders.yml'
   pull_request:
     paths:
       - 'BigHrushovski/N0EnumerationOrders.lean'
+      - 'BigHrushovski/N0ComponentFirstPositions.lean'
+      - 'scripts/check_track_f_component_first_positions.py'
       - 'CheckTrackFEnumerationOrdersAxioms.lean'
       - 'scripts/check_track_f_enumeration_orders.py'
       - '.github/workflows/track-f-enumeration-orders.yml'
@@ -28,7 +32,7 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Build finite enumeration-order bridge
-        run: lake build BigHrushovski.N0EnumerationOrders
+        run: lake build BigHrushovski.N0EnumerationOrders BigHrushovski.N0ComponentFirstPositions
       - name: Kernel axiom and placeholder check
         run: |
           set -euo pipefail
@@ -36,4 +40,6 @@ jobs:
           python3 scripts/check_axioms.py enumeration-order-axioms.log CheckTrackFEnumerationOrdersAxioms.lean
           python3 scripts/check_no_placeholders.py
       - name: Independent labelled order test
-        run: python3 scripts/check_track_f_enumeration_orders.py
+        run: |
+          python3 scripts/check_track_f_enumeration_orders.py
+          python3 scripts/check_track_f_component_first_positions.py
