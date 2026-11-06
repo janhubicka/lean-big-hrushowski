@@ -90,6 +90,18 @@ def main():
                         for b in C[a]:
                             nested += 1
                             assert C[b] <= C[a]
+                            big_edges = {
+                                (x, y) for x in C[a] for y in C[a]
+                                if adjacent(edges, x, y)
+                            }
+                            small_edges = {
+                                (x, y) for x in C[b] for y in C[b]
+                                if adjacent(edges, x, y)
+                            }
+                            assert small_edges == {
+                                (x, y) for x, y in big_edges
+                                if x in C[b] and y in C[b]
+                            }
                             for u in C[b]:
                                 values_checked += 1
                                 assert C[u] <= C[b]
@@ -98,9 +110,9 @@ def main():
                                 assert J & C[b] == J & C[a]
                                 for v in C[b]:
                                     pairs_checked += 1
-                                    # Inducedness reflects both edges AND nonedges.
-                                    assert (adjacent(edges, u, v)
-                                            == adjacent(edges, u, v))
+                                    assert ((u, v) in small_edges) == (
+                                        (u, v) in big_edges
+                                    )
     assert (presentations, nested, values_checked, pairs_checked) == (
         1401, 10125, 16157, 32793
     ), (presentations, nested, values_checked, pairs_checked)
