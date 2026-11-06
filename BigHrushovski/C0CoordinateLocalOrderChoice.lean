@@ -71,6 +71,54 @@ noncomputable def LocalOrderedRepresentative.transportedValue
     (v : V) : Finset V :=
   (r.value (e.symm v)).image e
 
+/-- Transport preserves reflexivity of the COMPLETE named unary value. -/
+theorem LocalOrderedRepresentative.transportedValue_reflexive
+    (r : LocalOrderedRepresentative U) (e : U ≃ V) (v : V) :
+    v ∈ r.transportedValue e v := by
+  classical
+  apply Finset.mem_image.mpr
+  exact ⟨e.symm v, r.value_reflexive (e.symm v),
+    e.apply_symm_apply v⟩
+
+/-- Transport preserves transitivity (nestedness) of the complete
+finite unary values, not just inclusion of individual neighbours. -/
+theorem LocalOrderedRepresentative.transportedValue_nested
+    (r : LocalOrderedRepresentative U) (e : U ≃ V)
+    (v w : V) (hvw : w ∈ r.transportedValue e v) :
+    r.transportedValue e w ⊆ r.transportedValue e v := by
+  intro z hwz
+  apply (r.transportedValue_mem_iff e v z).mpr
+  exact r.value_nested (e.symm v) (e.symm w)
+    ((r.transportedValue_mem_iff e v w).mp hvw)
+    ((r.transportedValue_mem_iff e w z).mp hwz)
+
+/-- Transport preserves the edge-cover hypothesis needed to recover
+the entire graph from the two unary values C,J. -/
+theorem LocalOrderedRepresentative.transportedGraph_edge_covered
+    (r : LocalOrderedRepresentative U) (e : U ≃ V)
+    (v w : V) (hvw : (r.transportedGraph e).adj v w) :
+    w ∈ r.transportedValue e v ∨
+      v ∈ r.transportedValue e w := by
+  have hOld : r.graph.adj (e.symm v) (e.symm w) := hvw
+  rcases r.graph_edge_covered (e.symm v) (e.symm w) hOld with
+    h | h
+  · exact Or.inl ((r.transportedValue_mem_iff e v w).mpr h)
+  · exact Or.inr ((r.transportedValue_mem_iff e w v).mpr h)
+
+/-- The full transported graph can therefore be recovered by the
+unary back-adjacency operation J(x)=N(x)∩C(x), exactly as in §4. -/
+theorem LocalOrderedRepresentative.transportedGraph_from_J
+    (r : LocalOrderedRepresentative U) (e : U ≃ V)
+    (v w : V) :
+    (r.transportedGraph e).adj v w ↔
+      w ∈ (r.transportedGraph e).backAdjacencyValue
+        (r.transportedValue e) v ∨
+      v ∈ (r.transportedGraph e).backAdjacencyValue
+        (r.transportedValue e) w := by
+  exact (r.transportedGraph e).adj_iff_backAdjacencyValue
+    (r.transportedValue e)
+    (r.transportedGraph_edge_covered e) v w
+
 /-- The lower part is transported as a complete subset, not merely
 as a set of cardinality equal to the old lower part. -/
 noncomputable def LocalOrderedRepresentative.transportedLower
