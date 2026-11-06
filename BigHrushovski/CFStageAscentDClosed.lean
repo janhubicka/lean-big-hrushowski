@@ -86,8 +86,7 @@ theorem ascend_fullStage_dClosed
           (stage F K ((n+k)+1)).graph.toPredimension.IsDClosed
             ((Finset.univ : Finset (stage F K n).carrier).image
               (fun u => Sum.inl (ascend F K n k u))) Finset.univ := by
-        rw [himage]
-        exact h
+        exact himage.symm ▸ h
       simpa only [Nat.add_succ, Nat.add_zero, ascend] using hcomposed
 
 /-- Any strictly d-closed subset of stage n remains strictly
