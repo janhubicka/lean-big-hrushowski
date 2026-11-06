@@ -39,13 +39,13 @@ private theorem singletonCarrier_eq
     (x y : SingletonCarrier U) : x = y := by
   cases x with
   | inl p =>
-    have hp : False := by simpa using p.property
-    exact hp.elim
+    have hEmpty : p.val ∈ (∅ : Finset U) := p.property
+    exact (Finset.not_mem_empty p.val hEmpty).elim
   | inr i =>
     cases y with
     | inl p =>
-      have hp : False := by simpa using p.property
-      exact hp.elim
+      have hEmpty : p.val ∈ (∅ : Finset U) := p.property
+      exact (Finset.not_mem_empty p.val hEmpty).elim
     | inr j => exact congrArg Sum.inr (Subsingleton.elim i j)
 
 /-- The old part of the one-vertex local extension is empty. -/
@@ -56,8 +56,8 @@ private theorem singleton_old_empty :
   constructor
   · intro hx
     obtain ⟨p, _, hp⟩ := Finset.mem_image.mp hx
-    have h : False := by simpa using p.property
-    exact h.elim
+    have hEmpty : p.val ∈ (∅ : Finset U) := p.property
+    exact (Finset.not_mem_empty p.val hEmpty).elim
   · simp
 
 /-- An arbitrary nonempty subset of a singleton carrier is its
@@ -189,8 +189,8 @@ theorem singletonStageRequest_exists
     { graph := H
       base_agrees := by
         intro p q
-        have hp : False := by simpa using p.property
-        exact hp.elim
+        have hEmpty : p.val ∈ (∅ : Finset U) := p.property
+        exact (Finset.not_mem_empty p.val hEmpty).elim
       allowed := singleton_growth F hZero hOne
       minimal := singleton_minimal
       exact_support := singleton_exact_support }
