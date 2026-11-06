@@ -30,3 +30,39 @@ degree formula's counting correspondence.
    and the independent finite regression before marking validated.
 
 No manuscript changes. No infinite big Ramsey assertion is proved.
+
+## Reconstructing the component order from a vertex enumeration
+
+The new `N0ComponentFirstPositions.lean` associates to an actual
+component its **first occupied position** in a bijective vertex
+enumeration. Every SCC is nonempty, and different SCCs have
+different first positions. If the enumeration is successor-first,
+then the first positions of components strictly respect the
+intrinsic SCC dependency order. The proof chooses a vertex
+occupying the first position of the higher component and uses
+proper reachability to *every* vertex of the lower component;
+the minimum lower-component position must therefore be earlier.
+
+### Additional internal adversarial referees
+
+- **Partition referee.** Components are subsets of the actual
+  domain, rather than artificial block labels; membership recovers
+  the unique SCC. Distinct SCCs cannot share the first vertex.
+- **Order referee.** Successor-first means every proper successor
+  vertex occurs before its source, not only that some witness
+  pair happens to be correctly ordered.
+- **Interval referee.** This lemma does not assume component
+  intervals, so it does **not** yet give the full uniqueness of
+  global block decompositions. That extra hypothesis must be
+  checked when reconstructing a permitted order.
+- **Finite regression referee.** Independently exhaust all 653
+  orientations on at most four labelled vertices and all 15,074
+  vertex enumerations. Check 3,810 successor-first enumerations
+  and 5,168 component dependency comparisons, plus a reversed
+  two-vertex arrow as a negative case.
+- **Certification referee.** Require the exact new Lean endpoints
+  to pass the kernel and axiom audit; a successful preexisting
+  umbrella build does not suffice.
+
+This remains finite and does not establish the manuscript's
+recurrence or big Ramsey degree theorem.
