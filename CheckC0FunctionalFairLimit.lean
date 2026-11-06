@@ -1,4 +1,5 @@
 import BigHrushovski.C0FunctionalFairLimit
+import BigHrushovski.C0FunctionalFairPersistence
 
 #print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.finRangeEquiv_apply_val
 #print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.natGraph_agree_of_successor
@@ -9,3 +10,6 @@ import BigHrushovski.C0FunctionalFairLimit
 #print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimitFiniteStrongCover
 #print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimitCanonicalStages
 #print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimitReduct_generic_of_functionalExtension
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.applies_of_successor
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.applies_of_le
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairStages_eventually_answers
