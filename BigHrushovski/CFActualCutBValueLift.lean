@@ -67,7 +67,7 @@ theorem targetOneLevelBValue_birthImage
             toVertex F K m a =
                 toVertex F K (m + 1) (Sum.inl a) :=
               (toVertex_old F K m a).symm
-            _ = toVertex F K (m + 1) w := by rw [← haw]
+            _ = toVertex F K (m + 1) w := by rw [haw]
             _ = v := hwv
         · intro hv
           obtain ⟨a, ha, hav⟩ := Finset.mem_image.mp hv
