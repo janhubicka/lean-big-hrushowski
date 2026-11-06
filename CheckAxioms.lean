@@ -1312,3 +1312,10 @@ import BigHrushovski
 #print axioms BigHrushovski.CFCoherentTower.realCountableGraphNat_unique_against
 #print axioms BigHrushovski.CFCoherentTower.publishedCountableGraphNat_unique_against
 #print axioms BigHrushovski.CFCoherentTower.realCountableGraph_unique_of_requests
+
+-- Track C: exact strict genericity and empty-base transfer endpoints.
+#print axioms BigHrushovski.CFDClosedBackAndForth.unique_of_strictGenericity
+#print axioms BigHrushovski.CFCoherentTower.realCountableGraphNat_hasStrictGenericity
+#print axioms BigHrushovski.CFCoherentTower.realBirth_unique_of_requests_hasStrictGenericity
+#print axioms BigHrushovski.CFDClosedBackAndForth.empty_globalDClosed_of_growth_and_class
+#print axioms BigHrushovski.CFDClosedBackAndForth.realBirth_unique_without_comparison_empty
