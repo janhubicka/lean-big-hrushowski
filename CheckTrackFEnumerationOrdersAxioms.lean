@@ -1,4 +1,5 @@
 import BigHrushovski.N0EnumerationOrders
+import BigHrushovski.N0ComponentFirstPositions
 
 #print axioms BigHrushovski.FiniteOrientation.orderBefore_irrefl
 #print axioms BigHrushovski.FiniteOrientation.orderBefore_trans
@@ -7,3 +8,11 @@ import BigHrushovski.N0EnumerationOrders
 #print axioms BigHrushovski.FiniteOrientation.sameOrder_iff_eq
 #print axioms BigHrushovski.FiniteOrientation.orderBefore_injective
 #print axioms BigHrushovski.FiniteOrientation.localCodeOrderRelations_card
+
+
+#print axioms BigHrushovski.FiniteOrientation.componentObject_nonempty
+#print axioms BigHrushovski.FiniteOrientation.component_eq_of_mem_componentObject
+#print axioms BigHrushovski.FiniteOrientation.firstComponentPosition_mem
+#print axioms BigHrushovski.FiniteOrientation.firstComponentPosition_le
+#print axioms BigHrushovski.FiniteOrientation.firstComponentPosition_injective
+#print axioms BigHrushovski.FiniteOrientation.firstComponentPosition_respectsDependencies
