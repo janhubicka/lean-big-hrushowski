@@ -36,6 +36,7 @@ def run():
                     seen.add(B)
                     components.append(B)
             stats["orientations"] += 1
+            seen_component_data = set()
             for enumeration in permutations(range(n)):
                 position = {v: i for i, v in enumerate(enumeration)}
                 firsts = [min(position[x] for x in B) for B in components]
@@ -43,6 +44,12 @@ def run():
                 stats["enumerations"] += 1
                 intervals = all(max(position[x] for x in B) - min(position[x] for x in B) + 1 == len(B) for B in components)
                 if intervals:
+                    component_order = tuple(sorted(range(len(components)), key=lambda i: firsts[i]))
+                    internals = tuple(tuple(v for v in enumeration if v in B) for B in components)
+                    data = (component_order, internals)
+                    assert data not in seen_component_data
+                    seen_component_data.add(data)
+                    stats["component_data_unique"] += 1
                     stats["interval_enumerations"] += 1
                     for i, B in enumerate(components):
                         for j, C in enumerate(components):
@@ -76,7 +83,8 @@ def run():
     assert stats == Counter(
         orientations=653, enumerations=15074,
         successor_first=3810, dependency_comparisons=5168,
-        interval_enumerations=13730, interval_component_pairs=131184), stats
+        interval_enumerations=13730, interval_component_pairs=131184,
+        component_data_unique=13730), stats
     # Reversing a dependency: 0 -> 1, enumeration (0,1) is not successor-first.
     assert not (({0: 0, 1: 1}[1] < {0: 0, 1: 1}[0]))
     return {"status": "PASS", "scope": "finite structural checks",
