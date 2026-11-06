@@ -116,3 +116,23 @@ consecutive by the finite-order isomorphism (not by
 the potentially gapped numerical first positions), and that
 the dependency order is inherited from actual successor-first
 vertex order. These endpoints require renewed Lean CI.
+
+## Reconstruction uniqueness (further finite audit)
+
+The theorem `enumeration_eq_of_same_component_order_and_local_orders`
+proves injectivity of the decomposition of a component-interval
+vertex enumeration into (a) the SCC order and (b) the
+induced local order on each SCC. Cross-component comparisons
+are recovered from first positions, and internal comparisons
+are precisely the local-order data.
+
+The independent regression checks all 13,730 component-interval
+enumerations of 653 small orientations, rejecting any duplicate
+(component order, internal component orders) data.
+Interleaving an isolated vertex with a directed 3-cycle
+shows that the interval hypothesis cannot be omitted.
+
+This is only the uniqueness half of global reconstruction.
+Existence and compatibility with canonical local codes over
+the already ordered lower part remain unproved.
+No infinite big Ramsey assertion or manuscript marker changes.
