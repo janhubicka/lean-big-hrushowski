@@ -52,3 +52,14 @@ No independent transported-support premise is needed.
     regressions are mandatory before any green marker.
 
 No manuscript text is changed or final uniqueness/monoid claimed.
+
+## Current-base verification (6 November 2026)
+
+The reusable complete-block finite support lemma was merged
+into main in PR #356 (commit 7ede5ed43bcbb0160941d1e037c366c43dd10830),
+after full CI run 42219103503 passed. This PR is now based on
+current main rather than the obsolete stacked branch; its exact
+C_F application still requires its OWN complete CI.
+The theorem is stated for globally injective f on the birth
+carrier. Its partial closed-source counterpart must be
+derived explicitly before using it in finite-lift uniqueness.
