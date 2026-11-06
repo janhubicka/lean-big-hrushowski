@@ -6,6 +6,7 @@ on:
       - "BigHrushovski/C0CoordinateOrderedAgeBridge.lean"
       - "TrackDOrderedAgeCheckAxioms.lean"
       - ".github/workflows/track-d-ordered-age.yml"
+      - "scripts/check_c0_chronological_order.py"
   workflow_dispatch:
 
 permissions:
@@ -31,6 +32,7 @@ jobs:
           python3 scripts/check_c0_coordinate_host_finite.py
           python3 scripts/check_c0_pointed_subcode.py
           python3 scripts/check_c0_induced_code.py
+          python3 scripts/check_c0_chronological_order.py
       - name: Build and audit exact Track D bridge
         run: |
           set -euo pipefail
