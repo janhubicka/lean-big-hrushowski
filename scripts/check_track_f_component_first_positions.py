@@ -57,6 +57,15 @@ def run():
                     if (reach[x] >> y) & 1 and not ((reach[y] >> x) & 1))
                 if successor_first:
                     stats["successor_first"] += 1
+                    component_order = sorted(range(len(components)), key=lambda i: firsts[i])
+                    component_rank = {B: i for i, B in enumerate(component_order)}
+                    assert len(component_order) == len(set(component_order))
+                    for j, C in enumerate(components):
+                        for i, B in enumerate(components):
+                            if i == j:
+                                continue
+                            if (reach[C[0]] >> B[0]) & 1 and not ((reach[B[0]] >> C[0]) & 1):
+                                assert component_rank[i] < component_rank[j]
                     for j, C in enumerate(components):
                         for i, B in enumerate(components):
                             precedes = (reach[C[0]] >> B[0]) & 1 and not (
