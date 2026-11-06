@@ -1,0 +1,4 @@
+import BigHrushovski.CFEmptyBaseTransfer
+
+#print axioms BigHrushovski.CFDClosedBackAndForth.empty_globalDClosed_of_growth_and_class
+#print axioms BigHrushovski.CFDClosedBackAndForth.realBirth_unique_without_comparison_empty
