@@ -37,11 +37,30 @@ theorem generatedSupport_image
       generatedSupport Γ π (f v) := by
   classical
   unfold generatedSupport
-  rw [← hΓ v]
-  simp only [Finset.image_image]
-  apply Finset.image_congr
-  intro w hw
-  exact (hπ w).symm
+  ext q
+  constructor
+  · intro hq
+    rcases Finset.mem_image.mp hq with ⟨p, hp, hpq⟩
+    rcases Finset.mem_image.mp hp with ⟨w, hw, hwp⟩
+    refine Finset.mem_image.mpr ⟨f w, ?_, ?_⟩
+    · rw [← hΓ v]
+      exact Finset.mem_image.mpr ⟨w, hw, rfl⟩
+    · calc
+        π (f w) = h (π w) := hπ w
+        _ = h p := congrArg h hwp
+        _ = q := hpq
+  · intro hq
+    rcases Finset.mem_image.mp hq with ⟨w, hw, hwq⟩
+    have hwimage : w ∈ (Γ v).image f := by
+      rw [hΓ v]
+      exact hw
+    rcases Finset.mem_image.mp hwimage with ⟨u, hu, huf⟩
+    refine Finset.mem_image.mpr
+      ⟨π u, Finset.mem_image.mpr ⟨u, hu, rfl⟩, ?_⟩
+    calc
+      h (π u) = π (f u) := (hπ u).symm
+      _ = π w := congrArg π huf
+      _ = q := hwq
 
 /-- The unconditional forward inclusion of the expected copy-range
 formula, assuming only exact preservation of full closures and a level
