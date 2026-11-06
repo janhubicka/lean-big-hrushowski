@@ -14,6 +14,7 @@ on:
       - "scripts/check_c0_chronological_order.py"
       - "scripts/check_c0_intrinsic_local_order.py"
       - "scripts/check_c0_local_order_transport.py"
+      - "scripts/check_c0_coordinate_relabel.py"
   workflow_dispatch:
 
 permissions:
@@ -42,6 +43,7 @@ jobs:
           python3 scripts/check_c0_chronological_order.py
           python3 scripts/check_c0_intrinsic_local_order.py
           python3 scripts/check_c0_local_order_transport.py
+          python3 scripts/check_c0_coordinate_relabel.py
       - name: Build and audit exact Track D bridge
         run: |
           set -euo pipefail
