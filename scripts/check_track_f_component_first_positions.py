@@ -41,6 +41,17 @@ def run():
                 firsts = [min(position[x] for x in B) for B in components]
                 assert len(set(firsts)) == len(firsts)
                 stats["enumerations"] += 1
+                intervals = all(max(position[x] for x in B) - min(position[x] for x in B) + 1 == len(B) for B in components)
+                if intervals:
+                    stats["interval_enumerations"] += 1
+                    for i, B in enumerate(components):
+                        for j, C in enumerate(components):
+                            if i == j:
+                                continue
+                            first_before = firsts[i] < firsts[j]
+                            all_before = all(position[b] < position[c] for b in B for c in C)
+                            assert first_before == all_before
+                            stats["interval_component_pairs"] += 1
                 successor_first = all(position[y] < position[x]
                     for x in range(n) for y in range(n)
                     if (reach[x] >> y) & 1 and not ((reach[y] >> x) & 1))
@@ -55,7 +66,8 @@ def run():
                                 stats["dependency_comparisons"] += 1
     assert stats == Counter(
         orientations=653, enumerations=15074,
-        successor_first=3810, dependency_comparisons=5168), stats
+        successor_first=3810, dependency_comparisons=5168,
+        interval_enumerations=13730, interval_component_pairs=131184), stats
     # Reversing a dependency: 0 -> 1, enumeration (0,1) is not successor-first.
     assert not (({0: 0, 1: 1}[1] < {0: 0, 1: 1}[0]))
     return {"status": "PASS", "scope": "finite structural checks",
