@@ -52,3 +52,27 @@ is attempted.
 
 These are internal role-separated checks, not independent
 outside referees.
+
+## Independent finite adversarial regression
+
+An exhaustive Python enumeration over all source and target
+universes with 0–3 vertices, all selected source subsets,
+all functions on each selected subtype, and all four named
+finite sets P,B,Q,C found **14,368** configurations satisfying
+the two exact image equations. Of these, **1,654** also
+satisfied injectivity and both disjointness hypotheses.
+There were **zero** violations of the support-image conclusion.
+
+Explicit failures if an assumption is dropped:
+
+- Without injectivity: U={0,1}, S=U, P={0},
+  B={1}, V={0}, Q=∅, C={0}, and e(0)=e(1)=0.
+  Both exact image equations and the disjointness
+  hypotheses hold, but e[P]={0}≠Q.
+- Without source disjointness: U={0}, S=U,
+  P=B={0}, V={0}, Q=∅, C={0}, e(0)=0.
+- Without target disjointness: U={0}, S=U,
+  P=∅, B={0}, V={0}, Q=C={0}, e(0)=0.
+
+These checks are an independent small-model adversarial test,
+not a substitute for successful Lean compilation and axiom audit.
