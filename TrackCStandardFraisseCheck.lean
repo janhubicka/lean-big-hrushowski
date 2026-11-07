@@ -1,0 +1,5 @@
+import BigHrushovski.CFStandardFraisseExtension
+
+#print axioms BigHrushovski.CFDClosedBackAndForth.HasStandardFiniteDClosedExtensions.toNatIntervals
+#print axioms BigHrushovski.CFDClosedBackAndForth.StandardStrongFraisseLimitPresentation.toNative
+#print axioms BigHrushovski.CFDClosedBackAndForth.realBirth_iso_standardStrongFraisseLimit
