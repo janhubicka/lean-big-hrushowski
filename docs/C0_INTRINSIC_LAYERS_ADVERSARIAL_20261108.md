@@ -50,19 +50,35 @@ or y belongs to D_n and `|C(y)|≤|C(x)|≤r`.
 These cuts take every member of an intrinsic component
 together because equal C-values have equal cardinality.
 
-## Referee F: adversarial exhaustive regression
+## Referee F: whole-component segments at a tied rank
+
+The new `unaryFiniteLayer_segment_closed` theorem handles
+an arbitrary finite set t of **whole** components in the
+current layer. It requires all lower-rank components in the
+layer whenever t contains a higher-rank component, but it
+does not demand that *every* component of the current tied
+rank be chosen. For x∈t and y∈C(x), either y is old,
+or y is in the current layer. Equality of full values
+keeps y with x inside the same whole component. Distinct
+values force a strictly lower rank, whose component is
+present by the lower-rank condition. This is the exact
+intermediate-cut property needed by a finite sorter.
+
+## Referee G: adversarial exhaustive regression
 
 The independent Python regression enumerates **all 66,067**
 set-valued unary maps on carriers of size at most four.
 It checks the claims on all **390** reflexive-transitive
 complete maps: 1,906 finite cut/layer checks,
 1,516 component-in-layer checks, 1,250 strict
-predecessors, and 9,380 rank-cut closedness checks.
+predecessors, 9,380 rank-cut closedness checks, and
+3,289 lower-rank-closed whole-component segments among
+4,562 candidate finite layer segments.
 No counterexample was found in a separate local run.
 The script is included in dedicated CI but is not
 a substitute for Lean kernel proof checking.
 
-## Referee G: the missing ω-ordering and graph theorem
+## Referee H: the missing ω-ordering and graph theorem
 
 This PR proves the finite combinatorial ingredients
 only. A finite sorter and concatenation into a literal
@@ -75,7 +91,7 @@ Those are separately recorded Track A proof obligations.
 ## Verification gate
 
 `CheckC0IntrinsicLayers.lean` prints the exact axioms
-of nine new theorems. The dedicated workflow builds the
+of ten new theorems. The dedicated workflow builds the
 new module, runs the axiom checker, placeholder scanner,
 and exhaustive regression. Exact CI on this head and
 its parent intrinsic-component branch must pass before
