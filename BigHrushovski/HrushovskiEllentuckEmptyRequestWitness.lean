@@ -24,7 +24,7 @@ a separate Track C input.
 
 namespace BigHrushovski.CFCoherentTower
 
-open CFStageCatalogue
+open CFGrowthNumerics CFStageCatalogue
 
 /-- Empty named old support has empty literal image in the
 countable birth-labelled carrier. -/
@@ -34,7 +34,7 @@ theorem birthSupport_empty_of_empty_request
     (hr : r.support = ∅) :
     birthSupport F K n r = ∅ := by
   classical
-  simp [birthSupport, taggedSupport, hr]
+  simp only [birthSupport, taggedSupport, hr, Finset.image_empty]
 
 /-- The least finite complete-b-closed hull of the empty vertex set
 is empty, with no extra growth or level-lifting assumptions. -/
@@ -126,7 +126,7 @@ theorem birthLevelDomain_subset_iff_of_empty_requests
       have hqn : q = n := Finset.mem_singleton.mp (hz ▸ hq)
       exact hqn ▸ hn
     have hzT : z ∈ birthLevelDomain F K T := hST hzS
-    exact hzT (by rw [hz]; exact Finset.mem_singleton_self n)
+    exact hzT n (by simpa only [hz, Finset.mem_singleton])
   · exact birthLevelDomain_mono F K
 
 
