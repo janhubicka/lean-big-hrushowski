@@ -48,7 +48,7 @@ theorem birthGeneratedClosure_empty
   have hsub := birthGeneratedClosure_le_of_closed F K
     (∅ : Finset (Vertex F K))
     (∅ : Finset (Vertex F K))
-    (Finset.Subset.refl _) hEmpty
+    (by intro v hv; exact hv) hEmpty
   exact Finset.subset_empty.mp hsub
 
 /-- The complete one-generated closure of a first vertex of an
