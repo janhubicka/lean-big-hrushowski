@@ -280,5 +280,102 @@ theorem unaryFiniteLayer_segment_closed
         exact Finset.mem_union.mpr
           (Or.inr (htLower x hxNew y hyLayer hCard))
 
+
+/-- Any proper finite inclusion between two complete-unary-closed
+sets can advance by adding one *whole* intrinsic component.
+Choose an element of smallest complete-closure cardinality
+outside the old closed set; every strict predecessor must
+already lie in that set. The result is a strict finite
+closed increment staying inside the proposed finite target. -/
+theorem exists_enabled_component_in_closed_pair
+    (C : ℕ → Finset ℕ) (hC : IsCompleteUnaryClosure C)
+    (s z : Finset ℕ) (hsz : s ⊆ z)
+    (hClosedS : ∀ x ∈ s, C x ⊆ s)
+    (hClosedZ : ∀ x ∈ z, C x ⊆ z)
+    (hDiff : (z \ s).Nonempty) :
+    ∃ x ∈ z \ s,
+      strictLowerValue C x ⊆ s ∧
+      unaryComponent C x ⊆ z \ s ∧
+      (∀ y ∈ s ∪ unaryComponent C x,
+        C y ⊆ s ∪ unaryComponent C x) ∧
+      s ⊂ s ∪ unaryComponent C x ∧
+      s ∪ unaryComponent C x ⊆ z := by
+  classical
+  let rank : ℕ → ℕ := fun x => (C x).card
+  let choices : Finset ℕ := (z \ s).image rank
+  have hChoices : choices.Nonempty := by
+    obtain ⟨v, hv⟩ := hDiff
+    exact ⟨rank v, Finset.mem_image.mpr ⟨v, hv, rfl⟩⟩
+  have hMinMem : choices.min' hChoices ∈ choices :=
+    Finset.min'_mem choices hChoices
+  obtain ⟨x, hxDiff, hxRank⟩ := Finset.mem_image.mp hMinMem
+  have hxZ : x ∈ z := (Finset.mem_sdiff.mp hxDiff).1
+  have hxNotS : x ∉ s := (Finset.mem_sdiff.mp hxDiff).2
+  have hRankMin : ∀ y ∈ z \ s, (C x).card ≤ (C y).card := by
+    intro y hy
+    have hyChoice : rank y ∈ choices :=
+      Finset.mem_image.mpr ⟨y, hy, rfl⟩
+    have hMin : rank x ≤ rank y := by
+      rw [hxRank]
+      exact Finset.min'_le choices (rank y) hyChoice
+    exact hMin
+  have hLower : strictLowerValue C x ⊆ s := by
+    intro y hy
+    have hyCx : y ∈ C x := (Finset.mem_sdiff.mp hy).1
+    have hyZ : y ∈ z := hClosedZ x hxZ hyCx
+    by_contra hyNotS
+    have hyDiff : y ∈ z \ s :=
+      Finset.mem_sdiff.mpr ⟨hyZ, hyNotS⟩
+    have hLT : (C y).card < (C x).card :=
+      strictLowerValue_card_lt C hC hy
+    have hLE := hRankMin y hyDiff
+    omega
+  have hWhole : unaryComponent C x ⊆ z \ s := by
+    intro y hy
+    have hyCx : y ∈ C x := unaryComponent_subset_value C x hy
+    have hyZ : y ∈ z := hClosedZ x hxZ hyCx
+    have hValueEq : C y = C x :=
+      (mem_unaryComponent_iff C hC x y).mp hy
+    have hyNotS : y ∉ s := by
+      intro hyS
+      have hxCy : x ∈ C y := by
+        rw [hValueEq]
+        exact hC.1 x
+      exact hxNotS (hClosedS y hyS hxCy)
+    exact Finset.mem_sdiff.mpr ⟨hyZ, hyNotS⟩
+  have hClosedNext :
+      ∀ y ∈ s ∪ unaryComponent C x,
+        C y ⊆ s ∪ unaryComponent C x := by
+    intro y hy w hw
+    rcases Finset.mem_union.mp hy with hyOld | hyNew
+    · exact Finset.mem_union.mpr
+        (Or.inl (hClosedS y hyOld hw))
+    · have hValueEq : C y = C x :=
+        (mem_unaryComponent_iff C hC x y).mp hyNew
+      have hwCx : w ∈ C x := by
+        rw [← hValueEq]
+        exact hw
+      by_cases hwP : w ∈ unaryComponent C x
+      · exact Finset.mem_union.mpr (Or.inr hwP)
+      · have hwLower : w ∈ strictLowerValue C x :=
+          Finset.mem_sdiff.mpr ⟨hwCx, hwP⟩
+        exact Finset.mem_union.mpr (Or.inl (hLower hwLower))
+  have hxP : x ∈ unaryComponent C x :=
+    (mem_unaryComponent_iff C hC x x).mpr rfl
+  have hStrict : s ⊂ s ∪ unaryComponent C x := by
+    apply Finset.ssubset_iff_subset_ne.mpr
+    constructor
+    · exact Finset.subset_union_left
+    · intro hEq
+      have hxS : x ∈ s := by
+        rw [hEq]
+        exact Finset.mem_union.mpr (Or.inr hxP)
+      exact hxNotS hxS
+  have hNextInZ : s ∪ unaryComponent C x ⊆ z :=
+    Finset.union_subset hsz (fun y hy => (Finset.mem_sdiff.mp
+      (hWhole hy)).1)
+  exact ⟨x, hxDiff, hLower, hWhole, hClosedNext,
+    hStrict, hNextInZ⟩
+
 end FiniteC0
 end BigHrushovski
