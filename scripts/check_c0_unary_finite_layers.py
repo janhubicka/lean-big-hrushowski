@@ -10,7 +10,8 @@ from itertools import product
 
 stats = dict(operations=0, complete=0, layer_checks=0,
              component_checks=0, predecessors=0, rank_cuts=0,
-             segments_inspected=0, lower_closed_segments=0)
+             segments_inspected=0, lower_closed_segments=0,
+             closed_proper_pairs=0, minimal_rank_choices=0)
 
 for n in range(5):
     for C in product(range(1 << n), repeat=n):
@@ -32,6 +33,33 @@ for n in range(5):
                 not(s >> x & 1) or (C[x] & ~s) == 0
                 for x in range(n)
             )
+
+        # Every proper pair of finite complete-unary closed sets
+        # admits a whole minimal-rank component to peel off.
+        for old in range(1 << n):
+            if not closed(old):
+                continue
+            for big in range(1 << n):
+                if not closed(big) or old & ~big or old == big:
+                    continue
+                stats["closed_proper_pairs"] += 1
+                diff = big & ~old
+                min_rank = min(
+                    C[x].bit_count() for x in range(n) if diff >> x & 1
+                )
+                for x in range(n):
+                    if not(diff >> x & 1) or C[x].bit_count() != min_rank:
+                        continue
+                    stats["minimal_rank_choices"] += 1
+                    comp = sum(
+                        1 << y for y in range(n) if C[y] == C[x]
+                    )
+                    lower = C[x] & ~comp
+                    assert not(lower & ~old)
+                    assert not(comp & ~diff)
+                    next_cut = old | comp
+                    assert closed(next_cut) and next_cut != old
+                    assert not(next_cut & ~big)
 
         for k in range(n + 1):
             S = 0
@@ -80,6 +108,7 @@ for n in range(5):
 
 expected = dict(operations=66067, complete=390, layer_checks=1906,
                 component_checks=1516, predecessors=1250, rank_cuts=9380,
-                segments_inspected=4562, lower_closed_segments=3289)
+                segments_inspected=4562, lower_closed_segments=3289,
+                closed_proper_pairs=6071, minimal_rank_choices=7588)
 assert stats == expected, (stats, expected)
 print(stats)
