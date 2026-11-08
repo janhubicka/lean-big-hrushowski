@@ -38,8 +38,10 @@ theorem canonicalLocalInclusion_injective
     (a : V) (b : FiniteC0.canonicalValue G κ a) :
     Function.Injective (canonicalLocalInclusion G κ a b) := by
   intro u v h
-  apply Subtype.ext
-  exact congrArg Subtype.val h
+  have hval : u.val = v.val :=
+    congrArg
+      (fun w : FiniteC0.canonicalValue G κ a => w.val) h
+  exact Subtype.ext hval
 
 /-- The nested inclusion preserves and reflects the complete
 inherited linear order. -/
@@ -89,16 +91,16 @@ theorem canonicalLocalInclusion_J_image
     (G : GraphOn V) (κ : V → Fin n)
     (a : V) (b : FiniteC0.canonicalValue G κ a)
     (u : FiniteC0.canonicalValue G κ b.val) :
-    (((restrictGraph G (FiniteC0.canonicalValue G κ b.val)).
-        backAdjacencyValue
-          (restrictValue (FiniteC0.canonicalValue G κ)
-            (FiniteC0.canonicalValue G κ b.val)) u).image
+    ((GraphOn.backAdjacencyValue
+        (restrictGraph G (FiniteC0.canonicalValue G κ b.val))
+        (restrictValue (FiniteC0.canonicalValue G κ)
+          (FiniteC0.canonicalValue G κ b.val)) u).image
         (canonicalLocalInclusion G κ a b)) =
-      (restrictGraph G (FiniteC0.canonicalValue G κ a)).
-        backAdjacencyValue
-          (restrictValue (FiniteC0.canonicalValue G κ)
-            (FiniteC0.canonicalValue G κ a))
-          (canonicalLocalInclusion G κ a b u) := by
+      GraphOn.backAdjacencyValue
+        (restrictGraph G (FiniteC0.canonicalValue G κ a))
+        (restrictValue (FiniteC0.canonicalValue G κ)
+          (FiniteC0.canonicalValue G κ a))
+        (canonicalLocalInclusion G κ a b u) := by
   let C := FiniteC0.canonicalValue G κ
   have hSubset : C b.val ⊆ C a :=
     fun _ h => FiniteC0.canonicalValue_mem_trans G κ b.property h
