@@ -172,8 +172,9 @@ theorem exists_functionalStageExtension_in_fair_limit
       rw [hSource]
     · intro x
       change s.model.unaryValue x =
-        D.source.unaryValue x
+        (D.source.unaryValue x).image (fun y : Fin s.size => y)
       rw [hSource]
+      simp
   obtain ⟨answer, hAnswerInj, hAnswerGraph,
       hAnswerValues, hAnswerBase⟩ :=
     eventually_answered_in_fair_limit req n hApp
@@ -189,6 +190,7 @@ theorem exists_functionalStageExtension_in_fair_limit
     calc
       g (f u) = answer (label (f (e x))) := by
         rw [he]
+        rfl
       _ = answer (D.embedding x) :=
         congrArg answer (hEmbed x).symm
       _ = req.labels x := hAnswerBase x
