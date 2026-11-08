@@ -43,7 +43,7 @@ theorem stageCutGap_exists
     rw [← hCut]
     exact Finset.mem_image.mpr ⟨u.val, u.property, rfl⟩
   obtain ⟨v, hv, huv⟩ := Finset.mem_image.mp hu
-  exact ⟨⟨v, hv⟩, huv.symm⟩
+  exact ⟨⟨v, hv⟩, huv⟩
 
 /-- The canonical map of actual source cuts across a gap;
 its vertex representative is selected by the exact birth label. -/
