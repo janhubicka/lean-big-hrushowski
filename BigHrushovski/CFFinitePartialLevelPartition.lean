@@ -1,6 +1,7 @@
 import BigHrushovski.FinitePartitionImage
 import BigHrushovski.FiniteBlockSupportSubtype
 import BigHrushovski.CFBirthBValues
+import BigHrushovski.CFBirthTopBlock
 
 /-!
 # Exact C_F support and fresh-block images from complete values and birth levels
