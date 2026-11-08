@@ -81,15 +81,26 @@ theorem targetOneLevelBValue_birthImage
       exact hOldImage.trans (stageOldBirthBValue_image F K m u)
   | inr z =>
       rcases z with ⟨r, i⟩
+      let j : LevelCarrier (stage F K m).graph
+          (GrowthAllowedLocal F) (fun P => K P.card) → Vertex F K :=
+        fun z => toVertex F K (m + 1) z
       change
         (taggedSupport (stage F K m).graph
           (GrowthAllowedLocal F) (fun P => K P.card) r ∪
          taggedBlock (stage F K m).graph
-          (GrowthAllowedLocal F) (fun P => K P.card) r).image
-          (toVertex F K (m + 1)) =
+          (GrowthAllowedLocal F) (fun P => K P.card) r).image j =
         birthBValue F K (⟨m, ⟨r, i⟩⟩ : Vertex F K)
       rw [birthBValue_of_fresh]
-      simp only [Finset.image_union]
+      change
+        (taggedSupport (stage F K m).graph
+          (GrowthAllowedLocal F) (fun P => K P.card) r).image j ∪
+        (taggedBlock (stage F K m).graph
+          (GrowthAllowedLocal F) (fun P => K P.card) r).image j =
+        (taggedSupport (stage F K m).graph
+          (GrowthAllowedLocal F) (fun P => K P.card) r ∪
+         taggedBlock (stage F K m).graph
+          (GrowthAllowedLocal F) (fun P => K P.card) r).image j
+      rw [Finset.image_union]
 
 /-- The parametrized target one-level b-value is LITERALLY the
 finite-stage preimage of the TRUE complete birth-b-value.
