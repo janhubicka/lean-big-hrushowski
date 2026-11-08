@@ -1,0 +1,5 @@
+import BigHrushovski.CFFraisseThreeData
+
+#print axioms BigHrushovski.CFDClosedBackAndForth.HasFiniteFraisseData.toStrictGenericity
+#print axioms BigHrushovski.CFDClosedBackAndForth.PresentedFraisseData.toPresentedStrictGeneric
+#print axioms BigHrushovski.CFCoherentTower.realBirth_iso_presentedFraisseData

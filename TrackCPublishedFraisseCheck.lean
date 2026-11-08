@@ -1,0 +1,3 @@
+import BigHrushovski.CFPublishedFraisseRecognition
+
+#print axioms BigHrushovski.CFCoherentTower.publishedBirth_iso_presentedStrictGeneric

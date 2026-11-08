@@ -1,0 +1,4 @@
+import BigHrushovski.CFPresentedStrictGeneric
+
+#print axioms BigHrushovski.CFDClosedBackAndForth.PresentedStrictGeneric.nat_characterization
+#print axioms BigHrushovski.CFCoherentTower.realBirth_iso_presentedStrictGeneric

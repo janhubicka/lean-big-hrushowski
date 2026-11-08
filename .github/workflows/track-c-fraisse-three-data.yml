@@ -1,0 +1,28 @@
+name: Track C strict Fraisse three-data criterion
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFFraisseThreeData.lean"
+      - "TrackCFraisseThreeDataCheck.lean"
+      - ".github/workflows/track-c-fraisse-three-data.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-fraisse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build three-data countable Fraisse criterion
+        run: lake build BigHrushovski.CFFraisseThreeData
+      - name: Audit exact axioms and placeholders
+        run: |
+          lake env lean TrackCFraisseThreeDataCheck.lean > track-c-fraisse-three-axioms.log
+          python3 scripts/check_axioms.py track-c-fraisse-three-axioms.log TrackCFraisseThreeDataCheck.lean
+          python3 scripts/check_no_placeholders.py
