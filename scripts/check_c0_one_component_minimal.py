@@ -4,7 +4,8 @@
 Enumerate every undirected simple graph and index map into finite
 ordinals with possible empty slots. Keep exactly presentations whose
 nonempty prefix increments are minimal strong, then test all closed S
-whose complement is one complete component. Diagnostic only, not Lean.
+and all nested pairs S⊆Z of closed subsets whose difference is exactly one
+complete component. Diagnostic only, not Lean.
 """
 from functools import lru_cache
 from itertools import combinations, product
@@ -14,6 +15,8 @@ stats = {
     "presentations": 0,
     "valid_presentations": 0,
     "closed_single_complement": 0,
+    "closed_nested_pairs": 0,
+    "minimal_nested_steps": 0,
 }
 
 for n in range(5):
@@ -84,25 +87,35 @@ for n in range(5):
                     sum(blocks[j] for j in ancestors[idx[x]])
                     for x in range(n)
                 ]
-                for s in subsets:
-                    if not all(
+                closed = [
+                    s for s in subsets
+                    if all(
                         is_subset(closure[x], s)
                         for x in range(n)
                         if s >> x & 1
-                    ):
-                        continue
-                    for x in range(n):
-                        if (((1 << n) - 1) & ~s) != blocks[idx[x]]:
+                    )
+                ]
+                for s in closed:
+                    for z in closed:
+                        if not is_subset(s, z):
                             continue
-                        stats["closed_single_complement"] += 1
-                        assert is_minimal_strong(s, (1 << n) - 1), (
-                            n, edges, m, idx, s, x, blocks, closure
+                        stats["closed_nested_pairs"] += 1
+                        difference = z & ~s
+                        if difference == 0 or difference not in blocks:
+                            continue
+                        stats["minimal_nested_steps"] += 1
+                        assert is_minimal_strong(s, z), (
+                            n, edges, m, idx, s, z, blocks, closure
                         )
+                        if z == (1 << n) - 1:
+                            stats["closed_single_complement"] += 1
 
 assert stats == {
     "graphs": 76,
     "presentations": 22956,
     "valid_presentations": 1438,
     "closed_single_complement": 2899,
+    "closed_nested_pairs": 43792,
+    "minimal_nested_steps": 14859,
 }, stats
 print(stats)
