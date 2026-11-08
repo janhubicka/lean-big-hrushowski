@@ -164,5 +164,30 @@ theorem unaryFiniteCut_succ_eq_union_layer
     · exact hMono hOld
     · exact (Finset.mem_sdiff.mp hNew).1
 
+
+/-- The finite rank-cut also contains complete intrinsic components,
+not a proper subset of any component. -/
+theorem unaryComponent_subset_rankCut
+    (C : ℕ → Finset ℕ) (hC : IsCompleteUnaryClosure C)
+    (n rank x : ℕ)
+    (hx : x ∈ unaryFiniteRankCut C n rank) :
+    unaryComponent C x ⊆ unaryFiniteRankCut C n rank := by
+  intro y hy
+  exact unaryFiniteRankCut_closed C hC n rank x hx
+    (unaryComponent_subset_value C x hy)
+
+/-- Increasing the rank can only add vertices to a layer cut. -/
+theorem unaryFiniteRankCut_mono_rank
+    (C : ℕ → Finset ℕ) (n : ℕ)
+    {r t : ℕ} (hrt : r ≤ t) :
+    unaryFiniteRankCut C n r ⊆ unaryFiniteRankCut C n t := by
+  classical
+  intro x hx
+  rcases Finset.mem_union.mp hx with hxOld | hxNew
+  · exact Finset.mem_union.mpr (Or.inl hxOld)
+  · obtain ⟨hxLayer, hxRank⟩ := Finset.mem_filter.mp hxNew
+    exact Finset.mem_union.mpr
+      (Or.inr (Finset.mem_filter.mpr ⟨hxLayer, by omega⟩))
+
 end FiniteC0
 end BigHrushovski
