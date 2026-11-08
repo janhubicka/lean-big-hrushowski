@@ -1,0 +1,5 @@
+import BigHrushovski.CFBirthInfinitude
+
+#print axioms BigHrushovski.CFCoherentTower.request_has_fresh_vertex
+#print axioms BigHrushovski.CFCoherentTower.birthVertex_infinite_of_requests
+#print axioms BigHrushovski.CFCoherentTower.natEquivBirth_nonempty_of_requests

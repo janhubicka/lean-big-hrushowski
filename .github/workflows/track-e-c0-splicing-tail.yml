@@ -1,0 +1,47 @@
+name: Track E C0 splicing tail-extension transfer
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckSplicingTail.lean'
+      - 'CheckTrackEC0SplicingTail.lean'
+      - '.github/workflows/track-e-c0-splicing-tail.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckSplicingTail.lean'
+      - 'CheckTrackEC0SplicingTail.lean'
+      - '.github/workflows/track-e-c0-splicing-tail.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-c0-tail-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-c0-tail-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile C0 splicing tail transfer and audit dependencies
+        run: |
+          lake build BigHrushovski.HrushovskiEllentuckSplicingTail
+          lake env lean CheckTrackEC0SplicingTail.lean > c0-tail-axioms.log
+          cat c0-tail-axioms.log
+          python3 scripts/check_axioms.py c0-tail-axioms.log CheckTrackEC0SplicingTail.lean
+          python3 scripts/check_no_placeholders.py

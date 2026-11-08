@@ -1,0 +1,3 @@
+import BigHrushovski.C0FunctionalFairSuccessor
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.exists_fairFunctionalSuccessor

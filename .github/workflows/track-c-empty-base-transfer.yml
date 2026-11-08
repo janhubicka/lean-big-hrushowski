@@ -1,0 +1,28 @@
+name: Track C finite-to-global empty base
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFEmptyBaseTransfer.lean"
+      - "TrackCEmptyBaseCheck.lean"
+      - ".github/workflows/track-c-empty-base-transfer.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  empty-base:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build exact finite-to-global empty-base transfer
+        run: lake build BigHrushovski.CFEmptyBaseTransfer
+      - name: Audit exact axioms and placeholders
+        run: |
+          lake env lean TrackCEmptyBaseCheck.lean > track-c-empty-base-axioms.log
+          python3 scripts/check_axioms.py track-c-empty-base-axioms.log TrackCEmptyBaseCheck.lean
+          python3 scripts/check_no_placeholders.py

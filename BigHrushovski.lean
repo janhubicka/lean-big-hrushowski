@@ -427,3 +427,49 @@ import BigHrushovski.CFPartialBoundaryTransport
 import BigHrushovski.CFActualSubtypeBatchInduced
 
 import BigHrushovski.CFSelectedSubtypeOrder
+
+import BigHrushovski.C0TaggedFunctionalOneBlock
+
+import BigHrushovski.C0TaggedStageCuts
+
+import BigHrushovski.C0TaggedMinimalStages
+
+import BigHrushovski.C0TaggedFullFunctionalAmalgam
+
+import BigHrushovski.CFPartialSupportLex
+import BigHrushovski.CFSelectedSubtypeBValues
+import BigHrushovski.CFActualSubtypeRequestOrder
+import BigHrushovski.CFActualSubtypeStageOrder
+
+import BigHrushovski.CFPartialSupportAutomaticClosure
+
+import BigHrushovski.C0CountableReductCriterion
+
+import BigHrushovski.CFPartialOneLevelFunctional
+import BigHrushovski.CFPartialRequestUniqueness
+
+import BigHrushovski.CFSelectedCutLevel
+import BigHrushovski.CFSelectedCutEquiv
+import BigHrushovski.CFSelectedCutEmbedding
+import BigHrushovski.CFSelectedCutBlockRigidity
+import BigHrushovski.CFRepresentedLevels
+
+import BigHrushovski.CFSkippedCutEquiv
+
+-- Track C: countable strict genericity and published-growth adapters.
+import BigHrushovski.CFNonnegativeGrowthAdapter
+import BigHrushovski.CFPublishedFiniteGenericity
+import BigHrushovski.CFRealGenericCertificate
+import BigHrushovski.CFDClosedFiniteSubtype
+import BigHrushovski.CFRealFiniteSubtypeResponse
+import BigHrushovski.CFDClosedBackAndForthCore
+import BigHrushovski.CFDClosedJointSteps
+import BigHrushovski.CFCountableRelabelling
+import BigHrushovski.CFBirthInfinitude
+import BigHrushovski.CFRealNatRecognition
+import BigHrushovski.CFPublishedNatRecognition
+import BigHrushovski.CFRealBirthRecognition
+
+-- Track C: certified strict genericity and empty-base transfer.
+import BigHrushovski.CFStrictGenericCharacterization
+import BigHrushovski.CFEmptyBaseTransfer

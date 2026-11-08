@@ -1,0 +1,49 @@
+name: Lean C0 Functional Catalogue
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/C0FiniteFunctionalCatalogue.lean'
+      - 'CheckC0FunctionalCatalogue.lean'
+      - '.github/workflows/track-a-functional-catalogue.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/C0FiniteFunctionalCatalogue.lean'
+      - 'CheckC0FunctionalCatalogue.lean'
+      - '.github/workflows/track-a-functional-catalogue.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache Lean toolchain
+        uses: actions/cache@v5
+        with:
+          path: ~/.elan/toolchains
+          key: lean-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}
+      - name: Cache Lake workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build exact finite functional catalogue
+        run: lake build BigHrushovski.C0FiniteFunctionalCatalogue
+      - name: Exact theorem axioms and placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckC0FunctionalCatalogue.lean > c0-catalogue-axioms.log
+          python3 scripts/check_axioms.py c0-catalogue-axioms.log CheckC0FunctionalCatalogue.lean
+          python3 scripts/check_no_placeholders.py

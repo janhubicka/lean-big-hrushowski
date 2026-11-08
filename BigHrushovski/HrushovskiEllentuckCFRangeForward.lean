@@ -21,6 +21,9 @@ namespace BigHrushovski.Ellentuck
 universe u v
 
 variable {Vertex : Type u} {Level : Type v}
+-- Finset.image needs decidable equality on its target. The typeclass
+-- assumptions are computational only and are available classically.
+variable [DecidableEq Vertex] [DecidableEq Level]
 
 /-- Exact transport of complete finite level supports. This is stronger
 than preserving the levels of individual vertices. -/
@@ -93,8 +96,9 @@ theorem birthLevelSupport_image_of_bValues
     (hBirth : ∀ v : Vertex F K, (f v).1 = h v.1)
     (v : Vertex F K) :
     (birthLevelSupport F K v).image h =
-      birthLevelSupport F K (f v) :=
-  Ellentuck.generatedSupport_image
+      birthLevelSupport F K (f v) := by
+  classical
+  exact Ellentuck.generatedSupport_image
     (birthSingletonClosure F K)
     (fun x : Vertex F K => x.1)
     f h
@@ -111,8 +115,9 @@ theorem birthEmbedding_range_subset_levelDomain
       (birthBValue F K v).image f = birthBValue F K (f v))
     (hBirth : ∀ v : Vertex F K, (f v).1 = h v.1) :
     (Set.range f : Set (Vertex F K)) ⊆
-      birthLevelDomain F K (Set.range h) :=
-  Ellentuck.image_subset_supportDomain
+      birthLevelDomain F K (Set.range h) := by
+  classical
+  exact Ellentuck.image_subset_supportDomain
     (birthSingletonClosure F K)
     (fun x : Vertex F K => x.1)
     f h

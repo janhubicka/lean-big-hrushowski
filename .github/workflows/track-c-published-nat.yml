@@ -1,0 +1,28 @@
+name: Track C published countable generic recognition
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFPublishedNatRecognition.lean"
+      - "TrackCPublishedNatRecognitionCheck.lean"
+      - ".github/workflows/track-c-published-nat.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published-generic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build published genericity specialization
+        run: lake build BigHrushovski.CFPublishedNatRecognition
+      - name: Audit theorem axioms and placeholders
+        run: |
+          lake env lean TrackCPublishedNatRecognitionCheck.lean > track-c-published-axioms.log
+          python3 scripts/check_axioms.py track-c-published-axioms.log TrackCPublishedNatRecognitionCheck.lean
+          python3 scripts/check_no_placeholders.py

@@ -1,0 +1,5 @@
+import BigHrushovski.CFCountableRelabelling
+
+#print axioms BigHrushovski.GraphOn.globallyDClosed_pullback_iff
+#print axioms BigHrushovski.GraphOn.finiteDClosedCover_pullback
+#print axioms BigHrushovski.GraphOn.finiteGrowth_pullback

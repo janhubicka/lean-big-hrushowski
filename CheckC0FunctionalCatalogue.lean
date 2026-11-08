@@ -1,0 +1,3 @@
+import BigHrushovski.C0FiniteFunctionalCatalogue
+
+#print axioms BigHrushovski.FiniteCatalogue.fairFunctionalC0Request_after

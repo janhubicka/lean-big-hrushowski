@@ -1,0 +1,28 @@
+name: Track C birth carrier infinitude
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFBirthInfinitude.lean"
+      - "TrackCBirthInfinitudeCheck.lean"
+      - ".github/workflows/track-c-birth-infinitude.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  birth-infinitude:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build infinite birth carrier theorem
+        run: lake build BigHrushovski.CFBirthInfinitude
+      - name: Audit axioms and placeholders
+        run: |
+          lake env lean TrackCBirthInfinitudeCheck.lean > track-c-birth-axioms.log
+          python3 scripts/check_axioms.py track-c-birth-axioms.log TrackCBirthInfinitudeCheck.lean
+          python3 scripts/check_no_placeholders.py

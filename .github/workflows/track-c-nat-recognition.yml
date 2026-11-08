@@ -1,0 +1,28 @@
+name: Track C countable Nat generic recognition
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFRealNatRecognition.lean"
+      - "TrackCNatRecognitionCheck.lean"
+      - ".github/workflows/track-c-nat-recognition.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  nat-recognition:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build Nat generic recognition endpoints
+        run: lake build BigHrushovski.CFRealNatRecognition
+      - name: Audit exact axioms and source placeholders
+        run: |
+          lake env lean TrackCNatRecognitionCheck.lean > track-c-nat-axioms.log
+          python3 scripts/check_axioms.py track-c-nat-axioms.log TrackCNatRecognitionCheck.lean
+          python3 scripts/check_no_placeholders.py

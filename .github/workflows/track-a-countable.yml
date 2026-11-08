@@ -1,0 +1,59 @@
+name: Lean C0 Countable Reduct
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/C0CompleteUnaryCovers.lean'
+      - 'BigHrushovski/C0CountableCanonicalStages.lean'
+      - 'BigHrushovski/C0CountableFunctionalStrongImages.lean'
+      - 'BigHrushovski/C0CountableStageFunctionalExtension.lean'
+      - 'CheckC0Countable.lean'
+      - 'scripts/check_c0_complete_unary_covers.py'
+      - '.github/workflows/track-a-countable.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/C0CompleteUnaryCovers.lean'
+      - 'BigHrushovski/C0CountableCanonicalStages.lean'
+      - 'BigHrushovski/C0CountableFunctionalStrongImages.lean'
+      - 'BigHrushovski/C0CountableStageFunctionalExtension.lean'
+      - 'CheckC0Countable.lean'
+      - 'scripts/check_c0_complete_unary_covers.py'
+      - '.github/workflows/track-a-countable.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache Lean toolchain
+        uses: actions/cache@v5
+        with:
+          path: ~/.elan/toolchains
+          key: lean-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}
+      - name: Cache Lake workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build countable C0 transfer
+        run: lake build BigHrushovski.C0CountableStageFunctionalExtension
+      - name: Exact theorem axioms and placeholders
+        run: |
+          set -euo pipefail
+          lake env lean CheckC0Countable.lean > c0-countable-axioms.log
+          python3 scripts/check_axioms.py c0-countable-axioms.log CheckC0Countable.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Adversarial finite unary-closure regression
+        run: python3 scripts/check_c0_complete_unary_covers.py
