@@ -46,3 +46,7 @@ finite value in the later cut.
     regressions must pass before merge or green manuscript marker.
 
 No mathematical prose has been changed in the manuscript.
+
+## Integration follow-up (8 November 2026)
+
+Parent source-cut equivalence PR #369 was squash-merged to `main` as `89b64aa28bf4fdd6bb25ed75e56bd15e5235d970`. This PR now targets `main`; a fresh exact-head complete Lean CI check after retargeting is required before integration. The theorem scope is unchanged.
