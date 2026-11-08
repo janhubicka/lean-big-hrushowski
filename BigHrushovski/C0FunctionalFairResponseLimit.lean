@@ -72,6 +72,7 @@ theorem response_in_fair_countable_limit
             rw [hValues x]
       _ = (req.diagram.target.unaryValue x).image g := by
             rw [Finset.image_image]
+            rfl
   · intro x
     exact hLabels x
 
