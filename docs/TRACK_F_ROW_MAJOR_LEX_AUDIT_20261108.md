@@ -4,10 +4,15 @@ Stacked on the concrete fixed-old-part PR #383, itself dependent on
 #377 and Track F integration PR #270. No paper text or validation
 markers are modified.
 
-The manuscript chooses the lexicographically least directed adjacency
-matrix after fixing the earlier order of the lower successor part.
-The finite ordinal index in PR #383 was an arbitrary complete-code
-order, so it did not formalize **lexicographic** minimality.
+**Manuscript correspondence (adversarial correction).** Version 52,
+Section 7.4.4 ('A fixed system of local orders'), requires choosing
+*one ordered representative* for each isomorphism type of a
+one-generated closure with its lower part already ordered. It does
+**not** stipulate that its chosen representative minimizes a matrix.
+Our finite ordinal index in #383 was an arbitrary complete-code order.
+The present lex minimum is one concrete uniform way to implement
+the manuscript's otherwise arbitrary fixed-representative choice,
+not the literal rule printed in version 52.
 
 Here the code type is the nested lexicographically ordered function
 space \`Lex (Fin n → Lex (Fin n → Bool))\`. The *inner* order compares
@@ -21,8 +26,10 @@ minimum lex-class has cardinality
 
 ## Six independent adversarial referee roles
 
-1. **Lex referee:** the outer order must compare rows in index order,
-   not use the incidental \`Fintype.equivFin\` numbering.
+1. **Manuscript/lex referee:** version 52 chooses arbitrary uniform
+   ordered representatives; lex minimization is a valid *option*,
+   not a printed requirement. The outer lex order compares rows in
+   index order, not the incidental \`Fintype.equivFin\` numbering.
 2. **Orientation referee:** every ordered pair is represented, so a
    reversed arrow or a missing edge changes the matrix.
 3. **Stabilizer referee:** the earlier result fixes P *pointwise*,
