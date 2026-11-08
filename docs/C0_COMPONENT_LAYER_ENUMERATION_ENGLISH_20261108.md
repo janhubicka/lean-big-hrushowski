@@ -66,6 +66,31 @@ components, so appending components in arbitrary
 tie-breaking order also keeps every intermediate prefix
 closed.
 
+## 2a. Finite peeling avoids building a sorter first
+
+There is an even simpler existence proof within each finite layer.
+Suppose Q is closed and `S_n⊆Q⊊S_(n+1)`.
+Choose x∈S_(n+1)\Q minimizing `|C(x)|`.
+Every strict predecessor of x belongs to S_(n+1)
+by closedness of the target. If it were not in Q,
+it would contradict the minimum. Consequently
+`L(x)⊆Q`; moreover P(x) is wholly contained
+in S_(n+1)\Q. The next set `Q∪P(x)` is closed
+and strictly larger, and is still inside S_(n+1).
+
+This is the new exact Lean endpoint
+`exists_enabled_component_in_closed_pair`.
+By finite induction on `|S_(n+1)\Q|`,
+the entire layer admits a finite list of complete
+component increments. The **induction and list**
+are not yet formally constructed; the local step is.
+
+An optional tie-breaking convention (smallest numerical
+component representative among the minimum-rank
+choices) would make the finite list canonical.
+The existence proof itself does not require a
+canonical tie breaker.
+
 ## 3. Concatenation has order type ω
 
 Concatenate these finite ordered lists of components for
