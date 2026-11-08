@@ -73,6 +73,7 @@ def adjacent(edges, u, v):
 
 def main():
     presentations = nested = values_checked = pairs_checked = 0
+    three_stage = composed_points = 0
     for n in range(1, 5):
         for edges in graphs(n):
             for m in range(1, n + 1):
@@ -102,6 +103,34 @@ def main():
                                 (x, y) for x, y in big_edges
                                 if x in C[b] and y in C[b]
                             }
+                            # Nested restrictions through C(b) and C(c)
+                            # give exactly the direct restriction to C(c).
+                            for c in C[b]:
+                                three_stage += 1
+                                assert C[c] <= C[b] <= C[a]
+                                local_edges = {
+                                    (x, y) for x in C[c] for y in C[c]
+                                    if adjacent(edges, x, y)
+                                }
+                                assert local_edges == {
+                                    (x, y) for x, y in small_edges
+                                    if x in C[c] and y in C[c]
+                                } == {
+                                    (x, y) for x, y in big_edges
+                                    if x in C[c] and y in C[c]
+                                }
+                                for u in C[c]:
+                                    composed_points += 1
+                                    assert u in C[b] and u in C[a]
+                                    assert C[u] <= C[c]
+                                    assert (C[u] & C[c]) == (
+                                        (C[u] & C[b]) & C[c]
+                                    ) == ((C[u] & C[a]) & C[c])
+                                    J = {v for v in C[u]
+                                         if adjacent(edges, u, v)}
+                                    assert (J & C[c]) == (
+                                        (J & C[b]) & C[c]
+                                    ) == ((J & C[a]) & C[c])
                             for u in C[b]:
                                 values_checked += 1
                                 assert C[u] <= C[b]
@@ -117,6 +146,10 @@ def main():
         1401, 10125, 16157, 32793
     ), (presentations, nested, values_checked, pairs_checked)
 
+    assert (three_stage, composed_points) == (
+        16157, 23929
+    ), (three_stage, composed_points)
+
     # Nonclosed restriction may delete a complete C and J member.
     C, edges = [{0, 1}, {1}], {(0, 1)}
     source, cut = {0, 1}, {0}
@@ -127,7 +160,9 @@ def main():
 
     print("PASS: 1401 finite minimal-step presentations, "
           "10125 nested generated pairs, 16157 full C/J transports, "
-          "32793 induced vertex-pair checks, and nonclosed counterexample")
+          f"32793 induced vertex-pair checks, {three_stage} nested "
+          f"three-stage restrictions, {composed_points} composition "
+          "point checks, and nonclosed counterexample")
 
 
 if __name__ == "__main__":
