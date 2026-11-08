@@ -1,5 +1,6 @@
 import BigHrushovski.HrushovskiEllentuckCFBirthTopology
 import BigHrushovski.CFBirthTopBlock
+import BigHrushovski.CFSingletonStageCoverage
 
 /-!
 # Empty-support requests detect the original birth levels
@@ -127,5 +128,49 @@ theorem birthLevelDomain_subset_iff_of_empty_requests
     have hzT : z ∈ birthLevelDomain F K T := hST hzS
     exact hzT (by rw [hz]; exact Finset.mem_singleton_self n)
   · exact birthLevelDomain_mono F K
+
+
+/-- The paper's real-growth C_F class assumptions provide a
+singleton-support witness on every actual birth level. -/
+theorem realBirthLevelSupport_singleton_witnesses
+    (F : ℝ → ℝ)
+    (hZero : F 0 = 0)
+    (hMono : Monotone F)
+    (hUnbounded : ∀ t : ℝ, ∃ x : ℝ, t < F x)
+    (hFree : HasFiniteClassDClosedFreeJoins (cardinalGrowth F))
+    (hEmptyClass : EmptyDClosedInGrowthClass (cardinalGrowth F))
+    (hSingleton : F 1 ≤ 2) :
+    ∀ n : ℕ,
+      ∃ z : Vertex (cardinalGrowth F)
+        (cardinalGrowthBound F hMono hUnbounded),
+        birthLevelSupport (cardinalGrowth F)
+          (cardinalGrowthBound F hMono hUnbounded) z = {n} :=
+  birthLevelSupport_all_singleton_witnesses
+    (cardinalGrowth F) (cardinalGrowthBound F hMono hUnbounded)
+    (singletonEmptySupportRequest_every_realStage
+      F hZero hMono hUnbounded hFree hEmptyClass hSingleton)
+
+/-- Under the published C_F class hypotheses, complete support
+domains preserve *and reflect* inclusion of level sets. This
+does not itself identify these domains with functional copy ranges. -/
+theorem realBirthLevelDomain_subset_iff
+    (F : ℝ → ℝ)
+    (hZero : F 0 = 0)
+    (hMono : Monotone F)
+    (hUnbounded : ∀ t : ℝ, ∃ x : ℝ, t < F x)
+    (hFree : HasFiniteClassDClosedFreeJoins (cardinalGrowth F))
+    (hEmptyClass : EmptyDClosedInGrowthClass (cardinalGrowth F))
+    (hSingleton : F 1 ≤ 2)
+    (S T : Set ℕ) :
+    birthLevelDomain (cardinalGrowth F)
+      (cardinalGrowthBound F hMono hUnbounded) S ⊆
+    birthLevelDomain (cardinalGrowth F)
+      (cardinalGrowthBound F hMono hUnbounded) T ↔
+      S ⊆ T :=
+  birthLevelDomain_subset_iff_of_empty_requests
+    (cardinalGrowth F) (cardinalGrowthBound F hMono hUnbounded)
+    (singletonEmptySupportRequest_every_realStage
+      F hZero hMono hUnbounded hFree hEmptyClass hSingleton)
+    S T
 
 end BigHrushovski.CFCoherentTower
