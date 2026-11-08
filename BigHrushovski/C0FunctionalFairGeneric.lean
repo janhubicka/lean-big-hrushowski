@@ -24,6 +24,8 @@ nonedges and all complete unary values.
 
 This should discharge the last genuine functional Fraïssé
 extension-property premise and identify the graph reduct with M₀.
+This lemma has a separate role-separated adversarial review in
+`docs/C0_UNCONDITIONAL_FUNCTIONAL_GENERIC_ADVERSARIAL_20261108.md`.
 The result is not to be marked verified before the full exact
 Lean kernel and adversarial audits pass.
 -/
