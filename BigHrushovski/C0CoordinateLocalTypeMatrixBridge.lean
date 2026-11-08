@@ -134,5 +134,97 @@ theorem LocalOrderedRepresentative.completeMatrix_eq_reflects
       hL]
     rfl
 
+
+/-- Extensionality of complete local matrix records. -/
+theorem CompleteLocalMatrix.ext
+    {M N : CompleteLocalMatrix n}
+    (hA : M.adjacencyPairs = N.adjacencyPairs)
+    (hC : M.closurePairs = N.closurePairs)
+    (hL : M.lowerPositions = N.lowerPositions) : M = N := by
+  cases M
+  cases N
+  cases hA
+  cases hC
+  cases hL
+  rfl
+
+/-- The converse to reflection: all graph pairs, all complete C-value
+memberships, and the exact lower positions determine the whole reified
+matrix. Thus top-orbit equivalence on actual local representatives is
+exactly complete unpointed isomorphism over their ordered lower parts. -/
+theorem LocalOrderedRepresentative.completeMatrix_relabel_iff
+    (r s : LocalOrderedRepresentative (Fin n))
+    (σ : Equiv.Perm (Fin n)) :
+    r.completeMatrix.relabel σ = s.completeMatrix ↔
+      (∀ u v : Fin n,
+        r.graph.adj u v ↔ s.graph.adj (σ u) (σ v)) ∧
+      (∀ u v : Fin n,
+        v ∈ r.value u ↔ σ v ∈ s.value (σ u)) ∧
+      (∀ u : Fin n, u ∈ r.lower ↔ σ u ∈ s.lower) := by
+  constructor
+  · exact r.completeMatrix_eq_reflects s σ
+  · rintro ⟨hAdj, hC, hLower⟩
+    apply CompleteLocalMatrix.ext
+    · ext p
+      rcases p with ⟨x,y⟩
+      have hAdj' :
+          r.graph.adj (σ.symm x) (σ.symm y) ↔
+            s.graph.adj x y := by
+        simpa only [σ.apply_symm_apply] using
+          hAdj (σ.symm x) (σ.symm y)
+      have hFull :=
+        (r.completeMatrix.mem_relabel_adjacency_iff
+          σ (σ.symm x) (σ.symm y)).trans
+          ((r.mem_completeMatrix_adj_iff (σ.symm x)
+              (σ.symm y)).trans
+            (hAdj'.trans
+              (s.mem_completeMatrix_adj_iff x y).symm))
+      simpa only [σ.apply_symm_apply] using hFull
+    · ext p
+      rcases p with ⟨x,y⟩
+      have hC' :
+          (σ.symm y) ∈ r.value (σ.symm x) ↔
+            y ∈ s.value x := by
+        simpa only [σ.apply_symm_apply] using
+          hC (σ.symm x) (σ.symm y)
+      have hFull :=
+        (r.completeMatrix.mem_relabel_closure_iff
+          σ (σ.symm x) (σ.symm y)).trans
+          ((r.mem_completeMatrix_closure_iff
+              (σ.symm x) (σ.symm y)).trans
+            (hC'.trans
+              (s.mem_completeMatrix_closure_iff x y).symm))
+      simpa only [σ.apply_symm_apply] using hFull
+    · ext x
+      have hFull :=
+        (r.completeMatrix.mem_relabel_lower_iff
+          σ (σ.symm x)).trans (hLower (σ.symm x))
+      simpa only [σ.apply_symm_apply,
+        LocalOrderedRepresentative.completeMatrix] using hFull
+
+/-- Equality of complete top-permutation orbits of ACTUAL local
+representatives is exactly a full unpointed graph/unary isomorphism
+fixing the lower positions. The order on the lower positions is supplied
+and held fixed; this does not select compatible lower orders globally. -/
+theorem LocalOrderedRepresentative.completeMatrix_orbit_eq_iff
+    (r s : LocalOrderedRepresentative (Fin n)) :
+    r.completeMatrix.topOrbit = s.completeMatrix.topOrbit ↔
+      ∃ σ : Equiv.Perm (Fin n),
+        (∀ u ∈ r.lower, σ u = u) ∧
+        (∀ u v : Fin n,
+          r.graph.adj u v ↔ s.graph.adj (σ u) (σ v)) ∧
+        (∀ u v : Fin n,
+          v ∈ r.value u ↔ σ v ∈ s.value (σ u)) ∧
+        (∀ u : Fin n, u ∈ r.lower ↔ σ u ∈ s.lower) := by
+  rw [r.completeMatrix.topOrbit_eq_iff s.completeMatrix]
+  constructor
+  · rintro ⟨σ,hFix,hEq⟩
+    obtain ⟨hAdj,hC,hLower⟩ :=
+      r.completeMatrix_eq_reflects s σ hEq
+    exact ⟨σ,hFix,hAdj,hC,hLower⟩
+  · rintro ⟨σ,hFix,hAdj,hC,hLower⟩
+    exact ⟨σ,hFix,(r.completeMatrix_relabel_iff s σ).mpr
+      ⟨hAdj,hC,hLower⟩⟩
+
 end FiniteUnaryCoordinates
 end BigHrushovski
