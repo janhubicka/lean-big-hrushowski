@@ -104,7 +104,7 @@ theorem fixedLowerMinimumCodeClass_card {n : ℕ} {κ : Type*}
     have hbf : SameLowerPositions P base f :=
       (mem_fixedLowerEnumerations_iff P base f).mp hf
     have hfg : SameLowerPositions P f g :=
-      (O.mem_localCodeFibre_iff P f g).mp hg |>.2
+      ((O.mem_localCodeFibre_iff P f g).mp hg).2
     apply (mem_fixedLowerEnumerations_iff P base g).mpr
     exact sameLowerPositions_trans P base f g hbf hfg
 
