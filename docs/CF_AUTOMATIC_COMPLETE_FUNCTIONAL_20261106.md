@@ -42,3 +42,7 @@ corresponding target finite preimage.
     restriction, composition or monoid theorem is promoted.
 
 These are internal hostile mathematical checks, not external reports.
+
+## Integration follow-up (8 November 2026)
+
+Parent full actual b-values PR #331 was squash-merged to `main` as `f7df51e69c3de60b06291e35f669e26915bae263`. This PR now targets `main`. The stacked head needs a fresh exact-head full Lean check against the integrated base before merging; the complete multi-level induction and arbitrary uniqueness remain unproved.
