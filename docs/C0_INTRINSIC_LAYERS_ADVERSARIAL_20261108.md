@@ -76,7 +76,26 @@ values force a strictly lower rank, whose component is
 present by the lower-rank condition. This is the exact
 intermediate-cut property needed by a finite sorter.
 
-## Referee H: adversarial exhaustive regression
+## Referee H: a minimal-rank component always exists
+
+For a proper finite closed inclusion S⊊Z, use the same
+minimal-cardinality selection pattern as the repository's
+existing `MinimalExtensions.exists_minimal_choice`:
+take the minimum element of the finite image
+`{ |C(x)| : x∈Z\S }` and an x realizing it.
+If y∈L(x), closedness of Z forces y∈Z. If y∉S,
+then y is another candidate with strictly smaller
+rank, contradicting minimality. Hence L(x)⊆S.
+
+Moreover P(x) lies in Z\S because both S and Z
+are closed and all vertices in P(x) have the same
+complete unary value. Thus S∪P(x) is again closed,
+properly extends S, and stays within Z. This is
+formally stated as
+`exists_enabled_component_in_closed_pair`.
+The method requires no infinite priority search.
+
+## Referee I: adversarial exhaustive regression
 
 The independent Python regression enumerates **all 66,067**
 set-valued unary maps on carriers of size at most four.
@@ -85,12 +104,14 @@ complete maps: 1,906 finite cut/layer checks,
 1,516 component-in-layer checks, 1,250 strict
 predecessors, 9,380 rank-cut closedness checks, and
 3,289 lower-rank-closed whole-component segments among
-4,562 candidate finite layer segments.
+4,562 candidate finite layer segments, and **7,588**
+minimal-rank component choices across 6,071
+proper closed pairs.
 No counterexample was found in a separate local run.
 The script is included in dedicated CI but is not
 a substitute for Lean kernel proof checking.
 
-## Referee I: the missing ω-ordering and graph theorem
+## Referee J: the missing ω-ordering and graph theorem
 
 This PR proves the finite combinatorial ingredients
 only. A finite sorter and concatenation into a literal
@@ -103,7 +124,7 @@ Those are separately recorded Track A proof obligations.
 ## Verification gate
 
 `CheckC0IntrinsicLayers.lean` prints the exact axioms
-of twelve new theorems. The dedicated workflow builds the
+of thirteen new theorems. The dedicated workflow builds the
 new module, runs the axiom checker, placeholder scanner,
 and exhaustive regression. Exact CI on this head and
 its parent intrinsic-component branch must pass before
