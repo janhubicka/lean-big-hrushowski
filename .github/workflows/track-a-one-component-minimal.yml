@@ -5,11 +5,13 @@ on:
     paths:
       - 'BigHrushovski/C0OneRemainingComponent.lean'
       - 'CheckC0OneComponentMinimal.lean'
+      - 'scripts/check_c0_one_component_minimal.py'
       - '.github/workflows/track-a-one-component-minimal.yml'
   pull_request:
     paths:
       - 'BigHrushovski/C0OneRemainingComponent.lean'
       - 'CheckC0OneComponentMinimal.lean'
+      - 'scripts/check_c0_one_component_minimal.py'
       - '.github/workflows/track-a-one-component-minimal.yml'
   workflow_dispatch:
 
@@ -47,3 +49,5 @@ jobs:
           lake env lean CheckC0OneComponentMinimal.lean > c0-one-component-axioms.log
           python3 scripts/check_axioms.py c0-one-component-axioms.log CheckC0OneComponentMinimal.lean
           python3 scripts/check_no_placeholders.py
+      - name: Exhaustive finite single-component check
+        run: python3 scripts/check_c0_one_component_minimal.py
