@@ -12,7 +12,19 @@ transitivity axiom gives the **entire** C(x)⊆C(i)⊆S_n.
 No arbitrary iteration or countable union is used to
 prove the finite cut closed.
 
-## Referee B: fixed labels force exhaustion
+## Referee B: the next layer comes from one generator
+
+The exact successor identity is
+`S_(n+1) = S_n ∪ C(n)`, and hence
+`D_n = C(n) \ S_n`. These are literal finite
+set equalities, requiring no closure axioms.
+In particular the finite sorting problem at layer n
+uses only vertices of **one** finite complete closure.
+This observation also rules out an accidental
+ω²-style construction by processing all possible
+component ranks globally.
+
+## Referee C: fixed labels force exhaustion
 
 The generator n belongs to S_(n+1) by reflexivity.
 Consequently the sequence of finite cuts covers the
@@ -21,7 +33,7 @@ avoids an unproved fairness postulate for the eventual
 enumeration; it does not itself construct the list of
 components.
 
-## Referee C: layers do not split intrinsic components
+## Referee D: layers do not split intrinsic components
 
 If x∈S_(n+1)\S_n and y has exactly the **same entire**
 C-value, then y∈C(x)⊆S_(n+1).
@@ -31,7 +43,7 @@ Therefore y lies in the same fresh layer.
 The argument does not confuse equality of C-values
 with mere membership in C(x).
 
-## Referee D: dependency rank decreases strictly
+## Referee E: dependency rank decreases strictly
 
 For y∈C(x)\P(x), transitivity says C(y)⊆C(x),
 and non-membership in P(x) rules out equality.
@@ -40,7 +52,7 @@ a component in D_n is either in an earlier S_n,
 or in D_n with lower rank. An infinite globally
 rank-sorted sequence is **not** inferred.
 
-## Referee E: no partial rank closure
+## Referee F: no partial rank closure
 
 The rank-threshold cut
 `S_n ∪ {x∈D_n: |C(x)|≤r}`
@@ -50,7 +62,7 @@ or y belongs to D_n and `|C(y)|≤|C(x)|≤r`.
 These cuts take every member of an intrinsic component
 together because equal C-values have equal cardinality.
 
-## Referee F: whole-component segments at a tied rank
+## Referee G: whole-component segments at a tied rank
 
 The new `unaryFiniteLayer_segment_closed` theorem handles
 an arbitrary finite set t of **whole** components in the
@@ -64,7 +76,7 @@ values force a strictly lower rank, whose component is
 present by the lower-rank condition. This is the exact
 intermediate-cut property needed by a finite sorter.
 
-## Referee G: adversarial exhaustive regression
+## Referee H: adversarial exhaustive regression
 
 The independent Python regression enumerates **all 66,067**
 set-valued unary maps on carriers of size at most four.
@@ -78,7 +90,7 @@ No counterexample was found in a separate local run.
 The script is included in dedicated CI but is not
 a substitute for Lean kernel proof checking.
 
-## Referee H: the missing ω-ordering and graph theorem
+## Referee I: the missing ω-ordering and graph theorem
 
 This PR proves the finite combinatorial ingredients
 only. A finite sorter and concatenation into a literal
@@ -91,7 +103,7 @@ Those are separately recorded Track A proof obligations.
 ## Verification gate
 
 `CheckC0IntrinsicLayers.lean` prints the exact axioms
-of ten new theorems. The dedicated workflow builds the
+of twelve new theorems. The dedicated workflow builds the
 new module, runs the axiom checker, placeholder scanner,
 and exhaustive regression. Exact CI on this head and
 its parent intrinsic-component branch must pass before
