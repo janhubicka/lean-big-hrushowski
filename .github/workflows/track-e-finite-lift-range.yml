@@ -1,0 +1,47 @@
+name: Track E finite-lift full range criterion
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckFiniteLiftRangeCriterion.lean'
+      - 'CheckTrackEFiniteLiftRangeCriterion.lean'
+      - '.github/workflows/track-e-finite-lift-range.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckFiniteLiftRangeCriterion.lean'
+      - 'CheckTrackEFiniteLiftRangeCriterion.lean'
+      - '.github/workflows/track-e-finite-lift-range.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-full-range-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-full-range-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile full-range conditional theorem and audit dependencies
+        run: |
+          lake build BigHrushovski.HrushovskiEllentuckFiniteLiftRangeCriterion
+          lake env lean CheckTrackEFiniteLiftRangeCriterion.lean > finite-lift-range-axioms.log
+          cat finite-lift-range-axioms.log
+          python3 scripts/check_axioms.py finite-lift-range-axioms.log CheckTrackEFiniteLiftRangeCriterion.lean
+          python3 scripts/check_no_placeholders.py
