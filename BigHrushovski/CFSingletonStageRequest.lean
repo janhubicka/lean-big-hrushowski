@@ -199,5 +199,39 @@ theorem singletonStageRequest_exists
     (supportGraph G P) (GrowthAllowedLocal F P)
     (K 0) 1 hK t
 
+
+/-- The same literal one-vertex request above can be chosen with
+*exactly empty named old support*. This retains information hidden by
+the earlier `Nonempty` conclusion, without strengthening any numerical
+or growth-class hypothesis. -/
+theorem singletonStageRequest_exists_empty_support
+    (G : GraphOn U) (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (hEmpty : G.toPredimension.IsDClosed ∅ Finset.univ)
+    (hZero : F 0 ≤ 0)
+    (hOne : F 1 ≤ 2)
+    (hK : 1 ≤ K 0) :
+    ∃ r : StageRequest G (GrowthAllowedLocal F)
+        (fun P => K P.card),
+      r.support = ∅ := by
+  classical
+  let P : Finset U := ∅
+  let H : GraphOn (Sum (SupportCarrier U P) (Fin 1)) :=
+    singletonLocalGraph U
+  let t : CFLocalCatalogue.OrderedLocalType
+      (SupportCarrier U P) (supportGraph G P)
+      (GrowthAllowedLocal F P) 1 :=
+    { graph := H
+      base_agrees := by
+        intro p q
+        have hEmpty : p.val ∈ (∅ : Finset U) := p.property
+        exact (Finset.notMem_empty p.val hEmpty).elim
+      allowed := singleton_growth F hZero hOne
+      minimal := singleton_minimal
+      exact_support := singleton_exact_support }
+  refine ⟨⟨P, hEmpty, ?_⟩, rfl⟩
+  exact CFLocalCatalogue.toBounded
+    (supportGraph G P) (GrowthAllowedLocal F P)
+    (K 0) 1 hK t
+
 end CFStageCatalogue
 end BigHrushovski
