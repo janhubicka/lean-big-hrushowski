@@ -1,0 +1,3 @@
+import BigHrushovski.C0OneRemainingComponent
+
+#print axioms BigHrushovski.FiniteC0.closed_complement_one_component_minimal
