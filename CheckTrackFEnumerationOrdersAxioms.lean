@@ -1,0 +1,27 @@
+import BigHrushovski.N0EnumerationOrders
+import BigHrushovski.N0ComponentFirstPositions
+
+#print axioms BigHrushovski.FiniteOrientation.orderBefore_irrefl
+#print axioms BigHrushovski.FiniteOrientation.orderBefore_trans
+#print axioms BigHrushovski.FiniteOrientation.orderBefore_total
+#print axioms BigHrushovski.FiniteOrientation.enumeration_eq_of_same_order
+#print axioms BigHrushovski.FiniteOrientation.sameOrder_iff_eq
+#print axioms BigHrushovski.FiniteOrientation.orderBefore_injective
+#print axioms BigHrushovski.FiniteOrientation.localCodeOrderRelations_card
+
+
+#print axioms BigHrushovski.FiniteOrientation.componentObject_nonempty
+#print axioms BigHrushovski.FiniteOrientation.component_eq_of_mem_componentObject
+#print axioms BigHrushovski.FiniteOrientation.firstComponentPosition_mem
+#print axioms BigHrushovski.FiniteOrientation.firstComponentPosition_le
+#print axioms BigHrushovski.FiniteOrientation.firstComponentPosition_injective
+#print axioms BigHrushovski.FiniteOrientation.firstComponentPosition_respectsDependencies
+
+#print axioms BigHrushovski.FiniteOrientation.distinctComponentObjects_disjoint
+#print axioms BigHrushovski.FiniteOrientation.all_vertices_before_of_firstPosition_lt
+#print axioms BigHrushovski.FiniteOrientation.firstPosition_lt_iff_all_vertices_before
+
+#print axioms BigHrushovski.FiniteOrientation.rankingFromEnumeration_isLegal
+
+#print axioms BigHrushovski.FiniteOrientation.vertices_before_iff_component_first_before
+#print axioms BigHrushovski.FiniteOrientation.enumeration_eq_of_same_component_order_and_local_orders

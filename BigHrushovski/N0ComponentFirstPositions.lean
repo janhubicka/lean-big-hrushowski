@@ -1,0 +1,347 @@
+import BigHrushovski.N0ComponentLinearExtensions
+import BigHrushovski.N0EnumerationOrders
+import Mathlib.Data.Finset.Sort
+import Mathlib.Tactic
+
+/-!
+# Recovering the component order from a finite vertex enumeration
+
+Every component has a unique first position in a complete
+enumeration of the labelled vertices. Different components
+have distinct first positions. If the enumeration puts every
+proper directed successor before its source, these first
+positions respect the intrinsic component dependency order.
+
+These are structural facts about actual enumerations. No
+"permitted order" is defined by a product formula here;
+the remaining task is to show component intervals and
+local canonical choices give a bijective reconstruction.
+-/
+
+namespace BigHrushovski
+namespace FiniteOrientation
+
+variable {V : Type*} [Fintype V] [DecidableEq V]
+variable (O : FiniteOrientation V)
+
+/-- An actual strongly connected component is nonempty. -/
+theorem componentObject_nonempty (B : O.ComponentObject) :
+    B.val.Nonempty := by
+  have hB : B.val ∈ (Finset.univ : Finset V).image O.component := B.property
+  obtain ⟨x, _, hx⟩ := Finset.mem_image.mp hB
+  refine ⟨x, ?_⟩
+  rw [← hx]
+  exact O.self_mem_component x
+
+/-- Membership in a component recovers its intrinsic component set. -/
+theorem component_eq_of_mem_componentObject
+    (B : O.ComponentObject) {x : V} (hx : x ∈ B.val) :
+    O.component x = B.val := by
+  have hB : B.val ∈ (Finset.univ : Finset V).image O.component := B.property
+  obtain ⟨y, _, hy⟩ := Finset.mem_image.mp hB
+  have hxy : O.StronglyConnected y x := by
+    apply (O.mem_component_iff y x).mp
+    rw [hy]
+    exact hx
+  exact (O.component_eq_of_stronglyConnected hxy).symm.trans hy
+
+/-- The first occurrence of a component in a complete labelled
+vertex enumeration. The minimum exists since each SCC is nonempty. -/
+noncomputable def firstComponentPosition {n : ℕ}
+    (e : Fin n ≃ V) (B : O.ComponentObject) : Fin n :=
+  (B.val.image e.symm).min'
+    (Finset.image_nonempty.mpr (O.componentObject_nonempty B))
+
+/-- A component's first position is occupied by one of its vertices. -/
+theorem firstComponentPosition_mem {n : ℕ}
+    (e : Fin n ≃ V) (B : O.ComponentObject) :
+    ∃ x ∈ B.val, e.symm x = O.firstComponentPosition e B := by
+  have hMem : O.firstComponentPosition e B ∈ B.val.image e.symm :=
+    Finset.min'_mem (B.val.image e.symm)
+      (Finset.image_nonempty.mpr (O.componentObject_nonempty B))
+  exact Finset.mem_image.mp hMem
+
+theorem firstComponentPosition_le {n : ℕ}
+    (e : Fin n ≃ V) (B : O.ComponentObject)
+    {x : V} (hx : x ∈ B.val) :
+    O.firstComponentPosition e B ≤ e.symm x := by
+  exact Finset.min'_le _ _ (Finset.mem_image.mpr ⟨x, hx, rfl⟩)
+
+/-- Two distinct components cannot start at the same vertex
+position in a bijective enumeration. -/
+theorem firstComponentPosition_injective {n : ℕ}
+    (e : Fin n ≃ V) :
+    Function.Injective (O.firstComponentPosition e) := by
+  intro B C hFirst
+  obtain ⟨x, hx, hxFirst⟩ := O.firstComponentPosition_mem e B
+  obtain ⟨y, hy, hyFirst⟩ := O.firstComponentPosition_mem e C
+  have hxyRanks : e.symm x = e.symm y :=
+    hxFirst.trans (hFirst.trans hyFirst.symm)
+  have hxy : x = y := e.symm.injective hxyRanks
+  subst y
+  have hBx := O.component_eq_of_mem_componentObject B hx
+  have hCx := O.component_eq_of_mem_componentObject C hy
+  apply Subtype.ext
+  exact hBx.symm.trans hCx
+
+/-- The successor-first condition for a complete vertex
+enumeration: any vertex in a proper successor component
+occurs before every vertex in the component depending on it. -/
+def IsSuccessorFirstEnumeration {n : ℕ}
+    (e : Fin n ≃ V) : Prop :=
+  ∀ x y : V, O.StrictSuccessor x y → e.symm y < e.symm x
+
+/-- The order of component first appearances necessarily extends
+the intrinsic dependency order when the vertices are successor-first.
+This statement does not assume the components are intervals. -/
+theorem firstComponentPosition_respectsDependencies {n : ℕ}
+    (e : Fin n ≃ V)
+    (he : O.IsSuccessorFirstEnumeration e)
+    (B C : O.ComponentObject)
+    (hBC : O.ComponentPrecedes B.val C.val) :
+    O.firstComponentPosition e B <
+      O.firstComponentPosition e C := by
+  obtain ⟨c, hc, hcFirst⟩ := O.firstComponentPosition_mem e C
+  obtain ⟨b, hb, _⟩ := O.firstComponentPosition_mem e B
+  have hC : O.component c = C.val :=
+    O.component_eq_of_mem_componentObject C hc
+  have hB : O.component b = B.val :=
+    O.component_eq_of_mem_componentObject B hb
+  have hStrict : O.StrictSuccessor c b := by
+    apply (O.componentPrecedes_iff_strictSuccessor c b).mp
+    simpa only [hB, hC] using hBC
+  have hcb : e.symm b < e.symm c := he c b hStrict
+  calc
+    O.firstComponentPosition e B ≤ e.symm b :=
+      O.firstComponentPosition_le e B hb
+    _ < e.symm c := hcb
+    _ = O.firstComponentPosition e C := hcFirst
+
+
+/-- Different SCCs have disjoint vertex sets. -/
+theorem distinctComponentObjects_disjoint
+    {B C : O.ComponentObject} (hBC : B ≠ C) :
+    Disjoint B.val C.val := by
+  apply Finset.disjoint_left.mpr
+  intro x hxB hxC
+  apply hBC
+  apply Subtype.ext
+  have hB := O.component_eq_of_mem_componentObject B hxB
+  have hC := O.component_eq_of_mem_componentObject C hxC
+  exact hB.symm.trans hC
+
+/-- A component is an interval of an enumeration when no
+vertex from another component occurs strictly between two
+vertices of that component. -/
+def IsComponentIntervalEnumeration {n : ℕ}
+    (e : Fin n ≃ V) : Prop :=
+  ∀ B : O.ComponentObject,
+    ∀ {x y z : V},
+      x ∈ B.val → z ∈ B.val →
+      e.symm x < e.symm y →
+      e.symm y < e.symm z →
+      y ∈ B.val
+
+/-- If all SCCs are intervals, the order of their first
+positions is the order of *all* their vertices. -/
+theorem all_vertices_before_of_firstPosition_lt {n : ℕ}
+    (e : Fin n ≃ V)
+    (hInterval : O.IsComponentIntervalEnumeration e)
+    (B C : O.ComponentObject)
+    (hFirst : O.firstComponentPosition e B <
+      O.firstComponentPosition e C)
+    {b c : V} (hb : b ∈ B.val) (hc : c ∈ C.val) :
+    e.symm b < e.symm c := by
+  have hBC : B ≠ C := by
+    intro heq
+    subst C
+    exact (lt_irrefl _) hFirst
+  have hcNotB : c ∉ B.val := by
+    intro hcB
+    exact (Finset.disjoint_left.mp
+      (O.distinctComponentObjects_disjoint hBC)) hcB hc
+  obtain ⟨b₀, hb₀, hb₀First⟩ :=
+    O.firstComponentPosition_mem e B
+  have hFirstBltC : e.symm b₀ < e.symm c := by
+    calc
+      e.symm b₀ = O.firstComponentPosition e B := hb₀First
+      _ < O.firstComponentPosition e C := hFirst
+      _ ≤ e.symm c := O.firstComponentPosition_le e C hc
+  by_contra hNot
+  have hcleb : e.symm c ≤ e.symm b := le_of_not_gt hNot
+  rcases lt_or_eq_of_le hcleb with hlt | heq
+  · exact hcNotB (hInterval B hb₀ hb hFirstBltC hlt)
+  · have hcb : c = b := e.symm.injective heq
+    subst c
+    exact hcNotB hb
+
+/-- Under the interval condition, the first-position order
+of SCCs is exactly their induced order in the complete vertex
+enumeration, so the component ordering can be recovered uniquely. -/
+theorem firstPosition_lt_iff_all_vertices_before {n : ℕ}
+    (e : Fin n ≃ V)
+    (hInterval : O.IsComponentIntervalEnumeration e)
+    (B C : O.ComponentObject) :
+    O.firstComponentPosition e B <
+      O.firstComponentPosition e C ↔
+    ∀ b ∈ B.val, ∀ c ∈ C.val, e.symm b < e.symm c := by
+  constructor
+  · intro h b hb c hc
+    exact O.all_vertices_before_of_firstPosition_lt
+      e hInterval B C h hb hc
+  · intro h
+    obtain ⟨b, hb, hbFirst⟩ := O.firstComponentPosition_mem e B
+    obtain ⟨c, hc, hcFirst⟩ := O.firstComponentPosition_mem e C
+    have hbc : e.symm b < e.symm c := h b hb c hc
+    simpa only [hbFirst, hcFirst] using hbc
+
+
+/-- A wrapper for the actual component type, keeping its
+first-position order separate from the inherited inclusion
+order on finite vertex sets. -/
+structure ComponentOrderCarrier where
+  component : O.ComponentObject
+
+/-- Forgetting the wrapper is a bijection with the actual
+strongly connected components of the original orientation. -/
+def componentOrderCarrierEquiv :
+    O.ComponentObject ≃ O.ComponentOrderCarrier where
+  toFun := fun B => ⟨B⟩
+  invFun := fun C => C.component
+  left_inv := fun B => rfl
+  right_inv := fun C => by cases C; rfl
+
+noncomputable instance componentOrderCarrierFintype :
+    Fintype O.ComponentOrderCarrier := by
+  classical
+  exact Fintype.ofEquiv O.ComponentObject
+    O.componentOrderCarrierEquiv
+
+/-- The strict linear order obtained by comparing the first
+vertex occurrence of each SCC, without confusing it with
+subset inclusion on component vertex sets. -/
+noncomputable def componentOrderCarrierLinearOrder {n : ℕ}
+    (e : Fin n ≃ V) : LinearOrder O.ComponentOrderCarrier :=
+  LinearOrder.lift'
+    (fun B : O.ComponentOrderCarrier =>
+      O.firstComponentPosition e B.component)
+    (by
+      intro B C h
+      cases B with
+      | mk B =>
+        cases C with
+        | mk C =>
+          congr 1
+          exact O.firstComponentPosition_injective e h)
+
+/-- Every finite vertex enumeration determines consecutive
+ranks of the actual components, in first-occurrence order. -/
+noncomputable def rankingFromEnumeration {n : ℕ}
+    (e : Fin n ≃ V) : O.ComponentRanking := by
+  classical
+  letI : LinearOrder O.ComponentOrderCarrier :=
+    O.componentOrderCarrierLinearOrder e
+  have hcard : Fintype.card O.ComponentOrderCarrier =
+      Fintype.card O.ComponentObject :=
+    Fintype.card_congr O.componentOrderCarrierEquiv.symm
+  exact O.componentOrderCarrierEquiv.trans
+    ((Fintype.orderIsoFinOfCardEq O.ComponentOrderCarrier hcard).symm.toEquiv)
+
+/-- For a successor-first vertex enumeration, the recovered
+consecutive component ranking respects the intrinsic SCC
+dependency relation. -/
+theorem rankingFromEnumeration_isLegal {n : ℕ}
+    (e : Fin n ≃ V)
+    (he : O.IsSuccessorFirstEnumeration e) :
+    O.IsLinearComponentRanking (O.rankingFromEnumeration e) := by
+  classical
+  letI : LinearOrder O.ComponentOrderCarrier :=
+    O.componentOrderCarrierLinearOrder e
+  have hcard : Fintype.card O.ComponentOrderCarrier =
+      Fintype.card O.ComponentObject :=
+    Fintype.card_congr O.componentOrderCarrierEquiv.symm
+  let E : O.ComponentOrderCarrier ≃o Fin (Fintype.card O.ComponentObject) :=
+    (Fintype.orderIsoFinOfCardEq O.ComponentOrderCarrier hcard).symm
+  intro B C hBC
+  have hFirst : O.firstComponentPosition e B <
+      O.firstComponentPosition e C :=
+    O.firstComponentPosition_respectsDependencies e he B C hBC
+  have hWrapped : (⟨B⟩ : O.ComponentOrderCarrier) <
+      (⟨C⟩ : O.ComponentOrderCarrier) := by
+    change O.firstComponentPosition e B <
+      O.firstComponentPosition e C
+    exact hFirst
+  have hRank := E.strictMono hWrapped
+  change E ⟨B⟩ < E ⟨C⟩
+  exact hRank
+
+
+/-- If SCCs are intervals, every comparison of vertices from
+distinct SCCs agrees with the order of their first positions.
+The interval hypothesis is essential: two components may
+otherwise be interleaved in an arbitrary enumeration. -/
+theorem vertices_before_iff_component_first_before {n : ℕ}
+    (e : Fin n ≃ V)
+    (hInterval : O.IsComponentIntervalEnumeration e)
+    (B C : O.ComponentObject) (hBC : B ≠ C)
+    {b c : V} (hb : b ∈ B.val) (hc : c ∈ C.val) :
+    e.symm b < e.symm c ↔
+      O.firstComponentPosition e B < O.firstComponentPosition e C := by
+  constructor
+  · intro hbc
+    have hPosNe : O.firstComponentPosition e B ≠
+        O.firstComponentPosition e C := by
+      intro hEq
+      exact hBC (O.firstComponentPosition_injective e hEq)
+    rcases lt_or_gt_of_ne hPosNe with hFirst | hReverse
+    · exact hFirst
+    · have hcb : e.symm c < e.symm b :=
+        O.all_vertices_before_of_firstPosition_lt
+          e hInterval C B hReverse hc hb
+      exact False.elim ((not_lt_of_ge hcb.le) hbc)
+  · intro hFirst
+    exact O.all_vertices_before_of_firstPosition_lt
+      e hInterval B C hFirst hb hc
+
+/-- A complete labelled enumeration with SCC intervals is
+determined by two pieces of information: the order of its
+component intervals and the order within each component.
+No third inter-component interleaving choice is possible. -/
+theorem enumeration_eq_of_same_component_order_and_local_orders {n : ℕ}
+    (e f : Fin n ≃ V)
+    (he : O.IsComponentIntervalEnumeration e)
+    (hf : O.IsComponentIntervalEnumeration f)
+    (hBlocks : ∀ B C : O.ComponentObject,
+      (O.firstComponentPosition e B < O.firstComponentPosition e C) ↔
+      (O.firstComponentPosition f B < O.firstComponentPosition f C))
+    (hLocal : ∀ x y : V,
+      O.StronglyConnected x y →
+      (e.symm x < e.symm y ↔ f.symm x < f.symm y)) :
+    e = f := by
+  apply enumeration_eq_of_same_order e f
+  intro x y
+  change (e.symm x < e.symm y) ↔ (f.symm x < f.symm y)
+  by_cases hxy : O.StronglyConnected x y
+  · exact hLocal x y hxy
+  · let B : O.ComponentObject :=
+      ⟨O.component x, O.component_mem_components x⟩
+    let C : O.ComponentObject :=
+      ⟨O.component y, O.component_mem_components y⟩
+    have hBC : B ≠ C := by
+      intro h
+      have hComp : O.component x = O.component y :=
+        congrArg Subtype.val h
+      exact hxy ((O.stronglyConnected_iff_component_eq x y).mpr hComp)
+    have hxB : x ∈ B.val := O.self_mem_component x
+    have hyC : y ∈ C.val := O.self_mem_component y
+    calc
+      e.symm x < e.symm y ↔
+          O.firstComponentPosition e B < O.firstComponentPosition e C :=
+        O.vertices_before_iff_component_first_before e he B C hBC hxB hyC
+      _ ↔ O.firstComponentPosition f B < O.firstComponentPosition f C :=
+        hBlocks B C
+      _ ↔ f.symm x < f.symm y :=
+        (O.vertices_before_iff_component_first_before f hf B C hBC hxB hyC).symm
+
+end FiniteOrientation
+end BigHrushovski

@@ -469,3 +469,7 @@ import BigHrushovski.CFBirthInfinitude
 import BigHrushovski.CFRealNatRecognition
 import BigHrushovski.CFPublishedNatRecognition
 import BigHrushovski.CFRealBirthRecognition
+
+-- Track F: certified finite orientation and component data.
+import BigHrushovski.N0ComponentRankPrefixes
+import BigHrushovski.N0LocalCode

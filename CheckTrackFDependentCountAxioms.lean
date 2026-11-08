@@ -1,0 +1,5 @@
+import BigHrushovski.FiniteDependentChoiceCount
+
+#print axioms BigHrushovski.FiniteChoiceHistory.length_of_mem_histories
+#print axioms BigHrushovski.FiniteChoiceHistory.history_first_choice_disjoint
+#print axioms BigHrushovski.FiniteChoiceHistory.histories_card
