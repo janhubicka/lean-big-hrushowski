@@ -1,0 +1,40 @@
+name: Track F intrinsic lower initial segments
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0LowerInitialSegment.lean'
+      - 'CheckTrackFLowerInitialSegmentAxioms.lean'
+      - 'scripts/check_track_f_lower_initial.py'
+      - '.github/workflows/track-f-lower-initial.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0LowerInitialSegment.lean'
+      - 'CheckTrackFLowerInitialSegmentAxioms.lean'
+      - 'scripts/check_track_f_lower_initial.py'
+      - '.github/workflows/track-f-lower-initial.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lower-initial:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Order.Prod.Lex.Basic
+      - name: Build true SCC lower initial segment theorem
+        run: lake build BigHrushovski.N0LowerInitialSegment
+      - name: Kernel axioms and placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFLowerInitialSegmentAxioms.lean > track-f-lower-initial-axioms.log
+          python3 scripts/check_axioms.py track-f-lower-initial-axioms.log CheckTrackFLowerInitialSegmentAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite adversarial regression
+        run: python3 scripts/check_track_f_lower_initial.py
