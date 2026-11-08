@@ -12,3 +12,8 @@ Existence of such blocks at every level is an explicit hypothesis.
 #print axioms BigHrushovski.CFCoherentTower.birthLevelSupport_root_empty_request
 #print axioms BigHrushovski.CFCoherentTower.birthLevelSupport_all_singleton_witnesses
 #print axioms BigHrushovski.CFCoherentTower.birthLevelDomain_subset_iff_of_empty_requests
+
+#print axioms BigHrushovski.CFStageCatalogue.singletonStageRequest_exists_empty_support
+#print axioms BigHrushovski.CFCoherentTower.singletonEmptySupportRequest_every_realStage
+#print axioms BigHrushovski.CFCoherentTower.realBirthLevelSupport_singleton_witnesses
+#print axioms BigHrushovski.CFCoherentTower.realBirthLevelDomain_subset_iff
