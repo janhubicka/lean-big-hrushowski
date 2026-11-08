@@ -4,11 +4,15 @@ on:
   push:
     paths:
       - 'BigHrushovski/HrushovskiEllentuckEmptyRequestWitness.lean'
+      - 'BigHrushovski/CFSingletonStageRequest.lean'
+      - 'BigHrushovski/CFSingletonStageCoverage.lean'
       - 'CheckTrackEEmptyRequestWitness.lean'
       - '.github/workflows/track-e-empty-request-witness.yml'
   pull_request:
     paths:
       - 'BigHrushovski/HrushovskiEllentuckEmptyRequestWitness.lean'
+      - 'BigHrushovski/CFSingletonStageRequest.lean'
+      - 'BigHrushovski/CFSingletonStageCoverage.lean'
       - 'CheckTrackEEmptyRequestWitness.lean'
       - '.github/workflows/track-e-empty-request-witness.yml'
   workflow_dispatch:
