@@ -159,6 +159,44 @@ def main():
     assert code((0,1,2),{0},C,edges)!=code(
         (0,1,2),{0},C2,edges2)
 
+    # Five-vertex adversarial negative control: stagewise tie-breaking by
+    # RAW vertex names is not presentation-independent, even in a genuine
+    # sparse C0 presentation with minimal strong component increments.
+    #
+    # K4 on 0,1,2,3 has a symmetric three-vertex top component over 0.
+    # Vertex 4 is joined only to 1 and distinguishes these top vertices.
+    # The three prescribed cuts are all minimal strong, every induced
+    # subset has nonnegative predimension, but exchanging the NAMES
+    # 1 and 3 changes the next local code under the raw-name tie breaker.
+    E5=frozenset(combinations(range(4),2)) | frozenset({(1,4)})
+    k5=(0,1,1,1,2)
+    cuts5=[frozenset(u for u in range(5) if k5[u]<i)
+           for i in range(4)]
+    assert all(minimal(cuts5[i],cuts5[i+1],E5)
+               for i in range(3))
+    assert all(predim(z,E5)>=0 for z in subsets(frozenset(range(5))))
+    C5=values(k5,E5)
+    assert C5[0]==frozenset({0})
+    assert all(C5[u]==frozenset(range(4)) for u in (1,2,3))
+    assert C5[4]==frozenset(range(5))
+    base5=choose_all(k5,C5,E5)
+    swap={0:0,1:3,2:2,3:1,4:4}
+    k5r=[None]*5; C5r=[None]*5
+    for u in range(5):
+        k5r[swap[u]]=k5[u]
+        C5r[swap[u]]=frozenset(swap[v] for v in C5[u])
+    E5r=frozenset(tuple(sorted((swap[u],swap[v]))) for u,v in E5)
+    renamed5=choose_all(k5r,C5r,E5r)
+    assert base5[4]!=renamed5[swap[4]]
+
+    # This does NOT refute the relative selection theorem: once the
+    # COMPLETE ORDER of the lower part is supplied and TRANSPORTED,
+    # the local minimization gives the same ordered isomorphism type.
+    fixed_lower=(0,1,2,3)
+    transported_lower=tuple(swap[u] for u in fixed_lower)
+    assert canonical_order(fixed_lower,(4,),C5,E5)[0] == \
+           canonical_order(transported_lower,(4,),C5r,E5r)[0]
+
     print(f"PASS {presentations} minimal-strong presentations, "
           f"{locals_seen} canonical local codes, {compared} full "
           f"relabelled-type comparisons, {multivertex} non-singleton "
