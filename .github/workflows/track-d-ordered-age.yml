@@ -21,6 +21,7 @@ on:
       - "scripts/check_c0_coordinate_relabel.py"
       - "scripts/check_c0_nested_local_orders.py"
       - "scripts/check_c0_local_order_normalizer.py"
+      - "docs/TRACK_D_UNIFORM_LOCAL_ORDER_SELECTION_20261108.md"
   workflow_dispatch:
 
 permissions:
