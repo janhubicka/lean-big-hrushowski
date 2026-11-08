@@ -1,0 +1,40 @@
+name: Track F NF literal finite sink-star extension
+on:
+  push:
+    paths:
+      - 'BigHrushovski/NFSinkStarExtension.lean'
+      - 'CheckTrackFNFSinkStarAxioms.lean'
+      - 'scripts/check_track_f_nf_sink_star.py'
+      - '.github/workflows/track-f-nf-sink-star.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/NFSinkStarExtension.lean'
+      - 'CheckTrackFNFSinkStarAxioms.lean'
+      - 'scripts/check_track_f_nf_sink_star.py'
+      - '.github/workflows/track-f-nf-sink-star.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sink-star:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic
+      - name: Build genuine finite sink-star orientation
+        run: lake build BigHrushovski.NFSinkStarExtension
+      - name: Kernel axiom and placeholder audit
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFNFSinkStarAxioms.lean > track-f-nf-sink-star-axioms.log
+          python3 scripts/check_axioms.py track-f-nf-sink-star-axioms.log CheckTrackFNFSinkStarAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Adversarial finite extension check
+        run: python3 scripts/check_track_f_nf_sink_star.py

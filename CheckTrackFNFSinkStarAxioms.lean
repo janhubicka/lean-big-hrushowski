@@ -1,0 +1,10 @@
+import BigHrushovski.NFSinkStarExtension
+
+#print axioms BigHrushovski.FiniteOrientation.sinkStarExtension
+#print axioms BigHrushovski.FiniteOrientation.sinkStar_newSink_isSink
+#print axioms BigHrushovski.FiniteOrientation.sinkStar_arm_out
+#print axioms BigHrushovski.FiniteOrientation.sinkStar_old_out
+#print axioms BigHrushovski.FiniteOrientation.sinkStar_old_arrow_iff
+#print axioms BigHrushovski.FiniteOrientation.sinkStar_old_adj_iff
+#print axioms BigHrushovski.FiniteOrientation.sinkStar_old_successorClosed
+#print axioms BigHrushovski.FiniteOrientation.sinkStar_old_strong
