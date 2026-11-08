@@ -470,6 +470,6 @@ import BigHrushovski.CFRealNatRecognition
 import BigHrushovski.CFPublishedNatRecognition
 import BigHrushovski.CFRealBirthRecognition
 
--- Track C: exact genericity criterion and finite-to-global empty-base transfer.
+-- Track C: certified strict genericity and empty-base transfer.
 import BigHrushovski.CFStrictGenericCharacterization
 import BigHrushovski.CFEmptyBaseTransfer
