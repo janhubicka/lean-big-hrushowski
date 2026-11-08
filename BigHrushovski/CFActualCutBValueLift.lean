@@ -89,7 +89,7 @@ theorem targetOneLevelBValue_birthImage
           (toVertex F K (m + 1)) =
         birthBValue F K (⟨m, ⟨r, i⟩⟩ : Vertex F K)
       rw [birthBValue_of_fresh]
-      exact Finset.image_union
+      simp only [Finset.image_union]
 
 /-- The parametrized target one-level b-value is LITERALLY the
 finite-stage preimage of the TRUE complete birth-b-value.
@@ -245,14 +245,9 @@ theorem selectedCutOneStepLift_completeActualBirthBValues
       obtain ⟨y, hy, hyx⟩ := Finset.mem_image.mp hx
       apply Finset.mem_image.mpr
       refine ⟨y, hy, ?_⟩
-      calc
-        selectedGrowthBatchMapSubtype F K
-            (stage F K n).graph (stage F K m).graph
-            (stageCut F K s n) e he (selectedRequests F K s n) h y =
-          selectedCutOneStepLift F K s hs n m e he h
-            (selectedCutEquiv F K s hs n y) := (hPointwise y).symm
-        _ = selectedCutOneStepLift F K s hs n m e he h x := by rw [hyx]
-        _ = v := hxv
+      exact ((hPointwise y).symm.trans
+        (congrArg
+          (selectedCutOneStepLift F K s hs n m e he h) hyx)).trans hxv
     · intro hv
       obtain ⟨y, hy, hyv⟩ := Finset.mem_image.mp hv
       apply Finset.mem_image.mpr
@@ -270,22 +265,15 @@ theorem selectedCutOneStepLift_completeActualBirthBValues
           (stageCut F K s (n + 1))) =>
         Q.image (selectedCutOneStepLift F K s hs n m e he h))
       hSrc.symm
-  calc
-    (cutOldBirthBValue F K s (n + 1) x).image
-        (selectedCutOneStepLift F K s hs n m e he h) =
-      (B.image (selectedCutEquiv F K s hs n)).image
-        (selectedCutOneStepLift F K s hs n m e he h) := hFirst
-    _ = B.image (selectedGrowthBatchMapSubtype F K
-        (stage F K n).graph (stage F K m).graph
-        (stageCut F K s n) e he (selectedRequests F K s n) h) :=
-      hMapImage
-    _ = stageOldBirthBValue F K (m + 1)
-        (selectedGrowthBatchMapSubtype F K
-          (stage F K n).graph (stage F K m).graph
-          (stageCut F K s n) e he (selectedRequests F K s n) h z) := hAll
-    _ = stageOldBirthBValue F K (m + 1)
-        (selectedCutOneStepLift F K s hs n m e he h x) := by
-          rfl
+  have hFinal :
+      stageOldBirthBValue F K (m + 1)
+          (selectedGrowthBatchMapSubtype F K
+            (stage F K n).graph (stage F K m).graph
+            (stageCut F K s n) e he (selectedRequests F K s n) h z) =
+      stageOldBirthBValue F K (m + 1)
+          (selectedCutOneStepLift F K s hs n m e he h x) := by
+    rfl
+  exact hFirst.trans (hMapImage.trans (hAll.trans hFinal))
 
 end CFCoherentTower
 end BigHrushovski
