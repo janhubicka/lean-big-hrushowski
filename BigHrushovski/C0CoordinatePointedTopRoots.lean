@@ -46,7 +46,9 @@ theorem LiteralPointedCode.unpointedKey_adj_iff
     (h : q.unpointedKey = r.unpointedKey)
     (u v : ℕ) :
     (u,v) ∈ q.adjacencyPairs ↔ (u,v) ∈ r.adjacencyPairs := by
-  rw [(q.unpointedKey_eq_iff r).mp h |>.2.1]
+  have hA : q.adjacencyPairs = r.adjacencyPairs :=
+    ((q.unpointedKey_eq_iff r).mp h).2.1
+  rw [hA]
 
 /-- The same exact reflection for every complete C-incidence. -/
 theorem LiteralPointedCode.unpointedKey_C_iff
@@ -54,7 +56,9 @@ theorem LiteralPointedCode.unpointedKey_C_iff
     (h : q.unpointedKey = r.unpointedKey)
     (u v : ℕ) :
     (u,v) ∈ q.closurePairs ↔ (u,v) ∈ r.closurePairs := by
-  rw [(q.unpointedKey_eq_iff r).mp h |>.2.2]
+  have hC : q.closurePairs = r.closurePairs :=
+    ((q.unpointedKey_eq_iff r).mp h).2.2
+  rw [hC]
 
 /-- If two complete pointed codes differ only in their CHOICE of
 generating top vertex, those vertices belong to each other's complete
