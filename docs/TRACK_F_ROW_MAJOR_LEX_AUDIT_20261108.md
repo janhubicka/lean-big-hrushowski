@@ -44,6 +44,8 @@ minimum lex-class has cardinality
    remain open.
 
 Exact axioms/placeholder auditing is in
-\`CheckTrackFRowMajorLexAxioms.lean\`, using the independent exhaustive
-row-major Python checker already introduced with PR #383.
+\`CheckTrackFRowMajorLexAxioms.lean\`, using two independent finite regressions: the exhaustive fixed-lower
+checker from #383 and the focused `check_track_f_row_major_lex.py`
+which checks matrix-code equivalence and the directed 3-cycle
+counterexample.
 This is draft until its own and upstream exact-head CI succeeds.
