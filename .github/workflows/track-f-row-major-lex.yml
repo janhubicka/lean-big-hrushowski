@@ -1,0 +1,38 @@
+name: Track F literal row-major lexicographic local fibres
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0RowMajorLexCode.lean'
+      - 'CheckTrackFRowMajorLexAxioms.lean'
+      - '.github/workflows/track-f-row-major-lex.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0RowMajorLexCode.lean'
+      - 'CheckTrackFRowMajorLexAxioms.lean'
+      - '.github/workflows/track-f-row-major-lex.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  literal-lex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Order.PiLex Mathlib.Tactic Mathlib.Data.Bool.Basic
+      - name: Build literal lex-code theorem
+        run: lake build BigHrushovski.N0RowMajorLexCode
+      - name: Kernel axioms and placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFRowMajorLexAxioms.lean > track-f-row-major-lex-axioms.log
+          python3 scripts/check_axioms.py track-f-row-major-lex-axioms.log CheckTrackFRowMajorLexAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent row-major lex-code tests
+        run: python3 scripts/check_track_f_all_fixed_lower.py

@@ -1,0 +1,4 @@
+import BigHrushovski.N0RowMajorLexCode
+
+#print axioms BigHrushovski.FiniteOrientation.completeRowMajorLexCode_eq_iff
+#print axioms BigHrushovski.FiniteOrientation.allFixedLowerMinimumLexCode_card
