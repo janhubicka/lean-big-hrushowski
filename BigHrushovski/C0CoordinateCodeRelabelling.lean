@@ -64,7 +64,9 @@ theorem mem_relabel_adj_iff
       h.injective (congrArg Prod.fst hEq)
     have hv : p.2 = v :=
       h.injective (congrArg Prod.snd hEq)
-    simpa only [hu, hv] using hp
+    have hPair : p = (u, v) := Prod.ext hu hv
+    rw [hPair] at hp
+    exact hp
   · intro hp
     exact Finset.mem_image.mpr ⟨(u,v),hp,rfl⟩
 
@@ -83,7 +85,9 @@ theorem mem_relabel_closure_iff
       h.injective (congrArg Prod.fst hEq)
     have hv : p.2 = v :=
       h.injective (congrArg Prod.snd hEq)
-    simpa only [hu, hv] using hp
+    have hPair : p = (u, v) := Prod.ext hu hv
+    rw [hPair] at hp
+    exact hp
   · intro hp
     exact Finset.mem_image.mpr ⟨(u,v),hp,rfl⟩
 
@@ -162,8 +166,13 @@ theorem LiteralPointedCode.relabel_generated
     obtain ⟨p,hp,hEq⟩ := Finset.mem_image.mp hPair
     have hRoot : p.1 = q.point :=
       h.injective (congrArg Prod.fst hEq)
+    have hPairEq : p = (q.point, p.2) :=
+      Prod.ext hRoot rfl
+    have hPairMem : (q.point, p.2) ∈ q.closurePairs := by
+      rw [hPairEq] at hp
+      exact hp
     have hpSupport : p.2 ∈ q.support :=
-      (hq p.2).mpr (by simpa only [hRoot] using hp)
+      (hq p.2).mpr hPairMem
     have hLabel : h p.2 = y := congrArg Prod.snd hEq
     exact Finset.mem_image.mpr ⟨p.2,hpSupport,hLabel⟩
 
