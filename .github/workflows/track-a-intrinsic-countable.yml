@@ -5,11 +5,13 @@ on:
     paths:
       - 'BigHrushovski/C0CountableIntrinsicComponents.lean'
       - 'CheckC0IntrinsicCountable.lean'
+      - 'scripts/check_c0_complete_unary_component_descent.py'
       - '.github/workflows/track-a-intrinsic-countable.yml'
   pull_request:
     paths:
       - 'BigHrushovski/C0CountableIntrinsicComponents.lean'
       - 'CheckC0IntrinsicCountable.lean'
+      - 'scripts/check_c0_complete_unary_component_descent.py'
       - '.github/workflows/track-a-intrinsic-countable.yml'
   workflow_dispatch:
 
@@ -47,3 +49,5 @@ jobs:
           lake env lean CheckC0IntrinsicCountable.lean > c0-intrinsic-countable-axioms.log
           python3 scripts/check_axioms.py c0-intrinsic-countable-axioms.log CheckC0IntrinsicCountable.lean
           python3 scripts/check_no_placeholders.py
+      - name: Exhaustive finite complete-unary component descent regression
+        run: python3 scripts/check_c0_complete_unary_component_descent.py
