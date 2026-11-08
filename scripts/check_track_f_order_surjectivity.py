@@ -39,24 +39,17 @@ def check(out, tally):
     for order in permutations(range(n)):
         pos = {x:i for i, x in enumerate(order)}
         interval = all(
-            pos[x] < pos[y] < pos[z] and cid[x] == cid[z]
-            <= False
-            for x in [] for y in [] for z in [])
-        # The actual interval condition: a component cannot have a
-        # vertex outside it between any two vertices of that component.
-        interval = all(
-            cid[order[i]] == cid[order[k]] or
-            all(cid[order[j]] != cid[order[i]]
-                for j in range(i + 1, k))
+            cid[order[j]] == cid[order[i]]
             for i in range(n) for k in range(i + 1, n)
-            if cid[order[i]] != cid[order[k]]
+            if cid[order[i]] == cid[order[k]]
+            for j in range(i + 1, k)
         )
         # A simpler independent truth definition: occupied positions
         # of each SCC are consecutive integers.
         actual_interval = all(
             (max(pos[x] for x in B) - min(pos[x] for x in B) + 1 == len(B))
             for B in components)
-        assert interval == actual_interval or not interval
+        assert interval == actual_interval
         if not actual_interval:
             continue
         tally["interval_enumerations"] += 1
