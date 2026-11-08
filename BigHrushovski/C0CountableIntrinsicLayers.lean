@@ -189,5 +189,47 @@ theorem unaryFiniteRankCut_mono_rank
     exact Finset.mem_union.mpr
       (Or.inr (Finset.mem_filter.mpr ⟨hxLayer, by omega⟩))
 
+
+/-- A finite selection of *whole components* from the current layer
+may be appended to the old cut as soon as it contains every
+strictly lower-rank component of that layer. This is the reusable
+closed-prefix criterion for sorting each finite layer by the pair
+(closure size, tie-breaking component priority). -/
+theorem unaryFiniteLayer_segment_closed
+    (C : ℕ → Finset ℕ) (hC : IsCompleteUnaryClosure C)
+    (n : ℕ) (t : Finset ℕ)
+    (htLayer : t ⊆ unaryFiniteLayer C n)
+    (htWhole : ∀ x ∈ t, unaryComponent C x ⊆ t)
+    (htLower : ∀ x ∈ t, ∀ y ∈ unaryFiniteLayer C n,
+      (C y).card < (C x).card → y ∈ t) :
+    ∀ x ∈ unaryFiniteCut C n ∪ t,
+      C x ⊆ unaryFiniteCut C n ∪ t := by
+  classical
+  intro x hx y hy
+  rcases Finset.mem_union.mp hx with hxOld | hxNew
+  · exact Finset.mem_union.mpr (Or.inl
+      (unaryFiniteCut_closed C hC n x hxOld hy))
+  · have hxLayer : x ∈ unaryFiniteLayer C n := htLayer hxNew
+    have hxHigh : x ∈ unaryFiniteCut C (n+1) :=
+      (Finset.mem_sdiff.mp hxLayer).1
+    by_cases hyOld : y ∈ unaryFiniteCut C n
+    · exact Finset.mem_union.mpr (Or.inl hyOld)
+    · have hyHigh : y ∈ unaryFiniteCut C (n+1) :=
+        unaryFiniteCut_closed C hC (n+1) x hxHigh hy
+      have hyLayer : y ∈ unaryFiniteLayer C n :=
+        Finset.mem_sdiff.mpr ⟨hyHigh, hyOld⟩
+      by_cases hEq : C y = C x
+      · have hyComponent : y ∈ unaryComponent C x :=
+          (mem_unaryComponent_iff C hC x y).mpr hEq
+        exact Finset.mem_union.mpr
+          (Or.inr (htWhole x hxNew hyComponent))
+      · have hStrict : C y ⊂ C x :=
+          Finset.ssubset_iff_subset_ne.mpr
+            ⟨hC.2 x y hy, hEq⟩
+        have hCard : (C y).card < (C x).card :=
+          Finset.card_lt_card hStrict
+        exact Finset.mem_union.mpr
+          (Or.inr (htLower x hxNew y hyLayer hCard))
+
 end FiniteC0
 end BigHrushovski
