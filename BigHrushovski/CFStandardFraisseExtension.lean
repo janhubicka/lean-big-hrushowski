@@ -148,7 +148,14 @@ theorem HasStandardFiniteDClosedExtensions.toNatIntervals
     change M.adj x.val y.val ↔ G.adj (gW x) (gW y)
     exact hgWAdj x y
   refine ⟨g, hgInj, hgOld, hgAdj, ?_⟩
-  simpa [g] using hgWClosed
+  have hEndpointImage :
+      ((Finset.univ : Finset {v : ℕ // v ∈ b}).image g) =
+        ((Finset.univ : Finset W).image gW) := by
+    ext v
+    simp only [Finset.mem_image, Finset.mem_univ, true_and]
+    rfl
+  rw [hEndpointImage]
+  exact hgWClosed
 
 /-- Exactly the manuscript's ordinary finite-source strong
 Fraisse-limit presentation on an arbitrary countably infinite
