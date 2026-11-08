@@ -62,6 +62,55 @@ noncomputable def unaryFiniteLayer
     (C : ℕ → Finset ℕ) (n : ℕ) : Finset ℕ :=
   unaryFiniteCut C (n+1) \ unaryFiniteCut C n
 
+
+/-- The next finite cut adds exactly the complete unary value of
+the next natural label. No transitivity is required for this identity. -/
+theorem unaryFiniteCut_succ_eq_union_value
+    (C : ℕ → Finset ℕ) (n : ℕ) :
+    unaryFiniteCut C (n+1) = unaryFiniteCut C n ∪ C n := by
+  classical
+  ext x
+  constructor
+  · intro hx
+    obtain ⟨i, hi, hix⟩ := Finset.mem_biUnion.mp hx
+    have hiLt : i < n+1 := Finset.mem_range.mp hi
+    by_cases hiOld : i < n
+    · exact Finset.mem_union.mpr
+        (Or.inl (Finset.mem_biUnion.mpr
+          ⟨i, Finset.mem_range.mpr hiOld, hix⟩))
+    · have heq : i = n := by omega
+      subst i
+      exact Finset.mem_union.mpr (Or.inr hix)
+  · intro hx
+    rcases Finset.mem_union.mp hx with hOld | hNew
+    · obtain ⟨i, hi, hix⟩ := Finset.mem_biUnion.mp hOld
+      exact Finset.mem_biUnion.mpr
+        ⟨i, Finset.mem_range.mpr
+          (Nat.lt_succ_of_lt (Finset.mem_range.mp hi)), hix⟩
+    · exact Finset.mem_biUnion.mpr
+        ⟨n, Finset.mem_range.mpr (Nat.lt_succ_self n), hNew⟩
+
+/-- Each fresh layer is just the part of C(n) not yet present.
+Thus the n-th finite sorting problem is contained in one finite
+complete one-generated closure. -/
+theorem unaryFiniteLayer_eq_value_sdiff_cut
+    (C : ℕ → Finset ℕ) (n : ℕ) :
+    unaryFiniteLayer C n = C n \ unaryFiniteCut C n := by
+  classical
+  ext x
+  constructor
+  · intro hx
+    obtain ⟨hxHigh, hxNotOld⟩ := Finset.mem_sdiff.mp hx
+    rw [unaryFiniteCut_succ_eq_union_value] at hxHigh
+    rcases Finset.mem_union.mp hxHigh with hxOld | hxNew
+    · exact (hxNotOld hxOld).elim
+    · exact Finset.mem_sdiff.mpr ⟨hxNew, hxNotOld⟩
+  · intro hx
+    obtain ⟨hxNew, hxNotOld⟩ := Finset.mem_sdiff.mp hx
+    refine Finset.mem_sdiff.mpr ⟨?_, hxNotOld⟩
+    rw [unaryFiniteCut_succ_eq_union_value]
+    exact Finset.mem_union.mpr (Or.inr hxNew)
+
 /-- The fresh layer contains a whole intrinsic component whenever
 it contains one vertex of that component. -/
 theorem unaryComponent_subset_layer
