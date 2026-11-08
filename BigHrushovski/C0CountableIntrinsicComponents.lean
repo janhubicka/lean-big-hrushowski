@@ -1,4 +1,4 @@
-import BigHrushovski.C0CompleteUnaryCovers
+import BigHrushovski.C0CountableCanonicalStages
 import BigHrushovski.C0IntrinsicComponents
 
 /-!
@@ -155,6 +155,142 @@ theorem unaryComponent_subset_strictLower
       (mem_unaryComponent_iff C hC x z).mp hZX
     exact hNe (hZY.symm.trans hZXValue)
   exact Finset.mem_sdiff.mpr ⟨hZC, hZNot⟩
+
+
+/-- Every complete value splits into its intrinsic component and the
+strictly lower vertices, with no omitted vertices. -/
+theorem completeValue_eq_component_union_lower
+    (C : V → Finset V) (x : V) :
+    C x = unaryComponent C x ∪ strictLowerValue C x := by
+  classical
+  ext y
+  constructor
+  · intro hy
+    by_cases hp : y ∈ unaryComponent C x
+    · exact Finset.mem_union.mpr (Or.inl hp)
+    · exact Finset.mem_union.mpr
+        (Or.inr (Finset.mem_sdiff.mpr ⟨hy, hp⟩))
+  · intro hy
+    rcases Finset.mem_union.mp hy with hp | hl
+    · exact unaryComponent_subset_value C x hp
+    · exact (Finset.mem_sdiff.mp hl).1
+
+/-- The new component is disjoint from its complete strict-lower
+dependency set; this does not require any closure hypotheses. -/
+theorem component_disjoint_strictLower
+    (C : V → Finset V) (x : V) :
+    Disjoint (unaryComponent C x) (strictLowerValue C x) := by
+  classical
+  apply Finset.disjoint_left.mpr
+  intro y hp hl
+  exact (Finset.mem_sdiff.mp hl).2 hp
+
+/-- Removing all strict predecessors from the complete closure leaves
+exactly the intrinsic component, including every vertex in it. -/
+theorem component_eq_value_sdiff_lower
+    (C : V → Finset V) (x : V) :
+    unaryComponent C x = C x \ strictLowerValue C x := by
+  classical
+  ext y
+  constructor
+  · intro hp
+    refine Finset.mem_sdiff.mpr
+      ⟨unaryComponent_subset_value C x hp, ?_⟩
+    intro hl
+    exact (Finset.mem_sdiff.mp hl).2 hp
+  · intro hy
+    have hyC : y ∈ C x := (Finset.mem_sdiff.mp hy).1
+    by_contra hp
+    have hl : y ∈ strictLowerValue C x :=
+      Finset.mem_sdiff.mpr ⟨hyC, hp⟩
+    exact (Finset.mem_sdiff.mp hy).2 hl
+
+/-- The strict lower dependency set of a complete value is itself
+closed under the whole finite unary operation. This uses full
+transitivity, not just direct backward-neighbour closure. -/
+theorem strictLowerValue_closed
+    (C : V → Finset V) (hC : IsCompleteUnaryClosure C)
+    (x : V) :
+    ∀ y ∈ strictLowerValue C x, C y ⊆ strictLowerValue C x := by
+  classical
+  intro y hy z hz
+  have hyC : y ∈ C x := (Finset.mem_sdiff.mp hy).1
+  have hzC : z ∈ C x := (hC.2 x y hyC) hz
+  have hyCard : (C y).card < (C x).card :=
+    strictLowerValue_card_lt C hC hy
+  have hzCard : (C z).card ≤ (C y).card :=
+    Finset.card_le_card (hC.2 y z hz)
+  have hzNot : z ∉ unaryComponent C x := by
+    intro hp
+    have hEq : C z = C x :=
+      (mem_unaryComponent_iff C hC x z).mp hp
+    have hEqCard : (C z).card = (C x).card :=
+      congrArg Finset.card hEq
+    omega
+  exact Finset.mem_sdiff.mpr ⟨hzC, hzNot⟩
+
+/-- The strict-lower set is a genuine finite functionally closed
+substructure in any graph on the carrier. -/
+theorem strictLowerValue_isClosedUnderValues
+    (N : GraphOn V) (C : V → Finset V)
+    (hC : IsCompleteUnaryClosure C) (x : V) :
+    N.IsClosedUnderValues C (strictLowerValue C x) := by
+  intro y hy z hz
+  exact strictLowerValue_closed C hC x y hy hz
+
+/-- The countable finite-canonical-stage criterion makes *every*
+finite unary-closed set globally strong, not merely strong in each
+particular witnessing stage. -/
+theorem canonicalStages_closed_globalStrong
+    (N : GraphOn ℕ) (C : ℕ → Finset ℕ)
+    (stage : ℕ → Finset ℕ)
+    (hCover : ∀ b : Finset ℕ, ∃ n : ℕ, b ⊆ stage n)
+    (hStage : HasCanonicalFiniteStages N C stage)
+    (s : Finset ℕ) (hClosed : N.IsClosedUnderValues C s) :
+    N.toPredimension.IsGloballyStrong s := by
+  intro b hb
+  obtain ⟨n, hn⟩ := hCover b
+  have hs : s ⊆ stage n := hb.trans hn
+  have hStrong : N.toPredimension.IsStrong s (stage n) :=
+    localStrong_of_canonicalFiniteStages N C stage hStage
+      n s hs hClosed
+  exact N.toPredimension.strong_restrict hStrong hb hn
+
+/-- In a countable C₀ structure with exact finite canonical stages,
+the strict dependencies of any component form a finite globally strong
+set. This is the intrinsic initial cut for a one-component extension. -/
+theorem intrinsicLower_globalStrong_of_canonicalStages
+    (N : GraphOn ℕ) (C : ℕ → Finset ℕ)
+    (stage : ℕ → Finset ℕ)
+    (hCover : ∀ b : Finset ℕ, ∃ n : ℕ, b ⊆ stage n)
+    (hStage : HasCanonicalFiniteStages N C stage)
+    (x : ℕ) :
+    N.toPredimension.IsGloballyStrong (strictLowerValue C x) := by
+  have hC : IsCompleteUnaryClosure C :=
+    completeUnary_of_canonicalFiniteStages N C stage hCover hStage
+  exact canonicalStages_closed_globalStrong
+    N C stage hCover hStage
+    (strictLowerValue C x)
+    (strictLowerValue_isClosedUnderValues N C hC x)
+
+/-- The full finite closure of a component is also globally strong
+under the same hypotheses; its difference from the preceding cut is
+exactly the intrinsic component. -/
+theorem intrinsicValue_globalStrong_of_canonicalStages
+    (N : GraphOn ℕ) (C : ℕ → Finset ℕ)
+    (stage : ℕ → Finset ℕ)
+    (hCover : ∀ b : Finset ℕ, ∃ n : ℕ, b ⊆ stage n)
+    (hStage : HasCanonicalFiniteStages N C stage)
+    (x : ℕ) :
+    N.toPredimension.IsGloballyStrong (C x) := by
+  have hC : IsCompleteUnaryClosure C :=
+    completeUnary_of_canonicalFiniteStages N C stage hCover hStage
+  have hClosed : N.IsClosedUnderValues C (C x) := by
+    intro y hy z hz
+    exact (hC.2 x y hy) hz
+  exact canonicalStages_closed_globalStrong
+    N C stage hCover hStage (C x) hClosed
+
 
 end FiniteC0
 end BigHrushovski
