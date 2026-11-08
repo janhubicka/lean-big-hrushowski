@@ -1,0 +1,47 @@
+name: Track E rational critical-event comparison audit
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckCriticalEvents.lean'
+      - 'CheckTrackECriticalEvents.lean'
+      - '.github/workflows/track-e-critical-events.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckCriticalEvents.lean'
+      - 'CheckTrackECriticalEvents.lean'
+      - '.github/workflows/track-e-critical-events.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-critical-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-critical-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile critical-event reconstruction and audit axioms
+        run: |
+          lake build BigHrushovski.HrushovskiEllentuckCriticalEvents
+          lake env lean CheckTrackECriticalEvents.lean > critical-events-axioms.log
+          cat critical-events-axioms.log
+          python3 scripts/check_axioms.py critical-events-axioms.log CheckTrackECriticalEvents.lean
+          python3 scripts/check_no_placeholders.py

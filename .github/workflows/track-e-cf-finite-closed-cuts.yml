@@ -1,0 +1,47 @@
+name: Track E finite strict C_F support cuts
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckFiniteClosedCuts.lean'
+      - 'CheckTrackECFFiniteClosedCuts.lean'
+      - '.github/workflows/track-e-cf-finite-closed-cuts.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckFiniteClosedCuts.lean'
+      - 'CheckTrackECFFiniteClosedCuts.lean'
+      - '.github/workflows/track-e-cf-finite-closed-cuts.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-closed-cuts-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-closed-cuts-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile finite strict closure and audit exact endpoints
+        run: |
+          lake build BigHrushovski.HrushovskiEllentuckFiniteClosedCuts
+          lake env lean CheckTrackECFFiniteClosedCuts.lean > track-e-cf-closed-cuts-axioms.log
+          cat track-e-cf-closed-cuts-axioms.log
+          python3 scripts/check_axioms.py track-e-cf-closed-cuts-axioms.log CheckTrackECFFiniteClosedCuts.lean
+          python3 scripts/check_no_placeholders.py

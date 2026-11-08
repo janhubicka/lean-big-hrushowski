@@ -456,6 +456,20 @@ import BigHrushovski.CFRepresentedLevels
 
 import BigHrushovski.CFSkippedCutEquiv
 
--- Track F: finite successor-closed orientation data (conditional degree interfaces).
+-- Track C: countable strict genericity and published-growth adapters.
+import BigHrushovski.CFNonnegativeGrowthAdapter
+import BigHrushovski.CFPublishedFiniteGenericity
+import BigHrushovski.CFRealGenericCertificate
+import BigHrushovski.CFDClosedFiniteSubtype
+import BigHrushovski.CFRealFiniteSubtypeResponse
+import BigHrushovski.CFDClosedBackAndForthCore
+import BigHrushovski.CFDClosedJointSteps
+import BigHrushovski.CFCountableRelabelling
+import BigHrushovski.CFBirthInfinitude
+import BigHrushovski.CFRealNatRecognition
+import BigHrushovski.CFPublishedNatRecognition
+import BigHrushovski.CFRealBirthRecognition
+
+-- Track F: certified finite orientation and component data.
 import BigHrushovski.N0ComponentRankPrefixes
 import BigHrushovski.N0LocalCode
