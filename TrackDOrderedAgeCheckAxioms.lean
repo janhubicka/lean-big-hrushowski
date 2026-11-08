@@ -9,6 +9,7 @@ import BigHrushovski.C0CoordinateLocalOccurrenceFamily
 import BigHrushovski.C0CoordinateTopPermutationOrbit
 import BigHrushovski.C0CoordinateTopOrbitNormalizer
 import BigHrushovski.C0CoordinateLocalTypeMatrixBridge
+import BigHrushovski.C0CoordinatePointedTopRoots
 
 #print axioms BigHrushovski.FiniteUnaryCoordinates.chronologicalBlockOrder_interval
 #print axioms BigHrushovski.FiniteUnaryCoordinates.chronologicalBlockOrder_restrict
@@ -88,3 +89,8 @@ import BigHrushovski.C0CoordinateLocalTypeMatrixBridge
 #print axioms BigHrushovski.FiniteUnaryCoordinates.CompleteLocalMatrix.ext
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LocalOrderedRepresentative.completeMatrix_relabel_iff
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LocalOrderedRepresentative.completeMatrix_orbit_eq_iff
+
+#print axioms BigHrushovski.FiniteUnaryCoordinates.LiteralPointedCode.unpointedKey_eq_iff
+#print axioms BigHrushovski.FiniteUnaryCoordinates.LiteralPointedCode.unpointedKey_adj_iff
+#print axioms BigHrushovski.FiniteUnaryCoordinates.LiteralPointedCode.unpointedKey_C_iff
+#print axioms BigHrushovski.FiniteUnaryCoordinates.LiteralPointedCode.same_unpointed_generated_mutual
