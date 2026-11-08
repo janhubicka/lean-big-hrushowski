@@ -1,0 +1,195 @@
+# Countable C₀ closure-component enumeration: English proof plan
+
+Date: 8 November 2026. This is **not** a new Lean certificate. It
+isolates the remaining enumeration argument in
+`prop:C0-free-generic` after the actual countable functional
+Fraïssé/reduct theorem has been certified.
+
+## Statement to formalize
+
+Let `N` be the countable graph reduct of a countable functional
+C₀ structure with complete one-generated unary closures
+`C:ℕ→Finset ℕ`. Assume it has cofinal finite canonical C₀
+presentations, with *exact* complete unary values on the finite
+stages. We wish to enumerate the vertices by consecutive **finite
+intrinsic components**, in such an order that all earlier
+components needed by a component precede it. At every component
+cut the graph prefix is globally strong, and each nonempty
+increment is minimal strong.
+
+The order of the components must have type ω, not merely be a
+well-order, and each vertex's canonical unary value in the
+enumeration must equal its original full value C(x).
+
+## 1. Intrinsic finite classes
+
+For x, put
+
+```text
+P(x) = {y : C(y) = C(x)}.
+L(x) = C(x) \ P(x).
+```
+
+Every member of P(x) belongs to C(x), so P(x) is finite and
+nonempty. These sets are disjoint or equal and partition ℕ.
+If y belongs to L(x), then C(y) is a **proper subset** of C(x),
+so |C(y)| < |C(x)|. The entire class P(y) lies in L(x).
+Thus each component has only finitely many strict lower
+components and the lower-component relation has no cycles.
+
+The proposed Lean module
+`C0CountableIntrinsicComponents.lean` proves these
+elementary facts, together with identification of P(x)
+with the component-index fibre in every finite canonical
+presentation. This last fact uses the already validated
+`canonicalValue_eq_iff_index_eq`.
+
+## 2. Fair enabled-component algorithm
+
+Give each component P its priority
+
+```text
+priority(P) = min P.
+```
+
+These priorities are distinct natural numbers.
+
+Starting from the empty union, at step i choose the unlisted
+component with **smallest priority among those whose strict
+lower components have all already been listed**.
+This set of enabled components is nonempty: among the unlisted
+components, choose one with smallest |C(x)|. If it had an
+unlisted lower component, that component would have strictly
+smaller closure size, a contradiction.
+
+Every component is eventually chosen. Use induction on its
+closure size. All its finitely many lower components have
+smaller sizes and hence are eventually chosen. The component
+then remains enabled. If it is not selected, the rule must
+select some previously unlisted component of smaller priority.
+Only finitely many components have smaller priority, and none
+can be selected twice. Therefore the fixed component is
+chosen after finitely many further steps.
+
+There are infinitely many components, since ℕ is infinite
+and every component is finite. The selected component order
+therefore has type ω. Each component is a finite nonempty set,
+so concatenating finite orders on the selected components
+gives a vertex enumeration of type ω, with components as intervals.
+
+**Incorrect shortcut:** sorting components globally by
+|C(x)| is not valid. There may be infinitely many
+minimal-closure components, which would postpone every
+component of larger closure size beyond all natural steps.
+The fair enabled-minimum algorithm is essential.
+
+## 3. Closed and minimal strong cuts
+
+Let Q be the union of the previously chosen components,
+and P the next component. Q is finite and C-closed by
+induction. Indeed, for any x in a previously chosen
+component, C(x) consists of its own component and its
+strict lower components, all already listed.
+
+The set Z = Q ∪ P is also finite and C-closed, because all
+strict lower components of P precede P.
+
+Choose a finite canonical stage containing Z.
+By the certified finite closed-heredity theorem,
+the induced functional structure on Z has a canonical
+minimal-component presentation and the *same* full unary
+values. Its component fibres are intrinsically P(x), so
+Z\Q consists of exactly the single component P.
+
+Apply the certified finite closed-base frontloading theorem
+to Q inside this finite presentation. Its complete values
+and minimal-step property are preserved, Q is frontloaded,
+and the only nonempty component remaining is P. Hence
+Q ≤ Z is a **minimal strong extension**.
+Since Z is C-closed, the certified countable closed-set
+strongness theorem makes Z globally strong in N.
+Thus the whole enumerated sequence consists of finite
+globally strong prefixes and nonempty minimal strong increments.
+
+The intrinsic finite-class lemma alone does not justify this
+step. The hereditary and frontloading theorems are needed.
+
+## 4. The unary operation is unchanged
+
+For any vertex x, its full value C(x) is contained in
+the finite prefix ending with the component P(x), and
+the induced finite presentation on that prefix has
+exactly the inherited complete canonical value C(x).
+Thus the enumeration's complete backward-reachability
+value for every x equals the given function C(x).
+
+No generator is singled out within a component.
+For the *additional closure-respecting ordered expansion*
+in the manuscript, the finite order **inside** each
+component must be selected by a fixed representative of
+its ordered one-generated closure type over the already
+ordered lower components. Ordering every block by
+numerical vertex labels alone need not satisfy the
+uniform representative convention.
+
+## 5. Countable functional Fraïssé identification
+
+Once the unconditional functional-stage extension
+property in draft PR #375 is fully kernel-certified,
+its countable structure has finite closed covers and
+a correct finite canonical age, and answers every
+finite functional extension over each canonical stage.
+
+To obtain the conventional Fraïssé extension property
+over an **arbitrary** finite closed substructure A,
+choose a finite canonical stage S containing A.
+Free-amalgamate the requested finite functional extension
+B of A with S over A using the already verified finite
+two-sided functional amalgamation. The resulting finite
+functional extension of S is realized over S by the
+stage extension property, hence B is realized over A.
+
+This gives universality and homogeneity by the usual finite
+back-and-forth argument, using local finiteness of the
+finite-valued unary closure. The details have not yet been
+encoded as a global Lean theorem and must not be inferred
+merely from the reduct isomorphism with M₀.
+
+## Remaining independent Lean tasks
+
+1. Formalize the fair enabled-component choice and exhaustion
+   argument from finite lower components and priority minima.
+2. Prove the finite closed-cut / frontloading theorem for
+   exactly one new intrinsic component and transfer its
+   minimal strongness to the countable limit.
+3. Prove complete unary-value agreement under the resulting
+   enumerated component order.
+4. Prove the functional Fraïssé characterization over all
+   finite closed substructures, not just its cofinal
+   canonical stages; establish uniqueness/homogeneity.
+5. Check the within-component canonical ordered representative
+   convention independently.
+
+The manuscript's full proposition must remain PARTIAL until
+these obligations, in addition to the countable graph-reduct
+genericity theorem, are validated.
+
+## Adversarial mathematical checks
+
+- **Referee on rank:** strict decrease is along genuinely lower
+  components, never between two distinct vertices of the same
+  component.
+- **Referee on fairness:** every component has finitely many
+  lower components, but infinitely many *other* components can
+  have smaller closure rank. Hence global rank sorting fails;
+  the minimum eligible priority is essential.
+- **Referee on graph strength:** finite intrinsic components of
+  an abstract closure algebra need not be minimal strong graph
+  increments. Use finite canonical closed-heredity and
+  frontloading, not a purely unary argument.
+- **Referee on functional fidelity:** preservation is equality
+  of all complete unary values, not an inclusion or a bound
+  on old-neighbour sets.
+- **Referee on countable scope:** a graph reduct isomorphism
+  does not prove functional homogeneity or the prescribed
+  ordered representative convention.
