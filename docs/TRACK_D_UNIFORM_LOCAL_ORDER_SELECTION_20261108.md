@@ -46,6 +46,52 @@ The construction selects one ordered isomorphism TYPE, not a raw order
 preserved by all automorphisms. Choosing the order of B from the raw
 vertex names is not invariant under renaming.
 
+## Five-vertex adversarial boundary (new)
+
+The conditional proposition above is valid, but it must **not** be
+misread as a globally renaming-invariant assignment of physical vertex
+orders obtained by processing components one at a time with raw-name
+tie-breaking. There is already a counterexample in the actual sparse,
+minimal-strong finite C0 age.
+
+Take five vertices 0,1,2,3,4, all six edges among 0,1,2,3, and only
+the additional edge 1--4. The component chain is
+
+    empty < {0} < {0,1,2,3} < {0,1,2,3,4}.
+
+Every increment is minimal strong for predimension
+delta(X)=2|X|-|E(X)|, and all induced subsets have delta >= 0.
+The complete unary closures are C(0)={0},
+C(1)=C(2)=C(3)={0,1,2,3}, C(4)={0,1,2,3,4}.
+
+In the middle stage, the top component {1,2,3} is symmetric over
+the lower part {0}; all six top enumerations give the SAME complete
+matrix, so lexicographic minimization of that matrix does not choose a
+unique physical enumeration. A secondary tie-break by raw names gives
+(1,2,3). Relabel the same graph by swapping names 1 and 3. The raw
+tie-break still gives (1,2,3), but now vertex 4 is adjacent to 3,
+not 1. Consequently the resulting complete ordered code of C(4)
+is different. The earlier <=4-vertex exhaustive check did not cover
+this five-vertex obstruction.
+
+**Correct conclusion:** for a *specified* ordered lower part P, the
+minimum complete matrix defines a unique ordered ISOMORPHISM TYPE
+extending P. Transporting that supplied order through an isomorphism
+gives the same minimum. It does not select a canonical underlying
+bijection or a physical order commuting with all unordered
+automorphisms, and it cannot enforce relabel-invariance of a stagewise
+arbitrary tie-break in larger presentations. The resulting distinct
+orders of P in the two presentations represent distinct *ordered*
+lower-part data; neither violates the conditional induction statement.
+
+The exact negative control is now in
+`scripts/check_c0_local_order_normalizer.py`: it verifies all three
+minimal strong steps and sparse predimensions, exhibits inequality
+of the raw-tie global codes, and checks equality of the conditional
+local codes after transporting the lower order. Any later
+`W` construction must use ordered local types as its keys, not
+silently identify arbitrarily chosen physical orders.
+
 ## Formalization boundary
 
 - BigHrushovski/C0CoordinateTopPermutationOrbit.lean is submitted on
@@ -57,7 +103,7 @@ vertex names is not invariant under renaming.
   English, NOT yet instantiated in Lean for the full C0 finite age.
   The missing step identifies the actual local types with the
   top-permutation orbits and constructs a coherent choice globally.
-- scripts/check_c0_local_order_normalizer.py exhausts 1,401 finite
+- scripts/check_c0_local_order_normalizer.py additionally exhibits the genuine five-vertex raw-tie obstruction above, and exhausts 1,401 finite
   minimal-strong presentations on at most four vertices, 5,545
   local codes and 130,289 comparisons under ALL relabellings.
   It includes four non-singleton increments and a raw-label-order
