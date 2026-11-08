@@ -1,6 +1,8 @@
 import BigHrushovski.C0CountableIntrinsicLayers
 
 #print axioms BigHrushovski.FiniteC0.unaryFiniteCut_mono
+#print axioms BigHrushovski.FiniteC0.unaryFiniteCut_succ_eq_union_value
+#print axioms BigHrushovski.FiniteC0.unaryFiniteLayer_eq_value_sdiff_cut
 #print axioms BigHrushovski.FiniteC0.unaryFiniteCut_closed
 #print axioms BigHrushovski.FiniteC0.mem_unaryFiniteCut_succ
 #print axioms BigHrushovski.FiniteC0.unaryComponent_subset_layer
