@@ -120,7 +120,7 @@ structure StrongFraisseLimitPresentation
 three finite recognition properties, now derived rather
 than separately postulated. The finite globally d-closed
 covers come from the defining covering strong chain. -/
-theorem StrongFraisseLimitPresentation.toPresentedFraisseData
+def StrongFraisseLimitPresentation.toPresentedFraisseData
     (F : ℕ → ℝ) (G : GraphOn V)
     (h : StrongFraisseLimitPresentation F G) :
     PresentedFraisseData F G := by
