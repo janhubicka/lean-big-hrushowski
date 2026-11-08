@@ -1,0 +1,11 @@
+import BigHrushovski.C0CountableIntrinsicComponents
+
+#print axioms BigHrushovski.FiniteC0.mem_unaryComponent_iff
+#print axioms BigHrushovski.FiniteC0.mem_unaryComponent_self
+#print axioms BigHrushovski.FiniteC0.unaryComponent_subset_value
+#print axioms BigHrushovski.FiniteC0.unaryComponent_eq_of_value_eq
+#print axioms BigHrushovski.FiniteC0.unaryComponents_disjoint_of_value_ne
+#print axioms BigHrushovski.FiniteC0.unaryComponent_eq_canonical_component
+#print axioms BigHrushovski.FiniteC0.strictLowerValue_ssubset
+#print axioms BigHrushovski.FiniteC0.strictLowerValue_card_lt
+#print axioms BigHrushovski.FiniteC0.unaryComponent_subset_strictLower
