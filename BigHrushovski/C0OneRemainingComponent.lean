@@ -24,11 +24,109 @@ namespace FiniteC0
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable {n : ℕ}
 
-/-- Let s be closed under the complete canonical unary values of a
-finite graph with a possibly empty-slot minimal strong component
-presentation. If every vertex outside s belongs to exactly one
-component (the component of x), then adjoining it is a minimal
-strong step. The conclusion has no choice of component chronology. -/
+/-- Two finite unary-closed sets with exactly one intrinsic component
+between them form a minimal strong step. The closed larger set z is
+frontloaded first, and then the smaller closed set s is frontloaded
+inside it; other components of G are not allowed to intervene. -/
+theorem closed_one_component_interval_minimal
+    (G : GraphOn V) (κ : V → Fin n)
+    (hSteps : ∀ k : ℕ, k < n →
+      oldStage κ k = oldStage κ (k+1) ∨
+      G.toPredimension.IsMinimalStrongStep
+        (oldStage κ k) (oldStage κ (k+1)))
+    (s z : Finset V) (hsz : s ⊆ z)
+    (hClosedS : G.IsClosedUnderValues (canonicalValue G κ) s)
+    (hClosedZ : G.IsClosedUnderValues (canonicalValue G κ) z)
+    (x : V)
+    (hDifference : z \ s = component κ (κ x).val) :
+    G.toPredimension.IsMinimalStrongStep s z := by
+  classical
+  let a : V → Fin (n+n) := frontloadIndex κ z
+  let b : V → Fin ((n+n)+(n+n)) := frontloadIndex a s
+  let j : ℕ := (κ x).val
+  let k : ℕ := (n+n)+j
+  have hj : j < n := (κ x).isLt
+  have hxComponent : x ∈ component κ j :=
+    (mem_component_iff κ j x).mpr rfl
+  have hxDiff : x ∈ z \ s := by
+    rw [hDifference]
+    exact hxComponent
+  have hxZ : x ∈ z := (Finset.mem_sdiff.mp hxDiff).1
+  have hxNotS : x ∉ s := (Finset.mem_sdiff.mp hxDiff).2
+  have hIndex : ∀ v : V, v ∈ z → v ∉ s → (κ v).val = j := by
+    intro v hvZ hvS
+    have hv : v ∈ z \ s := Finset.mem_sdiff.mpr ⟨hvZ, hvS⟩
+    rw [hDifference] at hv
+    exact (mem_component_iff κ j v).mp hv
+  have hClosedSA : G.IsClosedUnderValues (canonicalValue G a) s := by
+    intro v hvS w hw
+    have hwκ : w ∈ canonicalValue G κ v := by
+      rw [← canonicalValue_frontload_eq G κ z hClosedZ v]
+      exact hw
+    exact hClosedS v hvS hwκ
+  have hASteps :
+      ∀ t : ℕ, t < n+n →
+        oldStage a t = oldStage a (t+1) ∨
+        G.toPredimension.IsMinimalStrongStep
+          (oldStage a t) (oldStage a (t+1)) :=
+    frontloadIndex_minimal_steps G κ z hClosedZ hSteps
+  have hBSteps :
+      ∀ t : ℕ, t < (n+n)+(n+n) →
+        oldStage b t = oldStage b (t+1) ∨
+        G.toPredimension.IsMinimalStrongStep
+          (oldStage b t) (oldStage b (t+1)) :=
+    frontloadIndex_minimal_steps G a s hClosedSA hASteps
+  have hFirst : oldStage b k = s := by
+    ext v
+    rw [mem_oldStage_iff]
+    constructor
+    · intro hvLt
+      by_contra hvS
+      rw [frontloadIndex_outside a s v hvS] at hvLt
+      by_cases hvZ : v ∈ z
+      · rw [frontloadIndex_inside κ z v hvZ,
+            hIndex v hvZ hvS] at hvLt
+        omega
+      · rw [frontloadIndex_outside κ z v hvZ] at hvLt
+        omega
+    · intro hvS
+      rw [frontloadIndex_inside a s v hvS]
+      have hBound := (a v).isLt
+      omega
+  have hLast : oldStage b (k+1) = z := by
+    ext v
+    rw [mem_oldStage_iff]
+    constructor
+    · intro hvLt
+      by_contra hvZ
+      have hvS : v ∉ s := by
+        intro hvS
+        exact hvZ (hsz hvS)
+      rw [frontloadIndex_outside a s v hvS,
+          frontloadIndex_outside κ z v hvZ] at hvLt
+      omega
+    · intro hvZ
+      by_cases hvS : v ∈ s
+      · rw [frontloadIndex_inside a s v hvS]
+        have hBound := (a v).isLt
+        omega
+      · rw [frontloadIndex_outside a s v hvS,
+            frontloadIndex_inside κ z v hvZ,
+            hIndex v hvZ hvS]
+        omega
+  have hStep := hBSteps k (by omega)
+  rcases hStep with hEq | hMin
+  · rw [hFirst, hLast] at hEq
+    have hxS : x ∈ s := by
+      rw [hEq]
+      exact hxZ
+    exact (hxNotS hxS).elim
+  · rw [hFirst, hLast] at hMin
+    exact hMin
+
+/-- If the complement of a finite C₀-closed set is precisely one
+intrinsic component, its inclusion into the whole vertex set is
+a minimal strong step. This is the special case z = univ. -/
 theorem closed_complement_one_component_minimal
     (G : GraphOn V) (κ : V → Fin n)
     (hSteps : ∀ k : ℕ, k < n →
@@ -41,72 +139,14 @@ theorem closed_complement_one_component_minimal
     (hComplement :
       (Finset.univ : Finset V) \ s = component κ (κ x).val) :
     G.toPredimension.IsMinimalStrongStep s Finset.univ := by
-  classical
-  let j : ℕ := (κ x).val
-  have hj : j < n := (κ x).isLt
-  have hxOutside : x ∉ s := by
-    have hxComp : x ∈ component κ j :=
-      (mem_component_iff κ j x).mpr rfl
-    have hxOut : x ∈ (Finset.univ : Finset V) \ s := by
-      rw [hComplement]
-      exact hxComp
-    exact (Finset.mem_sdiff.mp hxOut).2
-  have hEarlier : oldStage κ j ⊆ s := by
-    intro v hv
-    by_contra hvNot
-    have hvOut : v ∈ (Finset.univ : Finset V) \ s :=
-      Finset.mem_sdiff.mpr ⟨Finset.mem_univ _, hvNot⟩
-    rw [hComplement] at hvOut
-    have hvIndex : (κ v).val = j :=
-      (mem_component_iff κ j v).mp hvOut
-    have hvEarlier : (κ v).val < j :=
-      (mem_oldStage_iff κ j v).mp hv
-    omega
-  have hFirst :
-      oldStage (frontloadIndex κ s) (n+j) = s := by
-    rw [oldStage_frontload_after κ s j]
-    ext v
-    constructor
-    · intro hv
-      rcases Finset.mem_union.mp hv with hvS | hvEarlier
-      · exact hvS
-      · exact hEarlier hvEarlier
-    · intro hv
-      exact Finset.mem_union.mpr (Or.inl hv)
-  have hLast :
-      oldStage (frontloadIndex κ s) (n+j+1) =
+  have hUnivClosed :
+      G.IsClosedUnderValues (canonicalValue G κ)
         (Finset.univ : Finset V) := by
-    have hIndexEq : n+j+1 = n+(j+1) := by omega
-    rw [hIndexEq, oldStage_frontload_after κ s (j+1)]
-    ext v
-    constructor
-    · intro _
-      exact Finset.mem_univ _
-    · intro _
-      by_cases hvS : v ∈ s
-      · exact Finset.mem_union.mpr (Or.inl hvS)
-      · have hvOut : v ∈ (Finset.univ : Finset V) \ s :=
-          Finset.mem_sdiff.mpr ⟨Finset.mem_univ _, hvS⟩
-        rw [hComplement] at hvOut
-        have hvIndex : (κ v).val = j :=
-          (mem_component_iff κ j v).mp hvOut
-        have hvEarlier : v ∈ oldStage κ (j+1) :=
-          (mem_oldStage_iff κ (j+1) v).mpr (by omega)
-        exact Finset.mem_union.mpr (Or.inr hvEarlier)
-  have hStep := frontloadIndex_minimal_steps
-    G κ s hClosed hSteps (n+j) (by omega)
-  rcases hStep with hEq | hMin
-  · have hsAll : s = (Finset.univ : Finset V) := by
-      calc
-        s = oldStage (frontloadIndex κ s) (n+j) := hFirst.symm
-        _ = oldStage (frontloadIndex κ s) (n+j+1) := hEq
-        _ = Finset.univ := hLast
-    have hxS : x ∈ s := by
-      rw [hsAll]
-      exact Finset.mem_univ _
-    exact (hxOutside hxS).elim
-  · rw [hFirst, hLast] at hMin
-    exact hMin
+    intro _ _ v _
+    exact Finset.mem_univ v
+  exact closed_one_component_interval_minimal
+    G κ hSteps s Finset.univ (Finset.subset_univ s)
+    hClosed hUnivClosed x hComplement
 
 end FiniteC0
 end BigHrushovski
