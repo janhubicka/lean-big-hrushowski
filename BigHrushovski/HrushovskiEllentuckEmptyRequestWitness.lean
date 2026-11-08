@@ -34,7 +34,7 @@ theorem birthSupport_empty_of_empty_request
     (hr : r.support = ∅) :
     birthSupport F K n r = ∅ := by
   classical
-  simp only [birthSupport, taggedSupport, hr, Finset.image_empty]
+  simp [birthSupport, taggedSupport, hr]
 
 /-- The least finite complete-b-closed hull of the empty vertex set
 is empty, with no extra growth or level-lifting assumptions. -/
