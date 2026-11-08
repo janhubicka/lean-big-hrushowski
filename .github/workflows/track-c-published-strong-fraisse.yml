@@ -1,0 +1,29 @@
+name: Track C published strong Fraisse limit identification
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFPublishedStrongFraisseIdentification.lean"
+      - "BigHrushovski/CFStrongFraisseLimitPresentation.lean"
+      - "TrackCPublishedStrongFraisseCheck.lean"
+      - ".github/workflows/track-c-published-strong-fraisse.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published-fraisse-limit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build final published C_F strong Fraisse-limit identification
+        run: lake build BigHrushovski.CFPublishedStrongFraisseIdentification
+      - name: Audit the exact final theorem's axioms and placeholders
+        run: |
+          lake env lean TrackCPublishedStrongFraisseCheck.lean > track-c-published-strong-fraisse-axioms.log
+          python3 scripts/check_axioms.py track-c-published-strong-fraisse-axioms.log TrackCPublishedStrongFraisseCheck.lean
+          python3 scripts/check_no_placeholders.py
