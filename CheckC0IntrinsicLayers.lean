@@ -9,3 +9,4 @@ import BigHrushovski.C0CountableIntrinsicLayers
 #print axioms BigHrushovski.FiniteC0.unaryFiniteCut_succ_eq_union_layer
 #print axioms BigHrushovski.FiniteC0.unaryComponent_subset_rankCut
 #print axioms BigHrushovski.FiniteC0.unaryFiniteRankCut_mono_rank
+#print axioms BigHrushovski.FiniteC0.unaryFiniteLayer_segment_closed
