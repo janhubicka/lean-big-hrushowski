@@ -1,0 +1,3 @@
+import BigHrushovski.CFPublishedStrongFraisseTheorem
+
+#print axioms BigHrushovski.CFCoherentTower.publishedBirth_iso_standardStrongFraisseLimit
