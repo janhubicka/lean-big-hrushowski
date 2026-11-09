@@ -84,6 +84,17 @@ theorem acrossGap_oldBirthExact
 /-- Choose the target birth level q directly, instead of
 supplying a non-canonical subtraction parameter k.
 The old target stage p need only satisfy p ≤ q. -/
+private theorem castVerifiedCutMap_toVertex
+    {F : ℕ → ℝ} {K : ℕ → ℕ}
+    {s : Finset (Vertex F K)} {n a b : ℕ}
+    (e : a = b) (M : VerifiedCutMap F K s n a)
+    (u : SupportCarrier (stage F K n).carrier (stageCut F K s n)) :
+    toVertex F K b
+      ((cast (congrArg (VerifiedCutMap F K s n) e) M).toFun u) =
+    toVertex F K a (M.toFun u) := by
+  cases e
+  rfl
+
 noncomputable def nextAtTarget
     {F : ℕ → ℝ} {K : ℕ → ℕ}
     {s : Finset (Vertex F K)} {n p : ℕ}
@@ -91,10 +102,32 @@ noncomputable def nextAtTarget
     (hs : IsBirthBlockClosed F K s)
     (m : ℕ) (hnm : n ≤ m)
     (hGap : ∀ i ∈ representedLevels F K s, i < n ∨ m ≤ i)
-    (q : ℕ) (hpq : p ≤ q) :
-    VerifiedCutMap F K s (m+1) (q+1) := by
-  simpa only [Nat.add_sub_of_le hpq] using
+    (q : ℕ) (_hpq : p ≤ q) :
+    VerifiedCutMap F K s (m+1) (q+1) :=
+  cast (congrArg (VerifiedCutMap F K s (m+1))
+    (show p + (q-p) + 1 = q+1 by omega))
     (h.next hs m hnm hGap (q-p))
+
+/-- Casting the dependent target-stage index changes neither the
+literal birth vertex nor the actual selected source argument. -/
+theorem nextAtTarget_toVertex
+    {F : ℕ → ℝ} {K : ℕ → ℕ}
+    {s : Finset (Vertex F K)} {n p : ℕ}
+    (h : VerifiedCutMap F K s n p)
+    (hs : IsBirthBlockClosed F K s)
+    (m : ℕ) (hnm : n ≤ m)
+    (hGap : ∀ i ∈ representedLevels F K s, i < n ∨ m ≤ i)
+    (q : ℕ) (hpq : p ≤ q)
+    (u : SupportCarrier (stage F K (m+1)).carrier
+      (stageCut F K s (m+1))) :
+    toVertex F K (q+1)
+      ((h.nextAtTarget hs m hnm hGap q hpq).toFun u) =
+    toVertex F K (p+(q-p)+1)
+      ((h.next hs m hnm hGap (q-p)).toFun u) := by
+  unfold nextAtTarget
+  exact castVerifiedCutMap_toVertex
+    (show p + (q-p) + 1 = q+1 by omega)
+    (h.next hs m hnm hGap (q-p)) u
 
 /-- A new block is born at exactly the prescribed target level q
 under the direct target-level interface. -/
@@ -114,9 +147,17 @@ theorem nextAtTarget_freshBirthLevel
       ((h.nextAtTarget hs m hnm hGap q hpq).toFun
         (selectedCutEquiv F K s hs m (Sum.inr ⟨r, i⟩)))).1 =
       q := by
-  obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hpq
-  simpa [nextAtTarget, Nat.add_sub_cancel_left] using
-    (h.next_freshBirthLevel hs m hnm hGap k r i)
+  calc
+    (toVertex F K (q+1)
+      ((h.nextAtTarget hs m hnm hGap q hpq).toFun
+        (selectedCutEquiv F K s hs m (Sum.inr ⟨r, i⟩)))).1 =
+      (toVertex F K (p+(q-p)+1)
+        ((h.next hs m hnm hGap (q-p)).toFun
+          (selectedCutEquiv F K s hs m (Sum.inr ⟨r, i⟩)))).1 := by
+            exact congrArg Sigma.fst
+              (h.nextAtTarget_toVertex hs m hnm hGap q hpq
+                (selectedCutEquiv F K s hs m (Sum.inr ⟨r, i⟩)))
+    _ = q := h.next_freshBirthLevel hs m hnm hGap (q-p) r i
 
 /-- Old vertices retain their previously assigned literal target
 birth labels, independent of the choice of the new level q. -/
@@ -135,9 +176,20 @@ theorem nextAtTarget_oldBirthExact
         (selectedCutEquiv F K s hs m
           (Sum.inl (stageCutGapEquiv F K s n m hnm hGap u)))) =
     toVertex F K p (h.toFun u) := by
-  obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hpq
-  simpa [nextAtTarget, Nat.add_sub_cancel_left] using
-    (h.next_oldBirthExact hs m hnm hGap k u)
+  calc
+    toVertex F K (q+1)
+      ((h.nextAtTarget hs m hnm hGap q hpq).toFun
+        (selectedCutEquiv F K s hs m
+          (Sum.inl (stageCutGapEquiv F K s n m hnm hGap u)))) =
+      toVertex F K (p+(q-p)+1)
+        ((h.next hs m hnm hGap (q-p)).toFun
+          (selectedCutEquiv F K s hs m
+            (Sum.inl (stageCutGapEquiv F K s n m hnm hGap u)))) :=
+              h.nextAtTarget_toVertex hs m hnm hGap q hpq
+                (selectedCutEquiv F K s hs m
+                  (Sum.inl (stageCutGapEquiv F K s n m hnm hGap u)))
+    _ = toVertex F K p (h.toFun u) :=
+      h.next_oldBirthExact hs m hnm hGap (q-p) u
 
 end VerifiedCutMap
 end CFCoherentTower
