@@ -1,0 +1,10 @@
+import BigHrushovski.N0GlobalLexOrder
+
+#print axioms BigHrushovski.FiniteOrientation.exists_locallyInjective
+#print axioms BigHrushovski.FiniteOrientation.vertexLexKey_injective
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_irrefl
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_trans
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_total
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_of_componentRank_lt
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_successor_first
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_component_interval
