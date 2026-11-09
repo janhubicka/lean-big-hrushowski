@@ -170,7 +170,7 @@ merely from the reduct isomorphism with M₀.
    exact-head integration is still a separate gate.
 2. Discharge the minimal-strong induction step for the selected
    component. The finite and countable interval theorems are merged
-   (#385, #394), and draft PR #400 proves the explicit enabled-step
+   (#385, #394), and merged PR #400 proves the explicit enabled-step
    corollary, including global strongness. Its isolated CI passed.
 3. Prove complete unary-value agreement under the resulting
    enumerated component order.
@@ -213,9 +213,9 @@ genericity theorem, are validated.
   of an entire intrinsic-component interval. The separate closed-set
   theorem supplies global strongness; neither follows from arbitrary
   unary data.
-- **Formal trust/referee:** #400 and #402 are draft Lean modules with
+- **Formal trust/referee:** #400 is merged; #402 remains a draft Lean module with
   their own exact axiom/placeholder workflows. A passing isolated build
-  is distinguished from the whole repository workflow. These drafts
+  is distinguished from the whole repository workflow. The draft #402
   do not upgrade a full manuscript validation marker.
 - **Text/referee:** the published proposition still needs the order-ω
   exhaustion proof, unary fidelity of the resulting enumeration, and
