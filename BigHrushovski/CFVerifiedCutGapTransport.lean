@@ -114,7 +114,7 @@ theorem nextAtTarget_freshBirthLevel
       ((h.nextAtTarget hs m hnm hGap q hpq).toFun
         (selectedCutEquiv F K s hs m (Sum.inr ⟨r, i⟩)))).1 =
       q := by
-  simpa only [nextAtTarget, Nat.add_sub_of_le hpq] using
+  simpa [nextAtTarget, Nat.add_sub_of_le hpq] using
     (h.next_freshBirthLevel hs m hnm hGap (q-p) r i)
 
 /-- Old vertices retain their previously assigned literal target
@@ -134,7 +134,7 @@ theorem nextAtTarget_oldBirthExact
         (selectedCutEquiv F K s hs m
           (Sum.inl (stageCutGapEquiv F K s n m hnm hGap u)))) =
     toVertex F K p (h.toFun u) := by
-  simpa only [nextAtTarget, Nat.add_sub_of_le hpq] using
+  simpa [nextAtTarget, Nat.add_sub_of_le hpq] using
     (h.next_oldBirthExact hs m hnm hGap (q-p) u)
 
 end VerifiedCutMap
