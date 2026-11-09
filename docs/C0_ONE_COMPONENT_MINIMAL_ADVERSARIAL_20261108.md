@@ -66,8 +66,8 @@ It retains precisely 1,438 presentations whose nonempty index
 steps are minimal strong, and checks 43,792 nested pairs of
 closed sets. Among them, **14,859** differ by exactly one
 intrinsic component and all passed the exact minimal-strong test.
-The prior 2,899 complements of the whole carrier are included.
-These are falsification tests, not Lean kernel certificates.
+The prior 2,819 complements of the whole carrier are included.
+The whole-carrier total was independently recounted using a second exhaustive implementation; it is 2,819, not the former mistaken hard-coded 2,899. These are falsification tests, not Lean kernel certificates.
 
 ## Referee F: proof and axiom gate
 
