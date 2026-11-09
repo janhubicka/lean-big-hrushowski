@@ -1,0 +1,20 @@
+import BigHrushovski.C0CountableIntrinsicComponents
+
+#print axioms BigHrushovski.FiniteC0.mem_unaryComponent_iff
+#print axioms BigHrushovski.FiniteC0.mem_unaryComponent_self
+#print axioms BigHrushovski.FiniteC0.unaryComponent_subset_value
+#print axioms BigHrushovski.FiniteC0.unaryComponent_eq_of_value_eq
+#print axioms BigHrushovski.FiniteC0.unaryComponents_disjoint_of_value_ne
+#print axioms BigHrushovski.FiniteC0.unaryComponent_eq_canonical_component
+#print axioms BigHrushovski.FiniteC0.strictLowerValue_ssubset
+#print axioms BigHrushovski.FiniteC0.strictLowerValue_card_lt
+#print axioms BigHrushovski.FiniteC0.unaryComponent_subset_strictLower
+
+#print axioms BigHrushovski.FiniteC0.completeValue_eq_component_union_lower
+#print axioms BigHrushovski.FiniteC0.component_disjoint_strictLower
+#print axioms BigHrushovski.FiniteC0.component_eq_value_sdiff_lower
+#print axioms BigHrushovski.FiniteC0.strictLowerValue_closed
+#print axioms BigHrushovski.FiniteC0.strictLowerValue_isClosedUnderValues
+#print axioms BigHrushovski.FiniteC0.canonicalStages_closed_globalStrong
+#print axioms BigHrushovski.FiniteC0.intrinsicLower_globalStrong_of_canonicalStages
+#print axioms BigHrushovski.FiniteC0.intrinsicValue_globalStrong_of_canonicalStages

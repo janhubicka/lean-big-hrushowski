@@ -1,0 +1,200 @@
+# Track A — adversarial audit: actual fair countable C₀ graph and unary limit
+
+Date: 6 November 2026. Roles below are adversarial checks by the
+assistant, not independent human or external referee agents.
+Source modules: `C0FunctionalNatStageTransport.lean`,
+`C0FunctionalNatStageCanonical.lean`,
+`C0FunctionalFairLimit.lean`.
+Stacked on the finite successor and recursion PRs #334 and #340.
+
+## Main objective
+
+Turn the **actual recursively chosen** finite stages into a coherent
+countable graph on ℕ and one complete finite-valued unary operation.
+The finite stages are on consecutive `Fin(size n)` carriers.
+Each successor's old map fixes every numerical coordinate, preserves
+both graph edges and nonedges, and transports its *complete canonical
+unary values* by equality.
+
+The construction then produces an actual `CoherentNatC0Stages`
+using the previous verified coherent graph/unary interfaces.
+It provides finite canonical certificates on every literal
+Nat-stage carrier, strong finite covers in the graph limit, and
+an explicit conditional recognition statement for the graph reduct.
+No functional Fraïssé extension property is silently postulated
+as a conclusion.
+
+## Referee 1 — original numeric labels
+
+The finite ordinal inclusion is the exact `Fin.val` map into ℕ.
+Old successor maps are not arbitrary injections: their pointwise
+numeric values are fixed, and the resulting graph agrees at each
+old pair of actual Nat labels. The proof does not replace the old
+carrier by an isomorphic but renumbered finite copy.
+
+## Referee 2 — nonedges
+
+The finite Nat graph is `GraphOn.transportedToNat`.
+Inducedness is a biconditional. The successor's `old_graph`
+field is likewise an iff, so an edge cannot appear later between
+two previously nonadjacent vertices.
+The existing `CoherentNatGraphStages.limitGraph_induced` theorem
+then identifies the induced graph on every finite stage.
+Failure to reflect nonedges would invalidate predimension,
+self-sufficiency, and the component-dependency closure.
+
+## Referee 3 — finite support of unary values
+
+The complete unary value of `x < size n` is the image of its
+canonical finite value in `Fin(size n)`; hence it lies in
+`Finset.range (size n)`. Off that stage it is declared empty,
+which is harmless because coherence is required only for vertices
+already present. No one-generated closure becomes infinite
+during the countable union.
+
+## Referee 4 — exact old-value equality
+
+The transported unary equality applies to the complete finite
+Finset of **all** backward-reachable components of each old
+vertex. It follows from the successor's `old_values` and
+`old_labels` through image composition. Inclusion would not
+suffice. The already proved coherent unary limit therefore
+agrees with the finite value at any containing stage and makes
+each stage a genuine functional substructure.
+
+## Referee 5 — canonical finite index
+
+For the literal carrier `Finset.range(size n)`, use the explicit
+equivalence between `Fin(size n)` and its subtype of ℕ.
+`FiniteC0.minimalSteps_relabel` and
+`canonicalValue_relabel` transport the entire canonical
+presentation. No externally chosen numbering of the finite
+carrier is needed, and unused index ranks remain allowed.
+
+## Referee 6 — strongness is derived
+
+The previous `CoherentNatC0Stages.strong_steps` theorem
+proves that complete unary closedness of each old finite
+stage in the successor makes it strong there. The
+`CoherentNatGraphStages.asStrongChain` theorem then gives
+global strongness of all finite stages and finite strong covers
+in the countable graph limit. Strongness is NOT inserted
+as a new assumption about the countable structure.
+
+## Referee 7 — actual versus abstract sequence
+
+The graph and unary stage sequences both take their data from the
+same `fairStages : ℕ → FiniteFunctionalNatStage` defined by
+`Nat.rec`. The graph and unary carrier sizes are therefore
+definitionally identical at every stage, not merely eventually
+isomorphic. The exact finite certificates likewise come from
+that same selected stage, not from an unrelated independent choice.
+
+## Referee 8 — genuine remaining functional extension
+
+Although the finite fair-step theorem answers each applicable
+*catalogued* request, the construction still needs a separate
+theorem showing that any finite functional extension
+over an arbitrary stage can be encoded as a request in
+`FunctionalC0RequestCatalogue`, with the original old
+labels and canonical values preserved. Then fairness must be
+combined with persistence of applicability to show that it
+is eventually answered in the limit.
+
+Only then can `HasCanonicalStageExtensionProperty`
+be discharged in
+`fairLimitReduct_generic_of_functionalExtension`.
+Until that final request-coverage/encoding step has passed Lean,
+the unconditional identification with `M₀` remains OPEN.
+
+## CI and scope
+
+The dedicated `track-a-nat-functional-stage.yml` workflow
+builds `C0FunctionalFairLimit.lean` (and all its predecessors),
+checks named theorem axioms, and runs the no-placeholder scan.
+No manuscript countable green marker is justified before the
+exact branch passes. The adversarial roles above are proof
+review, not an independent kernel certificate.
+
+## Referee 9 — persistence of actual labelled functional applicability
+
+The new module `C0FunctionalFairPersistence.lean` proves, without
+a new amalgamation argument, that if a finite labelled request
+is applicable in stage n then it remains applicable in every later
+stage. A successor extends the prescribed source map by composing
+it with its old map; this retains numeric labels, inducedness in
+both directions and the **complete** unary image equation. These
+are all required for the application's hypothesis — merely
+remembering edges would be insufficient.
+
+The fairness theorem `fairFunctionalC0Request_after` then gives
+a later scheduled occurrence of the same request, and the certified
+one-step response field supplies an actual strong induced finite
+target copy. Hence
+`fairStages_eventually_answers` is an exact eventual *finite*
+response theorem, not a statement of countable genericity.
+
+## Referee 10 — remaining arbitrary extension encoding
+
+To upgrade this result to
+`FiniteC0.HasCanonicalStageExtensionProperty`, an arbitrary
+finite functional extension over a stage must first be encoded
+as a member of `FunctionalC0RequestCatalogue`. The target may
+have an arbitrary finite carrier W, and the source index used
+to witness the functional extension need not be the specific
+canonical index selected in the recursive stage. A correct
+bridge must use the exact finite carrier equivalence and equality
+of **complete unary operations** to obtain the catalogue diagram.
+It must preserve each original numeric label and keep the source
+functional embedding, not merely its graph reduct. No such
+encoding theorem is assumed in the current code.
+
+CI now builds `C0FunctionalFairLimit` and
+`C0FunctionalFairPersistence`, and audits the latter's three
+eventual-applicability and response endpoints in addition to
+the graph/unary limit certificates.
+
+## Referee 11 — the finite response actually persists into the limit
+
+The module `C0FunctionalFairResponseLimit.lean` constructs an induced
+functional embedding in the actual countable limit for every
+finite target already realized at a scheduled stage. The new
+target map is simply the finite embedding followed by the
+literal `Fin.val` map. The graph embedding is induced in
+both directions by `natGraph_induced` and
+`CoherentNatGraphStages.limitGraph_induced`. The unary
+values agree **exactly** by the stable unary-limit theorem,
+the finite response's full-value equality and
+`Finset.image_image`. All prescribed source labels survive
+pointwise, rather than merely up to an abstract finite
+isomorphism.
+
+The resulting theorem
+`eventually_answered_in_fair_limit` combines
+`fairStages_eventually_answers` with this exact
+finite-to-countable response transport. It requires only
+that the catalogue request was applicable at some finite
+stage; it does **not** impose an already generic countable
+model or assume that the full extension property holds.
+
+## Referee 12 — the remaining encoding bridge
+
+The separate finite normalization lemma in draft PR #345
+transports an arbitrary finite functional target W to
+the catalogue's finite ordinal, without changing the source
+stage's original numerical labels. To complete the countable
+Fraïssé argument one must apply this normalization to a
+finite extension over a literal stage of the countable limit.
+In particular, the source's chosen component index in
+`HasCanonicalStageExtensionProperty` need not equal the
+selected stage model's index; the proof must first establish
+equality of their **complete unary values** from their common
+limit operation.
+
+Once this conversion is proved, the present eventual-response
+theorem will supply the target copy in the limit with the exact
+prescribed old labels and complete functions. Until then,
+the manuscript's `C0-free-generic` remains PARTIAL.
+
+Dedicated CI now builds `C0FunctionalFairResponseLimit`
+and audits its two additional exact theorem endpoints.

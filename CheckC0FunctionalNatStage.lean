@@ -1,0 +1,8 @@
+import BigHrushovski.C0FunctionalNatStageTransport
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fin_val_injective
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.natGraph_induced
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.natGraph_edge_support
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.natValue_supported
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.natGraph_agree_of_successor
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.natValue_agree_of_successor

@@ -1,0 +1,29 @@
+name: Track C exact published M_F identification
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFPublishedStrongFraisseTheorem.lean"
+      - "BigHrushovski/CFStandardFraisseExtension.lean"
+      - "TrackCPublishedStrongFraisseTheoremCheck.lean"
+      - ".github/workflows/track-c-final-standard-mf.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  final-mf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build exact published strong Fraisse theorem
+        run: lake build BigHrushovski.CFPublishedStrongFraisseTheorem
+      - name: Audit exact final theorem axioms and placeholders
+        run: |
+          lake env lean TrackCPublishedStrongFraisseTheoremCheck.lean > track-c-final-mf-axioms.log
+          python3 scripts/check_axioms.py track-c-final-mf-axioms.log TrackCPublishedStrongFraisseTheoremCheck.lean
+          python3 scripts/check_no_placeholders.py
