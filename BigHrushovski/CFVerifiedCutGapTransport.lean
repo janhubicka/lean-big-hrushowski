@@ -114,8 +114,9 @@ theorem nextAtTarget_freshBirthLevel
       ((h.nextAtTarget hs m hnm hGap q hpq).toFun
         (selectedCutEquiv F K s hs m (Sum.inr ⟨r, i⟩)))).1 =
       q := by
-  simpa [nextAtTarget, Nat.add_sub_of_le hpq] using
-    (h.next_freshBirthLevel hs m hnm hGap (q-p) r i)
+  obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hpq
+  simpa [nextAtTarget, Nat.add_sub_cancel_left] using
+    (h.next_freshBirthLevel hs m hnm hGap k r i)
 
 /-- Old vertices retain their previously assigned literal target
 birth labels, independent of the choice of the new level q. -/
@@ -134,8 +135,9 @@ theorem nextAtTarget_oldBirthExact
         (selectedCutEquiv F K s hs m
           (Sum.inl (stageCutGapEquiv F K s n m hnm hGap u)))) =
     toVertex F K p (h.toFun u) := by
-  simpa [nextAtTarget, Nat.add_sub_of_le hpq] using
-    (h.next_oldBirthExact hs m hnm hGap (q-p) u)
+  obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hpq
+  simpa [nextAtTarget, Nat.add_sub_cancel_left] using
+    (h.next_oldBirthExact hs m hnm hGap k u)
 
 end VerifiedCutMap
 end CFCoherentTower
