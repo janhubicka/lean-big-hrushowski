@@ -1,0 +1,6 @@
+import BigHrushovski.N0GlobalLexReconstruction
+
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_iff_key_comparison
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_distinctComponents_iff
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_sameComponent_iff
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_agree_iff_component_and_local
