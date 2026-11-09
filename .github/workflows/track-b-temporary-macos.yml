@@ -1,0 +1,37 @@
+name: Temporary Track B macOS proof check
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/track-b-temporary-macos.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  track-b:
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install exact pinned Lean
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --retry 3 -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile new Track B modules with exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+          lake build BigHrushovski.CFVerifiedCutGapTransport BigHrushovski.CFArbitraryRepresentedLevelLift
+      - name: Audit exact Track B declarations and source
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean CheckAxiomsCFTrackBGapTransport.lean
+          lake env lean CheckAxiomsCFTrackBArbitrary.lean
+          python3 scripts/check_no_placeholders.py
