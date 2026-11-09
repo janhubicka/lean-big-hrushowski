@@ -59,12 +59,9 @@ jobs:
           echo 'Sample compiled source modules:'
           find .lake -name 'CFVerifiedCutInduction.olean' -o -name 'SuccessorTree.olean' | head -20
           test -d .lake/build/lib/lean
-          test -d .lake/packages/successor-tree-lean/.lake/build/lib/lean
           mkdir -p transfer
           git rev-parse HEAD > transfer/SOURCE_SHA
-          tar -I 'zstd -T0 -5' -cf transfer/compiled.tar.zst \
-            .lake/build/lib/lean \
-            .lake/packages/successor-tree-lean/.lake/build/lib/lean
+          tar -I 'zstd -T0 -5' -cf transfer/compiled.tar.zst .lake/build/lib/lean
           (cd transfer && sha256sum compiled.tar.zst > SHA256SUMS)
           du -sh transfer/compiled.tar.zst
       - uses: actions/upload-artifact@v4
