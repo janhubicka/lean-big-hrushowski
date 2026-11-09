@@ -1,0 +1,3 @@
+import BigHrushovski.CFPublishedStrongFraisseIdentification
+
+#print axioms BigHrushovski.CFCoherentTower.publishedBirth_iso_nativeStrongFraisseLimit

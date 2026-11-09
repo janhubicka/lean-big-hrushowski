@@ -1,0 +1,15 @@
+import BigHrushovski.C0CountableIntrinsicLayers
+
+#print axioms BigHrushovski.FiniteC0.unaryFiniteCut_mono
+#print axioms BigHrushovski.FiniteC0.unaryFiniteCut_succ_eq_union_value
+#print axioms BigHrushovski.FiniteC0.unaryFiniteLayer_eq_value_sdiff_cut
+#print axioms BigHrushovski.FiniteC0.unaryFiniteCut_closed
+#print axioms BigHrushovski.FiniteC0.mem_unaryFiniteCut_succ
+#print axioms BigHrushovski.FiniteC0.unaryComponent_subset_layer
+#print axioms BigHrushovski.FiniteC0.strictLower_of_layer_old_or_smaller
+#print axioms BigHrushovski.FiniteC0.unaryFiniteRankCut_closed
+#print axioms BigHrushovski.FiniteC0.unaryFiniteCut_succ_eq_union_layer
+#print axioms BigHrushovski.FiniteC0.unaryComponent_subset_rankCut
+#print axioms BigHrushovski.FiniteC0.unaryFiniteRankCut_mono_rank
+#print axioms BigHrushovski.FiniteC0.unaryFiniteLayer_segment_closed
+#print axioms BigHrushovski.FiniteC0.exists_enabled_component_in_closed_pair
