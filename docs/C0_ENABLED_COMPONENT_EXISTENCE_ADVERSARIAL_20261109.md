@@ -40,4 +40,6 @@ No countable enumerating order or GREEN manuscript marker is asserted here.
 
 ## Referee 7 — Lean trust
 
-The new module is BigHrushovski/C0EnabledComponentExistence.lean; three exact theorem endpoints are audited through CheckC0EnabledComponentExistence.lean, plus a placeholder scan and the finite one-component exhaustive check in a dedicated GitHub Actions workflow. CI is pending at creation. No sorry/admit/axiom is introduced, and ordinary umbrella Lean CI alone would not build this separately imported module.
+The new module is BigHrushovski/C0EnabledComponentExistence.lean; three exact theorem endpoints are audited through CheckC0EnabledComponentExistence.lean, plus a placeholder scan, the finite one-component exhaustive check, and a second independent complete-unary enabledness regression in a dedicated GitHub Actions workflow.
+
+The second regression independently exhausts all 389 reflexive/transitive unary operations on nonempty carriers of size at most four, 5,541 proper finite subsets, and 7,899 eligible vertices. On 2,093 closed proper subsets, the least eligible numerical vertex always yields a strictly larger closed union with its entire component. This is a finite falsification test, not a proof of the infinite-carrier theorem. CI is pending at creation. No sorry/admit/axiom is introduced, and ordinary umbrella Lean CI alone would not build this separately imported module.
