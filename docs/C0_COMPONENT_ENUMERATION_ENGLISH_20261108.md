@@ -101,11 +101,6 @@ minimal-component presentation and the *same* full unary
 values. Its component fibres are intrinsically P(x), so
 Z\Q consists of exactly the single component P.
 
-The merged finite interval theorem (`closed_one_component_interval_minimal`,
-PR #385) and its countable transfer (`canonicalStages_oneComponentInterval_minimal`,
-PR #394) now establish this exact one-component conclusion, without
-requiring a selected global component order.
-
 Apply the certified finite closed-base frontloading theorem
 to Q inside this finite presentation. Its complete values
 and minimal-step property are preserved, Q is frontloaded,
@@ -115,6 +110,12 @@ Since Z is C-closed, the certified countable closed-set
 strongness theorem makes Z globally strong in N.
 Thus the whole enumerated sequence consists of finite
 globally strong prefixes and nonempty minimal strong increments.
+
+The finite interval result (`closed_one_component_interval_minimal`,
+PR #385) and its countable transfer
+(`canonicalStages_oneComponentInterval_minimal`, PR #394) now certify
+this one-component step independently of a global enumeration.
+The recursion selecting the successive components is still open.
 
 The intrinsic finite-class lemma alone does not justify this
 step. The hereditary and frontloading theorems are needed.
