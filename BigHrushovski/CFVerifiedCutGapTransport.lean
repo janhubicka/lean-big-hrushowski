@@ -157,7 +157,8 @@ theorem nextAtTarget_freshBirthLevel
             exact congrArg Sigma.fst
               (h.nextAtTarget_toVertex hs m hnm hGap q hpq
                 (selectedCutEquiv F K s hs m (Sum.inr ⟨r, i⟩)))
-    _ = q := h.next_freshBirthLevel hs m hnm hGap (q-p) r i
+    _ = q := (h.next_freshBirthLevel hs m hnm hGap (q-p) r i).trans
+      (Nat.add_sub_of_le hpq)
 
 /-- Old vertices retain their previously assigned literal target
 birth labels, independent of the choice of the new level q. -/
