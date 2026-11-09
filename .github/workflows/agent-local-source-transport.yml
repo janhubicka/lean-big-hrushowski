@@ -52,8 +52,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -d .lake/build/lib/lean/BigHrushovski
-          test -d .lake/packages/successor-tree-lean/.lake/build/lib/lean/SuccessorTree
+          echo 'Cached project build root:'
+          find .lake/build -maxdepth 4 -type d 2>/dev/null | head -35 || true
+          echo 'Cached successor build root:'
+          find .lake/packages/successor-tree-lean/.lake/build -maxdepth 4 -type d 2>/dev/null | head -35 || true
+          echo 'Sample compiled source modules:'
+          find .lake -name 'CFVerifiedCutInduction.olean' -o -name 'SuccessorTree.olean' | head -20
+          test -d .lake/build/lib/lean
+          test -d .lake/packages/successor-tree-lean/.lake/build/lib/lean
           mkdir -p transfer
           git rev-parse HEAD > transfer/SOURCE_SHA
           tar -I 'zstd -T0 -5' -cf transfer/compiled.tar.zst \
