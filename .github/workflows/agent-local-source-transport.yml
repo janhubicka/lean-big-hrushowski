@@ -1,0 +1,37 @@
+name: Temporary Lean Big Hrushovski source export
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/agent-local-source-transport.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Archive exact source and pinned successor dependency
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p transfer
+          git rev-parse HEAD > transfer/SOURCE_SHA
+          git archive --format=tar HEAD | gzip -1 > transfer/repo.tar.gz
+          git clone --quiet https://github.com/janhubicka/lean-successors.git successors
+          git -C successors checkout --quiet ce5ce187ef88e28d84a4a465517b3f9c87a0640a
+          git -C successors rev-parse HEAD > transfer/SUCCESSORS_SHA
+          git -C successors archive --format=tar HEAD | gzip -1 > transfer/successors.tar.gz
+          cp lean-toolchain lake-manifest.json transfer/
+          (cd transfer && shasum -a 256 repo.tar.gz successors.tar.gz > SHA256SUMS)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agent-hrushovski-source-20261109
+          path: transfer/
+          compression-level: 0
+          retention-days: 1
