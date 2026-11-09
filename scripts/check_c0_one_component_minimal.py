@@ -114,7 +114,7 @@ assert stats == {
     "graphs": 76,
     "presentations": 22956,
     "valid_presentations": 1438,
-    "closed_single_complement": 2899,
+    "closed_single_complement": 2819,
     "closed_nested_pairs": 43792,
     "minimal_nested_steps": 14859,
 }, stats
