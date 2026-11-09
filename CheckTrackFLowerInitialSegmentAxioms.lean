@@ -1,0 +1,6 @@
+import BigHrushovski.N0LowerInitialSegment
+
+#print axioms BigHrushovski.FiniteOrientation.strictSuccessor_iff_mem_lowerPart
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_lowerPart_before_component
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_lowerPart_initial_in_closure
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_top_after_lower_or_top
