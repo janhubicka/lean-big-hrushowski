@@ -35,7 +35,7 @@ theorem canonicalStages_enabledComponent_closed
   intro y hy z hz
   rcases Finset.mem_union.mp hy with hyQ | hyP
   · exact Finset.mem_union.mpr
-      (Or.inl (hClosedQ y hyQ z hz))
+      (Or.inl (hClosedQ y hyQ hz))
   · have hCy : C y = C x :=
       (mem_unaryComponent_iff C hC x y).mp hyP
     have hzCx : z ∈ C x := by
@@ -64,7 +64,7 @@ theorem closed_disjoint_component_of_not_mem
   have hxCy : x ∈ C y := by
     rw [hCy]
     exact hC.1 x
-  exact hxNotQ (hClosedQ y hyQ x hxCy)
+  exact hxNotQ (hClosedQ y hyQ hxCy)
 
 /-- An enabled component is one whose strict predecessors are already
 present in a finite unary-closed Q. Adding an unlisted enabled
