@@ -1,0 +1,3 @@
+import BigHrushovski.C0CountableOneComponentInterval
+
+#print axioms BigHrushovski.FiniteC0.canonicalStages_oneComponentInterval_minimal
