@@ -29,6 +29,19 @@ for n in range(5):
         for x in range(n):
             components += 1
             assert all(values[x] & (1 << y) for y in classes[x])
+            lower = {
+                y for y in range(n)
+                if values[x] & (1 << y) and y not in classes[x]
+            }
+            full = {y for y in range(n) if values[x] & (1 << y)}
+            assert lower | classes[x] == full
+            assert lower.isdisjoint(classes[x])
+            # Closedness under every full unary value, not just the
+            # old-neighbour relation used by a chosen presentation.
+            for y in lower:
+                assert all(
+                    z in lower for z in range(n) if values[y] & (1 << z)
+                )
             for y in range(n):
                 assert classes[x] == classes[y] or classes[x].isdisjoint(classes[y])
                 if (values[x] & (1 << y)) and y not in classes[x]:

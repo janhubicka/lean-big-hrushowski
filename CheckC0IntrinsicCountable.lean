@@ -9,3 +9,12 @@ import BigHrushovski.C0CountableIntrinsicComponents
 #print axioms BigHrushovski.FiniteC0.strictLowerValue_ssubset
 #print axioms BigHrushovski.FiniteC0.strictLowerValue_card_lt
 #print axioms BigHrushovski.FiniteC0.unaryComponent_subset_strictLower
+
+#print axioms BigHrushovski.FiniteC0.completeValue_eq_component_union_lower
+#print axioms BigHrushovski.FiniteC0.component_disjoint_strictLower
+#print axioms BigHrushovski.FiniteC0.component_eq_value_sdiff_lower
+#print axioms BigHrushovski.FiniteC0.strictLowerValue_closed
+#print axioms BigHrushovski.FiniteC0.strictLowerValue_isClosedUnderValues
+#print axioms BigHrushovski.FiniteC0.canonicalStages_closed_globalStrong
+#print axioms BigHrushovski.FiniteC0.intrinsicLower_globalStrong_of_canonicalStages
+#print axioms BigHrushovski.FiniteC0.intrinsicValue_globalStrong_of_canonicalStages
