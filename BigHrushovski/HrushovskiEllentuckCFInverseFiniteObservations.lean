@@ -18,6 +18,8 @@ domains with actual functional self-embedding ranges.
 
 namespace BigHrushovski.CFCoherentTower
 
+open CFGrowthNumerics
+
 /-- Finitely many original birth-level coordinates can be tested by
 finitely many vertices of the actual countable birth carrier,
 provided there is an allowed empty-support request at each level.
