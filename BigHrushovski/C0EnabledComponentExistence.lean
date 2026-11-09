@@ -32,7 +32,7 @@ theorem exists_enabledVertex
   have hOutside : ∃ x : ℕ, x ∉ Q := by
     refine ⟨Q.sup id + 1, ?_⟩
     intro hx
-    have hBound : Q.sup id + 1 ≤ Q.sup id := Finset.le_sup hx
+    have hBound : Q.sup id + 1 ≤ Q.sup id := Finset.le_sup (f := id) hx
     omega
   let p : ℕ → Prop :=
     fun k => ∃ x : ℕ, x ∉ Q ∧ (C x).card = k
