@@ -83,6 +83,56 @@ theorem singletonRequest_every_realStage
     (stage Fnat K n).graph Fnat K
     hClosed hZeroNat hOneNat hSize
 
+
+/-- The real-growth class assumptions supply, at *every literal birth
+level*, an allowed request with empty named support. This is the
+exact extra datum needed to recover level coordinates from
+complete-support domains. It strengthens the earlier `Nonempty`
+conclusion without an additional class or size assumption. -/
+theorem singletonEmptySupportRequest_every_realStage
+    (F : ℝ → ℝ)
+    (hZero : F 0 = 0)
+    (hMono : Monotone F)
+    (hUnbounded : ∀ t : ℝ, ∃ x : ℝ, t < F x)
+    (hFree : HasFiniteClassDClosedFreeJoins (cardinalGrowth F))
+    (hEmptyClass : EmptyDClosedInGrowthClass (cardinalGrowth F))
+    (hSingleton : F 1 ≤ 2) :
+    ∀ n : ℕ,
+      ∃ r : StageRequest
+        (stage (cardinalGrowth F)
+          (cardinalGrowthBound F hMono hUnbounded) n).graph
+        (GrowthAllowedLocal (cardinalGrowth F))
+        (fun P => (cardinalGrowthBound F hMono hUnbounded) P.card),
+        r.support = ∅ := by
+  classical
+  let Fnat : ℕ → ℝ := cardinalGrowth F
+  let K : ℕ → ℕ := cardinalGrowthBound F hMono hUnbounded
+  have hStageFree : ∀ n,
+      (stage Fnat K (n + 1)).graph.GrowthClosedUnderDClosedFreeJoins Fnat := by
+    intro n
+    exact hFree (stage Fnat K (n + 1)).carrier
+      (stage Fnat K (n + 1)).graph
+  have hStageGrowth : ∀ n,
+      (stage Fnat K n).graph.IsGrowthSparse Fnat
+        (Finset.univ : Finset (stage Fnat K n).carrier) :=
+    all_stages_growth Fnat K (emptyStage_growth_of_zero F hZero)
+      hStageFree
+  have hZeroNat : Fnat 0 ≤ 0 := by
+    simp [Fnat, cardinalGrowth, hZero]
+  have hOneNat : Fnat 1 ≤ 2 := by
+    simpa [Fnat, cardinalGrowth] using hSingleton
+  have hSize : 1 ≤ K 0 := by
+    apply cardinalGrowth_inverse F hZero hMono hUnbounded 0 1
+    simpa [Fnat, cardinalGrowth] using hSingleton
+  intro n
+  have hClosed :
+      (stage Fnat K n).graph.toPredimension.IsDClosed ∅ Finset.univ :=
+    hEmptyClass (stage Fnat K n).carrier
+      (stage Fnat K n).graph (hStageGrowth n)
+  exact singletonStageRequest_exists_empty_support
+    (stage Fnat K n).graph Fnat K
+    hClosed hZeroNat hOneNat hSize
+
 /-- The actual canonical C_F birth graph is induced-isomorphic to
 every countable comparison graph with the full strict d-closed
 genericity properties, under exactly the paper's finite class-level
