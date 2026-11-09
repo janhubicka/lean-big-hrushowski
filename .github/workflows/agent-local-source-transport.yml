@@ -35,3 +35,35 @@ jobs:
           path: transfer/
           compression-level: 0
           retention-days: 1
+
+  cache-export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore previous full Lean CI workspace
+        id: lake-cache
+        uses: actions/cache/restore@v5
+        with:
+          path: .lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Pack only compiled Hrushovski and successors Lean artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d .lake/build/lib/lean/BigHrushovski
+          test -d .lake/packages/successor-tree-lean/.lake/build/lib/lean/SuccessorTree
+          mkdir -p transfer
+          git rev-parse HEAD > transfer/SOURCE_SHA
+          tar -I 'zstd -T0 -5' -cf transfer/compiled.tar.zst \
+            .lake/build/lib/lean \
+            .lake/packages/successor-tree-lean/.lake/build/lib/lean
+          (cd transfer && sha256sum compiled.tar.zst > SHA256SUMS)
+          du -sh transfer/compiled.tar.zst
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agent-hrushovski-compiled-20261109
+          path: transfer/
+          compression-level: 0
+          retention-days: 1
