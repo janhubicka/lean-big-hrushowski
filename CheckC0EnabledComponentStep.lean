@@ -1,0 +1,7 @@
+import BigHrushovski.C0EnabledComponentStep
+
+#print axioms BigHrushovski.FiniteC0.canonicalStages_enabledComponent_closed
+#print axioms BigHrushovski.FiniteC0.closed_disjoint_component_of_not_mem
+#print axioms BigHrushovski.FiniteC0.canonicalStages_enabledComponent_minimal
+#print axioms BigHrushovski.FiniteC0.canonicalStages_enabledComponent_globalStrong
+#print axioms BigHrushovski.FiniteC0.canonicalStages_enabledComponent_step_and_strong
