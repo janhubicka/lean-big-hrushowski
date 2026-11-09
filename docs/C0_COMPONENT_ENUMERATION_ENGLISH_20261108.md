@@ -1,6 +1,6 @@
 # Countable C₀ closure-component enumeration: English proof plan
 
-Date: 8 November 2026. This is **not** a new Lean certificate. It
+Date: 8 November 2026; status corrected 9 November 2026. This is **not** a new Lean certificate. It
 isolates the remaining enumeration argument in
 `prop:C0-free-generic` after the actual countable functional
 Fraïssé/reduct theorem has been certified.
@@ -37,7 +37,7 @@ so |C(y)| < |C(x)|. The entire class P(y) lies in L(x).
 Thus each component has only finitely many strict lower
 components and the lower-component relation has no cycles.
 
-The proposed Lean module
+The merged Lean module
 `C0CountableIntrinsicComponents.lean` proves these
 elementary facts, together with identification of P(x)
 with the component-index fibre in every finite canonical
@@ -101,6 +101,11 @@ minimal-component presentation and the *same* full unary
 values. Its component fibres are intrinsically P(x), so
 Z\Q consists of exactly the single component P.
 
+The merged finite interval theorem (`closed_one_component_interval_minimal`,
+PR #385) and its countable transfer (`canonicalStages_oneComponentInterval_minimal`,
+PR #394) now establish this exact one-component conclusion, without
+requiring a selected global component order.
+
 Apply the certified finite closed-base frontloading theorem
 to Q inside this finite presentation. Its complete values
 and minimal-step property are preserved, Q is frontloaded,
@@ -134,11 +139,11 @@ uniform representative convention.
 
 ## 5. Countable functional Fraïssé identification
 
-Once the unconditional functional-stage extension
-property in draft PR #375 is fully kernel-certified,
-its countable structure has finite closed covers and
-a correct finite canonical age, and answers every
-finite functional extension over each canonical stage.
+The unconditional functional-stage extension property and the
+identification of the actual graph reduct with M₀ were kernel-certified
+and merged in PR #375. The countable structure has finite closed covers,
+a correct finite canonical age, and answers every finite functional
+extension over each canonical stage.
 
 To obtain the conventional Fraïssé extension property
 over an **arbitrary** finite closed substructure A,
@@ -157,11 +162,15 @@ merely from the reduct isomorphism with M₀.
 
 ## Remaining independent Lean tasks
 
-1. Formalize the fair enabled-component choice and exhaustion
-   argument from finite lower components and priority minima.
-2. Prove the finite closed-cut / frontloading theorem for
-   exactly one new intrinsic component and transfer its
-   minimal strongness to the countable limit.
+1. Complete the **fair order-type-ω recursion and exhaustion**.
+   Draft PR #402 proves existence of an enabled vertex and its least
+   numerical priority, but not the infinite recursion or eventual
+   selection of every component. Its isolated Lean CI passed; full
+   exact-head integration is still a separate gate.
+2. Discharge the minimal-strong induction step for the selected
+   component. The finite and countable interval theorems are merged
+   (#385, #394), and draft PR #400 proves the explicit enabled-step
+   corollary, including global strongness. Its isolated CI passed.
 3. Prove complete unary-value agreement under the resulting
    enumerated component order.
 4. Prove the functional Fraïssé characterization over all
@@ -193,3 +202,22 @@ genericity theorem, are validated.
 - **Referee on countable scope:** a graph reduct isomorphism
   does not prove functional homogeneity or the prescribed
   ordered representative convention.
+
+## 9 November internal adversarial status audit
+
+- **Dependency/referee:** rank-minimal selection proves that an enabled
+  component exists; least *numerical* eligible priority is needed for
+  eventual fairness. The two minima must not be confused.
+- **Predimension/referee:** #385 and #394 establish minimal strongness
+  of an entire intrinsic-component interval. The separate closed-set
+  theorem supplies global strongness; neither follows from arbitrary
+  unary data.
+- **Formal trust/referee:** #400 and #402 are draft Lean modules with
+  their own exact axiom/placeholder workflows. A passing isolated build
+  is distinguished from the whole repository workflow. These drafts
+  do not upgrade a full manuscript validation marker.
+- **Text/referee:** the published proposition still needs the order-ω
+  exhaustion proof, unary fidelity of the resulting enumeration, and
+  the prescribed within-component representative convention. The
+  generic graph reduct identification already merged in #375 must not
+  be mistaken for those remaining statements.
