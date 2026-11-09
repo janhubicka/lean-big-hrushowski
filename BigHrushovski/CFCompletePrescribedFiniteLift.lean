@@ -63,14 +63,14 @@ theorem finiteSourceLiftOfCut_induced
       (stage F K n).graph.adj (E.symm x).val (E.symm y).val := by
         rw [← finiteSourceCutEquiv_symm_birth F K s n hCover x,
           ← finiteSourceCutEquiv_symm_birth F K s n hCover y]
-        exact (countableGraph_stage_induced F K n _ _).symm
+        exact countableGraph_stage_induced F K n _ _
     _ ↔ (stage F K p).graph.adj
       (M.toFun (E.symm x)) (M.toFun (E.symm y)) :=
         M.induced (E.symm x) (E.symm y)
     _ ↔ (countableGraph F K).adj
       (toVertex F K p (M.toFun (E.symm x)))
       (toVertex F K p (M.toFun (E.symm y))) :=
-        countableGraph_stage_induced F K p _ _
+        (countableGraph_stage_induced F K p _ _).symm
 
 /-- Whole-source preservation of the actual complete birth-b-value
 is a generic consequence of exact finite selected-cut values. -/
