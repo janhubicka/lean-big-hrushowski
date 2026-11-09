@@ -223,7 +223,7 @@ theorem finiteSourceLift_induced
       (stage F K n).graph.adj (E.symm x).val (E.symm y).val := by
         rw [← finiteSourceCutEquiv_symm_birth F K s n hCover x,
           ← finiteSourceCutEquiv_symm_birth F K s n hCover y]
-        exact (countableGraph_stage_induced F K n _ _).symm
+        exact countableGraph_stage_induced F K n _ _
     _ ↔ (stage F K (assignedTargetStage F K s h n)).graph.adj
       (M.toFun (E.symm x)) (M.toFun (E.symm y)) :=
         M.induced (E.symm x) (E.symm y)
@@ -232,8 +232,8 @@ theorem finiteSourceLift_induced
         (M.toFun (E.symm x)))
       (toVertex F K (assignedTargetStage F K s h n)
         (M.toFun (E.symm y))) :=
-          countableGraph_stage_induced F K (assignedTargetStage F K s h n)
-            (M.toFun (E.symm x)) (M.toFun (E.symm y))
+          (countableGraph_stage_induced F K (assignedTargetStage F K s h n)
+            (M.toFun (E.symm x)) (M.toFun (E.symm y))).symm
 
 /-- Every COMPLETE birth-b-value of the whole original finite
 source is carried ONTO the literal complete target birth-b-value. -/
