@@ -6,12 +6,14 @@ on:
       - 'BigHrushovski/C0EnabledComponentExistence.lean'
       - 'CheckC0EnabledComponentExistence.lean'
       - 'scripts/check_c0_one_component_minimal.py'
+      - 'scripts/check_c0_enabled_component_existence.py'
       - '.github/workflows/track-a-enabled-component-existence.yml'
   pull_request:
     paths:
       - 'BigHrushovski/C0EnabledComponentExistence.lean'
       - 'CheckC0EnabledComponentExistence.lean'
       - 'scripts/check_c0_one_component_minimal.py'
+      - 'scripts/check_c0_enabled_component_existence.py'
       - '.github/workflows/track-a-enabled-component-existence.yml'
   workflow_dispatch:
 
@@ -51,3 +53,5 @@ jobs:
           python3 scripts/check_no_placeholders.py
       - name: Exhaustive finite single-component check
         run: python3 scripts/check_c0_one_component_minimal.py
+      - name: Complete-unary enabledness falsification
+        run: python3 scripts/check_c0_enabled_component_existence.py
