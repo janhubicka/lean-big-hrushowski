@@ -21,12 +21,15 @@ variable {n : ℕ}
 /-- Reify an actual chosen local representative as its complete ordered
 graph/unary incidence matrices, with the intrinsic lower positions. -/
 noncomputable def LocalOrderedRepresentative.completeMatrix
-    (r : LocalOrderedRepresentative (Fin n)) : CompleteLocalMatrix n where
-  adjacencyPairs := (Finset.univ.product Finset.univ).filter
-    (fun p : Fin n × Fin n => r.graph.adj p.1 p.2)
-  closurePairs := (Finset.univ.product Finset.univ).filter
-    (fun p : Fin n × Fin n => p.2 ∈ r.value p.1)
-  lowerPositions := r.lower
+    (r : LocalOrderedRepresentative (Fin n)) : CompleteLocalMatrix n := by
+  classical
+  exact {
+    adjacencyPairs := (Finset.univ.product Finset.univ).filter
+      (fun p : Fin n × Fin n => r.graph.adj p.1 p.2)
+    closurePairs := (Finset.univ.product Finset.univ).filter
+      (fun p : Fin n × Fin n => p.2 ∈ r.value p.1)
+    lowerPositions := r.lower
+  }
 
 /-- Graph incidence is equivalent in both directions; absence of a
 matrix pair records precisely a nonedge. -/
@@ -130,9 +133,9 @@ theorem LocalOrderedRepresentative.completeMatrix_eq_reflects
       ← (r.completeMatrix.mem_relabel_closure_iff σ u v),
       hC, s.mem_completeMatrix_closure_iff]
   · intro u
-    rw [← (r.completeMatrix.mem_relabel_lower_iff σ u),
-      hL]
-    rfl
+    change u ∈ r.completeMatrix.lowerPositions ↔
+      σ u ∈ s.completeMatrix.lowerPositions
+    rw [← (r.completeMatrix.mem_relabel_lower_iff σ u), hL]
 
 
 /-- Extensionality of complete local matrix records. -/
