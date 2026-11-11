@@ -84,7 +84,7 @@ the pointwise lower-part automorphism group, for every prescribed
 ordering of the old part. -/
 theorem allFixedLowerMinimumLexCode_card {n : ℕ}
     (P : Finset V) (base : Fin n ≃ V) :
-    (O.minimumCodeClass (fixedLowerEnumerations P base)
+    (minimumCodeClass (fixedLowerEnumerations P base)
       O.completeRowMajorLexCode
       (fixedLowerEnumerations_nonempty P base)).card =
       (O.pointwiseLowerAutomorphisms P).card := by
