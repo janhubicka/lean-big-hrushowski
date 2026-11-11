@@ -81,7 +81,10 @@ theorem finiteSourcePrescribedLift_extendedBValues
           exact extendClosedSourceMap_apply F K X e u.val u.property
     _ = birthBValue F K (e a) := hRestricted
     _ = birthBValue F K (f v) := by
+          change birthBValue F K (e a) =
+            birthBValue F K (extendClosedSourceMap F K X e v)
           rw [extendClosedSourceMap_apply F K X e v hv]
+          rfl
 
 /-- The exact prescribed finite lift preserves full R(v)-values,
 all defined H-values, and the domain of the partial H-operation.
