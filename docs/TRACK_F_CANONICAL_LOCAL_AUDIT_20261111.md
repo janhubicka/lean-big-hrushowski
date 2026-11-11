@@ -9,6 +9,7 @@ For an actual strongly connected component B, define C_B as its complete directe
 - Every member fixes these lower positions pointwise.
 - Changing the base by permuting the positions outside P_B leaves the entire canonical class unchanged.
 - The class has **exactly g_A(B) members** and is nonempty.
+- For **every** member e of the canonical class, the whole class is exactly the orbit of e under the pointwise lower-part automorphism group (not merely equinumerous with it).
 - The construction is indexed by the actual SCC B, not a spurious ambient closure or an arbitrary vertex ordering.
 
 The result follows by applying the existing fixed-lower lex-minimum theorem to the induced closure; it does **not** prove the global bijection between these classes and permitted vertex orders, the factor-product formula *for those orders*, an N₀ Ramsey theorem, or the N_F upper bound.
