@@ -6,12 +6,14 @@ on:
       - 'BigHrushovski/C0FairComponentRecursion.lean'
       - 'CheckC0FairComponentRecursion.lean'
       - 'scripts/check_c0_enabled_component_existence.py'
+      - 'scripts/check_c0_fair_component_recursion.py'
       - '.github/workflows/track-a-fair-component-recursion.yml'
   pull_request:
     paths:
       - 'BigHrushovski/C0FairComponentRecursion.lean'
       - 'CheckC0FairComponentRecursion.lean'
       - 'scripts/check_c0_enabled_component_existence.py'
+      - 'scripts/check_c0_fair_component_recursion.py'
       - '.github/workflows/track-a-fair-component-recursion.yml'
   workflow_dispatch:
 
@@ -51,3 +53,6 @@ jobs:
           python3 scripts/check_no_placeholders.py
       - name: Finite closure enabledness regression
         run: python3 scripts/check_c0_enabled_component_existence.py
+
+      - name: Full finite fair recursion adversarial regression
+        run: python3 scripts/check_c0_fair_component_recursion.py
