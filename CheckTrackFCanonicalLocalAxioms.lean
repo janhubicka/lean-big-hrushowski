@@ -1,6 +1,7 @@
 import BigHrushovski.N0CanonicalLocalFibres
 
 #print axioms BigHrushovski.FiniteOrientation.fixedLowerEnumerations_eq_of_sameLowerPositions
+#print axioms BigHrushovski.FiniteOrientation.minimumCodeClass_eq_of_choice_set_eq
 #print axioms BigHrushovski.FiniteOrientation.canonicalComponentLexClass_fixedLower
 #print axioms BigHrushovski.FiniteOrientation.canonicalComponentLexClass_eq_of_sameLowerPositions
 #print axioms BigHrushovski.FiniteOrientation.canonicalComponentLexClass_card
