@@ -48,8 +48,12 @@ noncomputable def CompleteLocalMatrix.relabel {n : ℕ}
     (M : CompleteLocalMatrix n) :
     M.relabel (Equiv.refl (Fin n)) = M := by
   classical
+  have hId : localPermutePair (Equiv.refl (Fin n)) = id := by
+    funext p
+    rcases p with ⟨u, v⟩
+    rfl
   cases M
-  simp [CompleteLocalMatrix.relabel, localPermutePair]
+  simp [CompleteLocalMatrix.relabel, hId]
 
 /-- Relabellings compose exactly; the coordinate-map action requires
 no isomorphism quotient or distinguished root. -/
@@ -58,9 +62,14 @@ theorem CompleteLocalMatrix.relabel_trans {n : ℕ}
     (σ τ : Equiv.Perm (Fin n)) :
     (M.relabel σ).relabel τ = M.relabel (σ.trans τ) := by
   classical
+  have hComp : localPermutePair (σ.trans τ) =
+      (localPermutePair τ) ∘ (localPermutePair σ) := by
+    funext p
+    rcases p with ⟨u, v⟩
+    rfl
   cases M
-  simp [CompleteLocalMatrix.relabel, localPermutePair,
-    Finset.image_image, Function.comp_def, Equiv.trans_apply]
+  simp [CompleteLocalMatrix.relabel, Finset.image_image,
+    hComp, Function.comp_def, Equiv.trans_apply]
 
 /-- A top permutation fixes every vertex of the ordered lower
 closure, not merely the lower set as an unordered subset. -/
@@ -149,6 +158,7 @@ theorem CompleteLocalMatrix.topOrbit_relabel {n : ℕ}
     have hFixρ : M.FixesLower ρ := (Finset.mem_filter.mp hρ).2
     let τ : Equiv.Perm (Fin n) := σ.symm.trans ρ
     have hFixτ : (M.relabel σ).FixesLower τ := by
+      change ∀ u ∈ (M.relabel σ).lowerPositions, τ u = u
       rw [hLower]
       exact M.fixesLower_trans σ.symm ρ
         (M.fixesLower_symm σ hσ) hFixρ
@@ -170,6 +180,7 @@ theorem CompleteLocalMatrix.topOrbit_eq_iff {n : ℕ}
     M.topOrbit = N.topOrbit ↔
       ∃ σ : Equiv.Perm (Fin n),
         M.FixesLower σ ∧ M.relabel σ = N := by
+  classical
   constructor
   · intro h
     have hN : N ∈ M.topOrbit := by
