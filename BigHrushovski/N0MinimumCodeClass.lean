@@ -45,7 +45,7 @@ theorem completeDirectedMatrix_eq_iff {n : ℕ}
     exact decide_eq_decide.mp hij
   · intro h
     funext i j
-    exact decide_congr (h i j)
+    exact decide_eq_decide.mpr (h i j)
 
 /-- Among a nonempty finite family of enumerations, keep those
 attaining the smallest value of a complete code. -/
