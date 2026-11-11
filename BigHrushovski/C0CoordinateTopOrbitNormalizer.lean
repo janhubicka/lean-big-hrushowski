@@ -62,7 +62,13 @@ theorem CompleteLocalMatrix.normalForm_eq_iff_orbit
         (N.topOrbit_eq_of_mem N.normalForm N.normalForm_mem).symm
   · intro h
     unfold CompleteLocalMatrix.normalForm
-    rw [h]
+    apply le_antisymm
+    · apply Finset.min'_le
+      rw [h]
+      exact Finset.min'_mem _ _
+    · apply Finset.min'_le
+      rw [← h]
+      exact Finset.min'_mem _ _
 
 /-- Changing only the top coordinates does not alter the selected
 complete normal form relative to the SAME ordered lower positions. -/
