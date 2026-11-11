@@ -226,5 +226,108 @@ theorem LocalOrderedRepresentative.completeMatrix_orbit_eq_iff
     exact ⟨σ,hFix,(r.completeMatrix_relabel_iff s σ).mpr
       ⟨hAdj,hC,hLower⟩⟩
 
+
+/-!
+## The selected top order does not alter the ordered lower code
+
+The lower part is already ordered when the next top component is
+normalized. Its complete induced graph and C-incidence matrices must
+remain LITERALLY fixed. This is stronger than an assertion about
+isomorphism types, and includes nonedges and negative C-incidences.
+-/
+
+/-- All adjacency entries with BOTH coordinates in the already ordered
+lower closure. This is a literal restriction, not a quotient. -/
+noncomputable def CompleteLocalMatrix.lowerAdjacencyPairs
+    (M : CompleteLocalMatrix n) : Finset (Fin n × Fin n) :=
+  M.adjacencyPairs.filter
+    (fun p => p.1 ∈ M.lowerPositions ∧ p.2 ∈ M.lowerPositions)
+
+/-- All C-incidences with BOTH coordinates in the ordered lower part. -/
+noncomputable def CompleteLocalMatrix.lowerClosurePairs
+    (M : CompleteLocalMatrix n) : Finset (Fin n × Fin n) :=
+  M.closurePairs.filter
+    (fun p => p.1 ∈ M.lowerPositions ∧ p.2 ∈ M.lowerPositions)
+
+/-- The exact complete graph/C code induced on the ordered lower part. -/
+noncomputable def CompleteLocalMatrix.lowerCode
+    (M : CompleteLocalMatrix n) :
+    Finset (Fin n × Fin n) × Finset (Fin n × Fin n) :=
+  (M.lowerAdjacencyPairs, M.lowerClosurePairs)
+
+/-- Reordering only the top cannot alter a single adjacency entry
+among the already ordered lower positions, including nonedges. -/
+theorem CompleteLocalMatrix.lowerAdjacencyPairs_relabel
+    (M : CompleteLocalMatrix n) (σ : Equiv.Perm (Fin n))
+    (hσ : M.FixesLower σ) :
+    (M.relabel σ).lowerAdjacencyPairs = M.lowerAdjacencyPairs := by
+  classical
+  have hL : (M.relabel σ).lowerPositions = M.lowerPositions :=
+    M.relabel_lower_of_fixes σ hσ
+  ext p
+  rcases p with ⟨u,v⟩
+  by_cases hu : u ∈ M.lowerPositions
+  · by_cases hv : v ∈ M.lowerPositions
+    · have hAdj : (u,v) ∈ (M.relabel σ).adjacencyPairs ↔
+          (u,v) ∈ M.adjacencyPairs := by
+        simpa only [hσ u hu, hσ v hv] using
+          M.mem_relabel_adjacency_iff σ u v
+      simpa [CompleteLocalMatrix.lowerAdjacencyPairs, hL, hu, hv] using hAdj
+    · simp [CompleteLocalMatrix.lowerAdjacencyPairs, hL, hv]
+  · simp [CompleteLocalMatrix.lowerAdjacencyPairs, hL, hu]
+
+/-- A top permutation likewise fixes every complete unary C-incidence
+whose source and target both lie in the ordered lower part. -/
+theorem CompleteLocalMatrix.lowerClosurePairs_relabel
+    (M : CompleteLocalMatrix n) (σ : Equiv.Perm (Fin n))
+    (hσ : M.FixesLower σ) :
+    (M.relabel σ).lowerClosurePairs = M.lowerClosurePairs := by
+  classical
+  have hL : (M.relabel σ).lowerPositions = M.lowerPositions :=
+    M.relabel_lower_of_fixes σ hσ
+  ext p
+  rcases p with ⟨u,v⟩
+  by_cases hu : u ∈ M.lowerPositions
+  · by_cases hv : v ∈ M.lowerPositions
+    · have hC : (u,v) ∈ (M.relabel σ).closurePairs ↔
+          (u,v) ∈ M.closurePairs := by
+        simpa only [hσ u hu, hσ v hv] using
+          M.mem_relabel_closure_iff σ u v
+      simpa [CompleteLocalMatrix.lowerClosurePairs, hL, hu, hv] using hC
+    · simp [CompleteLocalMatrix.lowerClosurePairs, hL, hv]
+  · simp [CompleteLocalMatrix.lowerClosurePairs, hL, hu]
+
+/-- The complete lower code is fixed by EVERY allowed top permutation,
+without choosing a root or comparing only positive graph edges. -/
+theorem CompleteLocalMatrix.lowerCode_relabel
+    (M : CompleteLocalMatrix n) (σ : Equiv.Perm (Fin n))
+    (hσ : M.FixesLower σ) :
+    (M.relabel σ).lowerCode = M.lowerCode := by
+  exact Prod.ext
+    (M.lowerAdjacencyPairs_relabel σ hσ)
+    (M.lowerClosurePairs_relabel σ hσ)
+
+/-- The orbit normalizer retains each position of the already ordered
+lower part, not merely the cardinality of that part. -/
+theorem CompleteLocalMatrix.normalForm_lowerPositions
+    [LinearOrder (CompleteLocalMatrix n)]
+    (M : CompleteLocalMatrix n) :
+    M.normalForm.lowerPositions = M.lowerPositions := by
+  obtain ⟨σ,hσ,hEq⟩ := M.normalForm_exists_permutation
+  rw [← hEq]
+  exact M.relabel_lower_of_fixes σ hσ
+
+/-- The complete induced lower code is independent of every possible
+choice of a minimum-achieving enumeration of the top component.
+This is the FINITE compatibility step used by recursive local choice;
+it does not by itself produce a global hereditary catalogue. -/
+theorem CompleteLocalMatrix.normalForm_lowerCode
+    [LinearOrder (CompleteLocalMatrix n)]
+    (M : CompleteLocalMatrix n) :
+    M.normalForm.lowerCode = M.lowerCode := by
+  obtain ⟨σ,hσ,hEq⟩ := M.normalForm_exists_permutation
+  rw [← hEq]
+  exact M.lowerCode_relabel σ hσ
+
 end FiniteUnaryCoordinates
 end BigHrushovski
