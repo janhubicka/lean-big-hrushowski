@@ -54,12 +54,14 @@ theorem finiteSourceLiftOfCut_canonicalOrder
         stageLt F K p (M.toFun u) (M.toFun v) := by
     change u < v ↔ M.toFun u < M.toFun v
     constructor
-    · exact M.strictMono
+    · intro hSource
+      exact M.strictMono hSource
     · intro hTarget
       rcases lt_trichotomy u v with hSource | hEqual | hReverse
       · exact hSource
-      · subst v
-        exact False.elim (lt_irrefl _ hTarget)
+      · have hFunEq : M.toFun u = M.toFun v :=
+          congrArg M.toFun hEqual
+        exact False.elim ((ne_of_lt hTarget) hFunEq)
       · exact False.elim (lt_asymm (M.strictMono hReverse) hTarget)
   calc
     canonicalBirthLt F K x.val y.val ↔
