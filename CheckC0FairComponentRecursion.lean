@@ -1,0 +1,12 @@
+import BigHrushovski.C0FairComponentRecursion
+
+#print axioms BigHrushovski.FiniteC0.leastEnabledVertex_spec
+#print axioms BigHrushovski.FiniteC0.leastEnabledVertex_le
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_subset_succ
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_mono
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_ssubset_succ
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_new_value
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_eventually_of_lower
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_exhaustive
+#print axioms BigHrushovski.FiniteC0.canonicalStages_fairComponentPrefix_closed
+#print axioms BigHrushovski.FiniteC0.canonicalStages_fairComponentPrefix_minimal_and_strong
