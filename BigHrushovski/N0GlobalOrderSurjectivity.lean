@@ -1,5 +1,6 @@
 import BigHrushovski.N0LowerInitialSegment
 import BigHrushovski.N0ComponentFirstPositions
+-- The parent orientation branch supplies the component-position module.
 import Mathlib.Tactic
 
 /-!
