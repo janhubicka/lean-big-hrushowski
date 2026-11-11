@@ -5,12 +5,14 @@ on:
       - 'BigHrushovski/N0CanonicalLocalFibres.lean'
       - 'CheckTrackFCanonicalLocalAxioms.lean'
       - 'scripts/check_track_f_canonical_local.py'
+      - 'scripts/check_track_f_global_canonical_count.py'
       - '.github/workflows/track-f-canonical-local.yml'
   pull_request:
     paths:
       - 'BigHrushovski/N0CanonicalLocalFibres.lean'
       - 'CheckTrackFCanonicalLocalAxioms.lean'
       - 'scripts/check_track_f_canonical_local.py'
+      - 'scripts/check_track_f_global_canonical_count.py'
       - '.github/workflows/track-f-canonical-local.yml'
   workflow_dispatch:
 
@@ -37,4 +39,6 @@ jobs:
           python3 scripts/check_axioms.py track-f-canonical-local-axioms.log CheckTrackFCanonicalLocalAxioms.lean
           python3 scripts/check_no_placeholders.py
       - name: Independent induced-closure finite audit
-        run: python3 scripts/check_track_f_canonical_local.py
+        run: |
+          python3 scripts/check_track_f_canonical_local.py
+          python3 scripts/check_track_f_global_canonical_count.py
