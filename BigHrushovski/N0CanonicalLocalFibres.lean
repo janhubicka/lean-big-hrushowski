@@ -127,6 +127,70 @@ theorem canonicalComponentLexClass_nonempty
   rw [O.canonicalComponentLexClass_card x base]
   exact O.actualLocalFactor_pos x
 
+/-- Every canonical minimum-code class is exactly the orbit of any
+one of its members under the pointwise stabilizer of the lower part.
+Unlike the cardinal theorem, this identifies the actual *set* of
+admissible local enumerations. -/
+theorem canonicalComponentLexClass_eq_automorphism_orbit_of_mem
+    (x : V) {n : ℕ}
+    (base e : Fin n ≃ O.componentClosure x)
+    (he : e ∈ O.canonicalComponentLexClass x base) :
+    O.canonicalComponentLexClass x base =
+      ((O.inducedComponentOrientation x).pointwiseLowerAutomorphisms
+        (O.inducedLowerPart x)).image (fun h => e.trans h) := by
+  classical
+  let I := O.inducedComponentOrientation x
+  let P := O.inducedLowerPart x
+  let S := fixedLowerEnumerations P base
+  let code := I.completeRowMajorLexCode
+  have hne : S.Nonempty := fixedLowerEnumerations_nonempty P base
+  have heMin :
+      e ∈ S ∧ code e = (S.image code).min'
+        (Finset.image_nonempty.mpr hne) := by
+    exact (mem_minimumCodeClass_iff S code hne e).mp he
+  have heOld : SameLowerPositions P base e :=
+    (mem_fixedLowerEnumerations_iff P base e).mp heMin.1
+  change minimumCodeClass S code hne =
+    (I.pointwiseLowerAutomorphisms P).image (fun h => e.trans h)
+  calc
+    minimumCodeClass S code hne = I.localCodeFibre P e := by
+      ext f
+      rw [mem_minimumCodeClass_iff S code hne f,
+        I.mem_localCodeFibre_iff P e f]
+      constructor
+      · rintro ⟨hfS, hfMin⟩
+        have hfOld : SameLowerPositions P base f :=
+          (mem_fixedLowerEnumerations_iff P base f).mp hfS
+        have hefCode : code e = code f := heMin.2.trans hfMin.symm
+        have hefOld : SameLowerPositions P e f :=
+          sameLowerPositions_trans P e base f
+            (sameLowerPositions_symm P base e heOld) hfOld
+        exact ⟨(I.completeRowMajorLexCode_eq_iff e f).mp hefCode,
+          hefOld⟩
+      · rintro ⟨hcode, hold⟩
+        have hfOld : SameLowerPositions P base f :=
+          sameLowerPositions_trans P base e f heOld hold
+        have hfS : f ∈ S :=
+          (mem_fixedLowerEnumerations_iff P base f).mpr hfOld
+        have hefCode : code e = code f :=
+          (I.completeRowMajorLexCode_eq_iff e f).mpr hcode
+        exact ⟨hfS, hefCode.symm.trans heMin.2⟩
+    _ = _ := I.localCodeFibre_eq_automorphism_image P e
+
+/-- A canonical local order exists and generates its whole canonical
+class by the pointwise lower-part automorphism action. -/
+theorem exists_canonicalComponentLexClass_orbit
+    (x : V) {n : ℕ}
+    (base : Fin n ≃ O.componentClosure x) :
+    ∃ e : Fin n ≃ O.componentClosure x,
+      e ∈ O.canonicalComponentLexClass x base ∧
+      O.canonicalComponentLexClass x base =
+        ((O.inducedComponentOrientation x).pointwiseLowerAutomorphisms
+          (O.inducedLowerPart x)).image (fun h => e.trans h) := by
+  obtain ⟨e, he⟩ := O.canonicalComponentLexClass_nonempty x base
+  exact ⟨e, he, O.canonicalComponentLexClass_eq_automorphism_orbit_of_mem
+    x base e he⟩
+
 /-- The formulation indexed by an actual SCC B, instead of a
 chosen generator. The generator is used only to name its carrier. -/
 noncomputable def componentCanonicalLexClass
