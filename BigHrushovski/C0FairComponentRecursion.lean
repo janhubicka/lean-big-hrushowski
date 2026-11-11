@@ -285,7 +285,7 @@ theorem canonicalStages_fairComponentPrefix_closed
   induction n with
   | zero =>
       intro x hx
-      simp only [fairComponentPrefix_zero, Finset.not_mem_empty] at hx
+      simp [fairComponentPrefix_zero] at hx
   | succ n ih =>
       rw [fairComponentPrefix_succ]
       exact canonicalStages_enabledComponent_closed
