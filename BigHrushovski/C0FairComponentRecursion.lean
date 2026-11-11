@@ -95,7 +95,10 @@ theorem fairComponentPrefix_ssubset_succ
   refine Finset.ssubset_iff_subset_ne.mpr
     ⟨fairComponentPrefix_subset_succ C hC n, ?_⟩
   intro heq
-  exact hxNot (heq ▸ hxNew)
+  have hxNotNew : x ∉ fairComponentPrefix C hC (n + 1) := by
+    rw [← heq]
+    exact hxNot
+  exact hxNotNew hxNew
 
 /-- Every new member of the (n+1)-st prefix belongs to exactly the
 chosen intrinsic component, hence has its complete unary value.
@@ -219,14 +222,16 @@ theorem fairComponentPrefix_eventually_of_lower
 listed is included in one common prefix. -/
 private theorem fairComponentPrefix_finite_coverage
     (C : ℕ → Finset ℕ) (hC : IsCompleteUnaryClosure C)
-    (s : Finset ℕ)
-    (hs : ∀ x ∈ s, ∃ n, x ∈ fairComponentPrefix C hC n) :
-    ∃ n, s ⊆ fairComponentPrefix C hC n := by
+    (s : Finset ℕ) :
+    (∀ x ∈ s, ∃ n, x ∈ fairComponentPrefix C hC n) →
+      ∃ n, s ⊆ fairComponentPrefix C hC n := by
   classical
   induction s using Finset.induction_on with
   | empty =>
+      intro _
       exact ⟨0, Finset.empty_subset _⟩
   | @insert x s hxs ih =>
+      intro hs
       obtain ⟨nx, hx⟩ := hs x (Finset.mem_insert_self x s)
       have hs' : ∀ y ∈ s, ∃ n, y ∈ fairComponentPrefix C hC n := by
         intro y hy
