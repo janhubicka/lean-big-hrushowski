@@ -30,3 +30,27 @@ The Python test exhausts all 653 orientations on at most four vertices with outg
 ## Next proof boundary
 
 The genuine next target is to construct a finite bijection between global permitted vertex orders and (i) a linear extension of the intrinsic SCC order together with (ii) these locally canonical classes for each component **relative to the already ordered lower part**. The dependent-history counting lemma is available and should be applied only after this bijection is established. The infinite N₀ recurrence and upper-bound Ramsey theorem remain open. N_F has only the finite sink obstruction within Track F.
+
+
+## Independent finite test of the *global* factorization
+
+A second, deliberately separate Python implementation enumerates *actual*
+labelled total vertex orders and tests all three constraints directly:
+(1) each SCC is an interval; (2) each strict successor SCC occurs first;
+(3) on each induced one-component closure, restriction of the order
+has the lexicographically least full directed adjacency code among
+orders fixing its already ordered lower part. It counts these orders
+without using the product formula. In parallel it independently counts
+linear extensions of the component precedence relation and the local
+pointwise stabilizers. Exhausting the same 653 orientations gives 1,764
+admissible labelled orders in total and agrees with
+ell(A) times the product of g_A(B) **for every orientation tested**.
+
+A directed triangle plus unrelated isolated vertex is a negative
+control: it has 6 admissible orders (2 component rankings times 3
+cycle automorphisms). An interleaved order is rejected. Dropping SCC
+intervals would count too many orders.
+
+This regression is evidence about the proposed missing global
+bijection. It does not establish that bijection in Lean and does not
+validate any infinite-degree claim.
