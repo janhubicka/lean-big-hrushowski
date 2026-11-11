@@ -332,5 +332,77 @@ theorem CompleteLocalMatrix.normalForm_lowerCode
   rw [← hEq]
   exact M.lowerCode_relabel σ hσ
 
+
+/-!
+## Closed lower parts: preservation of full unary rows
+
+The lower × lower code already suffices for an actual local
+representative because its lower part is C-closed. In this case no
+value C(u), for u lower, can contain an element of the top. We record
+the stronger row statement explicitly, rather than tacitly inferring
+it for arbitrary binary matrices.
+-/
+
+/-- The distinguished ordered lower positions are closed under the
+COMPLETE named C-values. This does not hold for an arbitrary code. -/
+def CompleteLocalMatrix.LowerCClosed
+    (M : CompleteLocalMatrix n) : Prop :=
+  ∀ u ∈ M.lowerPositions, ∀ v : Fin n,
+    (u,v) ∈ M.closurePairs → v ∈ M.lowerPositions
+
+/-- Actual finite ordered local representatives satisfy the full
+C-closedness hypothesis needed to freeze all lower source rows. -/
+theorem LocalOrderedRepresentative.completeMatrix_lowerCClosed
+    (r : LocalOrderedRepresentative (Fin n)) :
+    r.completeMatrix.LowerCClosed := by
+  intro u hu v hC
+  change u ∈ r.lower at hu
+  have hC' : v ∈ r.value u :=
+    (r.mem_completeMatrix_closure_iff u v).mp hC
+  exact r.lower_closed u hu v hC'
+
+/-- A top permutation preserves the ENTIRE C-row from each ordered
+lower vertex, including every negative entry towards the top, when
+the lower part is closed under the complete function values. -/
+theorem CompleteLocalMatrix.closed_lower_C_row_relabel
+    (M : CompleteLocalMatrix n) (σ : Equiv.Perm (Fin n))
+    (hσ : M.FixesLower σ) (hClosed : M.LowerCClosed)
+    (u : Fin n) (hu : u ∈ M.lowerPositions) (v : Fin n) :
+    (u,v) ∈ (M.relabel σ).closurePairs ↔
+      (u,v) ∈ M.closurePairs := by
+  have hShift : (u,v) ∈ (M.relabel σ).closurePairs ↔
+      (u,σ.symm v) ∈ M.closurePairs := by
+    simpa only [hσ u hu, σ.apply_symm_apply] using
+      (M.mem_relabel_closure_iff σ u (σ.symm v))
+  apply hShift.trans
+  constructor
+  · intro h
+    have hv : σ.symm v ∈ M.lowerPositions :=
+      hClosed u hu (σ.symm v) h
+    have hvEq : σ.symm v = v := by
+      calc
+        σ.symm v = σ (σ.symm v) := (hσ _ hv).symm
+        _ = v := σ.apply_symm_apply v
+    simpa only [hvEq] using h
+  · intro h
+    have hv : v ∈ M.lowerPositions := hClosed u hu v h
+    have hvEq : σ.symm v = v := by
+      calc
+        σ.symm v = σ.symm (σ v) := by rw [hσ v hv]
+        _ = v := σ.symm_apply_apply v
+    simpa only [hvEq] using h
+
+/-- The selected top normal form preserves every full C-row from
+the already ordered lower closure of an actual local type. -/
+theorem CompleteLocalMatrix.normalForm_lower_C_row
+    [LinearOrder (CompleteLocalMatrix n)]
+    (M : CompleteLocalMatrix n) (hClosed : M.LowerCClosed)
+    (u : Fin n) (hu : u ∈ M.lowerPositions) (v : Fin n) :
+    (u,v) ∈ M.normalForm.closurePairs ↔
+      (u,v) ∈ M.closurePairs := by
+  obtain ⟨σ,hσ,hEq⟩ := M.normalForm_exists_permutation
+  rw [← hEq]
+  exact M.closed_lower_C_row_relabel σ hσ hClosed u hu v
+
 end FiniteUnaryCoordinates
 end BigHrushovski
