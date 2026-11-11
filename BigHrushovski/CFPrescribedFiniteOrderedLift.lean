@@ -26,6 +26,8 @@ still an existence result; uniqueness remains open.
 namespace BigHrushovski
 namespace CFCoherentTower
 
+open CFStageCatalogue
+
 /-- Any verified selected finite cut map, transported back to the
 literal source birth vertices, preserves and reflects the exact
 canonical birth order. This uses the already established finite
