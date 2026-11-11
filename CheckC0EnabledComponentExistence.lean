@@ -1,0 +1,5 @@
+import BigHrushovski.C0EnabledComponentExistence
+
+#print axioms BigHrushovski.FiniteC0.exists_enabledVertex
+#print axioms BigHrushovski.FiniteC0.exists_least_enabledVertex
+#print axioms BigHrushovski.FiniteC0.canonicalStages_exists_enabledStep
