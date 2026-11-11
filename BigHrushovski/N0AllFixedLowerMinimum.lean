@@ -86,7 +86,7 @@ theorem fixedLowerMinimumCodeClass_card {n : ℕ} {κ : Type*}
     (code : (Fin n ≃ V) → κ)
     (hComplete : ∀ e f : Fin n ≃ V,
       code e = code f ↔ O.SameOrientedCode e f) :
-    (O.minimumCodeClass (fixedLowerEnumerations P base) code
+    (minimumCodeClass (fixedLowerEnumerations P base) code
       (fixedLowerEnumerations_nonempty P base)).card =
       (O.pointwiseLowerAutomorphisms P).card := by
   classical
@@ -133,7 +133,7 @@ old-position agreement, its stabilizer closure, and the complete code
 are now all concrete, not assumed hypotheses. -/
 theorem allFixedLowerMinimumMatrixCode_card {n : ℕ}
     (P : Finset V) (base : Fin n ≃ V) :
-    (O.minimumCodeClass (fixedLowerEnumerations P base)
+    (minimumCodeClass (fixedLowerEnumerations P base)
       O.fullMatrixIndex
       (fixedLowerEnumerations_nonempty P base)).card =
       (O.pointwiseLowerAutomorphisms P).card := by
