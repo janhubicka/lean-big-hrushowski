@@ -43,6 +43,20 @@ theorem fixedLowerEnumerations_eq_of_sameLowerPositions
   · intro hf
     exact sameLowerPositions_trans P base₁ base₂ f hbase hf
 
+/-- Equality of finite choice sets transports their minimum-code
+classes. The nonemptiness proofs are proof-irrelevant, so this avoids
+rewriting through a dependent nonemptiness argument. -/
+theorem minimumCodeClass_eq_of_choice_set_eq
+    {n : ℕ} {κ : Type*} [LinearOrder κ]
+    (S T : Finset (Fin n ≃ V))
+    (code : (Fin n ≃ V) → κ)
+    (hS : S.Nonempty) (hT : T.Nonempty)
+    (hST : S = T) :
+    minimumCodeClass S code hS =
+      minimumCodeClass T code hT := by
+  cases hST
+  rfl
+
 variable (O : FiniteOrientation V)
 
 /-- The actual local canonical class: full row-major lexicographic
@@ -83,9 +97,14 @@ theorem canonicalComponentLexClass_eq_of_sameLowerPositions
     (hbase : SameLowerPositions (O.inducedLowerPart x) base₁ base₂) :
     O.canonicalComponentLexClass x base₁ =
       O.canonicalComponentLexClass x base₂ := by
-  unfold canonicalComponentLexClass
-  rw [fixedLowerEnumerations_eq_of_sameLowerPositions
-    (O.inducedLowerPart x) base₁ base₂ hbase]
+  exact minimumCodeClass_eq_of_choice_set_eq
+    (fixedLowerEnumerations (O.inducedLowerPart x) base₁)
+    (fixedLowerEnumerations (O.inducedLowerPart x) base₂)
+    ((O.inducedComponentOrientation x).completeRowMajorLexCode)
+    (fixedLowerEnumerations_nonempty (O.inducedLowerPart x) base₁)
+    (fixedLowerEnumerations_nonempty (O.inducedLowerPart x) base₂)
+    (fixedLowerEnumerations_eq_of_sameLowerPositions
+      (O.inducedLowerPart x) base₁ base₂ hbase)
 
 /-- The exact local canonical-order cardinality, in the induced
 orientation on C_B rather than the ambient graph. -/
