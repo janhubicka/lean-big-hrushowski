@@ -1,0 +1,9 @@
+import BigHrushovski.C0FairComponentBirth
+
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_unaryClosed
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_fresh_component
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_exists_birth
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_birth_unique
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_existsUnique_birth
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_new_lower_old
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_new_full_in_step
