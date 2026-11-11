@@ -1,0 +1,6 @@
+import BigHrushovski.N0MinimumCodeClass
+
+#print axioms BigHrushovski.FiniteOrientation.completeDirectedMatrix_eq_iff
+#print axioms BigHrushovski.FiniteOrientation.mem_minimumCodeClass_iff
+#print axioms BigHrushovski.FiniteOrientation.minimumCodeClass_is_minimal
+#print axioms BigHrushovski.FiniteOrientation.minimumCodeClass_card
