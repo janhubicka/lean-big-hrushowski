@@ -1,0 +1,7 @@
+import BigHrushovski.N0GlobalOrderSurjectivity
+
+#print axioms BigHrushovski.FiniteOrientation.rankingFromEnumeration_lt_iff_firstPosition
+#print axioms BigHrushovski.FiniteOrientation.enumerationPosition_locallyInjective
+#print axioms BigHrushovski.FiniteOrientation.globalLexBefore_reconstructs_enumeration
+#print axioms BigHrushovski.FiniteOrientation.exists_globalLexRepresentation_of_componentIntervals
+#print axioms BigHrushovski.FiniteOrientation.exists_legal_globalLexRepresentation
