@@ -1,0 +1,9 @@
+import BigHrushovski.N0AllFixedLowerMinimum
+
+#print axioms BigHrushovski.FiniteOrientation.sameLowerPositions_symm
+#print axioms BigHrushovski.FiniteOrientation.sameLowerPositions_trans
+#print axioms BigHrushovski.FiniteOrientation.mem_fixedLowerEnumerations_iff
+#print axioms BigHrushovski.FiniteOrientation.fixedLowerEnumerations_nonempty
+#print axioms BigHrushovski.FiniteOrientation.fixedLowerMinimumCodeClass_card
+#print axioms BigHrushovski.FiniteOrientation.fullMatrixIndex_eq_iff
+#print axioms BigHrushovski.FiniteOrientation.allFixedLowerMinimumMatrixCode_card
