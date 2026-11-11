@@ -57,6 +57,8 @@ theorem finiteSourcePrescribedLift_extendedBValues
     finiteSourcePrescribedLift F K s hs level hStrict n hCover
   let f := extendClosedSourceMap F K X e
   let M := finiteLevelCutLiftWithBirth F K s hs level hStrict n
+  change ∀ v ∈ X,
+    (birthBValue F K v).image f = birthBValue F K (f v)
   intro v hv
   let a : SupportCarrier (Vertex F K) s := ⟨v, hv⟩
   have hRestricted :
