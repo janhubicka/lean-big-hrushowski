@@ -21,6 +21,8 @@ does it establish the canonical-order comparison or R/H transport.
 namespace BigHrushovski
 namespace CFCoherentTower
 
+open CFStageCatalogue
+
 /-- A strict level assignment on the represented finite set reflects
 the weak order there. The unused source levels play no role. -/
 theorem prescribedLevel_le_iff_on_represented
