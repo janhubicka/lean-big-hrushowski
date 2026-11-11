@@ -1,0 +1,8 @@
+import BigHrushovski.N0CanonicalLocalFibres
+
+#print axioms BigHrushovski.FiniteOrientation.fixedLowerEnumerations_eq_of_sameLowerPositions
+#print axioms BigHrushovski.FiniteOrientation.canonicalComponentLexClass_fixedLower
+#print axioms BigHrushovski.FiniteOrientation.canonicalComponentLexClass_eq_of_sameLowerPositions
+#print axioms BigHrushovski.FiniteOrientation.canonicalComponentLexClass_card
+#print axioms BigHrushovski.FiniteOrientation.canonicalComponentLexClass_nonempty
+#print axioms BigHrushovski.FiniteOrientation.componentCanonicalLexClass_card
