@@ -24,6 +24,7 @@ on:
       - "scripts/check_c0_coordinate_relabel.py"
       - "scripts/check_c0_nested_local_orders.py"
       - "scripts/check_c0_local_order_normalizer.py"
+      - "scripts/check_c0_top_lower_preservation.py"
       - "docs/TRACK_D_UNIFORM_LOCAL_ORDER_SELECTION_20261108.md"
   workflow_dispatch:
 
@@ -56,6 +57,7 @@ jobs:
           python3 scripts/check_c0_coordinate_relabel.py
           python3 scripts/check_c0_nested_local_orders.py
           python3 scripts/check_c0_local_order_normalizer.py
+          python3 scripts/check_c0_top_lower_preservation.py
       - name: Build and audit exact Track D bridge
         run: |
           set -euo pipefail
