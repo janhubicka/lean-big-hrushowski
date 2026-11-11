@@ -23,6 +23,15 @@ def lower_code(adj, closure, lower):
             frozenset((i, j) for i, j in closure if i in lower and j in lower))
 
 
+def lower_c_closed(closure, lower):
+    return all(v in lower for (u, v) in closure if u in lower)
+
+
+def unchanged_lower_rows(old_c, new_c, lower, n):
+    return all(((u, v) in old_c) == ((u, v) in new_c)
+               for u in lower for v in range(n))
+
+
 def code_key(adj, closure, lower):
     return (tuple(sorted(adj)), tuple(sorted(closure)), tuple(sorted(lower)))
 
@@ -30,6 +39,7 @@ def code_key(adj, closure, lower):
 def test(n, adj, closure, lower):
     old = lower_code(adj, closure, lower)
     allowed = [p for p in permutations(range(n)) if all(p[u] == u for u in lower)]
+    closed = lower_c_closed(closure, lower)
     assert allowed
     all_codes = []
     for p in allowed:
@@ -37,9 +47,13 @@ def test(n, adj, closure, lower):
         new_lower = frozenset(p[u] for u in lower)
         assert new_lower == lower
         assert lower_code(new_adj, new_closure, new_lower) == old
+        if closed:
+            assert unchanged_lower_rows(closure, new_closure, lower, n)
         all_codes.append((new_adj, new_closure, new_lower))
     least = min(all_codes, key=lambda c: code_key(*c))
     assert lower_code(*least) == old
+    if closed:
+        assert unchanged_lower_rows(closure, least[1], lower, n)
     return len(allowed)
 
 
@@ -75,8 +89,17 @@ def main():
     assert any(swap[i] != i for i in lower)
     assert lower_code(frozenset(), closure, lower) != lower_code(
         frozenset(), relabel(closure, swap), lower)
+    # Without lower C-closedness a top permutation can change a full
+    # C-row from a lower vertex while fixing its induced lower submatrix.
+    nonclosed = frozenset({(0, 0), (0, 1), (1, 1), (2, 2)})
+    top_swap = (0, 2, 1)
+    assert not lower_c_closed(nonclosed, frozenset({0}))
+    assert lower_code(frozenset(), nonclosed, frozenset({0})) == lower_code(
+        frozenset(), relabel(nonclosed, top_swap), frozenset({0}))
+    assert not unchanged_lower_rows(nonclosed, relabel(nonclosed, top_swap),
+                                    frozenset({0}), 3)
     print(f"OK: {trials:,} complete matrices; {verified_perms:,} top-fixed permutations; "
-          "min-normal-form checks; concrete setwise-not-pointwise counterexample")
+          "min-normal-form and closed-row checks; both negative controls")
 
 
 if __name__ == "__main__":
