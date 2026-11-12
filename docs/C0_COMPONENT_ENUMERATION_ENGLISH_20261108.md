@@ -132,8 +132,10 @@ For any vertex x, its full value C(x) is contained in
 the finite prefix ending with the component P(x), and
 the induced finite presentation on that prefix has
 exactly the inherited complete canonical value C(x).
-Thus the enumeration's complete backward-reachability
-value for every x equals the given function C(x).
+The exact equality of the full canonical value for the fair birth
+index was established in the Lean-certified PRs #419, #422 and #427.
+Thus the fair *component chronology* recovers C(x), with no hypothesis
+that the component order is the original finite-stage order.
 
 No generator is singled out within a component.
 For the *additional closure-respecting ordered expansion*
@@ -174,16 +176,16 @@ merely from the reduct isomorphism with M₀.
    whole-component births and full values at birth (#417). The
    chronological order of components has type ω, but the manuscript's
    **ordered vertex expansion** is a separate assertion.
-2. **Draft, not certified:** PR #419 constructs the literal finite
-   birth index and shows its classes agree exactly with equality of
-   complete unary values. PR #422 applies the certified component-order
-   invariance (#418) to prove exact complete values given a canonical
-   finite presentation of the literal fair prefix.
-3. **Draft, not certified:** PR #427 constructs that canonical comparison
-   presentation by restricting a cofinal finite stage and transporting
-   it to the literal closed fair prefix. Its proposed conclusion is
-   exact equality of complete unary values for the actual fair
-   chronology, with no extra comparison assumption.
+2. **Completed and merged:** PR #419 constructs the literal finite
+   birth index and identifies its fibres with the equality classes of
+   complete unary values. PR #422 uses the component-order invariance
+   theorem (#418) to compare it with any canonical presentation of
+   the same finite fair prefix.
+3. **Completed and merged:** PR #427 produces that comparison presentation
+   directly from a cofinal finite stage by restriction to the literal
+   closed fair prefix. Thus the *entire* canonical value calculated
+   from the fair component index equals the original unary function C.
+   No auxiliary presentation is assumed in the resulting theorem.
 4. Construct and certify a **vertex enumeration of order type ω** that
    keeps each intrinsic component consecutive and obeys the uniform
    choice of ordered local representatives over the already ordered
@@ -194,10 +196,14 @@ merely from the reduct isomorphism with M₀.
    the finite two-sided functional amalgamation theorem; formalize
    universality, homogeneity and uniqueness as applicable.
 
-The manuscript's full proposition remains PARTIAL: the three draft
-birth-index/complete-value bridge PRs await exact-head Lean checks,
-and the selected ordered vertex representatives and functional
-homogeneity remain separate obligations.
+The manuscript's full proposition remains PARTIAL. The complete-unary
+value bridge is now Lean-certified; a canonical ordered **vertex**
+enumeration with uniform local representatives and functional
+homogeneity over arbitrary finite closed bases remain open.
+Draft PR #433 separately packages the fair component prefixes as
+canonical finite presentations, and draft PR #439 isolates the
+order-theoretic interface for arbitrary injective local numberings.
+Neither draft is counted as validated before its exact-head CI passes.
 
 ## Adversarial mathematical checks
 
@@ -228,14 +234,14 @@ homogeneity remain separate obligations.
   of an entire intrinsic-component interval. The separate closed-set
   theorem supplies global strongness; neither follows from arbitrary
   unary data.
-- **Formal trust/referee (corrected 12 November):** #400, #402, #412,
-  #417 and #418 are merged, with dedicated and full exact-head checks.
-  PRs #419, #422 and #427 are stacked drafts awaiting exact-head
-  kernel and source audits. Their presence cannot upgrade the full
-  manuscript validation marker.
-- **Text/referee (corrected 12 November):** the order-ω component
-  *exhaustion* is now proved; what remains is a suitable ordered
-  **vertex** enumeration, proof of unary fidelity in its chosen
-  chronology (draft #427), and the prescribed within-component
-  representative convention. The reduct identification merged in #375
-  does not establish those claims.
+- **Formal trust/referee (updated 12 November):** #400, #402, #412,
+  #417, #418, #419, #422 and #427 are merged after dedicated and full
+  exact-head Lean checks. PRs #433 and #439 are new draft steps:
+  canonical fair finite presentations and the general vertex-order
+  interface. They do not upgrade the manuscript validation marker.
+- **Text/referee (updated 12 November):** the order-ω component
+  exhaustion and the complete unary values in the fair component
+  chronology are proved. The prescribed ordered **vertex** enumeration
+  and within-component representative convention are still open.
+  The reduct identification merged in #375 does not establish
+  functional homogeneity over arbitrary finite closed bases.
