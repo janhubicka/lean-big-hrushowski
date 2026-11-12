@@ -70,7 +70,7 @@ theorem componentLocalRanks_lt_iff
       O.componentLocalRanks orders y.val ↔
     OrderBefore (orders B) x y := by
   simpa only [O.componentLocalRanks_eq_of_mem orders B x,
-    O.componentLocalRanks_eq_of_mem orders B y, OrderBefore]
+    O.componentLocalRanks_eq_of_mem orders B y, OrderBefore, Fin.lt_def]
 
 /-- The local rank function is injective in each SCC, because
 every component enumeration is bijective. -/
