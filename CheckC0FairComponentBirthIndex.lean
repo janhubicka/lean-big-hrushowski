@@ -1,0 +1,8 @@
+import BigHrushovski.C0FairComponentBirthIndex
+#print axioms BigHrushovski.FiniteC0.fairComponentBirth_spec
+#print axioms BigHrushovski.FiniteC0.fairComponentBirth_lt_iff_mem
+#print axioms BigHrushovski.FiniteC0.fairComponentBirth_eq_iff_value_eq
+#print axioms BigHrushovski.FiniteC0.fairComponentBirth_lt_of_strictLower
+#print axioms BigHrushovski.FiniteC0.fairComponentBirth_lt_of_mem_value_ne
+#print axioms BigHrushovski.FiniteC0.fairComponentBirthIndex_eq_iff_value_eq
+#print axioms BigHrushovski.FiniteC0.fairComponentBirthIndex_lower_earlier
