@@ -89,6 +89,13 @@ theorem FiniteChronologicalC0.generatedCode_relabel
   have hSupport : s.image h = (C a).image (e.trans h) := by
     classical
     simp [s, Finset.image_image, Function.comp_def]
+  change (p.generatedCode e a).relabel h =
+    (literalPointedCode p.graph C (e.trans h) a).restrictTo
+      ((C a).image (e.trans h))
+      (coordinateImage_subset_labelSupport (e.trans h) (C a))
+      ((e.trans h) a)
+      ((mem_coordinateImage_iff (e.trans h) (C a) a).mpr
+        (FiniteC0.canonicalValue_mem_self p.graph p.component a))
   simpa only [literalPointedCode_relabel, hSupport] using hCode
 
 /-- Increasing coordinate maps preserve the class of raw codes
