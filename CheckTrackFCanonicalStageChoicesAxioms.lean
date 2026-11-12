@@ -1,0 +1,8 @@
+import BigHrushovski.N0CanonicalStageChoices
+
+#print axioms BigHrushovski.FiniteOrientation.withComponentOrder_at
+#print axioms BigHrushovski.FiniteOrientation.withComponentOrder_other
+#print axioms BigHrushovski.FiniteOrientation.withComponentOrder_injective
+#print axioms BigHrushovski.FiniteOrientation.isCanonicalComponentAssignment_iff_forall_component
+#print axioms BigHrushovski.FiniteOrientation.mem_canonicalNextComponentChoices
+#print axioms BigHrushovski.FiniteOrientation.canonicalNextComponentAssignments_card
