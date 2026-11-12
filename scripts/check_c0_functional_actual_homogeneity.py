@@ -111,8 +111,9 @@ for n in range(5):
                             assert all(total[x]==v for x,v in p.items())
                             stats["joint_requests"]+=1
 
-# A graph-only permutation of two isolated vertices need not be
-# functional if C(1) depends strictly on 0.
+# A graph-only automorphism of the *actual canonical two-vertex edge*
+# (with index 0 before 1) need not preserve complete unary values:
+# C(0)={0}, C(1)={0,1}, and swapping endpoints is not functional.
 C={0:{0},1:{0,1}}
 swap={0:1,1:0}
 assert C[swap[0]] != {swap[z] for z in C[0]}
