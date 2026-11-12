@@ -3,12 +3,14 @@ on:
   push:
     paths:
       - 'BigHrushovski/N0GlobalComponentSignature.lean'
+      - 'BigHrushovski/N0CanonicalLocalOrders.lean'
       - 'CheckTrackFGlobalSignatureAxioms.lean'
       - 'scripts/check_track_f_global_signature.py'
       - '.github/workflows/track-f-global-signature.yml'
   pull_request:
     paths:
       - 'BigHrushovski/N0GlobalComponentSignature.lean'
+      - 'BigHrushovski/N0CanonicalLocalOrders.lean'
       - 'CheckTrackFGlobalSignatureAxioms.lean'
       - 'scripts/check_track_f_global_signature.py'
       - '.github/workflows/track-f-global-signature.yml'
@@ -29,7 +31,7 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Order.PiLex Mathlib.Tactic Mathlib.Data.Bool.Basic
       - name: Build global component order signatures
-        run: lake build BigHrushovski.N0GlobalComponentSignature
+        run: lake build BigHrushovski.N0GlobalComponentSignature BigHrushovski.N0CanonicalLocalOrders
       - name: Kernel axioms and placeholder scan
         run: |
           set -euo pipefail
