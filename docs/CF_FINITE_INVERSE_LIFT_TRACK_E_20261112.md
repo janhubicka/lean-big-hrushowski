@@ -32,6 +32,16 @@ vertex has its birth levels in the range of $h$:
 for $s=\Gamma(v)$, every vertex of $s$ has a birth
 level belonging to that complete support.
 
+The theorem `birthSingletonClosure_inverseRHLift_exists` now applies
+this observation directly to one vertex: from
+`v ∈ birthLevelDomain F K (Set.range h)` and strict monotonicity
+of `h`, it constructs the same ordered partial (R,H) lift on
+the **entire least finite b-generated closure** of `v`.
+All vertices in this closure have birth levels belonging to
+`birthLevelSupport F K v`. The original finite range hypothesis
+therefore follows from complete support membership, without any
+additional assumption about closure vertices.
+
 ## Reason for the finite partial inverse
 
 Define `chosenInverseLevel h q` by choosing one preimage of
