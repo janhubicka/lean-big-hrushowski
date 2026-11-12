@@ -147,8 +147,11 @@ theorem finite_boundedRawC0GeneratedCode (N : ℕ) :
       q.property.2⟩⟩
   have hf : Function.Injective f := by
     intro q r heq
-    apply Subtype.ext
-    exact congrArg Subtype.val heq
+    have hFields : q.val = r.val :=
+      congrArg (fun z : BoundedWellSupportedCode N => z.val) heq
+    exact Subtype.ext hFields
+  letI : Finite (BoundedWellSupportedCode N) :=
+    finite_boundedWellSupportedCode N
   exact Finite.of_injective f hf
 
 end FiniteUnaryCoordinates
