@@ -58,3 +58,12 @@ lake build BigHrushovski.CFPrescribedFiniteLiftRestriction
 lake env lean CheckAxiomsCFTrackBPrescribedRestriction.lean
 python3 scripts/check_no_placeholders.py
 ```
+
+## Integration recheck (12 November 2026)
+
+This PR now targets `main` after the finite arbitrary-map uniqueness
+module (PR #481) and exact closed-source b-value restriction module
+(PR #498) were merged there. Its earlier isolated-branch general
+CI failed at import resolution because the source branch predated
+PR #481; this is not a kernel certificate. The updated merge head
+must pass a new exact Lean/axiom/placeholder build before integration.
