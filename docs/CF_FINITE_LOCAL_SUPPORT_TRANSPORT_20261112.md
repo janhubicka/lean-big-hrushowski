@@ -33,6 +33,19 @@ prescribed lift from Track B, using
 increasing target levels only on the birth levels represented
 in \(s\), not a globally increasing map of \(\mathbb N\).
 
+A further direct consequence controls *all* supported-domain
+membership tests for the prescribed finite map: for any set
+\(T\subseteq\mathbb N\) of target birth levels,
+
+\[
+v\in U[h^{-1}(T)]\quad\Longleftrightarrow\quad e(v)\in U[T].
+\]
+
+The target set \(T\) may be infinite, and the map \(h\) may have
+arbitrary values at unused source levels. This is only an equality
+of membership predicates on the finite source, not an equality
+of the image of the finite map with \(U[T]\).
+
 ## Adversarial mathematical review (internal roles)
 
 - **Partiality:** the map is defined on the finite subtype only.
