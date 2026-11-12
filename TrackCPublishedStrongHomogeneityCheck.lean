@@ -1,0 +1,4 @@
+import BigHrushovski.CFPublishedStrongHomogeneity
+
+#print axioms BigHrushovski.CFDClosedBackAndForth.strictHomogeneous_of_finiteDClosedResponses
+#print axioms BigHrushovski.CFCoherentTower.publishedBirth_relabelled_strongHomogeneous
