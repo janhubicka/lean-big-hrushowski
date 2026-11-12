@@ -359,7 +359,7 @@ theorem LocalOrderedRepresentative.completeMatrix_lowerCClosed
   change u ∈ r.lower at hu
   have hC' : v ∈ r.value u :=
     (r.mem_completeMatrix_closure_iff u v).mp hC
-  exact r.lower_closed u hu v hC'
+  exact r.lower_closed u hu hC'
 
 /-- A top permutation preserves the ENTIRE C-row from each ordered
 lower vertex, including every negative entry towards the top, when
