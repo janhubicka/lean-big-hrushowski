@@ -142,7 +142,8 @@ theorem canonicalComponentLexClass_eq_automorphism_orbit_of_mem
   let I := O.inducedComponentOrientation x
   let P := O.inducedLowerPart x
   let S := fixedLowerEnumerations P base
-  let code := I.completeRowMajorLexCode
+  let code := fun t : Fin n ≃ O.componentClosure x =>
+    I.completeRowMajorLexCode t
   have hne : S.Nonempty := fixedLowerEnumerations_nonempty P base
   have heMin :
       e ∈ S ∧ code e = (S.image code).min'
