@@ -24,6 +24,11 @@ namespace BigHrushovski
 namespace FiniteOrientation
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
+-- The finite sets of literal binary order relations require a
+-- decidable equality in theorem statements, not only in proof scripts.
+noncomputable local instance : DecidableEq (V → V → Prop) :=
+  Classical.decEq _
+
 variable (O : FiniteOrientation V)
 
 /-- Actual finite canonical data: a legal order of the SCCs and
