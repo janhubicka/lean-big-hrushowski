@@ -11,3 +11,4 @@ uniqueness or a countable self-embedding.
 #print axioms BigHrushovski.CFCoherentTower.chosenInverseLevel_strictOnRepresented
 #print axioms BigHrushovski.CFCoherentTower.finiteClosed_inverseLevelLift_exists
 #print axioms BigHrushovski.CFCoherentTower.finiteClosed_inverseRHLift_exists
+#print axioms BigHrushovski.CFCoherentTower.birthSingletonClosure_inverseRHLift_exists
