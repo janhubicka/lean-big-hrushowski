@@ -36,7 +36,7 @@ noncomputable def FiniteChronologicalC0.generatedOccurrenceEquiv
   let S := FiniteC0.canonicalValue p.graph p.component a
   let f : S → (p.asRawVertex e a).closedValue := fun b =>
     ⟨p.asRawVertex e b.val,
-      (p.mem_asRawVertex_closedValue_iff e a b.val).mpr b.property⟩
+      (p.asRawVertex_mem_closedValue_iff e a b.val).mpr b.property⟩
   have hf : Function.Injective f := by
     intro b c h
     have hCodes : p.asRawVertex e b.val =
