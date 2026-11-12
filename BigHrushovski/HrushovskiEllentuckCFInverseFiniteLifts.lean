@@ -85,7 +85,7 @@ theorem finiteClosed_inverseLevelLift_exists
         (finiteSourceBirthBValue F K s x).image e =
           birthBValue F K (e x)) ∧
       (∀ x : SupportCarrier (Vertex F K) s,
-        h (e x).1 = x.val.1) ∧
+        h ((e x).1) = x.val.1) ∧
       (∀ x y : SupportCarrier (Vertex F K) s,
         BirthLevelLe F K x.val y.val ↔
           BirthLevelLe F K (e x) (e y)) ∧
@@ -102,7 +102,7 @@ theorem finiteClosed_inverseLevelLift_exists
   refine ⟨e, heInj, heAdj, heB, ?_, hePreorder, heOrder⟩
   intro x
   calc
-    h (e x).1 = h (level x.val.1) := by rw [heLevel x]
+    h ((e x).1) = h (level x.val.1) := by rw [heLevel x]
     _ = x.val.1 := chosenInverseLevel_spec h (hRange x.val x.property)
 
 /-- The same inverse-level existence map can be chosen to preserve
@@ -118,7 +118,7 @@ theorem finiteClosed_inverseRHLift_exists
     ∃ e : SupportCarrier (Vertex F K) s → Vertex F K,
       Function.Injective e ∧
       (∀ x : SupportCarrier (Vertex F K) s,
-        h (e x).1 = x.val.1) ∧
+        h ((e x).1) = x.val.1) ∧
       (let X : Set (Vertex F K) := {v | v ∈ s}
        let f := extendClosedSourceMap F K X e
        (∀ v ∈ X,
@@ -146,7 +146,7 @@ theorem finiteClosed_inverseRHLift_exists
   refine ⟨e, heInj, ?_, ?_⟩
   · intro x
     calc
-      h (e x).1 = h (level x.val.1) := by
+      h ((e x).1) = h (level x.val.1) := by
         rw [finiteSourcePrescribedLift_birthLevel F K s hs
           level hStrict n hCover x]
       _ = x.val.1 := chosenInverseLevel_spec h (hRange x.val x.property)
