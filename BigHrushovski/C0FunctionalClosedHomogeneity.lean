@@ -77,8 +77,7 @@ theorem fairLimit_functionalHomogeneity_closedSubstructures
       targetClosed := hClosedT
       fullValues := hUnary }
   obtain ⟨h, hGraph, hValues, hOld⟩ :=
-    FiniteStrongPartialIso.FiniteClosedFunctionalPartialIso
-      .fairLimit_functionalHomogeneous p
+    FiniteStrongPartialIso.FiniteClosedFunctionalPartialIso.fairLimit_functionalHomogeneous p
   refine ⟨h, hGraph, hValues, ?_⟩
   intro u
   exact hOld u.val u.property
