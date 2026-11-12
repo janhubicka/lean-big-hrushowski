@@ -96,5 +96,47 @@ theorem publishedBirth_relabelled_strongHomogeneous
     (realCountableGraphNat R hMonoR hUnboundedR ι)
     hNat.growth hNat.finite_closed_covers hNat.finite_extensions p
 
+
+/-- The automorphism constructed on a natural-number presentation
+conjugates to a genuine automorphism of the original birth-labelled
+carrier. It agrees with the prescribed finite partial map after
+transport by the supplied enumeration. No graph reduction or
+additional isomorphism with M_F is involved. -/
+theorem publishedBirth_strongHomogeneous_onCarrier
+    (F : PublishedGrowth)
+    (hZero : (F ⟨(0 : ℝ), le_refl (0 : ℝ)⟩).val = 0)
+    (hMono : Monotone F)
+    (hUnbounded : ∀ t : ℝ,
+      ∃ x : NonnegativeReal, t < (F x).val)
+    (hFree : HasFiniteClassDClosedFreeJoins
+      (publishedCardinalGrowth F))
+    (ι : ℕ ≃ PublishedBirthVertex F hMono hUnbounded)
+    (p : PartialIso
+      ((publishedCountableGraph F hMono hUnbounded).pullback ι)
+      ((publishedCountableGraph F hMono hUnbounded).pullback ι)) :
+    ∃ β : PublishedBirthVertex F hMono hUnbounded ≃
+        PublishedBirthVertex F hMono hUnbounded,
+      (∀ x y : PublishedBirthVertex F hMono hUnbounded,
+        (publishedCountableGraph F hMono hUnbounded).adj x y ↔
+          (publishedCountableGraph F hMono hUnbounded).adj
+            (β x) (β y)) ∧
+      (∀ x : {x : ℕ // x ∈ p.source},
+        β (ι x.val) = ι (p.equiv x).val) := by
+  obtain ⟨e, hAdj, hInitial⟩ :=
+    publishedBirth_relabelled_strongHomogeneous
+      F hZero hMono hUnbounded hFree ι p
+  let β : PublishedBirthVertex F hMono hUnbounded ≃
+      PublishedBirthVertex F hMono hUnbounded :=
+    ι.symm.trans (e.trans ι)
+  refine ⟨β, ?_, ?_⟩
+  · intro x y
+    simpa only [β, Equiv.trans_apply, Equiv.apply_symm_apply]
+      using hAdj (ι.symm x) (ι.symm y)
+  · intro x
+    calc
+      β (ι x.val) = ι (e x.val) := by
+        simp only [β, Equiv.trans_apply, Equiv.symm_apply_apply]
+      _ = ι (p.equiv x).val := congrArg ι (hInitial x)
+
 end CFCoherentTower
 end BigHrushovski
