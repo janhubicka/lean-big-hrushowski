@@ -2,8 +2,8 @@
 
 Date: 8 November 2026; validation-status update 12 November 2026. This is a proof plan, **not** a separate Lean certificate. It
 isolates the remaining enumeration argument in
-`prop:C0-free-generic` after the actual countable functional
-Fraïssé/reduct theorem has been certified.
+`prop:C0-free-generic` after the actual countable functional limit's cofinal-stage extension
+property and its graph-reduct identification have been certified.
 
 ## Statement to formalize
 
@@ -138,7 +138,7 @@ ordered lower components. Ordering every block by
 numerical vertex labels alone need not satisfy the
 uniform representative convention.
 
-## 5. Countable functional Fraïssé identification
+## 5. Countable functional stage genericity and reduct identification
 
 The unconditional functional-stage extension property and the
 identification of the actual graph reduct with M₀ were kernel-certified
@@ -222,10 +222,11 @@ homogeneity remain separate obligations.
   of an entire intrinsic-component interval. The separate closed-set
   theorem supplies global strongness; neither follows from arbitrary
   unary data.
-- **Formal trust/referee:** #400 is merged; #402 remains a draft Lean module with
-  their own exact axiom/placeholder workflows. A passing isolated build
-  is distinguished from the whole repository workflow. The draft #402
-  do not upgrade a full manuscript validation marker.
+- **Formal trust/referee (corrected 12 November):** #400, #402, #412,
+  #417 and #418 are merged, with dedicated and full exact-head checks.
+  PRs #419, #422 and #427 are stacked drafts awaiting exact-head
+  kernel and source audits. Their presence cannot upgrade the full
+  manuscript validation marker.
 - **Text/referee (corrected 12 November):** the order-ω component
   *exhaustion* is now proved; what remains is a suitable ordered
   **vertex** enumeration, proof of unary fidelity in its chosen
