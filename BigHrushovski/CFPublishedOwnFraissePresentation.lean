@@ -149,5 +149,75 @@ noncomputable def publishedBirth_standardStrongFraisseLimitPresentation
   simpa only [publishedCardinalGrowth_eq F] using
     (hCertificate.growth s)
 
+/-- Every finite graph in the published growth class has an induced,
+globally strictly d-closed copy in the actual birth graph. This proves
+the *other* inclusion in the finite-age assertion: the growth
+certificate alone only says that finite induced birth subgraphs
+belong to C_F.
+
+The copy is obtained by applying the ordinary finite extension theorem
+over the literally empty strong base. No arbitrary enumeration of the
+finite source and no external Fraisse-limit isomorphism is used. -/
+theorem publishedBirth_finiteStrongUniversality
+    (F : PublishedGrowth)
+    (hZero : (F ⟨(0 : ℝ), le_refl (0 : ℝ)⟩).val = 0)
+    (hMono : Monotone F)
+    (hUnbounded : ∀ t : ℝ,
+      ∃ x : NonnegativeReal, t < (F x).val)
+    (hEmptyClass : EmptyDClosedInGrowthClass
+      (publishedCardinalGrowth F))
+    (W : Type) [Fintype W] [DecidableEq W]
+    (B : GraphOn W)
+    (hGrowth : B.IsGrowthSparse (publishedCardinalGrowth F)
+      (Finset.univ : Finset W)) :
+    ∃ g : W → PublishedBirthVertex F hMono hUnbounded,
+      Function.Injective g ∧
+      (∀ x y : W,
+        B.adj x y ↔
+          (publishedCountableGraph F hMono hUnbounded).adj (g x) (g y)) ∧
+      (publishedCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed
+        ((Finset.univ : Finset W).image g) := by
+  classical
+  have hBaseClosed :
+      B.toPredimension.IsDClosed (∅ : Finset W) Finset.univ :=
+    hEmptyClass W B hGrowth
+  let e : {w : W // w ∈ (∅ : Finset W)} →
+      PublishedBirthVertex F hMono hUnbounded :=
+    fun x => False.elim (by simpa using x.property)
+  have heInj : Function.Injective e := by
+    intro x y _
+    exact False.elim (by simpa using x.property)
+  have heAdj : ∀ x y : {w : W // w ∈ (∅ : Finset W)},
+      B.adj x.val y.val ↔
+        (publishedCountableGraph F hMono hUnbounded).adj (e x) (e y) := by
+    intro x y
+    exact False.elim (by simpa using x.property)
+  have hEmptyImage :
+      ((Finset.univ : Finset {w : W // w ∈ (∅ : Finset W)}).image e) =
+        (∅ : Finset (PublishedBirthVertex F hMono hUnbounded)) := by
+    ext v
+    constructor
+    · intro hv
+      obtain ⟨x, _, _⟩ := Finset.mem_image.mp hv
+      exact False.elim (by simpa using x.property)
+    · simp
+  have hTargetEmpty :
+      (publishedCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed
+        (∅ : Finset (PublishedBirthVertex F hMono hUnbounded)) :=
+    realCountableGraph_empty_globalDClosed
+      (extendPublishedGrowth F)
+      (extendPublishedGrowth_monotone F hMono)
+      (extendPublishedGrowth_unbounded F hUnbounded)
+  have heStrong :
+      (publishedCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed
+        ((Finset.univ : Finset {w : W // w ∈ (∅ : Finset W)}).image e) := by
+    rw [hEmptyImage]
+    exact hTargetEmpty
+  obtain ⟨g, hgInj, _, hgAdj, hgStrong⟩ :=
+    publishedBirth_hasStandardFiniteDClosedExtensions
+      F hZero hMono hUnbounded W B ∅ hGrowth hBaseClosed
+      e heInj heAdj heStrong
+  exact ⟨g, hgInj, hgAdj, hgStrong⟩
+
 end CFCoherentTower
 end BigHrushovski
