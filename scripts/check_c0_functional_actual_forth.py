@@ -120,7 +120,8 @@ for n in range(5):
 # named C-values, and a graph-only swap need not be functional.
 C={0:{0},1:{0,1}}
 assert C[1]-{1}=={0}
-assert {0:1,1:0}[1] not in C[1]
+swap={0:1,1:0}
+assert C[swap[0]] != {swap[z] for z in C[0]}
 stats["nonclosed_controls"]+=1
 assert stats["graphs"]==76 and stats["canonical"]>0
 assert stats["permuted_extensions"]>0
