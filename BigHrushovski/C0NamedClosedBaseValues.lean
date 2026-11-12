@@ -128,5 +128,51 @@ theorem canonicalStage_complete_namedBase_values
         (Subtype.val : T → ℕ) := by
           rw [Finset.image_image, hCompose]
 
+/-- Every literal finite canonical stage of a countable C₀
+presentation is 2-sparse as an induced finite graph. This removes
+the extra graph-sparsity hypothesis when the stage serves as the left
+factor of a finite functional free amalgam.
+
+The original stage certificates imply ambient nonnegative
+predimension on every finite subset; we transport 2-sparsity through
+the literal subtype inclusion using the existing induced-embedding
+lemma. -/
+theorem canonicalStages_literalStage_twoSparse
+    (N : GraphOn ℕ) (C : ℕ → Finset ℕ)
+    (stage : ℕ → Finset ℕ)
+    (hCover : ∀ b : Finset ℕ, ∃ n : ℕ, b ⊆ stage n)
+    (hStage : HasCanonicalFiniteStages N C stage)
+    (n : ℕ) :
+    (N.pullback (Subtype.val :
+      {v : ℕ // v ∈ stage n} → ℕ)).IsTwoSparse
+        (Finset.univ : Finset {v : ℕ // v ∈ stage n}) := by
+  classical
+  let T := {v : ℕ // v ∈ stage n}
+  let G : GraphOn T := N.pullback (Subtype.val : T → ℕ)
+  have hImage :
+      (Finset.univ : Finset T).image (Subtype.val : T → ℕ) =
+        stage n := by
+    ext v
+    constructor
+    · intro hv
+      obtain ⟨u, _, rfl⟩ := Finset.mem_image.mp hv
+      exact u.property
+    · intro hv
+      exact Finset.mem_image.mpr
+        ⟨⟨v, hv⟩, Finset.mem_univ _, rfl⟩
+  have hAmbient :
+      N.IsTwoSparse
+        ((Finset.univ : Finset T).image (Subtype.val : T → ℕ)) := by
+    rw [hImage]
+    intro s hs
+    exact sparse_of_canonicalFiniteStages
+      N C stage hCover hStage s
+  have hAdj : ∀ u v : T, G.adj u v ↔ N.adj u.val v.val := by
+    intro u v
+    rfl
+  exact (G.twoSparse_image_iff N
+    (Subtype.val : T → ℕ) Subtype.val_injective hAdj Finset.univ).mp
+      hAmbient
+
 end FiniteC0
 end BigHrushovski
