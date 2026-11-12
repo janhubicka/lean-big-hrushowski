@@ -152,5 +152,83 @@ theorem assembleComponentEnumerations_mem_successorFirstIntervals
     (O.componentLocalRanks orders)
     (O.componentLocalRanks_locallyInjective orders) hr
 
+/-- From a genuine global enumeration, recover the internal
+enumeration of each actual SCC in its inherited order. -/
+noncomputable def componentOrdersFromEnumeration
+    {n : ℕ} (e : Fin n ≃ V) :
+    O.ComponentLocalEnumerations :=
+  fun B => inducedEnumerationOn e B.val
+
+/-- The actual global SCC-interval order is reconstructed, on
+every labelled vertex pair, by concatenating its recovered
+component ranking and its true induced component orders.
+This is the inverse direction of the finite component assembly. -/
+theorem assembleComponentEnumerations_reconstructs_order
+    {n : ℕ} (e : Fin n ≃ V)
+    (he : O.IsComponentIntervalEnumeration e)
+    (x y : V) :
+    OrderBefore
+      (O.assembleComponentEnumerations
+        (O.rankingFromEnumeration e)
+        (O.componentOrdersFromEnumeration e)) x y ↔
+      OrderBefore e x y := by
+  let orders : O.ComponentLocalEnumerations :=
+    O.componentOrdersFromEnumeration e
+  let r : O.ComponentRanking := O.rankingFromEnumeration e
+  let a : V → ℕ := O.componentLocalRanks orders
+  have hAgree : ∀ u v : V,
+      O.GlobalLexBefore r a u v ↔
+        O.GlobalLexBefore r (fun w : V => (e.symm w).val) u v := by
+    apply (O.globalLexBefore_agree_iff_component_and_local
+      r r a (fun w : V => (e.symm w).val)).mpr
+    constructor
+    · intro u v _
+      rfl
+    · intro u v huv
+      let B : O.ComponentObject :=
+        ⟨O.component u, O.component_mem_components u⟩
+      let bu : ↥B.val := ⟨u, O.self_mem_component u⟩
+      let bv : ↥B.val := ⟨v, (O.mem_component_iff u v).mpr huv⟩
+      calc
+        a u < a v ↔ OrderBefore (orders B) bu bv :=
+          O.componentLocalRanks_lt_iff orders B bu bv
+        _ ↔ OrderBefore e u v :=
+          inducedEnumerationOn_order_iff e B.val bu bv
+        _ ↔ (e.symm u).val < (e.symm v).val := by
+          simp only [OrderBefore, Fin.lt_def]
+  change OrderBefore (O.assembleComponentEnumerations r orders) x y ↔
+    OrderBefore e x y
+  calc
+    OrderBefore (O.assembleComponentEnumerations r orders) x y ↔
+        O.GlobalLexBefore r a x y :=
+      O.lexComponentEnumeration_order_iff r a
+        (O.componentLocalRanks_locallyInjective orders) x y
+    _ ↔ O.GlobalLexBefore r
+          (fun w : V => (e.symm w).val) x y :=
+      hAgree x y
+    _ ↔ OrderBefore e x y :=
+      O.globalLexBefore_reconstructs_enumeration e he x y
+
+/-- Every genuine successor-first SCC-interval order is obtained
+from a *legal* SCC ranking and a family of actual component
+enumerations. No canonical adjacency-code claim is made. -/
+theorem exists_legal_component_order_assembly
+    {n : ℕ} (e : Fin n ≃ V)
+    (he : O.IsComponentIntervalEnumeration e)
+    (hs : O.IsSuccessorFirstEnumeration e) :
+    ∃ r : O.ComponentRanking,
+      r ∈ O.linearComponentRankings ∧
+        ∃ orders : O.ComponentLocalEnumerations,
+          ∀ x y : V,
+            OrderBefore (O.assembleComponentEnumerations r orders)
+              x y ↔ OrderBefore e x y := by
+  refine ⟨O.rankingFromEnumeration e,
+    (O.mem_linearComponentRankings (O.rankingFromEnumeration e)).mpr
+      (O.rankingFromEnumeration_isLegal e hs),
+    O.componentOrdersFromEnumeration e, ?_⟩
+  intro x y
+  exact O.assembleComponentEnumerations_reconstructs_order e he x y
+
+
 end FiniteOrientation
 end BigHrushovski
