@@ -1,0 +1,50 @@
+name: Track A exact named closed-base values
+on:
+  push:
+    paths:
+      - 'BigHrushovski/C0NamedClosedBaseValues.lean'
+      - 'CheckC0NamedClosedBaseValues.lean'
+      - 'scripts/check_c0_named_closed_base_values.py'
+      - '.github/workflows/track-a-named-closed-base-values.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/C0NamedClosedBaseValues.lean'
+      - 'CheckC0NamedClosedBaseValues.lean'
+      - 'scripts/check_c0_named_closed_base_values.py'
+      - '.github/workflows/track-a-named-closed-base-values.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache Lean toolchain
+        uses: actions/cache@v5
+        with:
+          path: ~/.elan/toolchains
+          key: lean-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}
+      - name: Cache Lake workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build literal complete named-base values
+        run: lake build BigHrushovski.C0NamedClosedBaseValues
+      - name: Exact theorem axioms and source placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckC0NamedClosedBaseValues.lean > c0-named-values-axioms.log
+          python3 scripts/check_axioms.py c0-named-values-axioms.log CheckC0NamedClosedBaseValues.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent exhaustive named closed-base regression
+        run: python3 scripts/check_c0_named_closed_base_values.py
