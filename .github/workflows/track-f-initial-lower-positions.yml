@@ -1,0 +1,38 @@
+name: Track F initial lower part fixes absolute ordinal positions
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0InitialLowerPositions.lean'
+      - 'CheckTrackFInitialLowerPositionsAxioms.lean'
+      - 'scripts/check_track_f_initial_lower_positions.py'
+      - '.github/workflows/track-f-initial-lower-positions.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0InitialLowerPositions.lean'
+      - 'CheckTrackFInitialLowerPositionsAxioms.lean'
+      - 'scripts/check_track_f_initial_lower_positions.py'
+      - '.github/workflows/track-f-initial-lower-positions.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  old-positions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Data.Finset.Fin Mathlib.Tactic
+      - name: Compile fixed-old-position equivalence
+        run: lake build BigHrushovski.N0InitialLowerPositions
+      - name: Exact named theorem axiom and source placeholder audits
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFInitialLowerPositionsAxioms.lean > track-f-initial-pos-axioms.log
+          python3 scripts/check_axioms.py track-f-initial-pos-axioms.log CheckTrackFInitialLowerPositionsAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent exhaustive finite old-position audit
+        run: python3 scripts/check_track_f_initial_lower_positions.py
