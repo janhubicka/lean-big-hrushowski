@@ -97,10 +97,24 @@ private noncomputable def finiteDClosedPartialIso_pullback
     change G.adj (ι x.val) (ι y.val) ↔
       G.adj (ι ((A.trans (p.trans B.symm) x).val))
         (ι ((A.trans (p.trans B.symm) y).val))
-    simpa only [Equiv.trans_apply,
-      finitePullbackSubtypeEquiv_apply_val,
-      finitePullbackSubtypeEquiv_symm_apply_val,
-      Equiv.apply_symm_apply] using hp (A x) (A y)
+    have hAx : (A x).val = ι x.val := rfl
+    have hAy : (A y).val = ι y.val := rfl
+    have hBx : (p (A x)).val =
+        ι ((A.trans (p.trans B.symm) x).val) := by
+      change (p (A x)).val = ι ((B.symm (p (A x))).val)
+      exact (congrArg Subtype.val
+        (B.apply_symm_apply (p (A x)))).symm
+    have hBy : (p (A y)).val =
+        ι ((A.trans (p.trans B.symm) y).val) := by
+      change (p (A y)).val = ι ((B.symm (p (A y))).val)
+      exact (congrArg Subtype.val
+        (B.apply_symm_apply (p (A y)))).symm
+    calc
+      G.adj (ι x.val) (ι y.val) ↔
+          G.adj (A x).val (A y).val := by rw [hAx, hAy]
+      _ ↔ G.adj (p (A x)).val (p (A y)).val := hp (A x) (A y)
+      _ ↔ G.adj (ι ((A.trans (p.trans B.symm) x).val))
+            (ι ((A.trans (p.trans B.symm) y).val)) := by rw [hBx, hBy]
 
 /-- Transport a graph automorphism extending the numbered partial
 map back to an automorphism extending the original, *unnumbered*
