@@ -4,7 +4,6 @@
 Complete graph and unary incidence pairs must live on the declared support.
 Point-generatedness alone does not guarantee this.
 """
-from itertools import combinations
 from random import Random
 
 
@@ -45,7 +44,7 @@ def main():
     for k in range(1, 1001):
         adj = {(k, k + 1)}
         assert point in s
-        assert all((point, v) in closure == (v in s) for v in s)
+        assert all((((point, v) in closure) == (v in s)) for v in range(4))
         assert not well_supported(s, adj, closure)
         keys.add((frozenset(s), point, frozenset(adj), frozenset(closure)))
     assert len(keys) == 1000
