@@ -4,6 +4,7 @@ on:
     paths:
       - 'BigHrushovski/N0ComponentClosureLocality.lean'
       - 'BigHrushovski/N0CanonicalAssembly.lean'
+      - 'BigHrushovski/N0AssemblyDataInverse.lean'
       - 'CheckTrackFClosureLocalityAxioms.lean'
       - 'scripts/check_track_f_closure_locality.py'
       - '.github/workflows/track-f-closure-locality.yml'
@@ -11,6 +12,7 @@ on:
     paths:
       - 'BigHrushovski/N0ComponentClosureLocality.lean'
       - 'BigHrushovski/N0CanonicalAssembly.lean'
+      - 'BigHrushovski/N0AssemblyDataInverse.lean'
       - 'CheckTrackFClosureLocalityAxioms.lean'
       - 'scripts/check_track_f_closure_locality.py'
       - '.github/workflows/track-f-closure-locality.yml'
@@ -29,7 +31,7 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Order.PiLex
       - name: Compile SCC-closure locality theorem
-        run: lake build BigHrushovski.N0ComponentClosureLocality BigHrushovski.N0CanonicalAssembly
+        run: lake build BigHrushovski.N0ComponentClosureLocality BigHrushovski.N0CanonicalAssembly BigHrushovski.N0AssemblyDataInverse
       - name: Named axiom audit and source placeholder scan
         run: |
           set -euo pipefail
