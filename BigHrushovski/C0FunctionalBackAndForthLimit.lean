@@ -79,8 +79,8 @@ theorem unionEquiv_completeUnary
     have huy : uy.val ∈ CM x :=
       (hFull n ux uy).mpr hVal
     have heY : e uy.val = y := by
-      rw [union_at_stage p hStep hCoverSource n uy.property]
-      exact hEval
+      change unionToFun p hCoverSource uy.val = y
+      exact (union_at_stage p hStep hCoverSource n uy.property).trans hEval
     exact Finset.mem_image.mpr ⟨uy.val, huy, heY⟩
   · intro hy
     obtain ⟨z, hz, hzy⟩ := Finset.mem_image.mp hy
