@@ -11,6 +11,7 @@ import BigHrushovski.C0CoordinateTopOrbitNormalizer
 import BigHrushovski.C0CoordinateLocalTypeMatrixBridge
 import BigHrushovski.C0CoordinatePointedTopRoots
 import BigHrushovski.C0CoordinateTopChoiceRestrictions
+import BigHrushovski.C0CoordinateHereditaryCatalogueReduction
 
 #print axioms BigHrushovski.FiniteUnaryCoordinates.chronologicalBlockOrder_interval
 #print axioms BigHrushovski.FiniteUnaryCoordinates.chronologicalBlockOrder_restrict
@@ -117,3 +118,6 @@ import BigHrushovski.C0CoordinateTopChoiceRestrictions
 #print axioms BigHrushovski.FiniteUnaryCoordinates.CompleteLocalMatrix.normalForm_idempotent
 #print axioms BigHrushovski.FiniteUnaryCoordinates.CompleteLocalMatrix.lowerCClosed_normalForm
 #print axioms BigHrushovski.FiniteUnaryCoordinates.CompleteLocalMatrix.normalForm_local_restrictions
+
+#print axioms BigHrushovski.FiniteUnaryCoordinates.ChosenLocalOrders.top_restriction_compatible
+#print axioms BigHrushovski.FiniteUnaryCoordinates.ChosenLocalOrders.isHereditary_iff_isLowerHereditary
