@@ -3,12 +3,14 @@ on:
   push:
     paths:
       - 'BigHrushovski/N0RealizeLexEnumeration.lean'
+      - 'BigHrushovski/N0InducedClosureOrders.lean'
       - 'CheckTrackFRealizeLexAxioms.lean'
       - 'scripts/check_track_f_realize_lex.py'
       - '.github/workflows/track-f-realize-lex.yml'
   pull_request:
     paths:
       - 'BigHrushovski/N0RealizeLexEnumeration.lean'
+      - 'BigHrushovski/N0InducedClosureOrders.lean'
       - 'CheckTrackFRealizeLexAxioms.lean'
       - 'scripts/check_track_f_realize_lex.py'
       - '.github/workflows/track-f-realize-lex.yml'
