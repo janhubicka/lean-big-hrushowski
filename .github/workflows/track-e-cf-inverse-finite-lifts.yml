@@ -1,0 +1,48 @@
+name: Track E actual finite inverse R-H lifts
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckCFInverseFiniteLifts.lean'
+      - 'CheckTrackECFInverseFiniteLifts.lean'
+      - '.github/workflows/track-e-cf-inverse-finite-lifts.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckCFInverseFiniteLifts.lean'
+      - 'CheckTrackECFInverseFiniteLifts.lean'
+      - '.github/workflows/track-e-cf-inverse-finite-lifts.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-inverse-finite-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-inverse-finite-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile actual C_F inverse finite lifts
+        run: lake build BigHrushovski.HrushovskiEllentuckCFInverseFiniteLifts
+      - name: Exact axiom and placeholder checks
+        run: |
+          lake env lean CheckTrackECFInverseFiniteLifts.lean > track-e-inverse-finite-axioms.log
+          cat track-e-inverse-finite-axioms.log
+          python3 scripts/check_axioms.py track-e-inverse-finite-axioms.log CheckTrackECFInverseFiniteLifts.lean
+          python3 scripts/check_no_placeholders.py
