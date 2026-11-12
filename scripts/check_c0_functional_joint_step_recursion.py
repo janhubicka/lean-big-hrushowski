@@ -98,7 +98,9 @@ for n in range(5):
                                 stats["induced_pairs"]+=1
                     # The final map extends EVERY possible initial cut map.
                     for ss in stage_sets:
-                        assert all(perm[x] == perm[x] for x in ss)
+                        assert {perm[x] for x in ss} == {
+                            target for target in target_stages[stage_sets.index(ss)]
+                        }
                         # Compare the actual finite map dictionary with
                         # the final map; not merely the domains.
                         initial={x:perm[x] for x in ss}
