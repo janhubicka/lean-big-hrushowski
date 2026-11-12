@@ -103,6 +103,7 @@ theorem RawC0CoordinateVertex.closeFinite_idempotent
 /-- The intersection of two complete unary-closed finite sets
 is closed under every complete unary value. -/
 theorem RawC0CoordinateVertex.isClosed_inter
+    [DecidableEq RawC0CoordinateVertex]
     (s t : Finset RawC0CoordinateVertex)
     (hs : RawC0CoordinateVertex.IsClosed s)
     (ht : RawC0CoordinateVertex.IsClosed t) :
@@ -115,6 +116,7 @@ theorem RawC0CoordinateVertex.isClosed_inter
 /-- The union of two complete unary-closed finite sets is likewise
 closed under every complete unary value. -/
 theorem RawC0CoordinateVertex.isClosed_union
+    [DecidableEq RawC0CoordinateVertex]
     (s t : Finset RawC0CoordinateVertex)
     (hs : RawC0CoordinateVertex.IsClosed s)
     (ht : RawC0CoordinateVertex.IsClosed t) :
