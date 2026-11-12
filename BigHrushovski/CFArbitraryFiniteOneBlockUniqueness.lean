@@ -24,6 +24,18 @@ namespace CFCoherentTower
 
 open CFStageCatalogue
 
+/-- Read the complete ordered local graph code at the actual birth
+vertex's request. Packaging the dependent stage/order choice in a
+single function makes transport along equality of birth vertices
+well typed; no extra mathematical assumption is introduced. -/
+private noncomputable def requestCodeAtBirthVertex
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (v : Vertex F K) : List Nat := by
+  letI : LinearOrder (stage F K v.1).carrier :=
+    stageLinearOrder F K v.1
+  exact requestAdjacencyCode (stage F K v.1).graph
+    (GrowthAllowedLocal F) (fun P => K P.card) v.2.1
+
 /-- Two arbitrary admissible finite embeddings with identical old
 source images and with the same target birth level for one vertex
 must have the same image of that vertex. Target request tags and
@@ -112,26 +124,30 @@ theorem arbitraryFiniteEmbedding_oneBlock_unique_at_target
     stageLinearOrder F K (e x).1
   letI : LinearOrder (stage F K (g x).1).carrier :=
     stageLinearOrder F K (g x).1
-  have hCodeE :=
+  have hCodeE :
+      requestAdjacencyCode (stage F K n).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) r =
+      requestCodeAtBirthVertex F K (e x) :=
     arbitraryFiniteEmbedding_requestAdjacencyCode
       F K s hs e heInj heAdj heB heLevel heOrder n r i hi
-  have hCodeG :=
+  have hCodeG :
+      requestAdjacencyCode (stage F K n).graph
+        (GrowthAllowedLocal F) (fun P => K P.card) r =
+      requestCodeAtBirthVertex F K (g x) :=
     arbitraryFiniteEmbedding_requestAdjacencyCode
       F K s hs g hgInj hgAdj hgB hgLevel hgOrder n r i hi
-  change
-    requestAdjacencyCode (stage F K n).graph
-      (GrowthAllowedLocal F) (fun P => K P.card) r =
-    requestAdjacencyCode (stage F K (e x).1).graph
-      (GrowthAllowedLocal F) (fun P => K P.card) (e x).2.1
-      at hCodeE
-  change
-    requestAdjacencyCode (stage F K n).graph
-      (GrowthAllowedLocal F) (fun P => K P.card) r =
-    requestAdjacencyCode (stage F K (g x).1).graph
-      (GrowthAllowedLocal F) (fun P => K P.card) (g x).2.1
-      at hCodeG
   rw [heTarget] at hCodeE
   rw [hgTarget] at hCodeG
+  change
+    requestAdjacencyCode (stage F K n).graph
+      (GrowthAllowedLocal F) (fun P => K P.card) r =
+    requestAdjacencyCode (stage F K m).graph
+      (GrowthAllowedLocal F) (fun P => K P.card) t at hCodeE
+  change
+    requestAdjacencyCode (stage F K n).graph
+      (GrowthAllowedLocal F) (fun P => K P.card) r =
+    requestAdjacencyCode (stage F K m).graph
+      (GrowthAllowedLocal F) (fun P => K P.card) u at hCodeG
   have hTag : t = u :=
     request_eq_of_support_size_adjacency
       (stage F K m).graph (GrowthAllowedLocal F)
