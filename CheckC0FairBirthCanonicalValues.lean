@@ -1,0 +1,2 @@
+import BigHrushovski.C0FairBirthCanonicalValues
+#print axioms BigHrushovski.FiniteC0.fairBirthIndex_preserves_complete_canonicalValue
