@@ -96,7 +96,8 @@ theorem FiniteChronologicalC0.generatedCode_relabel
       ((e.trans h) a)
       ((mem_coordinateImage_iff (e.trans h) (C a) a).mpr
         (FiniteC0.canonicalValue_mem_self p.graph p.component a))
-  simpa only [literalPointedCode_relabel, hSupport] using hCode
+  have hPoint : h (e a) = (e.trans h) a := rfl
+  simpa only [literalPointedCode_relabel, hSupport, hPoint] using hCode
 
 /-- Increasing coordinate maps preserve the class of raw codes
 admitting an actual finite minimal-strong C₀ presentation. -/
