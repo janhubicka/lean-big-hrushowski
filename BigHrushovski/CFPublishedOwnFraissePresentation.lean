@@ -90,7 +90,10 @@ theorem publishedBirth_hasStandardFiniteDClosedExtensions
           obtain ⟨w, _, hw⟩ := Finset.mem_image.mp hv
           exact Finset.mem_image.mpr
             ⟨w.val, Finset.mem_univ _, hw⟩
-    exact hImage.symm ▸ hg0Closed
+    exact Eq.mp (congrArg
+      (fun s : Finset (PublishedBirthVertex F hMono hUnbounded) =>
+        (publishedCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed s)
+      hImage.symm) hg0Closed
 
 /-- The canonical birth graph, with its *actual* vertex names, has
 the ordinary strong Fraisse-limit presentation of the manuscript:
@@ -186,17 +189,20 @@ theorem publishedBirth_finiteStrongUniversality
   have hBaseClosed :
       B.toPredimension.IsDClosed (∅ : Finset W) Finset.univ :=
     hEmptyClass W B hGrowth
+  have emptyElim (x : {w : W // w ∈ (∅ : Finset W)}) : False := by
+    have hx := x.property
+    simp at hx
   let e : {w : W // w ∈ (∅ : Finset W)} →
       PublishedBirthVertex F hMono hUnbounded :=
-    fun x => False.elim (Finset.not_mem_empty x.val x.property)
+    fun x => False.elim (emptyElim x)
   have heInj : Function.Injective e := by
     intro x y _
-    exact False.elim (Finset.not_mem_empty x.val x.property)
+    exact False.elim (emptyElim x)
   have heAdj : ∀ x y : {w : W // w ∈ (∅ : Finset W)},
       B.adj x.val y.val ↔
         (publishedCountableGraph F hMono hUnbounded).adj (e x) (e y) := by
     intro x y
-    exact False.elim (Finset.not_mem_empty x.val x.property)
+    exact False.elim (emptyElim x)
   have hEmptyImage :
       ((Finset.univ : Finset {w : W // w ∈ (∅ : Finset W)}).image e) =
         (∅ : Finset (PublishedBirthVertex F hMono hUnbounded)) := by
@@ -204,7 +210,7 @@ theorem publishedBirth_finiteStrongUniversality
     constructor
     · intro hv
       obtain ⟨x, _, _⟩ := Finset.mem_image.mp hv
-      exact False.elim (Finset.not_mem_empty x.val x.property)
+      exact False.elim (emptyElim x)
     · simp
   have hTargetEmpty :
       (publishedCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed
