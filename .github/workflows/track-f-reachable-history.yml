@@ -1,0 +1,38 @@
+name: Track F reachable dependent-history product count
+on:
+  push:
+    paths:
+      - 'BigHrushovski/FiniteReachableHistoryCount.lean'
+      - 'CheckTrackFReachableHistoryAxioms.lean'
+      - 'scripts/check_track_f_reachable_histories.py'
+      - '.github/workflows/track-f-reachable-history.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/FiniteReachableHistoryCount.lean'
+      - 'CheckTrackFReachableHistoryAxioms.lean'
+      - 'scripts/check_track_f_reachable_histories.py'
+      - '.github/workflows/track-f-reachable-history.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-history:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic
+      - name: Compile reachable-fibre induction
+        run: lake build BigHrushovski.FiniteReachableHistoryCount
+      - name: Kernel axiom audit and placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFReachableHistoryAxioms.lean > track-f-reachable-axioms.log
+          python3 scripts/check_axioms.py track-f-reachable-axioms.log CheckTrackFReachableHistoryAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite regression
+        run: python3 scripts/check_track_f_reachable_histories.py
