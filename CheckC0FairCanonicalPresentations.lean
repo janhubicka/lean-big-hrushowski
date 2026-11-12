@@ -1,0 +1,7 @@
+import BigHrushovski.C0FairCanonicalPresentations
+
+#print axioms BigHrushovski.FiniteC0.fairBirthIndex_oldStage_image
+#print axioms BigHrushovski.FiniteC0.canonicalStages_fairBirthIndex_minimalStep
+#print axioms BigHrushovski.FiniteC0.canonicalStages_fairPrefixes_areCanonical
+#print axioms BigHrushovski.FiniteC0.fairComponentPrefix_covers_finite
+#print axioms BigHrushovski.FiniteC0.canonicalStages_fairPrefixes_cofinalCanonical
