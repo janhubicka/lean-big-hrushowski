@@ -6,12 +6,14 @@ on:
       - 'BigHrushovski/C0FairCanonicalStageTransfer.lean'
       - 'CheckC0FairCanonicalStageTransfer.lean'
       - 'scripts/check_c0_closed_stage_transfer.py'
+      - 'scripts/check_c0_fair_canonical_composed.py'
       - '.github/workflows/track-a-fair-closed-stage-values.yml'
   pull_request:
     paths:
       - 'BigHrushovski/C0FairCanonicalStageTransfer.lean'
       - 'CheckC0FairCanonicalStageTransfer.lean'
       - 'scripts/check_c0_closed_stage_transfer.py'
+      - 'scripts/check_c0_fair_canonical_composed.py'
       - '.github/workflows/track-a-fair-closed-stage-values.yml'
   workflow_dispatch:
 
@@ -53,3 +55,6 @@ jobs:
         run: python3 scripts/check_c0_closed_stage_transfer.py
       - name: Exhaustively test fair birth indices
         run: python3 scripts/check_c0_fair_birth_index.py
+
+      - name: Combined fair-prefix complete-value regression
+        run: python3 scripts/check_c0_fair_canonical_composed.py
