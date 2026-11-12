@@ -1,0 +1,11 @@
+import BigHrushovski.C0FairVertexRankIso
+
+#print axioms BigHrushovski.FiniteC0.fairVertexPredecessors_ssubset
+#print axioms BigHrushovski.FiniteC0.fairVertexRank_lt_of_before
+#print axioms BigHrushovski.FiniteC0.fairVertexRank_injective
+#print axioms BigHrushovski.FiniteC0.fairVertexRank_image_predecessors
+#print axioms BigHrushovski.FiniteC0.fairVertexRank_lower_realized
+#print axioms BigHrushovski.FiniteC0.fairVertexRank_surjective
+#print axioms BigHrushovski.FiniteC0.fairVertexRank_bijective
+#print axioms BigHrushovski.FiniteC0.fairVertexBefore_iff_rank_lt
+#print axioms BigHrushovski.FiniteC0.fairVertexBefore_iff_rankEquiv_lt
