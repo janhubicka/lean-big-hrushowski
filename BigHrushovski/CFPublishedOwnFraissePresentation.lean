@@ -28,6 +28,17 @@ namespace CFCoherentTower
 
 open CFGrowthNumerics CFDClosedBackAndForth
 
+/-- A classical equality decision procedure for the countable birth
+carrier. This is a computational convenience needed by the finite
+image API, not a finiteness or additional graph hypothesis. -/
+noncomputable instance publishedBirthVertex_decidableEq
+    (F : PublishedGrowth)
+    (hMono : Monotone F)
+    (hUnbounded : ∀ t : ℝ,
+      ∃ x : NonnegativeReal, t < (F x).val) :
+    DecidableEq (PublishedBirthVertex F hMono hUnbounded) :=
+  Classical.decEq _
+
 /-- The actual published birth graph realizes every finite strong
 extension over any prescribed globally strictly d-closed induced
 embedding, even if the finite source carrier has no given linear
