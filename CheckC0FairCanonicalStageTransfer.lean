@@ -1,0 +1,4 @@
+import BigHrushovski.C0FairCanonicalStageTransfer
+
+#print axioms BigHrushovski.FiniteC0.canonicalStages_closed_literal_fullValues
+#print axioms BigHrushovski.FiniteC0.canonicalStages_fairBirthIndex_exact_fullValues
