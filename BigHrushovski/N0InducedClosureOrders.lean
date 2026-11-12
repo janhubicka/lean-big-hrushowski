@@ -78,7 +78,9 @@ theorem inducedEnumerationOn_restrict_twice {n : ℕ}
     _ ↔ OrderBefore (inducedEnumerationOn e T)
           (⟨u.val, hST u.property⟩ : ↥T)
           (⟨v.val, hST v.property⟩ : ↥T) :=
-      (inducedEnumerationOn_order_iff e T _ _).symm
+      (inducedEnumerationOn_order_iff e T
+        (⟨u.val, hST u.property⟩ : ↥T)
+        (⟨v.val, hST v.property⟩ : ↥T)).symm
 
 /-- An induced enumeration depends only on the inherited
 pairwise comparisons, not the positions of vertices outside S. -/
@@ -99,6 +101,10 @@ theorem inducedEnumerationOn_eq_of_order_agree
       hAgree u.val u.property v.val v.property
     _ ↔ OrderBefore (inducedEnumerationOn f S) u v :=
       (inducedEnumerationOn_order_iff f S u v).symm
+
+-- Used to form finite sets of literal labelled order relations.
+noncomputable local instance : DecidableEq (V → V → Prop) :=
+  Classical.decEq _
 
 variable (O : FiniteOrientation V)
 
