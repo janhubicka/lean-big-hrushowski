@@ -17,7 +17,7 @@ two enumerations with the same order on P give each old vertex
 the same numerical position.
 
 This finite order lemma is independent of the orientation and is
-the missing interface between recursive lower-part orderings and
+the interface between recursive lower-part orderings and
 positionwise-fixed canonical local fibres.
 -/
 
@@ -26,48 +26,55 @@ namespace FiniteOrientation
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
+/-- The finite set of vertices appearing strictly before u in an
+actual complete labelled enumeration. -/
+noncomputable def orderPredecessors {n : ℕ}
+    (e : Fin n ≃ V) (u : V) : Finset V := by
+  classical
+  exact Finset.univ.filter (fun v => OrderBefore e v u)
+
+theorem mem_orderPredecessors_iff {n : ℕ}
+    (e : Fin n ≃ V) (u v : V) :
+    v ∈ orderPredecessors e u ↔ OrderBefore e v u := by
+  classical
+  simp [orderPredecessors]
+
 /-- The index of u in a complete finite enumeration equals the
 number of vertices strictly preceding u. This counts all labelled
 vertices, independently of the graph relation. -/
 theorem enumerationPosition_eq_card_predecessors {n : ℕ}
     (e : Fin n ≃ V) (u : V) :
-    (e.symm u).val =
-      ((Finset.univ : Finset V).filter
-        (fun v => OrderBefore e v u)).card := by
+    (e.symm u).val = (orderPredecessors e u).card := by
   classical
   let j : Fin n := e.symm u
-  let prefix : Finset (Fin n) :=
+  let indices : Finset (Fin n) :=
     (Finset.range j.val).attachFin (by
       intro m hm
       exact lt_trans (Finset.mem_range.mp hm) j.isLt)
-  have hPrefix (i : Fin n) : i ∈ prefix ↔ i < j := by
-    simp [prefix, Fin.lt_def]
-  have hPrefixCard : prefix.card = j.val := by
-    simp [prefix]
+  have hIndices (i : Fin n) : i ∈ indices ↔ i < j := by
+    simp [indices, Fin.lt_def]
+  have hIndicesCard : indices.card = j.val := by
+    simp [indices]
   have hImage :
-      prefix.image e =
-        (Finset.univ : Finset V).filter
-          (fun v => OrderBefore e v u) := by
+      indices.image e = orderPredecessors e u := by
     ext v
-    simp only [Finset.mem_image, Finset.mem_filter,
-      Finset.mem_univ, true_and]
+    simp only [Finset.mem_image, mem_orderPredecessors_iff]
     constructor
     · rintro ⟨i, hi, rfl⟩
-      have hij : i < j := (hPrefix i).mp hi
+      have hij : i < j := (hIndices i).mp hi
       simpa [OrderBefore, j] using hij
     · intro hv
-      refine ⟨e.symm v, (hPrefix (e.symm v)).mpr ?_, ?_⟩
+      refine ⟨e.symm v, (hIndices (e.symm v)).mpr ?_, ?_⟩
       · simpa [OrderBefore, j] using hv
       · simp
-  have hCardImage : (prefix.image e).card = prefix.card := by
+  have hCardImage : (indices.image e).card = indices.card := by
     apply Finset.card_image_iff.mpr
     intro a ha b hb hab
     exact e.injective hab
   calc
-    (e.symm u).val = prefix.card := hPrefixCard.symm
-    _ = (prefix.image e).card := hCardImage.symm
-    _ = ((Finset.univ : Finset V).filter
-          (fun v => OrderBefore e v u)).card :=
+    (e.symm u).val = indices.card := hIndicesCard.symm
+    _ = (indices.image e).card := hCardImage.symm
+    _ = (orderPredecessors e u).card :=
       congrArg Finset.card hImage
 
 /-- If P is an initial segment in both enumerations and all
@@ -83,12 +90,9 @@ theorem sameLowerPositions_of_initial_and_oldOrder
       (OrderBefore e u v ↔ OrderBefore f u v)) :
     SameLowerPositions P e f := by
   have hPred (u : V) (hu : u ∈ P) :
-      ((Finset.univ : Finset V).filter
-        (fun v => OrderBefore e v u)) =
-      ((Finset.univ : Finset V).filter
-        (fun v => OrderBefore f v u)) := by
+      orderPredecessors e u = orderPredecessors f u := by
     ext v
-    simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+    simp only [mem_orderPredecessors_iff]
     by_cases hv : v ∈ P
     · exact hOrder v hv u hu
     · have hNotE : ¬ OrderBefore e v u := by
@@ -103,11 +107,9 @@ theorem sameLowerPositions_of_initial_and_oldOrder
       e.symm u = f.symm u := by
     apply Fin.ext
     calc
-      (e.symm u).val = ((Finset.univ : Finset V).filter
-          (fun v => OrderBefore e v u)).card :=
+      (e.symm u).val = (orderPredecessors e u).card :=
         enumerationPosition_eq_card_predecessors e u
-      _ = ((Finset.univ : Finset V).filter
-          (fun v => OrderBefore f v u)).card := by
+      _ = (orderPredecessors f u).card := by
         rw [hPred u hu]
       _ = (f.symm u).val :=
         (enumerationPosition_eq_card_predecessors f u).symm
