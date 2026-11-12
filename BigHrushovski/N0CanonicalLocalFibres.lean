@@ -131,6 +131,7 @@ theorem canonicalComponentLexClass_nonempty
 one of its members under the pointwise stabilizer of the lower part.
 Unlike the cardinal theorem, this identifies the actual *set* of
 admissible local enumerations. -/
+set_option maxHeartbeats 800000 in
 theorem canonicalComponentLexClass_eq_automorphism_orbit_of_mem
     (x : V) {n : ℕ}
     (base e : Fin n ≃ O.componentClosure x)
@@ -142,13 +143,12 @@ theorem canonicalComponentLexClass_eq_automorphism_orbit_of_mem
   let I := O.inducedComponentOrientation x
   let P := O.inducedLowerPart x
   let S := fixedLowerEnumerations P base
-  let code := fun t : Fin n ≃ O.componentClosure x =>
-    I.completeRowMajorLexCode t
+  let code : (Fin n ≃ O.componentClosure x) →
+      Lex (Fin n → Lex (Fin n → Bool)) :=
+    fun t => I.completeRowMajorLexCode t
   have hne : S.Nonempty := fixedLowerEnumerations_nonempty P base
-  have heMin :
-      e ∈ S ∧ code e = (S.image code).min'
-        (Finset.image_nonempty.mpr hne) := by
-    exact (mem_minimumCodeClass_iff S code hne e).mp he
+  change e ∈ minimumCodeClass S code hne at he
+  have heMin := (mem_minimumCodeClass_iff S code hne e).mp he
   have heOld : SameLowerPositions P base e :=
     (mem_fixedLowerEnumerations_iff P base e).mp heMin.1
   change minimumCodeClass S code hne =
