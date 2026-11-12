@@ -1,0 +1,3 @@
+import BigHrushovski.C0TwoSidedEmbeddedAmalgam
+
+#print axioms BigHrushovski.FiniteSpan.exists_twoSidedCanonicalFunctionalAmalgam
