@@ -10,9 +10,9 @@ vertex of $s$ belongs to the range of $h$.
 There is a genuine induced, ordered functional embedding
 $g:s\to M_F$ in the complete auxiliary b-language such that
 
-$
+$$
   h(\pi(g(v)))=\pi(v)\qquad(v\in s).
-$
+$$
 
 The map preserves and reflects edges and nonedges, the canonical
 birth order and birth-level preorder, and transports every
