@@ -119,3 +119,49 @@ Additional adversarial checks:
   not merely the top SCC B.
 - No counting statement is made from this existence theorem.
 - Three new exact named theorem axiom checks are included.
+
+## Actual inverse of the finite assembly data
+
+The additional module \`N0AssemblyDataInverse.lean\` separates the
+injectivity argument into two reusable facts:
+
+1. Restricting an assembled global enumeration to each SCC gives
+   back exactly the SCC enumeration that was supplied as input.
+2. Ranking SCCs by first occurrence in the assembled global
+   enumeration gives back exactly the original consecutive ranking.
+
+The second point uses *all* comparisons between distinct SCCs
+and the uniqueness of the order-preserving enumeration by a finite
+ordinal. It does not use only the existence of an SCC interval
+presentation. Thus the assembly map from a ranking plus one
+enumeration per SCC to the actual labelled global enumeration
+is injective.
+
+These results, together with the existing reconstruction of every
+SCC-interval enumeration, give the finite **geometric** bijection.
+Together with the canonical assembly bridge, they also give
+the bijection at the level of globally canonical data, once the
+local admissibility predicate is imposed on the input data.
+
+The cardinality of that restricted data set remains open. In
+particular the product \(\ell(A)\prod_B g_A(B)\) is still not
+declared a Lean theorem.
+
+Additional adversarial checks:
+
+- **Consecutive rank referee:** two distinct ordinal ranks
+  cannot encode the same total component ordering. The proof
+  invokes uniqueness of an enumeration by a finite ordinal,
+  not merely equality of relative SCC comparisons.
+- **Dependent carrier referee:** SCC restrictions are taken
+  in their actual subtype vertex carriers, with no artificial
+  copies or relabellings.
+- **Automorphism referee:** internal SCC orders are recorded
+  as labelled orders; quotienting by SCC automorphisms would
+  destroy injectivity.
+- **Surjectivity referee:** the inverse lemma applies to all
+  actual SCC-interval orders; the canonical restriction is a
+  separate property, not a consequence of mere intervality.
+- **Certification referee:** three new exact named axiom checks
+  are included. No Lean-validated status is claimed before
+  the PR's exact-head CI passes.
