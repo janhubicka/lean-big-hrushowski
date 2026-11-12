@@ -1,4 +1,5 @@
 import BigHrushovski.CFPrescribedFiniteRHLift
+import BigHrushovski.HrushovskiEllentuckCFBirthSupport
 
 /-!
 # Finite inverse level assignments in the actual C_F birth structure
@@ -171,5 +172,56 @@ theorem finiteClosed_inverseRHLift_exists
       _ = x.val.1 := chosenInverseLevel_spec h (hRange x.val x.property)
   · exact finiteSourcePrescribedLift_RHValues
       F K s hs level hStrict n hCover
+
+/-- A vertex whose *complete* birth-level support lies in range(h)
+has a genuine inverse finite (R,H) lift on its entire one-generated
+b-closure. This is precisely the existence half of the finite
+range-recognition argument; uniqueness is not asserted. -/
+theorem birthSingletonClosure_inverseRHLift_exists
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (h : ℕ → ℕ) (hh : StrictMono h)
+    (v : Vertex F K)
+    (hv : v ∈ birthLevelDomain F K (Set.range h)) :
+    let s : Finset (Vertex F K) := birthSingletonClosure F K v
+    ∃ e : SupportCarrier (Vertex F K) s → Vertex F K,
+      Function.Injective e ∧
+      (∀ x y : SupportCarrier (Vertex F K) s,
+        (countableGraph F K).adj x.val y.val ↔
+          (countableGraph F K).adj (e x) (e y)) ∧
+      (∀ x y : SupportCarrier (Vertex F K) s,
+        BirthLevelLe F K x.val y.val ↔
+          BirthLevelLe F K (e x) (e y)) ∧
+      (∀ x y : SupportCarrier (Vertex F K) s,
+        canonicalBirthLt F K x.val y.val ↔
+          canonicalBirthLt F K (e x) (e y)) ∧
+      (∀ x : SupportCarrier (Vertex F K) s,
+        h ((e x).1) = x.val.1) ∧
+      (let X : Set (Vertex F K) := {w | w ∈ s}
+       let f := extendClosedSourceMap F K X e
+       (∀ w ∈ X,
+         (birthReachableRoots F K w).image f =
+           birthReachableRoots F K (f w)) ∧
+       (∀ t : Finset (Vertex F K),
+         (∀ w ∈ t, w ∈ X) →
+         (∀ r ∈ t, IsBirthRoot F K r) →
+         (birthDClosedHull F K t).image f =
+           birthDClosedHull F K (t.image f)) ∧
+       (∀ t : Finset (Vertex F K),
+         (∀ w ∈ t, w ∈ X) →
+         ((∀ r ∈ t, IsBirthRoot F K r) ↔
+           (∀ r ∈ t.image f, IsBirthRoot F K r)))) := by
+  have hs : IsBirthBlockClosed F K
+      (birthSingletonClosure F K v) := by
+    exact birthGeneratedClosure_closed F K
+      ({v} : Finset (Vertex F K))
+  have hRange :
+      ∀ w ∈ birthSingletonClosure F K v,
+        w.1 ∈ Set.range h := by
+    intro w hw
+    exact hv w.1
+      ((birthLevelSupport_mem_iff F K v w.1).2 ⟨w, hw, rfl⟩)
+  exact finiteClosed_inverseRHLift_exists F K
+    (birthSingletonClosure F K v) hs h hh hRange
+
 
 end BigHrushovski.CFCoherentTower
