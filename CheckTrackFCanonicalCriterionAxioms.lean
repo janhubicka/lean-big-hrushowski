@@ -1,0 +1,5 @@
+import BigHrushovski.N0CanonicalOrderCriterion
+
+#print axioms BigHrushovski.FiniteOrientation.mem_minimumCodeClass_iff_le_all
+#print axioms BigHrushovski.FiniteOrientation.mem_canonicalComponentLexClass_iff_le_all
+#print axioms BigHrushovski.FiniteOrientation.canonicalComponentLexCriterion_base_independent
