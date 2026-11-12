@@ -1,0 +1,23 @@
+import BigHrushovski.HrushovskiEllentuckCountableLiftFromFiniteUniqueness
+
+/-!
+Exact Track E audit: finite b-closed restriction, uniqueness transfer
+to actual finite birth stages, coherent prescribed finite lifts,
+and countable existence, exact range and uniqueness conditional
+only on the explicitly stated singleton-closure uniqueness premise.
+
+These declarations do NOT prove that premise and are not the
+Section 6 Ellentuck theorem.
+-/
+
+#print axioms BigHrushovski.CFCoherentTower.finiteSourceBValue_image_of_subset
+#print axioms BigHrushovski.CFCoherentTower.finiteSourceBValue_restrict
+#print axioms BigHrushovski.CFCoherentTower.finiteOrderedBEmbedding_restrict
+#print axioms BigHrushovski.CFCoherentTower.finiteStage_uniqueness_of_singleton_uniqueness
+#print axioms BigHrushovski.CFCoherentTower.finiteOrderedStageLift_exists
+#print axioms BigHrushovski.CFCoherentTower.chosenFiniteStageLifts_embeds
+#print axioms BigHrushovski.CFCoherentTower.chosenFiniteStageLifts_birthLevel
+#print axioms BigHrushovski.CFCoherentTower.chosenFiniteStageLifts_coherent_of_singleton_uniqueness
+#print axioms BigHrushovski.CFCoherentTower.exists_globalOrderedBEmbedding_of_singleton_uniqueness
+#print axioms BigHrushovski.CFCoherentTower.exists_globalOrderedBEmbedding_range_eq_of_singleton_uniqueness
+#print axioms BigHrushovski.CFCoherentTower.globalOrderedBEmbedding_unique_of_singleton_uniqueness
