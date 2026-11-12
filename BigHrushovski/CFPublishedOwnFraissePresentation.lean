@@ -1,4 +1,5 @@
-import BigHrushovski.CFPublishedStrongFraisseTheorem
+import BigHrushovski.CFStandardFraisseExtension
+import BigHrushovski.CFPublishedFiniteGenericity
 import BigHrushovski.CFRealGenericCertificate
 import BigHrushovski.CFSingletonStageCoverage
 import Mathlib.Data.Fintype.EquivFin
