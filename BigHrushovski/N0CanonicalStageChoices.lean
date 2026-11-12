@@ -81,7 +81,7 @@ def IsCanonicalAtComponent
     (B : O.ComponentObject) : Prop :=
   ∀ x : V, x ∈ B.val →
     (let e := O.inheritedComponentEnumeration
-      (O.assembleComponentEnumerations r orders) x
+      (O.assembleComponentEnumerations r orders) x;
      e ∈ O.canonicalComponentLexClass x e)
 
 /-- The global finite canonical predicate is exactly the
