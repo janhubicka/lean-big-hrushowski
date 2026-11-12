@@ -67,8 +67,6 @@ theorem finiteSourceBValue_restrict
           Subtype.val =
       (finiteSourceBirthBValue F K s x).image Subtype.val := by
         rw [Finset.image_image]
-        apply Finset.image_congr
-        intro y hy
         rfl
     _ = birthBValue F K x.val :=
       finiteSourceBirthBValue_image F K s hs x
