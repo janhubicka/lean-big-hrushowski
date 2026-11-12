@@ -1,5 +1,6 @@
 import BigHrushovski.N0ComponentClosureLocality
 import BigHrushovski.N0CanonicalAssembly
+import BigHrushovski.N0AssemblyDataInverse
 
 #print axioms BigHrushovski.FiniteOrientation.assembleComponentEnumerations_distinctComponents
 #print axioms BigHrushovski.FiniteOrientation.inheritedComponentEnumeration_eq_of_component_agreement
@@ -8,3 +9,7 @@ import BigHrushovski.N0CanonicalAssembly
 #print axioms BigHrushovski.FiniteOrientation.assembled_isFiniteCanonical_iff
 #print axioms BigHrushovski.FiniteOrientation.canonicalEnumeration_has_componentAssembly
 #print axioms BigHrushovski.FiniteOrientation.legalCanonicalAssignment_gives_global
+
+#print axioms BigHrushovski.FiniteOrientation.componentOrdersFromAssembly_eq
+#print axioms BigHrushovski.FiniteOrientation.rankingFromAssembly_eq
+#print axioms BigHrushovski.FiniteOrientation.assembleComponentEnumerations_injective
