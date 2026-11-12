@@ -3,12 +3,16 @@ on:
   push:
     paths:
       - 'BigHrushovski/N0AssembleComponentOrders.lean'
+      - 'BigHrushovski/N0RealizeLexEnumeration.lean'
+      - 'BigHrushovski/N0InducedClosureOrders.lean'
       - 'CheckTrackFAssembleComponentAxioms.lean'
       - 'scripts/check_track_f_assemble_component_orders.py'
       - '.github/workflows/track-f-assemble-components.yml'
   pull_request:
     paths:
       - 'BigHrushovski/N0AssembleComponentOrders.lean'
+      - 'BigHrushovski/N0RealizeLexEnumeration.lean'
+      - 'BigHrushovski/N0InducedClosureOrders.lean'
       - 'CheckTrackFAssembleComponentAxioms.lean'
       - 'scripts/check_track_f_assemble_component_orders.py'
       - '.github/workflows/track-f-assemble-components.yml'
