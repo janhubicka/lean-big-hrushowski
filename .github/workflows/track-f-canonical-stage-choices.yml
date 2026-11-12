@@ -1,0 +1,40 @@
+name: Track F actual canonical next-SCC extension fibres
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0CanonicalStageChoices.lean'
+      - 'CheckTrackFCanonicalStageChoicesAxioms.lean'
+      - 'scripts/check_track_f_canonical_stage_choices.py'
+      - '.github/workflows/track-f-canonical-stage-choices.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0CanonicalStageChoices.lean'
+      - 'CheckTrackFCanonicalStageChoicesAxioms.lean'
+      - 'scripts/check_track_f_canonical_stage_choices.py'
+      - '.github/workflows/track-f-canonical-stage-choices.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stage-fibre:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Order.PiLex
+      - name: Compile actual canonical SCC stage fibres
+        run: lake build BigHrushovski.N0CanonicalStageChoices
+      - name: Kernel named theorem axiom and placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFCanonicalStageChoicesAxioms.lean > track-f-stage-axioms.log
+          python3 scripts/check_axioms.py track-f-stage-axioms.log CheckTrackFCanonicalStageChoicesAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Exhaustive legal fixed-context fibre regression
+        run: |
+          python3 scripts/check_track_f_canonical_stage_choices.py
+          python3 scripts/check_track_f_canonical_local.py
