@@ -120,10 +120,18 @@ theorem localCanonicalCondition_eq_of_component_agreement
       e ∈ O.canonicalComponentLexClass x e) := by
   have h := O.inheritedComponentEnumeration_eq_of_component_agreement
     r orders₁ orders₂ x hAgree
-  simpa only [] using
-    congrArg (fun e : Fin (Fintype.card (↥(O.componentClosure x))) ≃
-        O.componentClosure x =>
-      e ∈ O.canonicalComponentLexClass x e) h
+  change
+    (O.inheritedComponentEnumeration
+      (O.assembleComponentEnumerations r orders₁) x ∈
+      O.canonicalComponentLexClass x
+        (O.inheritedComponentEnumeration
+          (O.assembleComponentEnumerations r orders₁) x)) ↔
+    (O.inheritedComponentEnumeration
+      (O.assembleComponentEnumerations r orders₂) x ∈
+      O.canonicalComponentLexClass x
+        (O.inheritedComponentEnumeration
+          (O.assembleComponentEnumerations r orders₂) x))
+  rw [h]
 
 end FiniteOrientation
 end BigHrushovski
