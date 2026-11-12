@@ -1,0 +1,28 @@
+name: Track C strict strong homogeneity
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFPublishedStrongHomogeneity.lean"
+      - "TrackCPublishedStrongHomogeneityCheck.lean"
+      - ".github/workflows/track-c-strong-homogeneity.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  strict-homogeneity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build exact strict homogeneity module
+        run: lake build BigHrushovski.CFPublishedStrongHomogeneity
+      - name: Audit axioms and placeholders
+        run: |
+          lake env lean TrackCPublishedStrongHomogeneityCheck.lean > track-c-homogeneity-axioms.log
+          python3 scripts/check_axioms.py track-c-homogeneity-axioms.log TrackCPublishedStrongHomogeneityCheck.lean
+          python3 scripts/check_no_placeholders.py
