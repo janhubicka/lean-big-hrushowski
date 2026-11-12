@@ -53,10 +53,9 @@ theorem componentLocalRanks_lt_iff
       O.ComponentObject) = B := Subtype.ext hx
   have hBy : (⟨O.component y.val, O.component_mem_components y.val⟩ :
       O.ComponentObject) = B := Subtype.ext hy
-  simpa only [componentLocalRanks, hBx, hBy, OrderBefore] using
-    (Iff.rfl :
-      (((orders B).symm x).val < ((orders B).symm y).val) ↔
-      ((orders B).symm x < (orders B).symm y))
+  unfold componentLocalRanks
+  rw [hBx, hBy]
+  rfl
 
 /-- The local rank function is injective in each SCC, because
 every component enumeration is bijective. -/
