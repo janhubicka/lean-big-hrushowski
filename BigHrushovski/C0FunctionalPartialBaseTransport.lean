@@ -94,7 +94,9 @@ theorem inverseStageBaseMap_induced
         (inverseStageBaseMap p t ht y) := by
   have h := (p.graph.induced (p.graph.equiv.symm x)
     (p.graph.equiv.symm y)).symm
-  simpa [inverseStageBaseMap] using h
+  change N.adj x.val y.val ↔
+    M.adj (p.graph.equiv.symm x).val (p.graph.equiv.symm y).val
+  exact h
 
 /-- A canonical finite presentation on a stage containing the
 source of p has the entire target-base unary value under the
