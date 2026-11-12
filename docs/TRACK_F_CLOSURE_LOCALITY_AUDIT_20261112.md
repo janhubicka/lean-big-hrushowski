@@ -86,3 +86,36 @@ the restriction to the top SCC induces a bijection between
 those local complete enumerations and the permitted next
 component orders, for *every* previous history. Only then
 can the existing uniform-dependent-history count be applied.
+
+## Canonical assembly and reconstruction
+
+The additional module \`N0CanonicalAssembly.lean\` defines
+\`IsCanonicalComponentAssignment\` on actual SCC-order data
+and proves:
+
+- For a legal SCC ranking, the resulting assembled enumeration
+  is globally canonical exactly when every inherited
+  one-component closure enumeration satisfies its local
+  canonical complete-adjacency-code criterion.
+- Conversely every genuine globally canonical enumeration
+  \(\mathrm{Fin}(|V|)\simeq V\) is exactly the concatenation of its
+  recovered legal SCC ranking and its SCC restrictions.
+  This is *equality* of labelled enumerations, using the earlier
+  reconstruction theorem and injectivity of order relations.
+
+The result is a **surjectivity theorem for actual canonical
+assembly data**, not a proof of their cardinality. The remaining
+requirements are uniqueness/injectivity of such data and uniform
+cardinalities of admissible next-component choices. Neither
+condition is silently inferred from finite tests.
+
+Additional adversarial checks:
+
+- The restriction inverse uses the original labels of V, not
+  a choice of copies of the components.
+- The ranking is legal because the original global
+  enumeration is successor-first.
+- The canonical predicate is imposed on full induced C_B,
+  not merely the top SCC B.
+- No counting statement is made from this existence theorem.
+- Three new exact named theorem axiom checks are included.
