@@ -1,9 +1,10 @@
 # Countable C₀ closure-component enumeration: English proof plan
 
-Date: 8 November 2026; validation-status update 12 November 2026. This is a proof plan, **not** a separate Lean certificate. It
-isolates the remaining enumeration argument in
-`prop:C0-free-generic` after the actual countable functional limit's cofinal-stage extension
-property and its graph-reduct identification have been certified.
+Date: 8 November 2026; status updated 12 November 2026.
+This proof plan is **not** a separate Lean certificate. It isolates the remaining enumeration argument in
+`prop:C0-free-generic` after the countable functional limit's
+cofinal-stage extension property and graph-reduct identification
+have been certified.
 
 ## Statement to formalize
 
@@ -115,7 +116,12 @@ The finite interval result (`closed_one_component_interval_minimal`,
 PR #385) and its countable transfer
 (`canonicalStages_oneComponentInterval_minimal`, PR #394) now certify
 this one-component step independently of a global enumeration.
-The **fair recursive finite prefixes and their exhaustion** were kernel-certified and merged in PR #412. PR #417 subsequently certified each vertex's unique component birth, exact fresh component equality and inclusion of the entire complete unary value at birth. What remains is turning those component prefixes into the manuscript's prescribed ordered vertex enumeration, including the uniform choice of order *inside* each component.
+The **fair recursive finite prefixes and their exhaustion** were
+kernel-certified and merged in PR #412. PR #417 subsequently certified
+each vertex's unique component birth, the exact fresh component, and
+inclusion of its entire complete unary value in the birth prefix.
+What remains is the manuscript's prescribed ordered vertex enumeration,
+including the uniform choice of order *inside* each component.
 
 The intrinsic finite-class lemma alone does not justify this
 step. The hereditary and frontloading theorems are needed.
@@ -183,7 +189,7 @@ merely from the reduct isomorphism with M₀.
    choice of ordered local representatives over the already ordered
    lower part. Arbitrary numerical orders within components do not
    establish that convention.
-5. Extend the actual functional Fraïssé property from cofinal
+5. Extend the certified functional extension property from cofinal
    canonical stages to arbitrary finite closed substructures using
    the finite two-sided functional amalgamation theorem; formalize
    universality, homogeneity and uniqueness as applicable.
