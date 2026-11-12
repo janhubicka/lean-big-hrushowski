@@ -63,7 +63,7 @@ theorem closedBaseStageInclusion_injective
     Function.Injective (closedBaseStageInclusion s t hst) := by
   intro a b h
   apply Subtype.ext
-  exact congrArg Subtype.val h
+  exact congrArg (fun z : {v : ℕ // v ∈ t} => z.val) h
 
 /-- The literal induced base graph embeds into the enclosing
 canonical stage, reflecting every edge and nonedge. -/
