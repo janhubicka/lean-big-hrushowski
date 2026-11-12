@@ -113,10 +113,10 @@ theorem localCanonicalCondition_eq_of_component_agreement
       B.val ⊆ O.componentClosure x →
         orders₁ B = orders₂ B) :
     (let e := O.inheritedComponentEnumeration
-        (O.assembleComponentEnumerations r orders₁) x
+        (O.assembleComponentEnumerations r orders₁) x;
       e ∈ O.canonicalComponentLexClass x e) ↔
     (let e := O.inheritedComponentEnumeration
-        (O.assembleComponentEnumerations r orders₂) x
+        (O.assembleComponentEnumerations r orders₂) x;
       e ∈ O.canonicalComponentLexClass x e) := by
   have h := O.inheritedComponentEnumeration_eq_of_component_agreement
     r orders₁ orders₂ x hAgree
