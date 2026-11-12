@@ -38,7 +38,7 @@ theorem generatedSupport_image_on
     (generatedSupport Γ π x).image h =
       generatedSupport Γ π (f x) := by
   classical
-  change ((Γ x).image π).image h = (Γ (f x)).image π
+  simp only [generatedSupport]
   rw [← hΓ]
   simp only [Finset.image_image]
   apply Finset.image_congr
