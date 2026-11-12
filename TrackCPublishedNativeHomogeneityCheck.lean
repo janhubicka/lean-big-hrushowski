@@ -2,3 +2,4 @@ import BigHrushovski.CFPublishedNativeHomogeneity
 
 #print axioms BigHrushovski.CFDClosedBackAndForth.nativeHomogeneity_of_numbered
 #print axioms BigHrushovski.CFCoherentTower.publishedBirth_strongHomogeneous
+#print axioms BigHrushovski.CFDClosedBackAndForth.standardStrongFraisseLimit_homogeneous
