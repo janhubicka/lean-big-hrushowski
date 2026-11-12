@@ -96,10 +96,12 @@ theorem arbitraryFiniteEmbedding_unique_of_targetLevels
       have hm : m = m' := by
         simpa only [heTarget, hgTarget] using hTargetLevel
       subst m'
-      exact arbitraryFiniteEmbedding_oneBlock_unique_at_target
-        F K s hs e g heInj hgInj heAdj hgAdj heB hgB
-        heLevel hgLevel heOrder hgOrder n r i hv m t u k l
-        heTarget hgTarget hOld
+      have hEq : e v = g v :=
+        arbitraryFiniteEmbedding_oneBlock_unique_at_target
+          F K s hs e g heInj hgInj heAdj hgAdj heB hgB
+          heLevel hgLevel heOrder hgOrder n r i hv m t u k l
+          heTarget hgTarget hOld
+      exact heTarget.symm.trans (hEq.trans hgTarget)
   exact hAll x.val.1 x rfl
 
 /-- Every strictly increasing assignment of the finitely
