@@ -159,6 +159,50 @@ theorem nativeHomogeneity_of_numbered
     _ = ι (q.equiv nx).val := hβOld nx
     _ = (p x).val := hq
 
+/-- The ordinary strong Fraisse-limit presentation already implies
+strong homogeneity for finite globally strictly d-closed subgraphs.
+
+The finite extension property in the presentation is converted to
+the Nat-labelled finite response theorem only inside the proof. The
+finite source, target and prescribed map in the statement are on the
+original carrier, and the resulting automorphism fixes every
+prescribed value. No empty-base or class free-amalgamation hypothesis
+is required once the full strong limit presentation is supplied. -/
+theorem standardStrongFraisseLimit_homogeneous
+    (F : ℕ → ℝ) (G : GraphOn V)
+    (h : StandardStrongFraisseLimitPresentation F G)
+    (a b : Finset V)
+    (p : {v : V // v ∈ a} ≃ {v : V // v ∈ b})
+    (ha : G.toPredimension.IsGloballyDClosed a)
+    (hb : G.toPredimension.IsGloballyDClosed b)
+    (hp : ∀ x y : {v : V // v ∈ a},
+      G.adj x.val y.val ↔ G.adj (p x).val (p y).val) :
+    ∃ β : V ≃ V,
+      (∀ x y : V, G.adj x y ↔ G.adj (β x) (β y)) ∧
+      (∀ x : {v : V // v ∈ a},
+        β x.val = (p x).val) := by
+  classical
+  let ι : ℕ ≃ V := h.enumerate
+  let hData : HasFiniteFraisseData F (G.pullback ι) :=
+    ((h.toNative F G).toPresentedFraisseData F G).finite_data
+  apply nativeHomogeneity_of_numbered G ι a b p ha hb hp
+  intro q
+  obtain ⟨e, hAdj, hOld⟩ :=
+    strictHomogeneous_of_finiteDClosedResponses
+      F (G.pullback ι)
+      hData.growth hData.finite_closed_covers
+      hData.finite_extensions q
+  let β : V ≃ V := ι.symm.trans (e.trans ι)
+  refine ⟨β, ?_, ?_⟩
+  · intro x y
+    simpa only [β, Equiv.trans_apply, Equiv.apply_symm_apply]
+      using hAdj (ι.symm x) (ι.symm y)
+  · intro x
+    calc
+      β (ι x.val) = ι (e x.val) := by
+        simp only [β, Equiv.trans_apply, Equiv.symm_apply_apply]
+      _ = ι (q.equiv x).val := congrArg ι (hOld x)
+
 end CFDClosedBackAndForth
 
 namespace CFCoherentTower
@@ -204,14 +248,12 @@ theorem publishedBirth_strongHomogeneous
             (β x) (β y)) ∧
       (∀ x : {v : PublishedBirthVertex F hMono hUnbounded // v ∈ a},
         β x.val = (p x).val) := by
-  classical
-  let G := publishedCountableGraph F hMono hUnbounded
-  let ι := (publishedBirth_standardStrongFraisseLimitPresentation
-    F hZero hMono hUnbounded hFree hEmptyClass hSingleton).enumerate
-  apply nativeHomogeneity_of_numbered G ι a b p ha hb hp
-  intro q
-  exact publishedBirth_strongHomogeneous_onCarrier
-    F hZero hMono hUnbounded hFree ι q
+  exact standardStrongFraisseLimit_homogeneous
+    (publishedCardinalGrowth F)
+    (publishedCountableGraph F hMono hUnbounded)
+    (publishedBirth_standardStrongFraisseLimitPresentation
+      F hZero hMono hUnbounded hFree hEmptyClass hSingleton)
+    a b p ha hb hp
 
 end CFCoherentTower
 end BigHrushovski
