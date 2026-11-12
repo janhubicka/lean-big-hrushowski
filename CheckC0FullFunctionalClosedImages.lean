@@ -1,0 +1,6 @@
+import BigHrushovski.C0FullFunctionalClosedImages
+
+#print axioms BigHrushovski.FiniteC0.fullFunctionalImage_closed
+#print axioms BigHrushovski.FiniteC0.fullFunctionalImage_mem_iff
+#print axioms BigHrushovski.FiniteC0.fullFunctionalImage_induced
+#print axioms BigHrushovski.FiniteC0.canonicalStages_fullFunctionalImage_globalStrong
