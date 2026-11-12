@@ -2,17 +2,17 @@
 
 ## Mathematical contribution
 
-Let (s) be a finite, b-closed vertex set in the countable
-(C_F) birth presentation, and let (h:\mathbb N\to\mathbb N)
+Let $s$ be a finite, b-closed vertex set in the countable
+$C_F$ birth presentation, and let $h:\mathbb N\to\mathbb N$
 be strictly increasing. Suppose the birth level of **every**
-vertex of (s) belongs to the range of (h).
+vertex of $s$ belongs to the range of $h$.
 
 There is a genuine induced, ordered functional embedding
-(g:s\to M_F) in the complete auxiliary b-language such that
+$g:s\to M_F$ in the complete auxiliary b-language such that
 
-[
+$
   h(\pi(g(v)))=\pi(v)\qquad(v\in s).
-]
+$
 
 The map preserves and reflects edges and nonedges, the canonical
 birth order and birth-level preorder, and transports every
@@ -28,19 +28,19 @@ copy-range equation.
 
 The input range condition is precisely the one automatically
 available when the entire finite generated closure of a
-vertex has its birth levels in the range of (h):
-for (s=\Gamma(v)), every vertex of (s) has a birth
+vertex has its birth levels in the range of $h$:
+for $s=\Gamma(v)$, every vertex of $s$ has a birth
 level belonging to that complete support.
 
 ## Reason for the finite partial inverse
 
 Define `chosenInverseLevel h q` by choosing one preimage of
-(q) when (q\in\mathrm{range}(h)), and using 0 otherwise.
+$q$ when $q\in\mathrm{range}$h$$, and using 0 otherwise.
 The choice is unconstrained outside the range.
 
-Since (h) is strictly increasing, the chosen inverse is
+Since $h$ is strictly increasing, the chosen inverse is
 strictly increasing on the finite set of levels represented
-in (s). This supplies exactly the predicate
+in $s$. This supplies exactly the predicate
 `StrictOnRepresented`, used by the previously certified
 finite prescribed-lift theorem.
 
