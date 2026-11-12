@@ -22,6 +22,8 @@ self-embedding of the countable birth carrier.
 namespace BigHrushovski
 namespace CFCoherentTower
 
+open CFStageCatalogue
+
 /-- Let the image of one vertex of a complete source block
 have birth level m and literal target request t. Then the
 image of every other vertex of the SAME source block has
