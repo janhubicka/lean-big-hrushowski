@@ -87,11 +87,22 @@ the finite unique level-lifting theorem, the full embedding monoid,
 or any Ramsey or Ellentuck result. Promoting any such marker from
 this theorem would be invalid.
 
+**R9 — The other age inclusion.** The `age` field of
+`StandardStrongFraisseLimitPresentation` asserts only that every finite
+induced subgraph of the birth graph belongs to `C_F`. A converse is
+needed before saying that its age is *exactly* `C_F`.
+The new theorem `publishedBirth_finiteStrongUniversality` uses a
+literally empty prescribed strong base, whose strict closure is supplied
+both in each `C_F)-member and in the countable birth graph. It obtains
+an induced *globally strictly d-closed* copy of every finite
+`C_F)-member, without an ordering on that member. This discharges the
+converse and is independently audited by `#print axioms`.
+
 ## Kernel verification gate
 
 The dedicated workflow builds
 `BigHrushovski.CFPublishedOwnFraissePresentation` and invokes
-`#print axioms` on *both* endpoints. The full repository Lean
+`#print axioms` on *all three* endpoints. The full repository Lean
 workflow must also pass on the exact PR head. Any missing declaration,
 unproved typeclass, kernel error, or unexpected axiom blocks merge.
 The status of this document is conditional until those checks succeed.
