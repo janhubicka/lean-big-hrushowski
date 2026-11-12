@@ -121,7 +121,7 @@ theorem fairLimit_forth
           (FiniteC0.fullFunctionalImage_mem_iff
             C (FiniteC0.canonicalValue G κ)
             (Subtype.val : T → ℕ) Subtype.val_injective
-            hStageValues a b).symm
+            hStageValues a b)
         have hTargetMembership :
             h b ∈ C (h a) ↔
               b ∈ FiniteC0.canonicalValue G κ a :=
