@@ -96,7 +96,7 @@ theorem inverseStageBaseMap_induced
     (p.graph.equiv.symm y)).symm
   change N.adj x.val y.val ↔
     M.adj (p.graph.equiv.symm x).val (p.graph.equiv.symm y).val
-  exact h
+  simpa only [Equiv.apply_symm_apply] using h
 
 /-- A canonical finite presentation on a stage containing the
 source of p has the entire target-base unary value under the
