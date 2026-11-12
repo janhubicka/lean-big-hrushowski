@@ -191,4 +191,67 @@ theorem exists_globalOrderedBEmbedding_range_eq_of_singleton_uniqueness
   exact birthEmbedding_range_eq_levelDomain_of_finite_uniqueness
     F K f h hh hf hAdj hB hOrder hBirth hUnique
 
+/-- Two global ordered b-embeddings with the same strictly
+increasing birth-level action coincide, assuming only the
+same finite uniqueness of complete singleton-generated closures.
+This is the uniqueness half of the countable lift criterion,
+not a theorem establishing the finite uniqueness hypothesis. -/
+theorem globalOrderedBEmbedding_unique_of_singleton_uniqueness
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (h : ℕ → ℕ) (hh : StrictMono h)
+    (hUnique :
+      ∀ v : Vertex F K,
+        ∀ (a b : SupportCarrier (Vertex F K)
+            (birthSingletonClosure F K v) → Vertex F K),
+          IsFiniteOrderedBEmbedding F K (birthSingletonClosure F K v) a →
+          IsFiniteOrderedBEmbedding F K (birthSingletonClosure F K v) b →
+          (∀ x, (a x).1 = (b x).1) →
+          a = b)
+    (f g : Vertex F K → Vertex F K)
+    (hf : Function.Injective f) (hg : Function.Injective g)
+    (hfAdj : ∀ u v : Vertex F K,
+      (countableGraph F K).adj u v ↔
+        (countableGraph F K).adj (f u) (f v))
+    (hgAdj : ∀ u v : Vertex F K,
+      (countableGraph F K).adj u v ↔
+        (countableGraph F K).adj (g u) (g v))
+    (hfB : ∀ v : Vertex F K,
+      (birthBValue F K v).image f = birthBValue F K (f v))
+    (hgB : ∀ v : Vertex F K,
+      (birthBValue F K v).image g = birthBValue F K (g v))
+    (hfOrder : ∀ u v : Vertex F K,
+      canonicalBirthLt F K u v ↔ canonicalBirthLt F K (f u) (f v))
+    (hgOrder : ∀ u v : Vertex F K,
+      canonicalBirthLt F K u v ↔ canonicalBirthLt F K (g u) (g v))
+    (hfBirth : ∀ v : Vertex F K, (f v).1 = h v.1)
+    (hgBirth : ∀ v : Vertex F K, (g v).1 = h v.1) :
+    f = g := by
+  classical
+  funext v
+  let s : Finset (Vertex F K) := birthSingletonClosure F K v
+  have hs : IsBirthBlockClosed F K s :=
+    birthGeneratedClosure_closed F K ({v} : Finset (Vertex F K))
+  have hIncl : IsFiniteOrderedBEmbedding F K s Subtype.val :=
+    finiteOrderedBEmbedding_inclusion F K s hs
+  have hfPre : ∀ u w : Vertex F K,
+      BirthLevelLe F K u w ↔ BirthLevelLe F K (f u) (f w) :=
+    birthLevelLe_iff_of_strict_action F K f h hh hfBirth
+  have hgPre : ∀ u w : Vertex F K,
+      BirthLevelLe F K u w ↔ BirthLevelLe F K (g u) (g w) :=
+    birthLevelLe_iff_of_strict_action F K g h hh hgBirth
+  have hfFin : IsFiniteOrderedBEmbedding F K s (fun x => f x.val) :=
+    finiteOrderedBEmbedding_comp_global F K s Subtype.val hIncl
+      f hf hfAdj hfB hfPre hfOrder
+  have hgFin : IsFiniteOrderedBEmbedding F K s (fun x => g x.val) :=
+    finiteOrderedBEmbedding_comp_global F K s Subtype.val hIncl
+      g hg hgAdj hgB hgPre hgOrder
+  have hLevels : ∀ x : SupportCarrier (Vertex F K) s,
+      (f x.val).1 = (g x.val).1 := by
+    intro x
+    exact (hfBirth x.val).trans (hgBirth x.val).symm
+  have hEq : (fun x : SupportCarrier (Vertex F K) s => f x.val) =
+      (fun x : SupportCarrier (Vertex F K) s => g x.val) :=
+    hUnique v _ _ hfFin hgFin hLevels
+  exact congrFun hEq ⟨v, birthSingletonClosure_self F K v⟩
+
 end BigHrushovski.CFCoherentTower
