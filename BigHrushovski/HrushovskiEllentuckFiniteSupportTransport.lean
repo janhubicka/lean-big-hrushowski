@@ -136,4 +136,36 @@ theorem finiteSourcePrescribedLift_birthLevelSupport_image
     (assignedTargetStage F K s level n) hCover
     (finiteLevelCutLiftWithBirth F K s hs level hStrict n).map w
 
+/-- A finite prescribed lift preserves membership of a vertex in
+every complete-support domain, after pulling the selected level
+set back along the prescribed assignment. The target level set
+need not be an initial segment or even be finite. -/
+theorem finiteSourcePrescribedLift_birthLevelDomain_iff
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (s : Finset (Vertex F K))
+    (hs : IsBirthBlockClosed F K s)
+    (level : ℕ → ℕ)
+    (hStrict : StrictOnRepresented F K s level)
+    (n : ℕ) (hCover : s ⊆ stageImage F K n)
+    (T : Set ℕ) (x : SupportCarrier (Vertex F K) s) :
+    x.val ∈ birthLevelDomain F K (level ⁻¹' T) ↔
+      finiteSourcePrescribedLift F K s hs level hStrict n hCover x ∈
+        birthLevelDomain F K T := by
+  have hSupport :=
+    finiteSourcePrescribedLift_birthLevelSupport_image
+      F K s hs level hStrict n hCover x
+  change
+    (∀ q ∈ birthLevelSupport F K x.val, level q ∈ T) ↔
+      (∀ q ∈ birthLevelSupport F K
+        (finiteSourcePrescribedLift F K s hs level hStrict n hCover x),
+          q ∈ T)
+  rw [← hSupport]
+  constructor
+  · intro hx q hq
+    obtain ⟨p, hp, hpq⟩ := Finset.mem_image.mp hq
+    rw [← hpq]
+    exact hx p hp
+  · intro hx p hp
+    exact hx (level p) (Finset.mem_image.mpr ⟨p, hp, rfl⟩)
+
 end BigHrushovski.CFCoherentTower
