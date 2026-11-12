@@ -89,3 +89,26 @@ restriction, establish compatibility of successive choices,
 and prove the resulting bijection. This, not the unqualified
 component concatenation, is the missing proof of the finite
 \(\ell(A)\prod_Bg_A(B)\) degree formula.
+
+## Reconstruction extension (same branch)
+
+The module now defines \`componentOrdersFromEnumeration\` by
+restricting an actual global enumeration to each actual SCC.
+The new theorem \`assembleComponentEnumerations_reconstructs_order\`
+proves that assembling these restricted component orders in the
+recovered first-occurrence SCC ranking gives *the same relation*
+on every pair of labelled vertices. Its proof checks both the
+between-SCC comparison (fixed by the ranking) and the within-SCC
+comparison (by the induced-enumeration equivalence).
+
+\`exists_legal_component_order_assembly\` supplies the legal
+ranking and the local enumerations for every genuine
+successor-first SCC-interval order. This is a **surjectivity
+theorem for the unrestricted finite geometric block orders**.
+It is not the still-missing surjectivity theorem for the
+canonical adjacency-code-restricted orders.
+
+Two additional exact named axiom checks cover these endpoints.
+The independent regression includes the inverse reconstruction
+of every SCC-interval order of size at most four and explicit
+collision-freeness of the concatenation map.
