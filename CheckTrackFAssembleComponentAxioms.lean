@@ -1,5 +1,6 @@
 import BigHrushovski.N0AssembleComponentOrders
 
+#print axioms BigHrushovski.FiniteOrientation.componentLocalRanks_eq_of_mem
 #print axioms BigHrushovski.FiniteOrientation.componentLocalRanks_lt_iff
 #print axioms BigHrushovski.FiniteOrientation.componentLocalRanks_locallyInjective
 #print axioms BigHrushovski.FiniteOrientation.assembleComponentEnumerations_on_component
