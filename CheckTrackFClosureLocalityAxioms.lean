@@ -1,0 +1,5 @@
+import BigHrushovski.N0ComponentClosureLocality
+
+#print axioms BigHrushovski.FiniteOrientation.assembleComponentEnumerations_distinctComponents
+#print axioms BigHrushovski.FiniteOrientation.inheritedComponentEnumeration_eq_of_component_agreement
+#print axioms BigHrushovski.FiniteOrientation.localCanonicalCondition_eq_of_component_agreement
