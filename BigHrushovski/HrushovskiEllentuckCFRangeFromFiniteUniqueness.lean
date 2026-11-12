@@ -98,6 +98,7 @@ theorem finiteOrderedBEmbedding_comp_global
       (finiteSourceBirthBValue F K s x).image (fun w => f (e w)) =
           ((finiteSourceBirthBValue F K s x).image e).image f := by
             rw [Finset.image_image]
+            rfl
       _ = (birthBValue F K (e x)).image f := by rw [heB x]
       _ = birthBValue F K (f (e x)) := hB (e x)
   · intro x y
