@@ -1,0 +1,40 @@
+name: Track F actual canonical component-order data
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0CanonicalDataCardinality.lean'
+      - 'CheckTrackFCanonicalDataCardinalityAxioms.lean'
+      - 'scripts/check_track_f_canonical_data_card.py'
+      - '.github/workflows/track-f-canonical-data-cardinality.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0CanonicalDataCardinality.lean'
+      - 'CheckTrackFCanonicalDataCardinalityAxioms.lean'
+      - 'scripts/check_track_f_canonical_data_card.py'
+      - '.github/workflows/track-f-canonical-data-cardinality.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  canonical-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Order.PiLex
+      - name: Compile actual canonical-order data bijection
+        run: lake build BigHrushovski.N0CanonicalDataCardinality
+      - name: Kernel named theorem axioms and placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFCanonicalDataCardinalityAxioms.lean > track-f-data-axioms.log
+          python3 scripts/check_axioms.py track-f-data-axioms.log CheckTrackFCanonicalDataCardinalityAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite canonical-data regression
+        run: |
+          python3 scripts/check_track_f_canonical_data_card.py
+          python3 scripts/check_track_f_global_canonical_count.py
