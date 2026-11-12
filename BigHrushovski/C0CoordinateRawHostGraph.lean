@@ -149,7 +149,7 @@ theorem RawC0CoordinateVertex.backNeighbours_subset_closedValue
     (q : RawC0CoordinateVertex) :
     q.backNeighbours ⊆ q.closedValue := by
   intro r hr
-  exact (q.mem_backNeighbours_iff r).mp hr |>.1
+  exact ((q.mem_backNeighbours_iff r).mp hr).1
 
 /-- The full raw graph is recovered from the two unary back-neighbour
 values. No global linear order on the raw host is assumed. -/
