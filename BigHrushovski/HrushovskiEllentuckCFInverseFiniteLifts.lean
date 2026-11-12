@@ -117,6 +117,15 @@ theorem finiteClosed_inverseRHLift_exists
     (hRange : ∀ v ∈ s, v.1 ∈ Set.range h) :
     ∃ e : SupportCarrier (Vertex F K) s → Vertex F K,
       Function.Injective e ∧
+      (∀ x y : SupportCarrier (Vertex F K) s,
+        (countableGraph F K).adj x.val y.val ↔
+          (countableGraph F K).adj (e x) (e y)) ∧
+      (∀ x y : SupportCarrier (Vertex F K) s,
+        BirthLevelLe F K x.val y.val ↔
+          BirthLevelLe F K (e x) (e y)) ∧
+      (∀ x y : SupportCarrier (Vertex F K) s,
+        canonicalBirthLt F K x.val y.val ↔
+          canonicalBirthLt F K (e x) (e y)) ∧
       (∀ x : SupportCarrier (Vertex F K) s,
         h ((e x).1) = x.val.1) ∧
       (let X : Set (Vertex F K) := {v | v ∈ s}
@@ -143,7 +152,17 @@ theorem finiteClosed_inverseRHLift_exists
     finiteSourceLiftOfCut_injective F K s n
       (assignedTargetStage F K s level n) hCover
       (finiteLevelCutLiftWithBirth F K s hs level hStrict n).map
-  refine ⟨e, heInj, ?_, ?_⟩
+  refine ⟨e, heInj, ?_, ?_, ?_, ?_, ?_⟩
+  · intro x y
+    exact finiteSourceLiftOfCut_induced F K s n
+      (assignedTargetStage F K s level n) hCover
+      (finiteLevelCutLiftWithBirth F K s hs level hStrict n).map x y
+  · intro x y
+    exact finiteSourcePrescribedLift_birthLevelPreorder F K s hs
+      level hStrict n hCover x y
+  · intro x y
+    exact finiteSourcePrescribedLift_canonicalOrder F K s hs
+      level hStrict n hCover x y
   · intro x
     calc
       h ((e x).1) = h (level x.val.1) := by
