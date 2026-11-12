@@ -76,9 +76,10 @@ The chain is the concrete `birthDClosedChain`; the enumeration is
 `natEquivBirth_of_requests`; and the standard finite response is
 proved independently above. None calls the final comparison
 `publishedBirth_iso_standardStrongFraisseLimit` to establish
-its premise. The imported final theorem module supplies the
-*definition* of the standard presentation but is not itself used
-as a proof step.
+its premise. The module now imports `CFStandardFraisseExtension` and
+`CFPublishedFiniteGenericity` directly; it does not even import
+the final comparison theorem module. Thus the proof-dependency
+graph rules out circular use of the desired identification.
 
 **R8 — Functional scope.** The output is a graph-language
 strong Fraïssé presentation. It neither asserts preservation of
@@ -93,7 +94,7 @@ induced subgraph of the birth graph belongs to `C_F`. A converse is
 needed before saying that its age is *exactly* `C_F`.
 The new theorem `publishedBirth_finiteStrongUniversality` uses a
 literally empty prescribed strong base, whose strict closure is supplied
-both in each `C_F)-member and in the countable birth graph. It obtains
+both in each `C_F`-member and in the countable birth graph. It obtains
 an induced *globally strictly d-closed* copy of every finite
 `C_F)-member, without an ordering on that member. This discharges the
 converse and is independently audited by `#print axioms`.
