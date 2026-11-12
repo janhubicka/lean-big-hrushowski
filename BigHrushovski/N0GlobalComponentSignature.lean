@@ -26,6 +26,12 @@ namespace FiniteOrientation
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable (O : FiniteOrientation V)
 
+-- The signatures have a function-valued coordinate; choose decidable equality
+-- locally to form their finite images, without adding a theorem hypothesis.
+noncomputable local instance (T : FiniteOrientation V) :
+    DecidableEq (T.ComponentRanking × (V → V → Prop)) :=
+  Classical.decEq _
+
 /-- In every actual successor-first enumeration, the strict successor
 part P_B comes before the whole top SCC B. This is stronger than the
 previous version proved only for constructed lexicographic orders. -/
