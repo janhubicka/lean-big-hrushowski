@@ -39,7 +39,9 @@ theorem finiteClosedSourceInclusion_injective
     (s t : Finset (Vertex F K)) (hst : s ⊆ t) :
     Function.Injective (finiteClosedSourceInclusion F K s t hst) := by
   intro x y hxy
-  exact Subtype.ext (congrArg Subtype.val hxy)
+  apply Subtype.ext
+  exact congrArg
+    (fun z : SupportCarrier (Vertex F K) t => z.val) hxy
 
 /-- Complete finite-source b-values are natural under literal
 inclusion of two b-closed finite sources: no extra elements
@@ -98,6 +100,7 @@ theorem finiteSourceBirthBValue_restriction
       ((finiteSourceBirthBValue F K s x).image
         (finiteClosedSourceInclusion F K s t hst)).image e := by
           rw [Finset.image_image]
+          rfl
     _ = (finiteSourceBirthBValue F K t
         (finiteClosedSourceInclusion F K s t hst x)).image e := by
           rw [finiteSourceBirthBValue_inclusion F K s t hs ht hst x]
