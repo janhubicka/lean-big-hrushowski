@@ -103,10 +103,10 @@ theorem canonicalCondition_eq_of_rankPrefixAgreement
     (hAgree : O.AgreeThroughComponentRank r orders₁ orders₂
       (r ⟨O.component x, O.component_mem_components x⟩)) :
     (let e := O.inheritedComponentEnumeration
-        (O.assembleComponentEnumerations r orders₁) x
+        (O.assembleComponentEnumerations r orders₁) x;
       e ∈ O.canonicalComponentLexClass x e) ↔
     (let e := O.inheritedComponentEnumeration
-        (O.assembleComponentEnumerations r orders₂) x
+        (O.assembleComponentEnumerations r orders₂) x;
       e ∈ O.canonicalComponentLexClass x e) := by
   have hEq := O.inheritedComponentEnumeration_eq_of_rankPrefixAgreement
     r hr orders₁ orders₂ x hAgree
@@ -132,7 +132,7 @@ def IsCanonicalThroughRank
   ∀ x : V,
     r ⟨O.component x, O.component_mem_components x⟩ ≤ k →
       (let e := O.inheritedComponentEnumeration
-        (O.assembleComponentEnumerations r orders) x
+        (O.assembleComponentEnumerations r orders) x;
        e ∈ O.canonicalComponentLexClass x e)
 
 /-- Canonicality of a prefix depends only on component orders
