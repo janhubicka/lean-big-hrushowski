@@ -28,6 +28,7 @@ theorem LiteralPointedCode.relabel_injective
     (h : ℕ ↪o ℕ) :
     Function.Injective (fun q : LiteralPointedCode => q.relabel h) := by
   intro q r heq
+  change q.relabel h = r.relabel h at heq
   apply LiteralPointedCode.ext
   · ext x
     have hh : h x ∈ (q.relabel h).support ↔
