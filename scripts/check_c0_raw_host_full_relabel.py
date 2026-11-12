@@ -75,8 +75,12 @@ def sample():
                     C0=finite_component_values(kappa,edges)
                     C=[frozenset(rank[v] for v in C0[ordered[i]])
                        for i in range(n)]
-                    for gap in (2,7):
-                        labels={u:gap*(u+1) for u in range(n)}
+                    # Several common increasing coordinate maps
+                    # produce genuinely different complete code keys,
+                    # not just additional presentations of the same key.
+                    for gap,offset in ((2,0),(3,1),(5,2),
+                                       (7,3),(11,5),(13,8)):
+                        labels={u:gap*(u+1)+offset for u in range(n)}
                         for u in range(n):
                             candidates.add(code(E,C,C[u],u,labels))
     return candidates,presentations
