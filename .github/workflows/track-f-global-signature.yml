@@ -1,0 +1,42 @@
+name: Track F global SCC signature and successor-first closure orders
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0GlobalComponentSignature.lean'
+      - 'CheckTrackFGlobalSignatureAxioms.lean'
+      - 'scripts/check_track_f_global_signature.py'
+      - '.github/workflows/track-f-global-signature.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0GlobalComponentSignature.lean'
+      - 'CheckTrackFGlobalSignatureAxioms.lean'
+      - 'scripts/check_track_f_global_signature.py'
+      - '.github/workflows/track-f-global-signature.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  signature:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Order.PiLex Mathlib.Tactic Mathlib.Data.Bool.Basic
+      - name: Build global component order signatures
+        run: lake build BigHrushovski.N0GlobalComponentSignature
+      - name: Kernel axioms and placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFGlobalSignatureAxioms.lean > track-f-signature-axioms.log
+          python3 scripts/check_axioms.py track-f-signature-axioms.log CheckTrackFGlobalSignatureAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite regression and negative controls
+        run: |
+          python3 scripts/check_track_f_global_signature.py
+          python3 scripts/check_track_f_global_canonical_count.py
