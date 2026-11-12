@@ -90,8 +90,7 @@ theorem publishedBirth_hasStandardFiniteDClosedExtensions
           obtain ⟨w, _, hw⟩ := Finset.mem_image.mp hv
           exact Finset.mem_image.mpr
             ⟨w.val, Finset.mem_univ _, hw⟩
-    rw [hImage]
-    exact hg0Closed
+    exact hImage.symm ▸ hg0Closed
 
 /-- The canonical birth graph, with its *actual* vertex names, has
 the ordinary strong Fraisse-limit presentation of the manuscript:
@@ -147,8 +146,13 @@ noncomputable def publishedBirth_standardStrongFraisseLimitPresentation
       F hZero hMono hUnbounded
   }
   intro s
-  simpa only [publishedCardinalGrowth_eq F] using
-    (hCertificate.growth s)
+  change publishedCardinalGrowth F s.card ≤
+    ((realCountableGraph R hMonoR hUnboundedR).predim s : ℝ)
+  calc
+    publishedCardinalGrowth F s.card =
+        cardinalGrowth R s.card :=
+      congrFun (publishedCardinalGrowth_eq F) s.card
+    _ ≤ _ := hCertificate.growth s
 
 /-- Every finite graph in the published growth class has an induced,
 globally strictly d-closed copy in the actual birth graph. This proves
@@ -184,15 +188,15 @@ theorem publishedBirth_finiteStrongUniversality
     hEmptyClass W B hGrowth
   let e : {w : W // w ∈ (∅ : Finset W)} →
       PublishedBirthVertex F hMono hUnbounded :=
-    fun x => False.elim (by simpa using x.property)
+    fun x => False.elim (Finset.not_mem_empty x.val x.property)
   have heInj : Function.Injective e := by
     intro x y _
-    exact False.elim (by simpa using x.property)
+    exact False.elim (Finset.not_mem_empty x.val x.property)
   have heAdj : ∀ x y : {w : W // w ∈ (∅ : Finset W)},
       B.adj x.val y.val ↔
         (publishedCountableGraph F hMono hUnbounded).adj (e x) (e y) := by
     intro x y
-    exact False.elim (by simpa using x.property)
+    exact False.elim (Finset.not_mem_empty x.val x.property)
   have hEmptyImage :
       ((Finset.univ : Finset {w : W // w ∈ (∅ : Finset W)}).image e) =
         (∅ : Finset (PublishedBirthVertex F hMono hUnbounded)) := by
@@ -200,7 +204,7 @@ theorem publishedBirth_finiteStrongUniversality
     constructor
     · intro hv
       obtain ⟨x, _, _⟩ := Finset.mem_image.mp hv
-      exact False.elim (by simpa using x.property)
+      exact False.elim (Finset.not_mem_empty x.val x.property)
     · simp
   have hTargetEmpty :
       (publishedCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed
@@ -212,8 +216,7 @@ theorem publishedBirth_finiteStrongUniversality
   have heStrong :
       (publishedCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed
         ((Finset.univ : Finset {w : W // w ∈ (∅ : Finset W)}).image e) := by
-    rw [hEmptyImage]
-    exact hTargetEmpty
+    exact hEmptyImage.symm ▸ hTargetEmpty
   obtain ⟨g, hgInj, _, hgAdj, hgStrong⟩ :=
     publishedBirth_hasStandardFiniteDClosedExtensions
       F hZero hMono hUnbounded W B ∅ hGrowth hBaseClosed
