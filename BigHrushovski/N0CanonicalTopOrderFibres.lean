@@ -114,8 +114,8 @@ the lower part really is the top SCC, as a labelled set. -/
 theorem not_mem_inducedLowerPart_iff_mem_component
     (x : V) (u : O.componentClosure x) :
     u ∉ O.inducedLowerPart x ↔ u.val ∈ O.component x := by
-  change ¬ u.val ∈ O.lowerPart x ↔ u.val ∈ O.component x
-  simp only [lowerPart, Finset.mem_sdiff, u.property, true_and, not_not]
+  rw [O.mem_inducedLowerPart_iff x u]
+  simp [lowerPart, u.property]
 
 /-- Each canonical local enumeration determines a strict order
 on the complement of the old part, hence on the top component. -/
