@@ -10,3 +10,4 @@ prescribed finite C_F lift. No countable embedding is assumed.
 #print axioms BigHrushovski.Ellentuck.generatedSupport_image_on
 #print axioms BigHrushovski.CFCoherentTower.finiteClosedEmbedding_birthLevelSupport_image
 #print axioms BigHrushovski.CFCoherentTower.finiteSourcePrescribedLift_birthLevelSupport_image
+#print axioms BigHrushovski.CFCoherentTower.finiteSourcePrescribedLift_birthLevelDomain_iff
