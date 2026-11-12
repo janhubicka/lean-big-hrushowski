@@ -80,3 +80,31 @@ membership in the already-certified canonical fibre. Then prove the
 surjectivity of the component-ranking plus local-choice reconstruction
 and use uniform dependent-history fibre counting. No full formula is
 marked validated before that step and its Lean certification.
+
+## 12 November extension: actual canonical labelled local orders
+
+New module `N0CanonicalLocalOrders.lean` uses the injectivity of
+`OrderBefore` on finite bijective enumerations to turn the canonical
+enumeration class on an actual induced closure into a set of **literal
+strict binary order relations**. Its cardinality is `g_A(B)`.
+Every member preserves the prescribed strict order on all pairs from
+`P_B`, including nonedges; changing the arbitrary base enumeration
+outside the old positions leaves the whole set unchanged.
+
+The proof includes an explicit elementary lemma that agreement of
+full enumerations on old positions implies agreement of inverse
+position maps at every old vertex. Thus it does not confuse
+positionwise fixation with mere setwise preservation of the old set.
+
+**Adversarial checks:** (i) check that the map from complete bijections
+to labelled orders is injective, (ii) keep the lower set pointwise fixed,
+(iii) use the induced rather than ambient orientation stabilizer,
+(iv) preserve all old-old comparisons, not just edges, (v) avoid
+identifying these local choices with a global permitted order without
+a compatibility/surjectivity proof. Six additional theorem endpoints
+are listed in the exact-axiom audit.
+
+No claim that actual local choices for different components are
+independent is made: they depend on the previously chosen lower-part
+orders, and the dependent-history lemma is the appropriate counting
+step once the global reconstruction is proved.
