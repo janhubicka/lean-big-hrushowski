@@ -139,8 +139,9 @@ theorem fairVertexBefore_predecessor_in_prefix
 without imposing any linear-order instance on the natural carrier. -/
 noncomputable def fairVertexPredecessors
     (C : ℕ → Finset ℕ) (hC : IsCompleteUnaryClosure C)
-    (localKey : ℕ → ℕ) (x : ℕ) : Finset ℕ :=
-  (fairComponentPrefix C hC
+    (localKey : ℕ → ℕ) (x : ℕ) : Finset ℕ := by
+  classical
+  exact (fairComponentPrefix C hC
     (fairComponentBirth C hC x + 1)).filter
       (fun y => fairVertexBefore C hC localKey y x)
 
