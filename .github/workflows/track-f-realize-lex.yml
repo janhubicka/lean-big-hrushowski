@@ -1,0 +1,42 @@
+name: Track F actual finite lex enumeration realization
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0RealizeLexEnumeration.lean'
+      - 'CheckTrackFRealizeLexAxioms.lean'
+      - 'scripts/check_track_f_realize_lex.py'
+      - '.github/workflows/track-f-realize-lex.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0RealizeLexEnumeration.lean'
+      - 'CheckTrackFRealizeLexAxioms.lean'
+      - 'scripts/check_track_f_realize_lex.py'
+      - '.github/workflows/track-f-realize-lex.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  realized-enumeration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Order.PiLex
+      - name: Compile finite lex enumeration realization
+        run: lake build BigHrushovski.N0RealizeLexEnumeration
+      - name: Exact named axiom audit and placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFRealizeLexAxioms.lean > track-f-realize-lex-axioms.log
+          python3 scripts/check_axioms.py track-f-realize-lex-axioms.log CheckTrackFRealizeLexAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent exhaustive finite regressions
+        run: |
+          python3 scripts/check_track_f_realize_lex.py
+          python3 scripts/check_track_f_induced_closure.py
