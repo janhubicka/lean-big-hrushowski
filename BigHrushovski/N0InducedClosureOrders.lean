@@ -190,14 +190,9 @@ theorem finiteCanonical_inherited_order
       O.canonicalComponentOrderRelations x
         (O.inheritedComponentEnumeration e x) := by
   classical
-  have h :
-      OrderBefore (O.inheritedComponentEnumeration e x) ∈
-        (O.canonicalComponentLexClass x
-          (O.inheritedComponentEnumeration e x)).image OrderBefore :=
-    Finset.mem_image.mpr
-      ⟨O.inheritedComponentEnumeration e x,
-        O.finiteCanonical_inherited_component e he x, rfl⟩
-  simpa only [canonicalComponentOrderRelations] using h
+  simp only [canonicalComponentOrderRelations, Finset.mem_image]
+  exact ⟨O.inheritedComponentEnumeration e x,
+    O.finiteCanonical_inherited_component e he x, rfl⟩
 
 /-- Actual global enumerations satisfying the stated finite
 canonical condition: no synthetic independent factor choices. -/
