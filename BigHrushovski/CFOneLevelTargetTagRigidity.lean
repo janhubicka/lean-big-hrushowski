@@ -63,6 +63,8 @@ fresh–fresh comparisons and every corresponding nonedge. -/
 theorem birthRequest_adjacencyCode_eq_of_partialInduced
     (F : ℕ → ℝ) (K : ℕ → ℕ)
     (n m : ℕ)
+    [LinearOrder (stage F K n).carrier]
+    [LinearOrder (stage F K m).carrier]
     (r : BirthRequest F K n)
     (t : BirthRequest F K m)
     (oldIso : SupportCarrier (stage F K n).carrier r.support ≃o
@@ -119,6 +121,8 @@ need not coincide outside this one source local interval. -/
 theorem birthRequest_targetTag_unique_of_partialInduced
     (F : ℕ → ℝ) (K : ℕ → ℕ)
     (n m : ℕ)
+    [LinearOrder (stage F K n).carrier]
+    [LinearOrder (stage F K m).carrier]
     (r : BirthRequest F K n)
     (t₁ t₂ : BirthRequest F K m)
     (hSupport : t₁.support = t₂.support)
