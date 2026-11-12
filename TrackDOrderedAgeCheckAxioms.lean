@@ -13,6 +13,7 @@ import BigHrushovski.C0CoordinatePointedTopRoots
 import BigHrushovski.C0CoordinateTopChoiceRestrictions
 import BigHrushovski.C0CoordinateHereditaryCatalogueReduction
 import BigHrushovski.C0CoordinateWellSupportedCode
+import BigHrushovski.C0CoordinateBoundedSupportedFinite
 
 #print axioms BigHrushovski.FiniteUnaryCoordinates.chronologicalBlockOrder_interval
 #print axioms BigHrushovski.FiniteUnaryCoordinates.chronologicalBlockOrder_restrict
@@ -128,3 +129,6 @@ import BigHrushovski.C0CoordinateWellSupportedCode
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LiteralPointedCode.adjacencyPairs_subset_range_product
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LiteralPointedCode.closurePairs_subset_range_product
 #print axioms BigHrushovski.FiniteUnaryCoordinates.LiteralPointedCode.wellSupported_bounded
+
+#print axioms BigHrushovski.FiniteUnaryCoordinates.finite_boundedWellSupportedCode
+#print axioms BigHrushovski.FiniteUnaryCoordinates.boundedWellSupportedCodeFintype
