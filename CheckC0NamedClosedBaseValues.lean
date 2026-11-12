@@ -4,3 +4,5 @@ import BigHrushovski.C0NamedClosedBaseValues
 #print axioms BigHrushovski.FiniteC0.closedBaseStageInclusion_injective
 #print axioms BigHrushovski.FiniteC0.closedBaseStageInclusion_induced
 #print axioms BigHrushovski.FiniteC0.canonicalStage_complete_namedBase_values
+
+#print axioms BigHrushovski.FiniteC0.canonicalStages_literalStage_twoSparse
