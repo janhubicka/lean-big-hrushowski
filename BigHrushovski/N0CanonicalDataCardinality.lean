@@ -110,5 +110,106 @@ theorem mem_canonicalAssignmentsAtRanking
   classical
   simp [canonicalAssignmentsAtRanking]
 
+/-- The canonical data set is the disjoint union of the admissible
+component-enumeration fibres over the legal SCC rankings. -/
+theorem canonicalComponentOrderData_eq_rank_union :
+    O.canonicalComponentOrderData =
+      O.linearComponentRankings.biUnion
+        (fun r => (O.canonicalAssignmentsAtRanking r).image
+          (fun orders => (r, orders))) := by
+  classical
+  ext d
+  constructor
+  · intro hd
+    obtain ⟨hr, hCanon⟩ :=
+      (O.mem_canonicalComponentOrderData d).mp hd
+    apply Finset.mem_biUnion.mpr
+    refine ⟨d.1, (O.mem_linearComponentRankings d.1).mpr hr, ?_⟩
+    exact Finset.mem_image.mpr
+      ⟨d.2, (O.mem_canonicalAssignmentsAtRanking d.1 d.2).mpr hCanon,
+        by cases d; rfl⟩
+  · intro hd
+    obtain ⟨r, hr, hImage⟩ := Finset.mem_biUnion.mp hd
+    obtain ⟨orders, hOrders, hEq⟩ := Finset.mem_image.mp hImage
+    have hR : O.IsLinearComponentRanking r :=
+      (O.mem_linearComponentRankings r).mp hr
+    have hC : O.IsCanonicalComponentAssignment r orders :=
+      (O.mem_canonicalAssignmentsAtRanking r orders).mp hOrders
+    subst d
+    exact (O.mem_canonicalComponentOrderData (r, orders)).mpr
+      ⟨hR, hC⟩
+
+/-- The number of canonical data records is the sum of the
+cardinalities of their fibres over actual legal SCC rankings. -/
+theorem canonicalComponentOrderData_card_eq_rank_sum :
+    (O.canonicalComponentOrderData).card =
+      ∑ r ∈ O.linearComponentRankings,
+        (O.canonicalAssignmentsAtRanking r).card := by
+  classical
+  rw [O.canonicalComponentOrderData_eq_rank_union]
+  have hDisjoint :
+      (((O.linearComponentRankings : Finset O.ComponentRanking) :
+        Set O.ComponentRanking)).PairwiseDisjoint
+        (fun r => (O.canonicalAssignmentsAtRanking r).image
+          (fun orders => (r, orders))) := by
+    intro r hr s hs hrs
+    apply Finset.disjoint_left.mpr
+    intro d hd he
+    obtain ⟨ordersR, hOrdersR, hEqR⟩ := Finset.mem_image.mp hd
+    obtain ⟨ordersS, hOrdersS, hEqS⟩ := Finset.mem_image.mp he
+    have hEq : r = s := by
+      have hPair := congrArg Prod.fst (hEqR.trans hEqS.symm)
+      simpa using hPair
+    exact hrs hEq
+  calc
+    (O.linearComponentRankings.biUnion
+      (fun r => (O.canonicalAssignmentsAtRanking r).image
+        (fun orders => (r, orders)))).card =
+      ∑ r ∈ O.linearComponentRankings,
+        ((O.canonicalAssignmentsAtRanking r).image
+          (fun orders => (r, orders))).card :=
+      Finset.card_biUnion hDisjoint
+    _ = ∑ r ∈ O.linearComponentRankings,
+        (O.canonicalAssignmentsAtRanking r).card := by
+      apply Finset.sum_congr rfl
+      intro r hr
+      apply Finset.card_image_iff.mpr
+      intro a ha b hb hab
+      exact congrArg Prod.snd hab
+
+/-- The last finite counting obligation, explicitly isolated:
+if for *each legal SCC ranking* the number of compatible
+canonical component-order choices is the product of the actual
+local stabilizer factors, then this same product times the
+number of legal SCC rankings counts the **actual labelled
+permitted vertex orders**.
+
+This is deliberately conditional; the uniformity hypothesis
+remains an open proof obligation, not an assumed manuscript fact. -/
+theorem finiteCanonicalOrderCount_of_uniformRankingFibres
+    (hUniform :
+      ∀ r ∈ O.linearComponentRankings,
+        (O.canonicalAssignmentsAtRanking r).card =
+          ∏ B : O.ComponentObject, O.componentLocalFactor B) :
+    ((O.finiteCanonicalComponentEnumerations
+        (n := Fintype.card V)).image OrderBefore).card =
+      O.finiteComponentTypeCount := by
+  classical
+  rw [O.finiteCanonicalOrderRelations_card_eq_data,
+    O.canonicalComponentOrderData_card_eq_rank_sum]
+  calc
+    (∑ r ∈ O.linearComponentRankings,
+      (O.canonicalAssignmentsAtRanking r).card) =
+        ∑ r ∈ O.linearComponentRankings,
+          ∏ B : O.ComponentObject, O.componentLocalFactor B := by
+      apply Finset.sum_congr rfl
+      intro r hr
+      exact hUniform r hr
+    _ = O.componentLinearExtensionCount *
+        ∏ B : O.ComponentObject, O.componentLocalFactor B := by
+      simp [componentLinearExtensionCount]
+    _ = O.finiteComponentTypeCount := rfl
+
+
 end FiniteOrientation
 end BigHrushovski
