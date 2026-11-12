@@ -182,8 +182,8 @@ theorem publishedBirth_finiteStrongUniversality
   have hBaseClosed :
       B.toPredimension.IsDClosed (∅ : Finset W) Finset.univ :=
     hEmptyClass W B hGrowth
-  have emptyElim (x : {w : W // w ∈ (∅ : Finset W)}) : False := by
-    exact absurd x.property (by simp)
+  have emptyElim (x : {w : W // w ∈ (∅ : Finset W)}) : False :=
+    Finset.notMem_empty x.val x.property
   let e : {w : W // w ∈ (∅ : Finset W)} →
       PublishedBirthVertex F hMono hUnbounded :=
     fun x => False.elim (emptyElim x)
