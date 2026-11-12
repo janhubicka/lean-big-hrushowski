@@ -1,0 +1,4 @@
+import BigHrushovski.C0LowerRespectingOrderInvariance
+
+#print axioms BigHrushovski.FiniteC0.canonicalValue_mem_of_adj_earlier
+#print axioms BigHrushovski.FiniteC0.canonicalValue_eq_of_lower_respecting_order
