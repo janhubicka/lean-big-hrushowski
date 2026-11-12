@@ -41,9 +41,13 @@ theorem generatedSupport_image_on
   simp only [generatedSupport]
   rw [← hΓ]
   simp only [Finset.image_image]
-  apply Finset.image_congr
-  intro w hw
-  exact (hπ w hw).symm
+  ext q
+  simp only [Finset.mem_image, Function.comp_apply]
+  constructor
+  · rintro ⟨w, hw, hwq⟩
+    exact ⟨w, hw, (hπ w hw).trans hwq⟩
+  · rintro ⟨w, hw, hwq⟩
+    exact ⟨w, hw, (hπ w hw).symm.trans hwq⟩
 
 end BigHrushovski.Ellentuck
 
