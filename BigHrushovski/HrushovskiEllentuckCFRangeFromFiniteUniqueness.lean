@@ -105,6 +105,27 @@ theorem finiteOrderedBEmbedding_comp_global
   · intro x y
     exact (heOrder x y).trans (hOrder (e x) (e y))
 
+/-- A strictly increasing birth-level action automatically preserves
+and reflects the birth-level preorder. No separate level-preorder
+hypothesis is needed once the action of f is known pointwise. -/
+theorem birthLevelLe_iff_of_strict_action
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (f : Vertex F K → Vertex F K)
+    (h : ℕ → ℕ) (hh : StrictMono h)
+    (hBirth : ∀ v : Vertex F K, (f v).1 = h v.1)
+    (u v : Vertex F K) :
+    BirthLevelLe F K u v ↔ BirthLevelLe F K (f u) (f v) := by
+  change u.1 ≤ v.1 ↔ (f u).1 ≤ (f v).1
+  rw [hBirth u, hBirth v]
+  constructor
+  · intro huv
+    exact hh.monotone huv
+  · intro huv
+    by_contra hnot
+    have hrev : v.1 < u.1 := by omega
+    have hTargetRev : h v.1 < h u.1 := hh hrev
+    omega
+
 /-- The concrete C_F range equation from *one* outstanding
 finite-uniqueness hypothesis. The required inverse finite lifts
 are genuine ordered b-embeddings built by Track B, not arbitrary
@@ -123,8 +144,6 @@ theorem birthEmbedding_range_eq_levelDomain_of_finite_uniqueness
         (countableGraph F K).adj (f u) (f v))
     (hB : ∀ u : Vertex F K,
       (birthBValue F K u).image f = birthBValue F K (f u))
-    (hPreorder : ∀ u v : Vertex F K,
-      BirthLevelLe F K u v ↔ BirthLevelLe F K (f u) (f v))
     (hOrder : ∀ u v : Vertex F K,
       canonicalBirthLt F K u v ↔ canonicalBirthLt F K (f u) (f v))
     (hBirth : ∀ u : Vertex F K, (f u).1 = h u.1)
@@ -139,6 +158,9 @@ theorem birthEmbedding_range_eq_levelDomain_of_finite_uniqueness
     (Set.range f : Set (Vertex F K)) =
       birthLevelDomain F K (Set.range h) := by
   classical
+  have hPreorder : ∀ u v : Vertex F K,
+      BirthLevelLe F K u v ↔ BirthLevelLe F K (f u) (f v) :=
+    birthLevelLe_iff_of_strict_action F K f h hh hBirth
   exact Ellentuck.range_eq_supportDomain_of_finite_lifts
     (birthSingletonClosure F K)
     (fun v : Vertex F K => v.1) f h
