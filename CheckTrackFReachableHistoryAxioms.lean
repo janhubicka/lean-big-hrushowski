@@ -1,0 +1,5 @@
+import BigHrushovski.FiniteReachableHistoryCount
+
+#print axioms BigHrushovski.FiniteChoiceHistory.length_of_mem_reachableHistories
+#print axioms BigHrushovski.FiniteChoiceHistory.reachableExtensions_pairwiseDisjoint
+#print axioms BigHrushovski.FiniteChoiceHistory.reachableHistories_card
