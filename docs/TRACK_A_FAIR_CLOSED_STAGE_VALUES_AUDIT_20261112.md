@@ -1,0 +1,15 @@
+# Track A: actual finite canonical stages → complete fair-prefix values
+
+Adversarial proof audit (12 November 2026). Seven role-separated mathematical objections, **not** external human referee reports.
+
+**Exact assertion.** Suppose N is a countable graph with cofinal finite canonical C₀ presentations whose complete set-valued unary operation is literally C at every stage. For each finite C-closed s, construct a canonical index on the literal subtype {v∈ℕ:v∈s} whose complete canonical value at each point is exactly C(v). Hence the specific fair birth index on every Q_n has the same complete value, without postulating a comparison canonical index.
+
+1. **Literal-carrier referee.** The enclosing finite canonical stage has carrier T={v∈ℕ:v∈stage t}. Its C-closed subgraph initially has a *nested* subtype U={u∈T:u∈sT}. An equivalence U≃S with S={v∈ℕ:v∈s} must be constructed; equality of cardinalities is insufficient. Check both subtype memberships and inverses.
+2. **Complete-value referee.** Use `canonicalValue_restrict_image`, which transfers **all** vertices in the full canonical closure, not just one-step backward neighbours. Closure of s under C is indispensable. The comparison has to be full equality after applying the original literal labels.
+3. **Graph referee.** The nested induced graph on U and the literal induced graph on S are related by an induced equivalence. Check both edges and nonedges via `hAdj`; use existing `canonicalValue_relabel`, not an informal identification.
+4. **Empty-substructure referee.** Empty s and empty fair prefix Q_0 must be permitted; the finite index may have arbitrary empty levels. No nonempty carrier or top-component assumption is introduced.
+5. **Co-finality referee.** Only `hCover s` chooses one finite stage containing s. No stage monotonicity beyond the actual hypothesis is needed. Equality of the stage's *complete* function with C is an explicit assumption of `HasCanonicalFiniteStages`, not an inference from the graph reduct isomorphism.
+6. **Fair-birth referee.** Closure of every Q_n was certified in Track A #412/#417. The explicit birth index β_n and its strict-dependency precedence come from #419. The canonical-value invariance comparison is the precise theorem in stacked #422. These are separate dependencies, not circular uses of the result.
+7. **Lean-trust referee.** This is only a candidate until exact-head dedicated Lean, `#print axioms`, placeholder scans, and full CI all pass. The finite regression independently checks all 75 simple graphs of size ≤4, all 16,609 component-index maps, and 75,092 C-closed induced subsets (149,769 complete-value point checks); it also finds 188,814 nonclosed restrictions whose values change. Negative controls show that closedness cannot simply be dropped.
+
+**Remaining after verification:** An actual linear order of order type ω on the countable vertex set with every component an interval, and the stipulated uniform choice of the ordered local representative *within* each component; an all-closed-substructure functional extension/homogeneity theorem. No claim to those statements is made here, and no GREEN manuscript marker is changed.
