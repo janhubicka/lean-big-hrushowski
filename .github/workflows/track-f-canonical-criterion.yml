@@ -1,0 +1,40 @@
+name: Track F canonical local minimum-code criterion
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0CanonicalOrderCriterion.lean'
+      - 'CheckTrackFCanonicalCriterionAxioms.lean'
+      - 'scripts/check_track_f_canonical_criterion.py'
+      - '.github/workflows/track-f-canonical-criterion.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0CanonicalOrderCriterion.lean'
+      - 'CheckTrackFCanonicalCriterionAxioms.lean'
+      - 'scripts/check_track_f_canonical_criterion.py'
+      - '.github/workflows/track-f-canonical-criterion.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  criterion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Order.PiLex
+      - name: Compile criterion theorem
+        run: lake build BigHrushovski.N0CanonicalOrderCriterion
+      - name: Exact axiom and no-placeholder audits
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFCanonicalCriterionAxioms.lean > track-f-criterion-axioms.log
+          python3 scripts/check_axioms.py track-f-criterion-axioms.log CheckTrackFCanonicalCriterionAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite tests
+        run: |
+          python3 scripts/check_track_f_canonical_criterion.py
+          python3 scripts/check_track_f_canonical_local.py
