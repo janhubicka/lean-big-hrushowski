@@ -53,6 +53,11 @@ def test():
                                 nested += 1
                                 qb=literal(edges,C,C[b],b,e)
                                 T=frozenset(e[v] for v in C[b])
+                                # Intrinsic row-based support uses only
+                                # the complete parent C-incidence matrix.
+                                intrinsic=frozenset(y for x,y in qa[3]
+                                    if x==e[b] and y in qa[0])
+                                assert intrinsic==T and e[b] in intrinsic
                                 assert T<=qa[0]
                                 assert restrict(qa,T,e[b]) == qb
                                 assert all((qb[1],v) in qb[3] for v in qb[0])
@@ -72,6 +77,12 @@ def test():
     wrong=restrict(parent,frozenset({1}),1)
     assert wrong != literal({(0,1)},C,C[1],1,{0:0,1:1})
     assert (1,0) in parent[3] and (1,0) not in wrong[3]
+    # A supported root-generated record without a finite C0 witness
+    # can have a nonreflexive C-row for another vertex.
+    raw_support=frozenset({0,1})
+    raw_closure=frozenset({(0,0),(0,1)})
+    assert all((0,y) in raw_closure for y in raw_support)
+    assert not any((1,y) in raw_closure for y in raw_support)
     print(f"PASS nested raw C0 codes: {presentations} presentations, "
           f"{nested} nested restrictions across two coordinate maps, "
           f"{full_pairs} exact E/C pair checks; nonclosed negative control")
