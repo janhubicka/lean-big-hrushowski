@@ -23,6 +23,7 @@ import BigHrushovski.C0CoordinateRawHostUnaryClosure
 import BigHrushovski.C0CoordinateRawHostGraph
 import BigHrushovski.C0CoordinateRawHostFiniteClosure
 import BigHrushovski.C0CoordinateRawHostRelabel
+import BigHrushovski.C0CoordinateRawHostBoundedFibres
 import BigHrushovski.C0CoordinateRawHostFiniteOccurrence
 
 #print axioms BigHrushovski.FiniteUnaryCoordinates.chronologicalBlockOrder_interval
@@ -223,3 +224,9 @@ import BigHrushovski.C0CoordinateRawHostFiniteOccurrence
 #print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.relabel_support
 #print axioms BigHrushovski.FiniteUnaryCoordinates.FiniteChronologicalC0.asRawVertex_relabel
 #print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.closedValue_relabel
+
+#print axioms BigHrushovski.FiniteUnaryCoordinates.finite_boundedRawHost
+#print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.closedValue_support_subset
+#print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.closedValue_bounded
+#print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.closeFinite_bounded
+#print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.point_lt_of_bounded
