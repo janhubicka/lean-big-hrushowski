@@ -26,6 +26,7 @@ on:
       - "BigHrushovski/C0CoordinateIntrinsicChildSupport.lean"
       - "BigHrushovski/C0CoordinateRawHostFiniteValue.lean"
       - "BigHrushovski/C0CoordinateRawHostUnaryClosure.lean"
+      - "BigHrushovski/C0CoordinateRawHostRelabel.lean"
       - "TrackDOrderedAgeCheckAxioms.lean"
       - ".github/workflows/track-d-ordered-age.yml"
       - "scripts/check_c0_chronological_order.py"
@@ -40,6 +41,7 @@ on:
       - "scripts/check_c0_raw_canonical_codes.py"
       - "scripts/check_c0_nested_presented_codes.py"
       - "scripts/check_c0_raw_host_unary_axioms.py"
+      - "scripts/check_c0_raw_host_relabel.py"
       - "docs/TRACK_D_UNIFORM_LOCAL_ORDER_SELECTION_20261108.md"
   workflow_dispatch:
 
@@ -78,10 +80,11 @@ jobs:
           python3 scripts/check_c0_raw_canonical_codes.py
           python3 scripts/check_c0_nested_presented_codes.py
           python3 scripts/check_c0_raw_host_unary_axioms.py
+          python3 scripts/check_c0_raw_host_relabel.py
       - name: Build and audit exact Track D bridge
         run: |
           set -euo pipefail
-          lake build BigHrushovski.C0CoordinateOrderedAgeBridge BigHrushovski.C0CoordinateIntrinsicLocalOrder BigHrushovski.C0CoordinateLocalOrderChoice BigHrushovski.C0CoordinateCanonicalLocalRepresentative BigHrushovski.C0CoordinateCoherentLocalOrders BigHrushovski.C0CoordinateCodeRelabelling BigHrushovski.C0CoordinateNestedLocalOrders BigHrushovski.C0CoordinateIntrinsicLowerChoice BigHrushovski.C0CoordinateLocalOccurrenceFamily BigHrushovski.C0CoordinateTopPermutationOrbit BigHrushovski.C0CoordinateTopOrbitNormalizer BigHrushovski.C0CoordinateLocalTypeMatrixBridge BigHrushovski.C0CoordinatePointedTopRoots BigHrushovski.C0CoordinateTopChoiceRestrictions BigHrushovski.C0CoordinateHereditaryCatalogueReduction BigHrushovski.C0CoordinateFixedMatrixOrder BigHrushovski.C0CoordinateWellSupportedCode BigHrushovski.C0CoordinateBoundedSupportedFinite BigHrushovski.C0CoordinateRawC0Witness BigHrushovski.C0CoordinateNestedPresentedCodes BigHrushovski.C0CoordinateIntrinsicChildSupport BigHrushovski.C0CoordinateRawHostFiniteValue BigHrushovski.C0CoordinateRawHostUnaryClosure
+          lake build BigHrushovski.C0CoordinateOrderedAgeBridge BigHrushovski.C0CoordinateIntrinsicLocalOrder BigHrushovski.C0CoordinateLocalOrderChoice BigHrushovski.C0CoordinateCanonicalLocalRepresentative BigHrushovski.C0CoordinateCoherentLocalOrders BigHrushovski.C0CoordinateCodeRelabelling BigHrushovski.C0CoordinateNestedLocalOrders BigHrushovski.C0CoordinateIntrinsicLowerChoice BigHrushovski.C0CoordinateLocalOccurrenceFamily BigHrushovski.C0CoordinateTopPermutationOrbit BigHrushovski.C0CoordinateTopOrbitNormalizer BigHrushovski.C0CoordinateLocalTypeMatrixBridge BigHrushovski.C0CoordinatePointedTopRoots BigHrushovski.C0CoordinateTopChoiceRestrictions BigHrushovski.C0CoordinateHereditaryCatalogueReduction BigHrushovski.C0CoordinateFixedMatrixOrder BigHrushovski.C0CoordinateWellSupportedCode BigHrushovski.C0CoordinateBoundedSupportedFinite BigHrushovski.C0CoordinateRawC0Witness BigHrushovski.C0CoordinateNestedPresentedCodes BigHrushovski.C0CoordinateIntrinsicChildSupport BigHrushovski.C0CoordinateRawHostFiniteValue BigHrushovski.C0CoordinateRawHostUnaryClosure BigHrushovski.C0CoordinateRawHostRelabel
           lake env lean TrackDOrderedAgeCheckAxioms.lean > track-d-ordered-age-axioms.log
           python3 scripts/check_axioms.py track-d-ordered-age-axioms.log TrackDOrderedAgeCheckAxioms.lean
           python3 scripts/check_no_placeholders.py
