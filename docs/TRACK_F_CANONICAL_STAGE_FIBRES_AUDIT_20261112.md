@@ -95,3 +95,74 @@ Together these results should establish uniformity of every
 reachable next fibre. Then the reachable-history count (merged
 #482), combined with the actual canonical data bijection
 (PR #488), gives the finite product formula.
+
+
+## Exact remaining uniformity proof, in ordinary mathematical notation
+
+Fix a legal SCC ranking r, an actual component B, and arbitrary
+orders of *all other* SCCs. Let x ∈ B, C=C_B and P=P_B.
+For an order t of the actual labelled B, let e_t denote the
+enumeration of C induced by concatenating the SCCs in r-order
+with internal order t on B.
+
+The remaining Lean proof can be organized into the following
+two lemmas, without further combinatorial case distinctions.
+
+**(I) Fixed-old-position equivalence.** Since every SCC in P
+strictly precedes B, all vertices of P occur before B inside
+C in every e_t. The order induced on P does not depend on t:
+inside each earlier SCC its order remains fixed, and between
+distinct SCCs the comparison is fixed by r. Thus all e_t
+induce the same old-old comparisons. The generic finite
+initial-segment lemma (submitted in PR #500) then yields
+\`SameLowerPositions P e_s e_t\` for any s,t.
+
+**(II) Full local enumeration reconstruction.** The map
+\(t\mapsto e_t\) from bijective orders of B to complete
+enumerations of C fixing these old positions is bijective.
+
+Injectivity follows by restricting e_t to B: the existing
+component-assembly theorem recovers exactly t. For
+surjectivity, let f be *any* enumeration of C with the same
+old positions as e_s. Let t be the order induced by f on
+the actual B. The full enumerations f and e_t have identical
+comparisons: on P because the old positions agree, on B by
+construction, and across P/B because P is initial in both.
+The finite order-determines-enumeration theorem gives f=e_t.
+
+The canonical \`minimumCodeClass\` is a subset of this fixed-old
+full enumeration set. Therefore its preimage under the
+bijection is exactly the set of t which make e_t canonical,
+and that set has cardinality
+
+\[
+|\operatorname{Aut}(A[C])_{(P)}| = g_A(B).
+\]
+
+This argument does not assume that the previously chosen SCC
+orders were themselves canonical, and is independent of orders
+on components outside C. Thus its fibre cardinality is
+uniform over every *reachable* previous history.
+
+### Remaining formal Lean obligations
+
+1. Combine PR #500's fixed-old-position lemma with the
+   certified component-assembly comparison lemmas to
+   establish (I) for the actual subtype carrier C_B.
+2. Implement the restriction of an arbitrary fixed-old
+   complete enumeration f of C_B to the actual B, and
+   prove (II) as a literal equality of finite enumerations.
+3. Verify that testing \`IsCanonicalAtComponent\` for every
+   vertex x∈B is equivalent to testing the chosen generator,
+   using equality of the actual C_B and P_B for vertices
+   in the same SCC.
+4. Apply merged #413/#473 to obtain the general next-choice
+   cardinality, then the merged reachable-history count #482
+   and PR #488's exact actual-order data correspondence.
+
+**Referee checks on (I)–(II).** Do not assume P is an ambient
+initial segment; it is initial only in C. Do not use the
+stabilizer of the whole orientation. Do not count abstract
+unlabelled component types. Do not infer uniformity from
+the small-graph regression alone. The two lemmas are
+mathematically sufficient but have not yet been Lean-certified.
