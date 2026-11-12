@@ -110,6 +110,8 @@ theorem assembleComponentEnumerations_injective :
   intro a b h
   rcases a with ⟨r₁, orders₁⟩
   rcases b with ⟨r₂, orders₂⟩
+  change O.assembleComponentEnumerations r₁ orders₁ =
+    O.assembleComponentEnumerations r₂ orders₂ at h
   have hr : r₁ = r₂ := by
     calc
       r₁ = O.rankingFromEnumeration
