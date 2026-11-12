@@ -52,9 +52,9 @@ theorem finiteStageSupportPoint_selected
     finiteStageSupportPoint F K s n P hP u ∈
       selectedFiniteSet s (P.image (toVertex F K n)) := by
   classical
-  change (toVertex F K n u.val) ∈
-    P.image (toVertex F K n)
-  exact Finset.mem_image.mpr ⟨u.val, u.property, rfl⟩
+  simpa [selectedFiniteSet, finiteStageSupportPoint] using
+    (Finset.mem_image.mpr ⟨u.val, u.property, rfl⟩ :
+      (toVertex F K n u.val) ∈ P.image (toVertex F K n))
 
 /-- An embedding defined only on the finite source s gives a
 unique ordered coordinate bijection between two *particular*
