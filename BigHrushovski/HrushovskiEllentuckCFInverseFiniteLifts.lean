@@ -27,8 +27,9 @@ open CFStageCatalogue
 
 /-- A partial inverse of an arbitrary map on its range, given
 an irrelevant default value outside the range. -/
-noncomputable def chosenInverseLevel (h : ℕ → ℕ) (q : ℕ) : ℕ :=
-  if hq : q ∈ Set.range h then Classical.choose hq else 0
+noncomputable def chosenInverseLevel (h : ℕ → ℕ) (q : ℕ) : ℕ := by
+  classical
+  exact if hq : q ∈ Set.range h then Classical.choose hq else 0
 
 theorem chosenInverseLevel_spec
     (h : ℕ → ℕ) {q : ℕ} (hq : q ∈ Set.range h) :
