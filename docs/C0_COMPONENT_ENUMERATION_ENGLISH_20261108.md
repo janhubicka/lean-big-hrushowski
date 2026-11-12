@@ -1,6 +1,6 @@
 # Countable C₀ closure-component enumeration: English proof plan
 
-Date: 8 November 2026; status corrected 9 November 2026. This is **not** a new Lean certificate. It
+Date: 8 November 2026; validation-status update 12 November 2026. This is a proof plan, **not** a separate Lean certificate. It
 isolates the remaining enumeration argument in
 `prop:C0-free-generic` after the actual countable functional
 Fraïssé/reduct theorem has been certified.
@@ -115,7 +115,7 @@ The finite interval result (`closed_one_component_interval_minimal`,
 PR #385) and its countable transfer
 (`canonicalStages_oneComponentInterval_minimal`, PR #394) now certify
 this one-component step independently of a global enumeration.
-The recursion selecting the successive components is still open.
+The **fair recursive finite prefixes and their exhaustion** were kernel-certified and merged in PR #412. PR #417 subsequently certified each vertex's unique component birth, exact fresh component equality and inclusion of the entire complete unary value at birth. What remains is turning those component prefixes into the manuscript's prescribed ordered vertex enumeration, including the uniform choice of order *inside* each component.
 
 The intrinsic finite-class lemma alone does not justify this
 step. The hereditary and frontloading theorems are needed.
@@ -163,26 +163,35 @@ merely from the reduct isomorphism with M₀.
 
 ## Remaining independent Lean tasks
 
-1. Complete the **fair order-type-ω recursion and exhaustion**.
-   Draft PR #402 proves existence of an enabled vertex and its least
-   numerical priority, but not the infinite recursion or eventual
-   selection of every component. Its isolated Lean CI passed; full
-   exact-head integration is still a separate gate.
-2. Discharge the minimal-strong induction step for the selected
-   component. The finite and countable interval theorems are merged
-   (#385, #394), and merged PR #400 proves the explicit enabled-step
-   corollary, including global strongness. Its isolated CI passed.
-3. Prove complete unary-value agreement under the resulting
-   enumerated component order.
-4. Prove the functional Fraïssé characterization over all
-   finite closed substructures, not just its cofinal
-   canonical stages; establish uniqueness/homogeneity.
-5. Check the within-component canonical ordered representative
-   convention independently.
+1. **Completed and merged:** the fair finite-prefix recursion and
+   exhaustion (#412), enabled minimal strong steps (#400), and unique
+   whole-component births and full values at birth (#417). The
+   chronological order of components has type ω, but the manuscript's
+   **ordered vertex expansion** is a separate assertion.
+2. **Draft, not certified:** PR #419 constructs the literal finite
+   birth index and shows its classes agree exactly with equality of
+   complete unary values. PR #422 applies the certified component-order
+   invariance (#418) to prove exact complete values given a canonical
+   finite presentation of the literal fair prefix.
+3. **Draft, not certified:** PR #427 constructs that canonical comparison
+   presentation by restricting a cofinal finite stage and transporting
+   it to the literal closed fair prefix. Its proposed conclusion is
+   exact equality of complete unary values for the actual fair
+   chronology, with no extra comparison assumption.
+4. Construct and certify a **vertex enumeration of order type ω** that
+   keeps each intrinsic component consecutive and obeys the uniform
+   choice of ordered local representatives over the already ordered
+   lower part. Arbitrary numerical orders within components do not
+   establish that convention.
+5. Extend the actual functional Fraïssé property from cofinal
+   canonical stages to arbitrary finite closed substructures using
+   the finite two-sided functional amalgamation theorem; formalize
+   universality, homogeneity and uniqueness as applicable.
 
-The manuscript's full proposition must remain PARTIAL until
-these obligations, in addition to the countable graph-reduct
-genericity theorem, are validated.
+The manuscript's full proposition remains PARTIAL: the three draft
+birth-index/complete-value bridge PRs await exact-head Lean checks,
+and the selected ordered vertex representatives and functional
+homogeneity remain separate obligations.
 
 ## Adversarial mathematical checks
 
@@ -217,8 +226,9 @@ genericity theorem, are validated.
   their own exact axiom/placeholder workflows. A passing isolated build
   is distinguished from the whole repository workflow. The draft #402
   do not upgrade a full manuscript validation marker.
-- **Text/referee:** the published proposition still needs the order-ω
-  exhaustion proof, unary fidelity of the resulting enumeration, and
-  the prescribed within-component representative convention. The
-  generic graph reduct identification already merged in #375 must not
-  be mistaken for those remaining statements.
+- **Text/referee (corrected 12 November):** the order-ω component
+  *exhaustion* is now proved; what remains is a suitable ordered
+  **vertex** enumeration, proof of unary fidelity in its chosen
+  chronology (draft #427), and the prescribed within-component
+  representative convention. The reduct identification merged in #375
+  does not establish those claims.
