@@ -49,9 +49,9 @@ theorem fairVertexBefore_trans
   rcases hxy with hbxy | ⟨hexy, hkxy⟩
   · rcases hyz with hbyz | ⟨heyz, _⟩
     · exact Or.inl (lt_trans hbxy hbyz)
-    · exact Or.inl (heyz ▸ hbxy)
+    · exact Or.inl (by omega)
   · rcases hyz with hbyz | ⟨heyz, hkyz⟩
-    · exact Or.inl (hexy ▸ hbyz)
+    · exact Or.inl (by omega)
     · exact Or.inr ⟨hexy.trans heyz, lt_trans hkxy hkyz⟩
 
 /-- A local numbering need only be injective *within each birth
