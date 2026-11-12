@@ -2,6 +2,8 @@ import BigHrushovski.N0ActualLocalFactors
 import BigHrushovski.N0RowMajorLexCode
 import Mathlib.Tactic
 
+set_option maxHeartbeats 800000
+
 /-!
 # Canonical local orders on actual one-component closures
 
@@ -131,7 +133,6 @@ theorem canonicalComponentLexClass_nonempty
 one of its members under the pointwise stabilizer of the lower part.
 Unlike the cardinal theorem, this identifies the actual *set* of
 admissible local enumerations. -/
-set_option maxHeartbeats 800000 in
 theorem canonicalComponentLexClass_eq_automorphism_orbit_of_mem
     (x : V) {n : ℕ}
     (base e : Fin n ≃ O.componentClosure x)
