@@ -53,7 +53,10 @@ theorem componentLocalRanks_lt_iff
       O.ComponentObject) = B := Subtype.ext hx
   have hBy : (⟨O.component y.val, O.component_mem_components y.val⟩ :
       O.ComponentObject) = B := Subtype.ext hy
-  simp [componentLocalRanks, OrderBefore, Fin.lt_def, hBx, hBy]
+  simpa only [componentLocalRanks, hBx, hBy, OrderBefore] using
+    (Iff.rfl :
+      (((orders B).symm x).val < ((orders B).symm y).val) ↔
+      ((orders B).symm x < (orders B).symm y))
 
 /-- The local rank function is injective in each SCC, because
 every component enumeration is bijective. -/
@@ -61,22 +64,32 @@ theorem componentLocalRanks_locallyInjective
     (orders : O.ComponentLocalEnumerations) :
     O.LocallyInjective (O.componentLocalRanks orders) := by
   intro x y hxy hRank
+  by_contra hne
   let B : O.ComponentObject :=
     ⟨O.component x, O.component_mem_components x⟩
   have hx : x ∈ B.val := O.self_mem_component x
   have hy : y ∈ B.val :=
     (O.mem_component_iff x y).mpr hxy
-  have hComp : O.component x = O.component y :=
-    O.component_eq_of_stronglyConnected hxy
-  have hRank' :
-      ((orders B).symm ⟨x, hx⟩).val =
-        ((orders B).symm ⟨y, hy⟩).val := by
-    simpa only [componentLocalRanks, B, ← hComp] using hRank
-  have hInv :
-      (orders B).symm ⟨x, hx⟩ =
-        (orders B).symm ⟨y, hy⟩ :=
-    Fin.ext hRank'
-  exact congrArg Subtype.val ((orders B).symm.injective hInv)
+  have hnePos :
+      (orders B).symm ⟨x, hx⟩ ≠
+        (orders B).symm ⟨y, hy⟩ := by
+    intro h
+    have hxy' : (⟨x, hx⟩ : ↥B.val) = ⟨y, hy⟩ :=
+      (orders B).symm.injective h
+    exact hne (congrArg Subtype.val hxy')
+  rcases lt_or_gt_of_ne hnePos with hlt | hgt
+  · have hRanks :
+        O.componentLocalRanks orders x <
+          O.componentLocalRanks orders y :=
+      (O.componentLocalRanks_lt_iff orders B
+        ⟨x, hx⟩ ⟨y, hy⟩).mpr hlt
+    exact (ne_of_lt hRanks) hRank
+  · have hRanks :
+        O.componentLocalRanks orders y <
+          O.componentLocalRanks orders x :=
+      (O.componentLocalRanks_lt_iff orders B
+        ⟨y, hy⟩ ⟨x, hx⟩).mpr hgt
+    exact (ne_of_gt hRanks) hRank
 
 /-- Concatenate the chosen component orders using their
 component ranking as the leading lexicographic key. -/
