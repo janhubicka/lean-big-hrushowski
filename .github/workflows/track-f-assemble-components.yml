@@ -1,0 +1,42 @@
+name: Track F component-order concatenation
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0AssembleComponentOrders.lean'
+      - 'CheckTrackFAssembleComponentAxioms.lean'
+      - 'scripts/check_track_f_assemble_component_orders.py'
+      - '.github/workflows/track-f-assemble-components.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0AssembleComponentOrders.lean'
+      - 'CheckTrackFAssembleComponentAxioms.lean'
+      - 'scripts/check_track_f_assemble_component_orders.py'
+      - '.github/workflows/track-f-assemble-components.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Order.PiLex
+      - name: Compile finite component order assembly
+        run: lake build BigHrushovski.N0AssembleComponentOrders
+      - name: Kernel axiom audit and no-placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFAssembleComponentAxioms.lean > track-f-assemble-axioms.log
+          python3 scripts/check_axioms.py track-f-assemble-axioms.log CheckTrackFAssembleComponentAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent component-gluing finite regressions
+        run: |
+          python3 scripts/check_track_f_assemble_component_orders.py
+          python3 scripts/check_track_f_realize_lex.py
