@@ -108,6 +108,10 @@ theorem arbitraryFiniteEmbedding_oneBlock_unique_at_target
   rw [hgTarget] at hSizeG
   have hSize : t.code.1.val = u.code.1.val :=
     hSizeE.symm.trans hSizeG
+  letI : LinearOrder (stage F K (e x).1).carrier :=
+    stageLinearOrder F K (e x).1
+  letI : LinearOrder (stage F K (g x).1).carrier :=
+    stageLinearOrder F K (g x).1
   have hCodeE :=
     arbitraryFiniteEmbedding_requestAdjacencyCode
       F K s hs e heInj heAdj heB heLevel heOrder n r i hi
