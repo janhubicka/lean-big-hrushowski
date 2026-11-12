@@ -1,0 +1,6 @@
+import BigHrushovski.N0CanonicalPrefixLocality
+
+#print axioms BigHrushovski.FiniteOrientation.componentClosure_rank_le
+#print axioms BigHrushovski.FiniteOrientation.inheritedComponentEnumeration_eq_of_rankPrefixAgreement
+#print axioms BigHrushovski.FiniteOrientation.canonicalCondition_eq_of_rankPrefixAgreement
+#print axioms BigHrushovski.FiniteOrientation.canonicalThroughRank_iff_of_prefixAgreement
