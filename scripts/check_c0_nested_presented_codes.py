@@ -49,6 +49,11 @@ def test():
                         e={u:gap*(u+1) for u in range(n)}
                         for a in range(n):
                             qa=literal(edges,C,C[a],a,e)
+                            children={e[b]: literal(edges,C,C[b],b,e)
+                                      for b in C[a]}
+                            assert set(children)==qa[0]
+                            assert len(set(children.values()))==len(qa[0])
+                            assert all(code[1]==key for key,code in children.items())
                             for b in C[a]:
                                 nested += 1
                                 qb=literal(edges,C,C[b],b,e)
@@ -83,6 +88,19 @@ def test():
     raw_closure=frozenset({(0,0),(0,1)})
     assert all((0,y) in raw_closure for y in raw_support)
     assert not any((1,y) in raw_closure for y in raw_support)
+    # The coordinate projection is injective on a SINGLE closure,
+    # but not on the whole raw host: two genuine presentations can
+    # have distinct local codes with the same pointed coordinate.
+    A=frozenset({0,1})
+    assert finite_minimal_step(frozenset(),frozenset({0}),set())
+    assert finite_minimal_step(frozenset({0}),A,set())
+    assert finite_minimal_step(frozenset(),frozenset({0}),{(0,1)})
+    assert finite_minimal_step(frozenset({0}),A,{(0,1)})
+    C_plain=finite_component_values((0,1),set())
+    C_edge=finite_component_values((0,1),{(0,1)})
+    q_plain=literal(set(),C_plain,C_plain[1],1,{0:0,1:1})
+    q_edge=literal({(0,1)},C_edge,C_edge[1],1,{0:0,1:1})
+    assert q_plain[1]==q_edge[1]==1 and q_plain != q_edge
     print(f"PASS nested raw C0 codes: {presentations} presentations, "
           f"{nested} nested restrictions across two coordinate maps, "
           f"{full_pairs} exact E/C pair checks; nonclosed negative control")
