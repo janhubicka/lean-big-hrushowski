@@ -76,24 +76,17 @@ theorem publishedBirth_hasStandardFiniteDClosedExtensions
     simpa [g] using hg0Old x
   · intro x y
     exact hg0Adj ⟨x, Finset.mem_univ _⟩ ⟨y, Finset.mem_univ _⟩
-  · have hImage :
-        ((Finset.univ : Finset W).image g) =
-          ((Finset.univ : Finset
-            {w : W // w ∈ (Finset.univ : Finset W)}).image g0) := by
-        ext v
-        constructor
-        · intro hv
-          obtain ⟨w, _, hw⟩ := Finset.mem_image.mp hv
-          exact Finset.mem_image.mpr
-            ⟨⟨w, Finset.mem_univ _⟩, Finset.mem_univ _, hw⟩
-        · intro hv
-          obtain ⟨w, _, hw⟩ := Finset.mem_image.mp hv
-          exact Finset.mem_image.mpr
-            ⟨w.val, Finset.mem_univ _, hw⟩
-    exact Eq.mp (congrArg
-      (fun s : Finset (PublishedBirthVertex F hMono hUnbounded) =>
-        (publishedCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed s)
-      hImage.symm) hg0Closed
+  · convert hg0Closed using 1
+    ext v
+    constructor
+    · intro hv
+      obtain ⟨w, _, hw⟩ := Finset.mem_image.mp hv
+      exact Finset.mem_image.mpr
+        ⟨⟨w, Finset.mem_univ _⟩, Finset.mem_univ _, hw⟩
+    · intro hv
+      obtain ⟨w, _, hw⟩ := Finset.mem_image.mp hv
+      exact Finset.mem_image.mpr
+        ⟨w.val, Finset.mem_univ _, hw⟩
 
 /-- The canonical birth graph, with its *actual* vertex names, has
 the ordinary strong Fraisse-limit presentation of the manuscript:
@@ -190,8 +183,7 @@ theorem publishedBirth_finiteStrongUniversality
       B.toPredimension.IsDClosed (∅ : Finset W) Finset.univ :=
     hEmptyClass W B hGrowth
   have emptyElim (x : {w : W // w ∈ (∅ : Finset W)}) : False := by
-    have hx := x.property
-    simp at hx
+    exact absurd x.property (by simp)
   let e : {w : W // w ∈ (∅ : Finset W)} →
       PublishedBirthVertex F hMono hUnbounded :=
     fun x => False.elim (emptyElim x)
