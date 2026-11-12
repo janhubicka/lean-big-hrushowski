@@ -67,22 +67,33 @@ already exists by merged Track C PR #420; its existence is
 not being silently assumed from a `Countable` instance.
 
 **R7: Scope of homogeneity.**
-The proved automorphism is for the *graph reduct*, and is
-stated after relabelling the actual carrier by `ℕ`.
-The corresponding direct native-carrier form follows by
-conjugating the supplied equivalence, but the proof of that
-transport is not itself a new theorem in this PR.
+The proved automorphism is for the *graph reduct*. The final
+`publishedBirth_strongHomogeneous_onCarrier` theorem conjugates
+the numbered automorphism by the supplied genuine carrier
+equivalence; its output is an actual automorphism on the literal
+birth-labelled vertex type and its initial-value clause is
+transported pointwise. The proof does not assume that the
+enumeration itself is an automorphism or order-preserving.
 The automorphism does not necessarily preserve the enumeration
 order or the functions `R,H`. It is not a theorem about finite
 unique level lifts, the embedding monoid, Ramsey degrees,
 or topological Ramsey spaces.
+
+**R9: Conjugation direction.**
+The native automorphism is `ι.symm.trans (e.trans ι)`,
+so its value on `ι x` is precisely `ι (e x)`.
+The opposite conjugation would not typecheck, and mere
+injectivity of `ι` would not give an automorphism on the whole
+birth carrier. The proof uses the explicit two-sided equivalence,
+and applies the finite source agreement after computing the
+conjugate.
 
 **R8: Dependency and trust.**
 The generic theorem invokes only already established strict
 joint steps and coherent union. The canonical specialization
 uses the existing exact countable birth recognition theorem,
 not an isomorphism with a comparison `M_F`.
-The two endpoints are to be checked by isolated `#print axioms`
+All three endpoints are to be checked by isolated `#print axioms`
 and full Lean CI. A pending/failed build remains **unverified**
 regardless of the strength of the paper proof.
 
