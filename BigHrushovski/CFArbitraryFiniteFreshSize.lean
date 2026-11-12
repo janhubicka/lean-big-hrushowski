@@ -146,6 +146,7 @@ theorem arbitraryFiniteRHEmbedding_completeB
             (extendClosedSourceMap F K X e x.val) =
               birthBValue F K (e x)
           rw [extendClosedSourceMap_apply F K X e x.val x.property]
+          rfl
 
 /-- In the actual R/H language, every admissible finite embedding
 preserves the fresh cardinality of every represented birth block.
