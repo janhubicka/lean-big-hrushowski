@@ -1,0 +1,7 @@
+import BigHrushovski.N0CanonicalTopOrderFibres
+
+#print axioms BigHrushovski.FiniteOrientation.lowerBeforeRest_of_sameLowerPositions
+#print axioms BigHrushovski.FiniteOrientation.enumeration_eq_of_fixed_old_and_same_remaining_order
+#print axioms BigHrushovski.FiniteOrientation.not_mem_inducedLowerPart_iff_mem_component
+#print axioms BigHrushovski.FiniteOrientation.canonicalTopOrderRelations_card
+#print axioms BigHrushovski.FiniteOrientation.componentCanonicalTopOrderRelations_card
