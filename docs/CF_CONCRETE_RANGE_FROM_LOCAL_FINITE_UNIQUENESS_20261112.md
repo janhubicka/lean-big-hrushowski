@@ -13,7 +13,9 @@ in \(C(v)\).
 
 Let \(f\) be a self-embedding of the countable ordered auxiliary
 b-structure. Assume it preserves the induced graph, the complete
-b-values, the birth-level preorder, and the canonical order.
+b-values, and the canonical order. Preservation and reflection of the
+birth-level preorder follow automatically from the strict
+level action, and are proved rather than assumed.
 Suppose its birth-level action is a strictly increasing
 \(h:\mathbb N\to\mathbb N\).
 
@@ -75,7 +77,10 @@ because the image of a finite set under f composed with g is the
 iterated image. All order and adjacency clauses are composed as
 equivalences, not one-directional implications.
 
-**4. Inverse levels.** The inverse assignments use a preimage
+**4. Level order and inverse levels.** A strictly increasing
+level action preserves and reflects the birth-level preorder,
+so the global-map theorem does not list that separately.
+The inverse assignments use a preimage
 of h only at birth levels actually represented in C(v).
 A global strictly increasing inverse is neither assumed
 nor constructed and would generally be impossible.
