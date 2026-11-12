@@ -5,11 +5,13 @@ on:
     paths:
       - 'BigHrushovski/HrushovskiEllentuckClosedSupportCodes.lean'
       - 'CheckTrackEClosedSupportCodes.lean'
+      - 'scripts/check_ellentuck_closed_codes.py'
       - '.github/workflows/track-e-closed-support-codes.yml'
   pull_request:
     paths:
       - 'BigHrushovski/HrushovskiEllentuckClosedSupportCodes.lean'
       - 'CheckTrackEClosedSupportCodes.lean'
+      - 'scripts/check_ellentuck_closed_codes.py'
       - '.github/workflows/track-e-closed-support-codes.yml'
   workflow_dispatch:
 
@@ -40,6 +42,8 @@ jobs:
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Build closed support code theorem
         run: lake build BigHrushovski.HrushovskiEllentuckClosedSupportCodes
+      - name: Exhaust small support-code systems
+        run: python3 scripts/check_ellentuck_closed_codes.py
       - name: Exact axiom and source checks
         run: |
           lake env lean CheckTrackEClosedSupportCodes.lean > track-e-closed-codes-axioms.log
