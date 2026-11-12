@@ -195,8 +195,11 @@ theorem standardStrongFraisseLimit_homogeneous
   let β : V ≃ V := ι.symm.trans (e.trans ι)
   refine ⟨β, ?_, ?_⟩
   · intro x y
+    have h := hAdj (ι.symm x) (ι.symm y)
+    change G.adj (ι (ι.symm x)) (ι (ι.symm y)) ↔
+      G.adj (ι (e (ι.symm x))) (ι (e (ι.symm y))) at h
     simpa only [β, Equiv.trans_apply, Equiv.apply_symm_apply]
-      using hAdj (ι.symm x) (ι.symm y)
+      using h
   · intro x
     calc
       β (ι x.val) = ι (e x.val) := by
