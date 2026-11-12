@@ -136,9 +136,13 @@ theorem CompleteLocalMatrix.allTopGenerate_normalForm
     M.relabel_lower_of_fixes σ hσ
   have hb' : σ.symm b ∉ M.lowerPositions := by
     intro hm
+    have hbEq : σ.symm b = b := by
+      calc
+        σ.symm b = σ (σ.symm b) := (hσ _ hm).symm
+        _ = b := σ.apply_symm_apply b
     apply hb
     rw [← hEq, hL]
-    simpa only [hσ _ hm, σ.apply_symm_apply] using hm
+    simpa only [hbEq] using hm
   have hc := hTop (σ.symm b) hb' (σ.symm v)
   rw [← hEq]
   have hRelabel := (M.mem_relabel_closure_iff σ (σ.symm b) (σ.symm v)).mpr hc
@@ -187,8 +191,8 @@ theorem CompleteLocalMatrix.normalForm_local_restrictions
   · intro ha
     exact M.normalForm_lower_generated_code hClosed a ha
   · intro ha
-    apply Finset.eq_univ_of_forall
-    intro v
+    ext v
+    simp only [Finset.mem_univ, iff_true]
     exact ((M.normalForm.mem_generatedSupport_iff a v).mpr
       (M.allTopGenerate_normalForm hTop a
         (by
