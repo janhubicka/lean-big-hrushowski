@@ -154,7 +154,8 @@ theorem CompleteLocalMatrix.normalForm_idempotent
     [LinearOrder (CompleteLocalMatrix n)]
     (M : CompleteLocalMatrix n) :
     M.normalForm.normalForm = M.normalForm := by
-  exact ((M.normalForm).normalForm_eq_iff_orbit M.normalForm).mpr rfl
+  apply ((M.normalForm).normalForm_eq_iff_orbit M).mpr
+  exact (M.topOrbit_eq_of_mem M.normalForm M.normalForm_mem).symm
 
 /-- The normalized matrix still has a lower part closed under all
 complete unary values, not just under the induced lower matrix. -/
