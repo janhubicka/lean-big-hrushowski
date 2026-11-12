@@ -36,10 +36,20 @@ theorem birthSupport_eq_stageSupport_image
           (stage F K (n+1)).carrier)).image
       (toVertex F K (n+1)) =
         r.support.image (toVertex F K n)
-  rw [Finset.image_image]
-  apply Finset.image_congr
-  intro u hu
-  exact toVertex_old F K n u
+  ext v
+  constructor
+  · intro hv
+    obtain ⟨w, hw, hwv⟩ := Finset.mem_image.mp hv
+    obtain ⟨u, hu, huw⟩ := Finset.mem_image.mp hw
+    rw [← huw] at hwv
+    exact Finset.mem_image.mpr
+      ⟨u, hu, by simpa only [toVertex_old] using hwv⟩
+  · intro hv
+    obtain ⟨u, hu, huv⟩ := Finset.mem_image.mp hv
+    exact Finset.mem_image.mpr
+      ⟨Sum.inl u,
+        Finset.mem_image.mpr ⟨u, hu, rfl⟩,
+        by simpa only [toVertex_old] using huv⟩
 
 /-- A vertex belongs to an actual birth support if and only
 if it is the canonical image of a vertex of the named old
@@ -70,8 +80,21 @@ theorem birthBlock_eq_fresh_image
           (toVertex F K (n+1)) =
       (Finset.univ : Finset (Fin r.code.1.val)).image
         (fun i => (⟨n, ⟨r, i⟩⟩ : Vertex F K))
-  rw [Finset.image_image]
-  rfl
+  ext v
+  constructor
+  · intro hv
+    obtain ⟨w, hw, hwv⟩ := Finset.mem_image.mp hv
+    obtain ⟨i, _, hiw⟩ := Finset.mem_image.mp hw
+    rw [← hiw] at hwv
+    exact Finset.mem_image.mpr
+      ⟨i, Finset.mem_univ _,
+        by simpa only [toVertex_new] using hwv⟩
+  · intro hv
+    obtain ⟨i, _, hiv⟩ := Finset.mem_image.mp hv
+    exact Finset.mem_image.mpr
+      ⟨Sum.inr ⟨r, i⟩,
+        Finset.mem_image.mpr ⟨i, Finset.mem_univ _, rfl⟩,
+        by simpa only [toVertex_new] using hiv⟩
 
 /-- Every actual birth block has exactly the fresh cardinality
 stored in its request code. Multiple ordinal values may not
