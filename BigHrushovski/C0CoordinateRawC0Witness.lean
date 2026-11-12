@@ -85,11 +85,8 @@ theorem FiniteChronologicalC0.generatedCode_induced_chronological
     ChronologicalBlockOrder
       (FiniteC0.restrictIndex p.component
         (FiniteC0.canonicalValue p.graph p.component a)) := by
-  exact (canonicalOneGenerated_code_age_bridge
-    p.graph p.component p.minimalSteps p.chronological
-    (OrderEmbedding.ofStrictMono (fun v : Fin m => (v : ℕ)) (by
-      intro x y h
-      exact h)) a).2.1
+  exact chronologicalBlockOrder_restrict p.component
+    (FiniteC0.canonicalValue p.graph p.component a) p.chronological
 
 /-- The induced structure inherits each component step either as a
 minimal-strong step or as an empty step, exactly as required by the
