@@ -49,14 +49,17 @@ for n in range(5):
         edges={e for i,e in enumerate(pairs) if mask>>i & 1}
         stats["graph_pairs"]+=1
         for s in range(1<<n):
+            induced_s={e for e in edges if all(s>>v & 1 for v in e)}
             for t in range(1<<n):
                 if s&~t:continue
+                induced_t={e for e in edges if all(t>>v & 1 for v in e)}
                 for u in range(n):
                     if not (s>>u & 1):continue
                     for v in range(n):
                         if not (s>>v & 1):continue
                         e=tuple(sorted((u,v)))
-                        assert (e in edges)==(e in edges) # same literal labels
+                        assert (e in induced_s)==(e in induced_t), (
+                            n,edges,s,t,u,v)
                         stats["induced_checks"]+=1
 assert stats["complete_unary"]>0
 assert stats["closed_bases"]>0
