@@ -1,0 +1,40 @@
+name: Track F canonical top SCC order fibres
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0CanonicalTopOrderFibres.lean'
+      - 'CheckTrackFTopOrderFibreAxioms.lean'
+      - 'scripts/check_track_f_top_order_fibres.py'
+      - '.github/workflows/track-f-top-order-fibres.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0CanonicalTopOrderFibres.lean'
+      - 'CheckTrackFTopOrderFibreAxioms.lean'
+      - 'scripts/check_track_f_top_order_fibres.py'
+      - '.github/workflows/track-f-top-order-fibres.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  top-fibres:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Order.PiLex
+      - name: Compile canonical top-component fibre theorem
+        run: lake build BigHrushovski.N0CanonicalTopOrderFibres
+      - name: Exact theorem axiom audit and placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFTopOrderFibreAxioms.lean > track-f-top-fibre-axioms.log
+          python3 scripts/check_axioms.py track-f-top-fibre-axioms.log CheckTrackFTopOrderFibreAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent exhaustive finite fibre audit
+        run: |
+          python3 scripts/check_track_f_top_order_fibres.py
+          python3 scripts/check_track_f_canonical_local.py
