@@ -70,17 +70,17 @@ theorem unionEquiv_completeUnary
     let vy : {v : ℕ // v ∈ (p n).target} := ⟨y, hyT⟩
     let uy : {v : ℕ // v ∈ (p n).source} :=
       (p n).equiv.symm vy
+    have hEval : ((p n).equiv uy).val = y := by
+      simp [uy, vy]
     have hVal : ((p n).equiv uy).val ∈
         CN ((p n).equiv ux).val := by
-      change y ∈ CN ((p n).equiv ux).val
-      rw [← heX]
+      rw [hEval, ← heX]
       exact hy
     have huy : uy.val ∈ CM x :=
       (hFull n ux uy).mpr hVal
     have heY : e uy.val = y := by
       rw [union_at_stage p hStep hCoverSource n uy.property]
-      change ((p n).equiv uy).val = y
-      simp [uy, vy]
+      exact hEval
     exact Finset.mem_image.mpr ⟨uy.val, huy, heY⟩
   · intro hy
     obtain ⟨z, hz, hzy⟩ := Finset.mem_image.mp hy
