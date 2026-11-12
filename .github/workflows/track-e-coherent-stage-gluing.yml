@@ -1,0 +1,48 @@
+name: Track E coherent finite birth-stage gluing
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckCoherentStageGluing.lean'
+      - 'CheckTrackECoherentStageGluing.lean'
+      - '.github/workflows/track-e-coherent-stage-gluing.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckCoherentStageGluing.lean'
+      - 'CheckTrackECoherentStageGluing.lean'
+      - '.github/workflows/track-e-coherent-stage-gluing.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-coherent-gluing-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-coherent-gluing-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build coherent finite-stage gluing theorem
+        run: lake build BigHrushovski.HrushovskiEllentuckCoherentStageGluing
+      - name: Audit exact axioms and placeholders
+        run: |
+          lake env lean CheckTrackECoherentStageGluing.lean > track-e-coherent-axioms.log
+          cat track-e-coherent-axioms.log
+          python3 scripts/check_axioms.py track-e-coherent-axioms.log CheckTrackECoherentStageGluing.lean
+          python3 scripts/check_no_placeholders.py
