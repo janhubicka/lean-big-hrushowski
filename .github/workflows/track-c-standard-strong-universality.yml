@@ -1,0 +1,29 @@
+name: Track C standard strong universality
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFStandardStrongUniversality.lean"
+      - "BigHrushovski/CFPublishedOwnFraissePresentation.lean"
+      - "TrackCStandardStrongUniversalityCheck.lean"
+      - ".github/workflows/track-c-standard-strong-universality.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  standard-universality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build generic and birth universality
+        run: lake build BigHrushovski.CFPublishedOwnFraissePresentation
+      - name: Audit exact axioms and placeholders
+        run: |
+          lake env lean TrackCStandardStrongUniversalityCheck.lean > track-c-universal-axioms.log
+          python3 scripts/check_axioms.py track-c-universal-axioms.log TrackCStandardStrongUniversalityCheck.lean
+          python3 scripts/check_no_placeholders.py
