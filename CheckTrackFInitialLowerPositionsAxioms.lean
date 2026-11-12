@@ -1,0 +1,5 @@
+import BigHrushovski.N0InitialLowerPositions
+
+#print axioms BigHrushovski.FiniteOrientation.enumerationPosition_eq_card_predecessors
+#print axioms BigHrushovski.FiniteOrientation.sameLowerPositions_of_initial_and_oldOrder
+#print axioms BigHrushovski.FiniteOrientation.sameLowerPositions_iff_oldOrder_of_initial
