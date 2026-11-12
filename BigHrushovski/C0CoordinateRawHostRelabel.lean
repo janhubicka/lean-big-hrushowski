@@ -89,8 +89,7 @@ theorem FiniteChronologicalC0.generatedCode_relabel
   have hSupport : s.image h = (C a).image (e.trans h) := by
     classical
     simp [s, Finset.image_image, Function.comp_def]
-  rw [literalPointedCode_relabel, hSupport] at hCode
-  exact hCode
+  simpa only [literalPointedCode_relabel, hSupport] using hCode
 
 /-- Increasing coordinate maps preserve the class of raw codes
 admitting an actual finite minimal-strong C₀ presentation. -/
@@ -135,6 +134,7 @@ commutes with EVERY increasing reassignment of its coordinates.
 In particular all complete child codes, not only their pointed
 coordinates, are transported. -/
 theorem RawC0CoordinateVertex.closedValue_relabel
+    [DecidableEq RawC0CoordinateVertex]
     (q : RawC0CoordinateVertex) (h : ℕ ↪o ℕ) :
     (q.relabel h).closedValue =
       q.closedValue.image (fun r => r.relabel h) := by
@@ -142,9 +142,10 @@ theorem RawC0CoordinateVertex.closedValue_relabel
   rcases q with ⟨code, hcode⟩
   rcases hcode with ⟨m, levels, p, e, a, hEq⟩
   subst code
-  change (p.asRawVertex (e.trans h) a).closedValue =
+  change ((p.asRawVertex e a).relabel h).closedValue =
     (p.asRawVertex e a).closedValue.image
       (fun r => r.relabel h)
+  rw [p.asRawVertex_relabel e a h]
   ext r
   constructor
   · intro hr
