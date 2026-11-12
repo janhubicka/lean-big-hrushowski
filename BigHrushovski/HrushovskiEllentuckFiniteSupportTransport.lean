@@ -109,7 +109,7 @@ theorem finiteClosedEmbedding_birthLevelSupport_image
       (birthSingletonClosure F K)
       (fun v : Vertex F K => v.1) f level x.val hC hπ
   have hfx : f x.val = e x := by
-    simpa only [Subtype.coe_eta] using hOn x.val x.property
+    simpa using hOn x.val x.property
   simpa only [birthLevelSupport, hfx] using hImage
 
 /-- The same exact support equation for the *constructed*
