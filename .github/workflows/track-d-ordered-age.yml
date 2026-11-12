@@ -18,6 +18,7 @@ on:
       - "BigHrushovski/C0CoordinatePointedTopRoots.lean"
       - "BigHrushovski/C0CoordinateTopChoiceRestrictions.lean"
       - "BigHrushovski/C0CoordinateHereditaryCatalogueReduction.lean"
+      - "BigHrushovski/C0CoordinateWellSupportedCode.lean"
       - "TrackDOrderedAgeCheckAxioms.lean"
       - ".github/workflows/track-d-ordered-age.yml"
       - "scripts/check_c0_chronological_order.py"
@@ -28,6 +29,7 @@ on:
       - "scripts/check_c0_local_order_normalizer.py"
       - "scripts/check_c0_top_lower_preservation.py"
       - "scripts/check_c0_top_generated_restrictions.py"
+      - "scripts/check_c0_code_support_bounds.py"
       - "docs/TRACK_D_UNIFORM_LOCAL_ORDER_SELECTION_20261108.md"
   workflow_dispatch:
 
@@ -62,10 +64,11 @@ jobs:
           python3 scripts/check_c0_local_order_normalizer.py
           python3 scripts/check_c0_top_lower_preservation.py
           python3 scripts/check_c0_top_generated_restrictions.py
+          python3 scripts/check_c0_code_support_bounds.py
       - name: Build and audit exact Track D bridge
         run: |
           set -euo pipefail
-          lake build BigHrushovski.C0CoordinateOrderedAgeBridge BigHrushovski.C0CoordinateIntrinsicLocalOrder BigHrushovski.C0CoordinateLocalOrderChoice BigHrushovski.C0CoordinateCanonicalLocalRepresentative BigHrushovski.C0CoordinateCoherentLocalOrders BigHrushovski.C0CoordinateCodeRelabelling BigHrushovski.C0CoordinateNestedLocalOrders BigHrushovski.C0CoordinateIntrinsicLowerChoice BigHrushovski.C0CoordinateLocalOccurrenceFamily BigHrushovski.C0CoordinateTopPermutationOrbit BigHrushovski.C0CoordinateTopOrbitNormalizer BigHrushovski.C0CoordinateLocalTypeMatrixBridge BigHrushovski.C0CoordinatePointedTopRoots BigHrushovski.C0CoordinateTopChoiceRestrictions BigHrushovski.C0CoordinateHereditaryCatalogueReduction
+          lake build BigHrushovski.C0CoordinateOrderedAgeBridge BigHrushovski.C0CoordinateIntrinsicLocalOrder BigHrushovski.C0CoordinateLocalOrderChoice BigHrushovski.C0CoordinateCanonicalLocalRepresentative BigHrushovski.C0CoordinateCoherentLocalOrders BigHrushovski.C0CoordinateCodeRelabelling BigHrushovski.C0CoordinateNestedLocalOrders BigHrushovski.C0CoordinateIntrinsicLowerChoice BigHrushovski.C0CoordinateLocalOccurrenceFamily BigHrushovski.C0CoordinateTopPermutationOrbit BigHrushovski.C0CoordinateTopOrbitNormalizer BigHrushovski.C0CoordinateLocalTypeMatrixBridge BigHrushovski.C0CoordinatePointedTopRoots BigHrushovski.C0CoordinateTopChoiceRestrictions BigHrushovski.C0CoordinateHereditaryCatalogueReduction BigHrushovski.C0CoordinateWellSupportedCode
           lake env lean TrackDOrderedAgeCheckAxioms.lean > track-d-ordered-age-axioms.log
           python3 scripts/check_axioms.py track-d-ordered-age-axioms.log TrackDOrderedAgeCheckAxioms.lean
           python3 scripts/check_no_placeholders.py
