@@ -1,0 +1,4 @@
+import BigHrushovski.C0FunctionalBackAndForthLimit
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.unionEquiv_completeUnary
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.exists_functional_equiv_of_closed_chain
