@@ -52,7 +52,7 @@ theorem enumerationPosition_eq_card_predecessors {n : ℕ}
       intro m hm
       exact lt_trans (Finset.mem_range.mp hm) j.isLt)
   have hIndices (i : Fin n) : i ∈ indices ↔ i < j := by
-    simp [indices, Fin.lt_def]
+    simp only [indices, Finset.mem_attachFin, Finset.mem_range, Fin.lt_def]
   have hIndicesCard : indices.card = j.val := by
     simp [indices]
   have hImage :
@@ -117,7 +117,7 @@ theorem sameLowerPositions_of_initial_and_oldOrder
   have h := congrArg f (hPos (e i) hi)
   have hfi : f i = e i := by
     simpa using h
-  exact hfi.symm
+  exact hfi
 
 /-- For two enumerations in which P is an initial segment,
 fixing its old positions is *equivalent* to preserving every
