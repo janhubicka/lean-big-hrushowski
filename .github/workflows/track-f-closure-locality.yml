@@ -1,0 +1,40 @@
+name: Track F canonical SCC-closure order locality
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0ComponentClosureLocality.lean'
+      - 'CheckTrackFClosureLocalityAxioms.lean'
+      - 'scripts/check_track_f_closure_locality.py'
+      - '.github/workflows/track-f-closure-locality.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0ComponentClosureLocality.lean'
+      - 'CheckTrackFClosureLocalityAxioms.lean'
+      - 'scripts/check_track_f_closure_locality.py'
+      - '.github/workflows/track-f-closure-locality.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  locality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Order.PiLex
+      - name: Compile SCC-closure locality theorem
+        run: lake build BigHrushovski.N0ComponentClosureLocality
+      - name: Named axiom audit and source placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFClosureLocalityAxioms.lean > track-f-closure-locality-axioms.log
+          python3 scripts/check_axioms.py track-f-closure-locality-axioms.log CheckTrackFClosureLocalityAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent exhaustive finite locality check
+        run: |
+          python3 scripts/check_track_f_closure_locality.py
+          python3 scripts/check_track_f_assemble_component_orders.py
