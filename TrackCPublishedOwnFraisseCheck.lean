@@ -1,0 +1,4 @@
+import BigHrushovski.CFPublishedOwnFraissePresentation
+
+#print axioms BigHrushovski.CFCoherentTower.publishedBirth_hasStandardFiniteDClosedExtensions
+#print axioms BigHrushovski.CFCoherentTower.publishedBirth_standardStrongFraisseLimitPresentation
