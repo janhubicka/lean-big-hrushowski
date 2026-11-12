@@ -66,8 +66,10 @@ def RemainingOrder (P : Finset V) {n : ℕ}
 put the old part first, and agree on all comparisons within
 the new part, then they are literally the same enumeration.
 
-The initial-segment hypothesis is essential: without it, the
-old vertices can be interleaved with the new ones differently. -/
+The initial-segment hypothesis is satisfied in the intended
+application and makes the proof immediate. With fixed old positions
+the injectivity statement holds more generally, but that stronger
+version is not needed here. -/
 theorem enumeration_eq_of_fixed_old_and_same_remaining_order
     (P : Finset V) {n : ℕ}
     (base e f : Fin n ≃ V)
