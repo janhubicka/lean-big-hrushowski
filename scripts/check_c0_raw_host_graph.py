@@ -64,6 +64,14 @@ def check():
                         labels={u:gap*(u+1) for u in range(n)}
                         q=[make_code(edges,C,C[a],a,labels) for a in range(n)]
                         roots += n
+                        # Injectivity of the actual finite occurrence,
+                        # exact complete C-value and exact named J-value.
+                        assert len(set(q))==n
+                        for a in range(n):
+                            assert closure(q[a]) == frozenset(q[b] for b in C[a])
+                            assert back(q[a]) == frozenset(
+                                q[b] for b in C[a]
+                                if a!=b and tuple(sorted((a,b))) in edges)
                         for a in range(n):
                             qa=q[a]
                             assert all((v,u) in qa[2] for u,v in qa[2])
