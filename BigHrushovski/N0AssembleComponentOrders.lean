@@ -30,32 +30,47 @@ abbrev ComponentLocalEnumerations : Type _ :=
   ∀ B : O.ComponentObject,
     Fin (Fintype.card (↥B.val)) ≃ (↥B.val)
 
+/-- A rank lookup on any actual component, returning zero outside it.
+This non-dependent output permits ordinary rewriting of component
+indices without transporting an element between dependent carriers. -/
+noncomputable def componentRankAt
+    (orders : O.ComponentLocalEnumerations)
+    (B : O.ComponentObject) (x : V) : ℕ :=
+  if h : x ∈ B.val then ((orders B).symm ⟨x, h⟩).val else 0
+
 /-- The local rank of each vertex in its own SCC's chosen enumeration.
 The same rank value may occur in different SCCs. -/
 noncomputable def componentLocalRanks
     (orders : O.ComponentLocalEnumerations) (x : V) : ℕ :=
-  ((orders ⟨O.component x, O.component_mem_components x⟩).symm
-    ⟨x, O.self_mem_component x⟩).val
+  O.componentRankAt orders
+    ⟨O.component x, O.component_mem_components x⟩ x
+
+/-- Rank lookup at a vertex of B agrees with its inverse position in
+the explicitly chosen enumeration of B. This isolates the only
+component-index rewriting used by the remainder of the proof. -/
+theorem componentLocalRanks_eq_of_mem
+    (orders : O.ComponentLocalEnumerations)
+    (B : O.ComponentObject) (x : ↥B.val) :
+    O.componentLocalRanks orders x.val =
+      ((orders B).symm x).val := by
+  have hB :
+      (⟨O.component x.val, O.component_mem_components x.val⟩ :
+        O.ComponentObject) = B :=
+    Subtype.ext (O.component_eq_of_mem_componentObject B x.property)
+  unfold componentLocalRanks
+  rw [hB]
+  simp [componentRankAt, x.property]
 
 /-- Local ranks agree with the chosen local order on each component.
-The proof explicitly identifies each vertex's intrinsic SCC with B. -/
+In particular, this compares *all* labelled vertex pairs in B. -/
 theorem componentLocalRanks_lt_iff
     (orders : O.ComponentLocalEnumerations)
     (B : O.ComponentObject) (x y : ↥B.val) :
     O.componentLocalRanks orders x.val <
       O.componentLocalRanks orders y.val ↔
     OrderBefore (orders B) x y := by
-  have hx : O.component x.val = B.val :=
-    O.component_eq_of_mem_componentObject B x.property
-  have hy : O.component y.val = B.val :=
-    O.component_eq_of_mem_componentObject B y.property
-  have hBx : (⟨O.component x.val, O.component_mem_components x.val⟩ :
-      O.ComponentObject) = B := Subtype.ext hx
-  have hBy : (⟨O.component y.val, O.component_mem_components y.val⟩ :
-      O.ComponentObject) = B := Subtype.ext hy
-  unfold componentLocalRanks
-  rw [hBx, hBy]
-  rfl
+  simpa only [O.componentLocalRanks_eq_of_mem orders B x,
+    O.componentLocalRanks_eq_of_mem orders B y, OrderBefore]
 
 /-- The local rank function is injective in each SCC, because
 every component enumeration is bijective. -/
