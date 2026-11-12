@@ -34,7 +34,7 @@ theorem mem_minimumCodeClass_iff_le_all
   classical
   constructor
   · intro he
-    exact ⟨(mem_minimumCodeClass_iff choices code hne e).mp he |>.1,
+    exact ⟨((mem_minimumCodeClass_iff choices code hne e).mp he).1,
       fun f hf => minimumCodeClass_is_minimal choices code hne he hf⟩
   · rintro ⟨he, hLeast⟩
     apply (mem_minimumCodeClass_iff choices code hne e).mpr
