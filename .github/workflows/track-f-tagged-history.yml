@@ -1,0 +1,40 @@
+name: Track F chronological tagged SCC history count
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0TaggedHistoryCount.lean'
+      - 'CheckTrackFTaggedHistoryAxioms.lean'
+      - 'scripts/check_track_f_tagged_histories.py'
+      - '.github/workflows/track-f-tagged-history.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0TaggedHistoryCount.lean'
+      - 'CheckTrackFTaggedHistoryAxioms.lean'
+      - 'scripts/check_track_f_tagged_histories.py'
+      - '.github/workflows/track-f-tagged-history.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tagged-history:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic
+      - name: Compile tagged actual SCC history count
+        run: lake build BigHrushovski.N0TaggedHistoryCount
+      - name: Kernel axiom and placeholder audit
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFTaggedHistoryAxioms.lean > track-f-tagged-hist-axioms.log
+          python3 scripts/check_axioms.py track-f-tagged-hist-axioms.log CheckTrackFTaggedHistoryAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent chronological enumeration
+        run: |
+          python3 scripts/check_track_f_tagged_histories.py
+          python3 scripts/check_track_f_global_canonical_count.py

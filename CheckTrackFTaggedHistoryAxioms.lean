@@ -1,0 +1,6 @@
+import BigHrushovski.N0TaggedHistoryCount
+
+#print axioms BigHrushovski.FiniteOrientation.ordersFromReverseHistory_nil
+#print axioms BigHrushovski.FiniteOrientation.canonicalTaggedNextChoices_card
+#print axioms BigHrushovski.FiniteOrientation.canonicalTaggedNextChoices_card_of_uniform
+#print axioms BigHrushovski.FiniteOrientation.reachableTaggedHistories_card_of_uniform
