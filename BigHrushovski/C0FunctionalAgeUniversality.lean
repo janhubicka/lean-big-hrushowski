@@ -12,8 +12,8 @@ which also preserves the *entire* canonical set-valued unary
 operation. Neither homogeneity nor an arbitrary canonical order on
 components is invoked.
 
-This corollary is logically independent of the still-pending finite
-back-and-forth homogeneity theorems.
+Only the closed-base extension theorem is used; no homogeneity
+argument or choice of component orders is needed.
 -/
 
 namespace BigHrushovski
@@ -47,15 +47,13 @@ theorem fairLimit_universalForFiniteFunctionalC0
           (FiniteC0.canonicalValue H κ u).image f) := by
   classical
   let s : Finset ℕ := ∅
-  have hNo (a : {v : ℕ // v ∈ s}) : False := by
-    have ha : a.val ∈ (∅ : Finset ℕ) := a.property
-    simp at ha
+  have hNo (a : {v : ℕ // v ∈ s}) : False :=
+    (Finset.not_mem_empty a.val) a.property
   have hClosed :
       fairGraphStages.limitGraph.IsClosedUnderValues
         fairUnaryStages.limitValue s := by
     intro x hx
-    have hxf : x ∈ (∅ : Finset ℕ) := hx
-    simp at hxf
+    exact ((Finset.not_mem_empty x) hx).elim
   let j : {v : ℕ // v ∈ s} → B := fun a => (hNo a).elim
   have hj : Function.Injective j := by
     intro a b _
