@@ -96,7 +96,7 @@ rewritten proposition; marker scope remains documented separately. -/
 #print axioms BigHrushovski.FiniteCatalogue.mem_genericC0UnaryClosure_iff
 #print axioms BigHrushovski.FiniteGraph.predim
 #print axioms BigHrushovski.FiniteSpan.exists_canonical_functional_strong_amalgam
-#print axioms BigHrushovski.FiniteStrongPartialIso.exists_induced_equiv_of_strongExtension
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.exists_induced_equiv_of_strongExtension
 #print axioms BigHrushovski.GraphOn.canonical_dClosed_local_support
 #print axioms BigHrushovski.GraphOn.closedSubset_strong_from_empty
 #print axioms BigHrushovski.GraphOn.minimalDClosedStep_free_iff
@@ -108,5 +108,5 @@ rewritten proposition; marker scope remains documented separately. -/
 #print axioms BigHrushovski.Predimension.finite_minimal_decomposition_of_dClosed_absolute
 #print axioms BigHrushovski.Predimension.finite_minimal_decomposition_of_strong_absolute
 #print axioms BigHrushovski.Predimension.minimalDClosedStep_iff_every_generator
-#print axioms BigHrushovski.StrongExhaustion.minimal_step_generated_by_every_new_vertex
+#print axioms BigHrushovski.Predimension.StrongExhaustion.minimal_step_generated_by_every_new_vertex
 #print axioms BigHrushovski.TaggedAmalgam.exists_taggedFunctionalAmalgam_of_named_base
