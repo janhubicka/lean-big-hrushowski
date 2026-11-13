@@ -96,7 +96,8 @@ theorem finiteOrderedBEmbedding_restrict
     have hxy' :
         (⟨x.val, hst x.property⟩ : SupportCarrier (Vertex F K) t) =
           ⟨y.val, hst y.property⟩ := heInj hxy
-    exact Subtype.ext (congrArg Subtype.val hxy')
+    exact Subtype.ext (congrArg
+      (fun z : SupportCarrier (Vertex F K) t => z.val) hxy')
   · intro x y
     exact heAdj ⟨x.val, hst x.property⟩
       ⟨y.val, hst y.property⟩
