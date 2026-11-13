@@ -165,6 +165,7 @@ theorem RawC0CoordinateVertex.mem_backNeighbours_iff_graph
 /-- The named J-value is precisely the ordinary back-neighbour
 function of the raw graph with its COMPLETE unary closure C. -/
 theorem RawC0CoordinateVertex.backNeighbours_eq_graph
+    [DecidableEq RawC0CoordinateVertex]
     (q : RawC0CoordinateVertex) :
     q.backNeighbours =
       rawC0HostGraph.backAdjacencyValue
