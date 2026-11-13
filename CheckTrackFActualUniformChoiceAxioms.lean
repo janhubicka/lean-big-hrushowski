@@ -1,0 +1,4 @@
+import BigHrushovski.N0StageActualFibreInterface
+
+#print axioms BigHrushovski.FiniteOrientation.canonicalNextComponentChoices_card_of_generatorCriterion
+#print axioms BigHrushovski.FiniteOrientation.canonicalNextComponentAssignments_card_of_generatorCriterion
