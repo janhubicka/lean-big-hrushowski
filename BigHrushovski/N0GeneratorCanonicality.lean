@@ -37,9 +37,10 @@ theorem canonicalClosureMembership_iff_of_component_eq
       O.canonicalComponentLexClass y
         (O.inheritedComponentEnumeration global y)) := by
   classical
-  simp only [inheritedComponentEnumeration,
+  dsimp only [inheritedComponentEnumeration,
     canonicalComponentLexClass, inducedComponentOrientation,
-    inducedLowerPart, lowerPart, componentClosure, hComp]
+    inducedLowerPart, lowerPart, componentClosure]
+  rw [hComp]
 
 /-- The actual chosen generator belongs to the SCC which it names. -/
 theorem componentGenerator_mem (B : O.ComponentObject) :
