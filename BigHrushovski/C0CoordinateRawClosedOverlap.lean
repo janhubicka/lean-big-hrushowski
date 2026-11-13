@@ -60,7 +60,7 @@ theorem RawC0CoordinateVertex.valueOn_full_image
       (RawC0CoordinateVertex.mem_valueOn_iff s q r).mp hr
     simpa only [hEq] using hxC
   · intro hx
-    have hxs : x ∈ s := hs q.val q.property x hx
+    have hxs : x ∈ s := (hs q.val q.property) hx
     exact Finset.mem_image.mpr
       ⟨(⟨x,hxs⟩ : s),
         (RawC0CoordinateVertex.mem_valueOn_iff s q ⟨x,hxs⟩).mpr hx,
@@ -93,7 +93,7 @@ theorem RawC0CoordinateVertex.valueOn_image_of_closed_subset
     have hrC : r.val ∈ q.val.closedValue :=
       (RawC0CoordinateVertex.mem_valueOn_iff
         t ⟨q.val,hst q.property⟩ r).mp hr
-    have hrs : r.val ∈ s := hs q.val q.property r.val hrC
+    have hrs : r.val ∈ s := (hs q.val q.property) hrC
     let x : s := ⟨r.val,hrs⟩
     exact Finset.mem_image.mpr
       ⟨x,(RawC0CoordinateVertex.mem_valueOn_iff s q x).mpr hrC,
@@ -102,12 +102,12 @@ theorem RawC0CoordinateVertex.valueOn_image_of_closed_subset
 /-- The two literal inclusions of the common closed base P=S∩T. -/
 def RawC0CoordinateVertex.overlapLeft
     (s t : Finset RawC0CoordinateVertex)
-    (q : s ∩ t) : s :=
+    (q : {x : RawC0CoordinateVertex // x ∈ s ∩ t}) : s :=
   ⟨q.val,(Finset.mem_inter.mp q.property).1⟩
 
 def RawC0CoordinateVertex.overlapRight
     (s t : Finset RawC0CoordinateVertex)
-    (q : s ∩ t) : t :=
+    (q : {x : RawC0CoordinateVertex // x ∈ s ∩ t}) : t :=
   ⟨q.val,(Finset.mem_inter.mp q.property).2⟩
 
 /-- Complete unary values of the overlap embed EXACTLY onto
@@ -116,7 +116,7 @@ theorem RawC0CoordinateVertex.overlap_value_left
     (s t : Finset RawC0CoordinateVertex)
     (hs : RawC0CoordinateVertex.IsClosed s)
     (ht : RawC0CoordinateVertex.IsClosed t)
-    (q : s ∩ t) :
+    (q : {x : RawC0CoordinateVertex // x ∈ s ∩ t}) :
     (RawC0CoordinateVertex.valueOn (s ∩ t) q).image
       (RawC0CoordinateVertex.overlapLeft s t) =
     RawC0CoordinateVertex.valueOn s
@@ -132,7 +132,7 @@ theorem RawC0CoordinateVertex.overlap_value_right
     (s t : Finset RawC0CoordinateVertex)
     (hs : RawC0CoordinateVertex.IsClosed s)
     (ht : RawC0CoordinateVertex.IsClosed t)
-    (q : s ∩ t) :
+    (q : {x : RawC0CoordinateVertex // x ∈ s ∩ t}) :
     (RawC0CoordinateVertex.valueOn (s ∩ t) q).image
       (RawC0CoordinateVertex.overlapRight s t) =
     RawC0CoordinateVertex.valueOn t
@@ -146,7 +146,7 @@ theorem RawC0CoordinateVertex.overlap_value_right
 adjacency and nonadjacency relation from either factor. -/
 theorem RawC0CoordinateVertex.overlap_graph_agree
     (s t : Finset RawC0CoordinateVertex)
-    (q r : s ∩ t) :
+    (q r : {x : RawC0CoordinateVertex // x ∈ s ∩ t}) :
     (rawC0HostGraph.pullback
       (Subtype.val : s → RawC0CoordinateVertex)).adj
         (RawC0CoordinateVertex.overlapLeft s t q)
