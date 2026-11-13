@@ -42,7 +42,9 @@ noncomputable def symm
     have h :=
       (p.fullValues (p.graph.equiv.symm x)
         (p.graph.equiv.symm y)).symm
-    simpa [FiniteStrongPartialIso.symm] using h
+    change y.val ∈ CN x.val ↔
+      (p.graph.equiv.symm y).val ∈ CM (p.graph.equiv.symm x).val
+    simpa only [Equiv.apply_symm_apply] using h
 
 /-- Taking inverses preserves genuine pointwise extension of finite
 closed functional partial maps. No assumption on the ordering of
@@ -58,7 +60,7 @@ theorem Extends_symm
   let x := p.graph.equiv.symm y
   have hOld :
       (q.graph.equiv ⟨x.val, hs x.property⟩).val = y.val := by
-    simpa [x] using hValues x
+    simpa only [Equiv.apply_symm_apply] using hValues x
   have hEq :
       q.graph.equiv ⟨x.val, hs x.property⟩ =
         (⟨y.val, ht y.property⟩ :
