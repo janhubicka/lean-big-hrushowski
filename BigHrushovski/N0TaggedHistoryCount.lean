@@ -117,7 +117,7 @@ theorem canonicalTaggedNextChoices_card_of_uniform
     simpa only [rankLocalFactor, dif_pos h] using
       hUniform (O.ordersFromReverseHistory history)
         (r.symm ⟨history.length, h⟩)
-  · simp [canonicalTaggedNextChoices, rankLocalFactor, h]
+  · simp only [canonicalTaggedNextChoices, rankLocalFactor, dif_neg h, Finset.card_empty]
 
 /-- The number of reachable length-m histories of *actual tagged*
 SCC-order choices is the product of the true local cardinalities
