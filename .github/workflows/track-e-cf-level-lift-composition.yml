@@ -1,0 +1,48 @@
+name: Track E canonical level-lift composition
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckCFLevelLiftComposition.lean'
+      - 'CheckTrackECFLevelLiftComposition.lean'
+      - '.github/workflows/track-e-cf-level-lift-composition.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckCFLevelLiftComposition.lean'
+      - 'CheckTrackECFLevelLiftComposition.lean'
+      - '.github/workflows/track-e-cf-level-lift-composition.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-level-compose-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-level-compose-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile actual level-lift composition
+        run: lake build BigHrushovski.HrushovskiEllentuckCFLevelLiftComposition
+      - name: Exact theorem axiom audit and placeholder scan
+        run: |
+          lake env lean CheckTrackECFLevelLiftComposition.lean > track-e-level-compose-axioms.log
+          cat track-e-level-compose-axioms.log
+          python3 scripts/check_axioms.py track-e-level-compose-axioms.log CheckTrackECFLevelLiftComposition.lean
+          python3 scripts/check_no_placeholders.py
