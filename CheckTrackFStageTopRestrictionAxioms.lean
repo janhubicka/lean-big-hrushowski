@@ -1,0 +1,6 @@
+import BigHrushovski.N0StageTopOrderRestriction
+
+#print axioms BigHrushovski.FiniteOrientation.componentObject_subset_generatorClosure
+#print axioms BigHrushovski.FiniteOrientation.topOrderFromClosure_order_iff
+#print axioms BigHrushovski.FiniteOrientation.topOrderFromClosure_after_update
+#print axioms BigHrushovski.FiniteOrientation.inheritedClosure_injective_in_topOrder
