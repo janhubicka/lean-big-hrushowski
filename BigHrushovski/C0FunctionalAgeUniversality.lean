@@ -49,13 +49,15 @@ theorem fairLimit_universalForFiniteFunctionalC0
   let s : Finset ℕ := ∅
   have hNo (a : {v : ℕ // v ∈ s}) : False := by
     have ha : a.val ∈ (∅ : Finset ℕ) := a.property
-    simpa using ha
+    have hNo : a.val ∉ (∅ : Finset ℕ) := by simp
+    exact hNo ha
   have hClosed :
       fairGraphStages.limitGraph.IsClosedUnderValues
         fairUnaryStages.limitValue s := by
     intro x hx
     have hxf : x ∈ (∅ : Finset ℕ) := hx
-    simp at hxf
+    have hNo : x ∉ (∅ : Finset ℕ) := by simp
+    exact (hNo hxf).elim
   let j : {v : ℕ // v ∈ s} → B := fun a => (hNo a).elim
   have hj : Function.Injective j := by
     intro a b _
