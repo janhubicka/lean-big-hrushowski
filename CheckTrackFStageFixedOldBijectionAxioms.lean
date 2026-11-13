@@ -1,0 +1,8 @@
+import BigHrushovski.N0StageFixedOldClosureBijection
+
+#print axioms BigHrushovski.FiniteOrientation.stageClosureFromTop_fixedLower
+#print axioms BigHrushovski.FiniteOrientation.topOrderFromStageClosure
+#print axioms BigHrushovski.FiniteOrientation.remainingOrder_eq_of_same_topOrder
+#print axioms BigHrushovski.FiniteOrientation.stageClosureFromTop_surjective_fixedLower
+#print axioms BigHrushovski.FiniteOrientation.fixedLowerEnumerations_eq_stageClosureImage
+#print axioms BigHrushovski.FiniteOrientation.stageClosureFromTop_injective
