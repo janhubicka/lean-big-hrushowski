@@ -54,7 +54,9 @@ noncomputable def topOrderFromClosure
       (by
         intro u v h
         apply Subtype.ext
-        exact congrArg Subtype.val (e.symm.injective h))
+        exact congrArg
+          (fun w : O.componentClosure (O.componentGenerator B) => w.val)
+          (e.symm.injective h))
   exact (Fintype.orderIsoFinOfCardEq (↥B.val) rfl).toEquiv
 
 /-- Every pairwise comparison on B is inherited literally from
@@ -80,7 +82,9 @@ theorem topOrderFromClosure_order_iff
       (by
         intro z w h
         apply Subtype.ext
-        exact congrArg Subtype.val (e.symm.injective h))
+        exact congrArg
+          (fun w : O.componentClosure (O.componentGenerator B) => w.val)
+          (e.symm.injective h))
   let E : Fin (Fintype.card (↥B.val)) ≃o (↥B.val) :=
     Fintype.orderIsoFinOfCardEq (↥B.val) rfl
   change E.symm u < E.symm v ↔
@@ -152,6 +156,7 @@ theorem inheritedClosure_injective_in_topOrder
             (O.withComponentOrder orders B choice))
           (O.componentGenerator B)) := by
   intro a b hab
+  have hTop := congrArg (O.topOrderFromClosure B) hab
   calc
     a = O.topOrderFromClosure B
         (O.inheritedComponentEnumeration
@@ -163,7 +168,7 @@ theorem inheritedClosure_injective_in_topOrder
         (O.inheritedComponentEnumeration
           (O.assembleComponentEnumerations r
             (O.withComponentOrder orders B b))
-          (O.componentGenerator B)) := by rw [hab]
+          (O.componentGenerator B)) := hTop
     _ = b := O.topOrderFromClosure_after_update r orders B b
 
 end FiniteOrientation
