@@ -1,0 +1,6 @@
+import BigHrushovski.N0StageGeneratorFibreCount
+
+#print axioms BigHrushovski.FiniteOrientation.mem_canonicalNextGeneratorChoices
+#print axioms BigHrushovski.FiniteOrientation.canonicalGeneratorTest_iff_fixedBase
+#print axioms BigHrushovski.FiniteOrientation.canonicalFixedOldClass_eq_generatorChoiceImage
+#print axioms BigHrushovski.FiniteOrientation.canonicalNextGeneratorChoices_card
