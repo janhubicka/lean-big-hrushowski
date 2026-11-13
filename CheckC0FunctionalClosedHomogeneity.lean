@@ -1,0 +1,3 @@
+import BigHrushovski.C0FunctionalClosedHomogeneity
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimit_functionalHomogeneity_closedSubstructures
