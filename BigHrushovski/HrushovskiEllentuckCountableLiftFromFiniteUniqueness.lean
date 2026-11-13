@@ -23,6 +23,8 @@ property yet; that is the sole remaining mathematical hypothesis.
 
 namespace BigHrushovski.CFCoherentTower
 
+open CFStageCatalogue
+
 /-- Every literal finite birth stage admits a genuine ordered
 b-embedding realizing a strictly increasing assignment of source
 birth levels. This is the already certified finite prescribed-lift
