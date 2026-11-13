@@ -42,9 +42,14 @@ noncomputable def symm
     have h :=
       (p.fullValues (p.graph.equiv.symm x)
         (p.graph.equiv.symm y)).symm
+    have hx : p.graph.equiv (p.graph.equiv.symm x) = x :=
+      p.graph.equiv.apply_symm_apply x
+    have hy : p.graph.equiv (p.graph.equiv.symm y) = y :=
+      p.graph.equiv.apply_symm_apply y
+    rw [hx, hy] at h
     change y.val ∈ CN x.val ↔
       (p.graph.equiv.symm y).val ∈ CM (p.graph.equiv.symm x).val
-    simpa only [Equiv.apply_symm_apply] using h
+    exact h
 
 /-- Taking inverses preserves genuine pointwise extension of finite
 closed functional partial maps. No assumption on the ordering of
@@ -60,7 +65,11 @@ theorem Extends_symm
   let x := p.graph.equiv.symm y
   have hOld :
       (q.graph.equiv ⟨x.val, hs x.property⟩).val = y.val := by
-    simpa only [Equiv.apply_symm_apply] using hValues x
+    calc
+      (q.graph.equiv ⟨x.val, hs x.property⟩).val =
+          (p.graph.equiv x).val := hValues x
+      _ = y.val := congrArg Subtype.val
+        (p.graph.equiv.apply_symm_apply y)
   have hEq :
       q.graph.equiv ⟨x.val, hs x.property⟩ =
         (⟨y.val, ht y.property⟩ :
