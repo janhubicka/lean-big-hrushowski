@@ -23,7 +23,7 @@ These are independent **logical test roles**, not external referees.
 
 **R2 — Exact age, both directions:** The `age` field alone proves only \\(\operatorname{Age}(M_F^\dagger)\subseteq C_F\\). The strong universality theorem supplies the other inclusion. The iff newly exposes this essential distinction, without assuming full age in its hypotheses.
 
-**R3 — Literal finite carriers:** The finite graph is `B : GraphOn W` for *arbitrary* finite `W`, without a `LinearOrder W` assumption. The induced injection uses the unmodified `W` and preserves/refects adjacency for every pair.
+**R3 — Literal finite carriers:** The finite graph is `B : GraphOn W` for *arbitrary* finite `W`, without a `LinearOrder W` assumption. The induced injection uses the unmodified `W` and preserves and reflects adjacency for every pair.
 
 **R4 — Strict strength and no circularity:** The existence direction explicitly produces a *globally* strictly \\(d\\)-closed image inside the entire infinite birth graph. No isomorphism to a pre-existing \\(M_F\\) is used in the age equivalence. The reverse implication needs only inducedness, not closure.
 
