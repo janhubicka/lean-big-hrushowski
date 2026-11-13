@@ -1,0 +1,8 @@
+import BigHrushovski.N0StageOldPositionInvariance
+
+#print axioms BigHrushovski.FiniteOrientation.withComponentOrder_preserves_outside_comparisons
+#print axioms BigHrushovski.FiniteOrientation.assembledClosure_lowerPart_initial
+#print axioms BigHrushovski.FiniteOrientation.lowerPart_disjoint_namedComponent
+#print axioms BigHrushovski.FiniteOrientation.withComponentOrder_preserves_lowerPart_order
+#print axioms BigHrushovski.FiniteOrientation.withComponentOrder_preserves_lowerPositions
+#print axioms BigHrushovski.FiniteOrientation.twoComponentChoices_sameLowerPositions
