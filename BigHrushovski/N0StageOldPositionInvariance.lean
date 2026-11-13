@@ -62,7 +62,7 @@ theorem withComponentOrder_preserves_outside_comparisons
             (⟨u, huC⟩ : ↥C.val) (⟨v, hvC⟩ : ↥C.val) :=
         O.assembleComponentEnumerations_on_component r orders C
           ⟨u, huC⟩ ⟨v, hvC⟩
-      _ ↔ OrderBefore (O.withComponentOrder orders B newOrder C)
+      _ ↔ OrderBefore ((O.withComponentOrder orders B newOrder) C)
           (⟨u, huC⟩ : ↥C.val) (⟨v, hvC⟩ : ↥C.val) := by
         rw [hOrders]
       _ ↔ OrderBefore
