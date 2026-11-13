@@ -1,5 +1,6 @@
 import BigHrushovski.N0GeneratorCanonicality
 
+#print axioms BigHrushovski.FiniteOrientation.canonicalClosurePredicateAt_component_iff
 #print axioms BigHrushovski.FiniteOrientation.canonicalClosureMembership_iff_of_component_eq
 #print axioms BigHrushovski.FiniteOrientation.componentGenerator_mem
 #print axioms BigHrushovski.FiniteOrientation.isCanonicalAtComponent_iff_generator
