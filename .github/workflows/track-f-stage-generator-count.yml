@@ -1,0 +1,42 @@
+name: Track F uniform canonical next SCC generator fibre count
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0StageGeneratorFibreCount.lean'
+      - 'CheckTrackFStageGeneratorFibreCountAxioms.lean'
+      - 'scripts/check_track_f_stage_generator_count.py'
+      - 'BigHrushovski/N0StageFixedOldClosureBijection.lean'
+      - '.github/workflows/track-f-stage-generator-count.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0StageGeneratorFibreCount.lean'
+      - 'CheckTrackFStageGeneratorFibreCountAxioms.lean'
+      - 'scripts/check_track_f_stage_generator_count.py'
+      - 'BigHrushovski/N0StageFixedOldClosureBijection.lean'
+      - '.github/workflows/track-f-stage-generator-count.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  next-generator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Order.PiLex
+      - name: Build uniform canonical generator fibre count
+        run: lake build BigHrushovski.N0StageGeneratorFibreCount
+      - name: Kernel exact axioms and placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFStageGeneratorFibreCountAxioms.lean > track-f-gen-count-axioms.log
+          python3 scripts/check_axioms.py track-f-gen-count-axioms.log CheckTrackFStageGeneratorFibreCountAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite minimum-class image tests
+        run: |
+          python3 scripts/check_track_f_stage_generator_count.py
+          python3 scripts/check_track_f_stage_fixed_old_bijection.py
