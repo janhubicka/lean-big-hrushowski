@@ -8,6 +8,33 @@ The purpose is to show that neither countable coherence nor
 countable existence should remain an additional independent
 obstacle once that finite rigidity statement is established.
 
+## New integration checkpoint (13 November 2026)
+
+**The finite uniqueness premise has now been discharged.**
+Track B PRs #481, #485 and #490 were merged into main with
+kernel-checked exact finite unique lifting, also in the genuine
+partial (R,H) language. The new
+`HrushovskiEllentuckActualCountableLift.lean`
+imports `CFArbitraryFiniteUniqueness`, applies
+`arbitraryFiniteEmbedding_unique_of_targetLevels` to the
+precise finite-embedding predicate used below, and concludes:
+
+```lean
+existsUnique_globalOrderedBEmbedding_with_range
+```
+
+For every strictly increasing level map, this states **existence
+and uniqueness of an ordered countable b-embedding with exactly
+the corresponding complete-support range**, with no extra
+uniqueness or coherence assumption.
+
+The older conditional lemmas below are retained to expose
+their proof dependencies and support separate validation.
+The remaining work is the global b/(R,H) embedding equivalence
+and the actual topological approximation-space identification.
+The new theorem remains a candidate until its own exact-head
+Lean build and axiom audit succeed.
+
 ## The theorem
 
 Let \(F,K\) be the parameters of the actual countable
@@ -154,8 +181,9 @@ It has a dedicated audit with eleven exact
 #print axioms endpoints. No Section 6 validation
 marker is changed.
 
-**Pending theorem:** prove the actual finite uniqueness
-on complete one-generated closures. That proof should
-come from the Track B programme of comparing named
-supports, fresh-block sizes, ordered adjacency matrices,
-and canonical ordinals.
+**Historical dependency, now resolved:** Track B's finite
+uniqueness theorem was merged via PR #481, and its R/H
+counterpart via PR #485. The unconditional endpoint above
+applies these results explicitly. Do not promote Section 6
+until the countable theorem and its actual R/H/topological
+identification have exact-head verification.
