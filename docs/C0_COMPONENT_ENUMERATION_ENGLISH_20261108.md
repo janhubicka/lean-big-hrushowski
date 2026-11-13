@@ -97,9 +97,9 @@ are certified in #512. The direct corollary for *arbitrary* finite closed
 functional isomorphisms has since merged in #522, eliminating the need
 to carry a separate global-strongness hypothesis in that statement.
 
-The empty-base finite functional universality corollary #511 remains a
-separate Lean integration candidate until its dedicated exact-head
-build passes. None of these unordered results chooses the uniform local
+The empty-base finite functional universality corollary was
+subsequently certified and merged in #511, with its dedicated
+exact-head and repository-wide Lean builds passing. None of these unordered results chooses the uniform local
 ordered representatives, and none alone proves the paper's ordered
 Ramsey or big Ramsey assertions.
 
