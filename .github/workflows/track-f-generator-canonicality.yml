@@ -1,0 +1,38 @@
+name: Track F canonical code independent of SCC generator
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0GeneratorCanonicality.lean'
+      - 'CheckTrackFGeneratorCanonicalityAxioms.lean'
+      - 'scripts/check_track_f_generator_canonicality.py'
+      - '.github/workflows/track-f-generator-canonicality.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0GeneratorCanonicality.lean'
+      - 'CheckTrackFGeneratorCanonicalityAxioms.lean'
+      - 'scripts/check_track_f_generator_canonicality.py'
+      - '.github/workflows/track-f-generator-canonicality.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  generator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic
+      - name: Build generator canonicality
+        run: lake build BigHrushovski.N0GeneratorCanonicality
+      - name: Exact theorem axiom and placeholder audit
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFGeneratorCanonicalityAxioms.lean > track-f-gen-axioms.log
+          python3 scripts/check_axioms.py track-f-gen-axioms.log CheckTrackFGeneratorCanonicalityAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite invariance and negative control
+        run: python3 scripts/check_track_f_generator_canonicality.py
