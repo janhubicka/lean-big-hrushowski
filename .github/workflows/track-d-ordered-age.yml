@@ -32,6 +32,7 @@ on:
       - "BigHrushovski/C0CoordinateRawHostFullRelabel.lean"
       - "BigHrushovski/C0CoordinateRawClosedOverlap.lean"
       - "BigHrushovski/C0CoordinateMutualCodeKeyJ.lean"
+      - "BigHrushovski/C0CoordinateComponentKeyEquivalence.lean"
       - "BigHrushovski/C0CoordinateRawHostGeneratedOccurrence.lean"
       - "BigHrushovski/C0CoordinateRawHostBoundedFibres.lean"
       - "BigHrushovski/C0CoordinateRawHostFiniteOccurrence.lean"
@@ -55,6 +56,7 @@ on:
       - "scripts/check_c0_raw_host_full_relabel.py"
       - "scripts/check_c0_raw_closed_overlaps.py"
       - "scripts/check_c0_mutual_code_key_J.py"
+      - "scripts/check_c0_component_key_equivalence.py"
       - "scripts/check_c0_raw_host_generated_occurrences.py"
       - "scripts/check_c0_raw_host_bounded_fibres.py"
       - "docs/TRACK_D_UNIFORM_LOCAL_ORDER_SELECTION_20261108.md"
@@ -101,12 +103,13 @@ jobs:
           python3 scripts/check_c0_raw_host_full_relabel.py
           python3 scripts/check_c0_raw_closed_overlaps.py
           python3 scripts/check_c0_mutual_code_key_J.py
+          python3 scripts/check_c0_component_key_equivalence.py
           python3 scripts/check_c0_raw_host_generated_occurrences.py
           python3 scripts/check_c0_raw_host_bounded_fibres.py
       - name: Build and audit exact Track D bridge
         run: |
           set -euo pipefail
-          lake build BigHrushovski.C0CoordinateOrderedAgeBridge BigHrushovski.C0CoordinateIntrinsicLocalOrder BigHrushovski.C0CoordinateLocalOrderChoice BigHrushovski.C0CoordinateCanonicalLocalRepresentative BigHrushovski.C0CoordinateCoherentLocalOrders BigHrushovski.C0CoordinateCodeRelabelling BigHrushovski.C0CoordinateNestedLocalOrders BigHrushovski.C0CoordinateIntrinsicLowerChoice BigHrushovski.C0CoordinateLocalOccurrenceFamily BigHrushovski.C0CoordinateTopPermutationOrbit BigHrushovski.C0CoordinateTopOrbitNormalizer BigHrushovski.C0CoordinateLocalTypeMatrixBridge BigHrushovski.C0CoordinatePointedTopRoots BigHrushovski.C0CoordinateTopChoiceRestrictions BigHrushovski.C0CoordinateHereditaryCatalogueReduction BigHrushovski.C0CoordinateFixedMatrixOrder BigHrushovski.C0CoordinateWellSupportedCode BigHrushovski.C0CoordinateBoundedSupportedFinite BigHrushovski.C0CoordinateRawC0Witness BigHrushovski.C0CoordinateNestedPresentedCodes BigHrushovski.C0CoordinateIntrinsicChildSupport BigHrushovski.C0CoordinateRawHostFiniteValue BigHrushovski.C0CoordinateRawHostUnaryClosure BigHrushovski.C0CoordinateRawHostGraph BigHrushovski.C0CoordinateRawHostFiniteClosure BigHrushovski.C0CoordinateRawHostRelabel BigHrushovski.C0CoordinateRawHostFullRelabel BigHrushovski.C0CoordinateRawClosedOverlap BigHrushovski.C0CoordinateMutualCodeKeyJ BigHrushovski.C0CoordinateRawHostGeneratedOccurrence BigHrushovski.C0CoordinateRawHostBoundedFibres BigHrushovski.C0CoordinateRawHostFiniteOccurrence
+          lake build BigHrushovski.C0CoordinateOrderedAgeBridge BigHrushovski.C0CoordinateIntrinsicLocalOrder BigHrushovski.C0CoordinateLocalOrderChoice BigHrushovski.C0CoordinateCanonicalLocalRepresentative BigHrushovski.C0CoordinateCoherentLocalOrders BigHrushovski.C0CoordinateCodeRelabelling BigHrushovski.C0CoordinateNestedLocalOrders BigHrushovski.C0CoordinateIntrinsicLowerChoice BigHrushovski.C0CoordinateLocalOccurrenceFamily BigHrushovski.C0CoordinateTopPermutationOrbit BigHrushovski.C0CoordinateTopOrbitNormalizer BigHrushovski.C0CoordinateLocalTypeMatrixBridge BigHrushovski.C0CoordinatePointedTopRoots BigHrushovski.C0CoordinateTopChoiceRestrictions BigHrushovski.C0CoordinateHereditaryCatalogueReduction BigHrushovski.C0CoordinateFixedMatrixOrder BigHrushovski.C0CoordinateWellSupportedCode BigHrushovski.C0CoordinateBoundedSupportedFinite BigHrushovski.C0CoordinateRawC0Witness BigHrushovski.C0CoordinateNestedPresentedCodes BigHrushovski.C0CoordinateIntrinsicChildSupport BigHrushovski.C0CoordinateRawHostFiniteValue BigHrushovski.C0CoordinateRawHostUnaryClosure BigHrushovski.C0CoordinateRawHostGraph BigHrushovski.C0CoordinateRawHostFiniteClosure BigHrushovski.C0CoordinateRawHostRelabel BigHrushovski.C0CoordinateRawHostFullRelabel BigHrushovski.C0CoordinateRawClosedOverlap BigHrushovski.C0CoordinateMutualCodeKeyJ BigHrushovski.C0CoordinateComponentKeyEquivalence BigHrushovski.C0CoordinateRawHostGeneratedOccurrence BigHrushovski.C0CoordinateRawHostBoundedFibres BigHrushovski.C0CoordinateRawHostFiniteOccurrence
           lake env lean TrackDOrderedAgeCheckAxioms.lean > track-d-ordered-age-axioms.log
           python3 scripts/check_axioms.py track-d-ordered-age-axioms.log TrackDOrderedAgeCheckAxioms.lean
           python3 scripts/check_no_placeholders.py
