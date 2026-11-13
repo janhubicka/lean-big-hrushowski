@@ -1,0 +1,3 @@
+import BigHrushovski.C0FunctionalActualForth
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteStrongPartialIso.FiniteClosedFunctionalPartialIso.fairLimit_forth
