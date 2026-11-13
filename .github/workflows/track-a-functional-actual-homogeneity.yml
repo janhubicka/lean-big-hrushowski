@@ -1,0 +1,56 @@
+name: Track A actual C0 closed functional homogeneity
+on:
+  push:
+    paths:
+      - 'BigHrushovski/C0FunctionalActualHomogeneity.lean'
+      - 'BigHrushovski/C0FunctionalActualForth.lean'
+      - 'BigHrushovski/C0FunctionalPartialBaseTransport.lean'
+      - 'CheckC0FunctionalActualHomogeneity.lean'
+      - 'scripts/check_c0_functional_actual_homogeneity.py'
+      - '.github/workflows/track-a-functional-actual-homogeneity.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/C0FunctionalActualHomogeneity.lean'
+      - 'BigHrushovski/C0FunctionalActualForth.lean'
+      - 'BigHrushovski/C0FunctionalPartialBaseTransport.lean'
+      - 'CheckC0FunctionalActualHomogeneity.lean'
+      - 'scripts/check_c0_functional_actual_homogeneity.py'
+      - '.github/workflows/track-a-functional-actual-homogeneity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache Lean toolchain
+        uses: actions/cache@v5
+        with:
+          path: ~/.elan/toolchains
+          key: lean-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}
+      - name: Cache Lake workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build actual full functional homogeneity
+        run: lake build BigHrushovski.C0FunctionalActualHomogeneity
+      - name: Five exact axiom endpoints and placeholder scan
+        run: |
+          set -euo pipefail
+          lake env lean CheckC0FunctionalActualHomogeneity.lean > c0-actual-homogeneity-axioms.log
+          python3 scripts/check_axioms.py c0-actual-homogeneity-axioms.log CheckC0FunctionalActualHomogeneity.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite closed joint-step and automorphism test
+        run: python3 scripts/check_c0_functional_actual_homogeneity.py
+      - name: Independent finite actual forth test
+        run: python3 scripts/check_c0_functional_actual_forth.py
