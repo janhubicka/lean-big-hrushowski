@@ -1,72 +1,22 @@
+import BigHrushovski.CFCompleteFiniteUniqueBLift
 import BigHrushovski.CFArbitraryFiniteRHUniqueness
 import BigHrushovski.CFPrescribedFiniteRHLift
 
 /-!
-# Complete finite unique level lifting for the C_F birth structure
+# Compatibility with finite R,H level lifting
 
-The constructed prescribed finite lift already establishes existence:
-for any finite b-closed source and every assignment strictly increasing
-on its represented birth levels, it gives one injective induced
-embedding preserving the complete b-value, actual canonical order,
-birth-level preorder, and exact prescribed birth labels. The same
-map preserves the genuine R and partial H operations, including
-reflection of H's domain.
-
-The arbitrary finite uniqueness induction proves that no second
-embedding with these exact data exists. Combining both arguments
-now yields the existence-and-uniqueness statement needed by the
-manuscript, first in the auxiliary b-language, then in the actual
-(R,H) language. Empty sources and arbitrary gaps in represented
-source and target levels are included without separate cases.
-
-This is a finite result. Compatibility of lifts under restrictions
-and composition, and the monoid of countable self-embeddings,
-are separate subsequent statements.
+The primary unary theorem is re-exported from
+`CFCompleteFiniteUniqueBLift`. The theorem below retains the
+complete R-values, all defined H-values and H-domain reflection
+for the equivalent block-root presentation. Its statement and
+proof are unchanged. The public theorem names remain available
+through this module for existing clients.
 -/
 
 namespace BigHrushovski
 namespace CFCoherentTower
 
 open CFStageCatalogue
-
-/-- Every strictly increasing assignment of the FINITELY
-represented source birth levels has a unique embedding in
-the complete auxiliary b-functional birth language, including
-the actual canonical order, reflected level preorder, induced
-graph and exact complete unary b-values.
-
-No extension of the level assignment to a globally increasing
-map on all natural numbers is assumed. -/
-theorem finiteSourcePrescribedLift_existsUnique_orderedB
-    (F : ℕ → ℝ) (K : ℕ → ℕ)
-    (s : Finset (Vertex F K))
-    (hs : IsBirthBlockClosed F K s)
-    (level : ℕ → ℕ)
-    (hStrict : StrictOnRepresented F K s level) :
-    ∃! f : SupportCarrier (Vertex F K) s → Vertex F K,
-      Function.Injective f ∧
-      (∀ x y : SupportCarrier (Vertex F K) s,
-        (countableGraph F K).adj x.val y.val ↔
-          (countableGraph F K).adj (f x) (f y)) ∧
-      (∀ x : SupportCarrier (Vertex F K) s,
-        (finiteSourceBirthBValue F K s x).image f =
-          birthBValue F K (f x)) ∧
-      (∀ x : SupportCarrier (Vertex F K) s,
-        (f x).1 = level x.val.1) ∧
-      (∀ x y : SupportCarrier (Vertex F K) s,
-        BirthLevelLe F K x.val y.val ↔
-          BirthLevelLe F K (f x) (f y)) ∧
-      (∀ x y : SupportCarrier (Vertex F K) s,
-        canonicalBirthLt F K x.val y.val ↔
-          canonicalBirthLt F K (f x) (f y)) := by
-  obtain ⟨f, hfInj, hfAdj, hfB, hfBirth, hfLevel, hfOrder⟩ :=
-    finiteSourcePrescribedLift_exists_ordered
-      F K s hs level hStrict
-  refine ⟨f, ⟨hfInj, hfAdj, hfB, hfBirth, hfLevel, hfOrder⟩, ?_⟩
-  intro g ⟨hgInj, hgAdj, hgB, hgBirth, hgLevel, hgOrder⟩
-  exact arbitraryFiniteEmbedding_unique_of_prescribedLevels
-    F K s hs level g f hgInj hfInj hgAdj hfAdj hgB hfB
-    hgLevel hfLevel hgOrder hfOrder hgBirth hfBirth
 
 /-- Complete finite unique level lifting in the manuscript's
 actual (R,H) functional language. The operation H is PARTIAL:
