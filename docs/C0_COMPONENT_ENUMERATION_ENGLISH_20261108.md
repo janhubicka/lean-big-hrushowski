@@ -1,6 +1,6 @@
 # Countable C₀ closure-component enumeration: English proof plan
 
-Date: 8 November 2026; status updated 12 November 2026.
+Date: 8 November 2026; status updated 13 November 2026.
 This proof plan is **not** a separate Lean certificate. It isolates the remaining enumeration argument in
 `prop:C0-free-generic` after the countable functional limit's
 cofinal-stage extension property and graph-reduct identification
@@ -120,8 +120,12 @@ The **fair recursive finite prefixes and their exhaustion** were
 kernel-certified and merged in PR #412. PR #417 subsequently certified
 each vertex's unique component birth, the exact fresh component, and
 inclusion of its entire complete unary value in the birth prefix.
-What remains is the manuscript's prescribed ordered vertex enumeration,
-including the uniform choice of order *inside* each component.
+The fair prefixes have since been certified as cofinal canonical finite
+presentations (#433). The lexicographic order of vertices, with any
+componentwise injective local numbering, has also been shown to have
+order type ω (#439, #457). What remains for the paper's ordered
+expansion is the **uniform choice of ordered representative inside
+each component**, not another construction of the component order.
 
 The intrinsic finite-class lemma alone does not justify this
 step. The hereditary and frontloading theorems are needed.
@@ -146,64 +150,76 @@ ordered lower components. Ordering every block by
 numerical vertex labels alone need not satisfy the
 uniform representative convention.
 
-## 5. Countable functional stage genericity and reduct identification
+## 5. Functional extension, universality and homogeneity
 
-The unconditional functional-stage extension property and the
-identification of the actual graph reduct with M₀ were kernel-certified
-and merged in PR #375. The countable structure has finite closed covers,
-a correct finite canonical age, and answers every finite functional
-extension over each canonical stage.
+The countable functional-stage extension property and identification
+of the graph reduct with M₀ were kernel-certified and merged in
+PR #375. The constructed limit has finite closed covers, and each
+finite canonical stage has the correct complete unary values.
 
-To obtain the conventional Fraïssé extension property
-over an **arbitrary** finite closed substructure A,
-choose a finite canonical stage S containing A.
-Free-amalgamate the requested finite functional extension
-B of A with S over A using the already verified finite
-two-sided functional amalgamation. The resulting finite
-functional extension of S is realized over S by the
-stage extension property, hence B is realized over A.
+The *arbitrary closed-base* extension property is now proved, not
+postulated. The proof first chooses a finite canonical stage S
+containing the given finite C-closed base A. It then forms the
+two-sided functional free amalgam of S and the requested finite
+extension B over A, preserving **both** complete unary functions.
+The finite amalgam is realized over S by the stage extension
+property, giving an embedding of B which fixes A pointwise.
+The constituent finite two-sided amalgamation (#451), named-base
+response (#453), complete named values (#454), and full theorem
+(#459) have all passed their exact-head Lean and source audits
+and merged.
 
-This gives universality and homogeneity by the usual finite
-back-and-forth argument, using local finiteness of the
-finite-valued unary closure. The details have not yet been
-encoded as a global Lean theorem and must not be inferred
-merely from the reduct isomorphism with M₀.
+The actual functional back-and-forth limit is certified in #456.
+The closed functional joint-step construction and the extension
+of each finite closed functional partial automorphism to a
+global automorphism were certified on a clean branch and merged
+in #512. This is **functional homogeneity**, not merely a graph
+reduct isomorphism. A final corollary stated directly for any
+isomorphism of arbitrary finite C-closed subsets (without separate
+strongness certificates) is in clean draft #522; its original
+stacked theorem passed Lean on #495, while the new integration
+head requires fresh checks. A separate finite functional age
+universality corollary from the empty closed base is in draft #511,
+also awaiting exact-head certification.
 
-## Remaining independent Lean tasks
+These statements concern the **unordered functional C₀ limit**.
+They do not choose a local ordered representative within each
+intrinsic component, nor do they establish the ordered expansion's
+Ramsey properties.
 
-1. **Completed and merged:** the fair finite-prefix recursion and
-   exhaustion (#412), enabled minimal strong steps (#400), and unique
-   whole-component births and full values at birth (#417). The
-   chronological order of components has type ω, but the manuscript's
-   **ordered vertex expansion** is a separate assertion.
-2. **Completed and merged:** PR #419 constructs the literal finite
-   birth index and identifies its fibres with the equality classes of
-   complete unary values. PR #422 uses the component-order invariance
-   theorem (#418) to compare it with any canonical presentation of
-   the same finite fair prefix.
-3. **Completed and merged:** PR #427 produces that comparison presentation
-   directly from a cofinal finite stage by restriction to the literal
-   closed fair prefix. Thus the *entire* canonical value calculated
-   from the fair component index equals the original unary function C.
-   No auxiliary presentation is assumed in the resulting theorem.
-4. Construct and certify a **vertex enumeration of order type ω** that
-   keeps each intrinsic component consecutive and obeys the uniform
-   choice of ordered local representatives over the already ordered
-   lower part. Arbitrary numerical orders within components do not
-   establish that convention.
-5. Extend the certified functional extension property from cofinal
-   canonical stages to arbitrary finite closed substructures using
-   the finite two-sided functional amalgamation theorem; formalize
-   universality, homogeneity and uniqueness as applicable.
+## Certified results and remaining obligations
 
-The manuscript's full proposition remains PARTIAL. The complete-unary
-value bridge is now Lean-certified; a canonical ordered **vertex**
-enumeration with uniform local representatives and functional
-homogeneity over arbitrary finite closed bases remain open.
-Draft PR #433 separately packages the fair component prefixes as
-canonical finite presentations, and draft PR #439 isolates the
-order-theoretic interface for arbitrary injective local numberings.
-Neither draft is counted as validated before its exact-head CI passes.
+1. **Verified:** fair non-starving component enumeration, exhaustion,
+   minimal strong component increments and cofinal finite canonical
+   presentations (#400, #412, #417, #433). The actual finite birth
+   indices recover precisely the intrinsic component classes (#419).
+2. **Verified:** the complete canonical unary operation is unchanged
+   by the fair component chronology, including transfer from the
+   literal closed finite stages (#418, #422, #427).
+3. **Verified:** any componentwise injective local numbering makes
+   the fair components consecutive in a strict vertex order of
+   type ω, with the explicit predecessor-rank order equivalence
+   (#439 and #457). This is not a proof of the **uniform chosen
+   local ordered representative** convention in the manuscript.
+4. **Verified:** arbitrary finite C-closed functional bases have
+   the full extension property (#459); the actually constructed
+   limit has the finite joint functional extension property and
+   is homogeneous for finite closed functional partial isomorphisms
+   (#512).
+5. **Pending exact-head CI:** the clean direct finite-closed-base
+   homogeneity corollary (#522) and the empty-base finite-age
+   universality corollary (#511). Their statements do not add
+   hypotheses to the already certified extension property.
+6. **Still independent:** the uniform coherent local ordering
+   required for the paper's ordered Ramsey expansion, and a
+   fully general functional Fraïssé uniqueness theorem if that is
+   included in the final statement.
+
+The manuscript's full ordered proposition remains **PARTIAL**.
+The unordered functional C₀ characterization should not be
+confused with the additional Ramsey expansion assertions.
+Neither the frozen manuscript text nor its validation markers
+are changed by this status update.
 
 ## Adversarial mathematical checks
 
@@ -234,14 +250,19 @@ Neither draft is counted as validated before its exact-head CI passes.
   of an entire intrinsic-component interval. The separate closed-set
   theorem supplies global strongness; neither follows from arbitrary
   unary data.
-- **Formal trust/referee (updated 12 November):** #400, #402, #412,
-  #417, #418, #419, #422 and #427 are merged after dedicated and full
-  exact-head Lean checks. PRs #433 and #439 are new draft steps:
-  canonical fair finite presentations and the general vertex-order
-  interface. They do not upgrade the manuscript validation marker.
-- **Text/referee (updated 12 November):** the order-ω component
-  exhaustion and the complete unary values in the fair component
-  chronology are proved. The prescribed ordered **vertex** enumeration
-  and within-component representative convention are still open.
-  The reduct identification merged in #375 does not establish
-  functional homogeneity over arbitrary finite closed bases.
+- **Formal trust/referee (updated 13 November):** the full fair
+  chronology and complete unary fidelity (#400, #402, #412,
+  #417–#419, #422, #427, #433, #439 and #457), plus the
+  all-closed-base functional extension and actual joint-step
+  homogeneity (#451, #453, #454, #459, #512), are merged
+  after their dedicated and repository-wide exact-head checks.
+  The final direct corollary #522 and finite universality #511
+  remain open pending fresh exact-head CI. Neither is treated as
+  a manuscript certificate before verification.
+- **Text/referee (updated 13 November):** a vertex order of type ω
+  with convex intrinsic components is now certified for each
+  componentwise injective local numbering. The prescribed
+  **uniform local representative convention** remains open;
+  arbitrary numerical labels are insufficient. Unlike the
+  graph reduct identification of #375, the functional
+  homogeneity result #512 explicitly preserves complete C-values.
