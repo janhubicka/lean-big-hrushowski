@@ -5,12 +5,14 @@ on:
     paths:
       - 'BigHrushovski/HrushovskiEllentuckFiniteRestriction.lean'
       - 'BigHrushovski/HrushovskiEllentuckCountableLiftFromFiniteUniqueness.lean'
+      - 'BigHrushovski/HrushovskiEllentuckActualCountableLift.lean'
       - 'CheckTrackECountableLiftFromFiniteUniqueness.lean'
       - '.github/workflows/track-e-countable-lift-criterion.yml'
   pull_request:
     paths:
       - 'BigHrushovski/HrushovskiEllentuckFiniteRestriction.lean'
       - 'BigHrushovski/HrushovskiEllentuckCountableLiftFromFiniteUniqueness.lean'
+      - 'BigHrushovski/HrushovskiEllentuckActualCountableLift.lean'
       - 'CheckTrackECountableLiftFromFiniteUniqueness.lean'
       - '.github/workflows/track-e-countable-lift-criterion.yml'
   workflow_dispatch:
@@ -44,6 +46,7 @@ jobs:
         run: |
           lake build BigHrushovski.HrushovskiEllentuckFiniteRestriction
           lake build BigHrushovski.HrushovskiEllentuckCountableLiftFromFiniteUniqueness
+          lake build BigHrushovski.HrushovskiEllentuckActualCountableLift
       - name: Audit exact theorem axioms and source placeholders
         run: |
           lake env lean CheckTrackECountableLiftFromFiniteUniqueness.lean > track-e-countable-lift-axioms.log
