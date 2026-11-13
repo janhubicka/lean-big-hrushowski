@@ -1,4 +1,4 @@
-import BigHrushovski.HrushovskiEllentuckCountableLiftFromFiniteUniqueness
+import BigHrushovski.HrushovskiEllentuckActualCountableLift
 
 /-!
 Exact Track E audit: finite b-closed restriction, uniqueness transfer
@@ -21,3 +21,7 @@ Section 6 Ellentuck theorem.
 #print axioms BigHrushovski.CFCoherentTower.exists_globalOrderedBEmbedding_of_singleton_uniqueness
 #print axioms BigHrushovski.CFCoherentTower.exists_globalOrderedBEmbedding_range_eq_of_singleton_uniqueness
 #print axioms BigHrushovski.CFCoherentTower.globalOrderedBEmbedding_unique_of_singleton_uniqueness
+
+#print axioms BigHrushovski.CFCoherentTower.finiteOrderedBEmbedding_unique_of_birthLevels
+#print axioms BigHrushovski.CFCoherentTower.singletonClosure_finiteOrderedBEmbedding_unique
+#print axioms BigHrushovski.CFCoherentTower.existsUnique_globalOrderedBEmbedding_with_range
