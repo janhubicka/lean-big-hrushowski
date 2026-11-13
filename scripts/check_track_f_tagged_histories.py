@@ -74,12 +74,6 @@ def check(out):
             assert legal_local_codes(out,assembled,cc)
             assert assembled not in seen
             seen.add(assembled)
-        actual={
-            o for o in permutations(range(len(out)))
-            if legal_components(o,cc) and legal_local_codes(out,o,cc)
-            and tuple(next(i for i,(B,_) in enumerate(cc) if v in B)
-                      for v in o if v==min(next(B for B,_ in cc if v in B))) == ()
-        } if False else None
         # Compare against all canonical orders with this exact SCC ranking.
         actual=set()
         for o in permutations(range(len(out))):
