@@ -25,6 +25,8 @@ structure and are not postulated here.
 
 namespace BigHrushovski.CFCoherentTower
 
+open CFStageCatalogue
+
 /-- Ranges of actual ordered partial (R,H) self-embeddings
 with some strictly increasing birth-level action. -/
 def ActualOrderedRHCopyDomains
