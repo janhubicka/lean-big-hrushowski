@@ -1,0 +1,40 @@
+name: Track F top SCC order from induced closure enumeration
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0StageTopOrderRestriction.lean'
+      - 'CheckTrackFStageTopRestrictionAxioms.lean'
+      - 'scripts/check_track_f_stage_top_restriction.py'
+      - '.github/workflows/track-f-stage-top-restriction.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0StageTopOrderRestriction.lean'
+      - 'CheckTrackFStageTopRestrictionAxioms.lean'
+      - 'scripts/check_track_f_stage_top_restriction.py'
+      - '.github/workflows/track-f-stage-top-restriction.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  top-restriction:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Order.PiLex
+      - name: Build top SCC restriction
+        run: lake build BigHrushovski.N0StageTopOrderRestriction
+      - name: Exact axiom and no-placeholder audit
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFStageTopRestrictionAxioms.lean > track-f-top-restriction-axioms.log
+          python3 scripts/check_axioms.py track-f-top-restriction-axioms.log CheckTrackFStageTopRestrictionAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite restriction tests
+        run: |
+          python3 scripts/check_track_f_stage_top_restriction.py
+          python3 scripts/check_track_f_stage_old_positions.py
