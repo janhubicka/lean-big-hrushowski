@@ -21,6 +21,8 @@ is no compactness or new Fraisse extension assumption in this step.
 
 namespace BigHrushovski.CFCoherentTower
 
+open CFStageCatalogue
+
 /-- A choice of maps on the exact finite birth-stage images. -/
 abbrev StageEmbeddingFamily (F : ℕ → ℝ) (K : ℕ → ℕ) :=
   (n : ℕ) → SupportCarrier (Vertex F K) (stageImage F K n) → Vertex F K
