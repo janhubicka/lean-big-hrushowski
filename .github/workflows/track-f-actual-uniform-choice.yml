@@ -1,0 +1,40 @@
+name: Track F actual next SCC choice count interface
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0StageActualFibreInterface.lean'
+      - 'CheckTrackFActualUniformChoiceAxioms.lean'
+      - 'scripts/check_track_f_actual_uniform_interface.py'
+      - '.github/workflows/track-f-actual-uniform-choice.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0StageActualFibreInterface.lean'
+      - 'CheckTrackFActualUniformChoiceAxioms.lean'
+      - 'scripts/check_track_f_actual_uniform_interface.py'
+      - '.github/workflows/track-f-actual-uniform-choice.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-next-fibre:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Order.PiLex
+      - name: Build actual next-SCC uniformity interface
+        run: lake build BigHrushovski.N0StageActualFibreInterface
+      - name: Exact kernel axiom and placeholder audit
+        run: |
+          set -euo pipefail
+          lake env lean CheckTrackFActualUniformChoiceAxioms.lean > track-f-actual-uniform-axioms.log
+          python3 scripts/check_axioms.py track-f-actual-uniform-axioms.log CheckTrackFActualUniformChoiceAxioms.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite all-generator regression
+        run: |
+          python3 scripts/check_track_f_actual_uniform_interface.py
+          python3 scripts/check_track_f_stage_generator_count.py
