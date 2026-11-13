@@ -47,15 +47,15 @@ theorem fairLimit_universalForFiniteFunctionalC0
           (FiniteC0.canonicalValue H κ u).image f) := by
   classical
   let s : Finset ℕ := ∅
-  have hNo (a : {v : ℕ // v ∈ s}) : False := by
-    have hEmpty : a.val ∉ (∅ : Finset ℕ) := by simp
-    exact hEmpty a.property
+  have noMemEmpty (x : ℕ) : x ∉ (∅ : Finset ℕ) := by
+    simp
+  have hNo (a : {v : ℕ // v ∈ s}) : False :=
+    noMemEmpty a.val a.property
   have hClosed :
       fairGraphStages.limitGraph.IsClosedUnderValues
         fairUnaryStages.limitValue s := by
     intro x hx
-    have hEmpty : x ∉ (∅ : Finset ℕ) := by simp
-    exact (hEmpty hx).elim
+    exact (noMemEmpty x hx).elim
   let j : {v : ℕ // v ∈ s} → B := fun a => (hNo a).elim
   have hj : Function.Injective j := by
     intro a b _
