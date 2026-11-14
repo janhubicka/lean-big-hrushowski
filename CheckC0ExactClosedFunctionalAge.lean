@@ -1,0 +1,4 @@
+import BigHrushovski.C0ExactClosedFunctionalAge
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimit_closedFinite_isCanonicalC0
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimit_realizesCanonicalC0Structure
