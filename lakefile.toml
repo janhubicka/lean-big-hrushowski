@@ -7,5 +7,10 @@ name = "successor-tree-lean"
 git = "https://github.com/janhubicka/lean-successors.git"
 rev = "ce5ce187ef88e28d84a4a465517b3f9c87a0640a"
 
+[[require]]
+name = "ramsey-space-todorcevic"
+git = "https://github.com/janhubicka/lean-ramsey-space-todorcevic.git"
+rev = "0a585fc01894c63381451cdb38c38a9f31e4a7a7"
+
 [[lean_lib]]
 name = "BigHrushovski"
