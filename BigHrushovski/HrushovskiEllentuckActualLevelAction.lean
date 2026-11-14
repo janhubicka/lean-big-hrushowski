@@ -173,4 +173,44 @@ theorem orderedRHEmbedding_iff_exists_strict_level_action
     exact ⟨hf.1, hf.2.1, hf.2.2.1,
       hf.2.2.2.1, hf.2.2.2.2.2⟩
 
+/-- Copy domains of all embeddings of the *named* ordered
+(R,H) structure, without assuming any level action beforehand. -/
+def AllOrderedRHCopyDomains
+    (F : ℕ → ℝ) (K : ℕ → ℕ) :
+    Set (Set (Vertex F K)) :=
+  {D | ∃ f : Vertex F K → Vertex F K,
+    IsGlobalOrderedRHEmbeddingWithoutAction F K f ∧
+    Set.range f = D}
+
+/-- With an actual vertex at every birth level, the ranges of
+ALL ordered (R,H) embeddings are precisely the complete-support
+domains selected by infinite increasing sets of birth levels.
+No preliminary level-action hypothesis remains. -/
+theorem allOrderedRHCopyDomains_eq_supported
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (hReq : ∀ n : ℕ, ∃ r : BirthRequest F K n,
+      r.support = ∅) :
+    AllOrderedRHCopyDomains F K =
+      {D : Set (Vertex F K) |
+        ∃ h : ℕ → ℕ, StrictMono h ∧
+          birthLevelDomain F K (Set.range h) = D} := by
+  ext D
+  constructor
+  · rintro ⟨f, hf, hD⟩
+    obtain ⟨h, hh, hfH⟩ :=
+      orderedRHEmbedding_has_strict_level_action F K hReq f hf
+    have hfB : IsGlobalOrderedBEmbedding F K h f :=
+      (isGlobalOrderedBEmbedding_iff_RH F K h f).mpr hfH
+    obtain ⟨hfInj, hfAdj, hfVal, _, hfOrder, hfBirth⟩ := hfB
+    have hRange := birthEmbedding_range_eq_levelDomain_of_finite_uniqueness
+      F K f h hh hfInj hfAdj hfVal hfOrder hfBirth
+      (singletonClosure_finiteOrderedBEmbedding_unique F K)
+    exact ⟨h, hh, hRange.symm.trans hD⟩
+  · rintro ⟨h, hh, hD⟩
+    obtain ⟨f, ⟨hf, hRange⟩, _⟩ :=
+      existsUnique_globalOrderedRHEmbedding_with_range F K h hh
+    obtain ⟨hfInj, hfAdj, hfPre, hfOrder, _, hfValues⟩ := hf
+    exact ⟨f, ⟨hfInj, hfAdj, hfPre, hfOrder, hfValues⟩,
+      hRange.trans hD⟩
+
 end BigHrushovski.CFCoherentTower
