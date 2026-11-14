@@ -47,6 +47,18 @@ embeddings being classified**. The same explicit real-stage
 witness hypothesis is essential. It still does not construct
 or check the finite-approximation map.
 
+## Real-growth application
+
+The new two `real...` corollaries discharge the witness hypothesis
+using the previously certified theorem
+`singletonEmptySupportRequest_every_realStage`. Their exact
+assumptions are the paper's monotone, unbounded real-growth
+function, the finite free-join property, the empty closed base,
+and the singleton admissibility inequality. Under these assumptions
+the copy-domain classification above applies to the actual
+ordered `C_F` presentation, without a further level-witness
+or uniqueness assumption.
+
 ## Adversarial mathematical checks
 
 1. **Actual witnesses.** The representatives are genuine birth
