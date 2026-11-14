@@ -55,8 +55,10 @@ theorem canonicalValue_restrict_emptyOrMinimalSteps
         Function.Injective (Subtype.val : {v : V // v ∈ s} → V))
     rw [oldStage_restrict_image κ s k,
       oldStage_restrict_image κ s (k + 1), hEq]
-  · exact canonicalValue_restrict_minimalStep_at
-      G κ s hClosed k hk hMin
+  · rcases canonicalValue_restrict_minimalStep_at
+        G κ s hClosed k hk hMin with hEqual | hStep
+    · exact Or.inl hEqual.symm
+    · exact Or.inr hStep
 
 /-- Restriction to a complete-unary-closed finite set retains both
 the empty-or-minimal strong presentation and **all** complete unary
