@@ -1,0 +1,6 @@
+import BigHrushovski.N0TaggedHistoryInverse
+
+#print axioms BigHrushovski.FiniteOrientation.ordersFromReverseHistory_cons
+#print axioms BigHrushovski.FiniteOrientation.taggedPrefixFromAssignment_length
+#print axioms BigHrushovski.FiniteOrientation.ordersFrom_taggedPrefix_at_rank_lt
+#print axioms BigHrushovski.FiniteOrientation.ordersFrom_completeTaggedHistory

@@ -1,0 +1,40 @@
+name: Track F labelled tagged history reconstruction
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0TaggedHistoryInverse.lean'
+      - 'CheckAxiomsN0TaggedHistoryInverse.lean'
+      - 'scripts/check_track_f_tagged_inverse.py'
+      - '.github/workflows/track-f-tagged-history-inverse.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0TaggedHistoryInverse.lean'
+      - 'CheckAxiomsN0TaggedHistoryInverse.lean'
+      - 'scripts/check_track_f_tagged_inverse.py'
+      - '.github/workflows/track-f-tagged-history-inverse.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tagged-inverse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic
+      - name: Build complete tagged-history inverse
+        run: lake build BigHrushovski.N0TaggedHistoryInverse
+      - name: Exact-head named theorem axiom and placeholder audit
+        run: |
+          set -euo pipefail
+          lake env lean CheckAxiomsN0TaggedHistoryInverse.lean > tagged-inverse-axioms.log
+          python3 scripts/check_axioms.py tagged-inverse-axioms.log CheckAxiomsN0TaggedHistoryInverse.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent labelled history reconstruction
+        run: |
+          python3 scripts/check_track_f_tagged_inverse.py
+          python3 scripts/check_track_f_tagged_histories.py
