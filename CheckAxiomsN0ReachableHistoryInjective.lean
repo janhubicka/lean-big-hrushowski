@@ -1,0 +1,6 @@
+import BigHrushovski.N0ReachableHistoryInjective
+
+#print axioms BigHrushovski.FiniteOrientation.taggedPrefixFromAssignment_eq_of_agree
+#print axioms BigHrushovski.FiniteOrientation.withNewRankOrder_preserves_earlier
+#print axioms BigHrushovski.FiniteOrientation.taggedPrefix_of_reachableHistory
+#print axioms BigHrushovski.FiniteOrientation.ordersFromReverseHistory_injective_on_reachable
