@@ -1,0 +1,11 @@
+import BigHrushovski.C0FairVertexOrderOmega
+
+#print axioms BigHrushovski.FiniteC0.fairVertexBefore_irrefl
+#print axioms BigHrushovski.FiniteC0.fairVertexBefore_trans
+#print axioms BigHrushovski.FiniteC0.fairVertexBefore_total
+#print axioms BigHrushovski.FiniteC0.fairVertexBefore_prefix_initial
+#print axioms BigHrushovski.FiniteC0.fairVertexBefore_same_component_convex
+#print axioms BigHrushovski.FiniteC0.fairVertexBefore_predecessor_in_prefix
+#print axioms BigHrushovski.FiniteC0.mem_fairVertexPredecessors_iff
+#print axioms BigHrushovski.FiniteC0.fairVertexBefore_no_greatest
+#print axioms BigHrushovski.FiniteC0.fairVertexBefore_numeric_total

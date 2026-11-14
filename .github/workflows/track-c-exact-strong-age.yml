@@ -1,0 +1,31 @@
+name: Track C exact strong age
+
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFPublishedExactStrongAge.lean"
+      - "CheckAxiomsCFTrackCExactStrongAge.lean"
+      - ".github/workflows/track-c-exact-strong-age.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  strong-age:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build exact strong age
+        run: lake build BigHrushovski.CFPublishedExactStrongAge
+      - name: Audit exact theorem axioms and placeholders
+        run: |
+          lake env lean CheckAxiomsCFTrackCExactStrongAge.lean > track-c-exact-age-axioms.log
+          python3 scripts/check_axioms.py track-c-exact-age-axioms.log CheckAxiomsCFTrackCExactStrongAge.lean
+          python3 scripts/check_no_placeholders.py

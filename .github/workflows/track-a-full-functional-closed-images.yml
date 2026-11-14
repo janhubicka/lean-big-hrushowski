@@ -1,0 +1,50 @@
+name: Track A finite full-functional image closure
+on:
+  push:
+    paths:
+      - 'BigHrushovski/C0FullFunctionalClosedImages.lean'
+      - 'CheckC0FullFunctionalClosedImages.lean'
+      - 'scripts/check_c0_full_functional_closed_images.py'
+      - '.github/workflows/track-a-full-functional-closed-images.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/C0FullFunctionalClosedImages.lean'
+      - 'CheckC0FullFunctionalClosedImages.lean'
+      - 'scripts/check_c0_full_functional_closed_images.py'
+      - '.github/workflows/track-a-full-functional-closed-images.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache Lean toolchain
+        uses: actions/cache@v5
+        with:
+          path: ~/.elan/toolchains
+          key: lean-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}
+      - name: Cache Lake workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build complete functional closed-image lemmas
+        run: lake build BigHrushovski.C0FullFunctionalClosedImages
+      - name: Four exact axioms and placeholder audit
+        run: |
+          set -euo pipefail
+          lake env lean CheckC0FullFunctionalClosedImages.lean > c0-full-image-axioms.log
+          python3 scripts/check_axioms.py c0-full-image-axioms.log CheckC0FullFunctionalClosedImages.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Adversarial finite complete-functional image test
+        run: python3 scripts/check_c0_full_functional_closed_images.py

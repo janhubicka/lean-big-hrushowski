@@ -1,0 +1,3 @@
+import BigHrushovski.C0FunctionalAgeUniversality
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimit_universalForFiniteFunctionalC0

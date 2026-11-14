@@ -1,0 +1,3 @@
+import BigHrushovski.C0FunctionalNamedBaseResponse
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.exists_functionalExtension_over_named_closedBase_of_stageAmalgam
