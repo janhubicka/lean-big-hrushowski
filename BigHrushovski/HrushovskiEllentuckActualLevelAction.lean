@@ -125,6 +125,20 @@ theorem inducedBirthLevelAction_strictMono
     omega
   exact hImageLt
 
+/-- Once a global level action has been specified, it is forced
+by the action on the actual vertices of each birth level. -/
+theorem inducedBirthLevelAction_unique
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (hReq : ∀ n : ℕ, ∃ r : BirthRequest F K n,
+      r.support = ∅)
+    (f : Vertex F K → Vertex F K) (h : ℕ → ℕ)
+    (hBirth : ∀ v : Vertex F K, (f v).1 = h v.1) :
+    inducedBirthLevelAction F K hReq f = h := by
+  funext n
+  change (f (birthLevelRepresentative F K hReq n)).1 = h n
+  rw [hBirth (birthLevelRepresentative F K hReq n),
+      birthLevelRepresentative_birth F K hReq n]
+
 /-- Every embedding of the named ordered (R,H) language
 has a canonical strictly increasing birth-level action,
 provided each level is represented. -/
