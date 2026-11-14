@@ -96,7 +96,7 @@ theorem reachableTaggedHistory_canonical_prior
           classical
           simp only [canonicalTaggedNextChoices, dif_neg hBound]
         rw [hEmpty] at hTag
-        exact (Finset.not_mem_empty tag hTag).elim
+        simp at hTag
 
 /-- A complete reachable tagged history produces an actual family
 of SCC orders passing the original all-generator canonical test
