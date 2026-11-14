@@ -1,0 +1,12 @@
+# Track A: updated functional characterization ledger — adversarial audit
+14 November 2026. Seven distinct internal critical reviewer roles, not independent human peer review.
+
+1. **Verification referee.** The claims promoted from "in progress" to certified are exact-head dedicated and full-repository Lean successes on merged PRs #511, #548, #552 and #555. In particular, #548 proves closed globally strong finite images; #555 proves *full functional* uniqueness under both canonical-stage and complete closed-base extension hypotheses. Drafts #539, #544 and #561 remain explicitly unverified and are not labelled complete.
+2. **Logical-strength referee.** The uniqueness theorem does **not** follow from 2-sparsity alone, from the graph reduct's identification with M₀, or from cofinal canonical stages alone. Its explicit full functional extension hypotheses on both models are retained in the English summary.
+3. **Finite age referee.** Universality (#511) merely embeds finite canonical structures; closed globally strong realization (#548) adds the complete-functional image identity and strongness. Actual finite C-closed *heredity* of arbitrary subsets with non-surjective component indices is the distinct matter being formalized in #539/#544.
+4. **Whole-function referee.** Each result preserves complete one-generated unary values by equality, not only graph adjacency, immediate old neighbours or the fibre sizes. Nothing in the updated summary weakens this distinction.
+5. **Chronology referee.** The fair intrinsic component sequence and its type-ω vertex order have already been certified. It does *not* choose the same uniform ordered local representative over each previously ordered lower part; this remains separate from the unordered functional characterization.
+6. **Integration referee.** The documents currently recording PR #539, #544 and #561 as drafts are correct at this exact review snapshot. Future merges require a separate status update once each exact-head dedicated and whole-repository kernel gate is green.
+7. **Editorial referee.** Only the English mathematical progress guide and this audit are changed. No frozen manuscript TeX, validation markers, theorem assumptions, author text, collaborator-deleted TODO or Lean proof source is modified. The guide is not an independent proof certificate.
+
+**Critical decision:** The full ordered Ramsey proposition remains PARTIAL. The confirmed unordered functional uniqueness result is not evidence that the remaining ordered expansion and big Ramsey assertions are complete.
