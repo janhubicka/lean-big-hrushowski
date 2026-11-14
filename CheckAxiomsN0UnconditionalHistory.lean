@@ -1,0 +1,4 @@
+import BigHrushovski.N0UnconditionalHistoryCount
+
+#print axioms BigHrushovski.FiniteOrientation.canonicalNextComponentChoices_card_unconditional
+#print axioms BigHrushovski.FiniteOrientation.reachableTaggedHistories_card_unconditional
