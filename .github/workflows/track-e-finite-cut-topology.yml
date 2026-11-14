@@ -5,11 +5,15 @@ on:
     paths:
       - 'BigHrushovski/HrushovskiEllentuckFiniteCutTopology.lean'
       - 'CheckTrackEFiniteCutTopology.lean'
+      - 'scripts/check_cf_finite_cut_topology.py'
+      - 'docs/CF_FINITE_CUT_TOPOLOGY_AUDIT_20261115.md'
       - '.github/workflows/track-e-finite-cut-topology.yml'
   pull_request:
     paths:
       - 'BigHrushovski/HrushovskiEllentuckFiniteCutTopology.lean'
       - 'CheckTrackEFiniteCutTopology.lean'
+      - 'scripts/check_cf_finite_cut_topology.py'
+      - 'docs/CF_FINITE_CUT_TOPOLOGY_AUDIT_20261115.md'
       - '.github/workflows/track-e-finite-cut-topology.yml'
   workflow_dispatch:
 
