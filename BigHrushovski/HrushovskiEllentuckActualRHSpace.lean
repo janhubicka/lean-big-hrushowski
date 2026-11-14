@@ -165,4 +165,29 @@ theorem actualRHCopy_Ellentuck
     (actualSupported_isTychonoffClosed F K hReq)
     (actualRHCopy_equiv_supported F K hReq)
 
+/-- Under the real-growth, free-join, empty-base and singleton
+admissibility hypotheses of the C_F manuscript, the actual ordered
+partial R/H functional copy-domain space satisfies the textbook
+Ellentuck theorem. Every level is genuinely represented by an
+empty-support request; no witness axiom is left in the statement. -/
+theorem realActualRHCopy_Ellentuck
+    (F : ℝ → ℝ)
+    (hZero : F 0 = 0)
+    (hMono : Monotone F)
+    (hUnbounded : ∀ t : ℝ, ∃ x : ℝ, t < F x)
+    (hFree : HasFiniteClassDClosedFreeJoins (CFGrowthNumerics.cardinalGrowth F))
+    (hEmptyClass : EmptyDClosedInGrowthClass (CFGrowthNumerics.cardinalGrowth F))
+    (hSingleton : F 1 ≤ 2) :
+    RamseySpace.IsTopologicalRamseySpaceTextbook
+      (S := actualRHCopyApproximationSystem
+        (CFGrowthNumerics.cardinalGrowth F)
+        (CFGrowthNumerics.cardinalGrowthBound F hMono hUnbounded)
+        (singletonEmptySupportRequest_every_realStage
+          F hZero hMono hUnbounded hFree hEmptyClass hSingleton)) :=
+  actualRHCopy_Ellentuck
+    (CFGrowthNumerics.cardinalGrowth F)
+    (CFGrowthNumerics.cardinalGrowthBound F hMono hUnbounded)
+    (singletonEmptySupportRequest_every_realStage
+      F hZero hMono hUnbounded hFree hEmptyClass hSingleton)
+
 end BigHrushovski.CFCoherentTower
