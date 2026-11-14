@@ -13,3 +13,5 @@ The existence of witnesses at every level is explicit.
 #print axioms BigHrushovski.CFCoherentTower.orderedRHEmbedding_iff_exists_strict_level_action
 #print axioms BigHrushovski.CFCoherentTower.inducedBirthLevelAction_unique
 #print axioms BigHrushovski.CFCoherentTower.allOrderedRHCopyDomains_eq_supported
+#print axioms BigHrushovski.CFCoherentTower.realOrderedRHEmbedding_has_strict_level_action
+#print axioms BigHrushovski.CFCoherentTower.realAllOrderedRHCopyDomains_eq_supported
