@@ -23,18 +23,18 @@ namespace FiniteSetUnion
 variable {V : Type*} [DecidableEq V]
 
 /-- The literal common part and the two exclusive parts. -/
-abbrev Common (s t : Finset V) : Type* :=
+abbrev Common (s t : Finset V) :=
   {v : V // v ∈ s ∩ t}
 
-abbrev LeftOnly (s t : Finset V) : Type* :=
+abbrev LeftOnly (s t : Finset V) :=
   {v : V // v ∈ s ∧ v ∉ t}
 
-abbrev RightOnly (s t : Finset V) : Type* :=
+abbrev RightOnly (s t : Finset V) :=
   {v : V // v ∈ t ∧ v ∉ s}
 
 /-- Three-tag carrier with one copy of the overlap and one copy of
 each exclusive part, retaining the original underlying vertex. -/
-abbrev TaggedCarrier (s t : Finset V) : Type* :=
+abbrev TaggedCarrier (s t : Finset V) :=
   TaggedAmalgam.Carrier (Common s t) (LeftOnly s t) (RightOnly s t)
 
 /-- Forget the disjoint tags but retain the full literal union
