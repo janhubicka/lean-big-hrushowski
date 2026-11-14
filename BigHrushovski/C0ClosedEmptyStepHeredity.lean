@@ -41,6 +41,12 @@ theorem canonicalValue_restrict_emptyOrMinimalSteps
       H.toPredimension.IsMinimalStrongStep
         (oldStage κs k) (oldStage κs (k + 1)) := by
   classical
+  change ∀ k : ℕ, k < n →
+    oldStage (restrictIndex κ s) k =
+      oldStage (restrictIndex κ s) (k + 1) ∨
+    (G.pullback (Subtype.val : {v : V // v ∈ s} → V)).toPredimension.IsMinimalStrongStep
+      (oldStage (restrictIndex κ s) k)
+      (oldStage (restrictIndex κ s) (k + 1))
   intro k hk
   rcases hSteps k hk with hEq | hMin
   · left
