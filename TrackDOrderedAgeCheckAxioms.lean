@@ -27,6 +27,7 @@ import BigHrushovski.C0CoordinateRawHostFullRelabel
 import BigHrushovski.C0CoordinateRawClosedOverlap
 import BigHrushovski.C0CoordinateMutualCodeKeyJ
 import BigHrushovski.C0CoordinateComponentKeyEquivalence
+import BigHrushovski.FiniteSetTaggedUnion
 import BigHrushovski.C0CoordinateFiniteStageValueTransport
 import BigHrushovski.C0CoordinateRawGeneratedStageWitness
 import BigHrushovski.C0CoordinateFiniteStageSparsity
@@ -287,3 +288,7 @@ import BigHrushovski.C0CoordinateRawHostFiniteOccurrence
 #print axioms BigHrushovski.FiniteUnaryCoordinates.hasCanonicalC0StageValues_closed_strong
 #print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.closed_overlap_strong_left
 #print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.closed_overlap_strong_both
+
+#print axioms BigHrushovski.FiniteSetUnion.taggedUnionMap_injective
+#print axioms BigHrushovski.FiniteSetUnion.taggedUnionMap_surjective
+#print axioms BigHrushovski.FiniteSetUnion.taggedUnionEquiv
