@@ -1,4 +1,3 @@
-import BigHrushovski.HrushovskiEllentuckActualCountableLift
 import BigHrushovski.HrushovskiEllentuckEmptyRequestWitness
 
 /-!
