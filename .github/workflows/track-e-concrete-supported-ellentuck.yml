@@ -1,0 +1,62 @@
+name: Track E concrete SupportedEllentuck reuse
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckActualSupportedSpace.lean'
+      - 'CheckTrackEActualSupportedSpace.lean'
+      - 'lakefile.toml'
+      - 'lake-manifest.json'
+      - '.github/workflows/track-e-concrete-supported-ellentuck.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckActualSupportedSpace.lean'
+      - 'CheckTrackEActualSupportedSpace.lean'
+      - 'lakefile.toml'
+      - 'lake-manifest.json'
+      - '.github/workflows/track-e-concrete-supported-ellentuck.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  exact-ramsey-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-supported-library-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-supported-library-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Check locked library pin
+        run: |
+          python3 - <<'PY'
+          import json
+          with open('lake-manifest.json', encoding='utf-8') as f:
+              d = json.load(f)
+          p = next(x for x in d['packages'] if 'ramsey-space-todorcevic' in x['name'])
+          assert p['rev'] == '0a585fc01894c63381451cdb38c38a9f31e4a7a7'
+          assert next(x['rev'] for x in d['packages'] if x['name'] == 'mathlib') == '5bd58ac291422a21f412ae354c91e7d172255a2c'
+          PY
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build imported concrete supported Ellentuck space
+        run: lake build BigHrushovski.HrushovskiEllentuckActualSupportedSpace
+      - name: Exact axioms and placeholder audit
+        run: |
+          lake env lean CheckTrackEActualSupportedSpace.lean > track-e-supported-axioms.log
+          cat track-e-supported-axioms.log
+          python3 scripts/check_axioms.py track-e-supported-axioms.log CheckTrackEActualSupportedSpace.lean
+          python3 scripts/check_no_placeholders.py
