@@ -52,8 +52,8 @@ theorem publishedGrowth_exists_least_bounded_globalDClosed_hull
     funext n
     exact extendPublishedGrowth_nat F n
   have hFnZero : Fn 0 = 0 := by
-    change extendPublishedGrowth F (0 : ℝ) = 0
-    exact extendPublishedGrowth_zero F hZero
+    simpa only [Fn, R, Nat.cast_zero] using
+      (extendPublishedGrowth_zero F hZero)
   have hFnMono : Monotone Fn :=
     realGrowth_nat_monotone R (extendPublishedGrowth_monotone F hMono)
   have hFnUnbounded : ∀ t : ℝ, ∃ n : ℕ, t < Fn n :=
