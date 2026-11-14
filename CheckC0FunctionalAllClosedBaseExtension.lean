@@ -1,0 +1,3 @@
+import BigHrushovski.C0FunctionalAllClosedBaseExtension
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimit_hasFunctionalExtension_over_anyClosedBase

@@ -1,0 +1,28 @@
+name: Track C native finite strong homogeneity
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFPublishedNativeHomogeneity.lean"
+      - "TrackCPublishedNativeHomogeneityCheck.lean"
+      - ".github/workflows/track-c-native-finite-homogeneity.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-finite-homogeneity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build native finite strong homogeneity
+        run: lake build BigHrushovski.CFPublishedNativeHomogeneity
+      - name: Audit exact theorems and source placeholders
+        run: |
+          lake env lean TrackCPublishedNativeHomogeneityCheck.lean > track-c-native-axioms.log
+          python3 scripts/check_axioms.py track-c-native-axioms.log TrackCPublishedNativeHomogeneityCheck.lean
+          python3 scripts/check_no_placeholders.py

@@ -1,0 +1,15 @@
+# Track A: inverse finite closed functional base embeddings — adversarial audit
+
+12 November 2026. This file records seven independent mathematical criticism roles, **not** reports by external human referees.
+
+**Exact scope.** Let p be a finite closed complete-functional partial isomorphism between two countable graphs with complete unary operations. If its source lies in a finite canonical source stage T, the inverse of p followed by literal source inclusion is an induced injection of the target base R into T. Its image carries the **entire** named C_R-value, matching the canonical value of T, with no numerical component-rank alignment.
+
+1. **Closure referee.** The inverse image theorem must use C-source-closedness to show that any vertex of the entire value CM(p^{-1}y) occurs inside the finite source of p. Without this one cannot pull it back through p; the graph isomorphism alone is insufficient.
+2. **Full-function referee.** Both directions use the exact finite membership biconditional in p.fullValues; matching only direct neighbours or a unary-value cardinality is inadequate. The complete named values are obtained by filtering all target-base vertices, and the target's closedness means this is the *entire* target operation on the base.
+3. **Inverse referee.** The inverse of the actual finite equivalence is used, including both inverse identities. No extension of the partial isomorphism to an undefined global inverse or a selected representative inside a component is assumed.
+4. **Literal labels referee.** For any enclosing stage T, the stage map sends y∈R to the **original numeric source vertex** p^{-1}(y)∈T; source containment is proved explicitly. Its injectivity is inherited from the equivalence.
+5. **Graph referee.** The source-target base isomorphism is induced in both directions. The new inclusion into the finite stage preserves and reflects nonedges as well as edges. No graph-reduct isomorphism of the whole countable structure is used.
+6. **Subtype-transport referee.** Comparison of full canonical values is performed after embedding both finite sets into the *same literal* ℕ carrier by Subtype.val, whose injectivity allows cancelling the image. This avoids inferring a full set equality from a mere membership bound.
+7. **Kernel and scope referee.** Four named axiom endpoints, a dedicated exact-head Lean build, an all-source placeholder scan, full repository integration and independently exhaustive finite regressions are mandatory before merge. This module supplies the missing compatibility of the arbitrary-closed-base extension theorem (#459) when the target base is p.target. It does not yet construct the finite partial-isomorphism extension or homogeneity.
+
+**Negative controls:** A finite graph isomorphism which preserves the restriction of the unary relation to its base, but whose base is not closed, need not preserve the *whole* unary values. Likewise noninjective base maps do not give the required inverse. Neither condition is omitted from the theorem.
