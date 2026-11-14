@@ -174,16 +174,16 @@ theorem oldStage_restrict_image
         (mem_oldStage_iff (restrictIndex κ s) k ⟨v, hvS⟩).mpr hLess,
         rfl⟩
 
-/-- Every restricted stage is either unchanged or a minimal strong
-extension in the *induced graph on the closed subset*. -/
-theorem canonicalValue_restrict_minimalSteps
+/-- The restriction of one genuinely minimal strong component step
+is empty or minimal in the induced graph on a unary-closed subset.
+Other component positions may be empty; no hypothesis on them is used. -/
+theorem canonicalValue_restrict_minimalStep_at
     (G : GraphOn V) (κ : V → Fin n)
-    (hMin : ∀ k : ℕ, k < n →
-      G.toPredimension.IsMinimalStrongStep
-        (oldStage κ k) (oldStage κ (k + 1)))
     (s : Finset V)
     (hClosed : G.IsClosedUnderValues (canonicalValue G κ) s)
-    (k : ℕ) (hk : k < n) :
+    (k : ℕ) (hk : k < n)
+    (hMin : G.toPredimension.IsMinimalStrongStep
+      (oldStage κ k) (oldStage κ (k + 1))) :
     let H := G.pullback
       (Subtype.val : {v : V // v ∈ s} → V)
     let κs := restrictIndex κ s
@@ -194,7 +194,7 @@ theorem canonicalValue_restrict_minimalSteps
   let H := G.pullback
     (Subtype.val : {v : V // v ∈ s} → V)
   let κs := restrictIndex κ s
-  have hCut := canonicalValue_closed_cut_step G κ hMin s hClosed k hk
+  have hCut := canonicalValue_closed_cut_step_at G κ s hClosed k hk hMin
   rcases hCut with hEqual | hStep
   · left
     apply Finset.image_injective
@@ -222,6 +222,27 @@ theorem canonicalValue_restrict_minimalSteps
       (Subtype.val : {v : V // v ∈ s} → V)
       Subtype.val_injective hAdj
       (oldStage κs k) (oldStage κs (k+1)) hSubset).mp hImage
+
+/-- Every restricted stage is either unchanged or a minimal strong
+extension in the induced graph on the closed subset. The older
+uniform API follows directly from the single-step proof. -/
+theorem canonicalValue_restrict_minimalSteps
+    (G : GraphOn V) (κ : V → Fin n)
+    (hMin : ∀ k : ℕ, k < n →
+      G.toPredimension.IsMinimalStrongStep
+        (oldStage κ k) (oldStage κ (k + 1)))
+    (s : Finset V)
+    (hClosed : G.IsClosedUnderValues (canonicalValue G κ) s)
+    (k : ℕ) (hk : k < n) :
+    let H := G.pullback
+      (Subtype.val : {v : V // v ∈ s} → V)
+    let κs := restrictIndex κ s
+    oldStage κs (k+1) = oldStage κs k ∨
+    H.toPredimension.IsMinimalStrongStep
+      (oldStage κs k) (oldStage κs (k+1)) := by
+  exact canonicalValue_restrict_minimalStep_at G κ s hClosed k hk
+    (hMin k hk)
+
 
 end FiniteC0
 end BigHrushovski
