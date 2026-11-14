@@ -1,6 +1,7 @@
 import BigHrushovski.CFRealGrowthRestriction
 import BigHrushovski.CFDClosedHullDelta
 import BigHrushovski.CFDClosedChain
+import BigHrushovski.MinimalRootForcing
 
 /-!
 # Uniformly bounded global strict d-closures from growth inequalities
