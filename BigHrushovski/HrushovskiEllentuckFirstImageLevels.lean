@@ -48,7 +48,7 @@ theorem stageImage_under_level_map
     have hkEq : k = v.1 := hh.injective hEq
     refine ⟨v, ?_, rfl⟩
     apply (mem_stageImage_iff_birth_lt F K n v).mpr
-    simpa only [hkEq] using hk
+    simpa only [← hkEq, Set.mem_Iio] using hk
 
 /-- The birth levels represented in a set of vertices. -/
 def representedBirthLevels
