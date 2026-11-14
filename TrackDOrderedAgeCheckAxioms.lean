@@ -28,6 +28,7 @@ import BigHrushovski.C0CoordinateRawClosedOverlap
 import BigHrushovski.C0CoordinateMutualCodeKeyJ
 import BigHrushovski.C0CoordinateComponentKeyEquivalence
 import BigHrushovski.FiniteSetTaggedUnion
+import BigHrushovski.C0CoordinateNormalizedAmalgamUnion
 import BigHrushovski.C0CoordinateRawHostGeneratedOccurrence
 import BigHrushovski.C0CoordinateRawHostBoundedFibres
 import BigHrushovski.C0CoordinateRawHostFiniteOccurrence
@@ -274,3 +275,8 @@ import BigHrushovski.C0CoordinateRawHostFiniteOccurrence
 #print axioms BigHrushovski.FiniteSetUnion.taggedUnionMap_injective
 #print axioms BigHrushovski.FiniteSetUnion.taggedUnionMap_surjective
 #print axioms BigHrushovski.FiniteSetUnion.taggedUnionEquiv
+
+#print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.overlapLeftTailEquiv
+#print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.overlapRightTailEquiv
+#print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.overlapNormalizedTaggedEquiv
+#print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.normalizedAmalgamUnionEquiv
