@@ -17,3 +17,5 @@ assertion about an unnamed reduct is made here.
 #print axioms BigHrushovski.CFCoherentTower.actualRHCopy_ramseySpace
 #print axioms BigHrushovski.CFCoherentTower.actualRHCopy_isTychonoffClosed
 #print axioms BigHrushovski.CFCoherentTower.actualRHCopy_Ellentuck
+
+#print axioms BigHrushovski.CFCoherentTower.realActualRHCopy_Ellentuck
