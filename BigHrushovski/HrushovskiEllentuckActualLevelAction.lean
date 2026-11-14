@@ -23,7 +23,7 @@ not name the birth-level preorder.
 
 namespace BigHrushovski.CFCoherentTower
 
-open CFStageCatalogue
+open CFStageCatalogue CFGrowthNumerics
 
 /-- One actual vertex on each birth level, supplied by an
 empty-support request. The corresponding complete support is
@@ -212,5 +212,60 @@ theorem allOrderedRHCopyDomains_eq_supported
     obtain ⟨hfInj, hfAdj, hfPre, hfOrder, _, hfValues⟩ := hf
     exact ⟨f, ⟨hfInj, hfAdj, hfPre, hfOrder, hfValues⟩,
       hRange.trans hD⟩
+
+/-- Under the actual real-growth assumptions of the manuscript,
+the finite singleton empty-support request exists at every stage.
+Thus automatic birth-level-action recognition has no extra
+witness hypothesis in the intended C_F application. -/
+theorem realOrderedRHEmbedding_has_strict_level_action
+    (F : ℝ → ℝ)
+    (hZero : F 0 = 0)
+    (hMono : Monotone F)
+    (hUnbounded : ∀ t : ℝ, ∃ x : ℝ, t < F x)
+    (hFree : HasFiniteClassDClosedFreeJoins (cardinalGrowth F))
+    (hEmptyClass : EmptyDClosedInGrowthClass (cardinalGrowth F))
+    (hSingleton : F 1 ≤ 2)
+    (f : Vertex (cardinalGrowth F)
+      (cardinalGrowthBound F hMono hUnbounded) →
+      Vertex (cardinalGrowth F)
+        (cardinalGrowthBound F hMono hUnbounded))
+    (hf : IsGlobalOrderedRHEmbeddingWithoutAction
+      (cardinalGrowth F)
+      (cardinalGrowthBound F hMono hUnbounded) f) :
+    ∃ h : ℕ → ℕ, StrictMono h ∧
+      IsGlobalOrderedRHEmbedding
+        (cardinalGrowth F)
+        (cardinalGrowthBound F hMono hUnbounded) h f :=
+  orderedRHEmbedding_has_strict_level_action
+    (cardinalGrowth F)
+    (cardinalGrowthBound F hMono hUnbounded)
+    (singletonEmptySupportRequest_every_realStage
+      F hZero hMono hUnbounded hFree hEmptyClass hSingleton)
+    f hf
+
+/-- In the real-growth presentation, ALL ranges of ordered
+functional self-embeddings are exactly those complete-support
+domains represented by infinite increasing level sets. -/
+theorem realAllOrderedRHCopyDomains_eq_supported
+    (F : ℝ → ℝ)
+    (hZero : F 0 = 0)
+    (hMono : Monotone F)
+    (hUnbounded : ∀ t : ℝ, ∃ x : ℝ, t < F x)
+    (hFree : HasFiniteClassDClosedFreeJoins (cardinalGrowth F))
+    (hEmptyClass : EmptyDClosedInGrowthClass (cardinalGrowth F))
+    (hSingleton : F 1 ≤ 2) :
+    AllOrderedRHCopyDomains (cardinalGrowth F)
+      (cardinalGrowthBound F hMono hUnbounded) =
+      {D : Set (Vertex (cardinalGrowth F)
+         (cardinalGrowthBound F hMono hUnbounded)) |
+        ∃ h : ℕ → ℕ, StrictMono h ∧
+          birthLevelDomain (cardinalGrowth F)
+            (cardinalGrowthBound F hMono hUnbounded)
+            (Set.range h) = D} :=
+  allOrderedRHCopyDomains_eq_supported
+    (cardinalGrowth F)
+    (cardinalGrowthBound F hMono hUnbounded)
+    (singletonEmptySupportRequest_every_realStage
+      F hZero hMono hUnbounded hFree hEmptyClass hSingleton)
 
 end BigHrushovski.CFCoherentTower
