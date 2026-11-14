@@ -111,6 +111,35 @@ literal domain `U[h[[0,m)]]`. Until both independent Lean
 checks finish, this final combination is an integration
 obligation and is not yet presented as a verified corollary.
 
+## Exhaustive finite adversarial regression
+
+The independent script `scripts/check_cf_finite_cut_topology.py`
+tests two vertices per level for four levels. A distinguished
+vertex at each level has singleton support; the other has
+every possible support containing its birth and no later level.
+All 64 combined assignments, all pairs of level subsets,
+all five finite cuts, all three-step increasing images and
+their four prefixes give **82,944** checked equivalences.
+This finite regression passed in a local Python execution.
+The submitted script repeats it in CI.
+
+Three toy counterexamples demonstrate that the hypotheses
+must not be dropped:
+
+- Without a singleton-support detector at level 1, supports
+  `{0}` and `{0,1}` cannot distinguish selected sets `∅`
+  and `{1}`, so finite-cut reflection fails.
+- If a vertex born at level 0 is allowed to have support
+  `{0,1}`, agreement on the first level cannot ensure
+  agreement on that vertex; support bounded by birth is essential.
+- If the image list starts `2,0,3` instead of increasing,
+  a vertex born at 2 with support `{0,2}` belongs to the
+  full supported domain and is born at the first selected image
+  level, but does not belong to the first-level supported prefix.
+
+These are regressions for logical scope, not substitutes
+for Lean compilation or for the concrete infinite structure.
+
 ## Integration order
 
 - Compile and axiom-audit this independent finite-cut theorem.
