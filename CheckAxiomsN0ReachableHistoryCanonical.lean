@@ -1,0 +1,4 @@
+import BigHrushovski.N0ReachableHistoryCanonical
+
+#print axioms BigHrushovski.FiniteOrientation.reachableTaggedHistory_canonical_prior
+#print axioms BigHrushovski.FiniteOrientation.completeReachableTaggedHistory_isCanonical
