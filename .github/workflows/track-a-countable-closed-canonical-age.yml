@@ -1,0 +1,52 @@
+name: Track A countable C0 exact finite closed functional age
+on:
+  push:
+    paths:
+      - 'BigHrushovski/C0CountableClosedCanonicalAge.lean'
+      - 'CheckC0CountableClosedCanonicalAge.lean'
+      - 'scripts/check_c0_literal_closed_age.py'
+      - '.github/workflows/track-a-countable-closed-canonical-age.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/C0CountableClosedCanonicalAge.lean'
+      - 'CheckC0CountableClosedCanonicalAge.lean'
+      - 'scripts/check_c0_literal_closed_age.py'
+      - '.github/workflows/track-a-countable-closed-canonical-age.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache Lean toolchain
+        uses: actions/cache@v5
+        with:
+          path: ~/.elan/toolchains
+          key: lean-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}
+      - name: Cache Lake workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build closed exact countable finite C0 age theorem
+        run: lake build BigHrushovski.C0CountableClosedCanonicalAge
+      - name: Named axioms and no-placeholder audit
+        run: |
+          set -euo pipefail
+          lake env lean CheckC0CountableClosedCanonicalAge.lean > c0-countable-closed-age-axioms.log
+          python3 scripts/check_axioms.py c0-countable-closed-age-axioms.log CheckC0CountableClosedCanonicalAge.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Exhaustive finite labelled closed-age transport
+        run: python3 scripts/check_c0_literal_closed_age.py
+      - name: Exhaustive finite empty-component hereditary regression
+        run: python3 scripts/check_c0_closed_empty_step_heredity.py
