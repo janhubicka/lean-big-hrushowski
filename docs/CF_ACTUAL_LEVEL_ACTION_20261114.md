@@ -26,6 +26,27 @@ This is the missing **level-action recognition** lemma for
 the \(\omega\)-level space. The result does not apply to
 the reduct without the named birth-level preorder.
 
+
+## Consequence for actual copy domains
+
+The new \`allOrderedRHCopyDomains_eq_supported\` theorem
+combines automatic level-action recognition with the unique
+countable R/H-lifting and exact-range theorems:
+
+\[
+\{\operatorname{range}(f): f\text{ is any embedding of the
+named ordered }(R,H)\text{ structure}\}
+=
+\{U[\operatorname{range}(h)]: h:\omega\to\omega
+\text{ strictly increasing}\}.
+\]
+
+Unlike the earlier conditional family equality in PR #518,
+this statement imposes **no prior level-action condition on the
+embeddings being classified**. The same explicit real-stage
+witness hypothesis is essential. It still does not construct
+or check the finite-approximation map.
+
 ## Adversarial mathematical checks
 
 1. **Actual witnesses.** The representatives are genuine birth
@@ -54,7 +75,7 @@ the reduct without the named birth-level preorder.
    that their approximation-code image is closed.
 8. **Verification.** These are internal adversarial
    mathematical checks, not independent external referees.
-   Five exact axiom endpoints and the dedicated Lean build
+   Seven exact axiom endpoints and the dedicated Lean build
    must pass before the theorem can be certified.
 
 No manuscript validation marker is promoted.
