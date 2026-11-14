@@ -98,7 +98,7 @@ theorem taggedUnionMap_injective (s t : Finset V) :
               cases y with
               | inl q =>
                   have hv : p.val = q.val := congrArg Subtype.val h
-                  exact False.elim (p.property.2 (hv ▸ q.property.1))
+                  exact False.elim (p.property.2 (hv.symm ▸ q.property.1))
               | inr q =>
                   have hv : p.val = q.val := congrArg Subtype.val h
                   exact congrArg (fun z => Sum.inr (Sum.inr z))
