@@ -92,7 +92,11 @@ theorem reachableTaggedHistory_canonical_prior
             r hr (O.ordersFromReverseHistory prior)
             C B hBefore choice).mp
               (ih prior hPrior C hEarlier)
-      · simp [canonicalTaggedNextChoices, hBound] at hTag
+      · have hEmpty : O.canonicalTaggedNextChoices r prior = ∅ := by
+          classical
+          simp only [canonicalTaggedNextChoices, dif_neg hBound]
+        rw [hEmpty] at hTag
+        exact (Finset.not_mem_empty tag hTag).elim
 
 /-- A complete reachable tagged history produces an actual family
 of SCC orders passing the original all-generator canonical test
