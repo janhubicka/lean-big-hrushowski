@@ -1,6 +1,6 @@
 # Countable \(C_0\) closure-component enumeration — proof and verification
 
-Updated 13 November 2026. This is an English proof guide, not an additional Lean
+Updated 14 November 2026. This is an English proof guide, not an additional Lean
 certificate. It concerns the **unordered complete-unary functional presentation**
 and the chronology of its intrinsic closure-components. The uniform local orders
 required by the manuscript's Ramsey expansion are a separate step.
@@ -97,11 +97,27 @@ are certified in #512. The direct corollary for *arbitrary* finite closed
 functional isomorphisms has since merged in #522, eliminating the need
 to carry a separate global-strongness hypothesis in that statement.
 
-The empty-base finite functional universality corollary was
-subsequently certified and merged in #511, with its dedicated
-exact-head and repository-wide Lean builds passing. None of these unordered results chooses the uniform local
-ordered representatives, and none alone proves the paper's ordered
-Ramsey or big Ramsey assertions.
+The empty-base finite functional universality corollary (#511)
+and the stronger realization of every finite canonical functional
+\(C_0\)-structure as a closed, globally strong induced substructure
+(#548) are certified and merged. The finite forth lemma has also
+been generalized to two potentially different countable canonical
+functional models (#552). Its symmetric back-and-forth argument
+proves uniqueness of the **complete functional** countable model,
+under the explicit cofinal canonical-stage and full closed-base
+extension hypotheses (#555). This is stronger than uniqueness of
+the graph reduct, and does not assert uniqueness without those
+hypotheses.
+
+The remaining finite-age heredity refinement, allowing unused
+component index positions, is in draft #539; its countable
+closed-substructure transfer and exact two-way finite-age
+characterization are in drafts #544 and #561. These drafts do
+not count as certified until their exact-head Lean tests pass.
+
+None of these **unordered** statements chooses the uniform local
+ordered representatives required by the manuscript's Ramsey
+expansion, nor proves its big Ramsey assertions.
 
 ## Internal adversarial checks
 
