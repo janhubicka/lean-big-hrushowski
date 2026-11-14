@@ -29,6 +29,12 @@ namespace BigHrushovski
 namespace FiniteOrientation
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
+
+-- The finite set of literal labelled order relations needs a
+-- classical equality instance already in theorem *statements*.
+noncomputable local instance : DecidableEq (V → V → Prop) :=
+  Classical.decEq _
+
 variable (O : FiniteOrientation V)
 
 /-- For each legal component ranking, the *set* of globally
