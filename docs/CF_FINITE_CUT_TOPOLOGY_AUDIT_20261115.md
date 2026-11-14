@@ -79,6 +79,38 @@ equivalence, *not* that final topological-space equality.
    Until that exact-head workflow succeeds, this proof is a
    submitted candidate, **not** a kernel-verified theorem.
 
+## Exact finite-prefix vertex-domain identity
+
+A second theorem, `birthLevelDomain_increasing_prefix`, holds
+**without** the empty-request hypothesis. For strictly increasing
+`h:ω→ω` and any `m`, it proves the equality of literal vertex sets
+
+    U[h[[0,m)]] = U[h[ω]] ∩ {v : birth(v) ∈ h[[0,m)]}.
+
+The forward inclusion uses inclusion of level sets and the fact
+that every vertex's own birth level lies in its complete support.
+The reverse uses two distinct facts: each support level lies at
+or before the vertex's own birth, and strict increase of `h`
+reflects the index order. If `birth(v)=h(k)` with `k<m`,
+every level of the support which lies in `range(h)` is
+`h(j)` for some `j≤k<m`. Thus its *whole* support lies in
+the selected first `m` image levels.
+
+**Independent counterexample challenges:** A non-strict `h`
+would not support the index-order reflection; dropping complete
+support membership `birth(v)∈σ(v)` would invalidate the forward
+direction; and replacing the full supported domain `U[h[ω]]`
+by all vertices born at represented levels would invalidate
+the reverse direction. The proof uses exactly the stronger
+hypotheses established for the actual birth carrier.
+
+Combining this vertex-domain identity with the separately
+submitted stage-image theorem in Track E PR #549 will identify
+the finite image of the first `m` actual birth stages with the
+literal domain `U[h[[0,m)]]`. Until both independent Lean
+checks finish, this final combination is an integration
+obligation and is not yet presented as a verified corollary.
+
 ## Integration order
 
 - Compile and axiom-audit this independent finite-cut theorem.
