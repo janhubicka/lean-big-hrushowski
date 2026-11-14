@@ -83,9 +83,11 @@ theorem representedBirthLevels_stageImage_under_level_map
     let v : Vertex F K := birthRoot F K k r
     have hv : v ∈ stageImage F K n := by
       apply (mem_stageImage_iff_birth_lt F K n v).mpr
-      simpa only [v] using hk
+      change k < n
+      exact hk
     refine ⟨f v, ⟨v, hv, rfl⟩, ?_⟩
-    simpa only [v] using (hBirth v)
+    change (f v).1 = h k
+    exact hBirth v
 
 /-- Under the same level-witness condition the birth-level set
 represented in an entire global image equals range(h).
@@ -107,6 +109,7 @@ theorem representedBirthLevels_range_under_level_map
     obtain ⟨r, hr⟩ := hReq k
     let v : Vertex F K := birthRoot F K k r
     refine ⟨f v, ⟨v, rfl⟩, ?_⟩
-    simpa only [v] using (hBirth v)
+    change (f v).1 = h k
+    exact hBirth v
 
 end BigHrushovski.CFCoherentTower
