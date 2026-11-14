@@ -1,0 +1,4 @@
+import BigHrushovski.C0CountableClosedCanonicalAge
+
+#print axioms BigHrushovski.FiniteC0.canonicalStages_closed_literal_fullPresentation
+#print axioms BigHrushovski.FiniteC0.canonicalStages_anyClosedFamily_isCanonical
