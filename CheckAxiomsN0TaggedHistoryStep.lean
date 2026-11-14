@@ -1,0 +1,4 @@
+import BigHrushovski.N0TaggedHistoryCanonicalStep
+
+#print axioms BigHrushovski.FiniteOrientation.canonicalAtComponent_iff_later_update
+#print axioms BigHrushovski.FiniteOrientation.mem_canonicalTaggedNextChoices_iff
