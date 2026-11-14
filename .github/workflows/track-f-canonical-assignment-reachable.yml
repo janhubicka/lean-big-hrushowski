@@ -1,0 +1,40 @@
+name: Track F canonical assignments generate reachable tagged histories
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0CanonicalAssignmentReachable.lean'
+      - 'CheckAxiomsN0CanonicalAssignmentReachable.lean'
+      - 'scripts/check_track_f_canonical_assignment_reachable.py'
+      - '.github/workflows/track-f-canonical-assignment-reachable.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0CanonicalAssignmentReachable.lean'
+      - 'CheckAxiomsN0CanonicalAssignmentReachable.lean'
+      - 'scripts/check_track_f_canonical_assignment_reachable.py'
+      - '.github/workflows/track-f-canonical-assignment-reachable.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  assignment-reachable:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic
+      - name: Build canonical assignments to tagged-history reachability
+        run: lake build BigHrushovski.N0CanonicalAssignmentReachable
+      - name: Exact named axiom and placeholder checks
+        run: |
+          set -euo pipefail
+          lake env lean CheckAxiomsN0CanonicalAssignmentReachable.lean > canonical-assignment-axioms.log
+          python3 scripts/check_axioms.py canonical-assignment-axioms.log CheckAxiomsN0CanonicalAssignmentReachable.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent exhaustive finite reachability test
+        run: |
+          python3 scripts/check_track_f_canonical_assignment_reachable.py
+          python3 scripts/check_track_f_tagged_histories.py
