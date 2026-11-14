@@ -68,7 +68,7 @@ theorem publishedGrowth_exists_least_bounded_globalDClosed_hull
   let K : ℕ := growthInverseAt Fn hFnUnbounded (2 * (s.card : ℝ))
   refine ⟨K, ?_, ?_⟩
   · intro n
-    change Fn n ≤ 2 * (s.card : ℝ) ↔ n ≤ K
+    rw [← hFnEq]
     exact growthInverseAt_iff Fn hFnZero hFnMono hFnUnbounded
       (2 * (s.card : ℝ)) (by positivity) n
   · obtain ⟨h, hs, hGlobal, hSize, hLeast⟩ :=
