@@ -1,0 +1,31 @@
+name: Track C bounded global d-closure
+
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFGlobalBoundedDClosedHull.lean"
+      - "CheckAxiomsCFTrackCGlobalBoundedHull.lean"
+      - ".github/workflows/track-c-global-bounded-hull.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-hull:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile bounded global closure
+        run: lake build BigHrushovski.CFGlobalBoundedDClosedHull
+      - name: Audit exact axioms and placeholders
+        run: |
+          lake env lean CheckAxiomsCFTrackCGlobalBoundedHull.lean > track-c-hull-axioms.log
+          python3 scripts/check_axioms.py track-c-hull-axioms.log CheckAxiomsCFTrackCGlobalBoundedHull.lean
+          python3 scripts/check_no_placeholders.py
