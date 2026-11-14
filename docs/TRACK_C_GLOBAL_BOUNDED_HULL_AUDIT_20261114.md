@@ -32,6 +32,8 @@ These are logical review roles, not independent human referees.
 
 **R7 — Separation from named closures:** This theorem does not show \(H(R(v))=C(v)\), the equivalence of \((b)\) and \((R,H)\) embeddings, or any Ramsey conclusion. It cannot certify those markers.
 
+**R8 — Exact published domain:** The wrapper theorem quantifies directly over \`PublishedGrowth\`, with nonnegative real domain/codomain, monotonicity, unboundedness and \`F(0)=0\`. It derives the natural-number restriction and the exact inverse from verified adapters rather than assuming these data as additional hypotheses.
+
 ## Checks
 
-The new dedicated workflow compiles \`CFGlobalBoundedDClosedHull\`, checks the five new declarations with \`#print axioms\` and performs a no-placeholder scan. The full Lean workflow also imports \`CheckAxiomsCFTrackCGlobalBoundedHull.lean\` through its existing \`CheckAxioms*.lean\` discovery. Keep this PR a draft until exact-head checks pass; no manuscript TeX changes are included.
+The new dedicated workflow compiles \`CFPublishedGlobalBoundedDClosedHull\` (which imports the general theorem), checks the six new declarations with \`#print axioms\` and performs a no-placeholder scan. The full Lean workflow also imports \`CheckAxiomsCFTrackCGlobalBoundedHull.lean\` through its existing \`CheckAxioms*.lean\` discovery. Keep this PR a draft until exact-head checks pass; no manuscript TeX changes are included.
