@@ -1,0 +1,7 @@
+import BigHrushovski.CFGlobalBoundedDClosedHull
+
+#print axioms BigHrushovski.Predimension.dClosedHull_mono_ambient
+#print axioms BigHrushovski.Predimension.exists_least_globalDClosed_hull_of_boundedFiniteHulls
+#print axioms BigHrushovski.CFGrowthNumerics.growthInverseAt_iff
+#print axioms BigHrushovski.GraphOn.growth_dClosedHull_card_lt_cutoff
+#print axioms BigHrushovski.GraphOn.exists_least_bounded_globalDClosed_hull
