@@ -85,15 +85,7 @@ theorem mem_canonicalTaggedNextChoices_iff
           (r.symm ⟨history.length, hBound⟩) := by
   classical
   let B : O.ComponentObject := r.symm ⟨history.length, hBound⟩
-  change tag ∈
-    (O.canonicalNextComponentChoices r
-      (O.ordersFromReverseHistory history) B).image
-      (fun choice => (⟨B, choice⟩ : O.TaggedComponentOrder)) ↔
-    ∃ choice : Fin (Fintype.card (↥B.val)) ≃ (↥B.val),
-      tag = ⟨B, choice⟩ ∧
-      O.IsCanonicalAtComponent r
-        (O.withComponentOrder
-          (O.ordersFromReverseHistory history) B choice) B
+  simp only [canonicalTaggedNextChoices, dif_pos hBound]
   constructor
   · intro h
     obtain ⟨choice, hChoice, hEq⟩ := Finset.mem_image.mp h
