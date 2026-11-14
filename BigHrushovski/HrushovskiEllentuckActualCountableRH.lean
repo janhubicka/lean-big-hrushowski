@@ -89,7 +89,11 @@ theorem globalBValues_iff_RHValues_of_canonicalOrder
   have hEquivalence :=
     literalClosedSource_bValues_iff_RHValues_of_canonicalOrder
       F K X hX e heInj heAdj hePre heOrder
-  simpa [X, e, extendClosedSourceMap, GlobalRHValues] using hEquivalence
+  have hExt : extendClosedSourceMap F K X e = f := by
+    funext v
+    simp [X, e, extendClosedSourceMap]
+  rw [hExt] at hEquivalence
+  simpa [X, e, GlobalRHValues] using hEquivalence
 
 /-- A genuine countable embedding in the expanded ordered
 (R,H) language with a specified birth-level action. The
