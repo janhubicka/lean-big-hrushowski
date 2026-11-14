@@ -105,8 +105,30 @@ theorem fairLimit_realizesFiniteCanonicalImagePresentation
   obtain ⟨f, hf, hAdj, hFull⟩ :=
     fairLimit_universalForFiniteFunctionalC0 H κ hSteps hSparse
   refine ⟨f, hf, hAdj, hFull, ?_⟩
-  exact FiniteC0.canonicalPresentation_on_image
-    H fairGraphStages.limitGraph f hf hAdj κ hSteps
+  let a : Finset ℕ := (Finset.univ : Finset B).image f
+  let K : GraphOn {w : ℕ // w ∈ a} :=
+    fairGraphStages.limitGraph.pullback
+      (Subtype.val : {w : ℕ // w ∈ a} → ℕ)
+  let e : B ≃ {w : ℕ // w ∈ a} :=
+    FiniteC0.imageCarrierEquiv f hf
+  let κa : {w : ℕ // w ∈ a} → Fin m :=
+    FiniteC0.relabelIndex κ e
+  have hAdjImage : ∀ u v : B,
+      H.adj u v ↔ K.adj (e u) (e v) := by
+    intro u v
+    exact hAdj u v
+  constructor
+  · exact FiniteC0.minimalSteps_relabel
+      H K e hAdjImage κ hSteps
+  · intro u
+    have hRelabel :=
+      FiniteC0.canonicalValue_relabel H K e hAdjImage κ u
+    rw [hRelabel, Finset.image_image]
+    have hComp :
+        (Subtype.val : {w : ℕ // w ∈ a} → ℕ) ∘ e = f := by
+      funext x
+      rfl
+    rw [hComp]
 
 end FiniteFunctionalNatStage
 end FiniteCatalogue
