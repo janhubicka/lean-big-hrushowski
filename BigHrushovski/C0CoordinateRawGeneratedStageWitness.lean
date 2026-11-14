@@ -108,8 +108,10 @@ theorem FiniteChronologicalC0.asRawVertex_hasStageValuePresentation
       H.toPredimension.IsMinimalStrongStep
         (FiniteC0.oldStage κS k) (FiniteC0.oldStage κS (k+1)) := by
     intro k hk
-    exact FiniteC0.canonicalValue_oneGenerated_restrict_minimalSteps
-      p.graph p.component p.minimalSteps a k hk
+    rcases FiniteC0.canonicalValue_oneGenerated_restrict_minimalSteps
+        p.graph p.component p.minimalSteps a k hk with hEmpty | hMin
+    · exact Or.inl hEmpty.symm
+    · exact Or.inr hMin
   have hSource :
       HasCanonicalC0StageValues H
         (FiniteC0.canonicalValue H κS) :=
