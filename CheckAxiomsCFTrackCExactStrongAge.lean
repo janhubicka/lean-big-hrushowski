@@ -1,0 +1,3 @@
+import BigHrushovski.CFPublishedExactStrongAge
+
+#print axioms BigHrushovski.CFCoherentTower.publishedBirth_exactStrongAge

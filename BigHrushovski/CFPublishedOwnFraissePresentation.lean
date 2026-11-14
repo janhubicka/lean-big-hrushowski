@@ -1,4 +1,4 @@
-import BigHrushovski.CFStandardFraisseExtension
+import BigHrushovski.CFStandardStrongUniversality
 import BigHrushovski.CFPublishedFiniteGenericity
 import BigHrushovski.CFRealGenericCertificate
 import BigHrushovski.CFSingletonStageCoverage
@@ -178,48 +178,16 @@ theorem publishedBirth_finiteStrongUniversality
           (publishedCountableGraph F hMono hUnbounded).adj (g x) (g y)) ∧
       (publishedCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed
         ((Finset.univ : Finset W).image g) := by
-  classical
-  have hBaseClosed :
-      B.toPredimension.IsDClosed (∅ : Finset W) Finset.univ :=
-    hEmptyClass W B hGrowth
-  have emptyElim (x : {w : W // w ∈ (∅ : Finset W)}) : False :=
-    Finset.notMem_empty x.val x.property
-  let e : {w : W // w ∈ (∅ : Finset W)} →
-      PublishedBirthVertex F hMono hUnbounded :=
-    fun x => False.elim (emptyElim x)
-  have heInj : Function.Injective e := by
-    intro x y _
-    exact False.elim (emptyElim x)
-  have heAdj : ∀ x y : {w : W // w ∈ (∅ : Finset W)},
-      B.adj x.val y.val ↔
-        (publishedCountableGraph F hMono hUnbounded).adj (e x) (e y) := by
-    intro x y
-    exact False.elim (emptyElim x)
-  have hEmptyImage :
-      ((Finset.univ : Finset {w : W // w ∈ (∅ : Finset W)}).image e) =
-        (∅ : Finset (PublishedBirthVertex F hMono hUnbounded)) := by
-    ext v
-    constructor
-    · intro hv
-      obtain ⟨x, _, _⟩ := Finset.mem_image.mp hv
-      exact False.elim (emptyElim x)
-    · simp
-  have hTargetEmpty :
-      (publishedCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed
-        (∅ : Finset (PublishedBirthVertex F hMono hUnbounded)) :=
-    realCountableGraph_empty_globalDClosed
+  exact finiteStrongUniversality_of_standardExtensions
+    (publishedCardinalGrowth F)
+    (publishedCountableGraph F hMono hUnbounded)
+    (publishedBirth_hasStandardFiniteDClosedExtensions
+      F hZero hMono hUnbounded)
+    (realCountableGraph_empty_globalDClosed
       (extendPublishedGrowth F)
       (extendPublishedGrowth_monotone F hMono)
-      (extendPublishedGrowth_unbounded F hUnbounded)
-  have heStrong :
-      (publishedCountableGraph F hMono hUnbounded).toPredimension.IsGloballyDClosed
-        ((Finset.univ : Finset {w : W // w ∈ (∅ : Finset W)}).image e) := by
-    exact hEmptyImage.symm ▸ hTargetEmpty
-  obtain ⟨g, hgInj, _, hgAdj, hgStrong⟩ :=
-    publishedBirth_hasStandardFiniteDClosedExtensions
-      F hZero hMono hUnbounded W B ∅ hGrowth hBaseClosed
-      e heInj heAdj heStrong
-  exact ⟨g, hgInj, hgAdj, hgStrong⟩
+      (extendPublishedGrowth_unbounded F hUnbounded))
+    W B hGrowth (hEmptyClass W B hGrowth)
 
 end CFCoherentTower
 end BigHrushovski

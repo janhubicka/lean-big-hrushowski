@@ -1,0 +1,5 @@
+import BigHrushovski.CFPublishedOwnFraissePresentation
+
+#print axioms BigHrushovski.CFDClosedBackAndForth.finiteStrongUniversality_of_standardExtensions
+#print axioms BigHrushovski.CFCoherentTower.publishedBirth_finiteStrongUniversality
+#print axioms BigHrushovski.CFCoherentTower.publishedBirth_standardStrongFraisseLimitPresentation
