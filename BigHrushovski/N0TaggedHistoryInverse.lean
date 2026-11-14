@@ -68,10 +68,7 @@ theorem taggedPrefixFromAssignment_length
       rfl
   | succ n ih =>
       intro hn
-      change 1 + (O.taggedPrefixFromAssignment
-        r orders n (Nat.le_of_succ_le hn)).length = n + 1
-      rw [ih]
-      omega
+      simp [taggedPrefixFromAssignment, ih (Nat.le_of_succ_le hn)]
 
 /-- Executing the tagged rank-prefix history recovers the exact
 labelled internal order of every component already listed in
