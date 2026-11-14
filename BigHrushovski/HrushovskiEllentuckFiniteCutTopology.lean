@@ -64,4 +64,38 @@ theorem birthLevelDomain_agree_on_stage_iff
       simp
     exact (hMem S).symm.trans ((hDomain z hzStage).trans (hMem T))
 
+
+/-- The first m levels of a strictly increasing image select
+exactly those vertices of the *full* complete-support domain
+whose birth level belongs to that image prefix. This is an
+equality of literal vertex sets and requires no embedding-lift,
+empty-request hypothesis, or Ramsey-space instance. -/
+theorem birthLevelDomain_increasing_prefix
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (h : ℕ → ℕ) (hh : StrictMono h) (m : ℕ) :
+    birthLevelDomain F K (Set.image h (Set.Iio m)) =
+      {v : Vertex F K |
+        v ∈ birthLevelDomain F K (Set.range h) ∧
+          v.1 ∈ Set.image h (Set.Iio m)} := by
+  ext v
+  constructor
+  · intro hv
+    refine ⟨birthLevelDomain_mono F K ?_ hv,
+      hv v.1 (birthLevelSupport_self F K v)⟩
+    intro q hq
+    obtain ⟨j, hj, rfl⟩ := hq
+    exact ⟨j, rfl⟩
+  · rintro ⟨hv, ⟨k, hk, hbirth⟩⟩
+    intro q hq
+    obtain ⟨j, rfl⟩ := hv q hq
+    have hle : h j ≤ h k := by
+      calc
+        h j ≤ v.1 := birthLevelSupport_le_birth F K v hq
+        _ = h k := hbirth.symm
+    have hjk : j ≤ k := by
+      by_contra hnot
+      exact (Nat.not_lt_of_ge hle)
+        (hh (Nat.lt_of_not_ge hnot))
+    exact ⟨j, lt_of_le_of_lt hjk hk, rfl⟩
+
 end BigHrushovski.CFCoherentTower
