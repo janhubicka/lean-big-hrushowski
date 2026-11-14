@@ -27,7 +27,7 @@ separate topological comparison in the manuscript.
 
 namespace BigHrushovski.CFCoherentTower
 
-open CFStageCatalogue
+open CFStageCatalogue CFGrowthNumerics
 
 /-- The genuine ordered partial R/H copies, as literal subsets
 of the *original* countable birth vertex carrier. -/
