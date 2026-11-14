@@ -1,0 +1,4 @@
+import BigHrushovski.C0FiniteAgeClosedRealization
+
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimit_realizesFiniteCanonicalAsClosedStrong
+#print axioms BigHrushovski.FiniteCatalogue.FiniteFunctionalNatStage.fairLimit_realizesFiniteCanonicalImagePresentation
