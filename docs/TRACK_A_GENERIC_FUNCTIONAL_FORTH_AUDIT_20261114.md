@@ -1,0 +1,16 @@
+# Track A: general functional forth for two countable canonical C₀ models
+14 November 2026
+
+Seven distinct internal adversarial mathematical review roles, not independent human referee reports.
+
+**Hypotheses and result.** Let (M,CM) and (N,CN) be two countable graph-and-complete-unary structures. Each has cofinal *literal* finite canonical C₀ presentations with the entire unary values equal to the ambient function. Assume the **target N** has the full finite functional extension property over *arbitrary finite CN-closed bases*. Then any finite closed functional partial isomorphism p:M→N can be extended to include a prescribed next source vertex, while remaining induced, complete-functional, C-closed, globally strong on both sides and pointwise extending p.
+
+1. **Distinct-model reviewer:** The source stage T is chosen in M, and the requested extension is realized inside N. The old target base lies in N and enters T via p^{-1}. Accidentally replacing the target's operation CN by CM, or using the same ambient graph in both slots, would invalidate the generalized statement. The source/target graphs and values are kept separate throughout.
+2. **Exact-base reviewer:** The inverse-base map y↦p^{-1}(y) uses the existing verified `inverseStageBaseMap_completeValues`, so its full named target CN-value agrees with the canonical full value in T. Mere agreement of graph reducts does not suffice.
+3. **Cofinality reviewer:** Only hCoverM is used to obtain a finite canonical source stage containing p.source and the new vertex k. hStageM certifies the complete values and empty-or-minimal strong steps there; no assumption that p.source itself is a construction stage is made.
+4. **Image reviewer:** The realized embedding h:T→N is induced and preserves **all** unary values. The exact image h[T] is therefore CN-closed, and its global strongness follows from the target's cofinal exact canonical-stage hypotheses, not from a graph-only embedding.
+5. **Source strongness reviewer:** Since the finite stage T has the correct complete ambient CM-values, it is CM-closed. The certified `canonicalStages_closed_globalStrong` then makes it globally strong, without requiring an extra explicit sequence of strong steps.
+6. **Extension reviewer:** For every old source point x, the inverse-base map sends p(x) to the literal point x in T, while the target realization fixes p(x) pointwise. Thus the newly induced equivalence h:T≃h[T] extends p itself, not just its image as a set.
+7. **Trust and uniqueness reviewer:** Require exact-head Lean kernel checks on the full parameterized forth statement, standard axioms, placeholder scan, and whole-repository CI, as well as independent finite diagnostic regressions with renamed target carriers and all complete unary values. This is a *one-sided* lemma. The fully symmetric joint-step property and a uniqueness theorem for arbitrary models are separate obligations. Do not claim an abstract Fraïssé characterization before those have been certified.
+
+**Additional test of weakening:** Removing target cofinal canonical stages leaves global strongness of the new image unproved. Removing complete-value equality leaves it potentially nonclosed. Neither assumption is dropped.
