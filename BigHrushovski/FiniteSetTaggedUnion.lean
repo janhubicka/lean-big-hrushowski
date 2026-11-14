@@ -59,7 +59,8 @@ theorem taggedUnionMap_injective (s t : Finset V) :
   | inl p =>
       cases y with
       | inl q =>
-          have hv : p.val = q.val := congrArg Subtype.val h
+          have hv : p.val = q.val :=
+            congrArg (fun z : {v : V // v ∈ s ∪ t} => z.val) h
           exact congrArg Sum.inl (Subtype.ext hv)
       | inr y =>
           cases y with
@@ -82,7 +83,8 @@ theorem taggedUnionMap_injective (s t : Finset V) :
           | inr y =>
               cases y with
               | inl q =>
-                  have hv : p.val = q.val := congrArg Subtype.val h
+                  have hv : p.val = q.val :=
+                    congrArg (fun z : {v : V // v ∈ s ∪ t} => z.val) h
                   exact congrArg (fun z => Sum.inr (Sum.inl z))
                     (Subtype.ext hv)
               | inr q =>
@@ -100,7 +102,8 @@ theorem taggedUnionMap_injective (s t : Finset V) :
                   have hv : p.val = q.val := congrArg Subtype.val h
                   exact False.elim (p.property.2 (hv.symm ▸ q.property.1))
               | inr q =>
-                  have hv : p.val = q.val := congrArg Subtype.val h
+                  have hv : p.val = q.val :=
+                    congrArg (fun z : {v : V // v ∈ s ∪ t} => z.val) h
                   exact congrArg (fun z => Sum.inr (Sum.inr z))
                     (Subtype.ext hv)
 
