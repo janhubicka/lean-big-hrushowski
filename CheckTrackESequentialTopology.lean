@@ -1,0 +1,3 @@
+import BigHrushovski.HrushovskiEllentuckSequentialTopology
+
+#print axioms BigHrushovski.CFCoherentTower.birthLevelDomain_sequential_finite_observations_iff
