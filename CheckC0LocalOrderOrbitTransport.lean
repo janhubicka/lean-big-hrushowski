@@ -1,0 +1,8 @@
+import BigHrushovski.C0LocalOrderOrbitTransport
+
+#print axioms BigHrushovski.FiniteC0.localRepresentativeChange_spec
+#print axioms BigHrushovski.FiniteC0.localRepresentativeChange_fixesLower
+#print axioms BigHrushovski.FiniteC0.localRepresentativeChange_alignsOrder
+#print axioms BigHrushovski.FiniteC0.localRepresentativeChange_fullFunctional
+#print axioms BigHrushovski.FiniteC0.localRepresentative_transports_sameOrbit
+#print axioms BigHrushovski.FiniteC0.localRepresentative_orderStabilizer_trivial
