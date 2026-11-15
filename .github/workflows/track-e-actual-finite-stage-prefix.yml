@@ -1,0 +1,48 @@
+name: Track E actual finite-stage supported prefixes
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckActualFiniteStagePrefix.lean'
+      - 'CheckTrackEActualFiniteStagePrefix.lean'
+      - '.github/workflows/track-e-actual-finite-stage-prefix.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckActualFiniteStagePrefix.lean'
+      - 'CheckTrackEActualFiniteStagePrefix.lean'
+      - '.github/workflows/track-e-actual-finite-stage-prefix.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-actual-stage-prefix-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-actual-stage-prefix-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile actual ordered R/H first-n supported image stages
+        run: lake build BigHrushovski.HrushovskiEllentuckActualFiniteStagePrefix
+      - name: Audit exact named theorems and placeholders
+        run: |
+          lake env lean CheckTrackEActualFiniteStagePrefix.lean > track-e-actual-stage-axioms.log
+          cat track-e-actual-stage-axioms.log
+          python3 scripts/check_axioms.py track-e-actual-stage-axioms.log CheckTrackEActualFiniteStagePrefix.lean
+          python3 scripts/check_no_placeholders.py
