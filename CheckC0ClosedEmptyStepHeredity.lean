@@ -1,0 +1,8 @@
+import BigHrushovski.C0ClosedEmptyStepHeredity
+
+#print axioms BigHrushovski.FiniteC0.canonicalValue_closed_cut_step_at
+#print axioms BigHrushovski.FiniteC0.canonicalValue_closed_cut_step
+#print axioms BigHrushovski.FiniteC0.canonicalValue_restrict_minimalStep_at
+#print axioms BigHrushovski.FiniteC0.canonicalValue_restrict_minimalSteps
+#print axioms BigHrushovski.FiniteC0.canonicalValue_restrict_emptyOrMinimalSteps
+#print axioms BigHrushovski.FiniteC0.canonicalValue_restrict_fullPresentation

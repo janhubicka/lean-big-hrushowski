@@ -25,17 +25,16 @@ namespace FiniteC0
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable {n : ℕ}
 
-/-- The restriction of a canonical finite minimal strong enumeration
-to a unary-closed set is, at each index, either unchanged or a
-minimal strong extension. -/
-theorem canonicalValue_closed_cut_step
+/-- Restriction of a **single** minimal strong component increment
+to a complete-unary-closed finite subset. Only the minimality of
+this increment is needed; other component levels may be empty. -/
+theorem canonicalValue_closed_cut_step_at
     (G : GraphOn V) (κ : V → Fin n)
-    (hMin : ∀ k : ℕ, k < n →
-      G.toPredimension.IsMinimalStrongStep
-        (oldStage κ k) (oldStage κ (k + 1)))
     (s : Finset V)
     (hClosed : G.IsClosedUnderValues (canonicalValue G κ) s)
-    (k : ℕ) (hk : k < n) :
+    (k : ℕ) (hk : k < n)
+    (hMin : G.toPredimension.IsMinimalStrongStep
+      (oldStage κ k) (oldStage κ (k + 1))) :
     (s ∩ oldStage κ (k+1) = s ∩ oldStage κ k) ∨
     G.toPredimension.IsMinimalStrongStep
       (s ∩ oldStage κ k) (s ∩ oldStage κ (k+1)) := by
@@ -75,7 +74,7 @@ theorem canonicalValue_closed_cut_step
       change G.toPredimension.IsMinimalStrongStep
         (oldStage κ k) (oldStage κ k ∪ component κ k)
       rw [← oldStage_succ κ k]
-      exact hMin k hk
+      exact hMin
     have hNo : G.NoCrossEdges A ((s ∩ A) ∪ B) :=
       G.closedUnderValues_block_noCross
         (canonicalValue G κ) s A B hClosed hBack hAll
@@ -101,6 +100,23 @@ theorem canonicalValue_closed_cut_step
         ⟨(Finset.mem_inter.mp hv).1,
           Finset.mem_union.mpr
             (Or.inl (Finset.mem_inter.mp hv).2)⟩
+
+/-- The restriction of a canonical finite minimal strong enumeration
+to a complete-unary-closed set is, at each index, either unchanged
+or a minimal strong extension. This is the uniform version of the
+single-step lemma; it is kept for existing callers. -/
+theorem canonicalValue_closed_cut_step
+    (G : GraphOn V) (κ : V → Fin n)
+    (hMin : ∀ k : ℕ, k < n →
+      G.toPredimension.IsMinimalStrongStep
+        (oldStage κ k) (oldStage κ (k + 1)))
+    (s : Finset V)
+    (hClosed : G.IsClosedUnderValues (canonicalValue G κ) s)
+    (k : ℕ) (hk : k < n) :
+    (s ∩ oldStage κ (k+1) = s ∩ oldStage κ k) ∨
+    G.toPredimension.IsMinimalStrongStep
+      (s ∩ oldStage κ k) (s ∩ oldStage κ (k+1)) := by
+  exact canonicalValue_closed_cut_step_at G κ s hClosed k hk (hMin k hk)
 
 /-- The complete finite graph of every canonical unary-closed set
 has a minimal strong chain from the empty structure: retain exactly
