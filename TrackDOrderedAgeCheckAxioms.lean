@@ -29,6 +29,7 @@ import BigHrushovski.C0CoordinateMutualCodeKeyJ
 import BigHrushovski.C0CoordinateComponentKeyEquivalence
 import BigHrushovski.FiniteSetTaggedUnion
 import BigHrushovski.FiniteTwoFactorValueTransport
+import BigHrushovski.FiniteTaggedFreeGraphEquiv
 import BigHrushovski.C0CoordinateFiniteStageValueTransport
 import BigHrushovski.C0CoordinateRawGeneratedStageWitness
 import BigHrushovski.C0CoordinateFiniteStageSparsity
@@ -297,3 +298,7 @@ import BigHrushovski.C0CoordinateRawHostFiniteOccurrence
 #print axioms BigHrushovski.FiniteFunctionalTransfer.completeValues_transport_of_two_factor_cover
 #print axioms BigHrushovski.FiniteFunctionalTransfer.taggedCarrier_twoFactor_cover
 #print axioms BigHrushovski.FiniteFunctionalTransfer.normalizedAmalgam_twoFactor_cover
+
+#print axioms BigHrushovski.FiniteSetUnion.taggedTailsEquiv_leftTag
+#print axioms BigHrushovski.FiniteSetUnion.taggedTailsEquiv_rightTag
+#print axioms BigHrushovski.FiniteSetUnion.taggedFreeGraph_equiv_iff
