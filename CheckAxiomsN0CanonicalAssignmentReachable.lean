@@ -1,0 +1,5 @@
+import BigHrushovski.N0CanonicalAssignmentReachable
+
+#print axioms BigHrushovski.FiniteOrientation.canonicalAssignment_taggedPrefix_canonicalAtNewRank
+#print axioms BigHrushovski.FiniteOrientation.canonicalAssignment_taggedPrefix_reachable
+#print axioms BigHrushovski.FiniteOrientation.canonicalAssignment_has_reachableHistory
