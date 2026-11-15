@@ -40,7 +40,7 @@ jobs:
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
       - name: Build local ordered representative transport module
         run: lake build BigHrushovski.C0LocalOrderOrbitTransport
-      - name: Exact six theorem axioms and all-source placeholder audit
+      - name: Exact seven theorem axioms and all-source placeholder audit
         run: |
           set -euo pipefail
           lake env lean CheckC0LocalOrderOrbitTransport.lean > c0-local-transport-axioms.log
