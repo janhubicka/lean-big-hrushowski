@@ -52,7 +52,12 @@ theorem taggedPrefixFromAssignment_eq_of_agree
         ih (Nat.le_of_succ_le hn) (by
           intro C hC
           exact hAgree C (by omega))
-      simp [taggedPrefixFromAssignment, hHead, hTail]
+      have hHeadTag :
+          (⟨B, orders₁ B⟩ : O.TaggedComponentOrder) =
+            (⟨B, orders₂ B⟩ : O.TaggedComponentOrder) :=
+        congrArg (fun t => (⟨B, t⟩ : O.TaggedComponentOrder)) hHead
+      simpa only [taggedPrefixFromAssignment] using
+        congrArg₂ List.cons hHeadTag hTail
 
 /-- For a reachable history, changing the order of the newly
 ranked SCC never changes any of the already chosen component
@@ -154,6 +159,15 @@ theorem taggedPrefix_of_reachableHistory
           apply congrArg r.symm
           apply Fin.ext
           exact hLen.symm
+        have hHeadTag :
+            (⟨r.symm ⟨n, Nat.lt_of_succ_le hn⟩,
+              updated (r.symm ⟨n, Nat.lt_of_succ_le hn⟩)⟩ :
+                O.TaggedComponentOrder) =
+            (⟨B, updated B⟩ : O.TaggedComponentOrder) :=
+          congrArg
+            (fun C : O.ComponentObject =>
+              (⟨C, updated C⟩ : O.TaggedComponentOrder))
+            hBIndex
         calc
           O.taggedPrefixFromAssignment r
               (O.ordersFromReverseHistory
@@ -165,10 +179,19 @@ theorem taggedPrefix_of_reachableHistory
           _ = (⟨B, updated B⟩ : O.TaggedComponentOrder) ::
               O.taggedPrefixFromAssignment r updated n
                 (Nat.le_of_succ_le hn) := by
-                simp [taggedPrefixFromAssignment, hBIndex]
+                simpa only [taggedPrefixFromAssignment] using
+                  congrArg
+                    (fun tag : O.TaggedComponentOrder =>
+                      tag :: O.taggedPrefixFromAssignment r updated n
+                        (Nat.le_of_succ_le hn))
+                    hHeadTag
           _ = (⟨B, choice⟩ : O.TaggedComponentOrder) :: prior := by
                 rw [hAtB, hTail, hPriorInverse]
-      · simp [canonicalTaggedNextChoices, hBound] at hTag
+      · have hEmpty : O.canonicalTaggedNextChoices r prior = ∅ := by
+          classical
+          simp only [canonicalTaggedNextChoices, dif_neg hBound]
+        rw [hEmpty] at hTag
+        simp at hTag
 
 /-- The execution map is injective on the finite family of
 complete *reachable* tagged SCC-order histories.  Distinct
