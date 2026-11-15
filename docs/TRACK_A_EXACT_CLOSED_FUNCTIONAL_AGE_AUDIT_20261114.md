@@ -12,3 +12,8 @@
 7. **Kernel and manuscript referee.** The two new named theorem endpoints require exact-head dedicated Lean, `#print axioms`, absence of source placeholders and a full repository integration check. This branch is stacked on the still-unverified #544 and #539; their parent certificates must also pass before any merge. The result does not establish the uniform component-local order of the paper's ordered Ramsey expansion. No manuscript TeX/validation marker is changed.
 
 **Cross-track check.** Track D's raw one-generated code and C/J-coordinate results can be compared against this description of the finite age, but should not be silently substituted for it: the latter refers to the actual closed induced substructures and their complete one-generated values.
+
+
+### 15 November 2026 integration retest
+
+The branch is now based on `main`, which includes the already-merged finite closed-image realization module (`#548`). The earlier dedicated failure was a missing import of that module on the old stacked base; this commit forces exact-head CI on the corrected dependency base. The theorem statement is unchanged, and manuscript validation marks remain unchanged.
