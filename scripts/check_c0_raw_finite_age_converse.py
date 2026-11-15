@@ -82,13 +82,24 @@ def main():
     assert len(selected) >= 70
     cases = [tuple()]
     cases += [(q,) for q in selected]
-    cases += list(combinations(selected[:46], 2))
-    cases += list(combinations(selected[::3][:17], 3))
-    cases += [
-        (roots[0], roots[-1]),
-        (roots[len(roots)//2], roots[-1]),
-        (roots[-1], roots[-2]),
-    ]
+    # Cross-presentation combinations drawn from the WHOLE range
+    # of support sizes, rather than mostly the smallest codes.
+    m = len(selected)
+    cases += [(selected[i % m], selected[(7 * i + 13) % m])
+              for i in range(180)]
+    cases += [(selected[i % m], selected[(11 * i + 7) % m],
+               selected[(17 * i + 31) % m]) for i in range(90)]
+    cases += [(roots[0], roots[-1]), (roots[len(roots)//2], roots[-1]),
+              (roots[-1], roots[-2])]
+    # Deliberately retain distinct COMPLETE codes with the same
+    # pointed natural-number coordinate as a negative control to
+    # identification by roots alone.
+    same_point = {}
+    for q in roots:
+        if q[1] in same_point and same_point[q[1]] != q:
+            cases.append((same_point[q[1]], q))
+            break
+        same_point[q[1]] = q
     verified = max_vertices = max_blocks = edges_total = 0
     coordinate_collisions = 0
     for gen in cases:
@@ -100,7 +111,7 @@ def main():
         max_vertices = max(n, max_vertices)
         max_blocks = max(k, max_blocks)
         edges_total += e
-    assert coordinate_collisions >= 0
+    assert coordinate_collisions > 0
     print("PASS raw C0 cross-presentation finite-age converse: "
           f"{presentations} finite source presentations, "
           f"{len(pool)} actual raw code vertices, "
