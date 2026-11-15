@@ -104,8 +104,10 @@ theorem RawC0CoordinateVertex.normalizedUnion_left_val
   let hi := RawC0CoordinateVertex.overlapLeft_injective s t
   have h := RawC0CoordinateVertex.normalizedUnion_leftTag_val
     s t hi ((FiniteSpan.splitEquiv i hi).symm a)
-  simpa only [FiniteSpan.leftAmalgamEmbedding, Function.comp_def,
-    Equiv.apply_symm_apply] using h
+  change ((RawC0CoordinateVertex.normalizedAmalgamUnionEquiv s t)
+    (TaggedAmalgam.leftTag ((FiniteSpan.splitEquiv i hi).symm a))).val = a.val
+  exact h.trans
+    (congrArg Subtype.val ((FiniteSpan.splitEquiv i hi).apply_symm_apply a))
 
 /-- The full normalized right embedding commutes with T→S∪T
 on underlying raw host vertices. -/
@@ -120,8 +122,10 @@ theorem RawC0CoordinateVertex.normalizedUnion_right_val
   let hj := RawC0CoordinateVertex.overlapRight_injective s t
   have h := RawC0CoordinateVertex.normalizedUnion_rightTag_val
     s t hj ((FiniteSpan.splitEquiv j hj).symm b)
-  simpa only [FiniteSpan.rightAmalgamEmbedding, Function.comp_def,
-    Equiv.apply_symm_apply] using h
+  change ((RawC0CoordinateVertex.normalizedAmalgamUnionEquiv s t)
+    (TaggedAmalgam.rightTag ((FiniteSpan.splitEquiv j hj).symm b))).val = b.val
+  exact h.trans
+    (congrArg Subtype.val ((FiniteSpan.splitEquiv j hj).apply_symm_apply b))
 
 /-- For a C-closed left factor, the normalized tagged embedding,
 followed by the literal-union equivalence, transports its entire
