@@ -1,0 +1,48 @@
+name: Track E automatic birth-level action
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckActualLevelAction.lean'
+      - 'CheckTrackEActualLevelAction.lean'
+      - '.github/workflows/track-e-actual-level-action.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckActualLevelAction.lean'
+      - 'CheckTrackEActualLevelAction.lean'
+      - '.github/workflows/track-e-actual-level-action.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  exact-lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-actual-action-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-actual-action-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile actual R/H level-action recognition
+        run: lake build BigHrushovski.HrushovskiEllentuckActualLevelAction
+      - name: Exact axioms and placeholders
+        run: |
+          lake env lean CheckTrackEActualLevelAction.lean > track-e-actual-action-axioms.log
+          cat track-e-actual-action-axioms.log
+          python3 scripts/check_axioms.py track-e-actual-action-axioms.log CheckTrackEActualLevelAction.lean
+          python3 scripts/check_no_placeholders.py
