@@ -1,0 +1,5 @@
+import BigHrushovski.C0CoordinateOneStageSelectedOrder
+
+#print axioms BigHrushovski.FiniteUnaryCoordinates.LocalOrderedRepresentative.selectedCompleteMatrix_oneStage
+#print axioms BigHrushovski.FiniteUnaryCoordinates.CompleteLocalMatrix.selectedCode_fixedLower_transport
+#print axioms BigHrushovski.FiniteUnaryCoordinates.CompleteLocalMatrix.selectedCode_eq_transport_iff
