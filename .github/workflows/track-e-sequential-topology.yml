@@ -1,0 +1,39 @@
+name: Track E sequential topology comparison
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckSequentialTopology.lean'
+      - 'CheckTrackESequentialTopology.lean'
+      - 'docs/CF_SEQUENTIAL_TOPOLOGY_ADVERSARIAL_20261115.md'
+      - '.github/workflows/track-e-sequential-topology.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckSequentialTopology.lean'
+      - 'CheckTrackESequentialTopology.lean'
+      - 'docs/CF_SEQUENTIAL_TOPOLOGY_ADVERSARIAL_20261115.md'
+      - '.github/workflows/track-e-sequential-topology.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Get mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile finite-observation comparison
+        run: lake build BigHrushovski.HrushovskiEllentuckSequentialTopology
+      - name: Audit exact theorem axioms and placeholders
+        run: |
+          lake env lean CheckTrackESequentialTopology.lean > track-e-sequential-axioms.log
+          cat track-e-sequential-axioms.log
+          python3 scripts/check_axioms.py track-e-sequential-axioms.log CheckTrackESequentialTopology.lean
+          python3 scripts/check_no_placeholders.py
