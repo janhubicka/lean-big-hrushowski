@@ -1,0 +1,7 @@
+import BigHrushovski.N0FiniteCanonicalOrderProduct
+
+#print axioms BigHrushovski.FiniteOrientation.canonicalAssignmentsAtRanking_eq_reachableImage
+#print axioms BigHrushovski.FiniteOrientation.canonicalAssignmentsAtRanking_card_eq_reachable
+#print axioms BigHrushovski.FiniteOrientation.rankLocalFactor_product_eq_componentProduct
+#print axioms BigHrushovski.FiniteOrientation.canonicalAssignmentsAtRanking_card_product
+#print axioms BigHrushovski.FiniteOrientation.finiteCanonicalGlobalOrderCount

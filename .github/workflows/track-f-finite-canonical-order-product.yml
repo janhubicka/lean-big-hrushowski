@@ -1,0 +1,39 @@
+name: Track F actual finite canonical order product
+on:
+  push:
+    paths:
+      - 'BigHrushovski/N0FiniteCanonicalOrderProduct.lean'
+      - 'CheckAxiomsN0FiniteCanonicalOrderProduct.lean'
+      - '.github/workflows/track-f-finite-canonical-order-product.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/N0FiniteCanonicalOrderProduct.lean'
+      - 'CheckAxiomsN0FiniteCanonicalOrderProduct.lean'
+      - '.github/workflows/track-f-finite-canonical-order-product.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  product:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Algebra.BigOperators.Fin
+      - name: Compile actual finite canonical-order count
+        run: lake build BigHrushovski.N0FiniteCanonicalOrderProduct
+      - name: Check named theorem axioms and placeholders
+        run: |
+          set -euo pipefail
+          lake env lean CheckAxiomsN0FiniteCanonicalOrderProduct.lean > track-f-final-product-axioms.log
+          python3 scripts/check_axioms.py track-f-final-product-axioms.log CheckAxiomsN0FiniteCanonicalOrderProduct.lean
+          python3 scripts/check_no_placeholders.py
+      - name: Independent finite product and history regressions
+        run: |
+          python3 scripts/check_track_f_canonical_data_card.py
+          python3 scripts/check_track_f_tagged_histories.py
+          python3 scripts/check_track_f_global_canonical_count.py
