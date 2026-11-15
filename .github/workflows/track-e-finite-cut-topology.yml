@@ -1,0 +1,55 @@
+name: Track E finite-cut domain topology
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckFiniteCutTopology.lean'
+      - 'CheckTrackEFiniteCutTopology.lean'
+      - 'scripts/check_cf_finite_cut_topology.py'
+      - 'docs/CF_FINITE_CUT_TOPOLOGY_AUDIT_20261115.md'
+      - '.github/workflows/track-e-finite-cut-topology.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckFiniteCutTopology.lean'
+      - 'CheckTrackEFiniteCutTopology.lean'
+      - 'scripts/check_cf_finite_cut_topology.py'
+      - 'docs/CF_FINITE_CUT_TOPOLOGY_AUDIT_20261115.md'
+      - '.github/workflows/track-e-finite-cut-topology.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-finite-cut-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-finite-cut-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile actual finite-cut observation theorem
+        run: lake build BigHrushovski.HrushovskiEllentuckFiniteCutTopology
+      - name: Audit theorem axioms and placeholders
+        run: |
+          lake env lean CheckTrackEFiniteCutTopology.lean > track-e-finite-cut-axioms.log
+          cat track-e-finite-cut-axioms.log
+          python3 scripts/check_axioms.py track-e-finite-cut-axioms.log CheckTrackEFiniteCutTopology.lean
+          python3 scripts/check_no_placeholders.py
+
+      - name: Exhaust finite-cut and prefix counterexamples
+        run: python3 scripts/check_cf_finite_cut_topology.py
