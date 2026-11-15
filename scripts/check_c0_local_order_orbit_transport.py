@@ -66,7 +66,8 @@ for e1 in aut:
 assert checked == 36
 assert len(orders) == 6
 for e in aut:
-    if all(rank[e[x]] == rank[x] for x in V):
+    if all((rank[x] < rank[y]) == (rank[e[x]] < rank[e[y]])
+           for x in V for y in V):
         assert all(e[x] == x for x in V)
 print("local-order orbit regression: K4, S3, six free transports,",
       checked, "ordered pairs verified")
