@@ -1,0 +1,28 @@
+name: Track C two-property Fraisse recognition
+on:
+  pull_request:
+    paths:
+      - "BigHrushovski/CFPublishedTwoPropertyRecognition.lean"
+      - "CheckAxiomsCFTrackCTwoProperty.lean"
+      - ".github/workflows/track-c-two-property-recognition.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  two-property:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Build two-property recognition
+        run: lake build BigHrushovski.CFPublishedTwoPropertyRecognition
+      - name: Audit axioms and placeholders
+        run: |
+          lake env lean CheckAxiomsCFTrackCTwoProperty.lean > track-c-two-property-axioms.log
+          python3 scripts/check_axioms.py track-c-two-property-axioms.log CheckAxiomsCFTrackCTwoProperty.lean
+          python3 scripts/check_no_placeholders.py
