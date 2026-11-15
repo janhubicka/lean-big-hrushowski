@@ -28,6 +28,7 @@ import BigHrushovski.C0CoordinateRawClosedOverlap
 import BigHrushovski.C0CoordinateMutualCodeKeyJ
 import BigHrushovski.C0CoordinateComponentKeyEquivalence
 import BigHrushovski.FiniteSetTaggedUnion
+import BigHrushovski.FiniteTwoFactorValueTransport
 import BigHrushovski.C0CoordinateFiniteStageValueTransport
 import BigHrushovski.C0CoordinateRawGeneratedStageWitness
 import BigHrushovski.C0CoordinateFiniteStageSparsity
@@ -292,3 +293,7 @@ import BigHrushovski.C0CoordinateRawHostFiniteOccurrence
 #print axioms BigHrushovski.FiniteSetUnion.taggedUnionMap_injective
 #print axioms BigHrushovski.FiniteSetUnion.taggedUnionMap_surjective
 #print axioms BigHrushovski.FiniteSetUnion.taggedUnionEquiv
+
+#print axioms BigHrushovski.FiniteFunctionalTransfer.completeValues_transport_of_two_factor_cover
+#print axioms BigHrushovski.FiniteFunctionalTransfer.taggedCarrier_twoFactor_cover
+#print axioms BigHrushovski.FiniteFunctionalTransfer.normalizedAmalgam_twoFactor_cover
