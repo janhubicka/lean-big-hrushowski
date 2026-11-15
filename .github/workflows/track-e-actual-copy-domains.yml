@@ -1,0 +1,48 @@
+name: Track E actual ordered R-H copy domains
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckActualCopyDomains.lean'
+      - 'CheckTrackEActualCopyDomains.lean'
+      - '.github/workflows/track-e-actual-copy-domains.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckActualCopyDomains.lean'
+      - 'CheckTrackEActualCopyDomains.lean'
+      - '.github/workflows/track-e-actual-copy-domains.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-copy-domains-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-copy-domains-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile actual R/H copy-domain identification
+        run: lake build BigHrushovski.HrushovskiEllentuckActualCopyDomains
+      - name: Audit exact theorem axioms and source placeholders
+        run: |
+          lake env lean CheckTrackEActualCopyDomains.lean > track-e-copy-domains-axioms.log
+          cat track-e-copy-domains-axioms.log
+          python3 scripts/check_axioms.py track-e-copy-domains-axioms.log CheckTrackEActualCopyDomains.lean
+          python3 scripts/check_no_placeholders.py
