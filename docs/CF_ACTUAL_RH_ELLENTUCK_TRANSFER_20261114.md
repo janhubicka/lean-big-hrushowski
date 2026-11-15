@@ -133,8 +133,41 @@ abstract Ramsey-space proofs.
 **12. Trust.** These are independent internal
 mathematical challenges, *not* external referee
 reports. The new results are unverified until an
-exact-head Lean build, eight axiom endpoints,
+exact-head Lean build, nine axiom endpoints,
 placeholder scan and upstream CI gates pass.
+
+## Literal basic neighborhoods (clean integration addition)
+
+The theorem `actualRHCopy_mem_basicNeighborhood_iff` spells out
+the two defining conditions on a genuine ordered R/H copy D
+belonging to the Ellentuck basic neighborhood `[a,B]`:
+
+    D ⊆ B
+    and
+    r_n(D) = a,
+
+where `D ⊆ B` is inclusion of literal subsets of the original
+countable birth vertex carrier, and `r_n(D)` is the first-n
+increasing birth-level approximation transported by the exact
+point equivalence.
+
+**Adversarial challenge 13.** The first condition restricts
+the *whole infinite copy*. It is not a finite-coordinate
+condition and therefore must not be dropped when comparing
+the Ellentuck topology with the finite-approximation
+metric topology. For example, on infinite subsets of
+`ω`, the basic Ellentuck neighborhood of the even
+numbers with empty prefix contains only infinite subsets
+of the even numbers. No finite membership test in
+`2^ω` can force the exclusion of every odd number.
+Thus the Ellentuck topology is genuinely finer than
+the Cantor-product subspace topology.
+
+The independent Track E finite topology-bases PR #582
+addresses equality of the *natural product* and
+*approximation-metric* open-set predicates. The clean
+actual-copy transfer and the finite-stage identity PR #576
+are kept separate until their current-head CI passes.
 
 ## Remaining integration obligations
 
