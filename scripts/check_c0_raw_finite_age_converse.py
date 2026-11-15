@@ -29,11 +29,17 @@ def canonical_blocks(vertices):
     components may be ordered arbitrarily. Each vertex is a full
     code, never just its natural-number pointed coordinate.
     """
-    classes = {closed(q) for q in vertices}
+    # The blocks are equivalence classes of MUTUAL generators:
+    # q and r lie in the same block iff closed(q) == closed(r).
+    # Do NOT take each entire closed(q) as a block: it also includes
+    # proper ancestor components and would overwrite their labels.
+    classes = {}
+    for q in vertices:
+        classes.setdefault(closed(q), set()).add(q)
     assert all(C <= vertices for C in classes)
-    ordered = sorted(classes, key=lambda C: (
-        len(C), tuple(sorted(repr(q) for q in C))))
-    position = {q: i for i, C in enumerate(ordered) for q in C}
+    ordered = sorted(classes.values(), key=lambda B: (
+        len(closed(next(iter(B)))), tuple(sorted(repr(q) for q in B))))
+    position = {q: i for i, B in enumerate(ordered) for q in B}
     assert len(position) == len(vertices)
     return ordered, position
 
