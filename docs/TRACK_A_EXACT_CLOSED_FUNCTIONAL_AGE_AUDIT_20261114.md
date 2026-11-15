@@ -1,0 +1,19 @@
+# Track A: exact finite closed functional C₀ age — seven adversarial referees
+14 November 2026. Internal critical review roles, not outside refereeing.
+
+**Precise claim.** Define the finite canonical unordered functional C₀ class by genuine finite 2-sparsity, existence of a finite (not necessarily surjective) component index with every stage empty or minimal strong, and equality of the full prescribed set-valued unary operation with the graph-defined canonical value at each vertex. Then (a) the finite *C-closed induced* substructures of the actual countable functional limit belong to that class, and (b) every structure in the class occurs in the limit as a C-closed, globally strong induced finite substructure. The embeddings preserve every complete unary value by equality of labelled finite sets.
+
+1. **Definition referee.** The definition includes 2-sparsity and empty-or-minimal strong canonical stages, including unused component positions, rather than assuming a total order of single vertices or only graph sparsity. Both structures can be empty. The function equality is exact and pointwise for every generator.
+2. **Closed-heredity referee.** The forward direction invokes the newly isolated finite C-closed stage theorem of stacked #544. Its C-closedness is with respect to the complete ambient function, and the induced graph is the *literal subtype* of the original countable carrier. A mere graph-induced subset is not enough.
+3. **Sparsity referee.** Global nonnegative predimension on every finite subset follows from the cofinal canonical finite stage theorem, already certified. The induced finite graph's 2-sparsity is transported by `twoSparse_image_iff` along the literal injective subtype inclusion; no `Fintype ℕ` hypothesis is used.
+4. **Full-unary referee.** The ambient equality `C(x)=(canonicalValue G κ x).image val` and the named closed-base equality `C(x)=(namedClosedBaseValue C s x).image val` are compared through the *same injective* subtype inclusion to give equality of full functions on the finite structure. The argument would be invalid for nonclosed s.
+5. **Realization referee.** The reverse direction reuses the independently certified closed strong image theorem #548; it does not invoke the countable limit's homogeneity and does not postulate an embedding. The same witness f preserves induced adjacency, entire unary values, C-closedness and global strongness.
+6. **Adversarial falsification referee.** The dedicated workflow runs three independently authored exhaustive regressions, including genuine unused index slots and lost-predecessor negative controls. They test finite examples only; none supplies an infinitary proof.
+7. **Kernel and manuscript referee.** The two new named theorem endpoints require exact-head dedicated Lean, `#print axioms`, absence of source placeholders and a full repository integration check. This branch is stacked on the still-unverified #544 and #539; their parent certificates must also pass before any merge. The result does not establish the uniform component-local order of the paper's ordered Ramsey expansion. No manuscript TeX/validation marker is changed.
+
+**Cross-track check.** Track D's raw one-generated code and C/J-coordinate results can be compared against this description of the finite age, but should not be silently substituted for it: the latter refers to the actual closed induced substructures and their complete one-generated values.
+
+
+### 15 November 2026 integration retest
+
+The branch is now based on `main`, which includes the already-merged finite closed-image realization module (`#548`). The earlier dedicated failure was a missing import of that module on the old stacked base; this commit forces exact-head CI on the corrected dependency base. The theorem statement is unchanged, and manuscript validation marks remain unchanged.
