@@ -19,3 +19,5 @@ assertion about an unnamed reduct is made here.
 #print axioms BigHrushovski.CFCoherentTower.actualRHCopy_Ellentuck
 
 #print axioms BigHrushovski.CFCoherentTower.realActualRHCopy_Ellentuck
+
+#print axioms BigHrushovski.CFCoherentTower.actualRHCopy_mem_basicNeighborhood_iff
