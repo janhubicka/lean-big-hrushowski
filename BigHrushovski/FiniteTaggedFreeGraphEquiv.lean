@@ -116,7 +116,7 @@ theorem taggedFreeGraph_equiv_iff
           _ = TaggedAmalgam.leftTag v' := by simp [v]
           _ = E y := hv'
       have hAdj : G.adj u v := (hLeft u v).mpr (by
-        simpa [u,v] using hAdj')
+        simpa [u, v, EL] using hAdj')
       exact Or.inl ⟨u,v,hu,hv,hAdj⟩
     · let u : P ⊕ R := ER.symm u'
       let v : P ⊕ R := ER.symm v'
@@ -135,7 +135,7 @@ theorem taggedFreeGraph_equiv_iff
           _ = TaggedAmalgam.rightTag v' := by simp [v]
           _ = E y := hv'
       have hAdj : H.adj u v := (hRight u v).mpr (by
-        simpa [u,v] using hAdj')
+        simpa [u, v, ER] using hAdj')
       exact Or.inr ⟨u,v,hu,hv,hAdj⟩
 
 end FiniteSetUnion
