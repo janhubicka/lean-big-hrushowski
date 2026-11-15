@@ -1,0 +1,48 @@
+name: Track E actual ordered R-H Ellentuck transfer
+
+on:
+  push:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckActualRHSpace.lean'
+      - 'CheckTrackEActualRHSpace.lean'
+      - '.github/workflows/track-e-actual-rh-ellentuck.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/HrushovskiEllentuckActualRHSpace.lean'
+      - 'CheckTrackEActualRHSpace.lean'
+      - '.github/workflows/track-e-actual-rh-ellentuck.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Cache Lean workspace
+        uses: actions/cache@v5
+        with:
+          path: .lake
+          key: track-e-actual-rh-ellentuck-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            track-e-actual-rh-ellentuck-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lakefile.toml', 'lake-manifest.json') }}-
+      - name: Get Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Compile actual ordered functional Ellentuck theorem
+        run: lake build BigHrushovski.HrushovskiEllentuckActualRHSpace
+      - name: Audit exact theorem axioms and placeholders
+        run: |
+          lake env lean CheckTrackEActualRHSpace.lean > track-e-actual-rh-ellentuck-axioms.log
+          cat track-e-actual-rh-ellentuck-axioms.log
+          python3 scripts/check_axioms.py track-e-actual-rh-ellentuck-axioms.log CheckTrackEActualRHSpace.lean
+          python3 scripts/check_no_placeholders.py
