@@ -139,9 +139,9 @@ theorem localRepresentative_transports_sameOrbit
       G H CA CR e₁ e₂ hAdj₁ hAdj₂ hValue₁ hValue₂).2
   · exact localRepresentativeChange_alignsOrder e₁ e₂ rank
 
-/-- An automorphism preserving an injective rank on **all** vertices
-is the identity. Applied to a linear order on the finite new
-component, this is the freeness behind local order-orbit counts. -/
+/-- An automorphism preserving every value of an injective
+numeric rank is the identity. The stronger order-theoretic result
+under preservation of *comparisons alone* follows next. -/
 theorem localRepresentative_orderStabilizer_trivial
     (e : A ≃ R) (rank : R → ℕ)
     (hRank : Function.Injective rank)
@@ -151,6 +151,85 @@ theorem localRepresentative_orderStabilizer_trivial
   ext x
   apply e.injective
   exact hRank (hPreserve x)
+
+/-- The actual stabilizer of a finite **linear order** is trivial.
+Here g only preserves the strict comparisons of the transported
+rank: it is *not* assumed to preserve the rank numbers themselves.
+
+The proof counts each finite predecessor set. The order-preserving
+bijection g maps the predecessors of x bijectively onto those of
+g(x). But two elements in one finite linear order have distinct
+numbers of predecessors. Hence every vertex is fixed.
+
+This is the freeness statement needed when counting the orbit of
+permitted component orders under its local automorphism group. -/
+theorem localRepresentative_orderStabilizer_comparisons
+    (e : A ≃ R) (rank : R → ℕ)
+    (hRank : Function.Injective rank)
+    (g : A ≃ A)
+    (hCompare : ∀ x y : A,
+      (rank (e x) < rank (e y)) ↔
+        (rank (e (g x)) < rank (e (g y)))) :
+    g = Equiv.refl A := by
+  classical
+  let k : A → ℕ := fun x => rank (e x)
+  have hk : Function.Injective k := hRank.comp e.injective
+  let pred (x : A) : Finset A :=
+    (Finset.univ : Finset A).filter (fun y => k y < k x)
+  have hMem (x y : A) : y ∈ pred x ↔ k y < k x := by
+    simp [pred]
+  have hImage (x : A) : (pred x).image g = pred (g x) := by
+    ext y
+    constructor
+    · intro hy
+      obtain ⟨z, hz, hzy⟩ := Finset.mem_image.mp hy
+      have hzLt : k z < k x := (hMem x z).mp hz
+      have hgLt : k (g z) < k (g x) := (hCompare z x).mp hzLt
+      exact (hMem (g x) y).mpr (by simpa [hzy] using hgLt)
+    · intro hy
+      let z : A := g.symm y
+      have hzy : g z = y := g.apply_symm_apply y
+      have hgLt : k (g z) < k (g x) := by
+        rw [hzy]
+        exact (hMem (g x) y).mp hy
+      have hzLt : k z < k x := (hCompare z x).mpr hgLt
+      exact Finset.mem_image.mpr
+        ⟨z, (hMem x z).mpr hzLt, hzy⟩
+  have hCard (x : A) : (pred x).card = (pred (g x)).card := by
+    calc
+      (pred x).card = ((pred x).image g).card :=
+        (Finset.card_image_of_injective (pred x) g.injective).symm
+      _ = (pred (g x)).card := by rw [hImage x]
+  have hStrict {x y : A} (hxy : k x < k y) :
+      (pred x).card < (pred y).card := by
+    have hSub : pred x ⊆ pred y := by
+      intro z hz
+      exact (hMem y z).mpr (lt_trans ((hMem x z).mp hz) hxy)
+    have hxIn : x ∈ pred y := (hMem y x).mpr hxy
+    have hxNot : x ∉ pred x := by
+      intro h
+      exact (lt_irrefl _) ((hMem x x).mp h)
+    have hNe : pred x ≠ pred y := by
+      intro hEq
+      have hxInOld : x ∈ pred x := by
+        rw [hEq]
+        exact hxIn
+      exact hxNot hxInOld
+    exact Finset.card_lt_card
+      (Finset.ssubset_iff_subset_ne.mpr ⟨hSub, hNe⟩)
+  ext x
+  apply hk
+  have hEq : k (g x) = k x := by
+    by_contra hNe
+    by_cases hLt : k x < k (g x)
+    · have hCards := hCard x
+      have hContradiction := hStrict hLt
+      omega
+    · have hGt : k (g x) < k x := by omega
+      have hCards := hCard x
+      have hContradiction := hStrict hGt
+      omega
+  exact hEq
 
 end FiniteC0
 end BigHrushovski
