@@ -55,13 +55,16 @@ infinite sets `{m,m+1,...}` and `{m+1,m+2,...}` agree below m
 but their first enumerated entries differ.
 
 Thus the two directed systems of finite observation
-neighborhoods are **cofinal at each point**. This is precisely
-the basis comparison needed to conclude that the
-vertex-observation product subspace topology on actual
-supported domains and the transported approximation-metric
-topology coincide. The Lean module proves the explicit
-cofinality lemmas; a stand-alone `TopologicalSpace` equality
-is a separate packaging task.
+neighborhoods are **cofinal at each point**. The new theorem
+`isSupportedStageOpen_iff_isIncreasingPrefixOpen` uses them
+to prove the equivalence **for every set of points U** between
+being open for the vertex-stage membership observations and
+being open for the finite increasing-enumeration approximations.
+This is an exact formal equality of the two families of open
+sets, hence the asserted topology comparison on supported
+point presentations. Introducing an explicit `TopologicalSpace`
+structure for either predicate is optional future packaging,
+not an unproved mathematical assumption.
 
 ## Internal adversarial referee panel
 
@@ -96,7 +99,7 @@ is a separate packaging task.
     copy ranges of the named functional expansion.
 11. **External classes:** Neither the C_0 case nor the
     rational-level R_F space follows from this argument.
-12. **Trust:** Five exact named `#print axioms` gates,
+12. **Trust:** Six exact named `#print axioms` gates,
     a dedicated GitHub Actions build, placeholder scan,
     and exhaustive finite regressions are required before
     claiming Lean validation.
@@ -117,7 +120,7 @@ Lean kernel.
 ## Integration
 
 Once this module and #573 pass their current-head CI,
-transport the cofinal observation bases through the
+transport the exact open-set equivalence through the
 identity-on-domain equivalence on genuine ordered R/H
 copies. Then identify the paper's basic Ellentuck
 neighborhoods with the already verified refinement
