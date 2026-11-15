@@ -1,0 +1,34 @@
+name: Track D one-stage selected local order
+on:
+  push:
+    paths:
+      - 'BigHrushovski/C0CoordinateOneStageSelectedOrder.lean'
+      - 'CheckC0OneStageSelectedOrder.lean'
+      - '.github/workflows/track-d-one-stage-selected-order.yml'
+  pull_request:
+    paths:
+      - 'BigHrushovski/C0CoordinateOneStageSelectedOrder.lean'
+      - 'CheckC0OneStageSelectedOrder.lean'
+      - '.github/workflows/track-d-one-stage-selected-order.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download Mathlib cache
+        run: lake exe cache get Mathlib.Tactic Mathlib.Data.Finset.Basic
+      - name: Verify selected local order theorem
+        run: lake build BigHrushovski.C0CoordinateOneStageSelectedOrder
+      - name: Exact axioms and placeholder audit
+        run: |
+          set -euo pipefail
+          lake env lean CheckC0OneStageSelectedOrder.lean > c0-one-stage-axioms.log
+          python3 scripts/check_axioms.py c0-one-stage-axioms.log CheckC0OneStageSelectedOrder.lean
+          python3 scripts/check_no_placeholders.py
