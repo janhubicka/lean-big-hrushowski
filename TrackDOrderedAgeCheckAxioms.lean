@@ -31,6 +31,7 @@ import BigHrushovski.FiniteSetTaggedUnion
 import BigHrushovski.FiniteTwoFactorValueTransport
 import BigHrushovski.FiniteTaggedFreeGraphEquiv
 import BigHrushovski.C0CoordinateNormalizedAmalgamUnion
+import BigHrushovski.FiniteSetTaggedFreeGraph
 import BigHrushovski.C0CoordinateFiniteStageValueTransport
 import BigHrushovski.C0CoordinateRawGeneratedStageWitness
 import BigHrushovski.C0CoordinateFiniteStageSparsity
@@ -308,3 +309,6 @@ import BigHrushovski.C0CoordinateRawHostFiniteOccurrence
 #print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.overlapRightTailEquiv
 #print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.overlapNormalizedTaggedEquiv
 #print axioms BigHrushovski.FiniteUnaryCoordinates.RawC0CoordinateVertex.normalizedAmalgamUnionEquiv
+
+#print axioms BigHrushovski.FiniteSetUnion.taggedFreeGraph_adj_iff
+#print axioms BigHrushovski.FiniteUnaryCoordinates.rawC0TaggedFreeGraph_adj_iff
