@@ -143,4 +143,59 @@ theorem increasingPrefix_agree_of_supportedStage
   exact (birthLevelDomain_agree_on_stage_iff F K hReq
     (Set.range X) (Set.range Y) (X n + 1)).mpr hStage
 
+
+/-- A set of increasing enumerations is open for the finite-stage
+vertex-observation topology if every point admits a finite literal
+birth stage on which membership of the supported vertex domains
+determines a smaller neighborhood contained in that set. -/
+def IsSupportedStageOpen
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (U : Set RamseySpace.Examples.Ellentuck.Point) : Prop :=
+  ∀ X ∈ U, ∃ m : ℕ,
+    ∀ Y : RamseySpace.Examples.Ellentuck.Point,
+      (∀ v : Vertex F K, v ∈ stageImage F K m →
+        (v ∈ birthLevelDomain F K (Set.range X) ↔
+          v ∈ birthLevelDomain F K (Set.range Y))) →
+      Y ∈ U
+
+/-- Openness for the finite-approximation metric presentation:
+locally, membership is determined by a sufficiently long
+initial segment of the increasing enumeration. -/
+def IsIncreasingPrefixOpen
+    (U : Set RamseySpace.Examples.Ellentuck.Point) : Prop :=
+  ∀ X ∈ U, ∃ n : ℕ,
+    ∀ Y : RamseySpace.Examples.Ellentuck.Point,
+      (∀ i : ℕ, i < n → X i = Y i) →
+      Y ∈ U
+
+/-- Exact equality of the two notions of open set. On the
+family of genuine complete-supported C_F vertex domains,
+the natural finite-vertex-observation topology is the same
+as the finite-approximation *metric* topology transported
+from the increasing level enumerations.
+
+This is NOT a claim that the finer Ellentuck topology, which
+also restricts to subcopies, is the same as the metric topology. -/
+theorem isSupportedStageOpen_iff_isIncreasingPrefixOpen
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (hReq : ∀ n : ℕ, ∃ r : BirthRequest F K n,
+      r.support = ∅)
+    (U : Set RamseySpace.Examples.Ellentuck.Point) :
+    IsSupportedStageOpen F K U ↔ IsIncreasingPrefixOpen U := by
+  constructor
+  · intro hOpen X hX
+    obtain ⟨m, hm⟩ := hOpen X hX
+    refine ⟨m, ?_⟩
+    intro Y hPrefix
+    exact hm Y (supportedStage_agree_of_increasingPrefix
+      F K hReq X Y m hPrefix)
+  · intro hOpen X hX
+    obtain ⟨n, hn⟩ := hOpen X hX
+    refine ⟨X n + 1, ?_⟩
+    intro Y hStage
+    apply hn Y
+    intro i hi
+    exact increasingPrefix_agree_of_supportedStage
+      F K hReq X Y n hStage i (Nat.le_of_lt hi)
+
 end BigHrushovski.CFCoherentTower
