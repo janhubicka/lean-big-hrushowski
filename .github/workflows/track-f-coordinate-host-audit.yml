@@ -1,0 +1,22 @@
+name: Track F coordinate host totality audit
+on:
+  push:
+    paths:
+      - 'docs/TRACK_F_COORDINATE_HOST_AUDIT_20261115.md'
+      - 'scripts/check_track_f_coordinate_host_ties.py'
+      - '.github/workflows/track-f-coordinate-host-audit.yml'
+  pull_request:
+    paths:
+      - 'docs/TRACK_F_COORDINATE_HOST_AUDIT_20261115.md'
+      - 'scripts/check_track_f_coordinate_host_ties.py'
+      - '.github/workflows/track-f-coordinate-host-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tie-control:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exhibit and test non-total coordinate comparison
+        run: python3 scripts/check_track_f_coordinate_host_ties.py
