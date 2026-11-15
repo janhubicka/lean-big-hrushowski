@@ -1,6 +1,6 @@
 # Countable \(C_0\) closure-component enumeration — proof and verification
 
-Updated 14 November 2026. This is an English proof guide, not an additional Lean
+Updated 15 November 2026. This is an English proof guide, not an additional Lean
 certificate. It concerns the **unordered complete-unary functional presentation**
 and the chronology of its intrinsic closure-components. The uniform local orders
 required by the manuscript's Ramsey expansion are a separate step.
@@ -109,15 +109,29 @@ extension hypotheses (#555). This is stronger than uniqueness of
 the graph reduct, and does not assert uniqueness without those
 hypotheses.
 
-The remaining finite-age heredity refinement, allowing unused
-component index positions, is in draft #539; its countable
-closed-substructure transfer and exact two-way finite-age
-characterization are in drafts #544 and #561. These drafts do
-not count as certified until their exact-head Lean tests pass.
+The finite-age heredity refinement allowing unused component
+positions (#539), its transfer to arbitrary finite \(C\)-closed
+substructures of a countable canonical model (#544), and the exact
+two-way finite closed functional age theorem (#561) have now passed
+their exact-head dedicated and repository-wide Lean checks and
+merged. In particular, the finite \(C\)-closed induced substructures
+of the constructed limit are exactly the finite canonical functional
+\(C_0\)-structures, up to isomorphism; every such structure has a
+closed, globally strong induced copy.
 
-None of these **unordered** statements chooses the uniform local
-ordered representatives required by the manuscript's Ramsey
-expansion, nor proves its big Ramsey assertions.
+The **remaining ordered step** is distinct. A chosen ordered
+one-generated closure type over an ordered lower part specifies an
+*orbit* of local orders, not one labelled order fixed by all local
+automorphisms. For example, \(\varnothing\subset\{a\}\subset K_4\)
+is a canonical minimal-strong presentation whose last component
+has the nontrivial lower-part stabilizer \(S_3\). Transporting a
+chosen local representative gives permitted orders related by
+automorphisms fixing the ordered lower part. The finite transport
+argument is proposed in draft Lean PR #588, with a manuscript
+clarification in draft paper PR #179. Neither proves that a
+coherent global selection of those local orbits has been
+Lean-formalized, nor the tail-extension or ordered big Ramsey
+theorems. The full manuscript proposition remains PARTIAL.
 
 ## Internal adversarial checks
 
