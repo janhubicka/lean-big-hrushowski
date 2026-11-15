@@ -103,6 +103,24 @@ theorem actualRHCopy_le_iff_subset
       D.1 ⊆ E.1
   exact actualSupported_le_iff_domain_subset F K hReq _ _
 
+/-- A basic Ellentuck neighborhood in the *actual* ordered R/H
+copy-domain space has exactly the manuscript's two conditions:
+the literal vertex domain refines the reference copy by inclusion,
+and its first-n level approximation equals the prescribed prefix.
+The second condition is not to be confused with equality of
+all vertex characteristic functions through a fixed stage. -/
+theorem actualRHCopy_mem_basicNeighborhood_iff
+    (F : ℕ → ℝ) (K : ℕ → ℕ)
+    (hReq : ∀ n : ℕ, ∃ r : BirthRequest F K n,
+      r.support = ∅)
+    (n : ℕ) (a : RamseySpace.Examples.Ellentuck.Approx n)
+    (D B : ActualOrderedRHCopy F K) :
+    D ∈ (actualRHCopyApproximationSystem F K hReq).neighborhood a B ↔
+      D.1 ⊆ B.1 ∧
+        (actualRHCopyApproximationSystem F K hReq).approx n D = a := by
+  rw [RamseySpace.ApproximationSystem.mem_neighborhood,
+    actualRHCopy_le_iff_subset F K hReq D B]
+
 /-- Finite approximations of a genuine copy whose level
 enumeration is X are literally the first n levels of X,
 not an isomorphic replacement finite diagram. -/
