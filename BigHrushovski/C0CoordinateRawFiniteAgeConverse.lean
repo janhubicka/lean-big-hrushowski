@@ -203,5 +203,33 @@ theorem RawC0CoordinateVertex.closed_hasStageValuePresentation
   rw [← hEq]
   exact RawC0CoordinateVertex.closeFinite_hasStageValuePresentation s
 
+/-- Every finite complete-C-closed raw-host substructure is
+2-sparse, as a consequence of its actual canonical finite C₀
+stage/value witness. This does not assume sparsity independently. -/
+theorem RawC0CoordinateVertex.closed_twoSparse
+    (s : Finset RawC0CoordinateVertex)
+    (hs : RawC0CoordinateVertex.IsClosed s) :
+    (rawC0HostGraph.pullback
+      (Subtype.val : s → RawC0CoordinateVertex)).IsTwoSparse
+        (Finset.univ : Finset s) := by
+  exact hasCanonicalC0StageValues_twoSparse
+    (rawC0HostGraph.pullback
+      (Subtype.val : s → RawC0CoordinateVertex))
+    (RawC0CoordinateVertex.valueOn s)
+    (RawC0CoordinateVertex.closed_hasStageValuePresentation s hs)
+
+/-- The complete unary closure of any finite family of raw codes
+has a 2-sparse induced graph. The proof is by the finite-stage
+age theorem, not by an assumed global sparsity of the raw host. -/
+theorem RawC0CoordinateVertex.closeFinite_twoSparse
+    (F : Finset RawC0CoordinateVertex) :
+    (rawC0HostGraph.pullback
+      (Subtype.val :
+        RawC0CoordinateVertex.closeFinite F → RawC0CoordinateVertex)).IsTwoSparse
+        (Finset.univ : Finset (RawC0CoordinateVertex.closeFinite F)) := by
+  exact RawC0CoordinateVertex.closed_twoSparse
+    (RawC0CoordinateVertex.closeFinite F)
+    (RawC0CoordinateVertex.closeFinite_isClosed F)
+
 end FiniteUnaryCoordinates
 end BigHrushovski
