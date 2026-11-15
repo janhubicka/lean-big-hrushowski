@@ -43,6 +43,9 @@ theorem canonicalAssignment_taggedPrefix_canonicalAtNewRank
         (O.taggedPrefixFromAssignment r orders (n+1) hn))
       B := by
   let B : O.ComponentObject := r.symm ⟨n, Nat.lt_of_succ_le hn⟩
+  change O.IsCanonicalAtComponent r
+    (O.ordersFromReverseHistory
+      (O.taggedPrefixFromAssignment r orders (n + 1) hn)) B
   have hRankB : (r B).val = n := by simp [B]
   have hAgree : O.AgreeThroughComponentRank r
       (O.ordersFromReverseHistory
@@ -65,6 +68,7 @@ theorem canonicalAssignment_taggedPrefix_canonicalAtNewRank
       orders (r B) hAgree).mpr (by
         intro x _
         exact hCanon x)
+  dsimp only [IsCanonicalAtComponent]
   intro x hx
   have hxB :
       (⟨O.component x, O.component_mem_components x⟩ :
