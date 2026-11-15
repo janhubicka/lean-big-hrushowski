@@ -1,0 +1,6 @@
+import BigHrushovski.CFPublishedTwoPropertyRecognition
+
+#print axioms BigHrushovski.CFDClosedBackAndForth.finiteDClosedCovers_of_growth
+#print axioms BigHrushovski.CFDClosedBackAndForth.finiteFraisseData_of_growth_extensions
+#print axioms BigHrushovski.CFCoherentTower.publishedGrowth_hasFiniteDClosedCovers
+#print axioms BigHrushovski.CFCoherentTower.publishedBirth_iso_of_growth_and_extensions
