@@ -72,6 +72,7 @@ on:
       - "scripts/check_c0_component_key_equivalence.py"
       - "scripts/check_c0_raw_host_generated_occurrences.py"
       - "scripts/check_c0_raw_host_bounded_fibres.py"
+      - "scripts/check_c0_raw_finite_age_converse.py"
       - "docs/TRACK_D_UNIFORM_LOCAL_ORDER_SELECTION_20261108.md"
   workflow_dispatch:
 
@@ -119,6 +120,7 @@ jobs:
           python3 scripts/check_c0_component_key_equivalence.py
           python3 scripts/check_c0_raw_host_generated_occurrences.py
           python3 scripts/check_c0_raw_host_bounded_fibres.py
+          python3 scripts/check_c0_raw_finite_age_converse.py
       - name: Build and audit exact Track D bridge
         run: |
           set -euo pipefail
