@@ -11,3 +11,5 @@ Cantor-product topology.
 #print axioms BigHrushovski.CFCoherentTower.increasingPoint_prefix_of_level_agree
 #print axioms BigHrushovski.CFCoherentTower.supportedStage_agree_of_increasingPrefix
 #print axioms BigHrushovski.CFCoherentTower.increasingPrefix_agree_of_supportedStage
+
+#print axioms BigHrushovski.CFCoherentTower.isSupportedStageOpen_iff_isIncreasingPrefixOpen
